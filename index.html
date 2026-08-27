@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VIRA — Tudo Pode Se Transformar | Indústria de Materiais Circulares</title>
+  <meta name="description" content="Indústria de materiais circulares em Caruaru, PE. Transformamos resíduos plásticos e de alumínio em produtos para cidades mais circulares." />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'paper': '#FEFDF9',
+            'surface': '#F4F5F2',
+            'graphite': '#2A3233',
+            'forest': '#4A7135',
+            'sprout': '#698E3C',
+            'ochre': '#C68D2B',
+            'muted': '#5F6869'
+          },
+          fontFamily: {
+            serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-paper text-graphite selection:bg-ochre selection:text-white font-sans antialiased min-h-screen flex flex-col justify-between">
+
+  <!-- TOP BAR & NAVBAR -->
+  <header class="sticky top-0 z-40 bg-paper/90 backdrop-blur-md hairline-b">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 h-20 flex items-center justify-between gap-4">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <img src="assets/logo.png" alt="VIRA — Tudo Pode Se Transformar" class="h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
+      </a>
+
+      <!-- Location Badge (Other Half Studio Pill Style) -->
+      <div class="hidden md:flex items-center">
+        <div class="pill-badge text-muted">
+          <span class="w-2 h-2 rounded-full bg-forest pulse-dot"></span>
+          <span>8°22′S 35°58′W — Caruaru, PE</span>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-8 font-mono text-xs uppercase tracking-wider text-muted">
+        <a href="#conceito" class="hover:text-graphite transition-colors">02 Conceito</a>
+        <a href="#industria" class="hover:text-graphite transition-colors">03 O Complexo</a>
+        <a href="#materia" class="hover:text-graphite transition-colors">04 Matéria</a>
+        <a href="#produtos" class="hover:text-graphite transition-colors">05 Produtos</a>
+        <a href="#passaporte" class="hover:text-graphite transition-colors">06 Passaporte</a>
+        <a href="#calculadora" class="hover:text-graphite transition-colors">07 Calculadora</a>
+        <a href="#dignidade" class="hover:text-graphite transition-colors">08 Dignidade</a>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="flex items-center gap-3">
+        <a href="#contato" class="pill-button-primary !py-2.5 !px-5 !text-xs">
+          Fale Conosco
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- MAIN WRAPPER -->
+  <main class="flex-1">
+
+    <!-- 01 — HERO SECTION WITH EDITORIAL SPLIT -->
+    <section class="relative pt-16 pb-20 md:pt-24 md:pb-28 overflow-hidden hairline-b">
+      <div class="max-w-7xl mx-auto px-6 sm:px-10">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <div class="lg:col-span-7 flex flex-col gap-8">
+            
+            <div class="flex flex-wrap items-center gap-3">
+              <span class="pill-badge">01 — Indústria de Materiais Circulares</span>
+              <span class="pill-badge text-forest border-forest/20 bg-forest/5">100% Reciclado & Rastreável</span>
+              <div class="brand-tricolor-bar ml-2">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <h1 class="font-serif text-5xl sm:text-7xl lg:text-8xl leading-[0.92] tracking-tight text-balance text-graphite">
+              Tudo pode se <br />
+              <span class="italic text-ochre underline decoration-1 underline-offset-8">transformar</span>.
+            </h1>
+
+            <p class="font-sans text-lg sm:text-xl text-muted max-w-xl font-light leading-relaxed">
+              Operamos um complexo fabril de última geração em Caruaru-PE, transformando resíduos descartados em compósitos e produtos de alta permanência para arquitetura e urbanismo.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-4 pt-2">
+              <a href="#conceito" class="pill-button-primary">
+                <span>Explorar Conceito</span>
+                <span>↓</span>
+              </a>
+              <a href="#industria" class="pill-button-secondary">
+                <span>Conhecer a Fábrica</span>
+              </a>
+              <a href="#calculadora" class="pill-button-ochre">
+                <span>Simulador de Impacto</span>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Hero Featured Photo (Fachada Sunset com Iluminação Cênica) -->
+          <div class="lg:col-span-5 relative">
+            <div class="editorial-card p-3 rounded-3xl bg-white shadow-xl rotate-1 hover:rotate-0 transition-transform duration-500">
+              <div class="relative rounded-2xl overflow-hidden aspect-[4/3]">
+                <img src="assets/factory-sunset-facade.jpg" alt="Fachada do Complexo Industrial VIRA em Caruaru, PE" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+                <div class="absolute inset-0 bg-gradient-to-t from-graphite/70 via-transparent to-transparent"></div>
+                <div class="absolute bottom-4 left-4 right-4 text-white flex justify-between items-end">
+                  <div>
+                    <span class="font-mono text-[10px] uppercase tracking-widest text-ochre font-bold">Fachada Principal • 24/7</span>
+                    <p class="font-serif text-lg leading-tight text-white">Complexo Industrial VIRA</p>
+                  </div>
+                  <span class="pill-badge !bg-black/40 !text-white !border-white/20 !text-[9px]">
+                    Caruaru • PE
+                  </span>
+                </div>
+              </div>
+              <div class="p-3 flex justify-between items-center text-[11px] font-mono text-muted">
+                <span>⚡ 100% Matriz Fotovoltaica</span>
+                <span>•</span>
+                <span>♻️ Logística Reversa Ativa</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- MARQUEE TICKER (Other Half Studio signature) -->
+      <div class="mt-16 py-4 bg-surface hairline-t hairline-b">
+        <div class="marquee-container font-mono text-xs uppercase tracking-[0.25em] text-muted">
+          <div class="marquee-content">
+            <span>✦ PLÁSTICO VIRA MATÉRIA</span>
+            <span>✦ MATÉRIA VIRA PRODUTO</span>
+            <span>✦ PRODUTO VIRA CIDADE</span>
+            <span>✦ CIDADE VIRA IMPACTO</span>
+            <span>✦ IMPACTO VIRA DIGNIDADE</span>
+            <span>✦ 0% POLÍMERO VIRGEM</span>
+            <span>✦ PASSAPORTE DIGITAL DE PRODUTO</span>
+            <span>✦ CARUARU — PERNAMBUCO</span>
+            <span>✦ PLÁSTICO VIRA MATÉRIA</span>
+            <span>✦ MATÉRIA VIRA PRODUTO</span>
+            <span>✦ PRODUTO VIRA CIDADE</span>
+            <span>✦ CIDADE VIRA IMPACTO</span>
+            <span>✦ IMPACTO VIRA DIGNIDADE</span>
+            <span>✦ 0% POLÍMERO VIRGEM</span>
+            <span>✦ PASSAPORTE DIGITAL DE PRODUTO</span>
+            <span>✦ CARUARU — PERNAMBUCO</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 — O CONCEITO (#conceito) SCROLLYTELLING -->
+    <section id="conceito" class="py-24 sm:py-36 bg-paper hairline-b relative">
+      <div class="max-w-7xl mx-auto px-6 sm:px-10">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div>
+            <p class="font-mono text-xs uppercase tracking-[0.25em] text-forest mb-2">02 — O Conceito</p>
+            <h2 class="font-serif text-4xl sm:text-6xl text-graphite leading-tight">
+              A Cadeia de <span class="italic">Transformação</span>
+            </h2>
+          </div>
+          <p class="font-sans text-sm sm:text-base text-muted max-w-md">
+            Do resíduo à cidade: cada etapa do ciclo VIRA transforma matéria em sentido, e sentido em dignidade.
+          </p>
+        </div>
+
+        <!-- Interactive Concept Stage Box -->
+        <div class="p-8 sm:p-14 rounded-3xl bg-surface border border-graphite/10 relative overflow-hidden shadow-sm">
+          
+          <!-- Top Sub-Bar with Step & Badge -->
+          <div class="flex flex-wrap items-center justify-between gap-4 hairline-b pb-6 mb-10">
+            <div class="flex items-center gap-3">
+              <span id="concept-step" class="font-mono text-sm font-semibold text-graphite">01 / 05</span>
+              <span id="concept-badge" class="pill-badge text-forest bg-white">Fase 01 — Triagem & Micronização</span>
+            </div>
+            <div id="concept-dots" class="flex items-center gap-2">
+              <!-- Dots injected via app.js -->
+            </div>
+          </div>
+
+          <!-- Dynamic Large Stage Transition Graphic -->
+          <div class="py-12 sm:py-20 flex flex-col items-center justify-center text-center select-none">
+            
+            <span id="concept-from" class="font-serif text-6xl sm:text-8xl lg:text-9xl tracking-tight text-graphite font-normal transition-all duration-300">
+              PLÁSTICO
+            </span>
+
+            <div class="my-4 sm:my-6 flex items-center gap-4">
+              <span class="h-px w-12 sm:w-24 bg-graphite/20"></span>
+              <span id="concept-vira-word" class="font-serif italic text-4xl sm:text-6xl text-forest transition-colors duration-300">vira</span>
+              <span class="h-px w-12 sm:w-24 bg-graphite/20"></span>
+            </div>
+
+            <span id="concept-to" class="font-serif text-6xl sm:text-8xl lg:text-9xl tracking-tight text-graphite font-normal transition-all duration-300">
+              MATÉRIA
+            </span>
+
+          </div>
+
+          <!-- Stage Explanation Card & Navigation -->
+          <div class="mt-10 pt-8 hairline-t flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+            
+            <div class="max-w-xl">
+              <p id="concept-desc" class="font-sans text-base sm:text-lg text-graphite/85 leading-relaxed">
+                Resíduos plásticos e de alumínio descartados são triados, descontaminados e micronizados em polímeros circulares homogêneos de alto desempenho técnico.
+              </p>
+              <div class="mt-3 flex items-center gap-2 text-xs font-mono text-muted">
+                <span class="w-1.5 h-1.5 rounded-full bg-forest"></span>
+                <span id="concept-metric">100% Reciclado Pós-Consumo</span>
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="flex items-center gap-3 self-end md:self-center">
+              <button id="concept-prev" class="p-3 rounded-full border border-graphite/20 hover:bg-white hover:border-graphite transition-all" title="Etapa Anterior">
+                <i data-lucide="arrow-left" class="w-5 h-5 text-graphite"></i>
+              </button>
+              <button id="concept-next" class="pill-button-primary !py-3 !px-6 !text-xs flex items-center gap-2">
+                <span>Próxima Etapa</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 03 — O COMPLEXO INDUSTRIAL INTERATIVO (CARUARU - PE) -->
+    <section id="industria" class="py-24 sm:py-36 bg-surface hairline-b">
+      <div class="max-w-7xl mx-auto px-6 sm:px-10">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <div>
+            <p class="font-mono text-xs uppercase tracking-[0.25em] text-forest mb-2">03 — Infraestrutura & Capacidade</p>
+            <h2 class="font-serif text-4xl sm:text-6xl text-graphite leading-tight">
+              O Complexo Industrial <span class="italic">VIRA</span>.
+            </h2>
+          </div>
+          <p class="font-sans text-sm sm:text-base text-muted max-w-md">
+            Explore os diferentes ângulos operacionais da nossa planta fabril no Distrito Industrial de Caruaru-PE.
+          </p>
+        </div>
+
+        <!-- Interactive Angle Selector Pills -->
+        <div class="flex flex-wrap gap-2 mb-8">
+          <button data-view="sunset-facade" onclick="switchFactoryView('sunset-facade')" class="gallery-nav-btn px-4 py-2 rounded-full font-mono text-xs border border-forest bg-forest/10 text-forest transition-all flex items-center gap-2">
+            <span>Fachada Iluminada</span>
+          </button>
+          <button data-view="logistics-truck" onclick="switchFactoryView('logistics-truck')" class="gallery-nav-btn px-4 py-2 rounded-full font-mono text-xs border border-graphite/10 bg-white text-muted hover:border-forest hover:text-forest transition-all flex items-center gap-2">
+            <span>Triagem & Logística</span>
+          </button>
+          <button data-view="portal-front" onclick="switchFactoryView('portal-front')" class="gallery-nav-btn px-4 py-2 rounded-full font-mono text-xs border border-graphite/10 bg-white text-muted hover:border-forest hover:text-forest transition-all flex items-center gap-2">
+            <span>Pórtico de Entrada</span>
+          </button>
+          <button data-view="sunset-aerial" onclick="switchFactoryView('sunset-aerial')" class="gallery-nav-btn px-4 py-2 rounded-full font-mono text-xs border border-graphite/10 bg-white text-muted hover:border-forest hover:text-forest transition-all flex items-center gap-2">
+            <span>Vista Panorâmica</span>
+          </button>
+          <button data-view="wide-day" onclick="switchFactoryView('wide-day')" class="gallery-nav-btn px-4 py-2 rounded-full font-mono text-xs border border-graphite/10 bg-white text-muted hover:border-forest hover:text-forest transition-all flex items-center gap-2">
+            <span>Campus Aéreo Diurno</span>
+          </button>
+        </div>
+
+        <!-- High-Impact Interactive Photo Showcase -->
+        <div class="rounded-3xl overflow-hidden border border-graphite/10 relative shadow-lg mb-12 bg-graphite">
+          <img id="main-factory-view" src="assets/factory-sunset-facade.jpg" alt="Fábrica VIRA" class="w-full h-[450px] sm:h-[580px] object-cover transition-all duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-graphite/85 via-transparent to-transparent pointer-events-none"></div>
+          
+          <div class="absolute bottom-8 left-8 right-8 text-white flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+              <span id="factory-view-badge" class="pill-badge !bg-forest/90 !text-white !border-transparent !text-[10px] mb-2">Arquitetura & Design Noturno</span>
+              <h3 id="factory-view-title" class="font-serif text-2xl sm:text-4xl text-white">Fachada Principal ao Entardecer</h3>
+              <p id="factory-view-desc" class="font-sans text-xs sm:text-sm text-white/80 max-w-xl mt-1">Iluminação cênica com a marca VIRA e pórtico de entrada principal em Caruaru-PE.</p>
+            </div>
+            <div class="font-mono text-right text-xs text-ochre font-semibold shrink-0">
+              8°22′S 35°58′W • Caruaru - PE
+            </div>
+          </div>
+        </div>
+
+        <!-- Factory Stats Cards -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="editorial-card p-6 rounded-2xl bg-white">
+            <span class="font-mono text-2xl sm:text-3xl font-bold text-forest">100%</span>
+            <h4 class="font-serif text-lg text-graphite mt-1">Energia Solar</h4>
+            <p class="font-sans text-xs text-muted mt-1">Teto fotovoltaico integral gerando energia limpa para toda a operação fabril.</p>
+          </div>
+
+          <div class="editorial-card p-6 rounded-2xl bg-white">
+            <span class="font-mono text-2xl sm:text-3xl font-bold text-graphite">+1.200 t</span>
+            <h4 class="font-serif text-lg text-graphite mt-1">Capacidade / Mês</h4>
+            <p class="font-sans text-xs text-muted mt-1">Processamento contínuo de resíduos plásticos e de compósitos de alumínio.</p>
+          </div>
+
+          <div class="editorial-card p-6 rounded-2xl bg-white">
+            <span class="font-mono text-2xl sm:text-3xl font-bold text-ochre">0%</span>
+            <h4 class="font-serif text-lg text-graphite mt-1">Efluentes Tóxicos</h4>
+            <p class="font-sans text-xs text-muted mt-1">Processamento mecânico a seco e circuito fechado de reaproveitamento hídrico.</p>
+          </div>
+
+          <div class="editorial-card p-6 rounded-2xl bg-white">
+            <span class="font-mono text-2xl sm:text-3xl font-bold text-sprout">+40</span>
+            <h4 class="font-serif text-lg text-graphite mt-1">Cooperativas</h4>
+            <p class="font-sans text-xs text-muted mt-1">Rede conectada de fornecimento de materiais reciclados no Agreste de PE.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 04 — A MATÉRIA & CIÊNCIA CIRCULAR (#materia) WITH LIVE OPERATIONAL PHOTO -->
+    <section id="materia" class="py-24 sm:py-36 bg-paper hairline-b">
+      <div class="max-w-7xl mx-auto px-6 sm:px-10">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
+          
+          <div class="lg:col-span-6 space-y-6">
+            <p class="font-mono text-xs uppercase tracking-[0.25em] text-forest">04 — Matéria & Ciência</p>
+            <h2 class="font-serif text-4xl sm:text-6xl text-graphite leading-tight">
+              De onde vem o que <span class="italic">transformamos</span>?
+            </h2>
+            <p class="font-sans text-muted leading-relaxed">
+              Trabalhamos com polímeros pós-consumo (PEAD, PP) e compósitos multicamada de alumínio. O processo de descarregamento automatizado, separação por densidade óptica e micronização garante pureza laboratorial.
+            </p>
+
+            <div class="grid grid-cols-2 gap-4 pt-2">
+              <div class="p-4 rounded-xl bg-surface border border-graphite/5">
+                <span class="font-mono text-xl font-bold text-graphite">12.860 kg</span>
+                <p class="font-sans text-xs text-muted mt-1">Média por carga de recebimento rastreado.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-surface border border-graphite/5">
+                <span class="font-mono text-xl font-bold text-forest">99.4%</span>
+                <p class="font-sans text-xs text-muted mt-1">Índice de pureza polimérica final.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Unloading Photo -->
+          <div class="lg:col-span-6">
+            <div class="editorial-card p-3 rounded-3xl bg-white shadow-md">
+              <div class="relative rounded-2xl overflow-hidden aspect-[4/3]">
+                <img src="assets/materia-descarregamento.jpg" alt="Recebimento de Materiais e Logística Reversa VIRA" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+                <div class="absolute inset-0 bg-gradient-to-t from-graphite/60 via-transparent to-transparent"></div>
+                <div class="absolute bottom-4 left-4 right-4 text-white flex justify-between items-end">
+                  <div>
+                    <span class="font-mono text-[10px] uppercase tracking-widest text-sprout font-bold">Recepção & Moega</span>
+                    <p class="font-serif text-lg leading-tight text-white">Descarregamento & Triagem</p>
+                  </div>
+                  <span class="pill-badge !bg-black/50 !text-white !border-white/20 !text-[9px]">
+                    Pesagem Digital
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 05 — CATÁLOGO DE PRODUTOS (#produtos) -->
+    <section id="produtos" class="py-24 sm:py-36 bg-surface hairline-b">
+      <div class="max-w-7xl mx-auto px-6 sm:px-10">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <div>
+            <p class="font-mono text-xs uppercase tracking-[0.25em] text-forest mb-2">05 — Catálogo de Produtos</p>
+            <h2 class="font-serif text-4xl sm:text-6xl text-graphite leading-tight">
+              Matéria vira <span class="italic">produto</span>.
+            </h2>
+          </div>
+          
+          <!-- Filters -->
+          <div class="flex flex-wrap items-center gap-2">
+            <button data-filter="all" class="product-filter-btn px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider bg-graphite text-white transition-all">Todos</button>
+            <button data-filter="arquitetura" class="product-filter-btn px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider bg-transparent text-graphite hover:bg-white transition-all">Arquitetura</button>
+            <button data-filter="estrutural" class="product-filter-btn px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider bg-transparent text-graphite hover:bg-white transition-all">Perfis</button>
+            <button data-filter="urbano" class="product-filter-btn px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider bg-transparent text-graphite hover:bg-white transition-all">Urbano</button>
+            <button data-filter="materia" class="product-filter-btn px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider bg-transparent text-graphite hover:bg-white transition-all">Matéria-Prima</button>
+          </div>
+        </div>
+
+        <!-- Product Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Product 1 -->
+          <div class="product-grid-card editorial-card rounded-2xl overflow-hidden flex flex-col justify-between p-6 bg-white" data-category="arquitetura">
+            <div>
+              <div class="h-44 rounded-xl bg-gradient-to-tr from-stone-200 via-amber-50 to-emerald-50 flex items-center justify-center relative overflow-hidden border border-graphite/5 mb-6">
+                <span class="font-mono text-[10px] uppercase tracking-widest text-muted/70 absolute top-3 left-3">VRA-PRD-1204</span>
+                <div class="w-24 h-24 rounded-lg bg-stone-300/60 shadow-inner flex items-center justify-center font-serif italic text-graphite/40 text-sm">Placa 15mm</div>
+              </div>
+              <span class="font-mono text-[10px] uppercase tracking-widest text-forest">Arquitetura & Design</span>
+              <h3 class="font-serif text-2xl text-graphite mt-1">Painel VIRA Plano 15mm</h3>
+              <p class="font-sans text-xs text-muted mt-2">Chapas poliméricas rígidas para fachadas ventiladas, divisórias e marcenaria estrutural sustentável.</p>
+            </div>
+            <div class="mt-6 pt-4 hairline-t flex items-center justify-between">
+              <span class="font-mono text-xs text-muted">100% Reciclado</span>
+              <button onclick="openProductDrawer('painel-plano')" class="font-mono text-xs text-ochre font-semibold hover:underline flex items-center gap-1">
+                Ficha Técnica <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="product-grid-card editorial-card rounded-2xl overflow-hidden flex flex-col justify-between p-6 bg-white" data-category="estrutural">
+            <div>
+              <div class="h-44 rounded-xl bg-gradient-to-tr from-slate-300 via-zinc-200 to-stone-200 flex items-center justify-center relative overflow-hidden border border-graphite/5 mb-6">
+                <span class="font-mono text-[10px] uppercase tracking-widest text-muted/70 absolute top-3 left-3">VRA-LTE-0142</span>
+                <div class="w-16 h-28 rounded bg-zinc-400/60 shadow-inner flex items-center justify-center font-serif italic text-graphite/40 text-sm">Viga 80x80</div>
+              </div>
+              <span class="font-mono text-[10px] uppercase tracking-widest text-forest">Construção & Engenharia</span>
+              <h3 class="font-serif text-2xl text-graphite mt-1">Perfil Estrutural 80×80</h3>
+              <p class="font-sans text-xs text-muted mt-2">Vigas maciças imputrescíveis para decks, pergolados e estruturas urbanas expostas ao clima.</p>
+            </div>
+            <div class="mt-6 pt-4 hairline-t flex items-center justify-between">
+              <span class="font-mono text-xs text-muted">Alta Resistência</span>
+              <button onclick="openProductDrawer('perfil-estrutural')" class="font-mono text-xs text-ochre font-semibold hover:underline flex items-center gap-1">
+                Ficha Técnica <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Product 3 -->
+          <div class="product-grid-card editorial-card rounded-2xl overflow-hidden flex flex-col justify-between p-6 bg-white" data-category="urbano">
+            <div>
+              <div class="h-44 rounded-xl bg-gradient-to-tr from-neutral-200 via-stone-100 to-amber-100 flex items-center justify-center relative overflow-hidden border border-graphite/5 mb-6">
+                <span class="font-mono text-[10px] uppercase tracking-widest text-muted/70 absolute top-3 left-3">VRA-APP-0317</span>
+                <div class="w-32 h-16 rounded-full bg-neutral-300/70 shadow-inner flex items-center justify-center font-serif italic text-graphite/40 text-sm">Monólito</div>
+              </div>
+              <span class="font-mono text-[10px] uppercase tracking-widest text-forest">Mobiliário Público</span>
+              <h3 class="font-serif text-2xl text-graphite mt-1">Banco VIRA Monólito</h3>
+              <p class="font-sans text-xs text-muted mt-2">Módulo escultural para praças e parques. Não absorve calor e resiste a intempéries sem manutenção.</p>
+            </div>
+            <div class="mt-6 pt-4 hairline-t flex items-center justify-between">
+              <span class="font-mono text-xs text-muted">Garantia 10 Anos</span>
+              <button onclick="openProductDrawer('banco-urbano')" class="font-mono text-xs text-ochre font-semibold hover:underline flex items-center gap-1">
+                Ficha Técnica <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Product 4 -->
+          <div class="product-grid-card editorial-card rounded-2xl overflow-hidden flex flex-col justify-between p-6 bg-white" data-category="materia">
+            <div>
+              <div class="h-44 rounded-xl bg-gradient-to-tr from-emerald-100 via-lime-50 to-stone-200 flex items-center justify-center relative overflow-hidden border border-graphite/5 mb-6">
+                <span class="font-mono text-[10px] uppercase tracking-widest text-muted/70 absolute top-3 left-3">VRA-MAT-0001</span>
+                <div class="w-20 h-20 rounded-full bg-emerald-200/60 shadow-inner flex items-center justify-center font-serif italic text-graphite/40 text-sm">Flakes HD</div>
+              </div>
+              <span class="font-mono text-[10px] uppercase tracking-widest text-forest">Insumo Industrial</span>
+              <h3 class="font-serif text-2xl text-graphite mt-1">Micronizado VIRA-HD</h3>
+              <p class="font-sans text-xs text-muted mt-2">Polímero circular selecionado pronto para moldagem por injeção e extrusão com laudo laboratorial.</p>
+            </div>
+            <div class="mt-6 pt-4 hairline-t flex items-center justify-between">
+              <span class="font-mono text-xs text-muted">Pureza 99.4%</span>
+              <button onclick="openProductDrawer('materia-micronizada')" class="font-mono text-xs text-ochre font-semibold hover:underline flex items-center gap-1">
+                Ficha Técnica <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 06 — PASSAPORTE DIGITAL VIRA (#passaporte) WITH WEIGHING & LOGISTICS PHOTO -->
+    <section id="passaporte" class="py-24 sm:py-36 bg-paper hairline-b">
+      <div class="max-w-7xl mx-auto px-6 sm:px-10">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-12">
+          
+          <div class="lg:col-span-7">
+            <p class="font-mono text-xs uppercase tracking-[0.25em] text-forest mb-2">06 — Passaporte Digital (DPP)</p>
+            <h2 class="font-serif text-4xl sm:text-6xl text-graphite leading-tight">
+              Rastreabilidade e <span class="italic">Cadeia de Custódia</span>.
+            </h2>
+            <p class="font-sans text-muted mt-4 leading-relaxed max-w-xl">
+              Cada lote de matéria-prima e produto final é pesado em balança rodoviária digital calibrada e recebe um Passaporte Digital auditado com os dados da cooperativa fornecedora.
+            </p>
+          </div>
+
+          <div class="lg:col-span-5">
+            <div class="editorial-card p-2.5 rounded-2xl bg-white shadow-sm overflow-hidden">
+              <img src="assets/rastreabilidade-pesagem.jpg" alt="Pesagem Digital e Rastreabilidade VIRA" class="w-full h-48 object-cover rounded-xl" />
+              <div class="p-2 flex justify-between items-center text-[10px] font-mono text-muted">
+                <span>Balança Digital Integrada</span>
+                <span>•</span>
+                <span>Big Bags Identificados</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Passport Search Box -->
+        <div class="p-6 sm:p-8 rounded-3xl bg-surface border border-graphite/10 mb-8">
+          <div class="flex flex-col sm:flex-row items-center gap-4">
+            <div class="relative flex-1 w-full">
+              <input id="passport-input" type="text" value="VRA-PRD-1204" placeholder="Digite o código do lote (ex: VRA-PRD-1204)" class="w-full px-5 py-3.5 rounded-full bg-white border border-graphite/15 font-mono text-sm uppercase tracking-wider text-graphite focus:border-forest focus:outline-none" />
+            </div>
+            <button id="passport-btn" class="pill-button-primary w-full sm:w-auto !py-3.5 !px-8">
+              Consultar Passaporte
+            </button>
+          </div>
+
+          <!-- Presets -->
+          <div class="mt-4 flex flex-wrap items-center gap-2 text-xs font-mono text-muted">
+            <span>Lotes de exemplo:</span>
+            <button onclick="setPassportQuery('VRA-PRD-1204')" class="px-2.5 py-1 rounded bg-white border border-graphite/10 hover:border-graphite text-graphite">VRA-PRD-1204 (Painel)</button>
+            <button onclick="setPassportQuery('VRA-MAT-0001')" class="px-2.5 py-1 rounded bg-white border border-graphite/10 hover:border-graphite text-graphite">VRA-MAT-0001 (Matéria)</button>
+            <button onclick="setPassportQuery('VRA-LTE-0142')" class="px-2.5 py-1 rounded bg-white border border-graphite/10 hover:border-graphite text-graphite">VRA-LTE-0142 (Perfil)</button>
+          </div>
+        </div>
+
+        <!-- Result Card Container (Dynamically rendered by app.js) -->
+        <div id="passport-result"></div>
+
+      </div>
+    </section>
+
+    <!-- 07 — CALCULADORA DE IMPACTO (#calculadora) -->
+    <section id="calculadora" class="py-24 sm:py-36 bg-surface hairline-b">
+      <div class="max-w-7xl mx-auto px-6 sm:px-10">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <div class="lg:col-span-5 space-y-6">
+            <p class="font-mono text-xs uppercase tracking-[0.25em] text-forest mb-2">07 — Calculadora de Impacto</p>
+            <h2 class="font-serif text-4xl sm:text-6xl text-graphite leading-tight">
+              Meça o impacto do seu <span class="italic">projeto</span>.
+            </h2>
+            <p class="font-sans text-muted leading-relaxed">
+              Selecione a área estimada ou especificação em metros quadrados de painéis e perfis circulares VIRA para calcular os benefícios socioambientais diretos.
+            </p>
+
+            <div class="flex flex-wrap gap-2 pt-2">
+              <button onclick="setCalcPreset(50)" class="pill-badge hover:border-graphite cursor-pointer">Residencial (50 m²)</button>
+              <button onclick="setCalcPreset(250)" class="pill-badge hover:border-graphite cursor-pointer">Comercial (250 m²)</button>
+              <button onclick="setCalcPreset(1000)" class="pill-badge hover:border-graphite cursor-pointer">Urbano (1.000 m²)</button>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 bg-white p-8 sm:p-12 rounded-3xl border border-graphite/10 shadow-sm space-y-8">
+            
+            <!-- Slider Control -->
+            <div>
+              <div class="flex justify-between items-baseline mb-4">
+                <label for="calc-area" class="font-mono text-xs uppercase tracking-widest text-muted">Área do Projeto</label>
+                <span class="font-mono text-2xl font-bold text-graphite"><span id="calc-area-val">250</span> m²</span>
+              </div>
+              <input id="calc-area" type="range" min="10" max="2000" step="10" value="250" />
+              <div class="flex justify-between text-[10px] font-mono text-muted mt-2">
+                <span>10 m²</span>
+                <span>1.000 m²</span>
+                <span>2.000 m²</span>
+              </div>
+            </div>
+
+            <!-- Dynamic Metrics Output Grid -->
+            <div class="grid grid-cols-2 gap-4 pt-4 hairline-t">
+              
+              <div class="p-5 rounded-2xl bg-surface border border-graphite/5">
+                <span class="font-mono text-[10px] uppercase tracking-widest text-muted">Plástico Desviado</span>
+                <p id="calc-res-plastic" class="font-serif text-3xl sm:text-4xl text-graphite mt-1">4.625 kg</p>
+                <span class="font-sans text-[11px] text-muted mt-1 block">Retirado de aterros e rios</span>
+              </div>
+
+              <div class="p-5 rounded-2xl bg-surface border border-graphite/5">
+                <span class="font-mono text-[10px] uppercase tracking-widest text-muted">Emissões Evitadas</span>
+                <p id="calc-res-co2" class="font-serif text-3xl sm:text-4xl text-forest mt-1">9.944 kg</p>
+                <span class="font-sans text-[11px] text-muted mt-1 block">CO₂e não emitido</span>
+              </div>
+
+              <div class="p-5 rounded-2xl bg-surface border border-graphite/5">
+                <span class="font-mono text-[10px] uppercase tracking-widest text-muted">Garrafas Equivalentes</span>
+                <p id="calc-res-bottles" class="font-serif text-3xl sm:text-4xl text-ochre mt-1">231.250 un</p>
+                <span class="font-sans text-[11px] text-muted mt-1 block">Embalagens reintroduzidas</span>
+              </div>
+
+              <div class="p-5 rounded-2xl bg-surface border border-graphite/5">
+                <span class="font-mono text-[10px] uppercase tracking-widest text-muted">Renda Cooperativas</span>
+                <p id="calc-res-families" class="font-serif text-3xl sm:text-4xl text-graphite mt-1">38.5 dias</p>
+                <span class="font-sans text-[11px] text-muted mt-1 block">Dias de trabalho remunerado</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 08 — IMPACTO SOCIAL & DIGNIDADE (#dignidade) WITH COOPERATIVE SHAKE PHOTO -->
+    <section id="dignidade" class="py-24 sm:py-36 bg-paper hairline-b">
+      <div class="max-w-7xl mx-auto px-6 sm:px-10">
+        
+        <div class="p-8 sm:p-14 rounded-3xl bg-graphite text-paper relative overflow-hidden shadow-xl">
+          
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+            
+            <div class="lg:col-span-7 space-y-6">
+              <div class="flex items-center gap-3">
+                <span class="pill-badge text-paper/80 border-paper/20 bg-paper/10">08 — Dignidade Humana</span>
+                <div class="brand-tricolor-bar">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+
+              <h2 class="font-serif text-4xl sm:text-6xl leading-[0.95] text-balance text-white">
+                Impacto vira <span class="italic text-ochre">dignidade</span>.
+              </h2>
+
+              <p class="font-sans text-base text-paper/80 font-light leading-relaxed">
+                Por trás de cada placa e perfil circular existe o trabalho de homens e mulheres no Agreste Pernambucano. O VIRA nasceu para que a circularidade gere remuneração justa, proteção social e orgulho profissional.
+              </p>
+
+              <div class="pt-2 flex flex-wrap gap-4">
+                <a href="#contato" class="pill-button-ochre">
+                  Seja um Parceiro Circular
+                </a>
+              </div>
+            </div>
+
+            <!-- Featured Photo: Cooperativas & Parceria -->
+            <div class="lg:col-span-5">
+              <div class="p-2.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 overflow-hidden shadow-lg">
+                <img src="assets/dignidade-cooperativas.jpg" alt="Parceria VIRA e Cooperativas de Reciclagem de Caruaru" class="w-full h-56 sm:h-64 object-cover rounded-xl" />
+                <div class="pt-3 px-1 text-xs font-mono text-paper/80 flex justify-between items-center">
+                  <span class="text-sprout font-bold">Cooperativa VIRA</span>
+                  <span>Parceria que Transforma</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="absolute right-[-10%] bottom-[-20%] w-[500px] h-[500px] rounded-full bg-forest/15 blur-[120px] pointer-events-none"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 09 — CONTATO (#contato) -->
+    <section id="contato" class="py-24 sm:py-36 bg-surface">
+      <div class="max-w-7xl mx-auto px-6 sm:px-10">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          
+          <div class="lg:col-span-5 space-y-6">
+            <p class="font-mono text-xs uppercase tracking-[0.25em] text-forest">09 — Contato</p>
+            <h2 class="font-serif text-4xl sm:text-6xl text-graphite leading-tight">
+              Vamos construir algo <span class="italic">circular</span>?
+            </h2>
+            <p class="font-sans text-muted leading-relaxed">
+              Atendemos escritórios de arquitetura, construtoras, indústrias e órgãos públicos em todo o Brasil.
+            </p>
+
+            <div class="space-y-4 pt-4 text-xs font-mono text-muted">
+              <p><strong class="text-graphite uppercase">Fábrica & Sede:</strong><br />Distrito Industrial de Caruaru — Pernambuco, Brasil</p>
+              <p><strong class="text-graphite uppercase">E-mail Comercial:</strong><br /><a href="mailto:contato@vira.com.br" class="text-forest hover:underline">contato@vira.com.br</a></p>
+              <p><strong class="text-graphite uppercase">Coordenadas:</strong><br />8°22′S 35°58′W</p>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 bg-white p-8 sm:p-10 rounded-3xl border border-graphite/10 shadow-sm">
+            <form id="vira-contact-form" class="space-y-5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="font-mono text-xs uppercase tracking-wider text-muted block mb-2">Seu Nome</label>
+                  <input required type="text" placeholder="Ex: Laura Albuquerque" class="w-full px-4 py-3 rounded-xl bg-surface border border-graphite/10 text-graphite text-sm focus:border-forest focus:outline-none" />
+                </div>
+                <div>
+                  <label class="font-mono text-xs uppercase tracking-wider text-muted block mb-2">E-mail Profissional</label>
+                  <input required type="email" placeholder="laura@empresa.com.br" class="w-full px-4 py-3 rounded-xl bg-surface border border-graphite/10 text-graphite text-sm focus:border-forest focus:outline-none" />
+                </div>
+              </div>
+
+              <div>
+                <label class="font-mono text-xs uppercase tracking-wider text-muted block mb-2">Tipo de Demanda</label>
+                <select class="w-full px-4 py-3 rounded-xl bg-surface border border-graphite/10 text-graphite text-sm focus:border-forest focus:outline-none">
+                  <option>Especificação de Produtos (Arquitetura / Obras)</option>
+                  <option>Compra de Matéria-Prima Circular (Micronizados)</option>
+                  <option>Parceria de Logística Reversa / Resíduos</option>
+                  <option>Outras Informações</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="font-mono text-xs uppercase tracking-wider text-muted block mb-2">Mensagem</label>
+                <textarea rows="4" placeholder="Conte-nos sobre o seu projeto ou volume estimado..." class="w-full px-4 py-3 rounded-xl bg-surface border border-graphite/10 text-graphite text-sm focus:border-forest focus:outline-none"></textarea>
+              </div>
+
+              <button type="submit" class="pill-button-primary w-full !py-3.5">
+                Enviar Mensagem para o VIRA
+              </button>
+
+              <div id="contact-alert" class="hidden p-4 rounded-xl bg-forest/10 text-forest font-mono text-xs text-center">
+                ✓ Mensagem registrada com sucesso! Nossa equipe entrará em contato em até 24h.
+              </div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-paper hairline-t py-12 text-xs font-mono text-muted">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <img src="assets/logo.png" alt="VIRA" class="h-6 w-auto object-contain" />
+        <span>•</span>
+        <span>Indústria de Materiais Circulares</span>
+        <span>•</span>
+        <span>Caruaru, PE</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="brand-tricolor-bar">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <span>Tudo Pode Se Transformar</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- PRODUCT DRAWER / OFF-CANVAS MODAL -->
+  <div id="product-drawer-backdrop" class="drawer-backdrop fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex justify-end">
+    <div id="product-drawer-panel" class="drawer-panel w-full max-w-lg bg-white h-full shadow-2xl p-8 overflow-y-auto flex flex-col justify-between">
+      
+      <div class="space-y-6">
+        <div class="flex items-center justify-between hairline-b pb-4">
+          <span id="drawer-cat" class="font-mono text-[10px] uppercase tracking-widest text-forest">Categoria</span>
+          <button id="product-drawer-close" class="p-2 rounded-full hover:bg-surface text-graphite transition-colors" title="Fechar">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <div>
+          <span id="drawer-code" class="font-mono text-xs text-muted">VRA-PRD-1204</span>
+          <h3 id="drawer-title" class="font-serif text-3xl text-graphite mt-1">Nome do Produto</h3>
+          <p id="drawer-desc" class="font-sans text-sm text-muted mt-3 leading-relaxed">Descrição detalhada do produto.</p>
+        </div>
+
+        <div class="space-y-2">
+          <h4 class="font-mono text-xs uppercase tracking-wider text-graphite font-bold">Especificações Técnicas</h4>
+          <div id="drawer-specs" class="p-4 rounded-xl bg-surface border border-graphite/5 space-y-1">
+            <!-- Specs injected dynamically -->
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-8 hairline-t space-y-3">
+        <a href="#contato" onclick="document.getElementById('product-drawer-backdrop').classList.remove('open')" class="pill-button-primary w-full !py-3">
+          Solicitar Orçamento / Amostra
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Lucide Icons Trigger & Core Logic -->
+  <script src="app.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

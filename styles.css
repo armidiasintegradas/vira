@@ -1,0 +1,313 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Official VIRA Brand Color Palette */
+  --color-graphite: #2A3233;
+  --color-forest: #4A7135;
+  --color-sprout: #698E3C;
+  --color-ochre: #C68D2B;
+  --color-ochre-hover: #b07c24;
+  --color-paper: #FEFDF9;
+  --color-surface: #F4F5F2;
+  --color-card: #FFFFFF;
+  --color-dark: #1F2627;
+  
+  --text-main: #2A3233;
+  --text-muted: #5F6869;
+  --text-light: #8E9798;
+  --text-inverse: #FEFDF9;
+  
+  --border-subtle: rgba(42, 50, 51, 0.09);
+  --border-strong: rgba(42, 50, 51, 0.22);
+  --border-dark: rgba(254, 253, 249, 0.14);
+  
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-paper);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: var(--color-paper);
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.hairline-b {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.hairline-t {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.hairline-r {
+  border-right: 1px solid var(--border-subtle);
+}
+
+.hairline-l {
+  border-left: 1px solid var(--border-subtle);
+}
+
+.hairline-all {
+  border: 1px solid var(--border-subtle);
+}
+
+/* Brand Tricolor Signature Pill */
+.brand-tricolor-bar {
+  display: inline-flex;
+  height: 6px;
+  width: 72px;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.brand-tricolor-bar span:nth-child(1) {
+  flex: 1;
+  background-color: var(--color-forest);
+}
+
+.brand-tricolor-bar span:nth-child(2) {
+  flex: 1;
+  background-color: var(--color-ochre);
+}
+
+.brand-tricolor-bar span:nth-child(3) {
+  flex: 1;
+  background-color: var(--color-graphite);
+}
+
+/* Pill Badges & Buttons */
+.pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  transition: all 0.25s var(--ease-spring);
+}
+
+.pill-badge:hover {
+  border-color: var(--border-strong);
+  background: #FFFFFF;
+}
+
+.pill-button-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 9999px;
+  background-color: var(--color-graphite);
+  color: var(--text-inverse);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-spring);
+  text-decoration: none;
+}
+
+.pill-button-primary:hover {
+  background-color: var(--color-forest);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(74, 113, 53, 0.28);
+}
+
+.pill-button-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 9999px;
+  background-color: transparent;
+  color: var(--text-main);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: 1px solid var(--border-strong);
+  cursor: pointer;
+  transition: all 0.3s var(--ease-spring);
+  text-decoration: none;
+}
+
+.pill-button-secondary:hover {
+  background-color: var(--color-surface);
+  border-color: var(--color-graphite);
+  transform: translateY(-1px);
+}
+
+.pill-button-ochre {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 9999px;
+  background-color: var(--color-ochre);
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-spring);
+  text-decoration: none;
+}
+
+.pill-button-ochre:hover {
+  background-color: var(--color-ochre-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(198, 141, 43, 0.3);
+}
+
+/* Infinite Marquee */
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  user-select: none;
+}
+
+.marquee-content {
+  display: flex;
+  gap: 2.5rem;
+  animation: marqueeScroll 28s linear infinite;
+}
+
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.editorial-card {
+  background: var(--color-card);
+  border: 1px solid var(--border-subtle);
+  transition: all 0.35s var(--ease-spring);
+}
+
+.editorial-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  background: var(--border-strong);
+  border-radius: 2px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  height: 22px;
+  width: 22px;
+  border-radius: 50%;
+  background: var(--color-ochre);
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -9px;
+  box-shadow: 0 2px 8px rgba(198, 141, 43, 0.3);
+  transition: transform 0.15s ease, background-color 0.2s ease;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  background: var(--color-forest);
+}
+
+.drawer-backdrop {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.drawer-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.drawer-panel {
+  transform: translateX(100%);
+  transition: transform 0.4s var(--ease-spring);
+}
+
+.drawer-panel.open {
+  transform: translateX(0);
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+}
+
+.pulse-dot {
+  animation: pulseGlow 2.2s infinite ease-in-out;
+}
