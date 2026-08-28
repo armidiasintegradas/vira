@@ -11,6 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initProductFilters();
   initContactForm();
   initFactoryGallery();
+  initCustomCursor();
+  initHeroParticles();
+  initScrollReveals();
+  initPhotoLightbox();
+  init3DTilt();
 });
 
 // ------------------------------------------
@@ -613,5 +618,197 @@ function initContactForm() {
         alertBox.classList.add('hidden');
       }, 5000);
     }
+  });
+}
+
+// ------------------------------------------
+// 9. ADVANCED VISUAL EFFECTS & KINEMATICS
+// ------------------------------------------
+
+// Custom Smooth Magnetic Cursor
+function initCustomCursor() {
+  const dot = document.createElement('div');
+  dot.className = 'custom-cursor-dot';
+  const follower = document.createElement('div');
+  follower.className = 'custom-cursor-follower';
+  document.body.appendChild(dot);
+  document.body.appendChild(follower);
+
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let followerX = mouseX;
+  let followerY = mouseY;
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    dot.style.transform = 'translate(' + mouseX + 'px, ' + mouseY + 'px) translate(-50%, -50%)';
+  });
+
+  function renderCursor() {
+    followerX += (mouseX - followerX) * 0.15;
+    followerY += (mouseY - followerY) * 0.15;
+    follower.style.transform = 'translate(' + followerX + 'px, ' + followerY + 'px) translate(-50%, -50%)';
+    requestAnimationFrame(renderCursor);
+  }
+  requestAnimationFrame(renderCursor);
+
+  const hoverables = document.querySelectorAll('a, button, input[type=range], input[type=text], select, .insta-post-card, .editorial-card, .slide-progress-bar');
+  hoverables.forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
+}
+
+// Hero Interactive Canvas Particle Dust
+function initHeroParticles() {
+  const heroSection = document.querySelector('.hero-viewport');
+  if (!heroSection) return;
+
+  const canvas = document.createElement('canvas');
+  canvas.className = 'hero-canvas-particles';
+  heroSection.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+
+  let width, height;
+  function resize() {
+    width = canvas.width = heroSection.offsetWidth;
+    height = canvas.height = heroSection.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const particles = [];
+  const PARTICLE_COUNT = 45;
+
+  for (let i = 0; i < PARTICLE_COUNT; i++) {
+    particles.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      radius: Math.random() * 2 + 0.8,
+      color: Math.random() > 0.5 ? 'rgba(198, 141, 43, 0.4)' : 'rgba(105, 142, 60, 0.35)',
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: (Math.random() - 0.5) * 0.35 - 0.15,
+      pulse: Math.random() * 0.02 + 0.005
+    });
+  }
+
+  function render() {
+    ctx.clearRect(0, 0, width, height);
+
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.x < 0) p.x = width;
+      if (p.x > width) p.x = 0;
+      if (p.y < 0) p.y = height;
+      if (p.y > height) p.y = 0;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+    });
+
+    requestAnimationFrame(render);
+  }
+  render();
+}
+
+// Scroll Reveal Animation
+function initScrollReveals() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+}
+
+// Photo Lightbox Modal
+function initPhotoLightbox() {
+  let lightbox = document.getElementById('photo-lightbox');
+  if (!lightbox) {
+    lightbox = document.createElement('div');
+    lightbox.id = 'photo-lightbox';
+    lightbox.innerHTML = '<div class="relative max-w-5xl flex flex-col items-center">' +
+      '<button id="close-lightbox" class="absolute -top-12 right-0 text-white/80 hover:text-white p-2 rounded-full bg-white/10 hover:bg-white/20 transition-all font-mono text-xs uppercase flex items-center gap-1.5">' +
+        '<span>Fechar (ESC)</span>' +
+        '<i data-lucide="x" class="w-4 h-4"></i>' +
+      '</button>' +
+      '<img id="lightbox-img" src="" alt="Zoom Fotografia VIRA" />' +
+      '<div id="lightbox-caption" class="mt-4 text-center text-white/90 font-mono text-xs uppercase tracking-wider"></div>' +
+    '</div>';
+    document.body.appendChild(lightbox);
+  }
+
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  const closeBtn = document.getElementById('close-lightbox');
+
+  function openLightbox(src, caption) {
+    if (lightboxImg) lightboxImg.src = src;
+    if (lightboxCaption) lightboxCaption.innerText = caption || 'Acervo Fotográfico VIRA • Caruaru-PE';
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    if (window.lucide) lucide.createIcons();
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  // Attach to Instagram Feed cards
+  document.querySelectorAll('.insta-post-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const img = card.querySelector('img');
+      const title = card.querySelector('.insta-overlay p');
+      if (img) openLightbox(img.src, title ? title.innerText : img.alt);
+    });
+  });
+
+  // Attach to factory main view
+  const factoryImg = document.getElementById('main-factory-view');
+  if (factoryImg) {
+    factoryImg.style.cursor = 'zoom-in';
+    factoryImg.addEventListener('click', () => {
+      const title = document.getElementById('factory-view-title');
+      openLightbox(factoryImg.src, title ? title.innerText : 'Complexo Industrial VIRA');
+    });
+  }
+}
+
+// 3D Tilt on Hover
+function init3DTilt() {
+  const tiltCards = document.querySelectorAll('.tilt-card');
+  tiltCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -5;
+      const rotateY = ((x - centerX) / centerX) * 5;
+
+      card.style.transform = 'perspective(1000px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-4px)';
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+    });
   });
 }
