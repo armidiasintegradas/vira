@@ -835,3 +835,110 @@ function init3DTilt() {
     });
   });
 }
+
+
+// ==========================================
+// 10. DYNAMIC HALFTONE ANIMATED BACKGROUND
+// ==========================================
+function initSiteHalftoneBackground() {
+  const canvas = document.getElementById('site-halftone-bg');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  const img = new Image();
+  img.src = 'assets/bg-halftone-base.png';
+
+  let gridStep = 22;
+  let mouseX = -1000;
+  let mouseY = -1000;
+  let time = 0;
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  const sampleCanvas = document.createElement('canvas');
+  const sampleCtx = sampleCanvas.getContext('2d', { willReadFrequently: true });
+  let imgLoaded = false;
+
+  img.onload = () => {
+    imgLoaded = true;
+    sampleCanvas.width = 400;
+    sampleCanvas.height = 680;
+    sampleCtx.drawImage(img, 0, 0, 400, 680);
+  };
+
+  function render() {
+    time += 0.02;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = '#181E1C';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    const cols = Math.ceil(canvas.width / gridStep);
+    const rows = Math.ceil(canvas.height / gridStep);
+
+    let imgData = null;
+    if (imgLoaded) {
+      try {
+        imgData = sampleCtx.getImageData(0, 0, sampleCanvas.width, sampleCanvas.height).data;
+      } catch (e) {}
+    }
+
+    for (let r = 0; r <= rows; r++) {
+      for (let c = 0; c <= cols; c++) {
+        const x = c * gridStep;
+        const y = r * gridStep;
+        const normX = x / canvas.width;
+        const normY = y / canvas.height;
+
+        let red = 254, green = 253, blue = 249;
+        let brightness = 0.9;
+
+        if (imgData) {
+          const sx = Math.floor(normX * (sampleCanvas.width - 1));
+          const sy = Math.floor(normY * (sampleCanvas.height - 1));
+          const idx = (sy * sampleCanvas.width + sx) * 4;
+          red = imgData[idx];
+          green = imgData[idx + 1];
+          blue = imgData[idx + 2];
+          brightness = (red * 0.299 + green * 0.587 + blue * 0.114) / 255;
+        }
+
+        const wave = Math.sin(normX * 5 + normY * 3 + time) * 0.18 + 0.82;
+        const dx = x - mouseX;
+        const dy = y - mouseY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        let mouseInfluence = 0;
+        if (dist < 200) {
+          mouseInfluence = (1 - dist / 200) * 0.5;
+        }
+
+        const maxRadius = (gridStep / 2) * 0.95;
+        let radius = maxRadius * (brightness * 0.82 + 0.08) * wave + (mouseInfluence * 3.5);
+        radius = Math.max(0.5, Math.min(maxRadius * 1.2, radius));
+
+        ctx.beginPath();
+        ctx.fillStyle = "rgb(" + red + ", " + green + ", " + blue + ")";
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    requestAnimationFrame(render);
+  }
+
+  render();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initSiteHalftoneBackground();
+});

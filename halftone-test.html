@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VIRA — Animated Halftone Background Engine</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #141819;
+      color: #2A3233;
+      overflow-x: hidden;
+    }
+    #halftone-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .content-overlay {
+      position: relative;
+      z-index: 10;
+    }
+    .font-serif { font-family: 'Instrument Serif', Georgia, serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+<body class="min-h-screen relative flex flex-col justify-between p-6 sm:p-12">
+
+  <!-- Animated Halftone Canvas Background -->
+  <canvas id="halftone-canvas"></canvas>
+
+  <!-- Top Floating Controls -->
+  <div class="content-overlay max-w-5xl mx-auto w-full flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-2xl bg-white/80 backdrop-blur-md border border-black/10 shadow-lg">
+    <div class="flex items-center gap-3">
+      <img src="assets/logo.png" alt="VIRA" class="h-7 w-auto" />
+      <span class="font-mono text-xs uppercase text-[#4A7135] font-bold">✦ Engine Halftone Interativo</span>
+    </div>
+    
+    <!-- Controls -->
+    <div class="flex flex-wrap items-center gap-4 text-xs font-mono">
+      <label class="flex items-center gap-2">
+        <span class="text-muted">Grade (Grid):</span>
+        <select id="ctrl-grid" class="px-2 py-1 rounded border border-black/20 bg-white font-mono text-xs">
+          <option value="14">Fina (14px)</option>
+          <option value="20" selected>Média (20px)</option>
+          <option value="28">Ampla (28px)</option>
+        </select>
+      </label>
+
+      <label class="flex items-center gap-2">
+        <span class="text-muted">Estilo do Ponto:</span>
+        <select id="ctrl-shape" class="px-2 py-1 rounded border border-black/20 bg-white font-mono text-xs">
+          <option value="circle" selected>Pontos Circulares (Dots)</option>
+          <option value="diamond">Diamantes (Prismas)</option>
+          <option value="hybrid">Híbrido Fluido</option>
+        </select>
+      </label>
+
+      <a href="index.html" class="px-4 py-1.5 rounded-full bg-[#2A3233] text-white hover:bg-[#4A7135] transition-all font-mono text-xs">
+        Ver no Site
+      </a>
+    </div>
+  </div>
+
+  <!-- Center Typography Test (Verifying 100% Text Legibility on Halftone) -->
+  <div class="content-overlay max-w-3xl mx-auto my-auto text-center space-y-6 py-16">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-black/10 shadow-sm font-mono text-xs uppercase text-[#4A7135] font-bold">
+      <span class="w-2 h-2 rounded-full bg-[#4A7135] animate-pulse"></span>
+      <span>Teste de Alto Contraste & Legibilidade</span>
+    </div>
+
+    <h1 class="font-serif text-5xl sm:text-7xl lg:text-8xl text-[#2A3233] leading-[0.95] tracking-tight">
+      Tudo pode se <br />
+      <span class="italic text-[#C68D2B]">transformar</span>.
+    </h1>
+
+    <p class="font-sans text-base sm:text-xl text-[#445051] font-light leading-relaxed max-w-xl mx-auto bg-white/40 backdrop-blur-xs p-4 rounded-2xl">
+      A matéria circular em movimento. O fundo halftone vibra suavemente com ondas orgânicas e reage à passagem do cursor.
+    </p>
+
+    <div class="flex justify-center gap-4 pt-2 font-mono text-xs">
+      <span class="px-4 py-2 rounded-full bg-[#4A7135] text-white font-bold">Verde Floresta (Esquerda)</span>
+      <span class="px-4 py-2 rounded-full bg-[#C68D2B] text-white font-bold">Dourado Ocre (Direita)</span>
+    </div>
+  </div>
+
+  <!-- Bottom Coordinates -->
+  <div class="content-overlay text-center font-mono text-xs text-[#5F6869]">
+    <span>Mova o mouse para interagir com a retícula halftone • Caruaru-PE (8°22′S 35°58′W)</span>
+  </div>
+
+  <!-- Halftone Engine Script -->
+  <script>
+    const canvas = document.getElementById('halftone-canvas');
+    const ctx = canvas.getContext('2d');
+    const img = new Image();
+    img.src = 'assets/bg-halftone-base.png';
+
+    let gridStep = 20;
+    let shapeMode = 'circle';
+    let mouseX = -1000;
+    let mouseY = -1000;
+    let time = 0;
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    document.getElementById('ctrl-grid').addEventListener('change', (e) => {
+      gridStep = parseInt(e.target.value);
+    });
+    document.getElementById('ctrl-shape').addEventListener('change', (e) => {
+      shapeMode = e.target.value;
+    });
+
+    // Sample pixels from base image into an offscreen canvas
+    const sampleCanvas = document.createElement('canvas');
+    const sampleCtx = sampleCanvas.getContext('2d', { willReadFrequently: true });
+
+    let imgLoaded = false;
+    img.onload = () => {
+      imgLoaded = true;
+      sampleCanvas.width = 400;
+      sampleCanvas.height = 680;
+      sampleCtx.drawImage(img, 0, 0, 400, 680);
+    };
+
+    function render() {
+      time += 0.025;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw subtle background ambient fill
+      ctx.fillStyle = '#181E1C';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      const cols = Math.ceil(canvas.width / gridStep);
+      const rows = Math.ceil(canvas.height / gridStep);
+
+      let imgData = null;
+      if (imgLoaded) {
+        try {
+          imgData = sampleCtx.getImageData(0, 0, sampleCanvas.width, sampleCanvas.height).data;
+        } catch (e) {}
+      }
+
+      for (let r = 0; r <= rows; r++) {
+        for (let c = 0; c <= cols; c++) {
+          const x = c * gridStep;
+          const y = r * gridStep;
+
+          // Normalized coordinates (0 to 1)
+          const normX = x / canvas.width;
+          const normY = y / canvas.height;
+
+          // Sample color from uploaded image or procedural model
+          let red = 250, green = 250, blue = 245;
+          let brightness = 0.9;
+
+          if (imgData) {
+            const sx = Math.floor(normX * (sampleCanvas.width - 1));
+            const sy = Math.floor(normY * (sampleCanvas.height - 1));
+            const idx = (sy * sampleCanvas.width + sx) * 4;
+            red = imgData[idx];
+            green = imgData[idx + 1];
+            blue = imgData[idx + 2];
+            brightness = (red * 0.299 + green * 0.587 + blue * 0.114) / 255;
+          }
+
+          // Halftone wave pulsation
+          const wave = Math.sin(normX * 6 + normY * 4 + time) * 0.2 + 0.8;
+          
+          // Mouse interaction (Halftone Ripple Glare)
+          const dx = x - mouseX;
+          const dy = y - mouseY;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          let mouseInfluence = 0;
+          if (dist < 220) {
+            mouseInfluence = (1 - dist / 220) * 0.6;
+          }
+
+          // Compute dynamic dot radius based on brightness + wave
+          let maxRadius = (gridStep / 2) * 0.95;
+          let radius = maxRadius * (brightness * 0.8 + 0.1) * (wave * 0.25 + 0.75) + (mouseInfluence * 4);
+          radius = Math.max(0.5, Math.min(maxRadius * 1.25, radius));
+
+          // Draw the halftone element
+          ctx.beginPath();
+          ctx.fillStyle = ;
+
+          if (shapeMode === 'circle') {
+            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            ctx.fill();
+          } else if (shapeMode === 'diamond') {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(Math.PI / 4);
+            ctx.fillRect(-radius, -radius, radius * 2, radius * 2);
+            ctx.restore();
+          } else {
+            // Hybrid (Diamond on flanks, smooth circles in center)
+            if (normX < 0.25 || normX > 0.75) {
+              ctx.save();
+              ctx.translate(x, y);
+              ctx.rotate(time * 0.2);
+              ctx.fillRect(-radius, -radius, radius * 2, radius * 2);
+              ctx.restore();
+            } else {
+              ctx.arc(x, y, radius, 0, Math.PI * 2);
+              ctx.fill();
+            }
+          }
+        }
+      }
+
+      requestAnimationFrame(render);
+    }
+
+    render();
+  </script>
+</body>
+</html>
