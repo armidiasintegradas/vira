@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VIRA — Indústria de Materiais Circulares</title>
+  <title>VIRA — Tudo Pode Se Transformar | Indústria de Materiais Circulares</title>
   <meta name="description" content="Plataforma industrial de economia circular em Caruaru-PE. Transformamos resíduos plásticos pós-consumo em artefatos de alto desempenho com rastreabilidade digital e impacto social." />
   
   <!-- Tailwind CSS CDN -->
@@ -49,11 +49,11 @@
 </head>
 <body class="bg-paper text-graphite min-h-screen flex flex-col selection:bg-ochre selection:text-white">
 
-  <!-- TOP NAVIGATION BAR (Other Half Studio Minimalist Navbar) -->
+  <!-- TOP NAVIGATION BAR -->
   <header class="fixed top-0 left-0 right-0 z-50 bg-paper/85 backdrop-blur-md hairline-b transition-all duration-300">
     <div class="max-w-[1600px] mx-auto px-6 sm:px-12 h-20 flex items-center justify-between gap-6">
       
-      <!-- Brand Logo -->
+      <!-- Brand Logo (Pure & Free) -->
       <a href="#" class="flex items-center gap-3 hover:opacity-85 transition-opacity">
         <img src="assets/logo.png" alt="VIRA — Indústria de Materiais Circulares" class="h-8 sm:h-9 w-auto object-contain" />
       </a>
@@ -87,51 +87,60 @@
   </header>
 
   <!-- ========================================================
-       HERO SECTION — OTHER HALF STUDIO STYLE CINEMATIC FULL HERO
+       HERO SECTION — 100% FULL-SCREEN CINEMATIC NARRATIVE HERO
+       Theme: "Tudo pode se transformar" (5-Scene Transformation Journey)
        ======================================================== -->
-  <section class="hero-viewport pt-20 hairline-b">
+  <section class="hero-viewport pt-20 hairline-b relative min-h-screen">
     
-    <!-- Background Animated Slides -->
+    <!-- Background Fullscreen Slideshow -->
     <div class="hero-slider-bg">
-      <!-- Slide 1: Fachada Principal ao Entardecer -->
+      <!-- Scene 01: O Território & O Sol (Caruaru Golden Hour) -->
       <div class="hero-slide-item active">
-        <img src="assets/factory-sunset-facade.jpg" alt="Fachada VIRA ao Entardecer" />
+        <img src="assets/factory-sunset-aerial.jpg" alt="Vista Aérea Golden Hour da Fábrica VIRA em Caruaru-PE" />
       </div>
-      <!-- Slide 2: Campus Fabril & Parque Solar -->
+      <!-- Scene 02: A Origem & A Coleta (Descarregamento na Moega) -->
       <div class="hero-slide-item">
-        <img src="assets/factory-sunset-aerial.jpg" alt="Vista Aérea Golden Hour da Fábrica VIRA" />
+        <img src="assets/materia-descarregamento.jpg" alt="Descarregamento de Plástico Pós-Consumo" />
       </div>
-      <!-- Slide 3: Micronização & Textura de Flakes -->
+      <!-- Scene 03: A Ciência & A Matéria (Micronização de Flakes) -->
       <div class="hero-slide-item">
-        <img src="assets/materia-flakes-close.jpg" alt="Flakes Poliméricos Micronizados" />
+        <img src="assets/materia-flakes-close.jpg" alt="Flakes Poliméricos Reciclados de Alta Pureza" />
       </div>
-      <!-- Slide 4: Artefatos & Prensagem -->
+      <!-- Scene 04: A Transformação & A Força (Prensa Industrial Pesada) -->
       <div class="hero-slide-item">
-        <img src="assets/produto-paver-prensa.jpg" alt="Prensagem de Pavers Circulares" />
+        <img src="assets/operador-painel-prensa.jpg" alt="Operador e Linha de Prensa Industrial" />
+      </div>
+      <!-- Scene 05: O Destino & A Cidade (Fachada Cênica Noturna) -->
+      <div class="hero-slide-item">
+        <img src="assets/factory-sunset-facade.jpg" alt="Fachada Iluminada da Indústria VIRA" />
       </div>
     </div>
 
-    <!-- Gradient Overlay for Legibility -->
+    <!-- Cinematic Vignette & Gradient Overlay -->
     <div class="hero-gradient-overlay"></div>
 
-    <!-- Hero Content Layer -->
+    <!-- Floating Ambient Golden / Green Glow -->
+    <div class="glow-spot-gold top-20 right-10"></div>
+    <div class="glow-spot-green bottom-10 left-10"></div>
+
+    <!-- Hero Content Layer (Floating Directly over Fullscreen Background) -->
     <div class="hero-content-layer">
       
-      <!-- Top Badges Row -->
+      <!-- Top Row: Dynamic Badge & Coordinates -->
       <div class="flex flex-wrap items-center justify-between gap-4 pt-6">
         <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-pill font-mono text-xs uppercase tracking-wider">
           <span class="w-2 h-2 rounded-full bg-ochre pulse-dot"></span>
-          <span id="hero-slide-badge">⚡ 100% Matriz Solar • Operação 24/7</span>
+          <span id="hero-slide-badge">☀️ 100% Matriz Solar • Caruaru-PE</span>
         </div>
         <div class="hidden sm:flex items-center gap-3 font-mono text-xs text-white/80">
           <span id="hero-slide-coords">8°22′S 35°58′W — Caruaru, PE</span>
           <span>•</span>
-          <span class="text-ochre font-bold">Planta Ativa</span>
+          <span class="text-ochre font-bold">Planta Ativa 24/7</span>
         </div>
       </div>
 
-      <!-- Center Headline & Manifesto -->
-      <div class="space-y-6 max-w-5xl my-auto py-8">
+      <!-- Center Typography & Manifesto -->
+      <div class="space-y-6 max-w-5xl my-auto py-8 z-10">
         
         <div class="brand-tricolor-bar">
           <span></span><span></span><span></span>
@@ -142,14 +151,14 @@
           <span class="italic font-serif text-ochre">transformar</span>.
         </h1>
 
-        <p class="font-sans text-lg sm:text-2xl text-white/85 font-light leading-relaxed max-w-2xl text-shadow-sm">
+        <p class="font-sans text-lg sm:text-2xl text-white/90 font-light leading-relaxed max-w-2xl text-shadow-sm">
           A primeira indústria integrada do Agreste que converte resíduos plásticos pós-consumo em artefatos de alto desempenho para arquitetura e infraestrutura urbana.
         </p>
 
-        <!-- CTA Action Buttons -->
+        <!-- Action Buttons -->
         <div class="flex flex-wrap items-center gap-4 pt-4">
           <a href="#produtos" class="pill-button-ochre">
-            <span>Ver Catálogo de Produtos</span>
+            <span>Explorar Produtos Circulares</span>
             <i data-lucide="layers" class="w-4 h-4"></i>
           </a>
           <a href="#passaporte" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full glass-pill font-mono text-xs uppercase tracking-wider hover:bg-white/20 transition-all">
@@ -158,40 +167,47 @@
           </a>
           <a href="brandbook.html" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full glass-pill font-mono text-xs uppercase tracking-wider hover:bg-white/20 transition-all text-sprout">
             <i data-lucide="book-open" class="w-4 h-4"></i>
-            <span>Brand Book & Guidelines</span>
+            <span>Brand Book & Ativos</span>
           </a>
         </div>
 
       </div>
 
-      <!-- Bottom Interactive Slide Progress Indicators -->
-      <div class="space-y-3 pt-6 hairline-t border-white/15">
+      <!-- Bottom Narrative Bar with 5 Synchronized Progress Indicators -->
+      <div class="space-y-3 pt-6 hairline-t border-white/15 z-10">
         
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs font-mono text-white/70">
-          <div class="flex items-center gap-2">
-            <span class="text-white font-bold uppercase" id="hero-slide-title">Fachada Principal ao Entardecer</span>
-            <span class="text-white/40">•</span>
-            <span class="text-ochre">Complexo Industrial VIRA</span>
+        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 text-xs font-mono text-white/80">
+          <div class="flex items-center gap-3">
+            <span id="hero-slide-step" class="px-2 py-0.5 rounded bg-ochre/20 text-ochre font-bold text-[11px]">01 / 05</span>
+            <span id="hero-slide-phase" class="text-white font-bold uppercase tracking-wider">O Território & O Sol</span>
+            <span class="text-white/40 hidden sm:inline">•</span>
+            <span id="hero-slide-title" class="text-white/70 hidden sm:inline">Complexo Fabril & Parque Solar 100% Limpo</span>
           </div>
-          <span class="hidden sm:block text-[11px] uppercase tracking-widest text-white/50">Navegação do Tour</span>
+          <p id="hero-slide-desc" class="text-[11px] font-sans text-white/60 font-light max-w-md hidden lg:block text-right">
+            O sol do Agreste Pernambucano abastece a maior usina de materiais circulares da região.
+          </p>
         </div>
 
-        <!-- 4 Interactive Progress Bars -->
-        <div class="grid grid-cols-4 gap-3">
+        <!-- 5 Interactive Progress Bars -->
+        <div class="grid grid-cols-5 gap-2.5 sm:gap-4">
           
-          <div class="slide-progress-bar" onclick="setHeroSlide(0)" title="Fachada Principal">
+          <div class="slide-progress-bar" onclick="setHeroSlide(0)" title="01 • O Território">
             <div class="slide-progress-fill"></div>
           </div>
 
-          <div class="slide-progress-bar" onclick="setHeroSlide(1)" title="Campus Fabril Solar">
+          <div class="slide-progress-bar" onclick="setHeroSlide(1)" title="02 • A Origem">
             <div class="slide-progress-fill"></div>
           </div>
 
-          <div class="slide-progress-bar" onclick="setHeroSlide(2)" title="Micronização de Flakes">
+          <div class="slide-progress-bar" onclick="setHeroSlide(2)" title="03 • A Matéria">
             <div class="slide-progress-fill"></div>
           </div>
 
-          <div class="slide-progress-bar" onclick="setHeroSlide(3)" title="Termocompressão & Pavers">
+          <div class="slide-progress-bar" onclick="setHeroSlide(3)" title="04 • A Transformação">
+            <div class="slide-progress-fill"></div>
+          </div>
+
+          <div class="slide-progress-bar" onclick="setHeroSlide(4)" title="05 • O Destino">
             <div class="slide-progress-fill"></div>
           </div>
 
@@ -435,7 +451,7 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         
         <!-- Step 1: Descarregamento -->
-        <div class="rounded-3xl overflow-hidden border border-graphite/10 bg-white flex flex-col justify-between shadow-sm">
+        <div class="rounded-3xl overflow-hidden border border-graphite/10 bg-white flex flex-col justify-between shadow-sm tilt-card">
           <div class="h-64 overflow-hidden">
             <img src="assets/materia-descarregamento.jpg" alt="Descarregamento de Plástico na Fábrica VIRA" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
           </div>
@@ -449,7 +465,7 @@
         </div>
 
         <!-- Step 2: Pesagem & Rastreabilidade -->
-        <div class="rounded-3xl overflow-hidden border border-graphite/10 bg-white flex flex-col justify-between shadow-sm">
+        <div class="rounded-3xl overflow-hidden border border-graphite/10 bg-white flex flex-col justify-between shadow-sm tilt-card">
           <div class="h-64 overflow-hidden">
             <img src="assets/rastreabilidade-pesagem.jpg" alt="Pesagem de Big Bags com Rastreabilidade" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
           </div>
@@ -463,7 +479,7 @@
         </div>
 
         <!-- Step 3: Flakes & Micronizados -->
-        <div class="rounded-3xl overflow-hidden border border-graphite/10 bg-white flex flex-col justify-between shadow-sm">
+        <div class="rounded-3xl overflow-hidden border border-graphite/10 bg-white flex flex-col justify-between shadow-sm tilt-card">
           <div class="h-64 overflow-hidden">
             <img src="assets/materia-flakes-close.jpg" alt="Flakes Multicoloridos Micronizados" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
           </div>
@@ -549,7 +565,7 @@
             <div>
               <span class="font-mono text-[10px] text-ochre uppercase font-bold">Construção Civil</span>
               <h4 class="font-serif text-2xl text-graphite mt-1">Perfil Maciço 80×80</h4>
-              <p class="text-xs text-muted mt-2 leading-relaxed">Substituto para vigamento de madeira em decks, pérgolas e cercamentos rurais.</p>
+              <p class="text-xs text-muted mt-2 leading-relaxed">Substituto para vigamento de madeira em decks, pérgolas e cercamento rural.</p>
             </div>
           </div>
           <button onclick="openProductDrawer('perfil-estrutural')" class="w-full py-3 rounded-full border border-graphite/20 font-mono text-xs uppercase tracking-wider text-graphite hover:bg-graphite hover:text-white transition-all flex items-center justify-center gap-2">

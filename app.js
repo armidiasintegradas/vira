@@ -19,32 +19,48 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ------------------------------------------
-// 1. OTHER HALF STUDIO STYLE — HERO SLIDER
+// 1. CINEMATIC 5-SCENE HERO SLIDER: "TUDO PODE SE TRANSFORMAR"
 // ------------------------------------------
 const heroSlidesData = [
   {
-    title: 'Fachada Principal ao Entardecer',
-    category: 'Infraestrutura Industrial',
-    badge: '⚡ 100% Matriz Solar • Operação 24/7',
+    step: '01',
+    phase: 'O Território & O Sol',
+    title: 'Complexo Fabril & Parque Solar 100% Limpo',
+    desc: 'O sol do Agreste Pernambucano abastece a maior usina de materiais circulares da região.',
+    badge: '☀️ 100% Matriz Solar • Caruaru-PE',
     coords: '8°22′S 35°58′W — Caruaru, PE'
   },
   {
-    title: 'Campus Fabril & Parque Solar',
-    category: 'Descarbonização & Escala',
-    badge: '☀️ +1.200 Toneladas / Mês',
-    coords: 'Distrito Industrial de Caruaru'
+    step: '02',
+    phase: 'A Origem & A Coleta',
+    title: 'Descarregamento & Logística Reversa Integrada',
+    desc: 'Centenas de toneladas de plástico pós-consumo chegam de cooperativas para uma nova vida.',
+    badge: '♻️ Triagem & Moega Contínua',
+    coords: 'Recepção de Matéria-Prima'
   },
   {
-    title: 'Micronização de Polímeros',
-    category: 'Matéria & Ciência Circular',
-    badge: '♻️ 100% Reciclado Pós-Consumo',
-    coords: 'Pureza Polimérica 99.4%'
+    step: '03',
+    phase: 'A Ciência & A Matéria',
+    title: 'Micronização de Polímeros de Alta Pureza',
+    desc: 'Descontaminação e moagem milimétrica criando flakes homogêneos prontos para moldagem.',
+    badge: '🔬 Pureza Polimérica 99.4%',
+    coords: 'Unidade de Micronização'
   },
   {
-    title: 'Termocompressão de Compósitos',
-    category: 'Artefatos & Arquitetura',
-    badge: '✦ 0% Polímero Virgem • DPP',
-    coords: 'Garantia Decenal Estrutural'
+    step: '04',
+    phase: 'A Transformação & A Força',
+    title: 'Termocompressão & Linha de Prensagem Pesada',
+    desc: 'Engenharia de precisão que funde polímeros e compósitos sob alta temperatura e tonelagem.',
+    badge: '⚡ +1.200 Toneladas / Mês',
+    coords: 'Linha de Prensa Automatizada'
+  },
+  {
+    step: '05',
+    phase: 'O Destino & A Cidade',
+    title: 'Fachada Cênica & A Nova Arquitetura Urbana',
+    desc: 'Artefatos estruturais e placas duráveis que transformam o design e a paisagem urbana.',
+    badge: '✦ Garantia Estrutural Decenal',
+    coords: 'Complexo Industrial VIRA'
   }
 ];
 
@@ -56,7 +72,10 @@ const HERO_DURATION = 6500; // ms
 function initHeroSlider() {
   const slides = document.querySelectorAll('.hero-slide-item');
   const fills = document.querySelectorAll('.slide-progress-fill');
+  const stepEl = document.getElementById('hero-slide-step');
+  const phaseEl = document.getElementById('hero-slide-phase');
   const titleEl = document.getElementById('hero-slide-title');
+  const descEl = document.getElementById('hero-slide-desc');
   const badgeEl = document.getElementById('hero-slide-badge');
   const coordsEl = document.getElementById('hero-slide-coords');
 
@@ -73,11 +92,15 @@ function initHeroSlider() {
     });
 
     const data = heroSlidesData[index];
-    if (titleEl && data) titleEl.innerText = data.title;
-    if (badgeEl && data) badgeEl.innerText = data.badge;
-    if (coordsEl && data) coordsEl.innerText = data.coords;
+    if (data) {
+      if (stepEl) stepEl.innerText = data.step + ' / 05';
+      if (phaseEl) phaseEl.innerText = data.phase;
+      if (titleEl) titleEl.innerText = data.title;
+      if (descEl) descEl.innerText = data.desc;
+      if (badgeEl) badgeEl.innerText = data.badge;
+      if (coordsEl) coordsEl.innerText = data.coords;
+    }
 
-    // Reset progress fills
     fills.forEach((f, idx) => {
       if (idx < index) {
         f.style.width = '100%';
