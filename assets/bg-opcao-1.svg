@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 2000" width="1200" height="2000">
+  <defs>
+    <!-- Luminous Central Foggy Sky Gradient (Ensures perfect text contrast) -->
+    <radialGradient id="sky-glow-1" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1" />
+      <stop offset="35%" stop-color="#FEFDF9" stop-opacity="0.98" />
+      <stop offset="70%" stop-color="#E8EBE4" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#D1D8CB" stop-opacity="0.6" />
+    </radialGradient>
+    <linearGradient id="pillar-left" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1F2822" />
+      <stop offset="50%" stop-color="#354A28" />
+      <stop offset="100%" stop-color="#4A7135" />
+    </linearGradient>
+    <linearGradient id="pillar-right" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#232B2C" />
+      <stop offset="50%" stop-color="#4B3B20" />
+      <stop offset="100%" stop-color="#C68D2B" />
+    </linearGradient>
+  </defs>
+
+  <!-- Luminous High-Contrast Background -->
+  <rect width="1200" height="2000" fill="url(#sky-glow-1)" />
+
+  <!-- Subtle Mist / Fog Atmosphere in Center -->
+  <g opacity="0.4">
+    <ellipse cx="600" cy="800" rx="500" ry="350" fill="#FFFFFF" filter="blur(60px)" />
+    <ellipse cx="600" cy="1200" rx="450" ry="400" fill="#FEFDF9" filter="blur(80px)" />
+  </g>
+
+  <!-- LEFT FLANK: Vertical Forest Trees & Structural Composite Beams -->
+  <g opacity="0.92">
+    <!-- Tree Trunk 1 -->
+    <path d="M0,2000 L120,2000 L320,1100 L260,600 L140,0 L0,0 Z" fill="url(#pillar-left)" />
+    <!-- Tree Trunk 2 (Foreground) -->
+    <path d="M-40,2000 L80,2000 L220,1300 L160,800 L80,200 L0,0 Z" fill="#1B221E" />
+    <!-- Botanical Canopy Foliage Overhang -->
+    <path d="M0,0 Q 250,150 380,320 Q 220,450 120,600 Q 280,750 340,950 Q 180,1100 80,1350 L0,1500 Z" fill="#2E3D27" opacity="0.85" />
+    <path d="M0,0 Q 320,220 440,400 Q 300,550 200,750 Q 340,900 390,1100 L0,1200 Z" fill="#4A7135" opacity="0.55" />
+    <!-- Architectural Rigging / Solar Lines on Beams -->
+    <line x1="120" y1="2000" x2="260" y2="600" stroke="#698E3C" stroke-width="2" opacity="0.5" />
+    <line x1="80" y1="2000" x2="160" y2="800" stroke="#C68D2B" stroke-width="1.5" opacity="0.4" />
+  </g>
+
+  <!-- RIGHT FLANK: Industrial Engineering Columns & Upward Beams -->
+  <g opacity="0.92">
+    <!-- Tree / Column 1 -->
+    <path d="M1200,2000 L1080,2000 L880,1100 L940,600 L1060,0 L1200,0 Z" fill="url(#pillar-right)" />
+    <!-- Column 2 (Foreground) -->
+    <path d="M1240,2000 L1120,2000 L980,1300 L1040,800 L1120,200 L1200,0 Z" fill="#1F2627" />
+    <!-- Canopy Overhang Right -->
+    <path d="M1200,0 Q 950,150 820,320 Q 980,450 1080,600 Q 920,750 860,950 Q 1020,1100 1120,1350 L1200,1500 Z" fill="#2A3233" opacity="0.85" />
+    <path d="M1200,0 Q 880,220 760,400 Q 900,550 1000,750 Q 860,900 810,1100 L1200,1200 Z" fill="#C68D2B" opacity="0.45" />
+    <!-- Architectural Lines -->
+    <line x1="1080" y1="2000" x2="940" y2="600" stroke="#C68D2B" stroke-width="2" opacity="0.5" />
+    <line x1="1120" y1="2000" x2="1040" y2="800" stroke="#4A7135" stroke-width="1.5" opacity="0.4" />
+  </g>
+
+  <!-- TOP MIRROR OVERHANG: Vertical Canopy Symmetrical Arch (Like Reference Image) -->
+  <g opacity="0.85">
+    <path d="M0,0 Q 600,320 1200,0 L1200,0 L0,0 Z" fill="#1C2420" />
+    <path d="M150,0 Q 600,240 1050,0 Z" fill="#2F4225" opacity="0.7" />
+  </g>
+
+  <!-- CENTER FOCAL POINT: The VIRA Ascending Botanical Bird Motif -->
+  <g transform="translate(600, 880) scale(1.4)">
+    <!-- Center Bird in Flight Silhouette (Exact Harmony with Reference Photo) -->
+    <!-- Left Wing (Botanical Leaf Curve) -->
+    <path d="M0,0 C-35,-25 -80,-30 -110,-12 C-75,10 -35,5 0,0 Z" fill="#2A3233" />
+    <!-- Right Wing (Botanical Leaf Curve) -->
+    <path d="M0,0 C35,-25 80,-30 110,-12 C75,10 35,5 0,0 Z" fill="#2A3233" />
+    <!-- Tail & Head -->
+    <polygon points="0,-18 5,0 0,16 -5,0" fill="#2A3233" />
+    <!-- Center Delta Gold Spark -->
+    <polygon points="0,-6 6,6 -6,6" fill="#C68D2B" />
+  </g>
+
+  <!-- Floating Fine Polymeric Flakes & Sun Mist Dust in Sky -->
+  <g fill="#C68D2B" opacity="0.6">
+    <circle cx="520" cy="720" r="2.5" />
+    <circle cx="680" cy="640" r="3" />
+    <circle cx="580" cy="1020" r="2" />
+    <circle cx="640" cy="1150" r="2.5" />
+    <circle cx="480" cy="850" r="1.5" />
+    <circle cx="720" cy="920" r="2" />
+  </g>
+</svg>
