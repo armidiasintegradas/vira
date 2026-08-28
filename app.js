@@ -1,8 +1,9 @@
 // ==========================================
-// VIRA — BRAND BOOK & INTERACTIVE CORE
+// VIRA — CORE INTERACTIVE SYSTEM
 // ==========================================
 
 document.addEventListener('DOMContentLoaded', () => {
+  initHeroSlider();
   initConceptScrolly();
   initCalculator();
   initPassportLookup();
@@ -13,7 +14,110 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ------------------------------------------
-// 1. CONCEPT SCROLLYTELLING (#conceito)
+// 1. OTHER HALF STUDIO STYLE — HERO SLIDER
+// ------------------------------------------
+const heroSlidesData = [
+  {
+    title: 'Fachada Principal ao Entardecer',
+    category: 'Infraestrutura Industrial',
+    badge: '⚡ 100% Matriz Solar • Operação 24/7',
+    coords: '8°22′S 35°58′W — Caruaru, PE'
+  },
+  {
+    title: 'Campus Fabril & Parque Solar',
+    category: 'Descarbonização & Escala',
+    badge: '☀️ +1.200 Toneladas / Mês',
+    coords: 'Distrito Industrial de Caruaru'
+  },
+  {
+    title: 'Micronização de Polímeros',
+    category: 'Matéria & Ciência Circular',
+    badge: '♻️ 100% Reciclado Pós-Consumo',
+    coords: 'Pureza Polimérica 99.4%'
+  },
+  {
+    title: 'Termocompressão de Compósitos',
+    category: 'Artefatos & Arquitetura',
+    badge: '✦ 0% Polímero Virgem • DPP',
+    coords: 'Garantia Decenal Estrutural'
+  }
+];
+
+let currentHeroSlide = 0;
+let heroSlideTimer = null;
+let heroProgressInterval = null;
+const HERO_DURATION = 6500; // ms
+
+function initHeroSlider() {
+  const slides = document.querySelectorAll('.hero-slide-item');
+  const fills = document.querySelectorAll('.slide-progress-fill');
+  const titleEl = document.getElementById('hero-slide-title');
+  const badgeEl = document.getElementById('hero-slide-badge');
+  const coordsEl = document.getElementById('hero-slide-coords');
+
+  if (!slides.length) return;
+
+  function showSlide(index) {
+    currentHeroSlide = index;
+    slides.forEach((s, idx) => {
+      if (idx === index) {
+        s.classList.add('active');
+      } else {
+        s.classList.remove('active');
+      }
+    });
+
+    const data = heroSlidesData[index];
+    if (titleEl && data) titleEl.innerText = data.title;
+    if (badgeEl && data) badgeEl.innerText = data.badge;
+    if (coordsEl && data) coordsEl.innerText = data.coords;
+
+    // Reset progress fills
+    fills.forEach((f, idx) => {
+      if (idx < index) {
+        f.style.width = '100%';
+      } else if (idx > index) {
+        f.style.width = '0%';
+      }
+    });
+
+    startProgress(index);
+  }
+
+  function startProgress(index) {
+    clearInterval(heroProgressInterval);
+    clearTimeout(heroSlideTimer);
+
+    const fill = fills[index];
+    if (!fill) return;
+
+    fill.style.width = '0%';
+    let startTime = Date.now();
+
+    heroProgressInterval = setInterval(() => {
+      let elapsed = Date.now() - startTime;
+      let percent = Math.min(100, (elapsed / HERO_DURATION) * 100);
+      fill.style.width = percent + '%';
+      if (percent >= 100) {
+        clearInterval(heroProgressInterval);
+      }
+    }, 30);
+
+    heroSlideTimer = setTimeout(() => {
+      let nextIndex = (currentHeroSlide + 1) % slides.length;
+      showSlide(nextIndex);
+    }, HERO_DURATION);
+  }
+
+  window.setHeroSlide = function(index) {
+    showSlide(index);
+  };
+
+  showSlide(0);
+}
+
+// ------------------------------------------
+// 2. CONCEPT SCROLLYTELLING (#conceito)
 // ------------------------------------------
 const conceptStages = [
   {
@@ -133,7 +237,7 @@ function initConceptScrolly() {
 }
 
 // ------------------------------------------
-// 2. FACTORY PHOTO GALLERY (360° TOUR)
+// 3. FACTORY PHOTO GALLERY (360° TOUR)
 // ------------------------------------------
 const factoryViews = {
   'sunset-facade': {
@@ -207,7 +311,7 @@ function initFactoryGallery() {
 }
 
 // ------------------------------------------
-// 3. INTERACTIVE IMPACT CALCULATOR
+// 4. INTERACTIVE IMPACT CALCULATOR
 // ------------------------------------------
 function initCalculator() {
   const areaSlider = document.getElementById('calc-area');
@@ -245,7 +349,7 @@ function initCalculator() {
 }
 
 // ------------------------------------------
-// 4. DIGITAL PRODUCT PASSPORT (DPP) LOOKUP
+// 5. DIGITAL PRODUCT PASSPORT (DPP) LOOKUP
 // ------------------------------------------
 const passportDatabase = {
   'VRA-PRD-1204': {
@@ -348,7 +452,7 @@ function initPassportLookup() {
 }
 
 // ------------------------------------------
-// 5. PRODUCT DRAWER & SPECIFICATIONS
+// 6. PRODUCT DRAWER & SPECIFICATIONS
 // ------------------------------------------
 const productsData = {
   'painel-plano': {
@@ -460,7 +564,7 @@ function initProductDrawer() {
 }
 
 // ------------------------------------------
-// 6. PRODUCT CATALOG FILTERS
+// 7. PRODUCT CATALOG FILTERS
 // ------------------------------------------
 function initProductFilters() {
   const filterBtns = document.querySelectorAll('.product-filter-btn');
@@ -492,7 +596,7 @@ function initProductFilters() {
 }
 
 // ------------------------------------------
-// 7. CONTACT FORM INTERACTION
+// 8. CONTACT FORM
 // ------------------------------------------
 function initContactForm() {
   const form = document.getElementById('vira-contact-form');
