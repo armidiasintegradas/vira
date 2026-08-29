@@ -1,40 +1,8 @@
 /* ========================================================
-   VIRA × TROPICA FRAMER CLONE DESIGN SYSTEM
+   VIRA × TROPICA FRAMER EXACT CLONE STYLES
    ======================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
-
-:root {
-  --bg-page: #FFFFFF;
-  --bg-sand: #F7F7F5;
-  --bg-surface: #F2F2EE;
-  --bg-card: #FFFFFF;
-  --bg-dark: #141414;
-  
-  --text-main: #141414;
-  --text-muted: #5E5E5E;
-  --text-subtle: #8E8E8E;
-  
-  --color-forest: #2C3E2D;
-  --color-green-brand: #4A7135;
-  --color-ochre: #C68D2B;
-  
-  --border-light: rgba(20, 20, 20, 0.08);
-  --border-hover: rgba(20, 20, 20, 0.2);
-  --border-dark: rgba(255, 255, 255, 0.12);
-
-  --radius-xs: 8px;
-  --radius-sm: 14px;
-  --radius-md: 20px;
-  --radius-lg: 28px;
-  --radius-xl: 36px;
-  --radius-full: 9999px;
-
-  --ease-framer: cubic-bezier(0.16, 1, 0.3, 1);
-  --duration-fast: 0.2s;
-  --duration-normal: 0.35s;
-  --duration-slow: 0.6s;
-}
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 * {
   box-sizing: border-box;
@@ -42,300 +10,280 @@
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-  background-color: var(--bg-page);
-  color: var(--text-main);
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #FFFFFF;
+  color: #141414;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  background-color: var(--bg-page);
-  color: var(--text-main);
-  overflow-x: hidden;
-  letter-spacing: -0.015em;
-  font-size: 15px;
-  line-height: 1.6;
-}
-
 /* --------------------------------------------------------
-   1. FLOATING NAVBAR (TROPICA)
+   1. EXACT TROPICA TOP BAR OVER FULL-SCREEN HERO
    -------------------------------------------------------- */
-.tropica-nav {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 40px);
-  max-width: 1320px;
-  z-index: 1000;
-}
-
-.tropica-nav-pill {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-full);
-  padding: 10px 24px;
+.tropica-header-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  width: 100%;
+  padding: 32px 48px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.nav-links-wrap {
-  display: flex;
-  align-items: center;
-  gap: 32px;
+@media (max-width: 768px) {
+  .tropica-header-top {
+    padding: 24px 24px;
+  }
 }
 
-.nav-link-item {
-  color: var(--text-muted);
-  font-size: 14px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: color var(--duration-fast) ease;
-}
-
-.nav-link-item:hover {
-  color: var(--text-main);
-}
-
-.btn-tropica-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background-color: var(--text-main);
-  color: #FFFFFF;
-  font-size: 13px;
-  font-weight: 600;
-  padding: 10px 22px;
-  border-radius: var(--radius-full);
-  text-decoration: none;
-  transition: all var(--duration-fast) var(--ease-framer);
-  border: 1px solid transparent;
-}
-
-.btn-tropica-pill:hover {
-  background-color: var(--color-green-brand);
-  transform: translateY(-1px);
-}
-
-.btn-tropica-pill-secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background-color: var(--bg-sand);
-  color: var(--text-main);
-  font-size: 13px;
-  font-weight: 600;
-  padding: 10px 22px;
-  border-radius: var(--radius-full);
-  text-decoration: none;
-  border: 1px solid var(--border-light);
-  transition: all var(--duration-fast) var(--ease-framer);
-}
-
-.btn-tropica-pill-secondary:hover {
-  background-color: var(--text-main);
-  color: #FFFFFF;
-  border-color: var(--text-main);
-}
-
-/* --------------------------------------------------------
-   2. HERO SECTION
-   -------------------------------------------------------- */
-.tag-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 16px;
-  border-radius: var(--radius-full);
-  background-color: var(--bg-sand);
-  border: 1px solid var(--border-light);
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-muted);
-}
-
-.hero-title-main {
+.tropica-logo-text {
   font-family: 'DM Sans', sans-serif;
-  font-size: clamp(48px, 7vw, 92px);
-  font-weight: 500;
-  line-height: 1.02;
-  letter-spacing: -0.035em;
-  color: var(--text-main);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: #FFFFFF;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.hero-media-wrapper {
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  position: relative;
-  border: 1px solid var(--border-light);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+.tropica-hamburger-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  z-index: 100;
+}
+
+.tropica-hamburger-btn span {
+  display: block;
+  width: 28px;
+  height: 2px;
+  background-color: #FFFFFF;
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tropica-hamburger-btn.active span:nth-child(1) {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.tropica-hamburger-btn.active span:nth-child(2) {
+  transform: translateY(-4px) rotate(-45deg);
 }
 
 /* --------------------------------------------------------
-   3. HORIZONTAL CAROUSEL / STORY CARDS
+   2. EXACT TROPICA FULL-SCREEN HERO (100VH EDGE-TO-EDGE)
    -------------------------------------------------------- */
-.horizontal-scroll-container {
-  display: flex;
-  gap: 24px;
-  overflow-x: auto;
-  padding-bottom: 20px;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-}
-
-.horizontal-scroll-container::-webkit-scrollbar {
-  display: none;
-}
-
-.story-card-item {
-  flex: 0 0 340px;
-  scroll-snap-align: start;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
+.tropica-hero-fullscreen {
   position: relative;
-  height: 460px;
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-light);
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 140px 48px 64px 48px;
+  background-color: #0c120c;
+  overflow: hidden;
 }
 
-.story-card-item img {
+@media (max-width: 768px) {
+  .tropica-hero-fullscreen {
+    padding: 120px 24px 48px 24px;
+  }
+}
+
+.tropica-hero-bg-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--duration-slow) var(--ease-framer);
+  object-position: center;
+  z-index: 1;
+  transform: scale(1.02);
 }
 
-.story-card-item:hover img {
-  transform: scale(1.05);
+.tropica-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.2) 40%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+  z-index: 2;
 }
 
-/* --------------------------------------------------------
-   4. STATS BAR
-   -------------------------------------------------------- */
-.tropica-stats-bar {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
-  padding: 40px;
-  background-color: var(--bg-sand);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-xl);
+.tropica-hero-content {
+  position: relative;
+  z-index: 10;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }
 
-.stats-bar-col {
-  border-right: 1px solid var(--border-light);
-  padding-right: 24px;
+.tropica-h1 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(44px, 6.5vw, 84px);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: #FFFFFF;
 }
 
-.stats-bar-col:last-child {
-  border-right: none;
-  padding-right: 0;
+.tropica-subtext {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(16px, 1.8vw, 20px);
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 540px;
 }
 
-/* --------------------------------------------------------
-   5. PROPERTY / PRODUCT CARDS
-   -------------------------------------------------------- */
-.property-listing-card {
+.btn-tropica-white {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   background-color: #FFFFFF;
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  padding: 20px;
+  color: #141414;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 9999px;
+  text-decoration: none;
+  border: none;
+  width: fit-content;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn-tropica-white:hover {
+  background-color: #EAEAEA;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+.tropica-rating-widget {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.avatar-stack {
+  display: flex;
+  align-items: center;
+}
+
+.avatar-stack img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+  margin-left: -10px;
+  object-fit: cover;
+}
+
+.avatar-stack img:first-child {
+  margin-left: 0;
+}
+
+.rating-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rating-stars {
+  color: #FFFFFF;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+.rating-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* --------------------------------------------------------
+   3. FULLSCREEN OVERLAY MENU
+   -------------------------------------------------------- */
+.tropica-menu-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background-color: #141414;
+  color: #FFFFFF;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: all var(--duration-normal) var(--ease-framer);
+  padding: 120px 48px 48px 48px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-20px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.property-listing-card:hover {
-  border-color: var(--border-hover);
-  transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+.tropica-menu-modal.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
-.property-img-wrap {
-  position: relative;
-  height: 260px;
-  border-radius: calc(var(--radius-lg) - 8px);
-  overflow: hidden;
-  background-color: var(--bg-surface);
+.menu-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.property-img-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform var(--duration-slow) var(--ease-framer);
-}
-
-.property-listing-card:hover .property-img-wrap img {
-  transform: scale(1.06);
-}
-
-/* --------------------------------------------------------
-   6. EXPERTISE ACCORDION
-   -------------------------------------------------------- */
-.expertise-accordion-item {
-  border-top: 1px solid var(--border-light);
-  padding: 28px 0;
-  cursor: pointer;
-  transition: all var(--duration-fast) ease;
-}
-
-.expertise-accordion-item:last-child {
-  border-bottom: 1px solid var(--border-light);
-}
-
-/* --------------------------------------------------------
-   7. FAQ ACCORDION
-   -------------------------------------------------------- */
-.faq-row {
-  border-top: 1px solid var(--border-light);
-  padding: 24px 0;
-}
-
-.faq-row:last-child {
-  border-bottom: 1px solid var(--border-light);
-}
-
-/* --------------------------------------------------------
-   8. FOOTER
-   -------------------------------------------------------- */
-.footer-monumental-wordmark {
+.menu-nav-link {
   font-family: 'DM Sans', sans-serif;
-  font-size: clamp(80px, 18vw, 240px);
-  font-weight: 700;
-  line-height: 0.8;
-  letter-spacing: -0.06em;
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: all 0.25s ease;
+  width: fit-content;
+}
+
+.menu-nav-link:hover {
   color: #FFFFFF;
-  opacity: 0.15;
-  user-select: none;
+  transform: translateX(12px);
 }
 
-@media (max-width: 900px) {
-  .tropica-stats-bar {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .stats-bar-col:nth-child(2) {
-    border-right: none;
-  }
+/* --------------------------------------------------------
+   4. CONTENT SECTIONS
+   -------------------------------------------------------- */
+.section-wrapper {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 100px 48px;
 }
 
-@media (max-width: 600px) {
-  .tropica-stats-bar {
-    grid-template-columns: 1fr;
-  }
-  .stats-bar-col {
-    border-right: none;
-    border-bottom: 1px solid var(--border-light);
-    padding-bottom: 20px;
+@media (max-width: 768px) {
+  .section-wrapper {
+    padding: 60px 24px;
   }
 }
