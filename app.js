@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
 // 1. TROPICA FRAMER PRODUCT FILTER TABS
 // ------------------------------------------
 function initProductTabs() {
-  const tabBtns = document.querySelectorAll('.framer-tab-btn');
-  const cards = document.querySelectorAll('.product-tropica-card');
+  const tabBtns = document.querySelectorAll('.framer-tab-pill');
+  const cards = document.querySelectorAll('.tropica-property-card');
 
   tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -32,11 +32,11 @@ function initProductTabs() {
           setTimeout(() => {
             card.style.opacity = '1';
             card.style.transform = 'translateY(0)';
-          }, 40);
+          }, 30);
         } else {
           card.style.opacity = '0';
-          card.style.transform = 'translateY(15px)';
-          setTimeout(() => card.style.display = 'none', 250);
+          card.style.transform = 'translateY(12px)';
+          setTimeout(() => card.style.display = 'none', 200);
         }
       });
     });
@@ -51,7 +51,7 @@ const productsData = {
     title: 'Paver Intertravado 16 Faces',
     category: 'Pavimentação Urbana & Praças',
     code: 'VRA-PVR-2026',
-    desc: 'Bloco intertravado maciço fabricado a partir de polímeros reciclados e compósitos minerais de alta densidade. Apresenta alta permeabilidade, imunidade a óleo e química, acabamento cinza concreto uniforme e encaixe perfeito para tráfego pesado.',
+    desc: 'Bloco intertravado maciço fabricado a partir de polímeros reciclados e compósitos minerais de alta densidade. Apresenta alta resistência mecânica (>35 MPa), acabamento cinza concreto uniforme, imunidade a química/óleos e encaixe autobloqueante.',
     specs: [
       { label: 'Formato / Modelo', val: '16 Faces (Holandês)' },
       { label: 'Dimensões', val: '200 × 100 × 60 mm' },
@@ -63,10 +63,10 @@ const productsData = {
     ]
   },
   'painel-plano': {
-    title: 'Painel VIRA Plano 15mm',
+    title: 'Painel Arquitetônico Plano 15mm',
     category: 'Arquitetura & Fachadas',
     code: 'VRA-PRD-1204',
-    desc: 'Placa rígida de alta densidade desenvolvida a partir de polímeros pós-consumo e compósitos de alumínio. Resistente a intempéries, água e raios UV, ideal para divisórias, mobiliário e fachadas.',
+    desc: 'Placa rígida de alta densidade desenvolvida a partir de polímeros pós-consumo e compósitos de alumínio. Resistente a intempéries, água e raios UV, ideal para divisórias, mobiliário e fachadas ventiladas.',
     specs: [
       { label: 'Dimensões Padrão', val: '2440 × 1220 mm' },
       { label: 'Espessuras', val: '10mm, 15mm, 20mm' },
@@ -130,7 +130,7 @@ function initProductDrawer() {
     drawerDesc.innerText = prod.desc;
 
     drawerSpecs.innerHTML = prod.specs.map(s => {
-      return '<div class="flex items-center justify-between py-2 border-b border-black/5 text-xs">' +
+      return '<div class="flex items-center justify-between py-2.5 border-b border-black/5 text-xs">' +
         '<span class="text-muted">' + s.label + '</span>' +
         '<span class="font-medium text-graphite font-mono text-right">' + s.val + '</span>' +
       '</div>';
@@ -254,7 +254,7 @@ function initPassportLookup() {
       '<div class="flex flex-wrap items-center justify-between gap-4 border-b border-black/5 pb-4">' +
         '<div>' +
           '<span class="font-mono text-xs text-ochre font-semibold tracking-wider uppercase">Passaporte Verificado</span>' +
-          '<h4 class="font-serif text-2xl sm:text-3xl text-graphite mt-1">' + data.product + '</h4>' +
+          '<h4 class="font-sans text-2xl font-bold text-graphite mt-1">' + data.product + '</h4>' +
         '</div>' +
         '<span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold text-forest bg-forest/10 border border-forest/20">' +
           '<span class="w-2 h-2 rounded-full bg-forest animate-ping"></span>' +
@@ -301,7 +301,7 @@ function initPassportLookup() {
 // 5. STICKY STAGE SCROLL ACCORDION
 // ------------------------------------------
 function initStickyStages() {
-  const cards = document.querySelectorAll('.sticky-stage-card');
+  const cards = document.querySelectorAll('.sticky-stage-item');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
