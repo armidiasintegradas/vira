@@ -149,41 +149,46 @@ function initProductDrawer() {
   const drawerDesc = document.getElementById('drawer-desc');
   const drawerSpecs = document.getElementById('drawer-specs');
 
-  if (!backdrop || !panel) return;
+  window.closeProductDrawer = function() {
+    if (backdrop) backdrop.classList.remove('open');
+    if (panel) panel.classList.remove('open');
+    document.body.style.overflow = '';
+  };
 
   window.openProductDrawer = function(productId) {
     const prod = productsData[productId] || productsData['paver-cinza'];
-    if (!prod) return;
+    if (!prod || !backdrop || !panel) return;
 
-    drawerTitle.innerText = prod.title;
-    drawerCat.innerText = prod.category;
-    drawerCode.innerText = prod.code;
-    drawerDesc.innerText = prod.desc;
+    if (drawerTitle) drawerTitle.innerText = prod.title;
+    if (drawerCat) drawerCat.innerText = prod.category;
+    if (drawerCode) drawerCode.innerText = prod.code;
+    if (drawerDesc) drawerDesc.innerText = prod.desc;
 
-    drawerSpecs.innerHTML = prod.specs.map(s => {
-      return '<div class="flex items-center justify-between py-2.5 border-b border-black/5 text-xs">' +
-        '<span class="text-muted">' + s.label + '</span>' +
-        '<span class="font-medium text-graphite font-mono text-right">' + s.val + '</span>' +
-      '</div>';
-    }).join('');
+    if (drawerSpecs) {
+      drawerSpecs.innerHTML = prod.specs.map(s => {
+        return '<div class="flex items-center justify-between py-2.5 border-b border-black/5 text-xs">' +
+          '<span class="text-muted">' + s.label + '</span>' +
+          '<span class="font-medium text-graphite font-mono text-right">' + s.val + '</span>' +
+        '</div>';
+      }).join('');
+    }
 
     backdrop.classList.add('open');
     panel.classList.add('open');
     document.body.style.overflow = 'hidden';
   };
 
-  function closeDrawer() {
-    backdrop.classList.remove('open');
-    panel.classList.remove('open');
-    document.body.style.overflow = '';
+  if (closeBtn) closeBtn.addEventListener('click', window.closeProductDrawer);
+  if (backdrop) {
+    backdrop.addEventListener('click', (e) => {
+      window.closeProductDrawer();
+    });
   }
 
-  if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
-  backdrop.addEventListener('click', (e) => {
-    if (e.target === backdrop) closeDrawer();
-  });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeDrawer();
+    if (e.key === 'Escape') {
+      window.closeProductDrawer();
+    }
   });
 }
 
@@ -201,13 +206,13 @@ function initCalculator() {
 
   function updateCalc() {
     const sqMeters = parseFloat(areaSlider.value);
-    areaValue.innerText = sqMeters.toLocaleString('pt-BR');
+    if (areaValue) areaValue.innerText = sqMeters.toLocaleString('pt-BR');
 
     const plasticKg = Math.round(sqMeters * 18.5);
     const co2Kg = Math.round(plasticKg * 2.15);
 
-    metricPlastic.innerText = plasticKg.toLocaleString('pt-BR') + ' kg';
-    metricCo2.innerText = co2Kg.toLocaleString('pt-BR') + ' kg';
+    if (metricPlastic) metricPlastic.innerText = plasticKg.toLocaleString('pt-BR') + ' kg';
+    if (metricCo2) metricCo2.innerText = co2Kg.toLocaleString('pt-BR') + ' kg';
   }
 
   areaSlider.addEventListener('input', updateCalc);
