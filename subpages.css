@@ -10,5 +10,5 @@
 .resource-page .download-chip{font-family:"DM Sans",sans-serif!important}
 
 /* Enquadramento seguro da prancha oficial, sem cortar as extremidades da marca. */
-.resource-header img{content:url("assets/marca-oficial.png");height:43px;object-fit:cover;object-position:top}.resource-page footer .resource-footer-logo{content:url("assets/marca-oficial.png");height:43px;object-fit:cover;object-position:top}.resource-page img[src="assets/logo.png"]{content:url("assets/marca-oficial.png");aspect-ratio:2.32/1;object-fit:cover;object-position:top}
-@media(max-width:700px){.resource-header img{height:39px}}
+.resource-header img{content:url("assets/marca-logo-final.png");height:auto;object-fit:contain}.resource-page footer .resource-footer-logo{content:url("assets/marca-logo-final.png");height:auto;object-fit:contain}.resource-page img[src="assets/logo.png"]{content:url("assets/marca-lockup-final.png");aspect-ratio:auto;object-fit:contain}
+@media(max-width:700px){.resource-header img{height:auto}}
