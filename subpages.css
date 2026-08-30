@@ -8,3 +8,7 @@
 /* Mantém rótulos e informações técnicas no mesmo padrão tipográfico do site. */
 :where(.resource-header .back-home,.resource-menu nav small,.resource-menu .menu-meta,.resource-page .download-chip,.resource-page .resource-kicker,.uniform-feature figcaption,.uniform-feature li:before,.uniform-list article>span,.uniform-list ul){font-family:"DM Sans",sans-serif!important}
 .resource-page .download-chip{font-family:"DM Sans",sans-serif!important}
+
+/* Enquadramento seguro da prancha oficial, sem cortar as extremidades da marca. */
+.resource-header img{content:url("assets/marca-oficial.png");height:43px;object-fit:cover;object-position:top}.resource-page footer .resource-footer-logo{content:url("assets/marca-oficial.png");height:43px;object-fit:cover;object-position:top}.resource-page img[src="assets/logo.png"]{content:url("assets/marca-oficial.png");aspect-ratio:2.32/1;object-fit:cover;object-position:top}
+@media(max-width:700px){.resource-header img{height:39px}}

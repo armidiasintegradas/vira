@@ -23,3 +23,7 @@ footer{padding:80px var(--pad) 30px;background:var(--dark);color:#fff}.footer-to
 /* Tipografia unificada: substitui a antiga fonte monoespaçada pelo padrão DM Sans. */
 :where(.eyebrow,.menu-panel nav small,.menu-meta,.scroll-cue,.story-card b,.filters button,.product-image>span,.product-title b,.spec-row,.expertise-list article>span,.expertise-list ul,.range-head label,.presets button,.calc-results span,dt,.proof-grid figcaption,.contact-meta,form label,.footer-top nav,.footer-bottom,.drawer-code){font-family:"DM Sans",sans-serif!important}
 .contact-meta,.contact-meta *,.drawer-code{font-family:"DM Sans",sans-serif!important}
+
+/* A marca oficial inclui uma prancha maior; estes recortes preservam o símbolo inteiro. */
+.brand img{content:url("assets/marca-oficial.png");height:43px;object-fit:cover;object-position:top}.footer-top img{content:url("assets/marca-oficial.png");height:46px;object-fit:cover;object-position:top}
+@media(max-width:600px){.brand img{height:39px}}
