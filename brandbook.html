@@ -43,6 +43,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="subpages.css">
 
   <style>
     body {
@@ -112,10 +115,13 @@
     }
   </style>
 </head>
-<body class="bg-paper text-graphite min-h-screen flex flex-col">
+<body class="resource-page bg-paper text-graphite min-h-screen flex flex-col">
+
+  <header class="resource-header"><a href="index.html" aria-label="VIRA, página inicial"><img src="assets/marca-logo.png" alt="VIRA"></a><div class="resource-actions"><a class="back-home" href="index.html">← Voltar ao site</a><button class="menu-toggle" id="resource-menu-toggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span></button></div></header>
+  <aside class="resource-menu" id="resource-menu" aria-hidden="true"><p class="resource-kicker">Navegação</p><nav><a href="index.html"><small>01</small> Início</a><a href="index.html#colecao"><small>02</small> Coleção</a><a href="index.html#expertise"><small>03</small> Expertise</a><a href="index.html#calculadora"><small>04</small> Calculadora</a><a href="brandbook.html"><small>05</small> Brand Book</a><a href="uniformes.html"><small>06</small> Uniformes</a><a href="index.html#contato"><small>07</small> Contato</a></nav><div class="menu-meta"><span>Caruaru — PE</span><span>VIRA · Tudo pode se transformar.</span></div></aside>
 
   <!-- TOP HEADER (Starbucks Creative Expression Style) -->
-  <header class="sticky top-0 z-50 bg-paper/95 backdrop-blur-md hairline-b">
+  <header class="legacy-header sticky top-0 z-50 bg-paper/95 backdrop-blur-md hairline-b">
     <div class="max-w-[1600px] mx-auto px-6 sm:px-12 h-20 flex items-center justify-between gap-6">
       
       <!-- Brand & Title Lockup -->
@@ -580,7 +586,7 @@
   <footer class="bg-graphite text-white hairline-t py-12 text-xs font-mono text-white/70">
     <div class="max-w-[1600px] mx-auto px-6 sm:px-12 flex flex-col sm:flex-row items-center justify-between gap-6">
       <div class="flex items-center gap-3">
-        <div class="logo-mask mask-white w-20 h-6"></div>
+        <img src="assets/marca-logo.png" alt="VIRA" class="resource-footer-logo" />
         <span>•</span>
         <span>VIRA Creative Expression & Asset Center • 2026</span>
       </div>
@@ -596,6 +602,7 @@
     <span id="copy-toast-msg">Código copiado para a área de transferência!</span>
   </div>
 
+  <script src="subpages.js"></script>
   <script>
     lucide.createIcons();
 

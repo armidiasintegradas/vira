@@ -1,244 +1,32 @@
-// ==========================================
-// VIRA × TROPICA FRAMER EXACT CONTROLLER
-// ==========================================
-
-document.addEventListener('DOMContentLoaded', () => {
-  initHamburgerMenu();
-  initProductTabs();
-  initCalculator();
-  initProductDrawer();
-  initContactForm();
-});
-
-// ------------------------------------------
-// 1. HAMBURGER FULLSCREEN MENU TOGGLE
-// ------------------------------------------
-function initHamburgerMenu() {
-  const toggleBtn = document.getElementById('tropica-menu-toggle');
-  const menuModal = document.getElementById('tropica-fullscreen-menu');
-
-  if (!toggleBtn || !menuModal) return;
-
-  window.toggleMenu = function() {
-    toggleBtn.classList.toggle('active');
-    menuModal.classList.toggle('open');
-    if (menuModal.classList.contains('open')) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-  };
-
-  toggleBtn.addEventListener('click', window.toggleMenu);
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && menuModal.classList.contains('open')) {
-      window.toggleMenu();
-    }
-  });
-}
-
-// ------------------------------------------
-// 2. PRODUCT FILTER TABS
-// ------------------------------------------
-function initProductTabs() {
-  const tabBtns = document.querySelectorAll('[data-filter]');
-  const cards = document.querySelectorAll('[data-category]');
-
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const filter = btn.getAttribute('data-filter');
-
-      tabBtns.forEach(b => {
-        b.classList.remove('bg-graphite', 'text-white');
-        b.classList.add('text-muted');
-      });
-      btn.classList.remove('text-muted');
-      btn.classList.add('bg-graphite', 'text-white');
-
-      cards.forEach(card => {
-        const cat = card.getAttribute('data-category');
-        if (filter === 'all' || cat === filter) {
-          card.style.display = 'flex';
-          setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, 30);
-        } else {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(12px)';
-          setTimeout(() => card.style.display = 'none', 200);
-        }
-      });
-    });
-  });
-}
-
-// ------------------------------------------
-// 3. PRODUCT SPECIFICATION DRAWER
-// ------------------------------------------
-const productsData = {
-  'paver-cinza': {
-    title: 'Paver Intertravado 16 Faces',
-    category: 'Pavimentação Urbana & Praças',
-    code: 'VRA-PVR-2026',
-    desc: 'Bloco intertravado maciço fabricado a partir de polímeros reciclados e compósitos minerais de alta densidade. Apresenta alta resistência mecânica (>35 MPa), acabamento cinza concreto uniforme, imunidade a química/óleos e encaixe autobloqueante.',
-    specs: [
-      { label: 'Formato / Modelo', val: '16 Faces (Holandês)' },
-      { label: 'Dimensões', val: '200 × 100 × 60 mm' },
-      { label: 'Resistência à Compressão', val: '> 35 MPa (Tráfego Pesado)' },
-      { label: 'Cor / Acabamento', val: 'Cinza Concreto / Grafite Mineral' },
-      { label: 'Absorção de Água', val: '< 0.05% (Imune)' },
-      { label: 'Garantia Estrutural', val: '10 Anos' },
-      { label: 'Origem', val: 'Caruaru - PE' }
-    ]
-  },
-  'painel-plano': {
-    title: 'Painel Arquitetônico Plano 15mm',
-    category: 'Arquitetura & Fachadas',
-    code: 'VRA-PRD-1204',
-    desc: 'Placa rígida de alta densidade desenvolvida a partir de polímeros pós-consumo e compósitos de alumínio. Resistente a intempéries, água e raios UV, ideal para divisórias, mobiliário e fachadas ventiladas.',
-    specs: [
-      { label: 'Dimensões Padrão', val: '2440 × 1220 mm' },
-      { label: 'Espessuras', val: '10mm, 15mm, 20mm' },
-      { label: 'Densidade', val: '0.94 g/cm³' },
-      { label: 'Absorção de Água', val: '< 0.08% (Imune)' },
-      { label: 'Resistência à Tração', val: '22 MPa' },
-      { label: 'Acabamentos', val: 'Polido Terrazzo, Granulado, Fosco' },
-      { label: 'Origem', val: 'Caruaru - PE' }
-    ]
-  },
-  'perfil-estrutural': {
-    title: 'Perfil Estrutural VIRA 80×80',
-    category: 'Construção Civil & Decks',
-    code: 'VRA-LTE-0142',
-    desc: 'Vigas e colunas maciças que substituem com excelência a madeira tratada e o aço em decks, pergolados, cercamento e mobiliário urbano de praças.',
-    specs: [
-      { label: 'Seção Transversal', val: '80 × 80 mm (Maciço)' },
-      { label: 'Comprimento Padrão', val: '3000 mm / Sob Medida' },
-      { label: 'Carga Máxima de Ruptura', val: '38.5 MPa' },
-      { label: 'Resistência a Pragas', val: '100% Imune a cupins e fungos' },
-      { label: 'Trabalhabilidade', val: 'Permite furação e parafusamento' },
-      { label: 'Origem', val: 'Caruaru - PE' }
-    ]
-  },
-  'materia-micronizada': {
-    title: 'Composto Micronizado VIRA-HD',
-    category: 'Matéria-Prima Circular',
-    code: 'VRA-MAT-0001',
-    desc: 'Grânulos e micronizados poliméricos homogêneos prontos para injeção, extrusão ou sopro industrial, com laudo reológico de fluidez e pureza química.',
-    specs: [
-      { label: 'Polímero Base', val: 'PEAD / PP Reciclado' },
-      { label: 'Índice de Fluidez (MFI)', val: '0.8 a 4.5 g/10min' },
-      { label: 'Pureza Polimérica', val: '> 99.4%' },
-      { label: 'Apresentação', val: 'Big Bags de 1000 kg ou Sacos 25 kg' },
-      { label: 'Rastreabilidade', val: 'Passaporte Digital por Lote' },
-      { label: 'Origem', val: 'Caruaru - PE' }
-    ]
-  }
+const products={
+  "paver-cinza":{title:"Paver Intertravado 16 Faces",category:"Pavimentação urbana",code:"VRA-PVR-2026",description:"Bloco intertravado maciço produzido com polímeros reciclados e compósitos minerais de alta densidade.",specs:[["Formato","16 faces — holandês"],["Dimensões","200 × 100 × 60 mm"],["Compressão","> 35 MPa"],["Absorção","< 0,05%"],["Garantia","10 anos"]]},
+  "painel-plano":{title:"Painel Arquitetônico Plano",category:"Arquitetura e fachadas",code:"VRA-PRD-1204",description:"Placa rígida de alta densidade resistente à água e intempéries, indicada para mobiliário, divisórias e fachadas.",specs:[["Dimensões","2440 × 1220 mm"],["Espessuras","10, 15 e 20 mm"],["Densidade","0,94 g/cm³"],["Absorção","< 0,08%"],["Acabamentos","Polido, granulado e fosco"]]},
+  "perfil-estrutural":{title:"Perfil Estrutural 80 × 80",category:"Construção e mobiliário",code:"VRA-LTE-0142",description:"Perfil maciço para decks, pergolados, cercamentos e mobiliário urbano, resistente à umidade, fungos e cupins.",specs:[["Seção","80 × 80 mm"],["Comprimento","3.000 mm ou sob medida"],["Ruptura","38,5 MPa"],["Pragas","100% imune"],["Origem","Caruaru — PE"]]},
+  "materia-micronizada":{title:"Composto Micronizado VIRA-HD",category:"Matéria-prima circular",code:"VRA-MAT-0001",description:"Micronizados poliméricos homogêneos, preparados para processos industriais e acompanhados de controle de lote.",specs:[["Polímero base","PEAD / PP reciclado"],["Fluidez","0,8 a 4,5 g/10 min"],["Pureza","> 99,4%"],["Apresentação","Big bag ou saco de 25 kg"],["Rastreabilidade","Passaporte por lote"]]}
 };
 
-function initProductDrawer() {
-  const backdrop = document.getElementById('product-drawer-backdrop');
-  const panel = document.getElementById('product-drawer-panel');
-  const closeBtn = document.getElementById('product-drawer-close');
-  
-  const drawerTitle = document.getElementById('drawer-title');
-  const drawerCat = document.getElementById('drawer-cat');
-  const drawerCode = document.getElementById('drawer-code');
-  const drawerDesc = document.getElementById('drawer-desc');
-  const drawerSpecs = document.getElementById('drawer-specs');
+document.addEventListener("DOMContentLoaded",()=>{
+  const header=document.querySelector("#site-header"),toggle=document.querySelector("#menu-toggle"),menu=document.querySelector("#menu-panel");
+  const setMenu=open=>{toggle.classList.toggle("active",open);menu.classList.toggle("open",open);toggle.setAttribute("aria-expanded",String(open));menu.setAttribute("aria-hidden",String(!open));document.body.classList.toggle("locked",open)};
+  toggle.addEventListener("click",()=>setMenu(!menu.classList.contains("open")));
+  menu.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>setMenu(false)));
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")setMenu(false)});
+  addEventListener("scroll",()=>header.classList.toggle("scrolled",scrollY>50),{passive:true});
 
-  window.closeProductDrawer = function() {
-    if (backdrop) backdrop.classList.remove('open');
-    if (panel) panel.classList.remove('open');
-    document.body.style.overflow = '';
-  };
+  const filterButtons=document.querySelectorAll("[data-filter]"),cards=document.querySelectorAll(".product-card");
+  filterButtons.forEach(button=>button.addEventListener("click",()=>{filterButtons.forEach(b=>b.classList.remove("active"));button.classList.add("active");const filter=button.dataset.filter;cards.forEach(card=>card.classList.toggle("hidden",filter!=="all"&&card.dataset.category!==filter))}));
 
-  window.openProductDrawer = function(productId) {
-    const prod = productsData[productId] || productsData['paver-cinza'];
-    if (!prod || !backdrop || !panel) return;
+  const drawer=document.querySelector("#drawer"),backdrop=document.querySelector("#drawer-backdrop");
+  const closeDrawer=()=>{drawer.classList.remove("open");backdrop.classList.remove("open");drawer.setAttribute("aria-hidden","true");document.body.classList.remove("locked")};
+  const openDrawer=id=>{const p=products[id];if(!p)return;document.querySelector("#drawer-category").textContent=p.category;document.querySelector("#drawer-title").textContent=p.title;document.querySelector("#drawer-description").textContent=p.description;document.querySelector("#drawer-code").textContent=`Código: ${p.code}`;document.querySelector("#drawer-specs").innerHTML=p.specs.map(([a,b])=>`<div class="drawer-spec"><span>${a}</span><strong>${b}</strong></div>`).join("");drawer.classList.add("open");backdrop.classList.add("open");drawer.setAttribute("aria-hidden","false");document.body.classList.add("locked")};
+  document.querySelectorAll("[data-product]").forEach(button=>button.addEventListener("click",()=>openDrawer(button.dataset.product)));
+  document.querySelector("#drawer-close").addEventListener("click",closeDrawer);backdrop.addEventListener("click",closeDrawer);document.querySelector(".drawer-cta").addEventListener("click",closeDrawer);
 
-    if (drawerTitle) drawerTitle.innerText = prod.title;
-    if (drawerCat) drawerCat.innerText = prod.category;
-    if (drawerCode) drawerCode.innerText = prod.code;
-    if (drawerDesc) drawerDesc.innerText = prod.desc;
+  const range=document.querySelector("#calc-area"),area=document.querySelector("#calc-area-val"),plastic=document.querySelector("#calc-res-plastic"),co2=document.querySelector("#calc-res-co2");
+  const updateCalc=()=>{const sqm=Number(range.value),kg=Math.round(sqm*18.5);area.textContent=sqm.toLocaleString("pt-BR");plastic.textContent=`${kg.toLocaleString("pt-BR")} kg`;co2.textContent=`${Math.round(kg*2.15).toLocaleString("pt-BR")} kg`;range.style.background=`linear-gradient(90deg,var(--green) ${(sqm-50)/49.5}%,#ddd ${(sqm-50)/49.5}%)`};
+  range.addEventListener("input",updateCalc);document.querySelectorAll("[data-preset]").forEach(b=>b.addEventListener("click",()=>{range.value=b.dataset.preset;updateCalc()}));updateCalc();
 
-    if (drawerSpecs) {
-      drawerSpecs.innerHTML = prod.specs.map(s => {
-        return '<div class="flex items-center justify-between py-2.5 border-b border-black/5 text-xs">' +
-          '<span class="text-muted">' + s.label + '</span>' +
-          '<span class="font-medium text-graphite font-mono text-right">' + s.val + '</span>' +
-        '</div>';
-      }).join('');
-    }
+  document.querySelectorAll(".faq details").forEach(item=>item.addEventListener("toggle",()=>{if(item.open)document.querySelectorAll(".faq details").forEach(other=>{if(other!==item)other.open=false})}));
 
-    backdrop.classList.add('open');
-    panel.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  };
-
-  if (closeBtn) closeBtn.addEventListener('click', window.closeProductDrawer);
-  if (backdrop) {
-    backdrop.addEventListener('click', (e) => {
-      window.closeProductDrawer();
-    });
-  }
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      window.closeProductDrawer();
-    }
-  });
-}
-
-// ------------------------------------------
-// 4. IMPACT CALCULATOR
-// ------------------------------------------
-function initCalculator() {
-  const areaSlider = document.getElementById('calc-area');
-  const areaValue = document.getElementById('calc-area-val');
-  
-  const metricPlastic = document.getElementById('calc-res-plastic');
-  const metricCo2 = document.getElementById('calc-res-co2');
-
-  if (!areaSlider) return;
-
-  function updateCalc() {
-    const sqMeters = parseFloat(areaSlider.value);
-    if (areaValue) areaValue.innerText = sqMeters.toLocaleString('pt-BR');
-
-    const plasticKg = Math.round(sqMeters * 18.5);
-    const co2Kg = Math.round(plasticKg * 2.15);
-
-    if (metricPlastic) metricPlastic.innerText = plasticKg.toLocaleString('pt-BR') + ' kg';
-    if (metricCo2) metricCo2.innerText = co2Kg.toLocaleString('pt-BR') + ' kg';
-  }
-
-  areaSlider.addEventListener('input', updateCalc);
-  updateCalc();
-
-  window.setCalcPreset = function(val) {
-    areaSlider.value = val;
-    updateCalc();
-  };
-}
-
-// ------------------------------------------
-// 5. CONTACT FORM
-// ------------------------------------------
-function initContactForm() {
-  const form = document.getElementById('vira-contact-form');
-  const alertBox = document.getElementById('contact-alert');
-
-  if (!form) return;
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (alertBox) {
-      alertBox.classList.remove('hidden');
-      form.reset();
-      setTimeout(() => alertBox.classList.add('hidden'), 5000);
-    }
-  });
-}
+  const form=document.querySelector("#vira-contact-form"),alert=document.querySelector("#contact-alert");form.addEventListener("submit",e=>{e.preventDefault();const data=new FormData(form);const subject=encodeURIComponent(`Especificação VIRA — ${data.get("empresa")||data.get("nome")}`);const body=encodeURIComponent(`Nome: ${data.get("nome")}\nE-mail: ${data.get("email")}\nEmpresa: ${data.get("empresa")||"Não informada"}\n\nProjeto:\n${data.get("mensagem")||"Não informado"}`);alert.textContent="Abrindo seu aplicativo de e-mail para concluir o envio…";location.href=`mailto:contato@projetovira.com.br?subject=${subject}&body=${body}`});
+});
