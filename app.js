@@ -13,6 +13,13 @@ document.addEventListener("DOMContentLoaded",()=>{
   document.addEventListener("keydown",e=>{if(e.key==="Escape")setMenu(false)});
   addEventListener("scroll",()=>header.classList.toggle("scrolled",scrollY>50),{passive:true});
 
+  const manifesto=document.querySelector("#manifesto"),manifestoCopy=manifesto.querySelector(".manifesto-copy");
+  const textNodes=[];const walker=document.createTreeWalker(manifestoCopy,NodeFilter.SHOW_TEXT);while(walker.nextNode())textNodes.push(walker.currentNode);
+  textNodes.forEach(node=>{const fragment=document.createDocumentFragment();node.textContent.split(/(\s+)/).forEach(part=>{if(!part)return;if(/\s+/.test(part)){fragment.append(document.createTextNode(part));return}const word=document.createElement("span");word.className="manifesto-word";word.textContent=part;fragment.append(word)});node.replaceWith(fragment)});
+  const manifestoWords=[...manifestoCopy.querySelectorAll(".manifesto-word")],reduceMotion=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const updateManifesto=()=>{const rect=manifesto.getBoundingClientRect(),vh=innerHeight,progress=Math.max(0,Math.min(1,(vh*.67-rect.top)/(vh*.78)));manifestoWords.forEach((word,index)=>{const offset=index/Math.max(1,manifestoWords.length-1),local=Math.max(0,Math.min(1,(progress-offset*.72)/.28));word.style.opacity=reduceMotion?1:String(.12+local*.88);word.style.filter=reduceMotion?"none":`blur(${(1-local)*8}px)`;word.style.transform=reduceMotion?"none":`translateY(${(1-local)*12}px)`});document.body.classList.toggle("manifesto-active",rect.top<=70&&rect.bottom>70)};
+  addEventListener("scroll",updateManifesto,{passive:true});addEventListener("resize",updateManifesto);updateManifesto();
+
   const filterButtons=document.querySelectorAll("[data-filter]"),cards=document.querySelectorAll(".product-card");
   filterButtons.forEach(button=>button.addEventListener("click",()=>{filterButtons.forEach(b=>b.classList.remove("active"));button.classList.add("active");const filter=button.dataset.filter;cards.forEach(card=>card.classList.toggle("hidden",filter!=="all"&&card.dataset.category!==filter))}));
 
