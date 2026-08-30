@@ -30,4 +30,4 @@ footer{padding:80px var(--pad) 30px;background:var(--dark);color:#fff}.footer-to
 
 /* Hero da orla: mantém a criança centralizada e protege a leitura em telas estreitas. */
 .hero-media img{object-position:center center}
-@media(max-width:600px){.hero-media img{object-position:58% center}.hero-shade{background:linear-gradient(180deg,rgba(7,10,8,.76) 0%,rgba(7,10,8,.58) 43%,rgba(7,10,8,.16) 68%,rgba(7,10,8,.72) 100%)}.hero-content{text-shadow:0 2px 18px rgba(0,0,0,.38)}}
+@media(max-width:600px){.hero-media img{object-position:80% center}.hero-shade{background:linear-gradient(180deg,rgba(7,10,8,.76) 0%,rgba(7,10,8,.58) 43%,rgba(7,10,8,.16) 68%,rgba(7,10,8,.72) 100%)}.hero-content{text-shadow:0 2px 18px rgba(0,0,0,.38)}}
