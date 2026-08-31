@@ -42,3 +42,8 @@ body.manifesto-active .site-header{background:rgba(239,240,235,.9);border-color:
 body.manifesto-active .brand img{filter:none}
 body.manifesto-active .menu-toggle span{background:var(--ink)}
 @media(prefers-reduced-motion:reduce){.manifesto-word{opacity:1!important;filter:none!important;transform:none!important}}
+
+/* Camadas reais: o Hero permanece preso enquanto o Manifesto o atravessa. */
+.hero{position:sticky;top:0;z-index:1}
+main>section:not(.hero){position:relative;z-index:2}
+main>.manifesto{z-index:4}
