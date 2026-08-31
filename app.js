@@ -20,6 +20,9 @@ document.addEventListener("DOMContentLoaded",()=>{
   const updateManifesto=()=>{const rect=manifesto.getBoundingClientRect(),vh=innerHeight,progress=Math.max(0,Math.min(1,(vh*.67-rect.top)/(vh*.78)));manifestoWords.forEach((word,index)=>{const offset=index/Math.max(1,manifestoWords.length-1),local=Math.max(0,Math.min(1,(progress-offset*.72)/.28));word.style.opacity=reduceMotion?1:String(.12+local*.88);word.style.filter=reduceMotion?"none":`blur(${(1-local)*8}px)`;word.style.transform=reduceMotion?"none":`translateY(${(1-local)*12}px)`});document.body.classList.toggle("manifesto-active",rect.top<=70&&rect.bottom>70)};
   addEventListener("scroll",updateManifesto,{passive:true});addEventListener("resize",updateManifesto);updateManifesto();
 
+  const journeyStages=[...document.querySelectorAll(".journey-stage")],journeyCurrent=document.querySelector(".journey-current"),journeyBar=document.querySelector(".journey-progress i");
+  if(journeyStages.length){const setJourneyStage=stage=>{journeyStages.forEach(item=>item.classList.toggle("is-active",item===stage));const index=journeyStages.indexOf(stage);journeyCurrent.textContent=stage.dataset.step;journeyBar.style.width=`${((index+1)/journeyStages.length)*100}%`};const journeyObserver=new IntersectionObserver(entries=>{const visible=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(visible)setJourneyStage(visible.target)},{rootMargin:"-32% 0px -32% 0px",threshold:[0,.25,.5,.75,1]});journeyStages.forEach(stage=>journeyObserver.observe(stage))}
+
   const filterButtons=document.querySelectorAll("[data-filter]"),cards=document.querySelectorAll(".product-card");
   filterButtons.forEach(button=>button.addEventListener("click",()=>{filterButtons.forEach(b=>b.classList.remove("active"));button.classList.add("active");const filter=button.dataset.filter;cards.forEach(card=>card.classList.toggle("hidden",filter!=="all"&&card.dataset.category!==filter))}));
 
