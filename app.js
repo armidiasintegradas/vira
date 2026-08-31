@@ -1,8 +1,7 @@
 const products={
   "paver-cinza":{title:"Paver Intertravado 16 Faces",category:"Pavimentação urbana",code:"VRA-PVR-2026",description:"Bloco intertravado maciço produzido com polímeros reciclados e compósitos minerais de alta densidade.",specs:[["Formato","16 faces — holandês"],["Dimensões","200 × 100 × 60 mm"],["Compressão","> 35 MPa"],["Absorção","< 0,05%"],["Garantia","10 anos"]]},
-  "painel-plano":{title:"Painel Arquitetônico Plano",category:"Arquitetura e fachadas",code:"VRA-PRD-1204",description:"Placa rígida de alta densidade resistente à água e intempéries, indicada para mobiliário, divisórias e fachadas.",specs:[["Dimensões","2440 × 1220 mm"],["Espessuras","10, 15 e 20 mm"],["Densidade","0,94 g/cm³"],["Absorção","< 0,08%"],["Acabamentos","Polido, granulado e fosco"]]},
-  "perfil-estrutural":{title:"Perfil Estrutural 80 × 80",category:"Construção e mobiliário",code:"VRA-LTE-0142",description:"Perfil maciço para decks, pergolados, cercamentos e mobiliário urbano, resistente à umidade, fungos e cupins.",specs:[["Seção","80 × 80 mm"],["Comprimento","3.000 mm ou sob medida"],["Ruptura","38,5 MPa"],["Pragas","100% imune"],["Origem","Caruaru — PE"]]},
-  "materia-micronizada":{title:"Composto Micronizado VIRA-HD",category:"Matéria-prima circular",code:"VRA-MAT-0001",description:"Micronizados poliméricos homogêneos, preparados para processos industriais e acompanhados de controle de lote.",specs:[["Polímero base","PEAD / PP reciclado"],["Fluidez","0,8 a 4,5 g/10 min"],["Pureza","> 99,4%"],["Apresentação","Big bag ou saco de 25 kg"],["Rastreabilidade","Passaporte por lote"]]}
+  "guia-meio-fio":{title:"Guias e meio-fio",category:"Infraestrutura urbana",code:"VRA-GUI-SOB-PROJETO",description:"Elementos para delimitação, drenagem e organização de vias, calçadas e espaços públicos, configurados conforme as necessidades de cada implantação.",specs:[["Aplicação","Vias e passeios"],["Dimensões","Sob projeto"],["Acabamento","Sob especificação"],["Produção","Escala industrial"],["Origem","Caruaru — PE"]]},
+  "bloco-concreto":{title:"Blocos de concreto",category:"Construção modular",code:"VRA-BLC-SOB-PROJETO",description:"Família de blocos produzida para diferentes necessidades construtivas, com configuração técnica definida para cada projeto.",specs:[["Aplicação","Construção"],["Dimensões","Sob projeto"],["Resistência","Conforme aplicação"],["Produção","Escala industrial"],["Origem","Caruaru — PE"]]}
 };
 
 document.addEventListener("DOMContentLoaded",()=>{
@@ -27,8 +26,8 @@ document.addEventListener("DOMContentLoaded",()=>{
 
   const stats=document.querySelector("#indicadores");if(stats){new IntersectionObserver(entries=>{if(entries[0].isIntersecting){stats.classList.add("metrics-visible")}},{threshold:.2}).observe(stats)}
 
-  const filterButtons=document.querySelectorAll("[data-filter]"),cards=document.querySelectorAll(".product-card");
-  filterButtons.forEach(button=>button.addEventListener("click",()=>{filterButtons.forEach(b=>b.classList.remove("active"));button.classList.add("active");const filter=button.dataset.filter;cards.forEach(card=>card.classList.toggle("hidden",filter!=="all"&&card.dataset.category!==filter))}));
+  const filterButtons=document.querySelectorAll("[data-filter]"),cards=document.querySelectorAll(".product-card"),productGrid=document.querySelector(".product-grid");
+  filterButtons.forEach(button=>button.addEventListener("click",()=>{filterButtons.forEach(b=>b.classList.remove("active"));button.classList.add("active");const filter=button.dataset.filter;productGrid.dataset.activeFilter=filter;cards.forEach(card=>card.classList.toggle("hidden",filter!=="all"&&card.dataset.category!==filter))}));
 
   const drawer=document.querySelector("#drawer"),backdrop=document.querySelector("#drawer-backdrop");
   const closeDrawer=()=>{drawer.classList.remove("open");backdrop.classList.remove("open");drawer.setAttribute("aria-hidden","true");document.body.classList.remove("locked")};
