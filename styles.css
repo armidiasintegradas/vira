@@ -70,3 +70,8 @@ footer .footer-bottom{width:100%;margin-top:40px;padding-top:22px;display:grid;g
 .footer-bottom .footer-brand{justify-self:center}.footer-bottom .footer-brand img{content:url("assets/marca-logo-final.png");width:150px;filter:brightness(0) invert(1);margin:0}
 .footer-bottom>span{justify-self:end;text-align:right}
 @media(max-width:600px){footer{min-height:800px;padding-top:80px;background-position:58% center}.footer-cta{padding:50px 0}.footer-cta h2{font-size:44px}.footer-cta>p{font-size:16px;margin:24px auto}.footer-bottom{grid-template-columns:1fr!important;gap:22px;text-align:center}.footer-bottom nav{justify-content:center;gap:20px}.footer-bottom .footer-brand{grid-row:1;justify-self:center}.footer-bottom>span{justify-self:center;text-align:center}}
+
+/* Marca enviada para o menu: versão branca, verde e ocre. */
+.site-header .brand{background:rgba(21,24,20,.76);padding:7px 11px}
+.site-header .brand img,body.manifesto-active .site-header .brand img{content:url("assets/marca-site-menu.webp");width:150px;height:auto;filter:none}
+@media(max-width:600px){.site-header .brand img,body.manifesto-active .site-header .brand img{width:132px}}
