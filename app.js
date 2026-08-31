@@ -7,11 +7,13 @@ const products={
 
 document.addEventListener("DOMContentLoaded",()=>{
   const header=document.querySelector("#site-header"),toggle=document.querySelector("#menu-toggle"),menu=document.querySelector("#menu-panel");
-  const setMenu=open=>{toggle.classList.toggle("active",open);menu.classList.toggle("open",open);toggle.setAttribute("aria-expanded",String(open));menu.setAttribute("aria-hidden",String(!open));document.body.classList.toggle("locked",open)};
+  const setMenu=open=>{toggle.classList.toggle("active",open);menu.classList.toggle("open",open);toggle.setAttribute("aria-expanded",String(open));menu.setAttribute("aria-hidden",String(!open));document.body.classList.toggle("locked",open);document.body.classList.toggle("menu-open",open)};
   toggle.addEventListener("click",()=>setMenu(!menu.classList.contains("open")));
   menu.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>setMenu(false)));
   document.addEventListener("keydown",e=>{if(e.key==="Escape")setMenu(false)});
-  addEventListener("scroll",()=>header.classList.toggle("scrolled",scrollY>50),{passive:true});
+  const lightSections=".manifesto,.stats,.collection,.expertise,.proof,.faq,.contact";
+  const updateHeaderTheme=()=>{header.classList.toggle("scrolled",scrollY>50);const probeY=Math.max(1,Math.min(innerHeight-1,header.getBoundingClientRect().height/2));const section=document.elementsFromPoint(innerWidth/2,probeY).map(element=>element.closest?.("main>section")).find(Boolean);document.body.classList.toggle("header-on-light",Boolean(section?.matches(lightSections)))};
+  addEventListener("scroll",updateHeaderTheme,{passive:true});addEventListener("resize",updateHeaderTheme);updateHeaderTheme();
 
   const manifesto=document.querySelector("#manifesto"),manifestoCopy=manifesto.querySelector(".manifesto-copy");
   const textNodes=[];const walker=document.createTreeWalker(manifestoCopy,NodeFilter.SHOW_TEXT);while(walker.nextNode())textNodes.push(walker.currentNode);

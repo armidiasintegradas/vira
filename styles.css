@@ -75,3 +75,16 @@ footer .footer-bottom{width:100%;margin-top:40px;padding-top:22px;display:grid;g
 .site-header .brand,body.manifesto-active .site-header .brand{background:transparent;padding:0;border-radius:0}
 .site-header .brand img,body.manifesto-active .site-header .brand img{content:url("assets/marca-site-menu.webp");width:150px;height:auto;filter:none}
 @media(max-width:600px){.site-header .brand img,body.manifesto-active .site-header .brand img{width:132px}}
+
+/* Barra 15% mais alta, sem alterar as dimensões da marca. */
+.site-header{height:99px}
+.site-header.scrolled{height:78px}
+
+/* A marca acompanha o contraste real da seção que passa sob o cabeçalho. */
+body.header-on-light .site-header{background:rgba(248,248,244,.9);border-color:rgba(25,30,27,.12);backdrop-filter:blur(16px)}
+body.header-on-light .site-header .brand img{content:url("assets/marca-logo-final.png")}
+body.header-on-light .site-header .menu-toggle span{background:var(--ink)}
+body.menu-open .site-header{background:transparent;border-color:rgba(255,255,255,.15);backdrop-filter:none}
+body.menu-open .site-header .brand img{content:url("assets/marca-site-menu.webp")}
+body.menu-open .site-header .menu-toggle span{background:#fff}
+@media(max-width:600px){.site-header{height:83px}.site-header.scrolled{height:78px}}
