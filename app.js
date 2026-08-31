@@ -23,6 +23,8 @@ document.addEventListener("DOMContentLoaded",()=>{
   const journeyStages=[...document.querySelectorAll(".journey-stage")],journeyCurrent=document.querySelector(".journey-current"),journeyBar=document.querySelector(".journey-progress i");
   if(journeyStages.length){const setJourneyStage=stage=>{journeyStages.forEach(item=>item.classList.toggle("is-active",item===stage));const index=journeyStages.indexOf(stage);journeyCurrent.textContent=stage.dataset.step;journeyBar.style.width=`${((index+1)/journeyStages.length)*100}%`};const journeyObserver=new IntersectionObserver(entries=>{const visible=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];if(visible)setJourneyStage(visible.target)},{rootMargin:"-32% 0px -32% 0px",threshold:[0,.25,.5,.75,1]});journeyStages.forEach(stage=>journeyObserver.observe(stage))}
 
+  const stats=document.querySelector("#indicadores");if(stats){new IntersectionObserver(entries=>{if(entries[0].isIntersecting){stats.classList.add("metrics-visible")}},{threshold:.2}).observe(stats)}
+
   const filterButtons=document.querySelectorAll("[data-filter]"),cards=document.querySelectorAll(".product-card");
   filterButtons.forEach(button=>button.addEventListener("click",()=>{filterButtons.forEach(b=>b.classList.remove("active"));button.classList.add("active");const filter=button.dataset.filter;cards.forEach(card=>card.classList.toggle("hidden",filter!=="all"&&card.dataset.category!==filter))}));
 
