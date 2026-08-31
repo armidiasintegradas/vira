@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
   const filterButtons=document.querySelectorAll("[data-filter]"),cards=document.querySelectorAll(".product-card"),productGrid=document.querySelector(".product-grid");
   filterButtons.forEach(button=>button.addEventListener("click",()=>{filterButtons.forEach(b=>b.classList.remove("active"));button.classList.add("active");const filter=button.dataset.filter;productGrid.dataset.activeFilter=filter;cards.forEach(card=>card.classList.toggle("hidden",filter!=="all"&&card.dataset.category!==filter))}));
+  document.querySelectorAll(".product-view-toggle").forEach(button=>button.addEventListener("click",()=>{const card=button.closest(".product-card"),factory=card.classList.toggle("show-factory");button.setAttribute("aria-pressed",String(factory));button.querySelector("span").textContent=factory?"Ver aplicação":"Ver na fábrica"}));
 
   const drawer=document.querySelector("#drawer"),backdrop=document.querySelector("#drawer-backdrop");
   const closeDrawer=()=>{drawer.classList.remove("open");backdrop.classList.remove("open");drawer.setAttribute("aria-hidden","true");document.body.classList.remove("locked")};
