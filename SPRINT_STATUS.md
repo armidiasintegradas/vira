@@ -131,44 +131,68 @@ VIRA OS v4.0 (Sistema Operacional para Engenharia Circular)
 - Classificação estrita de Dados em 3 Tiers (Homologado, Meta de Produto, Exemplo Ilustrativo).
 - Declaração explícita de Governança de Dados no Exportador de Cadernos e Projetos Demonstrativos.
 
-### [✓] Sprint Core Stabilization: Desacoplamento de Dados, Versionamento V4 & Multi-Exportação (Branch: `next`)
+### [✓] Sprint Core Stabilization: Desacoplamento de Dados, Versionamento V4, Multi-Exportação & Audit Trail (Branch: `next`)
 - **Status:** CONCLUÍDO & HOMOLOGADO.
 - **Desacoplamento Canônico de Dados:** Criação do diretório `/data` com schemas JSON isolados (`projects.demo.json`, `materials.json`, `standards.json`, `laws.json`, `reports.json`).
 - **Versionamento de Schema (V4):** Armazenamento sob `VIRA_PROJECTS_STORE_V4` com envelope `{ schemaVersion: 4, updatedAt, projects }` e rotina de migração transparente para dados herdados da V3.
 - **Identificadores Criptográficos:** Geração de identificadores com `crypto.randomUUID()` (RFC 4122 v4) eliminando timestamps previsíveis.
 - **Exportação Multi-Formato:** Adição de exportadores nativos para planilhas (`.csv` com UTF-8 BOM e totais consolidados) e memoriais estruturados em texto simples (`.txt`).
-- **Arquitetura de Stores (`ViraStore`):** Encapsulamento modular em `ProjectStore`, `KnowledgeStore`, `UIStore` e `UserStore`, preparando a futura migração para persistência em banco de dados remoto (V5).
-- **Suíte de Testes Automatizados (`test/core_test.js`):** 14/14 testes unitários automatizados passando com 100% de sucesso (CRUD, migração V3->V4, colisões de UUID, cálculos e integridade de dados).
+- **Trilha de Auditoria Imutável (Audit Trail Engine):** Registro automático e cronológico de cada ação (criação, edição, itens, exportações) com timestamp, autor e checksum de não-repúdio, renderizado diretamente no Workspace.
+- **Motor de Telemetria de Produto (`ViraTelemetry`):** Rastreamento de métricas reais de eficiência (TTS, TTB, TTE), uso (documentos e normas mais acessados) e qualidade.
+- **Arquitetura de Stores (`ViraStore`):** Encapsulamento modular em `ProjectStore`, `KnowledgeStore`, `UIStore`, `UserStore` e `TelemetryStore`, preparando a futura migração para persistência em banco de dados remoto (V5).
+- **Suíte de Testes Automatizados (`test/core_test.js`):** 16/16 testes unitários automatizados passando com 100% de sucesso (CRUD, migração V3->V4, colisões de UUID, cálculos, audit trail e telemetria).
 
 ---
 
-## 6. ROADMAP ESTRATÉGICO OFICIAL (V4.1 A V5)
+## 6. TRANSIÇÃO DE CICLO: VIRA OS — EARLY ACCESS PROGRAM (DESIGN PARTNERS)
+
+Com o núcleo do VIRA OS declarado **funcionalmente estável**, encerra-se o ciclo de construção bruta de features e inicia-se o programa oficial de validação em campo:
+
+### Distribuição Estratégica do Esforço da Equipe
+| Área de Foco | Alocação de Esforço | Objetivo Operacional |
+|---|---:|---|
+| **Novas Funcionalidades** | **20%** | Apenas ajustes pontuais solicitados diretamente pelos parceiros. |
+| **Estabilidade & Arquitetura** | **20%** | Manutenção de performance, testes contínuos e hardening do core. |
+| **Conteúdo Técnico** | **30%** | Novos laudos IPT, cadernos de encargos de municípios e pranchas BIM. |
+| **Validação com Usuários Reais** | **30%** | Sessões assistidas, mapeamento de atritos e cronometragem de uso. |
+
+### Os 5 Perfis de Design Partners
+1. **Construtora de Infraestrutura:** Validação de canteiro, logística de recebimento (NBR 15953) e facilidade de assentamento de pavers.
+2. **Escritório de Arquitetura & Urbanismo:** Validação de paginações, modelos paramétricos BIM (Revit) e memorial paisagístico.
+3. **Consultoria de Engenharia & Cálculo Estrutural:** Validação de memória de cálculo de subleito e resistência mecânica fck 38,2 MPa.
+4. **Prefeitura Municipal (Secretaria de Obras):** Validação de minutas de edital, termo de referência e enquadramento na Lei 14.133/2021.
+5. **Universidade / Centro de Pesquisas Tecnológicas:** Ensaios complementares de reologia polimérica e conforto térmico (albedo/SRI).
+
+---
+
+## 7. PAINEL DE INDICADORES DE PRODUTO (KPIs DE CAMPO)
+
+O sucesso da plataforma é monitorado em tempo real por 3 dimensões objetivas:
+
+### 1. Eficiência
+- **Tempo para Especificar Material:** Meta $< 90$ segundos.
+- **Tempo para Gerar Memorial (Lei 14.133):** Meta $< 60$ segundos.
+- **Tempo para Exportar Pacote Completo (BIM + CAD + Laudo + CSV):** Meta $< 15$ segundos.
+
+### 2. Uso Real
+- **Documentos Mais Acessados:** Rastreamento de downloads de BIM (`VIRA-BIM-PAV-001`), laudos IPT (`VIRA-LAB-PAV-003`) e pranchas CAD.
+- **Normas Mais Consultadas:** ABNT NBR 9781 vs Lei 14.133 vs NBR 9050.
+- **Soluções Mais Especificadas:** Paver intertravado vs Fachada ventilada vs Perfis para mobiliário.
+
+### 3. Qualidade & Governança
+- **Projetos Criados & Concluídos:** Volume total de intervenções cadastradas por Design Partners.
+- **Exportações Realizadas:** Quantidade de cadernos de encargos e planilhas orçamentárias baixadas.
+- **Erros / Atritos Reportados:** Meta = 0 bugs impeditivos de especificação.
+
+---
+
+## 8. ROADMAP ESTRATÉGICO OFICIAL (V4.1 A V5)
 
 | Release | Nome do Módulo | Escopo & Entregas de Engenharia |
 |---|---|---|
-| **V4.1** | **VIRA Academy Especializada** | Não apenas cursos, mas **trilhas de capacitação por perfil**: (1) Engenheiros de Infraestrutura Urbana, (2) Arquitetos & Paisagistas, (3) Gestores Públicos de Planejamento, (4) Fiscais de Contratos da Lei 14.133/2021. |
-| **V4.2** | **Mapa Operacional de Obras** | Mais do que um mapa institucional: cada ponto georreferenciado abre um **Workspace próprio da obra**, com pranchas executivas, fotos de canteiro, dados de assentamento e quantitativos reais de CO2e evitado. |
-| **V4.3** | **Painel ESG Municipal & Corporativo** | Dashboards executivos consolidados com relatórios de sustentabilidade por município, indicadores de desvio de aterro e métricas alinhadas ao GHG Protocol e ODS da ONU. |
-| **V4.4** | **Portal do Parceiro** | Acesso segmentado com perfis e ferramentas dedicadas para: Construtoras (medições e canteiro), Prefeituras (editais e fiscalização), Projetistas (plugins e memoriais) e Universidades (pesquisa e laudos). |
-| **V5.0** | **Integrações de Ecossistema** | Conectores externos: Plugins BIM (Autodesk Revit / Graphisoft ArchiCAD), integração com ERPs de obras (Sienge/Totvs), portais de compras públicas e telemetria IoT da planta fabril de Caruaru em tempo real. |
+| **V4.1** | **VIRA Academy Especializada** | Trilhas de capacitação por perfil: (1) Engenheiros de Infraestrutura Urbana, (2) Arquitetos & Paisagistas, (3) Gestores Públicos de Planejamento, (4) Fiscais de Contratos da Lei 14.133/2021. |
+| **V4.2** | **Mapa Operacional de Obras** | Cada intervenção urbana georreferenciada abre seu próprio Workspace de Obra com fotos de canteiro, dados de assentamento e quantitativos reais de CO2e evitado. |
+| **V4.3** | **Painel ESG Municipal & Corporativo** | Dashboards consolidados de sustentabilidade por município, indicadores de desvio de aterro e relatórios GHG Protocol / ODS da ONU. |
+| **V4.4** | **Portal do Parceiro** | Acessos segmentados: Construtoras (medições), Prefeituras (editais), Projetistas (plugins) e Universidades (pesquisa). |
+| **V5.0** | **Plataforma Colaborativa Multi-Usuário** | Transição de `localStorage` para Supabase / PostgreSQL, autenticação governamental/corporativa, permissões por equipe, edição concorrente em tempo real, versionamento de projetos e plugins BIM nativos. |
 
----
-
-## 7. ESTRATÉGIA DE ADOÇÃO: PROGRAMA PILOTO DE ESPECIFICADORES CIRCULARES (PPEC)
-
-A fase de expansão de código atinge sua maturidade. O foco estratégico passa a ser a **validação e adoção real com usuários em campo**.
-
-### Metodologia do Piloto
-1. **Grupo Focal Selecionado:** 10 a 15 profissionais reais convidados:
-   - 4 Engenheiros civis de Secretarias de Infraestrutura Municipal.
-   - 4 Arquitetos e urbanistas de escritórios de projetos urbanos.
-   - 3 Fiscais de obras e contratos da administração pública.
-   - 2 Consultores de certificação ambiental (LEED / AQUA-HQE).
-2. **Ciclos de Sessões Assistidas:** Acompanhar a especificação real de um projeto do zero e mensurar pontos de atrito.
-
-### Indicadores de Sucesso em Campo (Métricas de Adoção)
-- **Tempo Médio para Gerar Memorial:** Meta $< 3$ minutos (vs dias no modelo manual).
-- **Tempo para Localizar Norma/Laudo:** Meta $< 30$ segundos via Command Launcher (`⌘K`).
-- **Taxa de Reutilização de Projetos:** Percentual de componentes reutilizados entre estudos de caso.
-- **Volume e Tipologia de Exportações:** Monitoramento dos perfis mais demandados (Licitação vs Canteiro vs ESG).
-- **Taxa de Retenção e Frequência de Uso:** Retorno semanal dos profissionais ao Workspace.

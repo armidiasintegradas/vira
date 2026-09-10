@@ -2,6 +2,7 @@
   {
     "id": "proj-recife-orla",
     "uuid": "4a7f9210-951b-4f9e-873b-e01fa8130001",
+    "schemaVersion": 4,
     "name": "Requalificação Urbana da Orla de Boa Viagem (Estudo Demonstrativo)",
     "client": "Prefeitura do Recife — Secretaria de Infraestrutura",
     "responsible": "Eng. Roberto Silveira (CREA-PE 052.190-D)",
@@ -31,11 +32,38 @@
         "lcaFactorCo2": 2.15,
         "unitCostEstimate": 62.00
       }
+    ],
+    "auditTrail": [
+      {
+        "id": "aud-4a7f-001",
+        "timestamp": "15/08/2026 09:15:00",
+        "action": "PROJECT_CREATED",
+        "actor": "Eng. Roberto Silveira (CREA-PE 052.190-D)",
+        "details": "Criação do anteprojeto de Requalificação da Orla de Boa Viagem (Lei 14.133/2021).",
+        "checksum": "c4b8e192"
+      },
+      {
+        "id": "aud-4a7f-002",
+        "timestamp": "20/08/2026 14:30:22",
+        "action": "ITEMS_SPECIFIED",
+        "actor": "Eng. Roberto Silveira",
+        "details": "Adição de 4.200 m² de Paver 16 Faces (fck 38,2 MPa) e 450 m de Perfil 80×80.",
+        "checksum": "a891f73b"
+      },
+      {
+        "id": "aud-4a7f-003",
+        "timestamp": "05/09/2026 16:45:10",
+        "action": "MEMORIAL_GENERATED",
+        "actor": "Eng. Roberto Silveira",
+        "details": "Emissão de Caderno Técnico de Licitação Pública com laudo IPT nº 1.104.921-A anexado.",
+        "checksum": "7d32c091"
+      }
     ]
   },
   {
     "id": "proj-caruaru-linear",
     "uuid": "8b3e5114-1c2a-4a6f-9981-d14bb9240002",
+    "schemaVersion": 4,
     "name": "Parque Linear Capibaribe — Setor Industrial (Estudo Demonstrativo)",
     "client": "Prefeitura Municipal de Caruaru — Secretaria de Urbanismo",
     "responsible": "Arq. Larissa Mendonça (CAU-PE A92.311-2)",
@@ -64,6 +92,24 @@
         "densityKgM2": 14.4,
         "lcaFactorCo2": 2.15,
         "unitCostEstimate": 145.00
+      }
+    ],
+    "auditTrail": [
+      {
+        "id": "aud-8b3e-001",
+        "timestamp": "22/07/2026 11:20:00",
+        "action": "PROJECT_CREATED",
+        "actor": "Arq. Larissa Mendonça (CAU-PE A92.311-2)",
+        "details": "Criação do projeto Parque Linear Capibaribe — Setor Industrial.",
+        "checksum": "e519c288"
+      },
+      {
+        "id": "aud-8b3e-002",
+        "timestamp": "02/09/2026 10:05:44",
+        "action": "ACV_VALIDATED",
+        "actor": "Arq. Larissa Mendonça",
+        "details": "Validação de crédito de mitigação climática de 117 t CO2e conforme ISO 14044.",
+        "checksum": "49af71e0"
       }
     ]
   }

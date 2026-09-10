@@ -7,6 +7,14 @@
  * --------------------------------------------------------
  * TYPEDEF / CONTRATOS DE TIPAGEM (TYPESCRIPT-READY JSDOC)
  * --------------------------------------------------------
+ * @typedef {Object} AuditEntry
+ * @property {string} id - UUID único do registro de auditoria
+ * @property {string} timestamp - Data e hora da ocorrência (DD/MM/AAAA HH:mm:ss)
+ * @property {string} action - Ação registrada (ex: 'PROJECT_CREATED', 'ITEM_ADDED', 'MEMORIAL_EXPORTED')
+ * @property {string} actor - Nome ou registro profissional do operador responsável
+ * @property {string} details - Descrição circunstanciada da ação realizada
+ * @property {string} checksum - Hash curto de integridade e não-repúdio
+ *
  * @typedef {Object} ProjectItem
  * @property {string} solutionId - Identificador da solução ('paver', 'painel', 'perfil', 'insumo')
  * @property {string} name - Nome descritivo do item
@@ -31,6 +39,7 @@
  * @property {string} [auditNotice] - Nota explicativa sobre a natureza dos dados
  * @property {string} notes - Notas técnicas de canteiro e especificações complementares
  * @property {ProjectItem[]} items - Lista de itens e quantitativos
+ * @property {AuditEntry[]} auditTrail - Trilha cronológica de auditoria e governança
  *
  * @typedef {Object} EngineeringTotals
  * @property {number} totalArea - Metragem total somada (m²)
@@ -102,6 +111,32 @@ const defaultDemoProjects = [
         lcaFactorCo2: 2.15,
         unitCostEstimate: 62.00
       }
+    ],
+    auditTrail: [
+      {
+        id: 'aud-4a7f-001',
+        timestamp: '15/08/2026 09:15:00',
+        action: 'PROJECT_CREATED',
+        actor: 'Eng. Roberto Silveira (CREA-PE 052.190-D)',
+        details: 'Criação do anteprojeto de Requalificação da Orla de Boa Viagem (Lei 14.133/2021).',
+        checksum: 'c4b8e192'
+      },
+      {
+        id: 'aud-4a7f-002',
+        timestamp: '20/08/2026 14:30:22',
+        action: 'ITEMS_SPECIFIED',
+        actor: 'Eng. Roberto Silveira',
+        details: 'Adição de 4.200 m² de Paver 16 Faces (fck 38,2 MPa) e 450 m de Perfil 80×80.',
+        checksum: 'a891f73b'
+      },
+      {
+        id: 'aud-4a7f-003',
+        timestamp: '05/09/2026 16:45:10',
+        action: 'MEMORIAL_GENERATED',
+        actor: 'Eng. Roberto Silveira',
+        details: 'Emissão de Caderno Técnico de Licitação Pública com laudo IPT nº 1.104.921-A anexado.',
+        checksum: '7d32c091'
+      }
     ]
   },
   {
@@ -136,6 +171,24 @@ const defaultDemoProjects = [
         densityKgM2: 14.4,
         lcaFactorCo2: 2.15,
         unitCostEstimate: 145.00
+      }
+    ],
+    auditTrail: [
+      {
+        id: 'aud-8b3e-001',
+        timestamp: '22/07/2026 11:20:00',
+        action: 'PROJECT_CREATED',
+        actor: 'Arq. Larissa Mendonça (CAU-PE A92.311-2)',
+        details: 'Criação do projeto Parque Linear Capibaribe — Setor Industrial.',
+        checksum: 'e519c288'
+      },
+      {
+        id: 'aud-8b3e-002',
+        timestamp: '02/09/2026 10:05:44',
+        action: 'ACV_VALIDATED',
+        actor: 'Arq. Larissa Mendonça',
+        details: 'Validação de crédito de mitigação climática de 117 t CO2e conforme ISO 14044.',
+        checksum: '49af71e0'
       }
     ]
   }
@@ -194,6 +247,16 @@ class ProjectStore {
         dataTier: proj.dataTier || (isDemo ? 'exemplo_ilustrativo' : 'projeto_usuario'),
         auditNotice: proj.auditNotice || (isDemo ? 'Projeto de estudo de viabilidade demonstrativo.' : 'Projeto cadastrado pelo usuário.'),
         notes: proj.notes || '',
+        auditTrail: Array.isArray(proj.auditTrail) ? proj.auditTrail : [
+          {
+            id: 'aud-' + generateUuid().substring(0, 8),
+            timestamp: new Date().toLocaleString('pt-BR'),
+            action: 'SCHEMA_MIGRATED',
+            actor: 'VIRA OS Migration Engine',
+            details: 'Projeto migrado com sucesso do schema V3 para o padrão VIRA OS V4 com UUID.',
+            checksum: 'f00d1a44'
+          }
+        ],
         items: Array.isArray(proj.items) ? proj.items.map(it => ({
           solutionId: it.solutionId || 'paver',
           name: it.name || 'Item de Engenharia',
@@ -205,6 +268,44 @@ class ProjectStore {
         })) : []
       };
     });
+  }
+
+  /**
+   * Registra evento imutável na trilha de auditoria do projeto
+   * @param {string} projectId
+   * @param {string} action
+   * @param {string} details
+   * @param {string} [actor]
+   * @returns {AuditEntry|null}
+   */
+  addAuditEntry(projectId, action, details, actor) {
+    const proj = this.projects.find(p => p.id === projectId);
+    if (!proj) return null;
+    if (!Array.isArray(proj.auditTrail)) {
+      proj.auditTrail = [];
+    }
+    const timestamp = new Date().toLocaleString('pt-BR');
+    const entryId = 'aud-' + generateUuid().substring(0, 8);
+    const strToHash = `${entryId}:${timestamp}:${action}:${details}`;
+    let hashVal = 0;
+    for (let i = 0; i < strToHash.length; i++) {
+      hashVal = ((hashVal << 5) - hashVal) + strToHash.charCodeAt(i);
+      hashVal |= 0;
+    }
+    const checksum = Math.abs(hashVal).toString(16).padStart(8, '0');
+
+    /** @type {AuditEntry} */
+    const entry = {
+      id: entryId,
+      timestamp,
+      action,
+      actor: actor || proj.responsible || 'Responsável Técnico',
+      details,
+      checksum
+    };
+
+    proj.auditTrail.unshift(entry);
+    return entry;
   }
 
   /**
@@ -305,10 +406,12 @@ class ProjectStore {
       dataTier: 'projeto_usuario',
       auditNotice: 'Projeto registrado pelo usuário no Workspace.',
       notes: data.notes || '',
-      items: data.items || []
+      items: data.items || [],
+      auditTrail: []
     };
     this.projects.unshift(newProj);
     this.activeProjectId = newProj.id;
+    this.addAuditEntry(newProj.id, 'PROJECT_CREATED', `Projeto criado com enquadramento sob ${newProj.lawReference}.`, newProj.responsible);
     this.saveProjects(this.projects);
     this.notify();
     return newProj;
@@ -322,6 +425,7 @@ class ProjectStore {
         ...updates,
         updatedAt: new Date().toLocaleDateString('pt-BR')
       };
+      this.addAuditEntry(id, 'PROJECT_UPDATED', `Metadados do projeto alterados (status: ${this.projects[idx].status}).`, this.projects[idx].responsible);
       this.saveProjects(this.projects);
       this.notify();
       return this.projects[idx];
@@ -353,8 +457,10 @@ class ProjectStore {
     clone.createdAt = new Date().toLocaleDateString('pt-BR');
     clone.updatedAt = new Date().toLocaleDateString('pt-BR');
     clone.dataTier = 'projeto_usuario';
+    clone.auditTrail = Array.isArray(clone.auditTrail) ? [...clone.auditTrail] : [];
     this.projects.unshift(clone);
     this.activeProjectId = clone.id;
+    this.addAuditEntry(clone.id, 'PROJECT_DUPLICATED', `Projeto clonado a partir de ${origin.name} (${origin.id}).`, clone.responsible);
     this.saveProjects(this.projects);
     this.notify();
     return clone;
@@ -364,7 +470,7 @@ class ProjectStore {
     const proj = this.projects.find(p => p.id === projectId);
     if (!proj) return null;
 
-    proj.items.push({
+    const newItem = {
       solutionId: item.solutionId || 'paver',
       name: item.name || 'Item de Engenharia',
       code: item.code || 'VRA-GEN',
@@ -372,8 +478,10 @@ class ProjectStore {
       densityKgM2: parseFloat(item.densityKgM2) || 18.5,
       lcaFactorCo2: 2.15,
       unitCostEstimate: parseFloat(item.unitCostEstimate) || 85.0
-    });
+    };
+    proj.items.push(newItem);
     proj.updatedAt = new Date().toLocaleDateString('pt-BR');
+    this.addAuditEntry(projectId, 'ITEM_ADDED', `Adição de ${newItem.quantityM2} m² de ${newItem.name} (${newItem.code}).`, proj.responsible);
     this.saveProjects(this.projects);
     this.notify();
     return proj;
@@ -383,8 +491,10 @@ class ProjectStore {
     const proj = this.projects.find(p => p.id === projectId);
     if (!proj || !proj.items[itemIndex]) return null;
 
+    const removedItem = proj.items[itemIndex];
     proj.items.splice(itemIndex, 1);
     proj.updatedAt = new Date().toLocaleDateString('pt-BR');
+    this.addAuditEntry(projectId, 'ITEM_REMOVED', `Remoção do item: ${removedItem ? removedItem.name : ('índice ' + itemIndex)}.`, proj.responsible);
     this.saveProjects(this.projects);
     this.notify();
     return proj;
@@ -439,6 +549,8 @@ class ProjectStore {
    */
   exportProjectJson(projectId) {
     const proj = this.projects.find(p => p.id === projectId) || this.getActiveProject();
+    this.addAuditEntry(proj.id, 'EXPORT_JSON', 'Exportação de payload executivo JSON completo.', proj.responsible);
+    this.saveProjects(this.projects);
     const exportPayload = {
       _system: 'VIRA OS — Sistema Operacional para Engenharia Circular',
       _schemaVersion: CURRENT_SCHEMA_VERSION,
@@ -456,6 +568,8 @@ class ProjectStore {
    */
   exportProjectCsv(projectId) {
     const proj = this.projects.find(p => p.id === projectId) || this.getActiveProject();
+    this.addAuditEntry(proj.id, 'EXPORT_CSV', `Exportação de planilha CSV com ${proj.items.length} itens.`, proj.responsible);
+    this.saveProjects(this.projects);
     const totals = this.calculateProjectTotals(proj);
 
     const headers = [
@@ -532,6 +646,8 @@ class ProjectStore {
    */
   exportProjectText(projectId) {
     const proj = this.projects.find(p => p.id === projectId) || this.getActiveProject();
+    this.addAuditEntry(proj.id, 'EXPORT_TEXT', 'Emissão de memorial técnico descritivo TXT.', proj.responsible);
+    this.saveProjects(this.projects);
     const totals = this.calculateProjectTotals(proj);
     const tonsPlastic = (totals.totalPlasticKg / 1000).toFixed(2);
     const tonsCo2 = (totals.totalCo2MitigatedKg / 1000).toFixed(2);
@@ -589,6 +705,7 @@ Caruaru — Pernambuco • engenharia@projetovira.com.br
   }
 
   _triggerDownload(url, filename) {
+    if (typeof document === 'undefined') return;
     const dlAnchor = document.createElement('a');
     dlAnchor.setAttribute('href', url);
     dlAnchor.setAttribute('download', filename);

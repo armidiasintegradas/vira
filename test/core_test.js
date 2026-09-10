@@ -356,6 +356,63 @@ describe('6. Arquitetura de Stores & Serviços de Domínio', () => {
   });
 });
 
+// --------------------------------------------------------
+// 7. TRILHA DE AUDITORIA IMUTÁVEL (AUDIT TRAIL)
+// --------------------------------------------------------
+describe('7. Trilha de Auditoria Imutável (Audit Trail)', () => {
+  it('Deve registrar eventos automaticamente para criação, adição de item e exportação com checksum', () => {
+    localStorage.clear();
+    const store = new ProjectStore();
+    const proj = store.createProject({
+      name: 'Auditoria Parque Capibaribe Teste',
+      client: 'Prefeitura Teste',
+      responsible: 'Eng. Auditor (CREA 0001)'
+    });
+
+    assert(Array.isArray(proj.auditTrail), 'Deve ter auditTrail array');
+    assert(proj.auditTrail.length >= 1, 'Deve ter pelo menos 1 evento inicial');
+    const createdEvent = proj.auditTrail.find(e => e.action === 'PROJECT_CREATED');
+    assert(createdEvent, 'Deve registrar PROJECT_CREATED');
+    assert.strictEqual(createdEvent.actor, 'Eng. Auditor (CREA 0001)');
+    assert(createdEvent.checksum && createdEvent.checksum.length === 8, 'Deve ter checksum de 8 caracteres');
+
+    // Adiciona item
+    store.addItemToProject(proj.id, {
+      solutionId: 'paver',
+      name: 'Paver Intertravado',
+      code: 'VRA-PAV-2026',
+      quantityM2: 500
+    });
+
+    const itemEvent = proj.auditTrail.find(e => e.action === 'ITEM_ADDED');
+    assert(itemEvent, 'Deve registrar ITEM_ADDED');
+    assert(itemEvent.details.includes('500 m²'), 'Detalhes devem registrar metragem');
+
+    // Exportação CSV
+    store.exportProjectCsv(proj.id);
+    const exportEvent = proj.auditTrail.find(e => e.action === 'EXPORT_CSV');
+    assert(exportEvent, 'Deve registrar EXPORT_CSV na trilha');
+  });
+});
+
+// --------------------------------------------------------
+// 8. TELEMETRIA & PAINEL DE INDICADORES (VIRA TELEMETRY)
+// --------------------------------------------------------
+describe('8. Telemetria & Painel de Indicadores de Produto', () => {
+  it('ViraTelemetry deve calcular médias de tempo e registrar novos eventos', () => {
+    const { ViraTelemetry } = require('../services.js');
+    assert(ViraTelemetry, 'ViraTelemetry deve existir');
+    const averages = ViraTelemetry.getAverages();
+    
+    assert(averages.avgTimeToSpecSeconds > 0, 'Tempo médio de spec deve ser positivo');
+    assert(averages.avgTimeToBiddingSeconds > 0, 'Tempo médio de bidding deve ser positivo');
+    
+    // Registra evento de exportação
+    ViraTelemetry.recordEvent('standardsConsulted', 'ABNT NBR 9781:2013', 1);
+    assert(ViraTelemetry.metrics.standardsConsulted['ABNT NBR 9781:2013'] >= 413);
+  });
+});
+
 console.log(`\n========================================================`);
 console.log(`✓ RESULTADO FINAL DOS TESTES: ${passedTests}/${totalTests} testes aprovados com sucesso!`);
 console.log(`========================================================\n`);

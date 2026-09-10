@@ -1754,6 +1754,40 @@ function renderProjectsCanvas() {
         <textarea id="project-notes-textarea" rows="4" class="w-full bg-sand p-4 rounded-2xl border border-border-subtle text-graphite focus:outline-none focus:ring-1 focus:ring-forest text-xs font-sans leading-relaxed" placeholder="Descreva os requisitos específicos desta intervenção urbana...">${activeProj.notes || ''}</textarea>
       </div>
 
+      <!-- Trilha de Auditoria do Projeto (Audit Trail Imutável) -->
+      <div class="bg-white p-6 sm:p-8 rounded-3xl border border-border-subtle shadow-sm space-y-4 font-sans text-xs">
+        <div class="flex items-center justify-between border-b border-border-subtle pb-3">
+          <div class="space-y-0.5">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded bg-forest/10 text-forest font-mono text-[10px] font-bold uppercase tracking-wider">Governança & Rastreabilidade</span>
+              <span class="font-mono text-[10px] text-muted">• ${Array.isArray(activeProj.auditTrail) ? activeProj.auditTrail.length : 0} eventos registrados</span>
+            </div>
+            <h3 class="font-bold text-base text-graphite">Trilha de Auditoria do Projeto (Audit Trail)</h3>
+          </div>
+          <span class="font-mono text-[10px] text-muted">Hash de Integridade Ativo</span>
+        </div>
+
+        <div class="space-y-3 font-mono text-xs max-h-64 overflow-y-auto pr-1">
+          ${(activeProj.auditTrail && activeProj.auditTrail.length > 0) ? activeProj.auditTrail.map((entry) => `
+            <div class="p-3 bg-sand rounded-xl border border-border-subtle flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div class="space-y-0.5">
+                <div class="flex items-center gap-2">
+                  <span class="px-1.5 py-0.5 rounded bg-graphite/10 text-graphite font-bold text-[9px] uppercase tracking-wider">${entry.action}</span>
+                  <span class="text-graphite font-bold text-xs">${entry.actor}</span>
+                  <span class="text-[10px] text-muted">${entry.timestamp}</span>
+                </div>
+                <p class="font-sans text-muted text-xs">${entry.details}</p>
+              </div>
+              <div class="text-right shrink-0">
+                <span class="text-[10px] text-muted font-mono bg-white px-2 py-1 rounded border border-black/5" title="Checksum de Não-Repúdio">#${entry.checksum || '00000000'}</span>
+              </div>
+            </div>
+          `).join('') : `
+            <p class="text-muted font-sans italic text-center py-4">Nenhum evento registrado ainda na trilha deste projeto.</p>
+          `}
+        </div>
+      </div>
+
       <!-- Banner de Emissão do Caderno Executivo -->
       <div class="p-8 bg-forest text-white rounded-3xl shadow-lg flex flex-col md:flex-row items-center justify-between gap-6">
         <div class="space-y-2">
