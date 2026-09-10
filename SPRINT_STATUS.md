@@ -38,19 +38,24 @@ Este documento é a **fonte oficial de verdade**, governança de versão e estad
 - Ícones Lucide padronizados com stroke-width 1.75 (estilo blueprint técnico).
 - Fluid clamp scaling calibrado para todos os breakpoints (360px a 1920px).
 
-### [✓] V2 — Módulos 1 & 2: Biblioteca Técnica & Centro de Downloads de Engenharia (Branch: `next`)
-- **Status:** CONCLUÍDO & HOMOLOGADO
-- Criação de `biblioteca-tecnica.html` e controlador reativo `biblioteca.js`.
-- Base de dados estruturada com 10 ativos de engenharia catalogados (Famílias BIM Revit .RVT/.IFC, pranchas CAD .DWG/.DXF, laudos laboratoriais auditados ABNT NBR 9781 / IPT, memoriais descritivos para a Nova Lei de Licitações 14.133/2021 e pacotes de texturas PBR 4K).
-- Sistema de filtros facetados cruzados (por tipo de ativo e por linha de material) e busca em tempo real por palavra-chave e norma.
-- Drawer lateral de metadados com copiador de memorial descritivo com 1 clique para editais.
-- Chamada estratégica inserida no Capítulo 6 da Home conectando a tabela normativa diretamente à Biblioteca Técnica.
-- Atualização do `sitemap.xml` com prioridade 0.95.
+### [✓] V2 — Centro de Especificação & Knowledge Graph (Branch: `next`)
+- **Status:** CONCLUÍDO & HOMOLOGADO (Implementação das 10 Recomendações de Arquitetura)
+- **Nomenclatura Oficial:** Evolução da "Biblioteca Técnica" para o **Centro de Especificação & Engineering Center** (`centro-de-especificacao.html` e `especificacao.js`).
+- **Os 4 Portais de Entrada:** Acesso direto organizado por: Modelos BIM, Desenhos CAD, Laudos Laboratoriais e Memoriais para Licitação.
+- **Navegação por Intenção da Solução:** Agrupamento por solução técnica (Pavimentação 16 Faces, Fachadas 15mm, Decks 80x80, Resina VIRA-HD) e alternância instantânea para visualização por tipo de ativo.
+- **Engineering IDs Unificados:** Todos os 10 ativos catalogados sob códigos de governança da engenharia (`VIRA-BIM-001`, `VIRA-CAD-002`, `VIRA-LAB-003`, `VIRA-MEM-004`, `VIRA-BIM-005`, `VIRA-CAD-006`, `VIRA-BIM-007`, `VIRA-TEX-008`, `VIRA-MAT-009`, `VIRA-ACV-010`).
+- **Ficha Técnica & Governança:** Metadados estruturados (Código, Versão, Data, Normas ABNT/ISO, Softwares Compatíveis, Peso, Licença de Uso Profissional).
+- **Histórico de Versões (Changelog):** Histórico detalhado de revisões técnicas e notas de engenharia para cada ativo.
+- **Fluxo de Ação em 3 Passos:** Visualizar Ficha Técnica -> Copiar Memorial para Edital -> Download Imediato.
+- **Citação Padronizada ABNT NBR 6023:** Copiador formatado para citações acadêmicas, prefeituras e consultorias técnicas.
+- **Responsáveis Técnicos Homologadores:** Identificação nominal, registro profissional (CREA/CAU/OAB) e canal direto de consulta técnica para cada ativo.
+- **Grafo de Conhecimento (Knowledge Graph):** Camada de conexões bidirecionais entre a Home (Capítulos 4, 5, 6 e 7) e o Centro de Especificação, permitindo navegação fluida de materiais para laudos, modelos BIM, desenhos CAD, memoriais da Lei 14.133 e relatórios de ACV.
+- **Redirecionamento & Compatibilidade:** `biblioteca-tecnica.html` preservada com redirecionamento automático (zero links quebrados) e `sitemap.xml` atualizado com prioridade 0.95.
 
 ---
 
-## 3. Próximos Módulos Estruturais da V2 (Branch: `next`)
+## 3. Próximos Módulos Estruturais do Ecossistema (Branch: `next`)
 
-- [ ] **Módulo 3: Obras & Aplicações** — Mapa interativo de intervenções urbanas, estudos de caso e métricas de mitigação por cidade.
-- [ ] **Módulo 4: VIRA Academy** — Formação técnica para secretarias de obras, concessionárias e especificadores de infraestrutura circular.
-- [ ] **Módulo 5: VIRA Lab** — Ensaios laboratoriais em tempo real, laudos reológicos e caracterização mecânica contínua.
+- [ ] **VIRA Obras & Infraestrutura Urbana** — Mapeamento interativo de intervenções executadas, estudos de caso e métricas de mitigação por município.
+- [ ] **VIRA Academy** — Formação técnica continuada para secretarias de planejamento, concessionárias e projetistas de infraestrutura circular.
+- [ ] **VIRA Lab & DPP** — Rastreabilidade digital de lote por Passaporte Digital de Produto e telemetria de caracterização de compósitos.

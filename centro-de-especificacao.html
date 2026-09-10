@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Centro de Especificação & Engineering Center | Plataforma VIRA</title>
+  
+  <!-- SEO & Meta Tags -->
+  <meta name="description" content="Centro de Especificação de Engenharia Circular da VIRA. Modelos BIM Revit paramétricos, blocos CAD DWG, laudos laboratoriais acreditados ABNT NBR 9781 e minutas de memoriais descritivos para licitações da Lei 14.133/2021." />
+  <meta name="keywords" content="Centro de Especificação VIRA, Engenharia de Infraestrutura, BIM Revit paver, DWG piso intertravado, ABNT NBR 9781, laudo IPT, memorial descritivo licitação, ACV CO2e" />
+  <meta name="author" content="VIRA & AR Mídias Integradas" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://projetovira.com.br/centro-de-especificacao.html" />
+
+  <!-- PWA & Web Manifest -->
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#4A7135" />
+
+  <!-- Vector Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%234A7135' d='M4 4h7l5 16 5-16h7L19 28h-6z'/%3E%3Ccircle cx='23' cy='25' r='3' fill='%23C68D2B'/%3E%3C/svg%3E" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="VIRA" />
+  <meta property="og:url" content="https://projetovira.com.br/centro-de-especificacao.html" />
+  <meta property="og:title" content="Centro de Especificação & Engineering Center | Plataforma VIRA" />
+  <meta property="og:description" content="Engenharia de especificação para infraestrutura urbana: Modelos BIM, detalhamento CAD, laudos ABNT e memoriais jurídicos prontos para editais." />
+  <meta property="og:image" content="https://projetovira.com.br/assets/foto-institucional-inspecao-pavers.jpg" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Design System Tokens & Master Stylesheet -->
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: {
+              DEFAULT: '#4A7135',
+              dark: '#375527',
+              light: '#5d8b43'
+            },
+            ochre: {
+              DEFAULT: '#C68D2B',
+              light: '#e0a544'
+            },
+            graphite: {
+              DEFAULT: '#2A3233',
+              dark: '#1A2021',
+              900: '#141818'
+            },
+            sand: '#F7F7F5',
+            surface: '#F2F2EE',
+            sprout: '#698E3C',
+            muted: '#5E696A',
+            'border-subtle': 'rgba(42, 50, 51, 0.08)'
+          },
+          fontFamily: {
+            sans: ['"DM Sans"', '-apple-system', 'sans-serif'],
+            serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Schema.org JSON-LD Structured Data: DigitalDocumentPermission / DataCatalog -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "DataCatalog",
+    "name": "Centro de Especificação & Engineering Center VIRA",
+    "url": "https://projetovira.com.br/centro-de-especificacao.html",
+    "description": "Grafo de conhecimento de ativos de engenharia, modelos BIM Revit, desenhos CAD e laudos ABNT.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "VIRA",
+      "url": "https://projetovira.com.br"
+    }
+  }
+  </script>
+</head>
+<body class="bg-white text-graphite min-h-screen">
+
+  <!-- Acessibilidade: Skip Link -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-white focus:text-graphite focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-xl focus:font-mono focus:text-xs focus:ring-2 focus:ring-forest">
+    Pular diretamente para o catálogo de engenharia (Enter)
+  </a>
+
+  <!-- ========================================================
+       HEADER INSTITUCIONAL SÓLIDO
+       ======================================================== -->
+  <header class="vira-header scrolled" role="banner">
+    <a href="index.html" class="vira-header-logo" aria-label="Plataforma VIRA — Página Inicial">
+      <picture>
+        <source srcset="assets/marca.avif" type="image/avif" />
+        <img src="assets/marca.png" alt="Logotipo Oficial VIRA" width="120" height="37" />
+      </picture>
+    </a>
+
+    <nav class="vira-nav-desktop" aria-label="Navegação Principal">
+      <a href="index.html#engenharia" class="vira-nav-link">Engenharia</a>
+      <a href="index.html#como-funciona" class="vira-nav-link">Processo</a>
+      <a href="index.html#materiais" class="vira-nav-link">Materiais</a>
+      <a href="index.html#especificacao" class="vira-nav-link">Normas ABNT</a>
+      <a href="centro-de-especificacao.html" class="vira-nav-link text-forest font-semibold">Centro de Especificação</a>
+      <a href="index.html#contato" class="vira-nav-link">Contato</a>
+    </nav>
+
+    <div class="flex items-center gap-4">
+      <a href="index.html#contato" class="hidden sm:inline-flex vira-btn-primary py-2.5 px-5 text-xs">
+        <span>Falar com Engenharia</span>
+      </a>
+
+      <button id="vira-menu-toggle" class="vira-hamburger-btn" aria-label="Abrir Menu de Navegação" aria-expanded="false" aria-controls="vira-fullscreen-menu">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Modal de Navegação Fullscreen -->
+  <div id="vira-fullscreen-menu" class="vira-menu-modal" role="dialog" aria-modal="true" aria-label="Menu Principal de Navegação">
+    <div class="flex justify-between items-center border-b border-white/10 pb-6">
+      <span class="font-mono text-xs text-white/50 uppercase tracking-widest">• Menu de Navegação</span>
+      <span class="font-mono text-xs text-white/40">Plataforma Digital de Engenharia 2026</span>
+    </div>
+
+    <nav class="vira-menu-links max-w-4xl mx-auto w-full" aria-label="Capítulos da Plataforma">
+      <a href="index.html#hero" class="vira-menu-link"><span class="num">01</span> Início & Visão Geral</a>
+      <a href="index.html#engenharia" class="vira-menu-link"><span class="num">02</span> Uma Única Engenharia</a>
+      <a href="index.html#como-funciona" class="vira-menu-link"><span class="num">03</span> Como Funciona o Ciclo</a>
+      <a href="index.html#materiais" class="vira-menu-link"><span class="num">04</span> Catálogo de Materiais</a>
+      <a href="centro-de-especificacao.html" class="vira-menu-link text-ochre"><span class="num">★</span> Centro de Especificação</a>
+      <a href="index.html#especificacao" class="vira-menu-link"><span class="num">06</span> Especificação Técnica & Normas</a>
+      <a href="index.html#impacto" class="vira-menu-link"><span class="num">07</span> Calculadora de Impacto</a>
+      <a href="index.html#contato" class="vira-menu-link"><span class="num">09</span> Contato & Especificação Direta</a>
+    </nav>
+
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-white/50 border-t border-white/10 pt-6">
+      <p>Distrito Industrial de Caruaru — PE</p>
+      <div class="flex gap-6">
+        <a href="brandbook.html" class="text-ochre hover:underline">Brand Book 2026</a>
+        <a href="uniformes.html" class="text-white/70 hover:underline">Guia de Uniformes</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="main-content" class="pt-28 pb-20">
+
+    <!-- ========================================================
+         HERO DO CENTRO DE ESPECIFICAÇÃO
+         ======================================================== -->
+    <section class="max-w-[1320px] mx-auto px-6 sm:px-12 pt-8 pb-10">
+      <!-- Breadcrumb -->
+      <nav aria-label="Breadcrumb" class="font-mono text-xs text-muted mb-6">
+        <ol class="flex items-center gap-2">
+          <li><a href="index.html" class="hover:text-forest transition-colors">Plataforma VIRA</a></li>
+          <li>/</li>
+          <li class="text-graphite font-bold" aria-current="page">Centro de Especificação</li>
+        </ol>
+      </nav>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end border-b border-border-subtle pb-12">
+        <div class="lg:col-span-8 space-y-4">
+          <span class="vira-chapter-badge">Engineering Center & Grafo de Conhecimento</span>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-medium text-graphite tracking-tight leading-[1.08]">
+            Centro de Especificação.
+          </h1>
+          <p class="text-base sm:text-lg text-muted max-w-2xl leading-relaxed">
+            Ambiente técnico desenvolvido para projetistas, calculistas e comissões de licitação pública. Encontre modelos paramétricos BIM, detalhamentos executivos em CAD, laudos de ensaio ABNT e minutas descritivas da Lei 14.133/2021 com governança técnica integral.
+          </p>
+        </div>
+
+        <!-- Indicador de Status do Repositório -->
+        <div class="lg:col-span-4 bg-sand p-6 rounded-3xl border border-border-subtle space-y-3 font-mono text-xs">
+          <div class="flex items-center justify-between text-muted border-b border-black/5 pb-2">
+            <span>Engineering Hub</span>
+            <strong class="text-forest font-bold">Ativo & Auditado</strong>
+          </div>
+          <div class="flex items-center justify-between text-muted border-b border-black/5 pb-2">
+            <span>Ativos Conectados</span>
+            <strong class="text-graphite font-bold"><span id="assets-count">10</span> Documentos</strong>
+          </div>
+          <div class="flex items-center justify-between text-muted">
+            <span>Governança Regulatória</span>
+            <strong class="text-ochre font-bold">ABNT / NBR / CREA</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         RECOMENDAÇÃO 02: OS 4 GRANDES CAMINHOS DE ENTRADA
+         ======================================================== -->
+    <section class="max-w-[1320px] mx-auto px-6 sm:px-12 mb-12" aria-label="Caminhos de Especificação">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Caminho 1: BIM -->
+        <div onclick="filterByShortcut('bim')" class="p-6 bg-sand hover:bg-forest/5 rounded-2xl border border-border-subtle hover:border-forest/30 transition-all cursor-pointer group space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-forest/15 text-forest flex items-center justify-center group-hover:scale-105 transition-transform">
+            <i data-lucide="layers" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <span class="font-mono text-[10px] uppercase text-muted font-bold tracking-wider">Modelagem 3D / 5D</span>
+            <h3 class="text-base font-bold text-graphite group-hover:text-forest transition-colors">Modelos BIM</h3>
+            <p class="text-xs text-muted mt-1">Famílias Revit (.RVT) e IFC com parâmetros de sustentabilidade e carga.</p>
+          </div>
+          <span class="text-xs font-mono text-forest flex items-center gap-1 font-semibold pt-1">
+            Explorar BIM <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </span>
+        </div>
+
+        <!-- Caminho 2: CAD -->
+        <div onclick="filterByShortcut('cad')" class="p-6 bg-sand hover:bg-ochre/5 rounded-2xl border border-border-subtle hover:border-ochre/30 transition-all cursor-pointer group space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-ochre/15 text-ochre flex items-center justify-center group-hover:scale-105 transition-transform">
+            <i data-lucide="pen-tool" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <span class="font-mono text-[10px] uppercase text-muted font-bold tracking-wider">Pranchas 2D</span>
+            <h3 class="text-base font-bold text-graphite group-hover:text-ochre transition-colors">Desenhos CAD</h3>
+            <p class="text-xs text-muted mt-1">Cortes executivos (.DWG/.DXF), detalhes de guias, sarjetas e piso tátil.</p>
+          </div>
+          <span class="text-xs font-mono text-ochre flex items-center gap-1 font-semibold pt-1">
+            Explorar CAD <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </span>
+        </div>
+
+        <!-- Caminho 3: Laudos -->
+        <div onclick="filterByShortcut('laudo')" class="p-6 bg-sand hover:bg-graphite/5 rounded-2xl border border-border-subtle hover:border-graphite/30 transition-all cursor-pointer group space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-graphite/10 text-graphite flex items-center justify-center group-hover:scale-105 transition-transform">
+            <i data-lucide="file-check-2" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <span class="font-mono text-[10px] uppercase text-muted font-bold tracking-wider">Homologação ABNT</span>
+            <h3 class="text-base font-bold text-graphite group-hover:text-graphite transition-colors">Laudos Laboratoriais</h3>
+            <p class="text-xs text-muted mt-1">Ensaios físico-mecânicos do IPT, compressão axial, abrasão e ACV.</p>
+          </div>
+          <span class="text-xs font-mono text-graphite flex items-center gap-1 font-semibold pt-1">
+            Explorar Laudos <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </span>
+        </div>
+
+        <!-- Caminho 4: Memoriais -->
+        <div onclick="filterByShortcut('memorial')" class="p-6 bg-sand hover:bg-blue-600/5 rounded-2xl border border-border-subtle hover:border-blue-600/30 transition-all cursor-pointer group space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-blue-600/10 text-blue-700 flex items-center justify-center group-hover:scale-105 transition-transform">
+            <i data-lucide="scroll-text" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <span class="font-mono text-[10px] uppercase text-muted font-bold tracking-wider">Lei 14.133/2021</span>
+            <h3 class="text-base font-bold text-graphite group-hover:text-blue-700 transition-colors">Memoriais para Licitação</h3>
+            <p class="text-xs text-muted mt-1">Textos de especificação técnica prontos para editais e concorrências públicas.</p>
+          </div>
+          <span class="text-xs font-mono text-blue-700 flex items-center gap-1 font-semibold pt-1">
+            Explorar Memoriais <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         RECOMENDAÇÃO 03: NAVEGAÇÃO POR INTENÇÃO DE SOLUÇÃO VS ATIVO
+         ======================================================== -->
+    <section class="max-w-[1320px] mx-auto px-6 sm:px-12 mb-8">
+      <div class="bg-sand p-6 sm:p-8 rounded-3xl border border-border-subtle space-y-6">
+        
+        <!-- Header dos Filtros & Alternador de Modo -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-black/5 pb-4">
+          <div class="space-y-1">
+            <span class="font-mono text-[10px] uppercase tracking-wider text-muted font-bold">Modo de Navegação:</span>
+            <div class="flex items-center gap-1.5 p-1 bg-white rounded-xl border border-border-subtle">
+              <button data-nav-mode="solution" class="px-3.5 py-1.5 rounded-lg bg-graphite text-white font-mono text-xs font-semibold active transition-all">
+                Por Solução Integrada
+              </button>
+              <button data-nav-mode="category" class="px-3.5 py-1.5 rounded-lg text-muted hover:text-graphite font-mono text-xs font-semibold transition-all">
+                Por Tipo de Ativo
+              </button>
+            </div>
+          </div>
+
+          <!-- Barra de Busca Instantânea -->
+          <div class="relative w-full sm:w-80">
+            <i data-lucide="search" class="w-4 h-4 text-muted absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+            <input id="search-input" type="search" placeholder="Buscar por código, norma ou termo..." class="w-full pl-10 pr-3.5 py-2.5 bg-white rounded-xl border border-border-subtle text-xs text-graphite placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-forest font-mono" aria-label="Buscar ativo técnico" />
+          </div>
+        </div>
+
+        <!-- Painel de Intenção: Quero especificar uma Solução -->
+        <div id="solution-filters-panel" class="space-y-2">
+          <span class="font-mono text-[11px] uppercase tracking-wider text-forest block font-bold">Selecione a Solução Técnica Desejada:</span>
+          <div class="flex flex-wrap gap-2">
+            <button data-solution-filter="all" class="px-4 py-2 rounded-xl bg-forest text-white font-mono text-xs font-semibold active shadow-sm">Todas as Soluções</button>
+            <button data-solution-filter="paver" class="px-4 py-2 rounded-xl bg-white text-muted hover:text-graphite font-mono text-xs font-semibold border border-border-subtle">Pavimentação (Paver 16 Faces)</button>
+            <button data-solution-filter="painel" class="px-4 py-2 rounded-xl bg-white text-muted hover:text-graphite font-mono text-xs font-semibold border border-border-subtle">Fachadas Ventiladas (Painel 15mm)</button>
+            <button data-solution-filter="perfil" class="px-4 py-2 rounded-xl bg-white text-muted hover:text-graphite font-mono text-xs font-semibold border border-border-subtle">Decks & Estruturas (Perfil 80×80)</button>
+            <button data-solution-filter="insumo" class="px-4 py-2 rounded-xl bg-white text-muted hover:text-graphite font-mono text-xs font-semibold border border-border-subtle">Resina Industrial (VIRA-HD)</button>
+          </div>
+        </div>
+
+        <!-- Painel Alternativo: Por Tipo de Arquivo -->
+        <div id="category-filters-panel" class="space-y-2 hidden">
+          <span class="font-mono text-[11px] uppercase tracking-wider text-muted block font-bold">Selecione o Formato / Categoria:</span>
+          <div class="flex flex-wrap gap-2">
+            <button data-category-filter="all" class="px-4 py-2 rounded-xl bg-graphite text-white font-mono text-xs font-semibold active shadow-sm">Todos os Formatos</button>
+            <button data-category-filter="bim" class="px-4 py-2 rounded-xl bg-white text-muted hover:text-graphite font-mono text-xs font-semibold border border-border-subtle">Modelos BIM (.RVT/.IFC)</button>
+            <button data-category-filter="cad" class="px-4 py-2 rounded-xl bg-white text-muted hover:text-graphite font-mono text-xs font-semibold border border-border-subtle">Desenhos CAD (.DWG)</button>
+            <button data-category-filter="laudo" class="px-4 py-2 rounded-xl bg-white text-muted hover:text-graphite font-mono text-xs font-semibold border border-border-subtle">Laudos Auditados (.PDF)</button>
+            <button data-category-filter="memorial" class="px-4 py-2 rounded-xl bg-white text-muted hover:text-graphite font-mono text-xs font-semibold border border-border-subtle">Memoriais Licitação (.DOCX)</button>
+            <button data-category-filter="pbr" class="px-4 py-2 rounded-xl bg-white text-muted hover:text-graphite font-mono text-xs font-semibold border border-border-subtle">Texturas PBR 4K (.ZIP)</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         GRID DE ATIVOS DE ENGENHARIA (CONTROLADO POR ESPECIFICACAO.JS)
+         ======================================================== -->
+    <section class="max-w-[1320px] mx-auto px-6 sm:px-12 mb-16" aria-label="Catálogo de Documentos de Engenharia">
+      <div id="engineering-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Injetado reativamente por especificacao.js -->
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SUPORTE A ENGENHARIA DE LICITAÇÕES & EDITAIS
+         ======================================================== -->
+    <section class="max-w-[1320px] mx-auto px-6 sm:px-12 mb-16">
+      <div class="bg-graphite text-white rounded-3xl p-8 sm:p-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-8 space-y-4">
+          <span class="font-mono text-xs uppercase tracking-widest text-ochre font-bold block">• SUPORTE TÉCNICO REGULATÓRIO</span>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-medium tracking-tight">
+            Consultoria para Elaboração de Termos de Referência.
+          </h2>
+          <p class="text-sm text-white/70 max-w-xl font-light leading-relaxed">
+            Nossa divisão de engenharia assessora órgãos municipais, concessionárias e incorporadoras na correta redação das cláusulas de economia circular e rastreabilidade digital (Lei 14.133/2021).
+          </p>
+        </div>
+
+        <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3">
+          <a href="index.html#contato" class="vira-btn-primary py-3.5 px-6 text-center text-xs justify-center font-mono">
+            <span>Falar com o Responsável Técnico</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+          <a href="assets/downloads/VIRA_Brand_Assets_Pack.zip" download class="vira-btn-outline py-3 px-6 text-center text-xs justify-center font-mono">
+            <span>Baixar Pacote Geral de Ativos (.ZIP)</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================
+       DRAWER DE GOVERNANÇA TÉCNICA & GRAFO DE CONHECIMENTO
+       ======================================================== -->
+  <div id="asset-drawer-backdrop" onclick="closeKnowledgeDrawer()" class="vira-drawer-backdrop" aria-hidden="true"></div>
+  <div id="asset-drawer-panel" class="vira-drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+    <div class="space-y-6">
+      
+      <!-- Cabeçalho do Ativo com Engineering ID -->
+      <div class="flex items-start justify-between border-b border-border-subtle pb-6 gap-4">
+        <div>
+          <div class="flex items-center gap-2">
+            <span id="drawer-eng-id" class="font-mono text-xs font-bold text-forest bg-forest/10 px-2.5 py-1 rounded">VIRA-BIM-001</span>
+            <span id="drawer-format" class="font-mono text-xs text-muted uppercase">RVT / IFC</span>
+          </div>
+          <h2 id="drawer-title" class="text-xl sm:text-2xl font-bold text-graphite mt-2 leading-snug">Título do Ativo</h2>
+        </div>
+        <button onclick="closeKnowledgeDrawer()" class="p-2.5 rounded-full border border-border-subtle hover:bg-sand transition-colors shrink-0" aria-label="Fechar Ficha">
+          <i data-lucide="x" class="w-5 h-5 text-graphite"></i>
+        </button>
+      </div>
+
+      <!-- Ficha Técnica de Governança (Recomendação 05) -->
+      <div class="space-y-3">
+        <h3 class="font-mono text-xs uppercase tracking-wider text-graphite font-bold">Ficha Técnica & Governança</h3>
+        <div class="grid grid-cols-2 gap-3 bg-sand p-4 rounded-2xl border border-border-subtle font-mono text-xs">
+          <div>
+            <span class="text-muted block text-[10px] uppercase">Versão do Ativo</span>
+            <strong id="drawer-version" class="text-graphite font-semibold">v2.1</strong>
+          </div>
+          <div>
+            <span class="text-muted block text-[10px] uppercase">Última Atualização</span>
+            <strong id="drawer-date" class="text-graphite font-semibold">15/08/2026</strong>
+          </div>
+          <div>
+            <span class="text-muted block text-[10px] uppercase">Normas de Referência</span>
+            <strong id="drawer-norm" class="text-graphite font-semibold">ABNT NBR 9781</strong>
+          </div>
+          <div>
+            <span class="text-muted block text-[10px] uppercase">Peso do Arquivo</span>
+            <strong id="drawer-size" class="text-graphite font-semibold">14.2 MB</strong>
+          </div>
+          <div class="col-span-2 pt-2 border-t border-black/5">
+            <span class="text-muted block text-[10px] uppercase">Softwares Compatíveis</span>
+            <p id="drawer-software" class="text-graphite font-medium text-[11px] mt-0.5"></p>
+          </div>
+          <div class="col-span-2 pt-2 border-t border-black/5">
+            <span class="text-muted block text-[10px] uppercase">Licença de Uso</span>
+            <p id="drawer-license" class="text-forest font-semibold text-[11px] mt-0.5"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Descrição do Ativo -->
+      <div class="space-y-2">
+        <h3 class="font-mono text-xs uppercase tracking-wider text-graphite font-bold">Escopo Técnico do Ativo</h3>
+        <p id="drawer-desc" class="text-xs text-muted leading-relaxed"></p>
+      </div>
+
+      <!-- Ação 2: Copiar Especificação Técnica para Edital -->
+      <div class="space-y-2 pt-2 border-t border-border-subtle">
+        <div class="flex items-center justify-between">
+          <h3 class="font-mono text-xs uppercase tracking-wider text-forest font-bold">Memorial de Especificação (Lei 14.133)</h3>
+          <button onclick="copyDrawerSpec()" class="text-xs font-mono text-forest hover:underline flex items-center gap-1 font-semibold">
+            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+            <span>Copiar Memorial</span>
+          </button>
+        </div>
+        <textarea id="drawer-spectext" readonly rows="3" class="w-full p-3 bg-sand rounded-xl border border-border-subtle font-mono text-xs text-graphite focus:outline-none resize-none select-all" aria-label="Texto de especificação"></textarea>
+        <div id="copy-spec-feedback" class="hidden font-mono text-xs text-forest text-right">
+          ✓ Memorial copiado para a área de transferência!
+        </div>
+      </div>
+
+      <!-- Recomendação 04: Documentos Relacionados (Knowledge Graph) -->
+      <div class="space-y-3 pt-3 border-t border-border-subtle">
+        <h3 class="font-mono text-xs uppercase tracking-wider text-graphite font-bold flex items-center gap-1.5">
+          <i data-lucide="git-branch" class="w-4 h-4 text-forest"></i>
+          <span>Documentos Conectados no Grafo</span>
+        </h3>
+        <div id="drawer-related-docs" class="space-y-2">
+          <!-- Injetado dinamicamente -->
+        </div>
+      </div>
+
+      <!-- Recomendação 09: Cite Este Documento (ABNT NBR 6023) -->
+      <div class="space-y-2 pt-3 border-t border-border-subtle">
+        <div class="flex items-center justify-between">
+          <h3 class="font-mono text-xs uppercase tracking-wider text-muted font-bold">Cite Este Ativo (ABNT NBR 6023)</h3>
+          <button onclick="copyCitation()" class="text-xs font-mono text-muted hover:text-graphite flex items-center gap-1">
+            <i data-lucide="copy" class="w-3 h-3"></i>
+            <span>Copiar Citação</span>
+          </button>
+        </div>
+        <p id="drawer-citation-text" class="p-3 bg-sand rounded-xl border border-border-subtle font-mono text-[11px] text-muted leading-relaxed"></p>
+        <div id="copy-citation-feedback" class="hidden font-mono text-xs text-forest text-right">
+          ✓ Citação ABNT copiada!
+        </div>
+      </div>
+
+      <!-- Recomendação 10: Responsável Técnico (CREA / ART) -->
+      <div class="space-y-2 pt-3 border-t border-border-subtle bg-sand/60 p-4 rounded-2xl border border-border-subtle">
+        <span class="font-mono text-[10px] uppercase tracking-wider text-muted block font-bold">Responsável Técnico Homologador:</span>
+        <div class="space-y-1 text-xs">
+          <p id="drawer-rt-name" class="font-bold text-graphite"></p>
+          <p id="drawer-rt-crea" class="font-mono text-muted text-[11px]"></p>
+          <p id="drawer-rt-role" class="text-muted text-[11px]"></p>
+          <a id="drawer-rt-email" href="#" class="text-forest font-mono text-[11px] hover:underline block pt-1"></a>
+        </div>
+      </div>
+
+      <!-- Recomendação 06: Histórico de Versões -->
+      <div class="space-y-2 pt-3 border-t border-border-subtle">
+        <h3 class="font-mono text-xs uppercase tracking-wider text-graphite font-bold">Histórico de Versões & Changelog</h3>
+        <div id="drawer-version-history" class="space-y-1">
+          <!-- Injetado dinamicamente -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Ação 3: Download Imediato -->
+    <div class="pt-6 border-t border-border-subtle mt-6">
+      <a id="drawer-download-btn" href="#" download class="vira-btn-primary w-full text-center justify-center py-3.5 text-xs font-mono">
+        <i data-lucide="download" class="w-4 h-4"></i>
+        <span>Download Imediato do Arquivo</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       RODAPÉ OFICIAL MONUMENTAL (4 COLUNAS INSTITUCIONAIS)
+       ======================================================== -->
+  <footer class="bg-graphite-dark text-white pt-20 pb-12 px-6 sm:px-12 border-t border-white/10" role="contentinfo">
+    <div class="max-w-[1320px] mx-auto space-y-16">
+      
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 border-b border-white/10 pb-16">
+        <div class="md:col-span-5 space-y-4">
+          <picture>
+            <source srcset="assets/marca.avif" type="image/avif" />
+            <img src="assets/marca.png" alt="Logotipo Oficial VIRA" class="h-8 w-auto filter brightness-0 invert" width="120" height="37" />
+          </picture>
+          <p class="text-sm text-white/70 max-w-sm font-light leading-relaxed">
+            Plataforma Industrial de Engenharia Circular para Infraestrutura Urbana. Centro de Especificação paramétrica, laudos de ensaios ABNT e suporte regulatório para contratações públicas e privadas.
+          </p>
+        </div>
+
+        <div class="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8 font-mono text-xs">
+          <div class="space-y-3">
+            <span class="text-white/40 uppercase tracking-wider block font-bold">Plataforma</span>
+            <ul class="space-y-2 text-white/80">
+              <li><a href="index.html#engenharia" class="hover:text-white transition-colors">Engenharia</a></li>
+              <li><a href="index.html#como-funciona" class="hover:text-white transition-colors">Como Funciona</a></li>
+              <li><a href="index.html#materiais" class="hover:text-white transition-colors">Materiais</a></li>
+              <li><a href="centro-de-especificacao.html" class="hover:text-white text-ochre font-bold transition-colors">Centro de Especificação</a></li>
+              <li><a href="index.html#especificacao" class="hover:text-white transition-colors">Normas ABNT</a></li>
+            </ul>
+          </div>
+
+          <div class="space-y-3">
+            <span class="text-white/40 uppercase tracking-wider block font-bold">Engineering Hub</span>
+            <ul class="space-y-2 text-white/80">
+              <li><button onclick="filterByShortcut('bim')" class="hover:text-white transition-colors text-left">Modelos BIM Revit</button></li>
+              <li><button onclick="filterByShortcut('cad')" class="hover:text-white transition-colors text-left">Detalhamentos CAD DWG</button></li>
+              <li><button onclick="filterByShortcut('laudo')" class="hover:text-white transition-colors text-left">Laudos de Ensaio IPT</button></li>
+              <li><button onclick="filterByShortcut('memorial')" class="hover:text-white transition-colors text-left">Memoriais Lei 14.133</button></li>
+            </ul>
+          </div>
+
+          <div class="space-y-3">
+            <span class="text-white/40 uppercase tracking-wider block font-bold">Unidade Industrial</span>
+            <address class="not-italic text-white/80 space-y-1">
+              <p>Distrito Industrial</p>
+              <p>Caruaru — PE</p>
+              <p>Brasil • CEP 55000-000</p>
+              <p class="pt-2 text-white/60">engenharia@projetovira.com.br</p>
+            </address>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center select-none" aria-hidden="true">
+        <span class="footer-monumental-wordmark block">
+          vira.
+        </span>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-white/50 border-t border-white/10 pt-8">
+        <p>© 2026 VIRA. Todos os direitos reservados. · Design & Tecnologia por AR Mídias Integradas</p>
+        <p>Polo Industrial de Caruaru — Pernambuco</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="app.js?v=20260910_hardened"></script>
+  <script src="especificacao.js?v=20260910_kg"></script>
+  <script>
+    if (window.lucide) {
+      lucide.createIcons({
+        attrs: {
+          'stroke-width': 1.75
+        }
+      });
+    }
+  </script>
+</body>
+</html>

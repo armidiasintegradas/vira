@@ -124,6 +124,7 @@ const productsData = {
   'paver-cinza': {
     title: 'Paver Intertravado 16 Faces',
     category: 'Pavimentação Urbana & Praças',
+    solution: 'paver',
     code: 'VRA-PVR-2026',
     norm: 'ABNT NBR 9781:2013',
     desc: 'Bloco intertravado maciço fabricado a partir de compósitos poliméricos de alta densidade e agregados minerais inertes. Desenvolvido para pavimentação de vias públicas de tráfego pesado, calçadões e pátios logísticos. Imune a absorção de água, óleos ou sais.',
@@ -137,11 +138,19 @@ const productsData = {
       { label: 'Durabilidade Térmica', val: '-10°C a +80°C estável' },
       { label: 'Garantia Estrutural', val: '10 Anos contra deformação' },
       { label: 'Procedência Industrial', val: 'Caruaru - PE | 100% Circular' }
+    ],
+    kgNodes: [
+      { id: 'VIRA-BIM-001', code: 'VIRA-BIM-001', title: 'Família Paramétrica BIM Revit (fck ≥ 35 MPa)', type: 'BIM' },
+      { id: 'VIRA-CAD-002', code: 'VIRA-CAD-002', title: 'Detalhamento Executivo CAD DWG (NBR 9050)', type: 'CAD' },
+      { id: 'VIRA-LAB-003', code: 'VIRA-LAB-003', title: 'Laudo Laboratorial Auditado IPT (38,2 MPa)', type: 'Laudo' },
+      { id: 'VIRA-MEM-004', code: 'VIRA-MEM-004', title: 'Memorial de Licitação (Lei Federal 14.133)', type: 'Memorial' },
+      { id: 'VIRA-ACV-010', code: 'VIRA-ACV-010', title: 'Estudo ACV CO2e Evitado (-2,15 kg CO2e/kg)', type: 'ACV' }
     ]
   },
   'painel-plano': {
     title: 'Painel Arquitetônico 15mm',
     category: 'Fachadas Ventiladas & Divisórias',
+    solution: 'painel',
     code: 'VRA-PRD-1204',
     norm: 'ABNT NBR 15575',
     desc: 'Placa arquitetônica rígida obtida por termocompressão de alta tonelagem de polímeros pós-consumo e cargas de reforço mineral. Alta resistência a raios ultravioleta, intempéries marinhas e impacto direto. Ideal para revestimentos e brises.',
@@ -154,11 +163,17 @@ const productsData = {
       { label: 'Resistência à Flexão', val: '24.0 MPa' },
       { label: 'Acabamento Superficial', val: 'Acetinado Mineral / Granulado' },
       { label: 'Procedência Industrial', val: 'Caruaru - PE | 100% Circular' }
+    ],
+    kgNodes: [
+      { id: 'VIRA-BIM-005', code: 'VIRA-BIM-005', title: 'Objeto BIM Revit: Painel Arquitetônico 15mm', type: 'BIM' },
+      { id: 'VIRA-CAD-006', code: 'VIRA-CAD-006', title: 'Detalhamento CAD: Fixação Oculta Ventilada', type: 'CAD' },
+      { id: 'VIRA-ACV-010', code: 'VIRA-ACV-010', title: 'Estudo ACV ISO 14044 Pegada de Carbono', type: 'ACV' }
     ]
   },
   'perfil-estrutural': {
     title: 'Perfil Estrutural Maciço 80×80',
     category: 'Construção Civil & Decks Públicos',
+    solution: 'perfil',
     code: 'VRA-LTE-0142',
     norm: 'Ensaios IPT / Laudo Mecânico',
     desc: 'Vigas e pilares maciços de altíssima densidade estrutural para substituição direta de vigamentos de madeira de lei ou aço em áreas externas, decks de orla, pergolados urbanos e passadiços em áreas de preservação.',
@@ -170,11 +185,17 @@ const productsData = {
       { label: 'Comportamento em Umidade', val: 'Zero inchaço em submersão' },
       { label: 'Trabalhabilidade', val: 'Pode ser serrado, pregado e parafusado' },
       { label: 'Garantia Estrutural', val: '15 Anos' }
+    ],
+    kgNodes: [
+      { id: 'VIRA-BIM-007', code: 'VIRA-BIM-007', title: 'Perfil Estrutural BIM Maciço 80×80 Revit', type: 'BIM' },
+      { id: 'VIRA-TEX-008', code: 'VIRA-TEX-008', title: 'Texturas PBR 4K (ArchViz Shaders)', type: 'PBR' },
+      { id: 'VIRA-ACV-010', code: 'VIRA-ACV-010', title: 'Estudo ACV Pegada de Carbono Evitada', type: 'ACV' }
     ]
   },
   'materia-micronizada': {
     title: 'Composto Micronizado VIRA-HD',
     category: 'Matéria-Prima Circular Industrial',
+    solution: 'insumo',
     code: 'VRA-MAT-0001',
     norm: 'ASTM D1238 / ISO 1133',
     desc: 'Flakes e micronizados poliméricos de alta pureza (PEAD / PP) submetidos a lavagem termoquímica, separação densimétrica e descontaminação para uso em linhas de injeção, extrusão contínua ou rotomoldagem industrial.',
@@ -186,6 +207,10 @@ const productsData = {
       { label: 'Embalagem Logística', val: 'Big Bags 1.000 kg / Sacos 25 kg' },
       { label: 'Rastreabilidade DPP', val: 'QR Code de Lote com Laudo Reológico' },
       { label: 'Origem da Coleta', val: 'Cooperativas Auditadas do Agreste' }
+    ],
+    kgNodes: [
+      { id: 'VIRA-MAT-009', code: 'VIRA-MAT-009', title: 'Boletim Técnico Reológico & Curva MFI', type: 'Boletim' },
+      { id: 'VIRA-ACV-010', code: 'VIRA-ACV-010', title: 'Avaliação de Ciclo de Vida Cradle-to-Gate', type: 'ACV' }
     ]
   }
 };
@@ -200,6 +225,8 @@ function initProductDrawer() {
   const drawerCode = document.getElementById('drawer-code');
   const drawerDesc = document.getElementById('drawer-desc');
   const drawerSpecs = document.getElementById('drawer-specs');
+  const drawerKgNodes = document.getElementById('drawer-kg-nodes');
+  const drawerHubBtn = document.getElementById('drawer-solution-hub-btn');
 
   window.closeProductDrawer = function() {
     if (backdrop) backdrop.classList.remove('open');
@@ -223,6 +250,25 @@ function initProductDrawer() {
           '<span class="font-medium text-graphite font-mono text-right">' + s.val + '</span>' +
         '</div>';
       }).join('');
+    }
+
+    if (drawerKgNodes && prod.kgNodes) {
+      drawerKgNodes.innerHTML = prod.kgNodes.map(node => {
+        return '<a href="centro-de-especificacao.html?asset=' + node.id + '" class="flex items-center justify-between p-2.5 bg-white hover:bg-forest/5 rounded-xl border border-border-subtle hover:border-forest/30 transition-all text-xs group">' +
+          '<div class="space-y-0.5">' +
+            '<div class="flex items-center gap-1.5">' +
+              '<span class="font-mono text-[10px] text-forest font-bold bg-forest/10 px-1.5 py-0.5 rounded">' + node.code + '</span>' +
+              '<span class="font-mono text-[10px] text-muted uppercase">• ' + node.type + '</span>' +
+            '</div>' +
+            '<p class="text-[11px] font-semibold text-graphite group-hover:text-forest transition-colors line-clamp-1">' + node.title + '</p>' +
+          '</div>' +
+          '<i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-muted group-hover:text-forest transition-colors shrink-0"></i>' +
+        '</a>';
+      }).join('');
+    }
+
+    if (drawerHubBtn && prod.solution) {
+      drawerHubBtn.href = 'centro-de-especificacao.html?solution=' + prod.solution;
     }
 
     backdrop.classList.add('open');
