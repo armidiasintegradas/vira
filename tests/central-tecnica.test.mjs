@@ -7,4 +7,6 @@ assert.equal((html.match(/data-tech-item/g)||[]).length,15,'must expose 15 catal
 assert(!html.includes('status-disponivel'),'no catalog asset is confirmed available');
 assert(html.includes('platform.js'),'must load platform.js');
 assert(!html.includes('href="#"'),'must not expose placeholder links');
+assert(html.includes('<title>Central Técnica VIRA — Documentação por família</title>'),'wrong Central title');
+assert.equal((html.match(/<h1[ >]/g)||[]).length,1,'Central must have one h1');
 console.log('central-tecnica: ok');
