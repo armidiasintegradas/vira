@@ -831,6 +831,59 @@ describe('19. Feature Flags Engine (Controle Declarativo)', () => {
     assert.strictEqual(flags.compliance, false);
     assert.strictEqual(flags.dpp, true);
   });
+
+  it('arFeatureFlags deve classificar maturidade (Experimental -> Beta -> GA) e validar restrições de ambiente', () => {
+    const { arFeatureFlags, FEATURE_MATURITY } = require('../packages/ar-core/features/featureFlags.js');
+    assert.strictEqual(arFeatureFlags.getMaturity('compliance'), FEATURE_MATURITY.GA);
+    assert.strictEqual(arFeatureFlags.getMaturity('bim_export'), FEATURE_MATURITY.BETA);
+    assert.strictEqual(arFeatureFlags.getMaturity('white_label'), FEATURE_MATURITY.EXPERIMENTAL);
+
+    // Validação ambiental
+    assert.strictEqual(arFeatureFlags.isAllowedInEnvironment('compliance', 'production'), true);
+    assert.strictEqual(arFeatureFlags.isAllowedInEnvironment('bim_export', 'production'), false);
+    assert.strictEqual(arFeatureFlags.isAllowedInEnvironment('bim_export', 'staging'), true);
+    assert.strictEqual(arFeatureFlags.isAllowedInEnvironment('white_label', 'production'), false);
+    assert.strictEqual(arFeatureFlags.isAllowedInEnvironment('white_label', 'development'), true);
+  });
+});
+
+// --------------------------------------------------------
+// 20. ARQUITETURA OPERACIONAL, SRE & AR OS HANDBOOK
+// --------------------------------------------------------
+describe('20. Arquitetura Operacional, SRE & AR OS Handbook', () => {
+  it('docs/operations/OPERATIONAL_ARCHITECTURE.md deve cobrir os 8 pilares operacionais de SRE', () => {
+    const raw = fs.readFileSync(path.join(__dirname, '../docs/operations/OPERATIONAL_ARCHITECTURE.md'), 'utf8');
+    assert(raw.includes('Pipeline de Deploy & Entrega Contínua'), 'Deve cobrir Deploy');
+    assert(raw.includes('Point-in-Time Recovery (PITR)'), 'Deve cobrir Backup');
+    assert(raw.includes('Procedimento de Restore'), 'Deve cobrir Restore');
+    assert(raw.includes('SEV-1 [Crítico]'), 'Deve cobrir Incident Response');
+    assert(raw.includes('Observabilidade, Métricas & Monitoramento'), 'Deve cobrir Observabilidade');
+    assert(raw.includes('Logs Estruturados em JSON'), 'Deve cobrir Logs');
+    assert(raw.includes('Política de Alertas & Plantão'), 'Deve cobrir Alertas');
+    assert(raw.includes('Zero-Downtime Migration'), 'Deve cobrir Atualizações');
+  });
+
+  it('docs/AR_OS_HANDBOOK.md deve consolidar os 12 capítulos canônicos da plataforma', () => {
+    const raw = fs.readFileSync(path.join(__dirname, '../docs/AR_OS_HANDBOOK.md'), 'utf8');
+    assert(raw.includes('AR OS HANDBOOK'));
+    for (let i = 1; i <= 12; i++) {
+      const numStr = String(i).padStart(2, '0');
+      assert(raw.includes(`${numStr}.`), `Handbook deve conter capítulo ${numStr}`);
+    }
+    assert(raw.includes('Capability Registry'));
+    assert(raw.includes('Platform Constitution'));
+    assert(raw.includes('Roadmap de Três Horizontes'));
+  });
+
+  it('docs/strategy/THREE_HORIZONS_ROADMAP.md deve estabelecer critérios objetivos de saída (Exit Criteria)', () => {
+    const raw = fs.readFileSync(path.join(__dirname, '../docs/strategy/THREE_HORIZONS_ROADMAP.md'), 'utf8');
+    assert(raw.includes('Exit Criteria — Horizonte 1'));
+    assert(raw.includes('Exit Criteria — Horizonte 2'));
+    assert(raw.includes('Exit Criteria — Horizonte 3'));
+    assert(raw.includes('Autenticação Concluída'));
+    assert(raw.includes('Três Aplicações em Produção'));
+    assert(raw.includes('Integração Exclusiva por API/SDK'));
+  });
 });
 
 // --------------------------------------------------------

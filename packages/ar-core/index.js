@@ -12,7 +12,7 @@
 const AR_DOMAINS = require('./domains/index.js');
 const { arEventBus, EVENT_TYPES, EventBus } = require('./events/eventBus.js');
 const { arCapabilityRegistry, CapabilityRegistry } = require('./capabilities/registry.js');
-const { arFeatureFlags, FeatureFlagService } = require('./features/featureFlags.js');
+const { arFeatureFlags, FeatureFlagService, FEATURE_MATURITY } = require('./features/featureFlags.js');
 
 module.exports = {
   // Domínios DDD
@@ -30,5 +30,6 @@ module.exports = {
 
   // Feature Flags Engine
   arFeatureFlags,
-  FeatureFlagService
+  FeatureFlagService,
+  FEATURE_MATURITY
 };

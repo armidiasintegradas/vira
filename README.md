@@ -89,12 +89,15 @@ node test/core_test.js
 
 ## 5. Governança e Estratégia Institucional
 
+- 📘 **[AR OS Handbook (O Guia Mestre da Plataforma)](file:///docs/AR_OS_HANDBOOK.md)** — O índice e ponto de entrada oficial para novos engenheiros e operadores.
+
 A documentação do AR OS divide-se formalmente entre **Documentação Estável** e **Histórico de Releases**:
 
 ### Documentação Institucional (Estável):
 - [Platform Constitution (15 Artigos em Vigor)](file:///docs/PLATFORM_CONSTITUTION.md)
 - [Platform Manifesto & 5 Vetores de Decisão](file:///docs/PLATFORM_MANIFESTO.md)
 - [Architecture Overview & 11 Domínios DDD](file:///docs/architecture/ARCHITECTURE_OVERVIEW.md)
+- [Arquitetura de Operação & SRE](file:///docs/operations/OPERATIONAL_ARCHITECTURE.md)
 - [Roadmap de Três Horizontes da Holding](file:///docs/strategy/THREE_HORIZONS_ROADMAP.md)
 - [Matriz de Reuso da Plataforma](file:///docs/platform/AR_PLATFORM_MATRIX.md)
 - [Architecture Decision Records (ADRs 001 a 005)](file:///docs/adr/)

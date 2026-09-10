@@ -41,6 +41,13 @@
 6. **Política de Continuidade de Negócio:**
    - Backups automáticos contínuos com Point-in-Time Recovery (PITR) de 30 dias e replicação geográfica de dados e laudos IPT.
 
+### Critérios Objetivos de Saída (Exit Criteria — Horizonte 1)
+O Horizonte 1 será formalmente considerado homologado quando:
+- [ ] **Autenticação Concluída:** SSO e isolamento RLS multi-tenant 100% operacionais em produção.
+- [ ] **Observabilidade Ativa:** Dashboards de latência e SLAs de workers (`Critical < 2s`, `Normal < 30s`) implantados.
+- [ ] **Backup & Restore Testados:** Simulação de recuperação de desastres via PITR homologada (RTO < 1h, RPO < 5min).
+- [ ] **Colaboração Homologada:** Sessões concorrentes e travas de revisão operando em tempo real.
+
 ---
 
 ## Horizonte 2 — Ecossistema Multi-Marca (6 a 18 Meses)
@@ -56,6 +63,11 @@
    - Adição de novos materiais e propriedades no catálogo canônico sem alteração em código de aplicação.
 3. **Economia de Escala Tecnológica:**
    - Um único aprimoramento no motor de conformidade ABNT ou no barramento de eventos beneficia simultaneamente todas as 5 marcas da holding.
+
+### Critérios Objetivos de Saída (Exit Criteria — Horizonte 2)
+O Horizonte 2 será formalmente considerado homologado quando:
+- [ ] **Três Aplicações em Produção:** Pelo menos 3 marcas verticais (VIRA, Verdis, MUTA) operando sobre o mesmo núcleo sem forks.
+- [ ] **Governança por Flags:** 100% da diferenciação de produtos gerida exclusivamente pelo Capability Registry e Feature Flags.
 
 ---
 
@@ -75,3 +87,8 @@
    - Integração bidirecional com processos do **SEI** (Sistema Eletrônico de Informações).
 5. **Inteligência Artificial Soberana em Engenharia:**
    - Agentes autônomos treinados estritamente sobre normas ABNT, acervo de teses do IPT e legislação nacional, eliminando risco de alucinação jurídica e técnica.
+
+### Critérios Objetivos de Saída (Exit Criteria — Horizonte 3)
+O Horizonte 3 será formalmente considerado homologado quando:
+- [ ] **Integração Exclusiva por API/SDK:** Parceiros e terceiros integrados diretamente pelos contratos oficiais sem intervenção manual de engenharia.
+- [ ] **Edital Público Integrado:** Conexão direta homologada em processo licitatório real através do PNCP ou SEI.

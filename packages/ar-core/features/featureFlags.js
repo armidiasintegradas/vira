@@ -6,56 +6,72 @@
  * sem necessidade de branching de código ou alterações no núcleo da plataforma.
  */
 
+const FEATURE_MATURITY = {
+  EXPERIMENTAL: 'experimental',
+  BETA: 'beta',
+  GA: 'ga'
+};
+
 const DEFAULT_FEATURE_DEFINITIONS = {
   academy: {
     name: 'VIRA Academy & Capacitação',
     description: 'Trilhas de formação técnica e emissão de certificados com checksum.',
-    defaultState: false
+    defaultState: false,
+    maturity: FEATURE_MATURITY.GA
   },
   analytics: {
     name: 'Métricas ACV & Carbono',
     description: 'Contabilização de plástico reciclado e mitigação de pegada de carbono (ISO 14044).',
-    defaultState: true
+    defaultState: true,
+    maturity: FEATURE_MATURITY.GA
   },
   copilot: {
     name: 'Copiloto de Engenharia (IA)',
     description: 'Assistente técnico com RAG estrito em normas ABNT e pareceres IPT.',
-    defaultState: false
+    defaultState: false,
+    maturity: FEATURE_MATURITY.BETA
   },
   telemetry: {
     name: 'Telemetria & SLAs Operacionais',
     description: 'Rastreamento de tempos de especificação e taxas de conversão de editais.',
-    defaultState: true
+    defaultState: true,
+    maturity: FEATURE_MATURITY.GA
   },
   dpp: {
     name: 'Passaporte Digital de Produto',
     description: 'Cadeia de custódia e validação de lotes industriais via QR Code.',
-    defaultState: false
+    defaultState: false,
+    maturity: FEATURE_MATURITY.GA
   },
   knowledge: {
     name: 'Knowledge Graph de Evidências',
     description: 'Navegação relacional em normas técnicas, laudos e leis federais.',
-    defaultState: true
+    defaultState: true,
+    maturity: FEATURE_MATURITY.GA
   },
   compliance: {
     name: 'Motor de Conformidade ABNT',
     description: 'Auditoria de ensaios de compressão axial frente à NBR 9781 e Lei 14.133.',
-    defaultState: true
+    defaultState: true,
+    maturity: FEATURE_MATURITY.GA
   },
   bim_export: {
     name: 'Exportação BIM IFC 4.0',
     description: 'Geração estruturada de famílias paramétricas IFC e Revit.',
-    defaultState: false
+    defaultState: false,
+    maturity: FEATURE_MATURITY.BETA
   },
   collaboration: {
     name: 'Colaboração Concorrente',
     description: 'Sessões de presença em tempo real, anotações de prancha e travas de revisão.',
-    defaultState: false
+    defaultState: false,
+    maturity: FEATURE_MATURITY.BETA
   },
   white_label: {
     name: 'Multi-Tenant White-Label',
     description: 'Customização de marcas e domínios corporativos para órgãos públicos e empreiteiras.',
-    defaultState: false
+    defaultState: false,
+    maturity: FEATURE_MATURITY.EXPERIMENTAL
   }
 };
 
@@ -217,8 +233,40 @@ class FeatureFlagService {
     this.definitions.set(k, {
       name: definition.name || k,
       description: definition.description || '',
-      defaultState: Boolean(definition.defaultState)
+      defaultState: Boolean(definition.defaultState),
+      maturity: definition.maturity || FEATURE_MATURITY.EXPERIMENTAL
     });
+  }
+
+  /**
+   * Recupera o estágio de maturidade de uma funcionalidade (Experimental -> Beta -> GA)
+   * @param {string} featureKey
+   * @returns {string} 'experimental' | 'beta' | 'ga'
+   */
+  getMaturity(featureKey) {
+    const k = (featureKey || '').toLowerCase();
+    if (this.definitions.has(k)) {
+      return this.definitions.get(k).maturity || FEATURE_MATURITY.EXPERIMENTAL;
+    }
+    return FEATURE_MATURITY.EXPERIMENTAL;
+  }
+
+  /**
+   * Valida se a funcionalidade atende ao nível de maturidade exigido pelo ambiente
+   * @param {string} featureKey
+   * @param {string} environment ('production', 'staging', 'development')
+   */
+  isAllowedInEnvironment(featureKey, environment = 'production') {
+    const maturity = this.getMaturity(featureKey);
+    const env = environment.toLowerCase();
+
+    if (env === 'production') {
+      return maturity === FEATURE_MATURITY.GA;
+    }
+    if (env === 'staging') {
+      return maturity === FEATURE_MATURITY.GA || maturity === FEATURE_MATURITY.BETA;
+    }
+    return true; // development aceita experimental, beta e ga
   }
 }
 
@@ -228,5 +276,6 @@ module.exports = {
   FeatureFlagService,
   arFeatureFlags,
   DEFAULT_FEATURE_DEFINITIONS,
-  BRAND_DEFAULTS
+  BRAND_DEFAULTS,
+  FEATURE_MATURITY
 };
