@@ -60,7 +60,10 @@
      3. SPACING & LAYOUT GRID
      -------------------------------------------------------- */
   --container-max-width: 1320px;
-  --header-height: 80px;
+  --header-height: 60px;
+  --header-height-mobile: 52px;
+  --space-section: clamp(80px, 10vw, 150px);
+  --space-section-sm: clamp(48px, 6vw, 96px);
 
   /* --------------------------------------------------------
      4. RADIUS
@@ -87,4 +90,5 @@
   --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
   --transition-base: 250ms cubic-bezier(0.16, 1, 0.3, 1);
   --transition-slow: 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-editorial: 600ms cubic-bezier(0.16, 1, 0.3, 1);
 }

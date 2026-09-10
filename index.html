@@ -40,8 +40,8 @@
   <meta name="twitter:description" content="Tecnologia industrial desenvolvida para transformar materiais circulares em soluções para infraestrutura urbana." />
   <meta name="twitter:image" content="https://projetovira.com.br/assets/factory-hero.jpg" />
 
-  <!-- Core Web Vitals: Preload do LCP Image Hero em AVIF -->
-  <link rel="preload" as="image" href="assets/factory-hero.avif" type="image/avif" fetchpriority="high" />
+  <!-- Core Web Vitals: Preload do LCP Image Hero em WebP -->
+  <link rel="preload" as="image" href="assets/hero-paver-orla-menina-v10.webp" type="image/webp" fetchpriority="high" />
 
   <!-- Preconnect para Fontes Google com display=swap -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -252,40 +252,36 @@
          01 HERO (100VH CINEMATOGRÁFICO, HEADLINE MONUMENTAL)
          ======================================================== -->
     <section id="hero" class="vira-hero-fullscreen" aria-label="Abertura Institucional">
-      <!-- Imagem de Fundo Cinematográfica com suporte Next-Gen AVIF -->
+      <!-- Fotografia Dominante em Escala Humana: Orla Urbana e Pavimentação Circular -->
       <picture>
-        <source srcset="assets/factory-hero.avif" type="image/avif" />
-        <img src="assets/factory-hero.jpg" alt="Complexo Industrial VIRA em Caruaru-PE" class="vira-hero-bg-img" width="1024" height="682" fetchpriority="high" decoding="sync" />
+        <source srcset="assets/hero-paver-orla-menina-v10.webp" type="image/webp" />
+        <img src="assets/hero-paver-orla-menina-v10.webp" alt="Pavimentação circular VIRA aplicada na orla urbana com escala humana" class="vira-hero-bg-img" width="1920" height="1080" fetchpriority="high" decoding="sync" />
       </picture>
       <div class="vira-hero-overlay"></div>
 
-      <!-- Conteúdo Hero Alinhado à Esquerda com Respiro Generoso -->
+      <!-- Conteúdo Hero Alinhado com Respiro e Silêncio Visual -->
       <div class="vira-hero-content">
         <div class="vira-hero-tagline">
           <span>●</span>
-          <span>Engenharia Circular para Infraestrutura Urbana</span>
+          <span>Engenharia Circular para Cidades</span>
         </div>
 
-        <h1 class="vira-hero-monumental">
-          FROM WASTE TO CITY.
+        <h1 class="vira-hero-monumental font-serif">
+          <span class="italic">From waste</span> to city.
         </h1>
 
-        <p class="vira-hero-subtext">
+        <p class="vira-hero-subtext font-light">
           Engenharia circular de escala para infraestrutura urbana. Transformação industrial de polímeros pós-consumo em artefatos normatizados de alto desempenho.
         </p>
 
         <div class="vira-hero-actions">
           <a href="#material" class="vira-btn-white">
-            <span>Explorar Matéria</span>
+            <span>Explorar a Matéria</span>
             <i data-lucide="arrow-down" class="w-4 h-4"></i>
           </a>
           <a href="#produtos" class="vira-btn-outline">
             <span>Conhecer Produtos</span>
             <i data-lucide="arrow-right" class="w-4 h-4"></i>
-          </a>
-          <a href="#contato" class="vira-btn-outline text-ochre border-ochre/40 hover:border-ochre">
-            <span>Especificação Técnica</span>
-            <i data-lucide="file-text" class="w-4 h-4"></i>
           </a>
         </div>
       </div>
@@ -817,6 +813,27 @@
         <p class="vira-chapter-lead">
           Operamos com tecnologia proprietária de termocompressão de alta tonelagem a vácuo, controle de qualidade de lote por telemetria e matriz energética 100% solar fotovoltaica.
         </p>
+      </div>
+
+      <!-- Panorama Monumental do Parque Fabril -->
+      <div class="vira-macro-container mb-12">
+        <picture>
+          <source srcset="assets/factory-hero.avif" type="image/avif" />
+          <img src="assets/factory-hero.jpg" alt="Complexo Industrial VIRA em Caruaru-PE com matriz fotovoltaica e prensas de alta tonelagem" class="vira-macro-img" width="1024" height="682" loading="lazy" decoding="async" />
+        </picture>
+        <div class="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-graphite-900 via-graphite-900/60 to-transparent flex flex-col sm:flex-row sm:items-end justify-between gap-4 text-white">
+          <div class="space-y-1">
+            <span class="font-mono text-xs text-ochre uppercase font-bold tracking-wider">Parque Fabril Homologado • Polo Caruaru-PE</span>
+            <p class="text-sm font-light text-white/90 max-w-xl">
+              Linha contínua de termocompressão a vácuo alimentada por matriz solar fotovoltaica dedicada e controle reológico digital.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="vira-spec-pill bg-white/10 text-white border-white/20">Capacidade 1.200 t/mês</span>
+            <span class="vira-spec-pill bg-white/10 text-white border-white/20">300 t Alta Tonelagem</span>
+            <span class="vira-spec-pill bg-forest/80 text-white border-forest">100% Solar</span>
+          </div>
+        </div>
       </div>
 
       <!-- Banner de Escala Fabril -->
