@@ -268,7 +268,7 @@ function initProductDrawer() {
     }
 
     if (drawerHubBtn && prod.solution) {
-      drawerHubBtn.href = 'centro-de-especificacao.html?solution=' + prod.solution;
+      drawerHubBtn.href = 'workspace.html?solution=' + prod.solution;
     }
 
     backdrop.classList.add('open');

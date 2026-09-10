@@ -58,10 +58,15 @@ Este documento é a **fonte oficial de verdade**, governança de versão e estad
 
 A V3 encerra a fase de "site institucional" e materializa a VIRA como uma **ferramenta de trabalho e referência técnica contínua**:
 
-- [ ] **Sprint 1: Knowledge Workspace (O Motor Unificado de Engenharia)**
-  - O produto não abre apenas uma página; abre um **Workspace de Especificação** em tela única com abas de contexto:
-    *Visão Geral • Especificação & Ensaios • Aplicações Urbanas • Normas ABNT/ISO • BIM Paramétrico • CAD DWG • Laudos Laboratoriais • ACV & Descarbonização • Obras Executadas • VIRA Academy • FAQ Técnico • Downloads & Documentos • Contato / ART Técnica*.
-  - Painel lateral fixo **"Related Knowledge Graph"**: navegação context-aware pelo grafo em tempo real sem trocar de tela.
+- [x] **Sprint 1: Knowledge Workspace (O Motor Unificado de Engenharia)**
+  - **Status:** CONCLUÍDO & ENTREGUE (`workspace.html` e `workspace.js`).
+  - Motor de especificação técnica unificado em tela única para as 4 soluções estruturais (`paver`, `painel`, `perfil`, `insumo`).
+  - 13 Visões contextuais com transição instantânea sem recarregamento de página:
+    *Visão Geral • Especificação & Ensaios • Aplicações Urbanas • Normas ABNT/ISO • BIM Paramétrico • CAD DWG • Laudos Laboratoriais • ACV & Descarbonização • Obras Executadas • VIRA Academy • FAQ Técnico • Downloads & Documentos • Suporte ART*.
+  - Painel lateral fixo persistente **"Related Knowledge Graph"**: navegação context-aware pelo grafo em tempo real com dados de autoridade, métricas auditadas e responsáveis técnicos.
+  - Simulador interativo de impacto ambiental de metragem quadrada com cálculo imediato de plástico desviado e CO2e evitado.
+  - Deep Linking bidirecional via URL (`?solution=...&tab=...`) e botões de atalho integrados na Home e no Engineering Hub.
+  - Inclusão no `sitemap.xml` com prioridade 0.95.
 - [ ] **Sprint 2: VIRA Academy**
   - Guias de especificação de infraestrutura circular, cursos técnicos rápidos para fiscais de contratos públicos (Lei 14.133), webinars e certificação de especificador circular.
 - [ ] **Sprint 3: VIRA Lab & Rastreabilidade DPP**
