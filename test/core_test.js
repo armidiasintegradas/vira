@@ -734,6 +734,103 @@ describe('17. Platform Manifesto & Governança Fundacional', () => {
     assert(raw.includes('AR OS SERVICES'));
     assert(raw.includes('AR OS APPLICATIONS'));
   });
+
+  it('README.md e THREE_HORIZONS_ROADMAP.md devem declarar o novo posicionamento institucional', () => {
+    const readme = fs.readFileSync(path.join(__dirname, '../README.md'), 'utf8');
+    const roadmap = fs.readFileSync(path.join(__dirname, '../docs/strategy/THREE_HORIZONS_ROADMAP.md'), 'utf8');
+    const expected = 'Uma plataforma de infraestrutura digital para economia circular, engenharia e gestão ambiental.';
+    assert(readme.includes(expected), 'README deve conter o novo posicionamento');
+    assert(roadmap.includes(expected), 'Roadmap deve conter o novo posicionamento');
+  });
+
+  it('docs/releases/RELEASE_NOTES.md deve catalogar histórico desde v1.0.0 até AR OS 1.0.0', () => {
+    const raw = fs.readFileSync(path.join(__dirname, '../docs/releases/RELEASE_NOTES.md'), 'utf8');
+    assert(raw.includes('[AR OS 1.0.0]'));
+    assert(raw.includes('[VIRA OS v4.1.0]'));
+    assert(raw.includes('[VIRA OS v4.0.0]'));
+    assert(raw.includes('[VIRA v1.0.0]'));
+  });
+});
+
+// --------------------------------------------------------
+// 18. CAPABILITY REGISTRY (ABSTRAÇÃO DA PLATAFORMA)
+// --------------------------------------------------------
+describe('18. Capability Registry (Abstração da Plataforma)', () => {
+  it('arCapabilityRegistry deve catalogar as 11 capacidades canônicas da plataforma', () => {
+    const { arCapabilityRegistry } = require('../packages/ar-core/capabilities/registry.js');
+    assert(arCapabilityRegistry);
+    const caps = arCapabilityRegistry.list();
+    assert.strictEqual(caps.length, 11, 'Deve possuir 11 capacidades canônicas registradas');
+    
+    // Valida propriedades obrigatórias
+    caps.forEach(c => {
+      assert(c.id && c.name && c.domain && c.service && c.category);
+      assert(Array.isArray(c.supportedBrands) && c.supportedBrands.length > 0);
+    });
+  });
+
+  it('Deve filtrar capacidades por marca (VIRA com 11, MUTA com 6, RecicloBike com 3)', () => {
+    const { arCapabilityRegistry } = require('../packages/ar-core/capabilities/registry.js');
+    const viraCaps = arCapabilityRegistry.getForBrand('vira');
+    const mutaCaps = arCapabilityRegistry.getForBrand('muta');
+    const bikeCaps = arCapabilityRegistry.getForBrand('reciclobike');
+
+    assert.strictEqual(viraCaps.length, 11, 'VIRA deve herdar 100% das capacidades');
+    assert.strictEqual(mutaCaps.length, 6, 'MUTA deve suportar 6 capacidades');
+    assert.strictEqual(bikeCaps.length, 3, 'RecicloBike deve suportar 3 capacidades');
+  });
+
+  it('supports() deve validar autorização de capacidades por marca vertical', () => {
+    const { arCapabilityRegistry } = require('../packages/ar-core/capabilities/registry.js');
+    assert.strictEqual(arCapabilityRegistry.supports('vira', 'technical_academy'), true);
+    assert.strictEqual(arCapabilityRegistry.supports('muta', 'technical_academy'), false);
+    assert.strictEqual(arCapabilityRegistry.supports('reciclobike', 'carbon_lca_analytics'), true);
+    assert.strictEqual(arCapabilityRegistry.supports('reciclobike', 'structural_engineering'), false);
+  });
+});
+
+// --------------------------------------------------------
+// 19. FEATURE FLAGS ENGINE (CONTROLE DECLARATIVO)
+// --------------------------------------------------------
+describe('19. Feature Flags Engine (Controle Declarativo)', () => {
+  it('arFeatureFlags deve avaliar estado ativo para VIRA e inativo para marcas especializadas', () => {
+    const { arFeatureFlags } = require('../packages/ar-core/features/featureFlags.js');
+    assert(arFeatureFlags);
+
+    // VIRA tem academy e bim_export ativos
+    assert.strictEqual(arFeatureFlags.isEnabled('academy', { brand: 'vira' }), true);
+    assert.strictEqual(arFeatureFlags.isEnabled('bim_export', { brand: 'vira' }), true);
+
+    // MUTA tem academy inativo, mas copilot e analytics ativos
+    assert.strictEqual(arFeatureFlags.isEnabled('academy', { brand: 'muta' }), false);
+    assert.strictEqual(arFeatureFlags.isEnabled('copilot', { brand: 'muta' }), true);
+    assert.strictEqual(arFeatureFlags.isEnabled('analytics', { brand: 'muta' }), true);
+  });
+
+  it('Deve permitir sobrescrita em nível de Tenant corporativo com precedência estrita', () => {
+    const { arFeatureFlags } = require('../packages/ar-core/features/featureFlags.js');
+
+    // Por padrão na MUTA, bim_export é false
+    assert.strictEqual(arFeatureFlags.isEnabled('bim_export', { brand: 'muta', tenant: 'cbre-global' }), false);
+
+    // Habilita bim_export exclusivamente para o tenant 'cbre-global'
+    arFeatureFlags.setTenantOverride('cbre-global', 'bim_export', true);
+
+    assert.strictEqual(arFeatureFlags.isEnabled('bim_export', { brand: 'muta', tenant: 'cbre-global' }), true);
+    // Outro tenant continua false
+    assert.strictEqual(arFeatureFlags.isEnabled('bim_export', { brand: 'muta', tenant: 'outro-tenant' }), false);
+  });
+
+  it('getAllFlags() deve retornar dicionário completo de chaves booleanas para um contexto', () => {
+    const { arFeatureFlags } = require('../packages/ar-core/features/featureFlags.js');
+    const flags = arFeatureFlags.getAllFlags({ brand: 'replasticando' });
+    
+    assert(typeof flags.analytics === 'boolean');
+    assert.strictEqual(flags.analytics, true);
+    assert.strictEqual(flags.academy, false);
+    assert.strictEqual(flags.compliance, false);
+    assert.strictEqual(flags.dpp, true);
+  });
 });
 
 // --------------------------------------------------------

@@ -324,6 +324,36 @@ function main() {
       console.log(`  Protocolo de Autenticidade: #VRA-DPP-7F89B21C`);
       break;
 
+    case 'capabilities':
+    case 'caps': {
+      const { arCapabilityRegistry } = require('../../ar-core/capabilities/registry.js');
+      const caps = arCapabilityRegistry.list();
+      console.log(`\n🏛️  CAPABILITY REGISTRY — AR OS 1.0 (${caps.length} Capacidades):`);
+      console.log(`========================================================`);
+      caps.forEach(c => {
+        console.log(`• [${c.id}] ${c.name}`);
+        console.log(`   Categoria: ${c.category} | Domínio: ${c.domain} | Maturidade: ${c.maturity}`);
+        console.log(`   Marcas Suportadas: ${c.supportedBrands.join(', ')}`);
+      });
+      console.log(`========================================================`);
+      break;
+    }
+
+    case 'flags':
+    case 'features': {
+      const { arFeatureFlags } = require('../../ar-core/features/featureFlags.js');
+      const brand = args[1] || 'vira';
+      const flags = arFeatureFlags.getAllFlags({ brand });
+      console.log(`\n🚩 FEATURE FLAGS — Configuração da Marca [${brand.toUpperCase()}]:`);
+      console.log(`========================================================`);
+      for (const [k, v] of Object.entries(flags)) {
+        const icon = v ? '🟢 ATIVO  ' : '⚪ INATIVO';
+        console.log(`  ${icon}  ${k}`);
+      }
+      console.log(`========================================================`);
+      break;
+    }
+
     case 'doctor':
       const isVerbose = args.includes('--verbose') || args.includes('-v');
       doctor({ verbose: isVerbose, print: true });
@@ -342,6 +372,8 @@ function main() {
       console.log(`Uso: ar <comando> [argumentos]`);
       console.log(`Comandos disponíveis:`);
       console.log(`  status             Exibe estado da plataforma, domínios e marcas`);
+      console.log(`  capabilities       Lista as capacidades institucionais registradas`);
+      console.log(`  flags [brand]      Exibe matriz de feature flags por marca`);
       console.log(`  materials list     Lista os materiais homologados`);
       console.log(`  dpp verify <id>    Verifica integridade de passaporte digital`);
       console.log(`  doctor [--verbose] Diagnóstico completo do ecossistema`);
@@ -357,3 +389,4 @@ if (require.main === module) {
 }
 
 module.exports = { main, VERSION, doctor, validate, benchmark };
+
