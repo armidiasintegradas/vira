@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded",()=>{
+  const heroMeta=document.querySelector(".hero-meta");
+  const syncHeroMeta=()=>{if(heroMeta)heroMeta.hidden=innerWidth<=700};
+  addEventListener("resize",syncHeroMeta);syncHeroMeta();
+
   const area=document.querySelector("#paver-area");
   const areaValue=document.querySelector("#paver-area-value");
   const total=document.querySelector("#calc-total");
