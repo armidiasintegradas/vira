@@ -1,0 +1,9 @@
+.product-switcher{display:flex;align-items:center;gap:8px;overflow-x:auto;scrollbar-width:none;padding:12px clamp(18px,4vw,56px);border-bottom:1px solid rgba(20,26,20,.12);background:#f4f4ee;position:relative;z-index:15}
+.product-switcher::-webkit-scrollbar{display:none}
+.product-switcher a{flex:0 0 auto;padding:10px 14px;border-radius:999px;text-decoration:none;color:inherit;font:500 12px/1 "JetBrains Mono",monospace;border:1px solid rgba(20,26,20,.16)}
+.product-switcher a[aria-current="page"]{background:#152016;color:#fff;border-color:#152016}
+.product-switcher a:focus-visible,.platform-gateway a:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+.platform-gateways{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:28px}
+.platform-gateway{border:1px solid rgba(20,26,20,.16);padding:24px;display:flex;flex-direction:column;gap:18px}
+.platform-gateway a{align-self:flex-start;color:inherit;font-weight:600}
+@media(max-width:700px){.product-switcher{padding-inline:16px}.platform-gateways{grid-template-columns:1fr}}
