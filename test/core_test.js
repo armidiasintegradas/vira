@@ -108,6 +108,18 @@ describe('1. Integridade dos Arquivos Canônicos (/data)', () => {
     assert(ipt, 'Laudo IPT deve existir');
     assert.strictEqual(ipt.measuredParameters.fckMpa, 38.2);
   });
+
+  it('data/academy.json deve conter as 4 trilhas especializadas com 3 módulos e entregáveis', () => {
+    const raw = fs.readFileSync(path.join(__dirname, '../data/academy.json'), 'utf8');
+    const tracks = JSON.parse(raw);
+    assert.strictEqual(tracks.length, 4, 'Deve conter 4 trilhas');
+    const roles = tracks.map(t => t.role);
+    assert(roles.includes('engenheiro') && roles.includes('arquiteto') && roles.includes('gestor') && roles.includes('fiscal'));
+    tracks.forEach(t => {
+      assert.strictEqual(t.modules.length, 3, `Trilha ${t.role} deve ter 3 módulos`);
+      assert(t.deliverables.length >= 3, `Trilha ${t.role} deve ter pelo menos 3 entregáveis`);
+    });
+  });
 });
 
 // --------------------------------------------------------
@@ -410,6 +422,30 @@ describe('8. Telemetria & Painel de Indicadores de Produto', () => {
     // Registra evento de exportação
     ViraTelemetry.recordEvent('standardsConsulted', 'ABNT NBR 9781:2013', 1);
     assert(ViraTelemetry.metrics.standardsConsulted['ABNT NBR 9781:2013'] >= 413);
+  });
+});
+
+// --------------------------------------------------------
+// 9. VIRA ACADEMY & FORMAÇÃO TÉCNICA (DESIGN PARTNERS)
+// --------------------------------------------------------
+describe('9. VIRA Academy & Formação Técnica dos Design Partners', () => {
+  it('academyService deve retornar as 4 trilhas e recuperar trilha por perfil de usuário', () => {
+    const { ViraServices } = require('../services.js');
+    assert(ViraServices.academyService, 'academyService deve existir');
+    const tracks = ViraServices.academyService.getTracks();
+    assert.strictEqual(tracks.length, 4, 'Deve ter 4 trilhas');
+
+    const fiscalTrack = ViraServices.academyService.getTrackByRole('fiscal');
+    assert.strictEqual(fiscalTrack.role, 'fiscal');
+    assert(fiscalTrack.modules.some(m => m.normReference.includes('14.133')), 'Trilha fiscal deve citar Lei 14.133/2021');
+
+    const gestorTrack = ViraServices.academyService.getTrackByRole('gestor');
+    assert.strictEqual(gestorTrack.role, 'gestor');
+    assert(gestorTrack.modules.some(m => m.title.includes('Art. 11, IV')), 'Trilha gestor deve citar Art. 11, IV da Lei 14.133');
+
+    const arqTrack = ViraServices.academyService.getTrackByRole('arquiteto');
+    assert.strictEqual(arqTrack.role, 'arquiteto');
+    assert(arqTrack.modules.some(m => m.normReference.includes('9050')), 'Trilha arquiteto deve citar NBR 9050');
   });
 });
 

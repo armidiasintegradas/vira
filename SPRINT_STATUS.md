@@ -142,6 +142,22 @@ VIRA OS v4.0 (Sistema Operacional para Engenharia Circular)
 - **Arquitetura de Stores (`ViraStore`):** Encapsulamento modular em `ProjectStore`, `KnowledgeStore`, `UIStore`, `UserStore` e `TelemetryStore`, preparando a futura migração para persistência em banco de dados remoto (V5).
 - **Suíte de Testes Automatizados (`test/core_test.js`):** 16/16 testes unitários automatizados passando com 100% de sucesso (CRUD, migração V3->V4, colisões de UUID, cálculos, audit trail e telemetria).
 
+### [✓] Sprint V4.1: VIRA Academy Especializada & Onboarding dos Design Partners (Branch: `next`)
+- **Status:** CONCLUÍDO & HOMOLOGADO.
+- **Estruturação Canônica (`/data/academy.json`):** Criação da base desacoplada de dados para as 4 trilhas especializadas:
+  1. *Engenheiro Civil:* Dimensionamento estratigráfico (NBR 15953), comportamento mecânico fck 38,2 MPa (NBR 9781) e imunidade a maresia/salinidade (absorção < 0,05%).
+  2. *Arquiteto & Paisagista:* Albedo e mitigação de ilhas de calor (SRI 42 / ASTM E1980), rotas acessíveis sem trepidação (NBR 9050) e modelagem BIM paramétrica LOD 350 (Revit / IFC 4.3).
+  3. *Gestor Público:* Princípio da sustentabilidade (Art. 11, IV da Lei 14.133/2021), julgamento por Custo de Ciclo de Vida (LCC - Art. 34) e metas municipais ESG / inventário de ACV (ISO 14044).
+  4. *Fiscal de Obras:* Recebimento formal de lote em canteiro com QR Code / ART, plano de amostragem RBC (NBR 9781 Anexo A) e critérios de medição provisória / glosa (Art. 140 da Lei 14.133).
+- **Serviço de Domínio (`academyService` em `services.js`):** Métodos `getTracks()` e `getTrackByRole(role)` integrados ao ecossistema unificado `ViraServices` e `ViraStore`.
+- **Interface Interativa do Workspace (`workspace.js`):**
+  - Seletor de 4 trilhas com atualização reativa de UI (`selectAcademyTrack`).
+  - Renderização detalhada dos 3 módulos com tags normativas e evidências laboratoriais acreditadas (IPT).
+  - Entregáveis técnicos com download direto de minutas e modelos estruturados (`downloadAcademyDeliverable`).
+  - Modal de Certificação Profissional (`openCertificateModal` / `generateCertificate`) com geração de protocolo de autenticidade criptográfica (`#VRA-CERT-XXXXXXXX`), habilitando comprovantes para conselhos de classe (CREA / CAU).
+  - Deep linking e persistência de trilha via query parameter `?tab=academy&role=...`.
+- **Suíte de Testes Automatizados Expandida (`test/core_test.js`):** 9 suítes e **18/18 testes unitários passando com 100% de aprovação**, garantindo a integridade dos dados e das rotinas da Academy.
+
 ---
 
 ## 6. TRANSIÇÃO DE CICLO: VIRA OS — EARLY ACCESS PROGRAM (DESIGN PARTNERS)

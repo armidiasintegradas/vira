@@ -185,6 +185,150 @@ const EngineeringKnowledgeBase = {
       dataTier: DATA_TIERS.EXEMPLO_ILUSTRATIVO,
       purpose: 'Estudo de caso de praça pública e paisagismo urbano com piso intertravado circular.'
     }
+  ],
+
+  // 5. Trilhas de Capacitação Técnica (VIRA Academy)
+  academyTracks: [
+    {
+      id: 'trilha-engenheiro',
+      role: 'engenheiro',
+      title: 'Engenharia de Infraestrutura Urbana & Pavimentação',
+      targetAudience: 'Engenheiros Civis, Calculistas Estruturais e Gerentes de Obra',
+      estimatedHours: '8h',
+      modules: [
+        {
+          num: '01',
+          title: 'Dimensionamento Estratigráfico de Pavimentos Intertravados (NBR 15953)',
+          content: 'Cálculo de camadas de suporte: subleito compactado a 98% Proctor Normal, sub-base em BGS de 15 cm, colchão de areia lavada média (3,0 cm) e travamento lateral por guias de contenção em compósito.',
+          normReference: 'ABNT NBR 15953:2011',
+          labEvidence: 'IPT Relatório nº 1.104.921-A'
+        },
+        {
+          num: '02',
+          title: 'Comportamento Mecânico: fck 38,2 MPa vs Tráfego Comercial',
+          content: 'Análise da curva de tensão-deformação de blocos poliméricos. Comparativo de tenacidade e ausência de fratura frágil por cisalhamento sob frenagem de veículos de carga leve e viaturas de emergência.',
+          normReference: 'ABNT NBR 9781:2013',
+          labEvidence: 'Ensaio de Compressão Axial e Cisalhamento'
+        },
+        {
+          num: '03',
+          title: 'Maresia Severa, Salinidade e Drenabilidade de Canteiro',
+          content: 'Vantagens da taxa de absorção de água < 0,05% em zonas costeiras. Imunidade total à penetração de íons cloreto e ausência de eflorescência alcalina.',
+          normReference: 'ASTM B117 / NBR 8094',
+          labEvidence: 'Ensaio de Envelhecimento Acelerado (1.500h Salt Spray)'
+        }
+      ],
+      deliverables: [
+        'Memória de Cálculo de Pavimentação Intertravada em PDF',
+        'Prancha Técnica de Detalhamento Executivo em DWG/DXF',
+        'Certificado de Conclusão da Trilha de Engenharia'
+      ]
+    },
+    {
+      id: 'trilha-arquiteto',
+      role: 'arquiteto',
+      title: 'Arquitetura da Paisagem, Conforto Térmico & Modelagem BIM',
+      targetAudience: 'Arquitetos e Urbanistas, Paisagistas e Modeladores BIM',
+      estimatedHours: '6h',
+      modules: [
+        {
+          num: '01',
+          title: 'Microclima Urbano: Albedo e Índice de Refletância Solar (SRI 42)',
+          content: 'Mitigação de ilhas de calor urbanas em praças e calçadões. Como o compósito polimérico VIRA reflete 4x mais radiação térmica do que o asfalto CBUQ (SRI 5), garantindo conforto ao pedestre.',
+          normReference: 'ASTM E1980 / LEED v4.1 Heat Island',
+          labEvidence: 'Ensaio Espectrofotométrico de Refletância'
+        },
+        {
+          num: '02',
+          title: 'Paginações Paramétricas e Acessibilidade Plena (NBR 9050)',
+          content: 'Desenho de rotas acessíveis sem trepidação para cadeirantes e carrinhos de bebê. Aplicação de pisos táteis direcionais e de alerta integrados na mesma cota de assentamento.',
+          normReference: 'ABNT NBR 9050:2020',
+          labEvidence: 'Inspeção de Regularidade Superficial e Atrito Dinâmico'
+        },
+        {
+          num: '03',
+          title: 'Integração Paramétrica em Autodesk Revit & IFC 4.3 (LOD 350)',
+          content: 'Utilização das famílias nativas VIRA com tabelas quantitativas de área, peso e descarbonização vinculadas automaticamente ao modelo federado.',
+          normReference: 'BIM Fórum Brasil / NBR ISO 19650',
+          labEvidence: 'Famílias RVT 2024 Auditadas'
+        }
+      ],
+      deliverables: [
+        'Template de Paginações Urbanas para Revit / ArchiCAD',
+        'Guia Prático de Desenho Universal e Acessibilidade',
+        'Certificado de Conclusão da Trilha de Arquitetura'
+      ]
+    },
+    {
+      id: 'trilha-gestor',
+      role: 'gestor',
+      title: 'Gestão Pública, Lei 14.133 e Compras Sustentáveis',
+      targetAudience: 'Secretários Municipais, Diretores de Planejamento e Membros de Comissão de Contratação',
+      estimatedHours: '5h',
+      modules: [
+        {
+          num: '01',
+          title: 'O Princípio da Sustentabilidade na Lei 14.133/2021 (Art. 11, IV)',
+          content: 'Fundamentação legal para incluir critérios de economia circular em editais sem risco de direcionamento ou impugnação. Como redigir requisitos de desempenho objetivo.',
+          normReference: 'Lei Federal nº 14.133/2021',
+          labEvidence: 'Pareceres Jurídicos de Licitações Sustentáveis'
+        },
+        {
+          num: '02',
+          title: 'Julgamento por Custo de Ciclo de Vida (LCC) — Artigo 34',
+          content: 'Demonstração econômica de que materiais com 10 anos de garantia e zero custo de reposição geram economia de até 45% aos cofres municipais frente ao concreto convencional em 10 anos.',
+          normReference: 'Lei 14.133/2021, Art. 34 / ISO 15686-5',
+          labEvidence: 'Matriz Paramétrica de Custo de Propriedade'
+        },
+        {
+          num: '03',
+          title: 'Metas Municipais de Descarbonização e Relatórios ESG (ISO 14044)',
+          content: 'Como converter as intervenções urbanas executadas em toneladas de resíduos plásticos desviados de aterros e bacias hidrográficas, auditados conforme normas internacionais de ACV.',
+          normReference: 'ABNT NBR ISO 14044:2009',
+          labEvidence: 'Inventário de ACV LCA-VIRA-2026-B'
+        }
+      ],
+      deliverables: [
+        'Minuta de Termo de Referência Padrão para Obras Públicas',
+        'Calculadora Municipal de Crédito Climático e ACV',
+        'Certificado de Conclusão da Trilha de Gestão Pública'
+      ]
+    },
+    {
+      id: 'trilha-fiscal',
+      role: 'fiscal',
+      title: 'Fiscalização de Contratos, Recebimento e Canteiro',
+      targetAudience: 'Fiscais de Contratos Públicos, Engenheiros Residentes e Auditores Técnicos',
+      estimatedHours: '6h',
+      modules: [
+        {
+          num: '01',
+          title: 'Procedimento Formal de Recebimento de Lote em Canteiro',
+          content: 'Check-list obrigatório na entrega: inspeção visual de faces de travamento, verificação de espessura nominal (60 mm ou 80 mm ± 2 mm), leitura de QR Code do lote fabril e conferência de ART de fabricação.',
+          normReference: 'ABNT NBR 15953 / NBR 9781',
+          labEvidence: 'Passaporte Digital de Produto (DPP) por Lote'
+        },
+        {
+          num: '02',
+          title: 'Plano de Amostragem e Envio a Laboratório Acreditado',
+          content: 'Critérios para extração de corpos de prova (32 peças por lote de até 1.000 m²) para ensaio de compressão estática e absorção de água em laboratório da Rede Brasileira de Calibração (RBC).',
+          normReference: 'ABNT NBR 9781:2013 (Anexo A)',
+          labEvidence: 'Modelo de Guia de Remessa de Amostra RBC'
+        },
+        {
+          num: '03',
+          title: 'Critérios de Aceitação, Medição Provisória e Glosa de Medição',
+          content: 'Regras para liberação de medição financeira municipal vinculada à entrega dos certificados de conformidade do lote e conferência de nivelamento milimétrico sob régua de 3 metros.',
+          normReference: 'Lei 14.133/2021, Art. 140',
+          labEvidence: 'Termo de Recebimento Definitivo de Pavimentação'
+        }
+      ],
+      deliverables: [
+        'Check-list de Canteiro e Recebimento de Lote em PDF',
+        'Minuta de Termo de Recebimento Provisório e Definitivo',
+        'Certificado de Conclusão da Trilha de Fiscalização'
+      ]
+    }
   ]
 };
 
@@ -192,7 +336,17 @@ const EngineeringKnowledgeBase = {
 // CAMADA 3 — SERVIÇOS DE DOMÍNIO (DOMAIN SERVICES)
 // ========================================================
 const ViraServices = {
-  // 1. Serviço de Especificação
+  // 1. Serviço de Capacitação Técnica (Academy)
+  academyService: {
+    getTracks() {
+      return EngineeringKnowledgeBase.academyTracks;
+    },
+    getTrackByRole(role) {
+      return EngineeringKnowledgeBase.academyTracks.find(t => t.role === role) || EngineeringKnowledgeBase.academyTracks[0];
+    }
+  },
+
+  // 2. Serviço de Especificação
   specificationService: {
     getSolutionById(id) {
       return EngineeringKnowledgeBase.products.find(p => p.id === id) || null;

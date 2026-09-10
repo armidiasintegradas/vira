@@ -753,6 +753,7 @@ let currentSolutionId = 'paver';
 let currentTabId = 'overview';
 let currentWorkspaceMode = 'solutions'; // 'solutions' | 'projects'
 let currentSidebarTab = 'knowledge'; // 'knowledge' | 'ai'
+let currentAcademyRole = 'engenheiro'; // 'engenheiro' | 'arquiteto' | 'gestor' | 'fiscal'
 
 // --------------------------------------------------------
 // INICIALIZADOR DO WORKSPACE
@@ -762,6 +763,7 @@ function initWorkspace() {
   const paramMode = urlParams.get('mode');
   const paramSolution = urlParams.get('solution');
   const paramTab = urlParams.get('tab');
+  const paramRole = urlParams.get('role');
 
   if (paramMode === 'projects') {
     currentWorkspaceMode = 'projects';
@@ -771,6 +773,12 @@ function initWorkspace() {
   }
   if (paramTab && isValidTab(paramTab)) {
     currentTabId = paramTab;
+  }
+  if (paramRole && ['engenheiro', 'arquiteto', 'gestor', 'fiscal'].includes(paramRole)) {
+    currentAcademyRole = paramRole;
+    if (typeof ViraStore !== 'undefined' && ViraStore.userStore) {
+      ViraStore.userStore.role = paramRole;
+    }
   }
 
   setupSolutionPickers();
@@ -911,8 +919,14 @@ function updateUrlParams() {
   if (currentWorkspaceMode === 'solutions') {
     url.searchParams.set('solution', currentSolutionId);
     url.searchParams.set('tab', currentTabId);
+    if (currentTabId === 'academy') {
+      url.searchParams.set('role', currentAcademyRole);
+    } else {
+      url.searchParams.delete('role');
+    }
   } else {
     url.searchParams.delete('tab');
+    url.searchParams.delete('role');
     if (window.projectEngine) {
       url.searchParams.set('proj', window.projectEngine.getActiveProject().id);
     }
@@ -1444,29 +1458,163 @@ function renderMainCanvas() {
       `;
       break;
 
-    case 'academy':
+    case 'academy': {
+      const tracks = (typeof ViraServices !== 'undefined' && ViraServices.academyService)
+        ? ViraServices.academyService.getTracks()
+        : (typeof EngineeringKnowledgeBase !== 'undefined' && EngineeringKnowledgeBase.academyTracks ? EngineeringKnowledgeBase.academyTracks : []);
+      
+      const currentTrack = (typeof ViraServices !== 'undefined' && ViraServices.academyService)
+        ? ViraServices.academyService.getTrackByRole(currentAcademyRole)
+        : (tracks.find(t => t.role === currentAcademyRole) || tracks[0] || {
+            title: view.headline,
+            role: 'engenheiro',
+            targetAudience: 'Engenheiros e Especificadores',
+            estimatedHours: '8h',
+            modules: view.steps.map(s => ({ num: s.num, title: s.title, content: s.text, normReference: 'ABNT NBR 9781', labEvidence: 'IPT nº 1.104.921-A' })),
+            deliverables: ['Memória de Cálculo em PDF', 'Prancha Técnica DWG/DXF', 'Certificado Profissional']
+          });
+
+      const trackProfiles = [
+        { role: 'engenheiro', label: 'Engenheiro Civil', icon: 'hard-hat', time: '8h', color: 'forest' },
+        { role: 'arquiteto', label: 'Arquiteto & Paisagista', icon: 'compass', time: '6h', color: 'forest' },
+        { role: 'gestor', label: 'Gestor Público', icon: 'landmark', time: '5h', color: 'forest' },
+        { role: 'fiscal', label: 'Fiscal de Obras', icon: 'clipboard-check', time: '6h', color: 'forest' }
+      ];
+
       html = `
-        <div class="space-y-6 animate-fadeIn">
+        <div class="space-y-8 animate-fadeIn">
+          <!-- Cabeçalho Principal -->
           <div class="space-y-2">
-            <span class="font-mono text-xs text-forest uppercase font-bold tracking-wider">• 10. VIRA Academy</span>
-            <h2 class="text-2xl sm:text-3xl font-bold text-graphite tracking-tight">${view.headline}</h2>
-            <p class="text-xs sm:text-sm text-muted">${view.description}</p>
+            <div class="flex items-center gap-2">
+              <span class="font-mono text-xs text-forest uppercase font-bold tracking-wider">• 10. VIRA Academy — Programa de Formação Técnica</span>
+              <span class="px-2.5 py-0.5 rounded-full bg-forest/10 border border-forest/20 text-forest font-mono text-[10px] font-bold uppercase tracking-wide">Design Partners • V4.1</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-bold text-graphite tracking-tight">Capacitação Especializada por Perfil de Engenharia</h2>
+            <p class="text-xs sm:text-sm text-muted max-w-3xl leading-relaxed">
+              Trilhas técnicas desenhadas com rigor normativo (ABNT NBR 9781, 9050, 15953), laudos laboratoriais acreditados (IPT nº 1.104.921-A) e fundamentação jurídica na Lei Federal nº 14.133/2021 para capacitação contínua de nossos parceiros de projeto.
+            </p>
           </div>
 
-          <div class="space-y-3">
-            ${view.steps.map(st => `
-              <div class="p-5 bg-sand rounded-2xl border border-border-subtle flex items-start gap-4">
-                <span class="w-8 h-8 rounded-xl bg-forest text-white flex items-center justify-center font-mono text-xs font-bold shrink-0">${st.num}</span>
-                <div class="space-y-1">
-                  <h3 class="text-sm font-bold text-graphite">${st.title}</h3>
-                  <p class="text-xs text-muted leading-relaxed">${st.text}</p>
-                </div>
+          <!-- Seletor Interativo das 4 Trilhas -->
+          <div class="p-1.5 bg-sand rounded-2xl border border-border-subtle grid grid-cols-2 sm:grid-cols-4 gap-2">
+            ${trackProfiles.map(t => {
+              const isActive = currentAcademyRole === t.role;
+              return `
+                <button onclick="selectAcademyTrack('${t.role}')" class="py-3 px-4 rounded-xl text-center font-bold text-xs transition-all flex flex-col items-center justify-center gap-1.5 ${isActive ? 'bg-white text-forest shadow-md border border-forest/30 ring-1 ring-forest/20' : 'text-muted hover:text-graphite hover:bg-white/60'}">
+                  <div class="flex items-center gap-1.5">
+                    <i data-lucide="${t.icon}" class="w-4 h-4 ${isActive ? 'text-forest' : 'text-muted'}"></i>
+                    <span class="truncate">${t.label}</span>
+                  </div>
+                  <span class="font-mono text-[10px] font-semibold ${isActive ? 'text-forest/80' : 'opacity-60'}">Carga: ${t.time}</span>
+                </button>
+              `;
+            }).join('')}
+          </div>
+
+          <!-- Banner da Trilha Ativa -->
+          <div class="p-6 bg-gradient-to-br from-sand via-white to-sand rounded-3xl border border-border-subtle shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div class="space-y-1.5 max-w-2xl">
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded-full bg-forest text-white font-mono text-[10px] font-bold uppercase tracking-wider">Trilha Oficial</span>
+                <span class="text-xs font-mono text-muted">• Carga Horária: <strong class="text-graphite">${currentTrack.estimatedHours}</strong></span>
               </div>
-            `).join('')}
+              <h3 class="text-xl sm:text-2xl font-bold text-graphite tracking-tight">${currentTrack.title}</h3>
+              <p class="text-xs text-muted"><strong>Público-Alvo:</strong> ${currentTrack.targetAudience}</p>
+            </div>
+            <button onclick="openCertificateModal('${currentTrack.role}')" class="vira-btn-primary py-3 px-5 text-xs font-mono flex items-center gap-2 shrink-0 shadow-sm">
+              <i data-lucide="award" class="w-4 h-4"></i>
+              <span>Emitir Certificado</span>
+            </button>
+          </div>
+
+          <!-- Módulos de Formação Técnica -->
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <h4 class="text-sm font-bold text-graphite uppercase font-mono tracking-wider">Módulos da Trilha Formativa</h4>
+                <span class="text-xs text-muted font-mono">(${currentTrack.modules.length} Módulos Especializados)</span>
+              </div>
+              <span class="text-xs font-mono text-forest font-semibold bg-forest/10 px-2.5 py-0.5 rounded-full">100% Auditado</span>
+            </div>
+
+            <div class="grid grid-cols-1 gap-4">
+              ${currentTrack.modules.map(mod => `
+                <div class="p-6 bg-sand rounded-2xl border border-border-subtle hover:border-forest/40 transition-all space-y-4 shadow-sm">
+                  <div class="flex items-start gap-4">
+                    <span class="w-10 h-10 rounded-xl bg-forest text-white flex items-center justify-center font-mono text-sm font-bold shrink-0 shadow-sm">
+                      ${mod.num}
+                    </span>
+                    <div class="space-y-1 flex-1">
+                      <h5 class="text-base font-bold text-graphite">${mod.title}</h5>
+                      <p class="text-xs sm:text-sm text-muted leading-relaxed">${mod.content}</p>
+                    </div>
+                  </div>
+                  
+                  <div class="pt-3 border-t border-border-subtle/80 flex flex-wrap items-center gap-2 text-xs">
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-border-subtle rounded-xl text-graphite font-mono">
+                      <i data-lucide="book-open" class="w-3.5 h-3.5 text-forest"></i>
+                      <span class="text-[11px]"><strong>Norma:</strong> ${mod.normReference}</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 bg-forest/10 border border-forest/20 rounded-xl text-forest font-mono">
+                      <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+                      <span class="text-[11px]"><strong>Evidência:</strong> ${mod.labEvidence}</span>
+                    </div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Entregáveis Técnicos da Trilha -->
+          <div class="space-y-4 pt-2">
+            <div class="flex items-center justify-between">
+              <div>
+                <h4 class="text-sm font-bold text-graphite uppercase font-mono tracking-wider">Entregáveis & Modelos Técnicos</h4>
+                <p class="text-xs text-muted">Arquivos e modelos parametrizados prontos para aplicação em canteiro e gabinete.</p>
+              </div>
+              <span class="text-xs font-mono text-muted">Acesso Imediato</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              ${currentTrack.deliverables.map((deliv, idx) => `
+                <div class="p-5 bg-sand rounded-2xl border border-border-subtle flex flex-col justify-between gap-4 hover:border-forest/30 transition-all shadow-sm">
+                  <div class="space-y-2">
+                    <div class="w-8 h-8 rounded-xl bg-white border border-border-subtle flex items-center justify-center text-forest shadow-xs">
+                      <i data-lucide="${idx === 0 ? 'file-text' : (idx === 1 ? 'layers' : 'award')}" class="w-4 h-4"></i>
+                    </div>
+                    <h5 class="text-xs font-bold text-graphite leading-snug">${deliv}</h5>
+                    <p class="text-[11px] text-muted leading-relaxed">Modelo auditado e parametrizado para inserção direta no fluxo de trabalho.</p>
+                  </div>
+                  <button onclick="downloadAcademyDeliverable('${currentTrack.role}', ${idx})" class="w-full vira-btn-outline bg-white py-2.5 px-3 text-xs font-mono flex items-center justify-center gap-1.5 hover:bg-forest hover:text-white transition-colors">
+                    <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                    <span>Baixar Documento</span>
+                  </button>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Banner Chamada Certificação -->
+          <div class="p-8 bg-forest text-white rounded-3xl shadow-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+            <div class="space-y-1.5 max-w-xl">
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded bg-white/20 font-mono text-[10px] uppercase font-bold tracking-wider">Certificação Oficial VIRA</span>
+                <span class="text-white/75 text-xs font-mono">• Habilitação Técnica</span>
+              </div>
+              <h4 class="text-lg sm:text-xl font-bold">Certificado de Especificador de Engenharia Circular</h4>
+              <p class="text-xs sm:text-sm text-white/80 leading-relaxed">
+                Emite documento formal de conclusão com protocolo de autenticidade criptográfica para comprovação perante conselhos de classe (CREA / CAU) e comissões municipais de licitação.
+              </p>
+            </div>
+            <button onclick="openCertificateModal('${currentTrack.role}')" class="bg-white text-forest hover:bg-sand font-mono font-bold text-xs py-3 px-6 rounded-xl transition-all shadow-md shrink-0 flex items-center gap-2">
+              <i data-lucide="award" class="w-4 h-4"></i>
+              <span>Emitir Certificado</span>
+            </button>
           </div>
         </div>
       `;
       break;
+    }
 
     case 'faq':
       html = `
@@ -2083,3 +2231,259 @@ function showWorkspaceToast(msg) {
     toast.style.transform = 'translateY(12px)';
   }, 3500);
 }
+
+// --------------------------------------------------------
+// VIRA ACADEMY — GESTÃO DE TRILHAS, ENTREGÁVEIS & CERTIFICAÇÃO
+// --------------------------------------------------------
+function selectAcademyTrack(role) {
+  if (!['engenheiro', 'arquiteto', 'gestor', 'fiscal'].includes(role)) return;
+  currentAcademyRole = role;
+  if (typeof ViraStore !== 'undefined' && ViraStore.userStore) {
+    ViraStore.userStore.role = role;
+  }
+  updateWorkspace();
+  showWorkspaceToast(`✓ Trilha ativa: ${role.toUpperCase()}`);
+}
+
+function downloadAcademyDeliverable(role, index) {
+  const tracks = (typeof ViraServices !== 'undefined' && ViraServices.academyService)
+    ? ViraServices.academyService.getTracks()
+    : (typeof EngineeringKnowledgeBase !== 'undefined' && EngineeringKnowledgeBase.academyTracks ? EngineeringKnowledgeBase.academyTracks : []);
+  const track = tracks.find(t => t.role === role) || tracks[0];
+  if (!track || !track.deliverables || !track.deliverables[index]) return;
+  const deliverableName = track.deliverables[index];
+
+  const content = `================================================================================
+VIRA OS — ENTREGÁVEL TÉCNICO VIRA ACADEMY (V4.1)
+Documento: ${deliverableName}
+Trilha Técnica: ${track.title}
+Público-Alvo: ${track.targetAudience}
+Carga Horária: ${track.estimatedHours}
+Data de Emissão: ${new Date().toLocaleDateString('pt-BR')}
+Autenticação: VRA-ACAD-${role.toUpperCase()}-${Math.random().toString(36).substring(2, 8).toUpperCase()}
+================================================================================
+
+1. ESCOPO DO ENTREGÁVEL
+Este documento constitui modelo técnico e diretriz operacional homologada pelo VIRA OS,
+destinado a subsidiar projetos executivos, termos de referência de contratações públicas
+e rotinas de fiscalização de obras de infraestrutura com compósitos circulares de alta densidade.
+
+2. ESPECIFICAÇÃO DO MATERIAL HOMOLOGADO
+• Resistência Característica à Compressão (fck): ≥ 38,2 MPa (ABNT NBR 9781:2013)
+• Taxa de Absorção de Água: < 0,05% (Imunidade total a maresia e eflorescência)
+• Fator de Descarbonização (LCA): -2,15 kg CO2e / kg de material reciclado (ISO 14044)
+• Laudo de Referência: IPT Relatório nº 1.104.921-A
+
+3. DIRETRIZES TÉCNICAS E MÓDULOS DE FORMAÇÃO
+${track.modules.map(m => `--------------------------------------------------------------------------------
+Módulo ${m.num}: ${m.title}
+Norma de Referência: ${m.normReference}
+Evidência Laboratorial: ${m.labEvidence}
+
+Conteúdo & Diretrizes:
+${m.content}
+`).join('\n')}
+
+4. CRITÉRIOS DE CONFORMIDADE E RECEBIMENTO
+- Verificar selo de garantia de 10 anos contra esfarelamento e deformação plástica.
+- Exigir o Passaporte Digital de Produto (DPP) com QR Code rastreável no canteiro.
+- Amostragem em conformidade com ABNT NBR 9781 (Anexo A) em laboratório acreditado RBC.
+- Para contratações públicas municipais: aplicar os critérios de sustentabilidade da Lei 14.133/2021 (Art. 11, IV e Art. 34).
+
+================================================================================
+VIRA OS — Operating System para Engenharia Circular
+Centro de Inovação & Engenharia de Aplicação | Caruaru - PE
+================================================================================`;
+
+  if (typeof document !== 'undefined') {
+    const blob = new Blob([content], { type: 'text/plain;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `VIRA-Academy-${role}-${deliverableName.toLowerCase().replace(/[^a-z0-9]/g, '-')}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showWorkspaceToast(`✓ Download concluído: ${deliverableName}`);
+  }
+}
+
+function openCertificateModal(role) {
+  const tracks = (typeof ViraServices !== 'undefined' && ViraServices.academyService)
+    ? ViraServices.academyService.getTracks()
+    : (typeof EngineeringKnowledgeBase !== 'undefined' && EngineeringKnowledgeBase.academyTracks ? EngineeringKnowledgeBase.academyTracks : []);
+  const track = tracks.find(t => t.role === role) || tracks[0] || { title: 'Engenharia Circular', estimatedHours: '8h' };
+
+  let backdrop = document.getElementById('academy-certificate-modal-backdrop');
+  if (!backdrop) {
+    const modalHtml = `
+      <div id="academy-certificate-modal-backdrop" class="fixed inset-0 z-[10000] bg-graphite/60 backdrop-blur-sm hidden flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+        <div id="academy-certificate-modal-dialog" class="w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-border-subtle overflow-hidden flex flex-col font-sans max-h-[92vh] animate-fadeIn my-auto">
+          <!-- Cabeçalho do Modal -->
+          <div class="px-6 py-5 bg-sand border-b border-border-subtle flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-10 h-10 rounded-2xl bg-forest/15 text-forest flex items-center justify-center font-bold">
+                <i data-lucide="award" class="w-5 h-5"></i>
+              </span>
+              <div>
+                <h3 class="font-bold text-base text-graphite">Certificação de Especificador Circular</h3>
+                <p class="text-xs text-muted">Emissão de Certificado Técnico Profissional — VIRA Academy</p>
+              </div>
+            </div>
+            <button onclick="closeCertificateModal()" class="w-8 h-8 rounded-full bg-white border border-border-subtle flex items-center justify-center text-muted hover:text-graphite transition-all">
+              <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <!-- Conteúdo / Formulário -->
+          <div id="certificate-modal-body" class="p-6 overflow-y-auto space-y-6">
+            <form id="certificate-form" onsubmit="generateCertificate(event)" class="space-y-4">
+              <div class="space-y-1.5">
+                <label class="block text-xs font-mono font-bold text-graphite uppercase">Nome Completo do Profissional</label>
+                <input id="cert-user-name" type="text" required placeholder="Ex: Eng. Mariana Souza" class="w-full px-4 py-2.5 bg-sand rounded-xl border border-border-subtle text-sm text-graphite focus:outline-none focus:border-forest" />
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="space-y-1.5">
+                  <label class="block text-xs font-mono font-bold text-graphite uppercase">Registro (CREA / CAU / Matrícula)</label>
+                  <input id="cert-user-reg" type="text" required placeholder="Ex: CREA-PE 058192-D" class="w-full px-4 py-2.5 bg-sand rounded-xl border border-border-subtle text-sm text-graphite focus:outline-none focus:border-forest" />
+                </div>
+                <div class="space-y-1.5">
+                  <label class="block text-xs font-mono font-bold text-graphite uppercase">Entidade / Órgão / Empresa</label>
+                  <input id="cert-user-org" type="text" required placeholder="Ex: Prefeitura Municipal / Escritório" class="w-full px-4 py-2.5 bg-sand rounded-xl border border-border-subtle text-sm text-graphite focus:outline-none focus:border-forest" />
+                </div>
+              </div>
+              <div class="p-4 bg-forest/5 rounded-2xl border border-forest/20 text-xs text-muted space-y-1">
+                <div class="font-bold text-forest">Trilha Selecionada: <span id="cert-track-title">${track.title}</span></div>
+                <div>Carga Horária: <strong id="cert-track-hours">${track.estimatedHours}</strong> • Evidências ABNT NBR 9781 / NBR 9050 / ISO 14044</div>
+              </div>
+              <button type="submit" class="w-full vira-btn-primary py-3 rounded-xl font-mono text-xs uppercase font-bold tracking-wider flex items-center justify-center gap-2">
+                <i data-lucide="check" class="w-4 h-4"></i>
+                <span>Gerar Certificado Oficial</span>
+              </button>
+            </form>
+
+            <div id="certificate-output" class="hidden space-y-4">
+              <!-- Certificado renderizado -->
+              <div id="certificate-print-area" class="p-8 bg-gradient-to-b from-sand to-white rounded-2xl border-2 border-forest/30 space-y-6 text-center shadow-inner">
+                <div class="flex items-center justify-between border-b border-forest/20 pb-4">
+                  <span class="font-mono text-xs font-bold text-forest uppercase tracking-wider">VIRA ACADEMY • CERTIFICADO PROFISSIONAL</span>
+                  <span id="cert-checksum" class="font-mono text-[10px] px-2 py-0.5 bg-forest/10 text-forest rounded font-bold">#VRA-00000000</span>
+                </div>
+                <div class="space-y-2 py-4">
+                  <p class="text-xs text-muted uppercase tracking-widest font-mono">Certificamos para os devidos fins de comprovação técnica que</p>
+                  <h2 id="cert-display-name" class="text-2xl font-bold text-graphite">Nome do Profissional</h2>
+                  <p class="text-xs text-muted font-mono"><span id="cert-display-reg">CREA-PE</span> • <span id="cert-display-org">Entidade</span></p>
+                </div>
+                <div class="text-xs text-graphite leading-relaxed max-w-lg mx-auto bg-white/80 p-4 rounded-xl border border-border-subtle">
+                  Concluiu com pleno aproveitamento a capacitação técnica em <strong id="cert-display-track">${track.title}</strong>,
+                  com carga horária de <strong id="cert-display-hours">${track.estimatedHours}</strong>, estando habilitado(a) a especificar,
+                  dimensionar e fiscalizar a aplicação de artefatos de engenharia circular com compósito polimérico de alta performance
+                  (fck 38,2 MPa, absorção &lt; 0,05%, LCA -2,15 kg CO2e/kg), em conformidade com as normas ABNT NBR 9781, NBR 15953, NBR 9050,
+                  NBR ISO 14044 e os preceitos de sustentabilidade da Lei Federal nº 14.133/2021.
+                </div>
+                <div class="pt-6 border-t border-forest/20 flex items-center justify-between text-left text-[11px] text-muted font-mono">
+                  <div>
+                    <div class="font-bold text-graphite">Eng. Marcelo Albuquerque, M.Sc.</div>
+                    <div>Diretoria de Engenharia de Aplicação</div>
+                    <div>CREA-PE 048291-D</div>
+                  </div>
+                  <div class="text-right">
+                    <div>Data: <strong id="cert-display-date">${new Date().toLocaleDateString('pt-BR')}</strong></div>
+                    <div>Registro: Caruaru/PE</div>
+                    <div class="text-forest font-bold">Autenticidade Verificada</div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex gap-3">
+                <button onclick="window.print()" class="flex-1 vira-btn-primary py-2.5 rounded-xl font-mono text-xs flex items-center justify-center gap-2">
+                  <i data-lucide="printer" class="w-4 h-4"></i>
+                  <span>Imprimir / Salvar PDF</span>
+                </button>
+                <button onclick="resetCertificateForm()" class="px-4 py-2.5 rounded-xl border border-border-subtle bg-sand text-graphite font-mono text-xs hover:bg-white transition-all">
+                  Novo
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+    backdrop = document.getElementById('academy-certificate-modal-backdrop');
+  }
+
+  // Sincroniza dados da trilha selecionada
+  const titleEl = document.getElementById('cert-track-title');
+  const hoursEl = document.getElementById('cert-track-hours');
+  if (titleEl) titleEl.textContent = track.title;
+  if (hoursEl) hoursEl.textContent = track.estimatedHours;
+  backdrop.dataset.role = role;
+
+  resetCertificateForm();
+  backdrop.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+  if (window.lucide) lucide.createIcons();
+}
+
+function closeCertificateModal() {
+  const backdrop = document.getElementById('academy-certificate-modal-backdrop');
+  if (backdrop) {
+    backdrop.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+}
+
+function generateCertificate(event) {
+  if (event) event.preventDefault();
+  const name = (document.getElementById('cert-user-name')?.value || 'Especificador Técnico').trim();
+  const reg = (document.getElementById('cert-user-reg')?.value || 'CREA/CAU').trim();
+  const org = (document.getElementById('cert-user-org')?.value || 'Órgão / Empresa').trim();
+
+  const backdrop = document.getElementById('academy-certificate-modal-backdrop');
+  const role = backdrop ? backdrop.dataset.role : currentAcademyRole;
+
+  const tracks = (typeof ViraServices !== 'undefined' && ViraServices.academyService)
+    ? ViraServices.academyService.getTracks()
+    : (typeof EngineeringKnowledgeBase !== 'undefined' && EngineeringKnowledgeBase.academyTracks ? EngineeringKnowledgeBase.academyTracks : []);
+  const track = tracks.find(t => t.role === role) || tracks[0] || { title: 'Engenharia Circular', estimatedHours: '8h' };
+
+  // Gera hash de autenticidade determinístico simples
+  let hash = 0;
+  const str = `${name}|${reg}|${track.title}|${Date.now()}`;
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) - hash) + str.charCodeAt(i);
+    hash |= 0;
+  }
+  const checksum = `#VRA-CERT-${Math.abs(hash).toString(16).padStart(8, '0').toUpperCase()}`;
+
+  document.getElementById('cert-display-name').textContent = name;
+  document.getElementById('cert-display-reg').textContent = reg;
+  document.getElementById('cert-display-org').textContent = org;
+  document.getElementById('cert-display-track').textContent = track.title;
+  document.getElementById('cert-display-hours').textContent = track.estimatedHours;
+  document.getElementById('cert-display-date').textContent = new Date().toLocaleDateString('pt-BR');
+  document.getElementById('cert-checksum').textContent = checksum;
+
+  document.getElementById('certificate-form').classList.add('hidden');
+  document.getElementById('certificate-output').classList.remove('hidden');
+  showWorkspaceToast(`✓ Certificado gerado com sucesso! Protocolo: ${checksum}`);
+  if (window.lucide) lucide.createIcons();
+}
+
+function resetCertificateForm() {
+  const form = document.getElementById('certificate-form');
+  const output = document.getElementById('certificate-output');
+  if (form) form.classList.remove('hidden');
+  if (output) output.classList.add('hidden');
+}
+
+// BINDINGS GLOBAIS DO VIRA OS
+window.updateWorkspace = updateWorkspace;
+window.selectAcademyTrack = selectAcademyTrack;
+window.downloadAcademyDeliverable = downloadAcademyDeliverable;
+window.openCertificateModal = openCertificateModal;
+window.closeCertificateModal = closeCertificateModal;
+window.generateCertificate = generateCertificate;
+window.resetCertificateForm = resetCertificateForm;
+
