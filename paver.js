@@ -1,7 +1,13 @@
+const hardeningStylesheet=document.createElement("link");
+hardeningStylesheet.rel="stylesheet";
+hardeningStylesheet.href="paver-hardening.css?v=20260909-hardening-1";
+document.head.append(hardeningStylesheet);
+
 document.addEventListener("DOMContentLoaded",()=>{
-  const heroMeta=document.querySelector(".hero-meta");
-  const syncHeroMeta=()=>{if(heroMeta)heroMeta.hidden=innerWidth<=700};
-  addEventListener("resize",syncHeroMeta);syncHeroMeta();
+  const heroImage=document.querySelector(".paver-hero .hero-media img");
+  const applicationsImage=document.querySelector(".applications-media img");
+  if(heroImage){heroImage.src="assets/hero-paver-orla-menina-v10.webp";heroImage.alt="Paver VIRA aplicado em passeio urbano"}
+  if(applicationsImage){applicationsImage.src="assets/produto-paver-brasil-v1.webp";applicationsImage.alt="Detalhe de aplicação do Paver VIRA"}
 
   const area=document.querySelector("#paver-area");
   const areaValue=document.querySelector("#paver-area-value");
@@ -9,6 +15,8 @@ document.addEventListener("DOMContentLoaded",()=>{
   const plastic=document.querySelector("#calc-plastic");
   const slag=document.querySelector("#calc-slag");
   const formArea=document.querySelector("#form-area");
+  const projectType=document.querySelector("#project-type");
+  const specApplication=document.querySelector("#paver-spec-form select[name='aplicacao']");
   const formatKg=value=>`${Math.round(value).toLocaleString("pt-BR")} kg`;
   const updateCalc=()=>{
     const sqm=Number(area.value);
@@ -19,19 +27,24 @@ document.addEventListener("DOMContentLoaded",()=>{
     plastic.textContent=formatKg(plasticKg);
     slag.textContent=formatKg(totalKg-plasticKg);
     formArea.value=`${sqm.toLocaleString("pt-BR")} m²`;
+    area.setAttribute("aria-valuetext",`${sqm.toLocaleString("pt-BR")} metros quadrados`);
   };
+  const syncApplication=()=>{if(projectType&&specApplication)specApplication.value=projectType.value};
   area.addEventListener("input",updateCalc);
+  projectType?.addEventListener("change",syncApplication);
   document.querySelectorAll("[data-area]").forEach(button=>button.addEventListener("click",()=>{area.value=button.dataset.area;updateCalc()}));
-  updateCalc();
+  updateCalc();syncApplication();
 
   document.querySelectorAll(".faq details").forEach(item=>item.addEventListener("toggle",()=>{
     if(item.open)document.querySelectorAll(".faq details").forEach(other=>{if(other!==item)other.open=false});
   }));
 
   const dialog=document.querySelector("#passport-dialog");
-  document.querySelector("#passport-demo").addEventListener("click",()=>dialog.showModal());
-  document.querySelector("#passport-close").addEventListener("click",()=>dialog.close());
-  dialog.addEventListener("click",event=>{if(event.target===dialog)dialog.close()});
+  const passportDemo=document.querySelector("#passport-demo");
+  const passportClose=document.querySelector("#passport-close");
+  passportDemo?.addEventListener("click",()=>dialog?.showModal());
+  passportClose?.addEventListener("click",()=>dialog?.close());
+  dialog?.addEventListener("click",event=>{if(event.target===dialog)dialog.close()});
 
   const form=document.querySelector("#paver-spec-form");
   const status=document.querySelector("#form-status");
@@ -64,4 +77,6 @@ ${data.get("mensagem")||"Não informado"}`
     },{rootMargin:"-35% 0px -55% 0px",threshold:[0,.25,.5,1]});
     sections.forEach(section=>observer.observe(section));
   }
+
+  document.body.classList.add("paver-ready");
 });
