@@ -228,6 +228,9 @@ function initProductDrawer() {
     backdrop.classList.add('open');
     panel.classList.add('open');
     document.body.style.overflow = 'hidden';
+    if (window.lucide) {
+      window.lucide.createIcons({ attrs: { 'stroke-width': 1.75 } });
+    }
   };
 
   if (closeBtn) closeBtn.addEventListener('click', window.closeProductDrawer);
