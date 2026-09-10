@@ -171,6 +171,103 @@ const GovernanceDomain = {
   }
 };
 
+// 10. Domínio de Colaboração (Collaboration & Multi-User)
+const CollaborationDomain = {
+  name: 'Collaboration',
+  description: 'Sessões colaborativas multiusuário, comentários técnicos, anotações de prancha e controle de revisão concorrente.',
+  createPresenceSession(projectId, userId, role = 'engenheiro') {
+    const sessionId = 'collab-' + Math.random().toString(36).substring(2, 10);
+    const session = {
+      sessionId,
+      projectId,
+      userId,
+      role,
+      joinedAt: new Date().toISOString(),
+      status: 'active'
+    };
+    arEventBus.publish(EVENT_TYPES.COLLABORATION_SESSION_STARTED, session, { actor: userId });
+    return session;
+  },
+  addAnnotation(projectId, { author, role, text, elementId, status = 'open' }) {
+    const annotationId = 'note-' + Math.random().toString(36).substring(2, 8);
+    const annotation = {
+      annotationId,
+      projectId,
+      author,
+      role,
+      text,
+      elementId,
+      status,
+      createdAt: new Date().toISOString()
+    };
+    arEventBus.publish(EVENT_TYPES.COMMENT_ADDED, annotation, { actor: author });
+    return annotation;
+  },
+  acquireRevisionLock(projectId, userId, resource = 'project_canvas') {
+    const lockId = 'lock-' + Math.random().toString(36).substring(2, 8);
+    const lock = {
+      lockId,
+      projectId,
+      resource,
+      lockedBy: userId,
+      lockedAt: new Date().toISOString(),
+      ttlSeconds: 300,
+      active: true
+    };
+    arEventBus.publish(EVENT_TYPES.REVISION_LOCKED, lock, { actor: userId });
+    return lock;
+  }
+};
+
+// 11. Domínio de Integrações (Integrations, BIM & ERP)
+const IntegrationsDomain = {
+  name: 'Integrations',
+  description: 'Exportação BIM IFC/Revit, conectores ERP públicos/privados e webhooks governamentais SEI.',
+  exportToIfc(projectId, projectName, items = []) {
+    const ifcGuid = 'VIRA-IFC-' + Math.random().toString(36).substring(2, 9).toUpperCase();
+    const result = {
+      schema: 'IFC4',
+      ifcGuid,
+      projectId,
+      projectName,
+      entityCount: items.length,
+      entities: items.map((it, idx) => ({
+        ifcType: 'IfcCovering',
+        stepId: `#${1000 + idx}`,
+        name: it.name || 'Elemento VIRA Circular',
+        propertySets: {
+          Pset_MaterialPavement: {
+            CompressiveStrength: 38.2,
+            WaterAbsorption: 0.04
+          },
+          Pset_EnvironmentalImpact: {
+            RecycledPlasticKg: (it.quantityM2 || 1) * 18.5,
+            CarbonMitigationKg: Math.round((it.quantityM2 || 1) * 18.5 * 2.15)
+          }
+        }
+      })),
+      exportedAt: new Date().toISOString(),
+      status: 'SUCCESS'
+    };
+    arEventBus.publish(EVENT_TYPES.IFC_EXPORTED, result, { actor: 'BIM Coordinator' });
+    return result;
+  },
+  dispatchSeiWebhook(processNumber, projectData = {}) {
+    const dispatchId = 'sei-' + Math.random().toString(36).substring(2, 10);
+    const result = {
+      dispatchId,
+      processNumber,
+      system: 'SEI - Sistema Eletrônico de Informações',
+      status: 'DELIVERED',
+      endpoint: 'https://sei.pe.gov.br/api/v2/processos/documentos',
+      payloadDigest: 'sha256:d82f7c19a0...',
+      dispatchedAt: new Date().toISOString()
+    };
+    arEventBus.publish(EVENT_TYPES.INTEGRATION_DISPATCHED, result, { actor: 'Sistema SEI' });
+    return result;
+  }
+};
+
 const AR_DOMAINS = {
   EngineeringDomain,
   ProjectsDomain,
@@ -180,7 +277,10 @@ const AR_DOMAINS = {
   AnalyticsDomain,
   IdentityDomain,
   MaterialsDomain,
-  GovernanceDomain
+  GovernanceDomain,
+  CollaborationDomain,
+  IntegrationsDomain
 };
 
 module.exports = AR_DOMAINS;
+

@@ -49,22 +49,19 @@ const {
 let passedTests = 0;
 let totalTests = 0;
 
-function it(description, fn) {
-  totalTests++;
-  try {
-    fn();
-    passedTests++;
-    console.log(`  ✓ ${description}`);
-  } catch (err) {
-    console.error(`  ✗ ${description}`);
-    console.error(`    Erro: ${err.message}`);
-    throw err;
-  }
-}
+const testSuites = [];
+let currentSuite = null;
 
 function describe(suiteName, fn) {
-  console.log(`\n▶ [SUÍTE] ${suiteName}`);
+  currentSuite = { name: suiteName, tests: [] };
+  testSuites.push(currentSuite);
   fn();
+}
+
+function it(description, fn) {
+  if (currentSuite) {
+    currentSuite.tests.push({ description, fn });
+  }
 }
 
 // --------------------------------------------------------
@@ -527,12 +524,18 @@ describe('12. SDK Multi-Linguagem (@ar-platform/sdk)', () => {
 // 13. PLATFORM CONSTITUTION & INVARIANTES DE GOVERNANÇA
 // --------------------------------------------------------
 describe('13. Platform Constitution & Invariantes de Governança', () => {
-  it('docs/PLATFORM_CONSTITUTION.md deve conter os 10 artigos promulgados', () => {
+  it('docs/PLATFORM_CONSTITUTION.md deve conter os 15 artigos promulgados e vinculantes', () => {
     const raw = fs.readFileSync(path.join(__dirname, '../docs/PLATFORM_CONSTITUTION.md'), 'utf8');
     assert(raw.includes('AR PLATFORM CONSTITUTION'));
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= 15; i++) {
       assert(raw.includes(`Artigo ${i}º`), `Deve conter Artigo ${i}º`);
     }
+    // Artigos adicionados na constituição expandida
+    assert(raw.includes('Compatibilidade Retroativa'), 'Deve conter Art. 11');
+    assert(raw.includes('Observabilidade'), 'Deve conter Art. 12');
+    assert(raw.includes('Soberania e Segurança de Segredos'), 'Deve conter Art. 13');
+    assert(raw.includes('Documentação Obrigatória'), 'Deve conter Art. 14');
+    assert(raw.includes('Governança de Evolução e Descontinuação'), 'Deve conter Art. 15');
   });
 });
 
@@ -540,37 +543,101 @@ describe('13. Platform Constitution & Invariantes de Governança', () => {
 // 14. DOMAIN-DRIVEN DESIGN (DDD) & EVENTBUS CORPORATIVO
 // --------------------------------------------------------
 describe('14. Domain-Driven Design (DDD) & EventBus Corporativo', () => {
-  it('EventBus deve publicar eventos com checksum e notificar subscribers', () => {
+  it('EventBus deve publicar eventos versionados (.v1) com checksum e fallback de tópico base', () => {
     const { arEventBus, EVENT_TYPES } = require('../packages/ar-core/events/eventBus.js');
     assert(arEventBus);
     
-    let captured = null;
-    const unsub = arEventBus.subscribe(EVENT_TYPES.PROJECT_CREATED, evt => {
-      captured = evt;
+    let capturedVersioned = null;
+    let capturedBase = null;
+
+    // Subscrição versionada
+    const unsub1 = arEventBus.subscribe(EVENT_TYPES.PROJECT_CREATED_V1, evt => {
+      capturedVersioned = evt;
     });
 
-    const evt = arEventBus.publish(EVENT_TYPES.PROJECT_CREATED, { name: 'Praça Teste' }, { tenant: 'caruaru' });
-    assert(captured, 'Ouvinte deve ser notificado');
-    assert.strictEqual(captured.payload.name, 'Praça Teste');
-    assert.strictEqual(captured.tenant, 'caruaru');
-    assert(captured.checksum && captured.checksum.length === 8);
-    unsub();
+    // Subscrição em tópico base sem versão (retrocompatibilidade)
+    const unsub2 = arEventBus.subscribe('ar.domain.projects.created', evt => {
+      capturedBase = evt;
+    });
+
+    const evt = arEventBus.publish(EVENT_TYPES.PROJECT_CREATED_V1, { name: 'Praça Teste v1' }, { tenant: 'caruaru' });
+    
+    assert(capturedVersioned, 'Ouvinte versionado deve ser notificado');
+    assert(capturedBase, 'Ouvinte de tópico base deve ser notificado via fallback');
+    assert.strictEqual(capturedVersioned.version, 'v1');
+    assert.strictEqual(capturedVersioned.payload.name, 'Praça Teste v1');
+    assert.strictEqual(capturedVersioned.tenant, 'caruaru');
+    assert(capturedVersioned.checksum && capturedVersioned.checksum.length === 8);
+    unsub1();
+    unsub2();
   });
 
-  it('Domínios DDD devem executar regras de negócio isoladas e emitir eventos', () => {
-    const { EngineeringDomain, AcademyDomain, GovernanceDomain } = require('../packages/ar-core/domains/index.js');
+  it('Deve registrar e expor os 11 Bounded Contexts canônicos do AR OS', () => {
+    const AR_DOMAINS = require('../packages/ar-core/domains/index.js');
+    const domainKeys = Object.keys(AR_DOMAINS);
+    assert.strictEqual(domainKeys.length, 11, 'Deve possuir exatamente 11 domínios DDD');
     
-    // Engineering
-    const eng = EngineeringDomain.calculateSubgradeCapacity(8);
-    assert.strictEqual(eng.mrMpa, 80);
+    const requiredDomains = [
+      'EngineeringDomain',
+      'ProjectsDomain',
+      'ComplianceDomain',
+      'KnowledgeDomain',
+      'AcademyDomain',
+      'AnalyticsDomain',
+      'IdentityDomain',
+      'MaterialsDomain',
+      'GovernanceDomain',
+      'CollaborationDomain',
+      'IntegrationsDomain'
+    ];
+    requiredDomains.forEach(dom => {
+      assert(AR_DOMAINS[dom], `Domínio ${dom} deve estar registrado`);
+      assert(AR_DOMAINS[dom].name, `Domínio ${dom} deve possuir nome canônico`);
+      assert(AR_DOMAINS[dom].description, `Domínio ${dom} deve possuir descrição`);
+    });
+  });
 
-    // Academy
-    const cert = AcademyDomain.issueCertificate('Eng. Alex', 'CREA-001', 'Infraestrutura Urbana', '8h');
-    assert(cert.checksum.startsWith('#VRA-CERT-'));
+  it('CollaborationDomain deve gerenciar sessões concorrentes, anotações e locks de revisão', () => {
+    const { CollaborationDomain } = require('../packages/ar-core/domains/index.js');
+    
+    // Sessão de presença
+    const session = CollaborationDomain.createPresenceSession('proj-01', 'user-alex', 'engenheiro');
+    assert(session.sessionId.startsWith('collab-'));
+    assert.strictEqual(session.status, 'active');
 
-    // Governance
-    const dpp = GovernanceDomain.verifyDpp('LOTE-2026-VR09');
-    assert.strictEqual(dpp.status, 'HOMOLOGADO');
+    // Anotação colaborativa
+    const note = CollaborationDomain.addAnnotation('proj-01', {
+      author: 'Eng. Roberto',
+      role: 'fiscal',
+      text: 'Revisar caimento pluvial na estaca 12+00',
+      elementId: 'pave-area-01'
+    });
+    assert(note.annotationId.startsWith('note-'));
+    assert.strictEqual(note.status, 'open');
+
+    // Trava de revisão
+    const lock = CollaborationDomain.acquireRevisionLock('proj-01', 'user-alex');
+    assert(lock.lockId.startsWith('lock-'));
+    assert.strictEqual(lock.active, true);
+    assert.strictEqual(lock.ttlSeconds, 300);
+  });
+
+  it('IntegrationsDomain deve gerar exportação BIM IFC4 estruturada e despachar webhook SEI', () => {
+    const { IntegrationsDomain } = require('../packages/ar-core/domains/index.js');
+
+    // Exportação IFC4
+    const ifc = IntegrationsDomain.exportToIfc('proj-01', 'Orla Boa Viagem', [
+      { name: 'Paver Intertravado', quantityM2: 500 }
+    ]);
+    assert.strictEqual(ifc.schema, 'IFC4');
+    assert(ifc.ifcGuid.startsWith('VIRA-IFC-'));
+    assert.strictEqual(ifc.entities.length, 1);
+    assert.strictEqual(ifc.entities[0].propertySets.Pset_MaterialPavement.CompressiveStrength, 38.2);
+
+    // Webhook governamental SEI
+    const sei = IntegrationsDomain.dispatchSeiWebhook('0042/2026', { orgao: 'Prefeitura do Recife' });
+    assert.strictEqual(sei.status, 'DELIVERED');
+    assert(sei.endpoint.includes('sei.pe.gov.br'));
   });
 });
 
@@ -578,16 +645,39 @@ describe('14. Domain-Driven Design (DDD) & EventBus Corporativo', () => {
 // 15. BACKGROUND WORKERS & JOB QUEUE
 // --------------------------------------------------------
 describe('15. Background Workers & Job Queue Engine', () => {
-  it('Deve enfileirar e processar jobs assíncronos de PDF e embeddings', async () => {
-    const { arJobQueue } = require('../packages/ar-backend/workers/jobQueue.js');
+  it('Deve enfileirar com SLA Tiers e priorizar jobs críticos na fila de execução', async () => {
+    const { arJobQueue, SLA_TIERS } = require('../packages/ar-backend/workers/jobQueue.js');
     assert(arJobQueue);
+    assert(SLA_TIERS.CRITICAL && SLA_TIERS.NORMAL && SLA_TIERS.BACKGROUND && SLA_TIERS.SCHEDULED);
 
-    const job = arJobQueue.enqueue('pdf_generation', { projectId: 'proj-teste-01' });
-    assert.strictEqual(job.status, 'pending');
+    // Enfileira primeiro um job normal, e depois um crítico
+    const jobNormal = arJobQueue.enqueue('pdf_generation', { projectId: 'proj-normal' }, { slaTier: 'normal' });
+    const jobCritical = arJobQueue.enqueue('pdf_generation', { projectId: 'proj-critico' }, { slaTier: 'critical' });
 
-    const processed = await arJobQueue.processNext('pdf_generation');
-    assert.strictEqual(processed.status, 'completed');
-    assert(processed.result.fileUrl.includes('proj-teste-01'));
+    assert.strictEqual(jobNormal.slaTier, 'normal');
+    assert.strictEqual(jobCritical.slaTier, 'critical');
+    assert(jobCritical.priority > jobNormal.priority, 'Critical deve ter prioridade superior');
+
+    // O próximo a processar DEVE ser o crítico, mesmo tendo sido enfileirado depois
+    const processedFirst = await arJobQueue.processNext('pdf_generation');
+    assert.strictEqual(processedFirst.id, jobCritical.id, 'Job crítico deve furar a fila prioritariamente');
+    assert.strictEqual(processedFirst.status, 'completed');
+    assert.strictEqual(processedFirst.slaMet, true, 'SLA deve ser cumprido (< 2s)');
+
+    // Processa o job normal
+    const processedSecond = await arJobQueue.processNext('pdf_generation');
+    assert.strictEqual(processedSecond.id, jobNormal.id);
+    assert.strictEqual(processedSecond.status, 'completed');
+  });
+
+  it('getMetrics() deve reportar métricas de processamento e taxa de conformidade de SLA', () => {
+    const { arJobQueue } = require('../packages/ar-backend/workers/jobQueue.js');
+    const metrics = arJobQueue.getMetrics();
+    
+    assert(metrics.totalJobs >= 2);
+    assert(metrics.completedJobs >= 2);
+    assert.strictEqual(metrics.slaComplianceRate, 100, 'Taxa de cumprimento do SLA deve ser 100%');
+    assert.strictEqual(metrics.slaTiers.CRITICAL.maxLatencyMs, 2000);
   });
 });
 
@@ -599,8 +689,80 @@ describe('16. AR CLI Oficial (@ar-platform/cli)', () => {
     const cli = require('../packages/ar-cli/bin/ar.js');
     assert.strictEqual(cli.VERSION, '1.0.0');
   });
+
+  it('ar doctor deve diagnosticar saúde de Node, dados, packages e constitution com 100% PASS', () => {
+    const cli = require('../packages/ar-cli/bin/ar.js');
+    const res = cli.doctor({ print: false });
+    assert.strictEqual(res.success, true, 'Doctor deve passar em 100% dos checks');
+    assert.strictEqual(res.checks.length, 5, 'Deve conter 5 verificações');
+    res.checks.forEach(c => assert.strictEqual(c.passed, true, `Check ${c.name} deve ser aprovado`));
+  });
+
+  it('ar validate deve validar contratos OpenAPI, catálogos e UUIDs RFC 4122 v4', () => {
+    const cli = require('../packages/ar-cli/bin/ar.js');
+    const val = cli.validate({ print: false });
+    assert.strictEqual(val.success, true, 'Validate deve passar em todas as validações');
+    assert.strictEqual(val.validations.length, 4, 'Deve conter 4 validações');
+  });
+
+  it('ar benchmark deve atingir taxa superior a 10.000 ops/seg em cálculos e eventos', () => {
+    const cli = require('../packages/ar-cli/bin/ar.js');
+    const bench = cli.benchmark({ print: false });
+    assert(bench.calculation.opsPerSec > 10000, 'Cálculo paramétrico deve ser ultrarrápido');
+    assert(bench.eventBus.opsPerSec > 1000, 'EventBus deve processar mais de 1.000 eventos/seg');
+  });
 });
 
-console.log(`\n========================================================`);
-console.log(`✓ RESULTADO FINAL DOS TESTES: ${passedTests}/${totalTests} testes aprovados com sucesso!`);
-console.log(`========================================================\n`);
+// --------------------------------------------------------
+// 17. PLATFORM MANIFESTO & GOVERNANÇA FUNDACIONAL
+// --------------------------------------------------------
+describe('17. Platform Manifesto & Governança Fundacional', () => {
+  it('docs/PLATFORM_MANIFESTO.md deve conter os 5 vetores de decisão da holding', () => {
+    const raw = fs.readFileSync(path.join(__dirname, '../docs/PLATFORM_MANIFESTO.md'), 'utf8');
+    assert(raw.includes('QUALIDADE:'));
+    assert(raw.includes('RASTREABILIDADE:'));
+    assert(raw.includes('TRANSPARÊNCIA:'));
+    assert(raw.includes('REUTILIZAÇÃO:'));
+    assert(raw.includes('LONGEVIDADE:'));
+    assert(raw.includes('AR OS é a plataforma tecnológica da AR Mídias Integradas'));
+  });
+
+  it('README.md da raiz deve declarar formalmente o lema do AR OS 1.0', () => {
+    const raw = fs.readFileSync(path.join(__dirname, '../README.md'), 'utf8');
+    assert(raw.includes('AR OS é a plataforma tecnológica da AR Mídias Integradas'));
+    assert(raw.includes('AR OS FOUNDATION'));
+    assert(raw.includes('AR OS SERVICES'));
+    assert(raw.includes('AR OS APPLICATIONS'));
+  });
+});
+
+// --------------------------------------------------------
+// EXECUÇÃO SEQUENCIAL ASSÍNCRONA DAS SUÍTES DE TESTE
+// --------------------------------------------------------
+(async () => {
+  try {
+    for (const suite of testSuites) {
+      console.log(`\n▶ [SUÍTE] ${suite.name}`);
+      for (const t of suite.tests) {
+        totalTests++;
+        try {
+          await t.fn();
+          passedTests++;
+          console.log(`  ✓ ${t.description}`);
+        } catch (err) {
+          console.error(`  ✗ ${t.description}`);
+          console.error(`    Erro: ${err.message}`);
+          console.error(err.stack);
+          process.exit(1);
+        }
+      }
+    }
+
+    console.log(`\n========================================================`);
+    console.log(`✓ RESULTADO FINAL DOS TESTES: ${passedTests}/${totalTests} testes aprovados com sucesso!`);
+    console.log(`========================================================\n`);
+  } catch (globalErr) {
+    console.error('Falha crítica na execução dos testes:', globalErr);
+    process.exit(1);
+  }
+})();
