@@ -23,5 +23,25 @@
 .calc-result.carbon>p{color:#566157}
 .calculator .ods-panel{margin-top:clamp(48px,6vw,80px)}
 
+/* Calculadora: cartão claro com tipografia verde */
+.calc-result.plastic{background:#eef0e8;color:#315330}
+.calc-result.plastic .impact-icon{color:#b7802a}
+.calc-result.plastic .impact-icon .icon-motion{stroke:#315330}
+.calc-result.plastic>span{color:#315330}
+.calc-result.plastic strong{color:#315330}
+.calc-result.plastic>p{color:#3f5940}
+
+/* Agenda 2030: painel verde e iconografia ODS ampliada */
+.calculator .ods-panel{background:#315330;color:#fff;padding:clamp(52px,6vw,84px);border-top:1px solid rgba(255,255,255,.34);border-radius:2px}
+.ods-panel>header{grid-template-columns:minmax(0,1fr) 150px;gap:clamp(30px,5vw,70px);align-items:start}
+.ods-panel>header>img{width:150px;height:auto;max-width:100%;object-fit:contain;image-rendering:auto;background:transparent}
+.ods-summary{max-width:760px;margin:34px 0 clamp(42px,5vw,70px);color:rgba(255,255,255,.9)}
+.ods-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;border:0;background:transparent}
+.ods-grid article{min-width:0;min-height:270px;padding:clamp(26px,3vw,40px);border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.045);display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:28px}
+.ods-grid img{width:clamp(140px,12vw,180px);height:auto;max-width:100%;object-fit:contain;image-rendering:auto;background:transparent;margin:0}
+.ods-grid p{max-width:30ch;font-size:13px;line-height:1.55;color:rgba(255,255,255,.92)}
+
 @media(max-width:1050px){.expertise-chapter h3{font-size:clamp(40px,6.5vw,64px);max-width:100%}.calculator{gap:54px}.calc-result{min-height:210px}}
-@media(max-width:760px){.product-card.product-featured{position:relative}.product-page-link{width:40px;height:40px}.metric strong.metric-word{font-size:clamp(42px,14vw,76px)}.hero-proof{display:none}.expertise-chapter{padding-left:var(--pad);padding-right:var(--pad)}.expertise-chapter h3{font-size:clamp(38px,11vw,48px)}.calculator{padding-top:80px;padding-bottom:80px}.calc-result{min-height:190px}.calc-footer{padding:32px var(--pad)}.calculator .ods-panel{margin-top:36px}}
+@media(max-width:900px){.ods-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.product-card.product-featured{position:relative}.product-page-link{width:40px;height:40px}.metric strong.metric-word{font-size:clamp(42px,14vw,76px)}.hero-proof{display:none}.expertise-chapter{padding-left:var(--pad);padding-right:var(--pad)}.expertise-chapter h3{font-size:clamp(38px,11vw,48px)}.calculator{padding-top:80px;padding-bottom:80px}.calc-result{min-height:190px}.calc-footer{padding:32px var(--pad)}.calculator .ods-panel{margin-top:36px;padding:42px var(--pad)}.ods-panel>header{grid-template-columns:minmax(0,1fr) 120px}.ods-panel>header>img{width:120px}.ods-grid img{width:min(150px,100%)}}
+@media(max-width:520px){.ods-grid{grid-template-columns:1fr}.ods-grid article{min-height:auto}.ods-panel>header{grid-template-columns:1fr}.ods-panel>header>img{width:120px;margin-top:24px}}
