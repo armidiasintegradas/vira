@@ -1,0 +1,108 @@
+{
+  "info": {
+    "name": "AR OS 1.0 — Postman Collection Oficial",
+    "_postman_id": "ar-os-collection-2026-v1",
+    "description": "Coleção de testes e requisições oficiais para o ecossistema AR OS (AR Mídias Integradas), abrangendo VIRA, Verdis, Replasticando, RecicloBike e MUTA.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Public API (Catálogo & DPP)",
+      "item": [
+        {
+          "name": "GET /materials - Listar Materiais Homologados",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/materials",
+              "host": ["{{baseUrl}}"],
+              "path": ["materials"]
+            }
+          }
+        },
+        {
+          "name": "GET /dpp/{tenant}/{batchId} - Verificar Lote",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/dpp/vira/LOTE-2026-VR09",
+              "host": ["{{baseUrl}}"],
+              "path": ["dpp", "vira", "LOTE-2026-VR09"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Partner API (Projetos & Licitações)",
+      "item": [
+        {
+          "name": "GET /projects - Listar Projetos do Município",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-AR-Tenant", "value": "{{tenantId}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/projects",
+              "host": ["{{baseUrl}}"],
+              "path": ["projects"]
+            }
+          }
+        },
+        {
+          "name": "POST /projects - Criar Novo Projeto",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-Key", "value": "{{apiKey}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Requalificação Praça Central\",\n  \"client\": \"Prefeitura Municipal de Caruaru\",\n  \"responsible\": \"Eng. Responsável (CREA 0001)\",\n  \"brand\": \"vira\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/projects",
+              "host": ["{{baseUrl}}"],
+              "path": ["projects"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Internal API (Workers & Telemetria)",
+      "item": [
+        {
+          "name": "POST /internal/jobs/enqueue - Enfileirar Geração de PDF",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "X-Internal-Secret", "value": "{{internalSecret}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"queueName\": \"pdf_generation\",\n  \"payload\": { \"projectId\": \"proj-001\" }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/internal/jobs/enqueue",
+              "host": ["{{baseUrl}}"],
+              "path": ["internal", "jobs", "enqueue"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "https://api.arplatform.com.br/v1" },
+    { "key": "apiKey", "value": "partner_live_demo_key" },
+    { "key": "tenantId", "value": "prefeitura-caruaru" }
+  ]
+}

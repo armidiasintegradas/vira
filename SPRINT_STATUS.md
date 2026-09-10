@@ -249,4 +249,18 @@ A tecnologia é formalmente transferida como **ativo proprietário da holding AR
 ### 4. P&D Experimental: VIRA LABS (AR LABS)
 Ambiente de testes e validação empírica com regra de ouro institucional: *"Nada entra em produção sem passar pelo laboratório"*. Linhas ativas: IA Generativa de Editais, Computer Vision de Canteiro, IoT de Desgaste e Digital Twin Urbano.
 
+---
+
+## 10. MARCO HISTÓRICO: AR OS 1.0 & PLATFORM CONSTITUTION
+
+Em 10 de Setembro de 2026, com o congelamento do VIRA OS v4.1 (Tag Git `v4.1.0`), é formalmente promulgado o **AR OS 1.0**, consolidando a transição da AR Mídias Integradas para empresa de plataforma tecnológica:
+
+1. **Platform Constitution Promulgada ([`docs/PLATFORM_CONSTITUTION.md`](file:///Users/alexribeiro/.gemini/antigravity/scratch/projeto-vira-otherhalf/docs/PLATFORM_CONSTITUTION.md)):** 10 artigos inegociáveis de governança de dados, imutabilidade, contratos de API e independência de domínios.
+2. **Domain-Driven Design (9 Contextos Delimitados):** `Engineering`, `Projects`, `Compliance`, `Knowledge`, `Academy`, `Analytics`, `Identity`, `Materials`, `Governance`.
+3. **Barramento de Eventos Corporativo ([`eventBus.js`](file:///Users/alexribeiro/.gemini/antigravity/scratch/projeto-vira-otherhalf/packages/ar-core/events/eventBus.js)):** Arquitetura orientada a eventos (`ProjectCreated`, `MaterialAdded`, `SpecificationApproved`, `DppVerified`, `CertificateIssued`).
+4. **Camada de Filas & Workers Assíncronos ([`jobQueue.js`](file:///Users/alexribeiro/.gemini/antigravity/scratch/projeto-vira-otherhalf/packages/ar-backend/workers/jobQueue.js)):** Execução em background para geração de PDFs, vetorização de normas para IA e telemetria.
+5. **AR CLI Oficial ([`bin/ar.js`](file:///Users/alexribeiro/.gemini/antigravity/scratch/projeto-vira-otherhalf/packages/ar-cli/bin/ar.js)):** Ferramenta de linha de comando para inspeção de plataforma, catálogo e validação de DPPs.
+6. **Suíte Automatizada Blindada:** 16 suítes e **26/26 testes unitários passando com 100% de sucesso** em `test/core_test.js`.
+
+
 

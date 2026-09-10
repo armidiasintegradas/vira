@@ -523,6 +523,84 @@ describe('12. SDK Multi-Linguagem (@ar-platform/sdk)', () => {
   });
 });
 
+// --------------------------------------------------------
+// 13. PLATFORM CONSTITUTION & INVARIANTES DE GOVERNANÇA
+// --------------------------------------------------------
+describe('13. Platform Constitution & Invariantes de Governança', () => {
+  it('docs/PLATFORM_CONSTITUTION.md deve conter os 10 artigos promulgados', () => {
+    const raw = fs.readFileSync(path.join(__dirname, '../docs/PLATFORM_CONSTITUTION.md'), 'utf8');
+    assert(raw.includes('AR PLATFORM CONSTITUTION'));
+    for (let i = 1; i <= 10; i++) {
+      assert(raw.includes(`Artigo ${i}º`), `Deve conter Artigo ${i}º`);
+    }
+  });
+});
+
+// --------------------------------------------------------
+// 14. DOMAIN-DRIVEN DESIGN (DDD) & EVENTBUS CORPORATIVO
+// --------------------------------------------------------
+describe('14. Domain-Driven Design (DDD) & EventBus Corporativo', () => {
+  it('EventBus deve publicar eventos com checksum e notificar subscribers', () => {
+    const { arEventBus, EVENT_TYPES } = require('../packages/ar-core/events/eventBus.js');
+    assert(arEventBus);
+    
+    let captured = null;
+    const unsub = arEventBus.subscribe(EVENT_TYPES.PROJECT_CREATED, evt => {
+      captured = evt;
+    });
+
+    const evt = arEventBus.publish(EVENT_TYPES.PROJECT_CREATED, { name: 'Praça Teste' }, { tenant: 'caruaru' });
+    assert(captured, 'Ouvinte deve ser notificado');
+    assert.strictEqual(captured.payload.name, 'Praça Teste');
+    assert.strictEqual(captured.tenant, 'caruaru');
+    assert(captured.checksum && captured.checksum.length === 8);
+    unsub();
+  });
+
+  it('Domínios DDD devem executar regras de negócio isoladas e emitir eventos', () => {
+    const { EngineeringDomain, AcademyDomain, GovernanceDomain } = require('../packages/ar-core/domains/index.js');
+    
+    // Engineering
+    const eng = EngineeringDomain.calculateSubgradeCapacity(8);
+    assert.strictEqual(eng.mrMpa, 80);
+
+    // Academy
+    const cert = AcademyDomain.issueCertificate('Eng. Alex', 'CREA-001', 'Infraestrutura Urbana', '8h');
+    assert(cert.checksum.startsWith('#VRA-CERT-'));
+
+    // Governance
+    const dpp = GovernanceDomain.verifyDpp('LOTE-2026-VR09');
+    assert.strictEqual(dpp.status, 'HOMOLOGADO');
+  });
+});
+
+// --------------------------------------------------------
+// 15. BACKGROUND WORKERS & JOB QUEUE
+// --------------------------------------------------------
+describe('15. Background Workers & Job Queue Engine', () => {
+  it('Deve enfileirar e processar jobs assíncronos de PDF e embeddings', async () => {
+    const { arJobQueue } = require('../packages/ar-backend/workers/jobQueue.js');
+    assert(arJobQueue);
+
+    const job = arJobQueue.enqueue('pdf_generation', { projectId: 'proj-teste-01' });
+    assert.strictEqual(job.status, 'pending');
+
+    const processed = await arJobQueue.processNext('pdf_generation');
+    assert.strictEqual(processed.status, 'completed');
+    assert(processed.result.fileUrl.includes('proj-teste-01'));
+  });
+});
+
+// --------------------------------------------------------
+// 16. AR CLI OFICIAL (@ar-platform/cli)
+// --------------------------------------------------------
+describe('16. AR CLI Oficial (@ar-platform/cli)', () => {
+  it('packages/ar-cli/bin/ar.js deve existir e possuir versão 1.0.0', () => {
+    const cli = require('../packages/ar-cli/bin/ar.js');
+    assert.strictEqual(cli.VERSION, '1.0.0');
+  });
+});
+
 console.log(`\n========================================================`);
 console.log(`✓ RESULTADO FINAL DOS TESTES: ${passedTests}/${totalTests} testes aprovados com sucesso!`);
 console.log(`========================================================\n`);

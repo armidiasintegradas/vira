@@ -1,0 +1,17 @@
+{
+  "name": "@ar-platform/cli",
+  "version": "1.0.0",
+  "description": "Interface de Linha de Comando oficial para a plataforma AR OS (AR Mídias Integradas)",
+  "bin": {
+    "ar": "bin/ar.js"
+  },
+  "keywords": [
+    "ar-os",
+    "cli",
+    "engenharia-circular",
+    "dpp",
+    "infraestrutura"
+  ],
+  "author": "AR Mídias Integradas <tecnologia@armidiasintegradas.com.br>",
+  "license": "Proprietary"
+}
