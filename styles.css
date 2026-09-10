@@ -364,14 +364,84 @@ p {
   color: var(--color-white);
 }
 
+.vira-hero-monumental {
+  font-family: var(--font-sans);
+  font-size: clamp(44px, 8.5vw, 114px);
+  font-weight: 800;
+  line-height: 0.94;
+  letter-spacing: -0.05em;
+  color: var(--color-white);
+  text-transform: uppercase;
+  margin: 0;
+}
+
 .vira-hero-subtext {
   font-family: var(--font-sans);
-  font-size: clamp(16px, 1.55vw, 20px);
+  font-size: clamp(16px, 1.45vw, 21px);
   font-weight: 400;
-  line-height: 1.55;
+  line-height: 1.5;
   letter-spacing: -0.01em;
   color: rgba(255, 255, 255, 0.88);
-  max-width: 620px;
+  max-width: 640px;
+}
+
+/* Scroll Indicator Minimalista */
+.vira-scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  right: 48px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.65);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.vira-scroll-indicator:hover {
+  color: var(--color-white);
+}
+
+.vira-scroll-line {
+  width: 1px;
+  height: 52px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.05) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.vira-scroll-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 45%;
+  background: var(--color-ochre);
+  animation: viraScrollPulse 2.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes viraScrollPulse {
+  0% { transform: translateY(-100%); opacity: 0; }
+  40% { opacity: 1; }
+  80% { transform: translateY(220%); opacity: 0; }
+  100% { transform: translateY(220%); opacity: 0; }
+}
+
+@media (max-width: 768px) {
+  .vira-scroll-indicator {
+    bottom: 24px;
+    right: 20px;
+  }
+  .vira-scroll-line {
+    height: 38px;
+  }
 }
 
 .vira-hero-actions {
@@ -652,4 +722,88 @@ img {
   color: rgba(255, 255, 255, 0.05);
   pointer-events: none;
   user-select: none;
+}
+
+/* --------------------------------------------------------
+   11. MACRO MATERIAL & EDITORIAL SHOWCASE (PRODUCTION LOCK)
+   -------------------------------------------------------- */
+.vira-macro-container {
+  position: relative;
+  border-radius: var(--radius-3xl);
+  overflow: hidden;
+  background-color: var(--color-graphite-dark);
+  border: 1px solid var(--color-border-subtle);
+}
+
+.vira-macro-img {
+  width: 100%;
+  height: 100%;
+  min-height: 480px;
+  max-height: 600px;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vira-macro-container:hover .vira-macro-img {
+  transform: scale(1.025);
+}
+
+.vira-spec-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  background: var(--color-sand);
+  border: 1px solid var(--color-border-subtle);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-graphite);
+}
+
+/* Documentary Territory & People Cards */
+.vira-doc-card {
+  position: relative;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border-subtle);
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+}
+
+.vira-doc-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-border-medium);
+}
+
+.vira-doc-card img {
+  width: 100%;
+  height: 290px;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vira-doc-card:hover img {
+  transform: scale(1.03);
+}
+
+/* Discrete Ecosystem Cards */
+.vira-ecosystem-card {
+  padding: 32px;
+  border-radius: var(--radius-2xl);
+  background-color: var(--color-sand);
+  border: 1px solid var(--color-border-subtle);
+  transition: background-color var(--transition-base), border-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px;
+}
+
+.vira-ecosystem-card:hover {
+  background-color: var(--color-white);
+  border-color: var(--color-border-medium);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
 }

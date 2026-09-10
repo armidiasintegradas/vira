@@ -147,6 +147,52 @@ const productsData = {
       { id: 'VIRA-ACV-ALL-010', code: 'VIRA-ACV-ALL-010', title: 'Estudo ACV CO2e Evitado (-2,15 kg CO2e/kg)', type: 'ACV' }
     ]
   },
+  'bloco-modular': {
+    title: 'Bloco Modular de Vedação & Alvenaria',
+    category: 'Alvenaria Modular & Fechamento',
+    solution: 'bloco',
+    code: 'VRA-BLC-3919',
+    norm: 'ABNT NBR 6136',
+    desc: 'Bloco intertravado maciço com encaixes macho-fêmea de alta precisão milimétrica. Desenvolvido para muros de contenção, fechamentos técnicos e infraestrutura urbana. Proporciona isolamento acústico e térmico com redução de 35% no peso estrutural comparado ao concreto.',
+    specs: [
+      { label: 'Norma de Referência', val: 'ABNT NBR 6136' },
+      { label: 'Dimensões Nominais', val: '390 × 190 × 140 mm (± 1.5mm)' },
+      { label: 'Resistência à Compressão', val: '≥ 8.0 MPa (Vedação) / 14 MPa (Carga)' },
+      { label: 'Absorção de Água', val: '< 0.08% (Impermeável)' },
+      { label: 'Condutividade Térmica', val: '0.18 W/m·K (Excelente isolamento)' },
+      { label: 'Sistema de Encaixe', val: 'Intertravamento Modular a Seco' },
+      { label: 'Garantia Estrutural', val: '10 Anos ABNT' },
+      { label: 'Procedência Industrial', val: 'Caruaru - PE | 100% Circular' }
+    ],
+    kgNodes: [
+      { id: 'VIRA-BIM-BLC-003', code: 'VIRA-BIM-BLC-003', title: 'Família Paramétrica BIM Revit Bloco NBR 6136', type: 'BIM' },
+      { id: 'VIRA-CAD-BLC-004', code: 'VIRA-CAD-BLC-004', title: 'Detalhamento Executivo CAD Encaixes a Seco', type: 'CAD' },
+      { id: 'VIRA-ACV-ALL-010', code: 'VIRA-ACV-ALL-010', title: 'Estudo ACV ISO 14044 Pegada de Carbono', type: 'ACV' }
+    ]
+  },
+  'guia-meiofio': {
+    title: 'Guia Urbana & Sarjeta de Drenagem',
+    category: 'Guias, Meio-Fio & Infraestrutura Viária',
+    solution: 'guia',
+    code: 'VRA-GUI-1000',
+    norm: 'ABNT NBR 9781 / NBR 9050',
+    desc: 'Elemento linear termoprensado sob 300t de carga contínua para contenção viária, sarjetas pluviais e acessibilidade urbana. Absorve impactos dinâmicos severos de rodas de ônibus e frotas pesadas sem trincas nem desagregação de agregados.',
+    specs: [
+      { label: 'Norma de Referência', val: 'ABNT NBR 9781 / NBR 9050' },
+      { label: 'Dimensões Nominais', val: '1.000 × 300 × 150 mm' },
+      { label: 'Resistência ao Choque Dinâmico', val: '≥ 45.0 MPa' },
+      { label: 'Absorção de Água', val: '< 0.05% (Imune a intempéries)' },
+      { label: 'Imunidade Química', val: '100% resistente a óleos e combustíveis' },
+      { label: 'Acabamento & Guia Tátil', val: 'Raio de canto suave normatizado' },
+      { label: 'Garantia Estrutural', val: '10 Anos ABNT' },
+      { label: 'Procedência Industrial', val: 'Caruaru - PE | 100% Circular' }
+    ],
+    kgNodes: [
+      { id: 'VIRA-BIM-GUI-005', code: 'VIRA-BIM-GUI-005', title: 'Família Paramétrica BIM Revit Guia & Meio-fio', type: 'BIM' },
+      { id: 'VIRA-CAD-GUI-006', code: 'VIRA-CAD-GUI-006', title: 'Detalhamento CAD Drenagem e Meio-fio Urbano', type: 'CAD' },
+      { id: 'VIRA-ACV-ALL-010', code: 'VIRA-ACV-ALL-010', title: 'Estudo ACV ISO 14044 Pegada de Carbono', type: 'ACV' }
+    ]
+  },
   'painel-plano': {
     title: 'Painel Arquitetônico 15mm',
     category: 'Fachadas Ventiladas & Divisórias',
