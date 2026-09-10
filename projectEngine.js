@@ -11,13 +11,15 @@ const VIRA_STORAGE_KEY = 'VIRA_PROJECTS_STORE_V3';
 const defaultDemoProjects = [
   {
     id: 'proj-recife-orla',
-    name: 'Requalificação Urbana da Orla de Boa Viagem',
+    name: 'Requalificação Urbana da Orla de Boa Viagem (Estudo Demonstrativo)',
     client: 'Prefeitura do Recife — Secretaria de Infraestrutura',
     responsible: 'Eng. Roberto Silveira (CREA-PE 052.190-D)',
     lawReference: 'Termo de Referência nº 042/2026 — Lei 14.133/2021',
     createdAt: '15/08/2026',
     updatedAt: '05/09/2026',
-    status: 'Em Licitação',
+    status: 'Simulação Técnica',
+    dataTier: 'exemplo_ilustrativo',
+    auditNotice: 'Simulação de anteprojeto para estudo de viabilidade e quantitativos de engenharia.',
     notes: 'Projeto de pavimentação contínua de calçadão e ciclovia com alta exposição à maresia e tráfego intenso de pedestres e veículos leves de serviço.',
     items: [
       {
@@ -42,13 +44,15 @@ const defaultDemoProjects = [
   },
   {
     id: 'proj-caruaru-linear',
-    name: 'Parque Linear Capibaribe — Setor Industrial',
+    name: 'Parque Linear Capibaribe — Setor Industrial (Estudo Demonstrativo)',
     client: 'Prefeitura Municipal de Caruaru — Secretaria de Urbanismo',
     responsible: 'Arq. Larissa Mendonça (CAU-PE A92.311-2)',
     lawReference: 'Edital de Concorrência Pública nº 018/2026',
     createdAt: '22/07/2026',
     updatedAt: '02/09/2026',
-    status: 'Projeto Aprovado',
+    status: 'Simulação Técnica',
+    dataTier: 'exemplo_ilustrativo',
+    auditNotice: 'Estudo de caso paramétrico para simulação de praça e mobiliário urbano circular.',
     notes: 'Praça pública sustentável integrada com passeios drenantes, rampas acessíveis NBR 9050 e fachada técnica do centro comunitário.',
     items: [
       {

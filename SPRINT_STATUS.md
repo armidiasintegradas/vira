@@ -1,4 +1,4 @@
-# VIRA OS — GOVERNANÇA & SPRINT STATUS
+# VIRA OS — GOVERNANÇA, ARQUITETURA & SPRINT STATUS
 
 Este documento é a **fonte oficial de verdade**, governança de versão e estado de evolução do **VIRA OS — Sistema Operacional para Engenharia Circular**.
 
@@ -13,7 +13,54 @@ Este documento é a **fonte oficial de verdade**, governança de versão e estad
 
 ---
 
-## 2. Histórico de Evolução do Projeto
+## 2. Governança da Verdade Técnica: Os 3 Tiers de Dados
+
+Para garantir integridade jurídica e conformidade estrita em licitações públicas (Lei 14.133/2021) e auditorias corporativas, todas as informações que trafegam no VIRA OS são classificadas em três níveis:
+
+| Nível | Classificação | Critério & Validade Legal | Exemplo no Sistema |
+|---|---|---|---|
+| **Tier 1** | **[DADO HOMOLOGADO]** | Certificado formalmente por laboratório acreditado Inmetro ou norma técnica ABNT/ISO em vigor. Informação juridicamente vinculante para termos de referência e cadernos de encargos. | Resistência $f_{ck} = 38,2\text{ MPa}$ (IPT nº 1.104.921-A), Absorção $< 0,05\%$, Fator ACV $-2,15\text{ kg CO}_2\text{e/kg}$ (ISO 14044). |
+| **Tier 2** | **[META DE PRODUTO]** | Alvo de engenharia, benchmark de P&D fabril ou meta de escala industrial em fase de homologação. Declarado explicitamente como meta técnica interna. | Capacidade fabril expandida de 120 t/mês em Caruaru, redução de ciclo de moldagem em 12%, novos pigmentos minerais fotoestáveis. |
+| **Tier 3** | **[EXEMPLO ILUSTRATIVO]** | Cenários simulados, modelos paramétricos e estudos de caso demonstrativos para treinamento e pré-dimensionamento de anteprojetos. Exigem levantamento topográfico e projeto executivo definitivo. | Projetos demonstrativos de Recife (Orla de Boa Viagem, 4.200 m²) e Caruaru (Parque Linear Capibaribe, 2.500 m²), metragens geradas no Copiloto. |
+
+---
+
+## 3. Arquitetura da Plataforma de Serviços Digitais (4 Camadas)
+
+O VIRA OS estrutura-se como uma plataforma de serviços em 4 camadas desacopladas e auditáveis:
+
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│ CAMADA 1: PRODUTO (Client Cockpit)                                     │
+│ Workspace UI • Project Engine UI • Copiloto de IA • Comparador • DPP   │
+└───────────────────────────────────┬────────────────────────────────────┘
+                                    │
+┌───────────────────────────────────▼────────────────────────────────────┐
+│ CAMADA 4: APIs & CONTRATOS DIGITAIS (services.js)                      │
+│ /materials • /specifications • /compliance • /acv • /projects • /bim   │
+└───────────────────────────────────┬────────────────────────────────────┘
+                                    │
+┌───────────────────────────────────▼────────────────────────────────────┐
+│ CAMADA 3: SERVIÇOS DE DOMÍNIO (Domain Services)                        │
+│ Specification • Compliance • Analytics • Export • Search • AI Service  │
+└───────────────────────────────────┬────────────────────────────────────┘
+                                    │
+┌───────────────────────────────────▼────────────────────────────────────┐
+│ CAMADA 2: DADOS (Engineering Knowledge Base)                           │
+│ Produtos • Normas ABNT/ISO • Ensaios IPT • Memoriais • Modelos BIM/CAD │
+└────────────────────────────────────────────────────────────────────────┘
+```
+
+### Detalhamento das 4 Camadas
+
+1. **Camada 1 — Produto (`workspace.html`, `workspace.js`):** O ambiente visual de trabalho do engenheiro, com persistência local sem atrito (`localStorage`), alternância de abas contextuais e interface de comando.
+2. **Camada 2 — Dados (`EngineeringKnowledgeBase` em `services.js`):** Repositório único, padronizado e auditado com rastreabilidade formal por Engineering ID e Data Tier.
+3. **Camada 3 — Serviços de Domínio (`ViraServices` em `services.js`):** Lógica de negócios desacoplada em 7 serviços independentes (`specificationService`, `complianceService`, `analyticsService`, `exportService`, `searchService`, `knowledgeService`, `aiService`).
+4. **Camada 4 — APIs Uniformes (`ViraApi` em `services.js`):** Interface de contratos com respostas envelopadas com metadados de governança (`_governance`), preparando o sistema para integrações com ERPs, plataformas BIM (plugins Revit/ArchiCAD) e portais de compras governamentais.
+
+---
+
+## 4. Histórico de Evolução do Projeto
 
 ```
 V0 (Site Institucional)
@@ -31,7 +78,7 @@ VIRA OS v4.0 (Sistema Operacional para Engenharia Circular)
 
 ---
 
-## 3. Sprints Concluídos & Homologados
+## 5. Sprints Concluídos & Homologados
 
 ### [✓] Sprint 0 a 6: Reconstrução Integral da Home e Design System (V1.0.0)
 - **Status:** CONCLUÍDO & HOMOLOGADO (Permanentemente congelado na branch `release/v1`).
@@ -77,62 +124,42 @@ VIRA OS v4.0 (Sistema Operacional para Engenharia Circular)
   4. *Exportador Executivo Multi-Perfil:* Emissão automatizada de memoriais e cadernos de encargos.
   5. *Copiloto de Engenharia com IA:* Agente técnico orientado a tarefas executáveis.
 
----
-
-## 4. ARQUITETURA VIRA OS v4.0 — OS 8 MOTORES DA ENGENHARIA CIRCULAR
-
-O VIRA OS abandona a navegação centrada em produtos e consolida a jornada **centrada em projetos**:
-```
-Projeto Executivo
-  ↓
-Área & Tipologia Urbana
-  ↓
-Restrições de Carga & Solo (NBR 15953)
-  ↓
-Conformidade Normativa ABNT/ISO
-  ↓
-Seleção de Soluções Regenerativas
-  ↓
-Quantitativos Automáticos
-  ↓
-Balanço ESG & Análise de Ciclo de Vida (ISO 14044)
-  ↓
-Exportação de Cadernos Técnicos & Rastreabilidade DPP
-```
-
-### Mapa dos 8 Motores
-
-| Motor | Arquivo | Responsabilidade Técnica |
-|-------|---------|--------------------------|
-| **Engine 01: Project Engine** | `projectEngine.js` | Estado mestre do projeto, quantitativos, metragem, persistência (`localStorage`), cálculo em tempo real de plástico regenerado e CO2e mitigado. |
-| **Engine 02: Specification Engine** | `exporter.js` | Emissão de cadernos técnicos em 5 perfis formais: Licitação Pública (Lei 14.133), Caderno de Canteiro (NBR 15953), Memorial Síntese, Apresentação para Cliente e Relatório ESG (ISO 14044). |
-| **Engine 03: Comparison Engine** | `comparator.js` | Matriz multivariada auditável lado a lado (Compósito VIRA vs Concreto vs Asfalto vs Madeira) com Cadeia de Evidências (`Critério -> Justificativa -> Norma ABNT -> Laudo IPT -> Obra Real`). |
-| **Engine 04: Compliance Engine** | `workspace.js` & `especificacao.js` | Validação de conformidade com normas (NBR 9781, NBR 9050, NBR 15575, ISO 14044, Lei 14.133), verificação de ensaios e índices de confiança técnica. |
-| **Engine 05: Universal Command Launcher** | `commandPalette.js` | Cérebro do sistema via `⌘K` / `Ctrl+K`. Indexação global facetada em 10 grupos: Produtos, Normas, Laudos, Projetos, Academy, FAQ, Obras, Downloads, Copiloto Tasks e Ações Rápidas. |
-| **Engine 06: Engineering Copilot** | `engineeringAi.js` | Agente técnico de inteligência de domínio fechado (RAG acreditado) com execução de tarefas: dimensionamento de praças/vias, cálculo ambiental e injeção automática no projeto via `⚡ Aplicar ao Meu Projeto`. |
-| **Engine 07: Analytics Engine** | `workspace.js` & `projectEngine.js` | Telemetria agregada, monitor de descarbonização, balanço de massa de plástico desviado de aterros e bacias hidrográficas, e métricas de sustentabilidade auditadas. |
-| **Engine 08: Digital Product Passport (DPP)** | `workspace.js` | Painel de rastreabilidade digital completa: composição macromolecular (PEAD 65%, PP 25%, Cargas 10%), cadeia de custódia (Bacia do Capibaribe), telemetria de lote e assinatura ICP-Brasil. |
+### [✓] Sprint V4.0: Formalização do VIRA OS & Plataforma de Serviços (Branch: `next`)
+- **Status:** CONCLUÍDO & HOMOLOGADO.
+- Formalização dos **8 Motores de Engenharia** (Project, Specification, Comparison, Compliance, Universal Launcher, Copilot, Analytics, DPP).
+- Implementação de `services.js` (Camada 2 de Dados, Camada 3 de Serviços e Camada 4 de APIs).
+- Classificação estrita de Dados em 3 Tiers (Homologado, Meta de Produto, Exemplo Ilustrativo).
+- Declaração explícita de Governança de Dados no Exportador de Cadernos e Projetos Demonstrativos.
 
 ---
 
-## 5. NOVOS KPIs OPERACIONAIS DO PRODUTO
+## 6. ROADMAP ESTRATÉGICO OFICIAL (V4.1 A V5)
 
-O sucesso do VIRA OS deixa de ser medido por "volume de features" e passa a ser auditado por métricas de produtividade do engenheiro:
-
-1. **Time-to-Spec (TTS):** Redução do tempo necessário para encontrar, parametrizar e aprovar uma especificação circular (meta: < 3 minutos).
-2. **Time-to-Bidding (TTB):** Tempo para gerar o caderno completo de licitação pública com base legal na Lei 14.133/2021 e laudos IPT anexos (meta: < 60 segundos).
-3. **Time-to-Export (TTE):** Transição e download de cadernos multi-perfil e pranchas executivas em 1 clique.
-4. **Component & Document Reuse Rate:** Reutilização de blocos técnicos, memoriais descritivos e bibliotecas paramétricas entre projetos municipais.
-5. **Traceability & Audit Trust:** 100% das asserções ancoradas na cadeia de evidências (ensaios IPT nº 1.104.921-A, normas ABNT vigentes e rastreabilidade DPP).
+| Release | Nome do Módulo | Escopo & Entregas de Engenharia |
+|---|---|---|
+| **V4.1** | **VIRA Academy Especializada** | Não apenas cursos, mas **trilhas de capacitação por perfil**: (1) Engenheiros de Infraestrutura Urbana, (2) Arquitetos & Paisagistas, (3) Gestores Públicos de Planejamento, (4) Fiscais de Contratos da Lei 14.133/2021. |
+| **V4.2** | **Mapa Operacional de Obras** | Mais do que um mapa institucional: cada ponto georreferenciado abre um **Workspace próprio da obra**, com pranchas executivas, fotos de canteiro, dados de assentamento e quantitativos reais de CO2e evitado. |
+| **V4.3** | **Painel ESG Municipal & Corporativo** | Dashboards executivos consolidados com relatórios de sustentabilidade por município, indicadores de desvio de aterro e métricas alinhadas ao GHG Protocol e ODS da ONU. |
+| **V4.4** | **Portal do Parceiro** | Acesso segmentado com perfis e ferramentas dedicadas para: Construtoras (medições e canteiro), Prefeituras (editais e fiscalização), Projetistas (plugins e memoriais) e Universidades (pesquisa e laudos). |
+| **V5.0** | **Integrações de Ecossistema** | Conectores externos: Plugins BIM (Autodesk Revit / Graphisoft ArchiCAD), integração com ERPs de obras (Sienge/Totvs), portais de compras públicas e telemetria IoT da planta fabril de Caruaru em tempo real. |
 
 ---
 
-## 6. Evolução Contínua & Próximas Entregas (Branch: `next`)
+## 7. ESTRATÉGIA DE ADOÇÃO: PROGRAMA PILOTO DE ESPECIFICADORES CIRCULARES (PPEC)
 
-- [x] Transição de Marca para **VIRA OS — Sistema Operacional para Engenharia Circular**.
-- [x] Integração completa dos 8 Motores no Workspace.
-- [x] Suporte ao Passaporte Digital de Produto (DPP) com cadeia de custódia.
-- [x] Emissão multi-perfil (5 perfis de exportação técnica).
-- [ ] Módulo VIRA Academy & Certificação Técnica para Fiscais de Contratos Públicos.
-- [ ] Telemetria IoT e ensaios reológicos em tempo real integrados ao lote fabril em Caruaru.
-- [ ] Mapeamento georreferenciado e interativo de obras públicas no Nordeste.
+A fase de expansão de código atinge sua maturidade. O foco estratégico passa a ser a **validação e adoção real com usuários em campo**.
+
+### Metodologia do Piloto
+1. **Grupo Focal Selecionado:** 10 a 15 profissionais reais convidados:
+   - 4 Engenheiros civis de Secretarias de Infraestrutura Municipal.
+   - 4 Arquitetos e urbanistas de escritórios de projetos urbanos.
+   - 3 Fiscais de obras e contratos da administração pública.
+   - 2 Consultores de certificação ambiental (LEED / AQUA-HQE).
+2. **Ciclos de Sessões Assistidas:** Acompanhar a especificação real de um projeto do zero e mensurar pontos de atrito.
+
+### Indicadores de Sucesso em Campo (Métricas de Adoção)
+- **Tempo Médio para Gerar Memorial:** Meta $< 3$ minutos (vs dias no modelo manual).
+- **Tempo para Localizar Norma/Laudo:** Meta $< 30$ segundos via Command Launcher (`⌘K`).
+- **Taxa de Reutilização de Projetos:** Percentual de componentes reutilizados entre estudos de caso.
+- **Volume e Tipologia de Exportações:** Monitoramento dos perfis mais demandados (Licitação vs Canteiro vs ESG).
+- **Taxa de Retenção e Frequência de Uso:** Retorno semanal dos profissionais ao Workspace.
