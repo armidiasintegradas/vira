@@ -59,7 +59,7 @@ Este documento é a **fonte oficial de verdade**, governança de versão e estad
 A V3 encerra a fase de "site institucional" e materializa a VIRA como uma **ferramenta de trabalho e referência técnica contínua**:
 
 - [x] **Sprint 1: Knowledge Workspace (O Motor Unificado de Engenharia)**
-  - **Status:** CONCLUÍDO & ENTREGUE (`workspace.html` e `workspace.js`).
+  - **Status:** CONCLUÍDO & HOMOLOGADO (`workspace.html` e `workspace.js`).
   - Motor de especificação técnica unificado em tela única para as 4 soluções estruturais (`paver`, `painel`, `perfil`, `insumo`).
   - 13 Visões contextuais com transição instantânea sem recarregamento de página:
     *Visão Geral • Especificação & Ensaios • Aplicações Urbanas • Normas ABNT/ISO • BIM Paramétrico • CAD DWG • Laudos Laboratoriais • ACV & Descarbonização • Obras Executadas • VIRA Academy • FAQ Técnico • Downloads & Documentos • Suporte ART*.
@@ -67,13 +67,20 @@ A V3 encerra a fase de "site institucional" e materializa a VIRA como uma **ferr
   - Simulador interativo de impacto ambiental de metragem quadrada com cálculo imediato de plástico desviado e CO2e evitado.
   - Deep Linking bidirecional via URL (`?solution=...&tab=...`) e botões de atalho integrados na Home e no Engineering Hub.
   - Inclusão no `sitemap.xml` com prioridade 0.95.
-- [ ] **Sprint 2: VIRA Academy**
+
+- [x] **Sprint V3.2: Project-Centric Workspace & Intelligence Engine (Operating System)**
+  - **Status:** CONCLUÍDO & HOMOLOGADO (5 Pilares Integrados)
+  - **Pilar 1 — Motor de Projetos (`projectEngine.js`):** Transição de catálogo de soluções para sistema operacional centrado em projetos executivos municipais (Recife Orla 4.200 m², Caruaru Linear 2.500 m²). Persistência no `localStorage` (`VIRA_PROJECTS_STORE_V3`), cálculo em tempo real de plástico regenerado e CO2e mitigado, gestão de quantitativos e exportação em JSON.
+  - **Pilar 2 — Universal Command Palette (`commandPalette.js`):** Indexação global via `⌘K` / `Ctrl+K` para normas técnicas (ABNT NBR 9781, 9050, 15575, 14044, Lei 14.133), Engineering IDs (`VIRA-BIM-PAV-001`, `VIRA-LAB-PAV-003`, etc.), busca facetada e ações de produtividade em tempo real.
+  - **Pilar 3 — Comparador Técnico Multivariado (`comparator.js`):** Matriz paramétrica auditável lado a lado comparando Compósito Circular VIRA vs Concreto Intertravado vs Asfalto CBUQ vs Madeira de Lei, aferindo fck, absorção, pegada de carbono ACV, garantia, custo de ciclo de vida em 10 anos e conforto térmico (SRI).
+  - **Pilar 4 — Exportador Executivo Inteligente (`exporter.js`):** Emissão formal do Caderno Executivo de Encargos do Projeto, fundamentado na Nova Lei de Licitações (Lei 14.133/2021, Art. 11 e Art. 34), consolidação de quantitativos, laudos IPT e pranchas com modal de impressão e geração de PDF.
+  - **Pilar 5 — Assistente de Engenharia com IA (`engineeringAi.js`):** Consultor técnico de domínio fechado (RAG acreditado) integrado no painel lateral do Workspace, fundamentando dúvidas em ensaios IPT nº 1.104.921, ABNT NBR 9781 e diretrizes de obras públicas, com citação de laudos e confiança técnica sem alucinações.
+
+- [ ] **Sprint 3: VIRA Academy & Certificação Técnica**
   - Guias de especificação de infraestrutura circular, cursos técnicos rápidos para fiscais de contratos públicos (Lei 14.133), webinars e certificação de especificador circular.
-- [ ] **Sprint 3: VIRA Lab & Rastreabilidade DPP**
+- [ ] **Sprint 4: VIRA Lab & Rastreabilidade DPP**
   - Ensaios reológicos e mecânicos em lote contínuo, Passaporte Digital de Produto (DPP) com verificação de autenticidade e telemetria de produção sustentável.
-- [ ] **Sprint 4: Mapa de Obras & Infraestrutura**
+- [ ] **Sprint 5: Mapa de Obras & Infraestrutura**
   - Mapeamento georreferenciado e interativo de intervenções urbanas executadas, estudos de caso com prefeituras e concessionárias, fotos executivas e métricas de CO2e evitadas por município.
-- [ ] **Sprint 5: Analytics & Telemetria**
+- [ ] **Sprint 6: Analytics & Telemetria em Larga Escala**
   - Monitor de descarbonização em tempo real, painel de economia de recursos naturais e relatórios ESG prontos para emissão corporativa e governamental.
-- [ ] **Sprint 6: Área do Especificador / My Project Hub**
-  - Ambiente do engenheiro/arquiteto para salvar projetos, organizar pranchas e memoriais sob medida, gerar cadernos de encargos customizados e solicitar amostras com ART dedicada.

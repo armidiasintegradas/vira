@@ -751,15 +751,21 @@ const workspaceData = {
 // --------------------------------------------------------
 let currentSolutionId = 'paver';
 let currentTabId = 'overview';
+let currentWorkspaceMode = 'solutions'; // 'solutions' | 'projects'
+let currentSidebarTab = 'knowledge'; // 'knowledge' | 'ai'
 
 // --------------------------------------------------------
 // INICIALIZADOR DO WORKSPACE
 // --------------------------------------------------------
 function initWorkspace() {
   const urlParams = new URLSearchParams(window.location.search);
+  const paramMode = urlParams.get('mode');
   const paramSolution = urlParams.get('solution');
   const paramTab = urlParams.get('tab');
 
+  if (paramMode === 'projects') {
+    currentWorkspaceMode = 'projects';
+  }
   if (paramSolution && workspaceData[paramSolution]) {
     currentSolutionId = paramSolution;
   }
@@ -778,6 +784,75 @@ function isValidTab(tab) {
 }
 
 // --------------------------------------------------------
+// MODO OPERACIONAL: SOLUÇÕES VS PROJETOS
+// --------------------------------------------------------
+function setWorkspaceMode(mode) {
+  currentWorkspaceMode = mode;
+  updateModeUi();
+  updateUrlParams();
+  if (mode === 'projects') {
+    const solPicker = document.getElementById('ws-solutions-picker-container');
+    const tabsBar = document.getElementById('ws-tabs-bar-section');
+    if (solPicker) solPicker.classList.add('hidden');
+    if (tabsBar) tabsBar.classList.add('hidden');
+    renderProjectsCanvas();
+  } else {
+    const solPicker = document.getElementById('ws-solutions-picker-container');
+    const tabsBar = document.getElementById('ws-tabs-bar-section');
+    if (solPicker) solPicker.classList.remove('hidden');
+    if (tabsBar) tabsBar.classList.remove('hidden');
+    updateHeaderMetadata();
+    renderMainCanvas();
+  }
+  renderRelatedKnowledge();
+  if (window.lucide) {
+    lucide.createIcons({ attrs: { 'stroke-width': 1.75 } });
+  }
+}
+
+function updateModeUi() {
+  const btnSol = document.getElementById('ws-mode-btn-solutions');
+  const btnProj = document.getElementById('ws-mode-btn-projects');
+  const counter = document.getElementById('ws-projects-counter-badge');
+  if (counter && window.projectEngine) {
+    counter.innerText = window.projectEngine.getProjects().length;
+  }
+
+  if (currentWorkspaceMode === 'solutions') {
+    if (btnSol) {
+      btnSol.className = 'px-3.5 py-2 rounded-xl border text-xs font-mono transition-all flex items-center gap-2 bg-forest text-white font-bold shadow-sm';
+    }
+    if (btnProj) {
+      btnProj.className = 'px-3.5 py-2 rounded-xl border text-xs font-mono transition-all flex items-center gap-2 bg-white border-border-subtle text-muted hover:text-graphite';
+    }
+  } else {
+    if (btnSol) {
+      btnSol.className = 'px-3.5 py-2 rounded-xl border text-xs font-mono transition-all flex items-center gap-2 bg-white border-border-subtle text-muted hover:text-graphite';
+    }
+    if (btnProj) {
+      btnProj.className = 'px-3.5 py-2 rounded-xl border text-xs font-mono transition-all flex items-center gap-2 bg-ochre text-white font-bold shadow-sm';
+    }
+  }
+}
+
+function setSidebarTab(tab) {
+  currentSidebarTab = tab;
+  renderRelatedKnowledge();
+}
+
+window.setSidebarTab = setSidebarTab;
+window.setWorkspaceMode = setWorkspaceMode;
+
+window.toggleAiPanel = function(force) {
+  currentSidebarTab = 'ai';
+  renderRelatedKnowledge();
+  if (window.innerWidth < 1024) {
+    const sidebar = document.getElementById('related-knowledge-container');
+    if (sidebar) sidebar.scrollIntoView({ behavior: 'smooth' });
+  }
+};
+
+// --------------------------------------------------------
 // SELETOR DE SOLUÇÕES (TOPO)
 // --------------------------------------------------------
 function setupSolutionPickers() {
@@ -793,8 +868,12 @@ function setupSolutionPickers() {
 function setWorkspaceSolution(solutionId) {
   if (!workspaceData[solutionId] || currentSolutionId === solutionId) return;
   currentSolutionId = solutionId;
-  updateUrlParams();
-  updateWorkspace();
+  if (currentWorkspaceMode === 'projects') {
+    setWorkspaceMode('solutions');
+  } else {
+    updateUrlParams();
+    updateWorkspace();
+  }
 }
 
 // --------------------------------------------------------
@@ -813,6 +892,9 @@ function setupTabNavigation() {
 function setWorkspaceTab(tabId) {
   if (!isValidTab(tabId) || currentTabId === tabId) return;
   currentTabId = tabId;
+  if (currentWorkspaceMode === 'projects') {
+    setWorkspaceMode('solutions');
+  }
   updateUrlParams();
   updateTabsUi();
   renderMainCanvas();
@@ -825,8 +907,16 @@ function setWorkspaceTab(tabId) {
 
 function updateUrlParams() {
   const url = new URL(window.location);
-  url.searchParams.set('solution', currentSolutionId);
-  url.searchParams.set('tab', currentTabId);
+  url.searchParams.set('mode', currentWorkspaceMode);
+  if (currentWorkspaceMode === 'solutions') {
+    url.searchParams.set('solution', currentSolutionId);
+    url.searchParams.set('tab', currentTabId);
+  } else {
+    url.searchParams.delete('tab');
+    if (window.projectEngine) {
+      url.searchParams.set('proj', window.projectEngine.getActiveProject().id);
+    }
+  }
   window.history.replaceState({}, '', url);
 }
 
@@ -834,10 +924,23 @@ function updateUrlParams() {
 // ATUALIZAÇÃO INTEGRAL DO WORKSPACE
 // --------------------------------------------------------
 function updateWorkspace() {
-  updateSolutionPickerUi();
-  updateHeaderMetadata();
-  updateTabsUi();
-  renderMainCanvas();
+  updateModeUi();
+  if (currentWorkspaceMode === 'projects') {
+    const solPicker = document.getElementById('ws-solutions-picker-container');
+    const tabsBar = document.getElementById('ws-tabs-bar-section');
+    if (solPicker) solPicker.classList.add('hidden');
+    if (tabsBar) tabsBar.classList.add('hidden');
+    renderProjectsCanvas();
+  } else {
+    const solPicker = document.getElementById('ws-solutions-picker-container');
+    const tabsBar = document.getElementById('ws-tabs-bar-section');
+    if (solPicker) solPicker.classList.remove('hidden');
+    if (tabsBar) tabsBar.classList.remove('hidden');
+    updateSolutionPickerUi();
+    updateHeaderMetadata();
+    updateTabsUi();
+    renderMainCanvas();
+  }
   renderRelatedKnowledge();
   if (window.lucide) {
     lucide.createIcons({ attrs: { 'stroke-width': 1.75 } });
@@ -1380,7 +1483,285 @@ function renderMainCanvas() {
 }
 
 // --------------------------------------------------------
-// RENDERIZAÇÃO DO RELATED KNOWLEDGE GRAPH LATERAL
+// RENDERIZAÇÃO DO CANVAS DE PROJETOS EXECUTIVOS (PROJECT ENGINE)
+// --------------------------------------------------------
+function renderProjectsCanvas() {
+  const canvas = document.getElementById('workspace-canvas');
+  if (!canvas || !window.projectEngine) return;
+
+  const projects = window.projectEngine.getProjects();
+  const activeProj = window.projectEngine.getActiveProject();
+  const totals = window.projectEngine.calculateProjectTotals(activeProj);
+
+  const tonsPlastic = (totals.totalPlasticKg / 1000).toFixed(1).replace('.', ',');
+  const tonsCo2 = (totals.totalCo2MitigatedKg / 1000).toFixed(1).replace('.', ',');
+
+  canvas.innerHTML = `
+    <div class="space-y-8 animate-fadeIn">
+      
+      <!-- Barra de Seleção de Projetos Cadastrados -->
+      <div class="p-6 bg-sand rounded-3xl border border-border-subtle space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-black/5 pb-4">
+          <div>
+            <span class="font-mono text-xs text-forest font-bold uppercase tracking-wider">• Workspace de Projetos Executivos</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-graphite tracking-tight mt-0.5">${activeProj.name}</h2>
+            <p class="text-xs text-muted mt-0.5">Órgão / Cliente: <strong class="text-graphite">${activeProj.client}</strong></p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <button onclick="window.openProjectExporterModal()" class="vira-btn-primary py-2.5 px-4 text-xs font-mono flex items-center gap-1.5 shadow-sm">
+              <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+              <span>Exportar Caderno (PDF)</span>
+            </button>
+            <button onclick="window.projectEngine.exportProjectJson('${activeProj.id}')" class="vira-btn-outline py-2.5 px-3 text-xs font-mono bg-white shadow-sm flex items-center gap-1.5" title="Baixar JSON do Projeto">
+              <i data-lucide="download" class="w-3.5 h-3.5"></i>
+              <span>JSON</span>
+            </button>
+            <button onclick="handleDeleteProject()" class="p-2.5 rounded-xl border border-border-subtle bg-white text-muted hover:text-rose-600 transition-colors shadow-sm" title="Excluir Projeto">
+              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Seletor em Pílulas de Projetos Ativos -->
+        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar font-mono text-xs">
+          <span class="text-muted text-[10px] uppercase font-bold shrink-0">Projetos:</span>
+          ${projects.map(p => `
+            <button onclick="switchProject('${p.id}')" class="px-3 py-1.5 rounded-xl border transition-all shrink-0 flex items-center gap-1.5 ${p.id === activeProj.id ? 'bg-white border-forest text-forest font-bold shadow-sm' : 'bg-transparent border-transparent text-muted hover:text-graphite'}">
+              <span class="w-2 h-2 rounded-full ${p.id === activeProj.id ? 'bg-forest' : 'bg-muted/40'}"></span>
+              <span class="truncate max-w-[200px]">${p.name}</span>
+            </button>
+          `).join('')}
+          <button onclick="window.openNewProjectModal()" class="px-2.5 py-1.5 rounded-xl border border-dashed border-border-subtle hover:border-forest text-muted hover:text-forest transition-all shrink-0 flex items-center gap-1 text-[11px]">
+            <i data-lucide="plus" class="w-3 h-3"></i>
+            <span>Novo</span>
+          </button>
+        </div>
+
+        <!-- Metadados de Governança do Projeto -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs font-mono border-t border-black/5 text-muted">
+          <div><strong class="text-graphite">Resp. Técnico:</strong> ${activeProj.responsible}</div>
+          <div><strong class="text-graphite">Enquadramento:</strong> ${activeProj.lawReference}</div>
+          <div><strong class="text-graphite">Status:</strong> <span class="text-forest font-bold">${activeProj.status}</span></div>
+        </div>
+      </div>
+
+      <!-- Grade Monumental de Impacto Consolidado -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 font-mono text-xs">
+        <div class="p-5 bg-white rounded-2xl border border-border-subtle shadow-sm space-y-1">
+          <span class="text-[10px] text-muted uppercase block font-bold">Área Total Especificada</span>
+          <p class="text-2xl font-bold text-graphite">${totals.totalArea.toLocaleString('pt-BR')} <span class="text-xs font-normal text-muted">m²</span></p>
+          <span class="text-[10px] text-muted block">Pavimentos e Painéis</span>
+        </div>
+
+        <div class="p-5 bg-white rounded-2xl border border-border-subtle shadow-sm space-y-1">
+          <span class="text-[10px] text-forest uppercase block font-bold">Plástico Regenerado</span>
+          <p class="text-2xl font-bold text-forest">${tonsPlastic} <span class="text-xs font-normal text-forest/70">t</span></p>
+          <span class="text-[10px] text-muted block">${totals.totalPlasticKg.toLocaleString('pt-BR')} kg desviados</span>
+        </div>
+
+        <div class="p-5 bg-white rounded-2xl border border-border-subtle shadow-sm space-y-1">
+          <span class="text-[10px] text-forest uppercase block font-bold">CO2e Evitado (ACV)</span>
+          <p class="text-2xl font-bold text-forest">${tonsCo2} <span class="text-xs font-normal text-forest/70">t CO2e</span></p>
+          <span class="text-[10px] text-muted block">ISO 14044 (-2,15 kg/kg)</span>
+        </div>
+
+        <div class="p-5 bg-white rounded-2xl border border-border-subtle shadow-sm space-y-1">
+          <span class="text-[10px] text-ochre uppercase block font-bold">Orçamento Paramétrico</span>
+          <p class="text-2xl font-bold text-graphite">R$ ${(totals.totalCostEstimate / 1000).toFixed(0)}k</p>
+          <span class="text-[10px] text-muted block">R$ ${totals.totalCostEstimate.toLocaleString('pt-BR')},00</span>
+        </div>
+      </div>
+
+      <!-- Tabela de Itens e Quantitativos do Projeto -->
+      <div class="bg-white p-6 sm:p-8 rounded-3xl border border-border-subtle shadow-sm space-y-6 font-sans text-xs">
+        <div class="flex items-center justify-between border-b border-border-subtle pb-4">
+          <div>
+            <h3 class="font-bold text-base text-graphite">Itens e Materiais Especificados</h3>
+            <p class="text-muted text-xs">Composição detalhada dos artefatos circulares vinculados a este caderno executivo.</p>
+          </div>
+          <span class="px-2.5 py-1 rounded-full bg-sand text-graphite font-mono font-bold text-xs">${activeProj.items.length} itens</span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="border-b border-border-subtle font-mono text-[10px] text-muted uppercase">
+                <th class="py-3 px-2">#</th>
+                <th class="py-3 px-2">Material / Solução</th>
+                <th class="py-3 px-2">Código</th>
+                <th class="py-3 px-2 text-right">Quantitativo</th>
+                <th class="py-3 px-2 text-right">Massa Total</th>
+                <th class="py-3 px-2 text-right">CO2e Evitado</th>
+                <th class="py-3 px-2 text-right">Estimativa</th>
+                <th class="py-3 px-2 text-center">Ação</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border-subtle">
+              ${activeProj.items.map((it, idx) => {
+                const pKg = Math.round(it.quantityM2 * it.densityKgM2);
+                const co2Kg = Math.round(pKg * it.lcaFactorCo2);
+                const cost = Math.round(it.quantityM2 * it.unitCostEstimate);
+                return `
+                  <tr class="hover:bg-sand/40 transition-colors">
+                    <td class="py-3 px-2 font-mono text-muted">0${idx + 1}</td>
+                    <td class="py-3 px-2 font-bold text-graphite">${it.name}</td>
+                    <td class="py-3 px-2 font-mono text-ochre font-bold text-[11px]">${it.code}</td>
+                    <td class="py-3 px-2 text-right font-mono font-medium">${it.quantityM2.toLocaleString('pt-BR')} ${it.solutionId === 'perfil' ? 'm' : 'm²'}</td>
+                    <td class="py-3 px-2 text-right font-mono text-forest font-bold">${pKg.toLocaleString('pt-BR')} kg</td>
+                    <td class="py-3 px-2 text-right font-mono text-forest font-bold">${co2Kg.toLocaleString('pt-BR')} kg</td>
+                    <td class="py-3 px-2 text-right font-mono">R$ ${cost.toLocaleString('pt-BR')}</td>
+                    <td class="py-3 px-2 text-center">
+                      <button onclick="removeProjectItem(${idx})" class="text-muted hover:text-rose-600 transition-colors p-1" title="Remover item">
+                        <i data-lucide="trash" class="w-3.5 h-3.5"></i>
+                      </button>
+                    </td>
+                  </tr>
+                `;
+              }).join('')}
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Formulário Rápido para Adicionar Material -->
+        <form onsubmit="handleAddProjectItem(event)" class="pt-4 border-t border-border-subtle flex flex-col sm:flex-row items-end gap-3 bg-sand p-4 rounded-2xl">
+          <div class="space-y-1 w-full sm:w-1/2">
+            <label class="font-mono text-muted uppercase font-bold text-[10px]">Adicionar Solução VIRA</label>
+            <select id="pi-solution" class="w-full bg-white px-3 py-2 rounded-xl border border-border-subtle text-graphite font-medium text-xs">
+              <option value="paver">Paver 16 Faces (VRA-PAV-2026) — 18,5 kg/m²</option>
+              <option value="painel">Painel Fachada 15mm (VRA-PNL-1204) — 14,4 kg/m²</option>
+              <option value="perfil">Perfil Maciço 80×80 (VRA-PRF-0142) — 6,14 kg/m</option>
+            </select>
+          </div>
+          <div class="space-y-1 w-full sm:w-1/4">
+            <label class="font-mono text-muted uppercase font-bold text-[10px]">Metragem (m² ou m)</label>
+            <input id="pi-quantity" type="number" min="1" step="any" value="500" required class="w-full bg-white px-3 py-2 rounded-xl border border-border-subtle text-graphite font-medium text-xs font-mono" />
+          </div>
+          <button type="submit" class="vira-btn-primary py-2 px-5 text-xs font-mono shrink-0 w-full sm:w-auto justify-center">
+            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+            <span>Adicionar</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Memorial & Justificativa para Licitações (Lei 14.133) -->
+      <div class="bg-white p-6 sm:p-8 rounded-3xl border border-border-subtle shadow-sm space-y-4 font-sans text-xs">
+        <div class="flex items-center justify-between border-b border-border-subtle pb-3">
+          <div class="space-y-0.5">
+            <h3 class="font-bold text-base text-graphite">Justificativa e Anotações Técnicas de Canteiro</h3>
+            <p class="text-muted text-xs">Parâmetros de enquadramento para comissões de contratação sob a Lei 14.133/2021.</p>
+          </div>
+          <button onclick="handleSaveProjectNotes()" class="vira-btn-outline py-2 px-4 text-xs font-mono bg-white shadow-sm flex items-center gap-1.5">
+            <i data-lucide="save" class="w-3.5 h-3.5"></i>
+            <span>Salvar Notas</span>
+          </button>
+        </div>
+        <textarea id="project-notes-textarea" rows="4" class="w-full bg-sand p-4 rounded-2xl border border-border-subtle text-graphite focus:outline-none focus:ring-1 focus:ring-forest text-xs font-sans leading-relaxed" placeholder="Descreva os requisitos específicos desta intervenção urbana...">${activeProj.notes || ''}</textarea>
+      </div>
+
+      <!-- Banner de Emissão do Caderno Executivo -->
+      <div class="p-8 bg-forest text-white rounded-3xl shadow-lg flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="space-y-2">
+          <span class="px-2.5 py-0.5 rounded-full bg-white/20 text-white font-mono text-[10px] font-bold uppercase">Homologação Pronta</span>
+          <h3 class="text-2xl font-bold tracking-tight">Caderno Executivo de Encargos do Projeto</h3>
+          <p class="text-sm opacity-90 max-w-xl">
+            Emita o memorial descritivo completo com todas as cláusulas jurídicas para edital de concorrência pública, laudos IPT vinculados e declaração de ACV.
+          </p>
+        </div>
+        <button onclick="window.openProjectExporterModal()" class="py-3 px-6 bg-white text-forest hover:bg-sand rounded-xl font-mono text-xs font-bold transition-all shadow-md flex items-center gap-2 shrink-0">
+          <i data-lucide="file-text" class="w-4 h-4"></i>
+          <span>Gerar Caderno Completo (PDF)</span>
+        </button>
+      </div>
+
+    </div>
+  `;
+}
+
+// Manipuladores de Operações de Projeto
+function switchProject(id) {
+  if (window.projectEngine) {
+    window.projectEngine.setActiveProject(id);
+    updateWorkspace();
+  }
+}
+
+function removeProjectItem(index) {
+  if (window.projectEngine) {
+    const proj = window.projectEngine.getActiveProject();
+    window.projectEngine.removeItemFromProject(proj.id, index);
+    showWorkspaceToast('✓ Item removido do projeto.');
+    updateWorkspace();
+  }
+}
+
+function handleAddProjectItem(e) {
+  e.preventDefault();
+  const select = document.getElementById('pi-solution');
+  const qtyInput = document.getElementById('pi-quantity');
+  if (!select || !qtyInput) return;
+
+  const solId = select.value;
+  const qty = parseFloat(qtyInput.value) || 100;
+  let itemData = {
+    solutionId: 'paver',
+    name: 'Paver Intertravado 16 Faces',
+    code: 'VRA-PAV-2026',
+    quantityM2: qty,
+    densityKgM2: 18.5,
+    lcaFactorCo2: 2.15,
+    unitCostEstimate: 88.50
+  };
+
+  if (solId === 'painel') {
+    itemData = {
+      solutionId: 'painel',
+      name: 'Painel Arquitetônico 15mm',
+      code: 'VRA-PNL-1204',
+      quantityM2: qty,
+      densityKgM2: 14.4,
+      lcaFactorCo2: 2.15,
+      unitCostEstimate: 145.00
+    };
+  } else if (solId === 'perfil') {
+    itemData = {
+      solutionId: 'perfil',
+      name: 'Perfil Estrutural Maciço 80×80',
+      code: 'VRA-PRF-0142',
+      quantityM2: qty,
+      densityKgM2: 6.14,
+      lcaFactorCo2: 2.15,
+      unitCostEstimate: 62.00
+    };
+  }
+
+  const proj = window.projectEngine.getActiveProject();
+  window.projectEngine.addItemToProject(proj.id, itemData);
+  showWorkspaceToast(`✓ Adicionado ${qty} m² de ${itemData.name} ao projeto!`);
+  updateWorkspace();
+}
+
+function handleSaveProjectNotes() {
+  const notesEl = document.getElementById('project-notes-textarea');
+  if (!notesEl || !window.projectEngine) return;
+  const proj = window.projectEngine.getActiveProject();
+  window.projectEngine.updateProject(proj.id, { notes: notesEl.value });
+  showWorkspaceToast('✓ Justificativa do projeto salva com sucesso!');
+}
+
+function handleDeleteProject() {
+  if (!window.projectEngine) return;
+  const proj = window.projectEngine.getActiveProject();
+  if (confirm(`Deseja realmente excluir o projeto "${proj.name}"?`)) {
+    const success = window.projectEngine.deleteProject(proj.id);
+    if (success) {
+      showWorkspaceToast('✓ Projeto excluído.');
+      updateWorkspace();
+    }
+  }
+}
+
+// --------------------------------------------------------
+// RENDERIZAÇÃO DO RELATED KNOWLEDGE GRAPH LATERAL & IA
 // --------------------------------------------------------
 function renderRelatedKnowledge() {
   const container = document.getElementById('related-knowledge-container');
@@ -1389,107 +1770,134 @@ function renderRelatedKnowledge() {
   const sol = workspaceData[currentSolutionId];
   if (!sol) return;
 
-  container.innerHTML = `
-    <div class="space-y-6">
-      
-      <!-- Card de Autoridade & Confiança do Nó -->
-      <div class="p-5 bg-sand rounded-2xl border border-border-subtle space-y-3 font-mono text-xs">
-        <div class="flex items-center justify-between border-b border-black/5 pb-2.5">
-          <span class="text-muted text-[10px] uppercase font-bold">Nó do Grafo</span>
-          <span class="px-2 py-0.5 rounded bg-forest text-white text-[10px] font-bold uppercase">Homologado</span>
-        </div>
-        <div class="space-y-1">
-          <div class="flex items-center gap-2">
-            <span class="text-ochre font-bold">${sol.trustIndex.stars}</span>
-            <span class="text-graphite font-bold text-[11px]">${sol.trustIndex.rating}</span>
+  let contentHtml = '';
+
+  if (currentSidebarTab === 'ai') {
+    contentHtml = `<div id="sidebar-ai-mount"></div>`;
+  } else {
+    contentHtml = `
+      <div class="space-y-6 animate-fadeIn">
+        <!-- Card de Autoridade & Confiança do Nó -->
+        <div class="p-5 bg-sand rounded-2xl border border-border-subtle space-y-3 font-mono text-xs">
+          <div class="flex items-center justify-between border-b border-black/5 pb-2.5">
+            <span class="text-muted text-[10px] uppercase font-bold">Nó do Grafo</span>
+            <span class="px-2 py-0.5 rounded bg-forest text-white text-[10px] font-bold uppercase">Homologado</span>
           </div>
-          <p class="text-[11px] text-muted">${sol.trustIndex.downloads} downloads auditados • ${sol.trustIndex.citations} citações</p>
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="text-ochre font-bold">${sol.trustIndex.stars}</span>
+              <span class="text-graphite font-bold text-[11px]">${sol.trustIndex.rating}</span>
+            </div>
+            <p class="text-[11px] text-muted">${sol.trustIndex.downloads} downloads auditados • ${sol.trustIndex.citations} citações</p>
+          </div>
+          <div class="pt-2 border-t border-black/5 text-[10px] text-muted space-y-0.5">
+            <p><strong class="text-graphite">Resp. Técnico:</strong> ${sol.technicalLead.name}</p>
+            <p>${sol.technicalLead.crea}</p>
+          </div>
         </div>
-        <div class="pt-2 border-t border-black/5 text-[10px] text-muted space-y-0.5">
-          <p><strong class="text-graphite">Resp. Técnico:</strong> ${sol.technicalLead.name}</p>
-          <p>${sol.technicalLead.crea}</p>
+
+        <!-- Nós Conectados no Grafo (Related Knowledge) -->
+        <div class="space-y-2.5">
+          <h3 class="font-mono text-xs uppercase tracking-wider text-graphite font-bold flex items-center gap-1.5">
+            <i data-lucide="git-branch" class="w-3.5 h-3.5 text-forest"></i>
+            <span>Related Knowledge Graph</span>
+          </h3>
+
+          <div class="space-y-2 font-mono text-xs">
+            <!-- BIM -->
+            ${sol.connectedAssets.bim ? `
+              <div onclick="setWorkspaceTab('bim')" class="p-3 bg-white hover:bg-forest/5 rounded-xl border border-border-subtle hover:border-forest/30 transition-all cursor-pointer flex items-center justify-between group">
+                <div class="space-y-0.5">
+                  <span class="text-[9px] text-forest uppercase font-bold">Modelo Paramétrico BIM</span>
+                  <p class="text-xs font-semibold text-graphite group-hover:text-forest transition-colors">${sol.connectedAssets.bim}</p>
+                </div>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-muted group-hover:text-forest transition-colors"></i>
+              </div>
+            ` : ''}
+
+            <!-- CAD -->
+            ${sol.connectedAssets.cad ? `
+              <div onclick="setWorkspaceTab('cad')" class="p-3 bg-white hover:bg-ochre/5 rounded-xl border border-border-subtle hover:border-ochre/30 transition-all cursor-pointer flex items-center justify-between group">
+                <div class="space-y-0.5">
+                  <span class="text-[9px] text-ochre uppercase font-bold">Detalhamento Executivo CAD</span>
+                  <p class="text-xs font-semibold text-graphite group-hover:text-ochre transition-colors">${sol.connectedAssets.cad}</p>
+                </div>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-muted group-hover:text-ochre transition-colors"></i>
+              </div>
+            ` : ''}
+
+            <!-- LAB -->
+            ${sol.connectedAssets.lab ? `
+              <div onclick="setWorkspaceTab('lab')" class="p-3 bg-white hover:bg-graphite/5 rounded-xl border border-border-subtle hover:border-graphite/30 transition-all cursor-pointer flex items-center justify-between group">
+                <div class="space-y-0.5">
+                  <span class="text-[9px] text-graphite uppercase font-bold">Laudo Laboratorial Auditado</span>
+                  <p class="text-xs font-semibold text-graphite group-hover:text-graphite transition-colors">${sol.connectedAssets.lab}</p>
+                </div>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-muted group-hover:text-graphite transition-colors"></i>
+              </div>
+            ` : ''}
+
+            <!-- MEMORIAL -->
+            ${sol.connectedAssets.mem ? `
+              <div onclick="copyWorkspaceSpec()" class="p-3 bg-white hover:bg-forest/5 rounded-xl border border-border-subtle hover:border-forest/30 transition-all cursor-pointer flex items-center justify-between group">
+                <div class="space-y-0.5">
+                  <span class="text-[9px] text-forest uppercase font-bold">Memorial Licitação (Lei 14.133)</span>
+                  <p class="text-xs font-semibold text-graphite group-hover:text-forest transition-colors">${sol.connectedAssets.mem}</p>
+                </div>
+                <i data-lucide="copy" class="w-3.5 h-3.5 text-muted group-hover:text-forest transition-colors"></i>
+              </div>
+            ` : ''}
+
+            <!-- ACV -->
+            ${sol.connectedAssets.acv ? `
+              <div onclick="setWorkspaceTab('lca')" class="p-3 bg-white hover:bg-forest/5 rounded-xl border border-border-subtle hover:border-forest/30 transition-all cursor-pointer flex items-center justify-between group">
+                <div class="space-y-0.5">
+                  <span class="text-[9px] text-forest uppercase font-bold">Análise Ciclo de Vida (ISO 14044)</span>
+                  <p class="text-xs font-semibold text-graphite group-hover:text-forest transition-colors">${sol.connectedAssets.acv}</p>
+                </div>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-muted group-hover:text-forest transition-colors"></i>
+              </div>
+            ` : ''}
+          </div>
+        </div>
+
+        <!-- Ações Rápidas de Especificação -->
+        <div class="space-y-2 pt-2 border-t border-border-subtle">
+          <button onclick="copyWorkspaceSpec()" class="vira-btn-primary w-full text-center justify-center py-3 text-xs font-mono">
+            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+            <span>Copiar Memorial para Edital</span>
+          </button>
+          <button onclick="copyWorkspaceCitation()" class="vira-btn-outline w-full text-center justify-center py-2.5 text-xs font-mono bg-white">
+            <i data-lucide="quote" class="w-3.5 h-3.5"></i>
+            <span>Citar este Documento (ABNT)</span>
+          </button>
         </div>
       </div>
+    `;
+  }
 
-      <!-- Nós Conectados no Grafo (Related Knowledge) -->
-      <div class="space-y-2.5">
-        <h3 class="font-mono text-xs uppercase tracking-wider text-graphite font-bold flex items-center gap-1.5">
-          <i data-lucide="git-branch" class="w-3.5 h-3.5 text-forest"></i>
-          <span>Related Knowledge Graph</span>
-        </h3>
-
-        <div class="space-y-2 font-mono text-xs">
-          <!-- BIM -->
-          ${sol.connectedAssets.bim ? `
-            <div onclick="setWorkspaceTab('bim')" class="p-3 bg-white hover:bg-forest/5 rounded-xl border border-border-subtle hover:border-forest/30 transition-all cursor-pointer flex items-center justify-between group">
-              <div class="space-y-0.5">
-                <span class="text-[9px] text-forest uppercase font-bold">Modelo Paramétrico BIM</span>
-                <p class="text-xs font-semibold text-graphite group-hover:text-forest transition-colors">${sol.connectedAssets.bim}</p>
-              </div>
-              <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-muted group-hover:text-forest transition-colors"></i>
-            </div>
-          ` : ''}
-
-          <!-- CAD -->
-          ${sol.connectedAssets.cad ? `
-            <div onclick="setWorkspaceTab('cad')" class="p-3 bg-white hover:bg-ochre/5 rounded-xl border border-border-subtle hover:border-ochre/30 transition-all cursor-pointer flex items-center justify-between group">
-              <div class="space-y-0.5">
-                <span class="text-[9px] text-ochre uppercase font-bold">Detalhamento Executivo CAD</span>
-                <p class="text-xs font-semibold text-graphite group-hover:text-ochre transition-colors">${sol.connectedAssets.cad}</p>
-              </div>
-              <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-muted group-hover:text-ochre transition-colors"></i>
-            </div>
-          ` : ''}
-
-          <!-- LAB -->
-          ${sol.connectedAssets.lab ? `
-            <div onclick="setWorkspaceTab('lab')" class="p-3 bg-white hover:bg-graphite/5 rounded-xl border border-border-subtle hover:border-graphite/30 transition-all cursor-pointer flex items-center justify-between group">
-              <div class="space-y-0.5">
-                <span class="text-[9px] text-graphite uppercase font-bold">Laudo Laboratorial Auditado</span>
-                <p class="text-xs font-semibold text-graphite group-hover:text-graphite transition-colors">${sol.connectedAssets.lab}</p>
-              </div>
-              <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-muted group-hover:text-graphite transition-colors"></i>
-            </div>
-          ` : ''}
-
-          <!-- MEMORIAL -->
-          ${sol.connectedAssets.mem ? `
-            <div onclick="copyWorkspaceSpec()" class="p-3 bg-white hover:bg-forest/5 rounded-xl border border-border-subtle hover:border-forest/30 transition-all cursor-pointer flex items-center justify-between group">
-              <div class="space-y-0.5">
-                <span class="text-[9px] text-forest uppercase font-bold">Memorial Licitação (Lei 14.133)</span>
-                <p class="text-xs font-semibold text-graphite group-hover:text-forest transition-colors">${sol.connectedAssets.mem}</p>
-              </div>
-              <i data-lucide="copy" class="w-3.5 h-3.5 text-muted group-hover:text-forest transition-colors"></i>
-            </div>
-          ` : ''}
-
-          <!-- ACV -->
-          ${sol.connectedAssets.acv ? `
-            <div onclick="setWorkspaceTab('lca')" class="p-3 bg-white hover:bg-forest/5 rounded-xl border border-border-subtle hover:border-forest/30 transition-all cursor-pointer flex items-center justify-between group">
-              <div class="space-y-0.5">
-                <span class="text-[9px] text-forest uppercase font-bold">Análise Ciclo de Vida (ISO 14044)</span>
-                <p class="text-xs font-semibold text-graphite group-hover:text-forest transition-colors">${sol.connectedAssets.acv}</p>
-              </div>
-              <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-muted group-hover:text-forest transition-colors"></i>
-            </div>
-          ` : ''}
-        </div>
-      </div>
-
-      <!-- Ações Rápidas de Especificação -->
-      <div class="space-y-2 pt-2 border-t border-border-subtle">
-        <button onclick="copyWorkspaceSpec()" class="vira-btn-primary w-full text-center justify-center py-3 text-xs font-mono">
-          <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-          <span>Copiar Memorial para Edital</span>
+  container.innerHTML = `
+    <div class="space-y-4">
+      <!-- Alternador de Abas da Sidebar: Grafo vs IA -->
+      <div class="flex items-center gap-1 bg-surface p-1 rounded-2xl border border-border-subtle font-mono text-xs">
+        <button onclick="setSidebarTab('knowledge')" class="flex-1 py-2 px-3 rounded-xl text-center font-bold transition-all ${currentSidebarTab === 'knowledge' ? 'bg-white text-forest shadow-sm' : 'text-muted hover:text-graphite'}">
+          Knowledge Graph
         </button>
-        <button onclick="copyWorkspaceCitation()" class="vira-btn-outline w-full text-center justify-center py-2.5 text-xs font-mono bg-white">
-          <i data-lucide="quote" class="w-3.5 h-3.5"></i>
-          <span>Citar este Documento (ABNT)</span>
+        <button onclick="setSidebarTab('ai')" class="flex-1 py-2 px-3 rounded-xl text-center font-bold transition-all flex items-center justify-center gap-1.5 ${currentSidebarTab === 'ai' ? 'bg-white text-forest shadow-sm' : 'text-muted hover:text-graphite'}">
+          <span>Assistente IA</span>
+          <span class="px-1.5 py-0.2 rounded-full bg-forest/10 text-forest text-[9px] font-bold">RAG</span>
         </button>
       </div>
 
+      <div id="sidebar-tab-content">
+        ${contentHtml}
+      </div>
     </div>
   `;
+
+  if (currentSidebarTab === 'ai' && window.engineeringAi) {
+    window.engineeringAi.mount('sidebar-ai-mount');
+  }
 }
 
 // --------------------------------------------------------
