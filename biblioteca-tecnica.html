@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biblioteca Técnica & Centro de Downloads | Plataforma VIRA</title>
+  
+  <!-- SEO & Meta Tags -->
+  <meta name="description" content="Biblioteca técnica de engenharia da Plataforma VIRA. Download de famílias BIM (Revit/IFC), blocos CAD (DWG), laudos laboratoriais ABNT NBR 9781 e memoriais descritivos prontos para licitações públicas." />
+  <meta name="keywords" content="BIM Revit paver reciclado, DWG piso intertravado, ABNT NBR 9781 laudo, memorial descritivo licitação, textura PBR paver, engenharia circular" />
+  <meta name="author" content="VIRA & AR Mídias Integradas" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://projetovira.com.br/biblioteca-tecnica.html" />
+
+  <!-- PWA & Web Manifest -->
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#4A7135" />
+
+  <!-- Vector Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%234A7135' d='M4 4h7l5 16 5-16h7L19 28h-6z'/%3E%3Ccircle cx='23' cy='25' r='3' fill='%23C68D2B'/%3E%3C/svg%3E" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="VIRA" />
+  <meta property="og:url" content="https://projetovira.com.br/biblioteca-tecnica.html" />
+  <meta property="og:title" content="Biblioteca Técnica & Centro de Downloads | Plataforma VIRA" />
+  <meta property="og:description" content="Download de famílias BIM Revit, blocos CAD DWG, laudos ABNT e memoriais descritivos para engenharia e arquitetura." />
+  <meta property="og:image" content="https://projetovira.com.br/assets/foto-institucional-oficial-pavers.jpg" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Design System Tokens & Master Stylesheet -->
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: {
+              DEFAULT: '#4A7135',
+              dark: '#375527',
+              light: '#5d8b43'
+            },
+            ochre: {
+              DEFAULT: '#C68D2B',
+              light: '#e0a544'
+            },
+            graphite: {
+              DEFAULT: '#2A3233',
+              dark: '#1A2021',
+              900: '#141818'
+            },
+            sand: '#F7F7F5',
+            surface: '#F2F2EE',
+            sprout: '#698E3C',
+            muted: '#5E696A',
+            'border-subtle': 'rgba(42, 50, 51, 0.08)'
+          },
+          fontFamily: {
+            sans: ['"DM Sans"', '-apple-system', 'sans-serif'],
+            serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Schema.org JSON-LD Structured Data: CollectionPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Biblioteca Técnica & Centro de Downloads | Plataforma VIRA",
+    "url": "https://projetovira.com.br/biblioteca-tecnica.html",
+    "description": "Repositório de modelos BIM, pranchas CAD, laudos de ensaios ABNT e memoriais técnicos para especificação.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "VIRA",
+      "url": "https://projetovira.com.br"
+    }
+  }
+  </script>
+</head>
+<body class="bg-white text-graphite min-h-screen">
+
+  <!-- Acessibilidade: Skip Link -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-white focus:text-graphite focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-xl focus:font-mono focus:text-xs focus:ring-2 focus:ring-forest">
+    Pular para a lista de ativos técnicos (Enter)
+  </a>
+
+  <!-- ========================================================
+       HEADER INSTITUCIONAL SÓLIDO COM NAVEGAÇÃO
+       ======================================================== -->
+  <header class="vira-header scrolled" role="banner">
+    <a href="index.html" class="vira-header-logo" aria-label="Plataforma VIRA — Página Inicial">
+      <picture>
+        <source srcset="assets/marca.avif" type="image/avif" />
+        <img src="assets/marca.png" alt="Logotipo Oficial VIRA" width="120" height="37" />
+      </picture>
+    </a>
+
+    <nav class="vira-nav-desktop" aria-label="Navegação Principal">
+      <a href="index.html#engenharia" class="vira-nav-link">Engenharia</a>
+      <a href="index.html#como-funciona" class="vira-nav-link">Processo</a>
+      <a href="index.html#materiais" class="vira-nav-link">Materiais</a>
+      <a href="index.html#especificacao" class="vira-nav-link">Normas ABNT</a>
+      <a href="biblioteca-tecnica.html" class="vira-nav-link text-forest font-semibold">Biblioteca Técnica</a>
+      <a href="index.html#contato" class="vira-nav-link">Contato</a>
+    </nav>
+
+    <div class="flex items-center gap-4">
+      <a href="index.html#contato" class="hidden sm:inline-flex vira-btn-primary py-2.5 px-5 text-xs">
+        <span>Suporte a Editais</span>
+      </a>
+
+      <button id="vira-menu-toggle" class="vira-hamburger-btn" aria-label="Abrir Menu de Navegação" aria-expanded="false" aria-controls="vira-fullscreen-menu">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Modal de Navegação Fullscreen -->
+  <div id="vira-fullscreen-menu" class="vira-menu-modal" role="dialog" aria-modal="true" aria-label="Menu Principal de Navegação">
+    <div class="flex justify-between items-center border-b border-white/10 pb-6">
+      <span class="font-mono text-xs text-white/50 uppercase tracking-widest">• Menu de Navegação</span>
+      <span class="font-mono text-xs text-white/40">Plataforma VIRA NEXT 2026</span>
+    </div>
+
+    <nav class="vira-menu-links max-w-4xl mx-auto w-full" aria-label="Capítulos da Plataforma">
+      <a href="index.html#hero" class="vira-menu-link"><span class="num">01</span> Início & Visão Geral</a>
+      <a href="index.html#engenharia" class="vira-menu-link"><span class="num">02</span> Uma Única Engenharia</a>
+      <a href="index.html#como-funciona" class="vira-menu-link"><span class="num">03</span> Como Funciona o Ciclo</a>
+      <a href="index.html#materiais" class="vira-menu-link"><span class="num">04</span> Catálogo de Materiais</a>
+      <a href="biblioteca-tecnica.html" class="vira-menu-link text-ochre"><span class="num">★</span> Biblioteca Técnica & BIM</a>
+      <a href="index.html#especificacao" class="vira-menu-link"><span class="num">06</span> Especificação Técnica & Normas</a>
+      <a href="index.html#impacto" class="vira-menu-link"><span class="num">07</span> Calculadora de Impacto</a>
+      <a href="index.html#contato" class="vira-menu-link"><span class="num">09</span> Contato & Especificação Direta</a>
+    </nav>
+
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-white/50 border-t border-white/10 pt-6">
+      <p>Distrito Industrial de Caruaru — PE</p>
+      <div class="flex gap-6">
+        <a href="brandbook.html" class="text-ochre hover:underline">Brand Book 2026</a>
+        <a href="uniformes.html" class="text-white/70 hover:underline">Guia de Uniformes</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="main-content" class="pt-28 pb-20">
+
+    <!-- ========================================================
+         HERO DA BIBLIOTECA TÉCNICA
+         ======================================================== -->
+    <section class="max-w-[1320px] mx-auto px-6 sm:px-12 pt-8 pb-12">
+      <!-- Breadcrumb -->
+      <nav aria-label="Breadcrumb" class="font-mono text-xs text-muted mb-8">
+        <ol class="flex items-center gap-2">
+          <li><a href="index.html" class="hover:text-forest transition-colors">Plataforma VIRA</a></li>
+          <li>/</li>
+          <li class="text-graphite font-bold" aria-current="page">Biblioteca Técnica & Centro de Downloads</li>
+        </ol>
+      </nav>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end border-b border-border-subtle pb-12">
+        <div class="lg:col-span-8 space-y-4">
+          <span class="vira-chapter-badge">Engenharia de Especificação & Ativos Digitais</span>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-medium text-graphite tracking-tight leading-[1.08]">
+            Biblioteca Técnica & Centro de Downloads.
+          </h1>
+          <p class="text-base sm:text-lg text-muted max-w-2xl leading-relaxed">
+            Arquivos paramétricos BIM (Revit/IFC), detalhes construtivos CAD (DWG), laudos laboratoriais auditados de conformidade ABNT e memoriais descritivos prontos para incorporação em licitações públicas e projetos executivos.
+          </p>
+        </div>
+
+        <!-- Indicador de Status do Repositório -->
+        <div class="lg:col-span-4 bg-sand p-6 rounded-3xl border border-border-subtle space-y-3 font-mono text-xs">
+          <div class="flex items-center justify-between text-muted border-b border-black/5 pb-2">
+            <span>Repositório Ativo</span>
+            <strong class="text-forest font-bold">Auditado 2026</strong>
+          </div>
+          <div class="flex items-center justify-between text-muted border-b border-black/5 pb-2">
+            <span>Ativos Disponíveis</span>
+            <strong class="text-graphite font-bold"><span id="assets-count">10</span> Documentos</strong>
+          </div>
+          <div class="flex items-center justify-between text-muted">
+            <span>Conformidade</span>
+            <strong class="text-ochre font-bold">ABNT / Lei 14.133</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SISTEMA DE FILTROS FACETADOS & BUSCA EM TEMPO REAL
+         ======================================================== -->
+    <section class="max-w-[1320px] mx-auto px-6 sm:px-12 mb-10">
+      <div class="bg-sand p-6 sm:p-8 rounded-3xl border border-border-subtle space-y-6">
+        
+        <!-- Barra de Busca Global -->
+        <div class="relative">
+          <i data-lucide="search" class="w-5 h-5 text-muted absolute left-4 top-1/2 -translate-y-1/2"></i>
+          <input id="search-input" type="search" placeholder="Buscar por palavra-chave, código (ex: NBR 9781, BIM, Paver, ACV, 35 MPa)..." class="w-full pl-12 pr-4 py-3.5 bg-white rounded-2xl border border-border-subtle text-sm text-graphite placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-forest" aria-label="Buscar ativo técnico" />
+        </div>
+
+        <!-- Linha 1: Filtro por Categoria de Arquivo -->
+        <div class="space-y-2">
+          <span class="font-mono text-[11px] uppercase tracking-wider text-muted block font-semibold">Tipo de Ativo / Formato:</span>
+          <div class="flex flex-wrap gap-2" role="tablist">
+            <button data-cat-filter="all" class="px-4 py-2 rounded-xl bg-graphite text-white font-mono text-xs font-semibold active">Todos os Ativos</button>
+            <button data-cat-filter="bim" class="px-4 py-2 rounded-xl hover:bg-white text-muted font-mono text-xs font-semibold border border-transparent hover:border-border-subtle">Modelos BIM (Revit/IFC)</button>
+            <button data-cat-filter="cad" class="px-4 py-2 rounded-xl hover:bg-white text-muted font-mono text-xs font-semibold border border-transparent hover:border-border-subtle">Desenhos CAD (DWG)</button>
+            <button data-cat-filter="laudo" class="px-4 py-2 rounded-xl hover:bg-white text-muted font-mono text-xs font-semibold border border-transparent hover:border-border-subtle">Laudos Laboratoriais (ABNT)</button>
+            <button data-cat-filter="memorial" class="px-4 py-2 rounded-xl hover:bg-white text-muted font-mono text-xs font-semibold border border-transparent hover:border-border-subtle">Memoriais para Licitações</button>
+            <button data-cat-filter="pbr" class="px-4 py-2 rounded-xl hover:bg-white text-muted font-mono text-xs font-semibold border border-transparent hover:border-border-subtle">Mapas PBR 4K</button>
+          </div>
+        </div>
+
+        <!-- Linha 2: Filtro por Material -->
+        <div class="space-y-2 pt-4 border-t border-black/5">
+          <span class="font-mono text-[11px] uppercase tracking-wider text-muted block font-semibold">Linha de Material:</span>
+          <div class="flex flex-wrap gap-2">
+            <button data-mat-filter="all" class="px-3.5 py-1.5 rounded-lg bg-forest text-white font-mono text-xs font-medium active">Todas as Linhas</button>
+            <button data-mat-filter="paver" class="px-3.5 py-1.5 rounded-lg bg-white text-muted hover:text-graphite font-mono text-xs font-medium border border-border-subtle">Paver 16 Faces</button>
+            <button data-mat-filter="painel" class="px-3.5 py-1.5 rounded-lg bg-white text-muted hover:text-graphite font-mono text-xs font-medium border border-border-subtle">Painel Plano 15mm</button>
+            <button data-mat-filter="perfil" class="px-3.5 py-1.5 rounded-lg bg-white text-muted hover:text-graphite font-mono text-xs font-medium border border-border-subtle">Perfil Estrutural 80×80</button>
+            <button data-mat-filter="insumo" class="px-3.5 py-1.5 rounded-lg bg-white text-muted hover:text-graphite font-mono text-xs font-medium border border-border-subtle">Composto Micronizado</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================
+         GRID DE ATIVOS TÉCNICOS (REATIVO)
+         ======================================================== -->
+    <section class="max-w-[1320px] mx-auto px-6 sm:px-12 mb-16" aria-label="Catálogo de Documentos Técnicos">
+      <div id="assets-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Injetado dinamicamente por biblioteca.js -->
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SEÇÃO DE ENGENHARIA DE APLICAÇÃO & SUPORTE A EDITAIS
+         ======================================================== -->
+    <section class="max-w-[1320px] mx-auto px-6 sm:px-12 mb-16">
+      <div class="bg-graphite text-white rounded-3xl p-8 sm:p-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-8 space-y-4">
+          <span class="font-mono text-xs uppercase tracking-widest text-ochre font-bold block">• ENGENHARIA DE SUPORTE DIRETO</span>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-medium tracking-tight">
+            Necessita de um modelo paramétrico customizado ou ensaio sob demanda?
+          </h2>
+          <p class="text-sm text-white/70 max-w-xl font-light leading-relaxed">
+            Nosso time técnico de modelagem BIM e laudos atende engenheiros projetistas, secretarias de planejamento urbano e incorporadoras com suporte na elaboração de memoriais específicos.
+          </p>
+        </div>
+
+        <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3">
+          <a href="index.html#contato" class="vira-btn-primary py-3.5 px-6 text-center text-xs justify-center font-mono">
+            <span>Falar com o Time de Engenharia</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+          <a href="assets/downloads/VIRA_Brand_Assets_Pack.zip" download class="vira-btn-outline py-3 px-6 text-center text-xs justify-center font-mono">
+            <span>Download do Pacote Completo (.ZIP)</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================
+       DRAWER MODAL DE METADADOS & MEMORIAL DE LICITAÇÃO
+       ======================================================== -->
+  <div id="asset-drawer-backdrop" onclick="closeAssetDrawer()" class="vira-drawer-backdrop" aria-hidden="true"></div>
+  <div id="asset-drawer-panel" class="vira-drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawer-asset-title">
+    <div class="space-y-6">
+      <!-- Cabeçalho do Drawer -->
+      <div class="flex items-start justify-between border-b border-border-subtle pb-6 gap-4">
+        <div>
+          <span id="drawer-asset-format" class="font-mono text-xs text-forest uppercase font-bold tracking-wider">FORMATO</span>
+          <h2 id="drawer-asset-title" class="text-xl sm:text-2xl font-bold text-graphite mt-1 leading-snug">Título do Ativo</h2>
+          <span id="drawer-asset-code" class="font-mono text-xs text-muted block mt-1">DOC-VRA-000</span>
+        </div>
+        <button onclick="closeAssetDrawer()" class="p-2.5 rounded-full border border-border-subtle hover:bg-sand transition-colors shrink-0" aria-label="Fechar Ficha do Ativo">
+          <i data-lucide="x" class="w-5 h-5 text-graphite"></i>
+        </button>
+      </div>
+
+      <!-- Metadados em Grid -->
+      <div class="grid grid-cols-2 gap-3 bg-sand p-4 rounded-2xl border border-border-subtle font-mono text-xs">
+        <div>
+          <span class="text-muted block text-[10px] uppercase">Norma Aplicável</span>
+          <strong id="drawer-asset-norm" class="text-graphite font-semibold">ABNT NBR 9781</strong>
+        </div>
+        <div>
+          <span class="text-muted block text-[10px] uppercase">Tamanho do Arquivo</span>
+          <strong id="drawer-asset-size" class="text-graphite font-semibold">14.2 MB</strong>
+        </div>
+        <div class="col-span-2 pt-2 border-t border-black/5">
+          <span class="text-muted block text-[10px] uppercase">Softwares Compatíveis</span>
+          <p id="drawer-asset-software" class="text-graphite font-medium text-[11px] mt-0.5">Revit 2021-2026, ArchiCAD</p>
+        </div>
+      </div>
+
+      <!-- Descrição Detalhada -->
+      <div class="space-y-2">
+        <h3 class="font-mono text-xs uppercase tracking-wider text-graphite font-bold">Escopo & Parâmetros do Ativo</h3>
+        <p id="drawer-asset-desc" class="text-xs text-muted leading-relaxed"></p>
+      </div>
+
+      <!-- Copiador de Memorial Descritivo -->
+      <div class="space-y-2 pt-4 border-t border-border-subtle">
+        <div class="flex items-center justify-between">
+          <h3 class="font-mono text-xs uppercase tracking-wider text-forest font-bold">Texto para Memorial de Licitação</h3>
+          <button onclick="copySpecText()" class="text-xs font-mono text-forest hover:underline flex items-center gap-1 font-semibold">
+            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+            <span>Copiar Texto</span>
+          </button>
+        </div>
+        <textarea id="drawer-asset-spectext" readonly rows="4" class="w-full p-3.5 bg-sand rounded-xl border border-border-subtle font-mono text-xs text-graphite focus:outline-none resize-none select-all" aria-label="Texto de especificação para edital"></textarea>
+        <div id="copy-feedback" class="hidden font-mono text-xs text-forest text-right">
+          ✓ Memorial copiado para a área de transferência!
+        </div>
+      </div>
+    </div>
+
+    <!-- Ação de Download -->
+    <div class="pt-6 border-t border-border-subtle mt-6">
+      <a id="drawer-asset-download" href="#" download class="vira-btn-primary w-full text-center justify-center py-3.5 text-xs font-mono">
+        <i data-lucide="download" class="w-4 h-4"></i>
+        <span>Download Imediato do Ativo</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       RODAPÉ OFICIAL MONUMENTAL (4 COLUNAS INSTITUCIONAIS)
+       ======================================================== -->
+  <footer class="bg-graphite-dark text-white pt-20 pb-12 px-6 sm:px-12 border-t border-white/10" role="contentinfo">
+    <div class="max-w-[1320px] mx-auto space-y-16">
+      
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 border-b border-white/10 pb-16">
+        <div class="md:col-span-5 space-y-4">
+          <picture>
+            <source srcset="assets/marca.avif" type="image/avif" />
+            <img src="assets/marca.png" alt="Logotipo Oficial VIRA" class="h-8 w-auto filter brightness-0 invert" width="120" height="37" />
+          </picture>
+          <p class="text-sm text-white/70 max-w-sm font-light leading-relaxed">
+            Plataforma Industrial de Engenharia Circular para Infraestrutura Urbana. Modelos paramétricos, laudos de ensaios ABNT e suporte técnico para projetistas e gestores públicos.
+          </p>
+        </div>
+
+        <div class="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8 font-mono text-xs">
+          <div class="space-y-3">
+            <span class="text-white/40 uppercase tracking-wider block font-bold">Plataforma</span>
+            <ul class="space-y-2 text-white/80">
+              <li><a href="index.html#engenharia" class="hover:text-white transition-colors">Engenharia</a></li>
+              <li><a href="index.html#como-funciona" class="hover:text-white transition-colors">Como Funciona</a></li>
+              <li><a href="index.html#materiais" class="hover:text-white transition-colors">Materiais</a></li>
+              <li><a href="biblioteca-tecnica.html" class="hover:text-white text-ochre font-bold transition-colors">Biblioteca Técnica</a></li>
+              <li><a href="index.html#especificacao" class="hover:text-white transition-colors">Normas ABNT</a></li>
+            </ul>
+          </div>
+
+          <div class="space-y-3">
+            <span class="text-white/40 uppercase tracking-wider block font-bold">Ativos Digitais</span>
+            <ul class="space-y-2 text-white/80">
+              <li><a href="biblioteca-tecnica.html" class="hover:text-white transition-colors">Famílias BIM Revit</a></li>
+              <li><a href="biblioteca-tecnica.html" class="hover:text-white transition-colors">Detalhamento CAD DWG</a></li>
+              <li><a href="biblioteca-tecnica.html" class="hover:text-white transition-colors">Laudos de Ensaio IPT</a></li>
+              <li><a href="brandbook.html" class="hover:text-white transition-colors">Brand Book 2026</a></li>
+            </ul>
+          </div>
+
+          <div class="space-y-3">
+            <span class="text-white/40 uppercase tracking-wider block font-bold">Unidade Industrial</span>
+            <address class="not-italic text-white/80 space-y-1">
+              <p>Distrito Industrial</p>
+              <p>Caruaru — PE</p>
+              <p>Brasil • CEP 55000-000</p>
+              <p class="pt-2 text-white/60">engenharia@projetovira.com.br</p>
+            </address>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center select-none" aria-hidden="true">
+        <span class="footer-monumental-wordmark block">
+          vira.
+        </span>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-white/50 border-t border-white/10 pt-8">
+        <p>© 2026 VIRA. Todos os direitos reservados. · Design & Tecnologia por AR Mídias Integradas</p>
+        <p>Polo Industrial de Caruaru — Pernambuco</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="app.js?v=20260910_hardened"></script>
+  <script src="biblioteca.js?v=20260910_v1"></script>
+  <script>
+    if (window.lucide) {
+      lucide.createIcons({
+        attrs: {
+          'stroke-width': 1.75
+        }
+      });
+    }
+  </script>
+</body>
+</html>
