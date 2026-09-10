@@ -1,5 +1,5 @@
 // ========================================================
-// PLATAFORMA VIRA NEXT — KNOWLEDGE GRAPH & CENTRO DE ESPECIFICAÇÃO
+// VIRA OS — KNOWLEDGE GRAPH & CENTRO DE ESPECIFICAÇÃO
 // Arquitetura de Conexões, Engenharia de Ativos e Governança Técnica
 // ========================================================
 

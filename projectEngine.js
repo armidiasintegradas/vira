@@ -1,5 +1,5 @@
 // ========================================================
-// PLATAFORMA VIRA NEXT — PROJECT ENGINE (projectEngine.js)
+// VIRA OS — PROJECT ENGINE (projectEngine.js)
 // Gerenciador de Projetos Executivos, Quantitativos & Persistência Local
 // ========================================================
 

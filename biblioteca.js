@@ -1,5 +1,5 @@
 // ========================================================
-// PLATAFORMA VIRA NEXT — CONTROLADOR DA BIBLIOTECA TÉCNICA (biblioteca.js)
+// VIRA OS — CONTROLADOR DA BIBLIOTECA TÉCNICA (biblioteca.js)
 // Sistema de Especificação, Downloads e Engenharia de Ativos
 // ========================================================
 

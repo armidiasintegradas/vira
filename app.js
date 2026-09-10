@@ -1,6 +1,6 @@
 // ========================================================
-// VIRA NEXT — MASTER CONTROLLER (app.js)
-// Plataforma Industrial de Engenharia Circular
+// VIRA OS — MASTER CONTROLLER (app.js)
+// Sistema Operacional para Engenharia Circular
 // ========================================================
 
 document.addEventListener('DOMContentLoaded', () => {

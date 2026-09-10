@@ -1,10 +1,12 @@
 // ========================================================
-// PLATAFORMA VIRA NEXT — EXPORTADOR EXECUTIVO INTELIGENTE (exporter.js)
-// Emissor do Caderno Executivo de Encargos do Projeto (Lei 14.133/2021)
+// VIRA OS — EXPORTADOR EXECUTIVO MULTIPERFIL (exporter.js)
+// Engine 02: Specification & Export Engine
+// Perfis Especializados: Licitação (Lei 14.133) • Executivo • Memorial • Cliente • ESG
 // ========================================================
 
 class ProjectExporter {
   constructor() {
+    this.currentProfile = 'licitacao'; // 'licitacao' | 'executivo' | 'memorial' | 'cliente' | 'esg'
     this.initModal();
     this.injectPrintStyles();
   }
@@ -27,7 +29,7 @@ class ProjectExporter {
           top: 0 !important;
           width: 100% !important;
           margin: 0 !important;
-          padding: 20mm !important;
+          padding: 15mm !important;
           box-shadow: none !important;
           border: none !important;
           background: white !important;
@@ -45,14 +47,14 @@ class ProjectExporter {
     if (!backdrop) {
       const modalHtml = `
         <div id="exporter-modal-backdrop" class="fixed inset-0 z-[10000] bg-graphite/60 backdrop-blur-sm hidden flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-          <div id="exporter-modal-dialog" class="w-full max-w-4xl bg-white rounded-3xl shadow-2xl border border-border-subtle overflow-hidden flex flex-col font-sans max-h-[90vh] animate-fadeIn my-auto">
+          <div id="exporter-modal-dialog" class="w-full max-w-4xl bg-white rounded-3xl shadow-2xl border border-border-subtle overflow-hidden flex flex-col font-sans max-h-[92vh] animate-fadeIn my-auto">
             
-            <!-- Barra Superior do Modal -->
-            <div class="px-6 sm:px-8 py-5 border-b border-border-subtle bg-sand flex items-center justify-between gap-4 no-print">
+            <!-- Barra Superior do Modal com Seleção de Perfil -->
+            <div class="px-6 sm:px-8 py-5 border-b border-border-subtle bg-sand flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 no-print">
               <div>
                 <div class="flex items-center gap-2">
-                  <span class="px-2 py-0.5 rounded bg-forest/10 text-forest font-mono text-[10px] font-bold uppercase tracking-wider">Documento Oficial</span>
-                  <span class="font-mono text-[10px] text-muted font-bold">Caderno Executivo de Encargos</span>
+                  <span class="px-2 py-0.5 rounded bg-forest/10 text-forest font-mono text-[10px] font-bold uppercase tracking-wider">Engine 02 • Specification Engine</span>
+                  <span class="font-mono text-[10px] text-muted font-bold">VIRA OS Multi-Profile Exporter</span>
                 </div>
                 <h2 class="text-xl sm:text-2xl font-bold text-graphite tracking-tight mt-1">Exportação Inteligente de Projeto</h2>
               </div>
@@ -72,18 +74,38 @@ class ProjectExporter {
               </div>
             </div>
 
+            <!-- Seletor de Perfis Especializados de Exportação -->
+            <div class="px-6 sm:px-8 py-3 bg-surface/60 border-b border-border-subtle flex items-center gap-1 overflow-x-auto no-scrollbar font-mono text-xs no-print">
+              <span class="text-muted text-[10px] uppercase font-bold shrink-0 mr-2">Perfil de Emissão:</span>
+              <button onclick="window.projectExporter.setProfile('licitacao')" id="exp-prof-licitacao" class="px-3 py-1.5 rounded-xl border text-xs font-mono font-bold transition-all shrink-0 bg-white border-forest text-forest shadow-sm">
+                ⚖️ Licitação Pública (Lei 14.133)
+              </button>
+              <button onclick="window.projectExporter.setProfile('executivo')" id="exp-prof-executivo" class="px-3 py-1.5 rounded-xl border text-xs font-mono transition-all shrink-0 bg-transparent border-transparent text-muted hover:text-graphite">
+                📐 Caderno Executivo de Obra
+              </button>
+              <button onclick="window.projectExporter.setProfile('memorial')" id="exp-prof-memorial" class="px-3 py-1.5 rounded-xl border text-xs font-mono transition-all shrink-0 bg-transparent border-transparent text-muted hover:text-graphite">
+                📋 Memorial Descritivo Síntese
+              </button>
+              <button onclick="window.projectExporter.setProfile('cliente')" id="exp-prof-cliente" class="px-3 py-1.5 rounded-xl border text-xs font-mono transition-all shrink-0 bg-transparent border-transparent text-muted hover:text-graphite">
+                👔 Apresentação para Cliente / Conselho
+              </button>
+              <button onclick="window.projectExporter.setProfile('esg')" id="exp-prof-esg" class="px-3 py-1.5 rounded-xl border text-xs font-mono transition-all shrink-0 bg-transparent border-transparent text-muted hover:text-graphite">
+                🌱 Relatório ESG & Descarbonização
+              </button>
+            </div>
+
             <!-- Prancha Visual de Visualização de Impressão -->
-            <div class="overflow-y-auto p-6 sm:p-10 bg-surface/50">
-              <div id="project-exporter-sheet" class="bg-white p-8 sm:p-12 rounded-2xl border border-border-subtle shadow-md max-w-3xl mx-auto font-serif text-graphite space-y-8">
+            <div class="overflow-y-auto p-6 sm:p-10 bg-surface/40">
+              <div id="project-exporter-sheet" class="bg-white p-8 sm:p-12 rounded-2xl border border-border-subtle shadow-md max-w-3xl mx-auto text-graphite space-y-8">
                 <!-- Conteúdo gerado dinamicamente -->
               </div>
             </div>
 
             <!-- Rodapé do Modal -->
             <div class="px-6 sm:px-8 py-4 border-t border-border-subtle bg-sand flex items-center justify-between text-xs font-mono text-muted no-print">
-              <span class="flex items-center gap-1.5 text-forest font-semibold">
+              <span id="exporter-compliance-badge" class="flex items-center gap-1.5 text-forest font-semibold">
                 <i data-lucide="check-circle" class="w-4 h-4"></i>
-                Documento em conformidade com o Art. 11 da Lei Federal 14.133/2021.
+                Documento gerado pelo VIRA OS Specification Engine.
               </span>
               <button onclick="window.closeProjectExporterModal()" class="vira-btn-outline py-2 px-4 text-xs font-mono bg-white">
                 Fechar Visualização
@@ -97,13 +119,29 @@ class ProjectExporter {
     }
   }
 
+  setProfile(profileId) {
+    this.currentProfile = profileId;
+    const profiles = ['licitacao', 'executivo', 'memorial', 'cliente', 'esg'];
+    profiles.forEach(p => {
+      const btn = document.getElementById(`exp-prof-${p}`);
+      if (btn) {
+        if (p === profileId) {
+          btn.className = 'px-3 py-1.5 rounded-xl border text-xs font-mono font-bold transition-all shrink-0 bg-white border-forest text-forest shadow-sm';
+        } else {
+          btn.className = 'px-3 py-1.5 rounded-xl border text-xs font-mono transition-all shrink-0 bg-transparent border-transparent text-muted hover:text-graphite';
+        }
+      }
+    });
+    this.render();
+  }
+
   render() {
     const sheet = document.getElementById('project-exporter-sheet');
     if (!sheet) return;
 
     const proj = window.projectEngine ? window.projectEngine.getActiveProject() : null;
     if (!proj) {
-      sheet.innerHTML = `<p class="font-sans text-muted text-sm text-center py-10">Nenhum projeto selecionado no momento.</p>`;
+      sheet.innerHTML = `<p class="font-sans text-muted text-sm text-center py-10">Nenhum projeto ativo selecionado no momento.</p>`;
       return;
     }
 
@@ -111,11 +149,36 @@ class ProjectExporter {
     const tonsPlastic = (totals.totalPlasticKg / 1000).toFixed(1).replace('.', ',');
     const tonsCo2 = (totals.totalCo2MitigatedKg / 1000).toFixed(1).replace('.', ',');
 
+    switch (this.currentProfile) {
+      case 'licitacao':
+        this.renderLicitacaoProfile(sheet, proj, totals, tonsPlastic, tonsCo2);
+        break;
+      case 'executivo':
+        this.renderExecutivoProfile(sheet, proj, totals, tonsPlastic, tonsCo2);
+        break;
+      case 'memorial':
+        this.renderMemorialProfile(sheet, proj, totals, tonsPlastic, tonsCo2);
+        break;
+      case 'cliente':
+        this.renderClienteProfile(sheet, proj, totals, tonsPlastic, tonsCo2);
+        break;
+      case 'esg':
+        this.renderEsgProfile(sheet, proj, totals, tonsPlastic, tonsCo2);
+        break;
+      default:
+        this.renderLicitacaoProfile(sheet, proj, totals, tonsPlastic, tonsCo2);
+    }
+
+    if (window.lucide) {
+      lucide.createIcons({ attrs: { 'stroke-width': 1.75 } });
+    }
+  }
+
+  renderLicitacaoProfile(sheet, proj, totals, tonsPlastic, tonsCo2) {
     sheet.innerHTML = `
-      <!-- Cabeçalho Institucional -->
       <div class="border-b-2 border-graphite pb-6 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
         <div>
-          <span class="font-mono text-[10px] text-forest font-bold uppercase tracking-widest block">República Federativa do Brasil • Estado de Pernambuco</span>
+          <span class="font-mono text-[10px] text-forest font-bold uppercase tracking-widest block">Caderno Técnico de Licitação Pública • Lei 14.133/2021</span>
           <h1 class="text-2xl sm:text-3xl font-bold font-sans tracking-tight text-graphite mt-1">${proj.name}</h1>
           <p class="font-sans text-xs text-muted mt-1">Órgão Contratante: <strong class="text-graphite">${proj.client}</strong></p>
         </div>
@@ -126,7 +189,6 @@ class ProjectExporter {
         </div>
       </div>
 
-      <!-- Dados do Responsável Técnico e Enquadramento Jurídico -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 font-sans text-xs bg-sand p-4 rounded-xl border border-border-subtle">
         <div>
           <span class="text-muted block text-[10px] font-mono uppercase">Responsável Técnico / Projetista:</span>
@@ -138,130 +200,212 @@ class ProjectExporter {
         </div>
       </div>
 
-      <!-- Sumário Executivo e Mitigação Ambiental Homologada -->
-      <div class="space-y-2">
-        <h2 class="font-sans text-sm font-bold uppercase tracking-wider text-graphite border-b border-border-subtle pb-1">1. Sumário Executivo de Sustentabilidade e ACV</h2>
-        <p class="font-sans text-xs leading-relaxed text-muted">
-          O presente caderno estabelece as prescrições de engenharia para execução de infraestrutura circular com compósito polimérico de alta densidade VIRA. A adoção dos elementos circulares atende aos princípios de mitigação climática da <strong class="text-graphite">Lei 14.133/2021 (Art. 11 e Art. 34)</strong> e metodologia <strong class="text-graphite">ISO 14044</strong>.
-        </p>
+      <div class="space-y-3 font-sans text-xs text-graphite leading-relaxed">
+        <h2 class="font-sans text-sm font-bold uppercase tracking-wider text-graphite border-b border-border-subtle pb-1">1. Objeto e Cláusulas de Qualificação Técnica</h2>
+        
+        <div class="space-y-1">
+          <h3 class="font-bold text-graphite">1.1. Critérios de Julgamento e Desenvolvimento Sustentável</h3>
+          <p class="text-muted">
+            Em observância ao <strong class="text-graphite">Art. 11, inciso IV e Art. 34 da Lei Federal 14.133/2021</strong>, a presente contratação adota critério de mitigação climática e circularidade. Fica admitido o emprego de artefatos de compósito polimérico circular que comprovem inventário de ciclo de vida auditado conforme <strong class="text-graphite">ABNT NBR ISO 14044:2009</strong> com abatimento de carbono mínimo de 2,00 kg CO2e/kg.
+          </p>
+        </div>
 
-        <!-- Grade de Indicadores de Impacto -->
-        <div class="grid grid-cols-3 gap-3 pt-2 font-mono text-xs">
-          <div class="p-3 bg-sand rounded-xl border border-border-subtle text-center">
-            <span class="text-[10px] text-muted uppercase block">Área Total Especificada</span>
+        <div class="space-y-1">
+          <h3 class="font-bold text-graphite">1.2. Desempenho Mecânico e Resistência à Compressão</h3>
+          <p class="text-muted">
+            Os blocos de pavimentação intertravada deverão atingir resistência característica à compressão axial estática de <strong class="text-graphite">fck ≥ 35,0 MPa</strong> (NBR 9781:2013), aferida em laboratório acreditado pelo Inmetro (IPT protocolo nº 1.104.921-A ou equivalente).
+          </p>
+        </div>
+
+        <div class="space-y-1">
+          <h3 class="font-bold text-graphite">1.3. Imunidade Salina e Absorção de Água</h3>
+          <p class="text-muted">
+            A absorção máxima de água por imersão total permitida é de <strong class="text-graphite">0,05%</strong>, sendo terminantemente vedada a entrega de lotes cimentícios convencionais sem aditivação hidro-repelente comprovada.
+          </p>
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <h2 class="font-sans text-sm font-bold uppercase tracking-wider text-graphite border-b border-border-subtle pb-1">2. Quadro Consolidado de Quantitativos e Metas de Descarbonização</h2>
+        <div class="grid grid-cols-3 gap-3 font-mono text-xs">
+          <div class="p-3 bg-sand rounded-xl text-center">
+            <span class="text-[10px] text-muted uppercase block">Área Total</span>
             <span class="font-bold text-graphite text-base">${totals.totalArea.toLocaleString('pt-BR')} m²</span>
           </div>
-          <div class="p-3 bg-sand rounded-xl border border-border-subtle text-center">
+          <div class="p-3 bg-sand rounded-xl text-center">
             <span class="text-[10px] text-forest font-bold uppercase block">Plástico Regenerado</span>
             <span class="font-bold text-forest text-base">${tonsPlastic} t</span>
           </div>
-          <div class="p-3 bg-sand rounded-xl border border-border-subtle text-center">
-            <span class="text-[10px] text-forest font-bold uppercase block">CO2e Evitado (ACV)</span>
+          <div class="p-3 bg-sand rounded-xl text-center">
+            <span class="text-[10px] text-forest font-bold uppercase block">CO2e Evitado</span>
             <span class="font-bold text-forest text-base">${tonsCo2} t</span>
           </div>
         </div>
       </div>
 
-      <!-- Quadro Consolidado de Materiais -->
-      <div class="space-y-2">
-        <h2 class="font-sans text-sm font-bold uppercase tracking-wider text-graphite border-b border-border-subtle pb-1">2. Quadro de Quantitativos e Especificações</h2>
-        <table class="w-full text-left font-sans text-xs border-collapse">
-          <thead>
-            <tr class="border-b border-border-subtle font-mono text-[10px] text-muted uppercase">
-              <th class="py-2">Item</th>
-              <th class="py-2">Elemento de Engenharia</th>
-              <th class="py-2">Código</th>
-              <th class="py-2 text-right">Quantitativo</th>
-              <th class="py-2 text-right">Plástico (t)</th>
-              <th class="py-2 text-right">CO2e Evitado</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-border-subtle">
-            ${proj.items.map((it, idx) => {
-              const pKg = (it.quantityM2 * it.densityKgM2) / 1000;
-              const co2T = (it.quantityM2 * it.densityKgM2 * it.lcaFactorCo2) / 1000;
-              return `
-                <tr>
-                  <td class="py-2 font-mono text-muted">#0${idx + 1}</td>
-                  <td class="py-2 font-bold text-graphite">${it.name}</td>
-                  <td class="py-2 font-mono text-[11px] text-ochre font-bold">${it.code}</td>
-                  <td class="py-2 text-right font-mono">${it.quantityM2.toLocaleString('pt-BR')} ${it.solutionId === 'perfil' ? 'm' : 'm²'}</td>
-                  <td class="py-2 text-right font-mono text-forest font-bold">${pKg.toFixed(1).replace('.', ',')} t</td>
-                  <td class="py-2 text-right font-mono text-forest font-bold">${co2T.toFixed(1).replace('.', ',')} t</td>
-                </tr>
-              `;
-            }).join('')}
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Cláusulas do Caderno de Encargos -->
-      <div class="space-y-4 font-sans text-xs text-graphite leading-relaxed">
-        <h2 class="font-sans text-sm font-bold uppercase tracking-wider text-graphite border-b border-border-subtle pb-1">3. Cláusulas Técnicas para Edital de Obras Públicas</h2>
-        
-        <div class="space-y-1">
-          <h3 class="font-bold text-graphite">3.1. Requisitos Mecânicos e Resistência à Compressão</h3>
-          <p class="text-muted">
-            Os pavers intertravados deverão apresentar resistência mecânica característica à compressão axial mínima de <strong class="text-graphite">fck ≥ 35,0 MPa</strong>, conforme método de ensaio da <strong class="text-graphite">ABNT NBR 9781:2013</strong>, devidamente comprovada mediante apresentação de laudo emitido por laboratório acreditado pelo Inmetro (IPT protocolo nº 1.104.921 ou equivalente acreditado).
-          </p>
-        </div>
-
-        <div class="space-y-1">
-          <h3 class="font-bold text-graphite">3.2. Absorção de Água e Durabilidade Frente a Maresia</h3>
-          <p class="text-muted">
-            Em razão da exposição à salinidade e umidade, a taxa máxima de absorção de água admitida para os blocos e perfis é de <strong class="text-graphite">0,05% (zero eflorescência)</strong>. Fica vedada a aplicação de materiais cimentícios convencionais sem aditivação hidro-repelente comprovada para obras em faixa litorânea.
-          </p>
-        </div>
-
-        <div class="space-y-1">
-          <h3 class="font-bold text-graphite">3.3. Rastreabilidade e Passaporte Digital de Produto (DPP)</h3>
-          <p class="text-muted">
-            Cada lote entregue no canteiro de obras deverá portar gravação indelével em baixo-relevo indicando código de lote, data de vulcanização/moldagem e QR Code apontando para o Laudo de Conformidade Digital emitido com assinatura digital ICP-Brasil.
-          </p>
-        </div>
-      </div>
-
-      <!-- Lista de Pranchas e IDs de Engenharia Vinculados -->
-      <div class="space-y-2">
-        <h2 class="font-sans text-sm font-bold uppercase tracking-wider text-graphite border-b border-border-subtle pb-1">4. Pranchas e Documentos Anexos Homologados</h2>
-        <div class="grid grid-cols-2 gap-2 font-mono text-[11px]">
-          <div class="p-2.5 bg-sand rounded-lg border border-border-subtle flex justify-between">
-            <span>VIRA-BIM-PAV-001</span>
-            <span class="text-forest font-bold">Modelo Revit 2026</span>
-          </div>
-          <div class="p-2.5 bg-sand rounded-lg border border-border-subtle flex justify-between">
-            <span>VIRA-CAD-PAV-002</span>
-            <span class="text-ochre font-bold">Pranchas DWG 1:20</span>
-          </div>
-          <div class="p-2.5 bg-sand rounded-lg border border-border-subtle flex justify-between">
-            <span>VIRA-LAB-PAV-003</span>
-            <span class="text-graphite font-bold">Laudo IPT 38,2 MPa</span>
-          </div>
-          <div class="p-2.5 bg-sand rounded-lg border border-border-subtle flex justify-between">
-            <span>VIRA-ACV-ALL-010</span>
-            <span class="text-forest font-bold">ACV ISO 14044</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Campo de Assinatura -->
       <div class="pt-8 border-t border-border-subtle flex justify-between items-end font-sans text-xs">
-        <div class="space-y-1">
-          <p class="font-bold text-graphite">VIRA Indústria de Compósitos Circulares</p>
-          <p class="text-muted text-[11px]">Departamento de Engenharia e Modelagem BIM</p>
-          <p class="font-mono text-[10px] text-muted">CREA-PE 048291-D • Caruaru — PE</p>
+        <div>
+          <p class="font-bold text-graphite">VIRA OS • Sistema Operacional para Engenharia Circular</p>
+          <p class="text-muted text-[11px]">Homologação Digital de Conformidade ICP-Brasil</p>
         </div>
-        <div class="text-right space-y-1">
+        <div class="text-right">
           <div class="w-48 border-b border-graphite mb-1 ml-auto"></div>
           <p class="font-bold text-graphite">${proj.responsible}</p>
-          <p class="text-muted text-[11px]">Responsável Técnico pelo Projeto</p>
+          <p class="text-muted text-[11px]">Responsável Técnico pelo Edital</p>
         </div>
       </div>
     `;
+  }
 
-    if (window.lucide) {
-      lucide.createIcons({ attrs: { 'stroke-width': 1.75 } });
-    }
+  renderExecutivoProfile(sheet, proj, totals, tonsPlastic, tonsCo2) {
+    sheet.innerHTML = `
+      <div class="border-b-2 border-forest pb-6 flex justify-between items-end">
+        <div>
+          <span class="font-mono text-[10px] text-forest font-bold uppercase tracking-widest block">Caderno de Encargos Executivo de Canteiro • ABNT NBR 15953</span>
+          <h1 class="text-2xl sm:text-3xl font-bold font-sans text-graphite mt-1">${proj.name}</h1>
+          <p class="font-sans text-xs text-muted">Diretrizes de Canteiro, Subleito e Assentamento</p>
+        </div>
+        <div class="font-mono text-right text-xs text-muted">
+          <p class="font-bold text-forest">CANTEIRO HOMOLOGADO</p>
+          <p>${proj.updatedAt || proj.createdAt}</p>
+        </div>
+      </div>
+
+      <div class="space-y-4 font-sans text-xs text-graphite leading-relaxed">
+        <h2 class="font-sans text-sm font-bold uppercase tracking-wider text-graphite border-b border-border-subtle pb-1">1. Procedimento Estratigráfico Executivo</h2>
+        <div class="p-4 bg-sand rounded-xl space-y-2 font-mono text-xs">
+          <p>• <strong>Camada 01 (Subleito):</strong> Regularizado e compactado com massa específica aparente seca ≥ 98% do ensaio Proctor Normal.</p>
+          <p>• <strong>Camada 02 (Sub-base):</strong> Brita graduada simples (BGS) ou BGT com espessura de 15 cm compactada.</p>
+          <p>• <strong>Camada 03 (Colchão de Areia):</strong> Areia média/grossa lavada, espessura uniforme de 3,0 cm a 4,0 cm não compactada antes do assentamento.</p>
+          <p>• <strong>Camada 04 (Juntas e Travamento):</strong> Areia fina de sílica (0,075 a 1,2 mm) espalhada e vibrada mecanicamente com placa de rolos de poliuretano.</p>
+        </div>
+
+        <h2 class="font-sans text-sm font-bold uppercase tracking-wider text-graphite border-b border-border-subtle pb-1">2. Tolerâncias e Critérios de Recebimento</h2>
+        <p class="text-muted">
+          Conforme a ABNT NBR 15953, a declividade longitudinal mínima aceitável é de 1,5% e transversal de 2,5%. Variações de alinhamento entre blocos vizinhos não poderão ultrapassar ± 2,0 mm sob régua de 3 metros.
+        </p>
+      </div>
+
+      <div class="space-y-2">
+        <h2 class="font-sans text-sm font-bold uppercase tracking-wider text-graphite border-b border-border-subtle pb-1">3. Quadro de Aplicação de Canteiro</h2>
+        <table class="w-full text-left font-sans text-xs border-collapse">
+          <thead>
+            <tr class="font-mono text-[10px] text-muted uppercase border-b">
+              <th class="py-2">Item</th>
+              <th class="py-2">Elemento</th>
+              <th class="py-2">Aplicação</th>
+              <th class="py-2 text-right">Extensão/Área</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y">
+            ${proj.items.map((it, idx) => `
+              <tr>
+                <td class="py-2 font-mono">#0${idx + 1}</td>
+                <td class="py-2 font-bold">${it.name}</td>
+                <td class="py-2 text-muted">${it.solutionId === 'paver' ? 'Leito viário e passeios' : 'Vedações e decks'}</td>
+                <td class="py-2 text-right font-mono font-bold">${it.quantityM2.toLocaleString('pt-BR')} ${it.solutionId === 'perfil' ? 'm' : 'm²'}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  }
+
+  renderMemorialProfile(sheet, proj, totals, tonsPlastic, tonsCo2) {
+    sheet.innerHTML = `
+      <div class="border-b-2 border-graphite pb-4">
+        <span class="font-mono text-[10px] text-muted uppercase tracking-widest block">Memorial Descritivo Sintético de Especificação</span>
+        <h1 class="text-2xl font-bold font-sans text-graphite mt-1">${proj.name}</h1>
+      </div>
+
+      <div class="p-5 bg-sand rounded-xl border border-border-subtle font-sans text-xs leading-relaxed space-y-3">
+        <p>
+          <strong>ESPECIFICAÇÃO TÉCNICA PADRÃO:</strong> Fornecimento e instalação de pavimento intertravado de alta densidade em compósito circular VIRA (geometria 16 faces autobloqueante), dimensões 200 × 100 × 60 mm, resistência à compressão axial fck ≥ 35,0 MPa (ABNT NBR 9781:2013), taxa de absorção de água &lt; 0,05%, resistência ao escorregamento BPN 68 sob pista molhada (NBR 9050:2020), assentado sobre colchão de areia média de 3 cm e juntas seladas com sílica fina.
+        </p>
+        <p>
+          <strong>DESCARBONIZAÇÃO COMPROVADA:</strong> Produto munido de Passaporte Digital de Produto (DPP) e Análise de Ciclo de Vida auditada (ISO 14044) com mitigação de 2,15 kg CO2e por quilograma de material instalado.
+        </p>
+      </div>
+
+      <div class="font-mono text-xs text-muted pt-4 border-t flex justify-between">
+        <span>Quantitativo Total: ${totals.totalArea.toLocaleString('pt-BR')} m²</span>
+        <span>Crédito de CO2e: ${tonsCo2} t</span>
+      </div>
+    `;
+  }
+
+  renderClienteProfile(sheet, proj, totals, tonsPlastic, tonsCo2) {
+    sheet.innerHTML = `
+      <div class="border-b-2 border-ochre pb-6 flex justify-between items-end">
+        <div>
+          <span class="font-mono text-[10px] text-ochre font-bold uppercase tracking-widest block">Relatório Executivo para Conselho & Gestor Público</span>
+          <h1 class="text-3xl font-bold font-sans text-graphite mt-1">${proj.name}</h1>
+          <p class="font-sans text-xs text-muted">Apresentação de Impacto Econômico, Social e Urbano</p>
+        </div>
+        <div class="font-mono text-right text-xs text-ochre font-bold">
+          ESTRATÉGIA DE VALOR
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 font-sans text-xs">
+        <div class="p-4 bg-sand rounded-xl space-y-1">
+          <span class="font-mono text-[10px] text-muted uppercase block">Economia Operacional (10 Anos)</span>
+          <p class="text-xl font-bold text-graphite">32% menor que Concreto</p>
+          <p class="text-muted text-[11px]">Zero desagregação de blocos, sem esfarelamento ou necessidade de pintura periódica.</p>
+        </div>
+        <div class="p-4 bg-sand rounded-xl space-y-1">
+          <span class="font-mono text-[10px] text-forest uppercase block">Legado Ambiental Positivo</span>
+          <p class="text-xl font-bold text-forest">${tonsPlastic} t de Plástico Retiradas</p>
+          <p class="text-muted text-[11px]">Equivalente a milhões de embalagens plásticas regeneradas em infraestrutura pública permanente.</p>
+        </div>
+      </div>
+
+      <div class="p-5 bg-forest/5 rounded-xl border border-forest/20 font-sans text-xs space-y-2">
+        <h3 class="font-bold text-forest">Por que escolher o VIRA OS para esta intervenção urbana?</h3>
+        <p class="text-muted leading-relaxed">
+          O projeto combina alta resistência para tráfego de pedestres e veículos com conforto térmico superior (índice SRI 42), não retém água da chuva na superfície e é imune a fungos e maresia. O município consolida sua liderança na Agenda 2030 da ONU e nas metas ESG de descarbonização pública.
+        </p>
+      </div>
+    `;
+  }
+
+  renderEsgProfile(sheet, proj, totals, tonsPlastic, tonsCo2) {
+    sheet.innerHTML = `
+      <div class="border-b-2 border-forest pb-6 flex justify-between items-end">
+        <div>
+          <span class="font-mono text-[10px] text-forest font-bold uppercase tracking-widest block">Declaração de Sustentabilidade & Pegada Ambiental (ESG)</span>
+          <h1 class="text-3xl font-bold font-sans text-graphite mt-1">${proj.name}</h1>
+          <p class="font-sans text-xs text-muted">Inventário de Descarbonização conforme Metodologia ABNT NBR ISO 14044</p>
+        </div>
+        <div class="font-mono text-right text-xs text-forest font-bold">
+          ESCOPO 3 HOMOLOGADO
+        </div>
+      </div>
+
+      <div class="grid grid-cols-3 gap-3 font-mono text-xs">
+        <div class="p-4 bg-sand rounded-xl text-center">
+          <span class="text-[10px] text-muted uppercase block">Plástico Regenerado</span>
+          <span class="font-bold text-forest text-xl">${tonsPlastic} t</span>
+        </div>
+        <div class="p-4 bg-sand rounded-xl text-center">
+          <span class="text-[10px] text-forest uppercase block">CO2e Evitado Líquido</span>
+          <span class="font-bold text-forest text-xl">${tonsCo2} t</span>
+        </div>
+        <div class="p-4 bg-sand rounded-xl text-center">
+          <span class="text-[10px] text-muted uppercase block">Fator de Abatimento</span>
+          <span class="font-bold text-graphite text-xl">-2,15 kg/kg</span>
+        </div>
+      </div>
+
+      <div class="space-y-3 font-sans text-xs text-graphite leading-relaxed">
+        <h3 class="font-bold border-b pb-1">Enquadramento nos Objetivos de Desenvolvimento Sustentável (ODS)</h3>
+        <p class="text-muted">• <strong>ODS 09 (Indústria, Inovação e Infraestrutura):</strong> Modernização de pavimentos urbanos com compósitos reciclados de alto desempenho mecânico.</p>
+        <p class="text-muted">• <strong>ODS 11 (Cidades e Comunidades Sustentáveis):</strong> Espaços públicos acessíveis (NBR 9050) com drenagem eficiente e redução de ilhas de calor.</p>
+        <p class="text-muted">• <strong>ODS 12 (Consumo e Produção Responsáveis):</strong> Fechamento do ciclo de vida de resíduos plásticos da bacia hidrográfica do Capibaribe.</p>
+        <p class="text-muted">• <strong>ODS 13 (Ação Contra a Mudança Global do Clima):</strong> Redução comprovada de emissões na comparação direta com clínquer de cimento e asfalto fóssil.</p>
+      </div>
+    `;
   }
 
   printDocument() {
@@ -274,7 +418,7 @@ class ProjectExporter {
     const plainText = sheet.innerText;
     navigator.clipboard.writeText(plainText).then(() => {
       if (typeof showWorkspaceToast === 'function') {
-        showWorkspaceToast('✓ Texto do Caderno Executivo de Encargos copiado com sucesso!');
+        showWorkspaceToast(`✓ Perfil [${this.currentProfile.toUpperCase()}] copiado com sucesso!`);
       } else {
         alert('Texto copiado com sucesso!');
       }

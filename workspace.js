@@ -1,5 +1,5 @@
 // ========================================================
-// PLATAFORMA VIRA NEXT — V3 KNOWLEDGE ENGINE & WORKSPACE (workspace.js)
+// VIRA OS — KNOWLEDGE ENGINE & WORKSPACE (workspace.js)
 // Motor Unificado de Especificação de Engenharia Circular
 // ========================================================
 
@@ -779,7 +779,7 @@ function initWorkspace() {
 }
 
 function isValidTab(tab) {
-  const valid = ['overview', 'specs', 'applications', 'standards', 'bim', 'cad', 'lab', 'lca', 'cases', 'academy', 'faq', 'downloads', 'support'];
+  const valid = ['overview', 'specs', 'applications', 'standards', 'bim', 'cad', 'lab', 'lca', 'dpp', 'cases', 'academy', 'faq', 'downloads', 'support'];
   return valid.includes(tab);
 }
 
@@ -1319,6 +1319,90 @@ function renderMainCanvas() {
               <div class="p-4 bg-ochre/5 rounded-2xl border border-ochre/15">
                 <span class="text-[10px] text-muted uppercase font-bold block">Emissões de CO2e Evitadas</span>
                 <p id="ws-res-co2" class="text-2xl font-bold text-ochre mt-1">39.775 kg</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      break;
+
+    case 'dpp':
+      html = `
+        <div class="space-y-6 animate-fadeIn">
+          <div class="space-y-2">
+            <div class="flex items-center gap-2">
+              <span class="font-mono text-xs text-forest uppercase font-bold tracking-wider">• Engine 08. Digital Product Passport (DPP)</span>
+              <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-mono text-[10px] font-bold uppercase">Passaporte Ativo & Homologado</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-bold text-graphite tracking-tight">Passaporte Digital do Produto</h2>
+            <p class="text-xs sm:text-sm text-muted">Painel vivo de rastreabilidade de lote, composição macromolecular, cadeia de custódia e ensaios auditados com certificação ICP-Brasil.</p>
+          </div>
+
+          <!-- Grade de Rastreabilidade do DPP -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs">
+            <div class="p-5 bg-sand rounded-2xl border border-border-subtle space-y-2.5">
+              <span class="text-[10px] text-forest font-bold uppercase block tracking-wider">Composição Macromolecular & Cargas</span>
+              <p class="text-graphite text-xs leading-relaxed font-sans">
+                <strong>85% Matriz Polimérica Circular</strong> (PEAD/PP pós-consumo) + <strong>15% Cargas Minerais Inertes</strong> para estabilização dimensional e albedo térmico.
+              </p>
+              <div class="text-[10px] text-muted pt-1 border-t border-black/5">
+                <span>Ponto de Amolecimento Vicat: <strong>> 128°C</strong></span>
+              </div>
+            </div>
+
+            <div class="p-5 bg-sand rounded-2xl border border-border-subtle space-y-2.5">
+              <span class="text-[10px] text-forest font-bold uppercase block tracking-wider">Origem do Resíduo & Cadeia de Custódia</span>
+              <p class="text-graphite text-xs leading-relaxed font-sans">
+                Resíduos plásticos regenerados da <strong>Bacia Hidrográfica do Rio Capibaribe</strong> e do Agreste de Pernambuco. Rastreabilidade com Passaporte Digital e compensação socioambiental.
+              </p>
+              <div class="text-[10px] text-muted pt-1 border-t border-black/5">
+                <span>Unidade Industrial: <strong>Polo de Caruaru — PE</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Matriz de Ensaios & Telemetria do Lote -->
+          <div class="p-6 bg-white rounded-3xl border border-border-subtle shadow-sm space-y-4 font-sans text-xs">
+            <div class="flex items-center justify-between border-b border-border-subtle pb-3">
+              <div>
+                <h3 class="font-bold text-sm text-graphite">Inventário de Telemetria e Ensaios Acreditados</h3>
+                <p class="text-muted text-xs">Relação de testes tecnológicos auditados para este código de produto.</p>
+              </div>
+              <span class="px-2.5 py-1 rounded bg-forest/10 text-forest font-mono font-bold text-[10px] uppercase">Lote 2026.08-A</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs">
+              <div class="p-3 bg-sand rounded-xl">
+                <span class="text-[10px] text-muted uppercase block font-mono">Resistência Axial</span>
+                <p class="font-bold text-graphite text-sm">38,2 MPa</p>
+                <span class="text-[10px] text-forest font-semibold font-mono">IPT nº 1.104.921-A</span>
+              </div>
+              <div class="p-3 bg-sand rounded-xl">
+                <span class="text-[10px] text-muted uppercase block font-mono">Absorção de Água</span>
+                <p class="font-bold text-graphite text-sm">&lt; 0,05%</p>
+                <span class="text-[10px] text-forest font-semibold font-mono">Nula / Sem Eflorescência</span>
+              </div>
+              <div class="p-3 bg-sand rounded-xl">
+                <span class="text-[10px] text-muted uppercase block font-mono">Pegada de Carbono</span>
+                <p class="font-bold text-forest text-sm">-2,15 kg/kg</p>
+                <span class="text-[10px] text-forest font-semibold font-mono">ISO 14044 Homologado</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Assinatura e QR Code de Autenticidade -->
+          <div class="p-6 bg-sand rounded-3xl border border-border-subtle flex flex-col sm:flex-row items-center justify-between gap-6 font-mono text-xs">
+            <div class="space-y-1">
+              <span class="text-[10px] text-muted uppercase block font-bold">Assinatura Digital ICP-Brasil</span>
+              <p class="font-bold text-graphite text-sm">${sol.technicalLead.name}</p>
+              <p class="text-muted text-xs">${sol.technicalLead.crea} • ${sol.technicalLead.role}</p>
+              <p class="text-[10px] text-muted/80">Chave SHA-256: 4a7135c68d2b...90509781</p>
+            </div>
+            <div class="p-4 bg-white rounded-2xl border border-border-subtle shadow-sm flex items-center gap-3 shrink-0">
+              <i data-lucide="qr-code" class="w-10 h-10 text-forest"></i>
+              <div class="text-[10px]">
+                <span class="font-bold text-graphite block">QR Code Canteiro</span>
+                <span class="text-muted">Leitura na face inferior</span>
               </div>
             </div>
           </div>
@@ -1884,8 +1968,8 @@ function renderRelatedKnowledge() {
           Knowledge Graph
         </button>
         <button onclick="setSidebarTab('ai')" class="flex-1 py-2 px-3 rounded-xl text-center font-bold transition-all flex items-center justify-center gap-1.5 ${currentSidebarTab === 'ai' ? 'bg-white text-forest shadow-sm' : 'text-muted hover:text-graphite'}">
-          <span>Assistente IA</span>
-          <span class="px-1.5 py-0.2 rounded-full bg-forest/10 text-forest text-[9px] font-bold">RAG</span>
+          <span>Copiloto IA</span>
+          <span class="px-1.5 py-0.2 rounded-full bg-forest/10 text-forest text-[9px] font-bold">Engine 06</span>
         </button>
       </div>
 
