@@ -1,5 +1,5 @@
 const products={
-  "paver-cinza":{title:"Paver Intertravado 16 Faces",category:"Pavimentação urbana",code:"VRA-PVR-2026",description:"Bloco intertravado maciço produzido com polímeros reciclados e compósitos minerais de alta densidade.",specs:[["Formato","16 faces — holandês"],["Dimensões","200 × 100 × 60 mm"],["Compressão","> 35 MPa"],["Absorção","< 0,05%"],["Garantia","10 anos"]]},
+  "paver-cinza":{title:"Paver VIRA · 16 Faces",category:"Pavimentação urbana",code:"VRA-PVR-2026",description:"Componente intertravado produzido com 50% polímero pós-consumo reciclado e 50% escória, em massa.",specs:[["Composição","50% plástico reciclado + 50% escória"],["Absorção","0,2–0,3%"],["Resistência · 40 mm","20–25 N/mm²"],["Resistência · 50 mm","25–30 N/mm²"],["Documentação","Validação técnica por configuração"]]},
   "guia-meio-fio":{title:"Guias e meio-fio",category:"Infraestrutura urbana",code:"VRA-GUI-SOB-PROJETO",description:"Elementos para delimitação, drenagem e organização de vias, calçadas e espaços públicos, configurados conforme as necessidades de cada implantação.",specs:[["Aplicação","Vias e passeios"],["Dimensões","Sob projeto"],["Acabamento","Sob especificação"],["Produção","Escala industrial"],["Origem","Caruaru — PE"]]},
   "bloco-concreto":{title:"Blocos de concreto",category:"Construção modular",code:"VRA-BLC-SOB-PROJETO",description:"Família de blocos produzida para diferentes necessidades construtivas, com configuração técnica definida para cada projeto.",specs:[["Aplicação","Construção"],["Dimensões","Sob projeto"],["Resistência","Conforme aplicação"],["Produção","Escala industrial"],["Origem","Caruaru — PE"]]}
 };
@@ -14,6 +14,16 @@ document.addEventListener("DOMContentLoaded",()=>{
   const lightSections=".manifesto,.stats,.collection,.expertise,.proof,.faq,.contact";
   const updateHeaderTheme=()=>{header.classList.toggle("scrolled",scrollY>50);const probeY=Math.max(1,Math.min(innerHeight-1,header.getBoundingClientRect().height/2));const section=document.elementsFromPoint(innerWidth/2,probeY).map(element=>element.closest?.("main>section")).find(Boolean);document.body.classList.toggle("header-on-light",Boolean(section?.matches(lightSections)))};
   addEventListener("scroll",updateHeaderTheme,{passive:true});addEventListener("resize",updateHeaderTheme);updateHeaderTheme();
+
+  const heroLead=document.querySelector(".hero-content>p");
+  if(heroLead)heroLead.textContent="Transformamos plástico pós-consumo e coprodutos minerais em materiais circulares de alto desempenho para arquitetura, infraestrutura e cidades.";
+  const carbonBenefit=document.querySelector(".benefit-carbon");
+  if(carbonBenefit){
+    const heading=carbonBenefit.querySelector("h3"),copy=carbonBenefit.querySelector("p"),symbol=carbonBenefit.querySelector(".benefit-symbol");
+    if(heading)heading.innerHTML="Impacto climático<br>em validação";
+    if(copy)copy.textContent="Indicadores climáticos serão publicados somente com metodologia, fatores e fronteiras documentados.";
+    if(symbol)symbol.textContent="CO₂";
+  }
 
   const manifesto=document.querySelector("#manifesto"),manifestoCopy=manifesto.querySelector(".manifesto-copy");
   const textNodes=[];const walker=document.createTreeWalker(manifestoCopy,NodeFilter.SHOW_TEXT);while(walker.nextNode())textNodes.push(walker.currentNode);
@@ -37,11 +47,13 @@ document.addEventListener("DOMContentLoaded",()=>{
   const drawer=document.querySelector("#drawer"),backdrop=document.querySelector("#drawer-backdrop");
   const closeDrawer=()=>{drawer.classList.remove("open");backdrop.classList.remove("open");drawer.setAttribute("aria-hidden","true");document.body.classList.remove("locked")};
   const openDrawer=id=>{const p=products[id];if(!p)return;document.querySelector("#drawer-category").textContent=p.category;document.querySelector("#drawer-title").textContent=p.title;document.querySelector("#drawer-description").textContent=p.description;document.querySelector("#drawer-code").textContent=`Código: ${p.code}`;document.querySelector("#drawer-specs").innerHTML=p.specs.map(([a,b])=>`<div class="drawer-spec"><span>${a}</span><strong>${b}</strong></div>`).join("");drawer.classList.add("open");backdrop.classList.add("open");drawer.setAttribute("aria-hidden","false");document.body.classList.add("locked")};
-  document.querySelectorAll("[data-product]").forEach(button=>button.addEventListener("click",()=>openDrawer(button.dataset.product)));
+  document.querySelectorAll("[data-product]").forEach(button=>button.addEventListener("click",()=>{if(button.dataset.product==="paver-cinza"&&button.closest(".spec-row")){location.href="paver.html";return}openDrawer(button.dataset.product)}));
   document.querySelector("#drawer-close").addEventListener("click",closeDrawer);backdrop.addEventListener("click",closeDrawer);document.querySelector(".drawer-cta").addEventListener("click",closeDrawer);
 
   const range=document.querySelector("#calc-area"),area=document.querySelector("#calc-area-val"),plastic=document.querySelector("#calc-res-plastic"),slag=document.querySelector("#calc-res-slag"),total=document.querySelector("#calc-res-total"),co2=document.querySelector("#calc-res-co2"),calculator=document.querySelector("#calculadora");
-  const updateCalc=()=>{const sqm=Number(range.value),totalKg=Math.round(sqm*18.5),plasticKg=Math.round(totalKg*.5),slagKg=totalKg-plasticKg,format=value=>`${value.toLocaleString("pt-BR")} kg`,progress=(sqm-50)/49.5;area.textContent=sqm.toLocaleString("pt-BR");plastic.textContent=format(plasticKg);slag.textContent=format(slagKg);total.textContent=format(totalKg);co2.textContent=format(Math.round(totalKg*2.15));range.style.setProperty("--range-progress",`${progress}%`);range.setAttribute("aria-valuetext",`${sqm.toLocaleString("pt-BR")} metros quadrados`);calculator.classList.remove("calc-updated");requestAnimationFrame(()=>calculator.classList.add("calc-updated"))};
+  const co2Card=co2?.closest(".calc-result");
+  if(co2Card){const label=co2Card.querySelector("span"),copy=co2Card.querySelector("p");if(label)label.textContent="Indicador climático";if(copy)copy.textContent="aguardando metodologia documentada";}
+  const updateCalc=()=>{const sqm=Number(range.value),totalKg=Math.round(sqm*18.5),plasticKg=Math.round(totalKg*.5),slagKg=totalKg-plasticKg,format=value=>`${value.toLocaleString("pt-BR")} kg`,progress=(sqm-50)/49.5;area.textContent=sqm.toLocaleString("pt-BR");plastic.textContent=format(plasticKg);slag.textContent=format(slagKg);total.textContent=format(totalKg);co2.textContent="Em validação";range.style.setProperty("--range-progress",`${progress}%`);range.setAttribute("aria-valuetext",`${sqm.toLocaleString("pt-BR")} metros quadrados`);calculator.classList.remove("calc-updated");requestAnimationFrame(()=>calculator.classList.add("calc-updated"))};
   range.addEventListener("input",updateCalc);document.querySelectorAll("[data-preset]").forEach(b=>b.addEventListener("click",()=>{range.value=b.dataset.preset;updateCalc()}));updateCalc();
 
   document.querySelectorAll(".faq details").forEach(item=>item.addEventListener("toggle",()=>{if(item.open)document.querySelectorAll(".faq details").forEach(other=>{if(other!==item)other.open=false})}));
