@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
 // --------------------------------------------------------
 const engineeringKnowledgeGraph = [
   {
-    id: 'VIRA-BIM-001',
-    engineeringId: 'VIRA-BIM-001',
+    id: 'VIRA-BIM-PAV-001',
+    engineeringId: 'VIRA-BIM-PAV-001',
     title: 'Família Paramétrica BIM: Paver Intertravado 16 Faces',
     category: 'bim',
     categoryLabel: 'Modelos BIM (Revit/IFC)',
@@ -38,16 +38,16 @@ const engineeringKnowledgeGraph = [
       { version: 'v2.0', date: '10/01/2026', changes: 'Migração para compatibilidade nativa com Revit 2026 e exportação IFC 4x3.' },
       { version: 'v1.0', date: '04/05/2025', changes: 'Lançamento da família paramétrica geométrica básica.' }
     ],
-    citation: 'VIRA ENGENHARIA CIRCULAR. Família Paramétrica BIM: Paver Intertravado 16 Faces (ABNT NBR 9781:2013). Caruaru: Centro de Especificação VIRA, 2026. Doc: VIRA-BIM-001. Versão 2.1.',
+    citation: 'VIRA ENGENHARIA CIRCULAR. Família Paramétrica BIM: Paver Intertravado 16 Faces (ABNT NBR 9781:2013). Caruaru: Centro de Especificação VIRA, 2026. Doc: VIRA-BIM-PAV-001. Versão 2.1.',
     desc: 'Família paramétrica completa contendo padronização dimensional (200x100x60mm), propriedades térmicas, rugosidade superficial, parâmetros de carbono incorporado (LCA/ACV) e propriedades mecânicas (fck ≥ 35 MPa) integradas para cálculo BIM 5D/6D.',
     specText: 'Pavimento intertravado constituído por blocos maciços de compósito polimérico circular de alta densidade VIRA, geometria 16 faces holandês autobloqueante, espessura 60 mm, dimensões nominais 200 × 100 mm, resistência característica à compressão fck ≥ 35 MPa (ABNT NBR 9781:2013), absorção de água inferior a 0,05%, assentado sobre colchão de areia grossa e juntas seladas com areia fina de sílica.',
     downloadUrl: 'assets/downloads/VIRA_Brand_Assets_Pack.zip',
-    relatedDocumentIds: ['VIRA-CAD-002', 'VIRA-LAB-003', 'VIRA-MEM-004', 'VIRA-ACV-010', 'VIRA-TEX-008'],
+    relatedDocumentIds: ['VIRA-CAD-PAV-002', 'VIRA-LAB-PAV-003', 'VIRA-MEM-PAV-004', 'VIRA-ACV-ALL-010', 'VIRA-TEX-ALL-008'],
     relatedProductAnchor: 'index.html#materiais'
   },
   {
-    id: 'VIRA-CAD-002',
-    engineeringId: 'VIRA-CAD-002',
+    id: 'VIRA-CAD-PAV-002',
+    engineeringId: 'VIRA-CAD-PAV-002',
     title: 'Detalhamento Executivo CAD: Cortes, Guias e Encontros de Paver',
     category: 'cad',
     categoryLabel: 'Desenhos Técnicos (DWG)',
@@ -71,16 +71,16 @@ const engineeringKnowledgeGraph = [
       { version: 'v2.4', date: '10/08/2026', changes: 'Inclusão de detalhes de transição para piso tátil conforme NBR 9050 atualizada.' },
       { version: 'v2.0', date: '14/02/2026', changes: 'Novos cortes de drenagem com sarjetas de concreto pré-moldado.' }
     ],
-    citation: 'VIRA ENGENHARIA CIRCULAR. Detalhamento Executivo CAD: Cortes, Guias e Encontros de Paver. Caruaru: Centro de Especificação VIRA, 2026. Doc: VIRA-CAD-002. Versão 2.4.',
+    citation: 'VIRA ENGENHARIA CIRCULAR. Detalhamento Executivo CAD: Cortes, Guias e Encontros de Paver. Caruaru: Centro de Especificação VIRA, 2026. Doc: VIRA-CAD-PAV-002. Versão 2.4.',
     desc: 'Prancha executiva com detalhes típicos em escala 1:10 e 1:20: subleito compactado, sub-base graduada, camada de assentamento, contenções laterais de concreto/polímero, declividades transversais para drenagem pluvial e detalhes de piso tátil integrado (NBR 9050).',
     specText: 'Execução de pavimento intertravado de compósito polimérico VIRA conforme projeto executivo. Espessura de colchão de areia de assentamento: 30 a 50 mm descompactado. Contenções laterais em guias pré-moldadas ou perfis poliméricos estruturais VIRA 80x80 fixados com estacas metálicas a cada 1,50 m.',
     downloadUrl: 'assets/downloads/VIRA_Brand_Assets_Pack.zip',
-    relatedDocumentIds: ['VIRA-BIM-001', 'VIRA-LAB-003', 'VIRA-MEM-004'],
+    relatedDocumentIds: ['VIRA-BIM-PAV-001', 'VIRA-LAB-PAV-003', 'VIRA-MEM-PAV-004'],
     relatedProductAnchor: 'index.html#aplicacoes'
   },
   {
-    id: 'VIRA-LAB-003',
-    engineeringId: 'VIRA-LAB-003',
+    id: 'VIRA-LAB-PAV-003',
+    engineeringId: 'VIRA-LAB-PAV-003',
     title: 'Laudo Laboratorial Auditado: Compressão Axial, Abrasão e Absorção',
     category: 'laudo',
     categoryLabel: 'Laudos Laboratoriais (ABNT)',
@@ -104,16 +104,16 @@ const engineeringKnowledgeGraph = [
       { version: '2026.2', date: '28/07/2026', changes: 'Ensaio lote semestral com compressão média axial aferida de 38,2 MPa.' },
       { version: '2026.1', date: '15/01/2026', changes: 'Ensaio inicial de homologação de linha industrial em Caruaru-PE.' }
     ],
-    citation: 'VIRA ENGENHARIA CIRCULAR. Laudo Laboratorial Auditado: Compressão Axial, Abrasão e Absorção de Pavers (ABNT NBR 9781:2013). Caruaru: VIRA Lab / IPT, 2026. Doc: VIRA-LAB-003.',
+    citation: 'VIRA ENGENHARIA CIRCULAR. Laudo Laboratorial Auditado: Compressão Axial, Abrasão e Absorção de Pavers (ABNT NBR 9781:2013). Caruaru: VIRA Lab / IPT, 2026. Doc: VIRA-LAB-PAV-003.',
     desc: 'Ensaio laboratorial acreditado comprovando: Resistência média à compressão axial de 38,2 MPa (excedendo o mínimo de 35 MPa para tráfego pesado); Desgaste por abrasão de 0,82 mm; Absorção de água nula (< 0,05%); Resistência a ciclos de gelo/degelo e imersão em solução salina a 5%.',
     specText: 'Laudo de Conformidade Técnica Laboratorial emitido segundo as diretrizes de ensaio da ABNT NBR 9781:2013. Amostras ensaiadas demonstraram resistência à compressão fck superior a 35,0 MPa, ausência de eflorescência superficial e imunidade à degradação por cloretos.',
     downloadUrl: 'assets/downloads/VIRA-Manual-de-Identidade-Visual-2026.pdf',
-    relatedDocumentIds: ['VIRA-BIM-001', 'VIRA-MEM-004', 'VIRA-ACV-010'],
+    relatedDocumentIds: ['VIRA-BIM-PAV-001', 'VIRA-MEM-PAV-004', 'VIRA-ACV-ALL-010'],
     relatedProductAnchor: 'index.html#especificacao'
   },
   {
-    id: 'VIRA-MEM-004',
-    engineeringId: 'VIRA-MEM-004',
+    id: 'VIRA-MEM-PAV-004',
+    engineeringId: 'VIRA-MEM-PAV-004',
     title: 'Memorial Descritivo Padronizado para Licitações Públicas (Lei 14.133)',
     category: 'memorial',
     categoryLabel: 'Memoriais para Licitação',
@@ -137,16 +137,16 @@ const engineeringKnowledgeGraph = [
       { version: 'v2026.3', date: '02/09/2026', changes: 'Adequação ao Guia de Compras Públicas Sustentáveis da AGU 2026.' },
       { version: 'v2026.1', date: '20/02/2026', changes: 'Elaboração inicial das cláusulas de rastreabilidade digital e DPP.' }
     ],
-    citation: 'VIRA ENGENHARIA CIRCULAR. Memorial Descritivo Padronizado para Licitações Públicas de Pavimentação Sustentável. Caruaru: Centro de Especificação VIRA, 2026. Doc: VIRA-MEM-004.',
+    citation: 'VIRA ENGENHARIA CIRCULAR. Memorial Descritivo Padronizado para Licitações Públicas de Pavimentação Sustentável. Caruaru: Centro de Especificação VIRA, 2026. Doc: VIRA-MEM-PAV-004.',
     desc: 'Texto técnico e jurídico pronto para inclusão em termos de referência de editais de obras públicas municipais e estaduais, fundamentado nos critérios de sustentabilidade e compras públicas circulares da Lei Federal 14.133/2021.',
     specText: 'Item Orçamentário: Fornecimento e assentamento de pavimento intertravado de base circular polimérica sustentável (NBR 9781), espessura 60 mm, com garantia decenal contra deformações plásticas, acompanhado de Passaporte Digital de Produto (DPP) com laudo de rastreabilidade de resíduo pós-consumo.',
     downloadUrl: 'assets/downloads/VIRA-Manual-de-Identidade-Visual-2026.pdf',
-    relatedDocumentIds: ['VIRA-BIM-001', 'VIRA-LAB-003', 'VIRA-CAD-002', 'VIRA-ACV-010'],
+    relatedDocumentIds: ['VIRA-BIM-PAV-001', 'VIRA-LAB-PAV-003', 'VIRA-CAD-PAV-002', 'VIRA-ACV-ALL-010'],
     relatedProductAnchor: 'index.html#contato'
   },
   {
-    id: 'VIRA-BIM-005',
-    engineeringId: 'VIRA-BIM-005',
+    id: 'VIRA-BIM-PNL-005',
+    engineeringId: 'VIRA-BIM-PNL-005',
     title: 'Objeto BIM Revit: Painel Arquitetônico 15mm para Fachadas Ventiladas',
     category: 'bim',
     categoryLabel: 'Modelos BIM (Revit/IFC)',
@@ -169,16 +169,16 @@ const engineeringKnowledgeGraph = [
     versionHistory: [
       { version: 'v2.0', date: '20/08/2026', changes: 'Modelagem paramétrica de montantes de alumínio e juntas automáticas de 4mm.' }
     ],
-    citation: 'VIRA ENGENHARIA CIRCULAR. Objeto BIM: Painel Arquitetônico 15mm para Fachadas Ventiladas. Caruaru: Centro de Especificação VIRA, 2026. Doc: VIRA-BIM-005.',
+    citation: 'VIRA ENGENHARIA CIRCULAR. Objeto BIM: Painel Arquitetônico 15mm para Fachadas Ventiladas. Caruaru: Centro de Especificação VIRA, 2026. Doc: VIRA-BIM-PNL-005.',
     desc: 'Componente paramétrico de painel para fachadas ventiladas, brises e divisórias. Inclui cálculo de juntas de dilatação de 4mm, subestrutura de fixação em montantes de alumínio e propriedades acústicas de atenuação ponderada.',
     specText: 'Revestimento de fachada ventilada ou fechamento arquitetônico através de painéis maciços VIRA de compósito circular polimérico de 15 mm de espessura, dimensões 2440 × 1220 mm, aditivação UV-50+ anti-envelhecimento, módulo de elasticidade 1.450 MPa e resistência ao impacto de corpo mole classe 5 (NBR 15575).',
     downloadUrl: 'assets/downloads/VIRA_Brand_Assets_Pack.zip',
-    relatedDocumentIds: ['VIRA-CAD-006', 'VIRA-TEX-008', 'VIRA-ACV-010'],
+    relatedDocumentIds: ['VIRA-CAD-PNL-006', 'VIRA-TEX-ALL-008', 'VIRA-ACV-ALL-010'],
     relatedProductAnchor: 'index.html#materiais'
   },
   {
-    id: 'VIRA-CAD-006',
-    engineeringId: 'VIRA-CAD-006',
+    id: 'VIRA-CAD-PNL-006',
+    engineeringId: 'VIRA-CAD-PNL-006',
     title: 'Detalhamento CAD: Fixação Oculta em Esquadrias e Brises de Fachada',
     category: 'cad',
     categoryLabel: 'Desenhos Técnicos (DWG)',
@@ -201,16 +201,16 @@ const engineeringKnowledgeGraph = [
     versionHistory: [
       { version: 'v1.8', date: '14/08/2026', changes: 'Atualização das presilhas em aço inoxidável 304 e cálculo de carga de vento.' }
     ],
-    citation: 'VIRA ENGENHARIA CIRCULAR. Detalhamento CAD: Fixação Oculta em Fachadas Ventiladas. Caruaru: Centro de Especificação VIRA, 2026. Doc: VIRA-CAD-006.',
+    citation: 'VIRA ENGENHARIA CIRCULAR. Detalhamento CAD: Fixação Oculta em Fachadas Ventiladas. Caruaru: Centro de Especificação VIRA, 2026. Doc: VIRA-CAD-PNL-006.',
     desc: 'Detalhamento de sistemas de fixação invisível com inserts metálicos em aço inoxidável 304, esquadrias de sustentação, pingadeiras superiores e encontros com esquadrias.',
     specText: 'Subestrutura em perfis T e L de alumínio extrudado liga 6063-T5 ancorados na estrutura principal de concreto por chumbadores químicos. Painéis VIRA fixados com presilhas mecânicas ocultas e fitas estruturais de dupla face de alta adesão.',
     downloadUrl: 'assets/downloads/VIRA_Brand_Assets_Pack.zip',
-    relatedDocumentIds: ['VIRA-BIM-005', 'VIRA-TEX-008'],
+    relatedDocumentIds: ['VIRA-BIM-PNL-005', 'VIRA-TEX-ALL-008'],
     relatedProductAnchor: 'index.html#materiais'
   },
   {
-    id: 'VIRA-BIM-007',
-    engineeringId: 'VIRA-BIM-007',
+    id: 'VIRA-BIM-PRF-007',
+    engineeringId: 'VIRA-BIM-PRF-007',
     title: 'Família BIM Estrutural: Perfil Maciço 80×80 para Decks e Pergolados',
     category: 'bim',
     categoryLabel: 'Modelos BIM (Revit/IFC)',
@@ -233,16 +233,16 @@ const engineeringKnowledgeGraph = [
     versionHistory: [
       { version: 'v2.2', date: '11/08/2026', changes: 'Tabelas de vãos máximos admisíveis de até 1,80 m sem deformação excessiva.' }
     ],
-    citation: 'VIRA ENGENHARIA CIRCULAR. Família BIM Estrutural: Perfil Maciço 80×80. Caruaru: Centro de Especificação VIRA, 2026. Doc: VIRA-BIM-007.',
+    citation: 'VIRA ENGENHARIA CIRCULAR. Família BIM Estrutural: Perfil Maciço 80×80. Caruaru: Centro de Especificação VIRA, 2026. Doc: VIRA-BIM-PRF-007.',
     desc: 'Vigas e colunas lineares maciças com propriedades de inércia geométrica, módulo de ruptura à flexão de 38,5 MPa e coeficientes de expansão térmica calibrados para cálculo de vãos de até 1,80 m sem flecha perceptível.',
     specText: 'Perfis estruturais maciços VIRA de seção quadrada 80 × 80 mm em compósito polimérico industrial de alta densidade, resistente à intempérie marinha e imunidade absoluta a cupins e fungos xilófagos, utilizados como barrotes estruturais para decks elevados e pergolados urbanos.',
     downloadUrl: 'assets/downloads/VIRA_Brand_Assets_Pack.zip',
-    relatedDocumentIds: ['VIRA-TEX-008', 'VIRA-ACV-010'],
+    relatedDocumentIds: ['VIRA-TEX-ALL-008', 'VIRA-ACV-ALL-010'],
     relatedProductAnchor: 'index.html#materiais'
   },
   {
-    id: 'VIRA-TEX-008',
-    engineeringId: 'VIRA-TEX-008',
+    id: 'VIRA-TEX-ALL-008',
+    engineeringId: 'VIRA-TEX-ALL-008',
     title: 'Pack PBR Maps 4K: Shaders Realistas (Albedo, Normal, Roughness, AO)',
     category: 'pbr',
     categoryLabel: 'Mapas PBR & Texturas 4K',
@@ -266,16 +266,16 @@ const engineeringKnowledgeGraph = [
     versionHistory: [
       { version: 'v2026.1', date: '05/08/2026', changes: 'Texturas seamless escaneadas em fotogrametria com mapa de rugosidade linear.' }
     ],
-    citation: 'VIRA ENGENHARIA CIRCULAR. Texturas PBR 4K para Renderização Arquitetônica de Materiais Circulares. Caruaru: AR Mídias / VIRA, 2026. Doc: VIRA-TEX-008.',
+    citation: 'VIRA ENGENHARIA CIRCULAR. Texturas PBR 4K para Renderização Arquitetônica de Materiais Circulares. Caruaru: AR Mídias / VIRA, 2026. Doc: VIRA-TEX-ALL-008.',
     desc: 'Mapas de textura contínua (seamless) sem repetição visível calibrados a partir de escaneamento fotogramétrico dos pavers e painéis VIRA em alta resolução (4096 × 4096 px), incluindo mapas de cor (BaseColor), rugosidade (Roughness), relevo (Normal DirectX/OpenGL) e oclusão de ambiente (AO).',
     specText: 'Shaders e materiais realistas calibrados para renderização arquitetônica foto-realista (ArchViz) com reflectância física correta das misturas poliméricas minerais cinza grafite, concreto e ocre.',
     downloadUrl: 'assets/downloads/VIRA_Brand_Assets_Pack.zip',
-    relatedDocumentIds: ['VIRA-BIM-001', 'VIRA-BIM-005', 'VIRA-BIM-007'],
+    relatedDocumentIds: ['VIRA-BIM-PAV-001', 'VIRA-BIM-PNL-005', 'VIRA-BIM-PRF-007'],
     relatedProductAnchor: 'index.html#materiais'
   },
   {
-    id: 'VIRA-MAT-009',
-    engineeringId: 'VIRA-MAT-009',
+    id: 'VIRA-MAT-RES-009',
+    engineeringId: 'VIRA-MAT-RES-009',
     title: 'Boletim Técnico Reológico & Ensaio RoHS: Composto VIRA-HD',
     category: 'laudo',
     categoryLabel: 'Laudos Laboratoriais (ABNT)',
@@ -298,16 +298,16 @@ const engineeringKnowledgeGraph = [
     versionHistory: [
       { version: 'v2026.2', date: '22/08/2026', changes: 'Laudo de pureza polimérica comprovando ≥ 99,4% isento de contaminantes metálicos.' }
     ],
-    citation: 'VIRA ENGENHARIA CIRCULAR. Boletim Técnico Reológico e Certificação RoHS do Composto VIRA-HD. Caruaru: VIRA Lab, 2026. Doc: VIRA-MAT-009.',
+    citation: 'VIRA ENGENHARIA CIRCULAR. Boletim Técnico Reológico e Certificação RoHS do Composto VIRA-HD. Caruaru: VIRA Lab, 2026. Doc: VIRA-MAT-RES-009.',
     desc: 'Boletim técnico completo para indústrias transformadoras contendo curva reológica de viscosidade, ensaio de índice de fluidez MFI (190°C/2.16kg), análise termogravimétrica (TGA), densidade por imersão (0,955 g/cm³) e laudo de isenção de metais pesados (RoHS).',
     specText: 'Composto polimérico termoplástico reciclado VIRA-HD micronizado, base PEAD/PP, granulometria regular 3mm, índice de fluidez 2,4 g/10min, pureza polimérica mínima 99,4%, fornecido em Big Bags de 1.000 kg paletizados com laudo de lote assinado.',
     downloadUrl: 'assets/downloads/VIRA-Manual-de-Identidade-Visual-2026.pdf',
-    relatedDocumentIds: ['VIRA-LAB-003', 'VIRA-ACV-010'],
+    relatedDocumentIds: ['VIRA-LAB-PAV-003', 'VIRA-ACV-ALL-010'],
     relatedProductAnchor: 'index.html#como-funciona'
   },
   {
-    id: 'VIRA-ACV-010',
-    engineeringId: 'VIRA-ACV-010',
+    id: 'VIRA-ACV-ALL-010',
+    engineeringId: 'VIRA-ACV-ALL-010',
     title: 'Estudo de ACV de Descarbonização: Fator Auditado de -2,15 kg CO2e / kg',
     category: 'laudo',
     categoryLabel: 'Laudos Laboratoriais (ABNT)',
@@ -330,11 +330,11 @@ const engineeringKnowledgeGraph = [
     versionHistory: [
       { version: 'v2026.1', date: '18/08/2026', changes: 'Relatório consolidado Cradle-to-Gate do complexo fabril de Caruaru-PE.' }
     ],
-    citation: 'VIRA ENGENHARIA CIRCULAR. Avaliação do Ciclo de Vida (ACV) e Fatores de Descarbonização da Infraestrutura Circular. Caruaru: VIRA Lab, 2026. Doc: VIRA-ACV-010.',
+    citation: 'VIRA ENGENHARIA CIRCULAR. Avaliação do Ciclo de Vida (ACV) e Fatores de Descarbonização da Infraestrutura Circular. Caruaru: VIRA Lab, 2026. Doc: VIRA-ACV-ALL-010.',
     desc: 'Estudo de Análise de Ciclo de Vida do berço ao portão (Cradle-to-Gate) demonstrando a pegada negativa de carbono dos artefatos VIRA. Cada tonelada de compósito produzido evita 2,15 toneladas de emissão de CO2e quando comparado ao processamento de resinas virgens de nafta de petróleo.',
     specText: 'Relatório de Avaliação do Ciclo de Vida elaborado conforme as normas ABNT NBR ISO 14040 e 14044. O balanço energético e de emissões auditado valida o crédito de carbono evitado de 2,15 kg CO2e/kg nos memoriais de sustentabilidade.',
     downloadUrl: 'assets/downloads/VIRA-Manual-de-Identidade-Visual-2026.pdf',
-    relatedDocumentIds: ['VIRA-BIM-001', 'VIRA-LAB-003', 'VIRA-MEM-004'],
+    relatedDocumentIds: ['VIRA-BIM-PAV-001', 'VIRA-LAB-PAV-003', 'VIRA-MEM-PAV-004'],
     relatedProductAnchor: 'index.html#impacto'
   }
 ];
@@ -386,7 +386,7 @@ function initEngineeringCenter() {
           <i data-lucide="search-x" class="w-12 h-12 text-muted mx-auto"></i>
           <h3 class="text-xl font-bold text-graphite">Nenhum ativo técnico localizado no Grafo</h3>
           <p class="text-xs text-muted max-w-md mx-auto">
-            Tente remover alguns filtros ou buscar por códigos de engenharia como "VIRA-BIM-001", "NBR 9781" ou "ACV".
+            Tente remover alguns filtros ou buscar por códigos de engenharia como "VIRA-BIM-PAV-001", "NBR 9781" ou "ACV".
           </p>
           <button onclick="resetAllFilters()" class="vira-btn-primary py-2 px-5 text-xs inline-flex items-center gap-2 mt-2 font-mono">
             <span>Redefinir Filtros</span>
@@ -591,7 +591,7 @@ function initEngineeringCenter() {
     renderGrid();
   };
 
-  // Suporte a Deep Linking via Parâmetros de URL (?solution=paver, ?category=bim, ?asset=VIRA-BIM-001)
+  // Suporte a Deep Linking via Parâmetros de URL (?solution=paver, ?category=bim, ?asset=VIRA-BIM-PAV-001)
   const urlParams = new URLSearchParams(window.location.search);
   const paramSolution = urlParams.get('solution');
   const paramCategory = urlParams.get('category');
@@ -648,27 +648,39 @@ function openKnowledgeDrawer(assetId) {
   document.getElementById('drawer-spectext').value = asset.specText;
   document.getElementById('drawer-download-btn').href = asset.downloadUrl;
 
+  // Índice de Confiança & Autoridade (Governança V2.1)
+  const downloadsEl = document.getElementById('drawer-downloads');
+  const citationsEl = document.getElementById('drawer-citations');
+  if (downloadsEl) downloadsEl.innerText = asset.trustIndex ? asset.trustIndex.downloads : '427';
+  if (citationsEl) citationsEl.innerText = asset.trustIndex ? asset.trustIndex.citations : '18';
+
   // Responsável Técnico (ART / CREA)
   document.getElementById('drawer-rt-name').innerText = asset.technicalLead.name;
   document.getElementById('drawer-rt-crea').innerText = asset.technicalLead.crea;
   document.getElementById('drawer-rt-role').innerText = asset.technicalLead.role;
   document.getElementById('drawer-rt-email').innerText = asset.technicalLead.email;
-  document.getElementById('drawer-rt-email').href = `mailto:${asset.technicalLead.email}?subject=[Centro de Especificacao VIRA] Consulta Tecnica sobre ${asset.engineeringId}`;
+  document.getElementById('drawer-rt-email').href = `mailto:${asset.technicalLead.email}?subject=[Engineering Hub VIRA] Consulta Tecnica sobre ${asset.engineeringId}`;
 
   // Citação em Norma ABNT NBR 6023
   document.getElementById('drawer-citation-text').innerText = asset.citation;
 
-  // Histórico de Versões
+  // Histórico de Versões & Governança (Changelog Auditável)
   const histContainer = document.getElementById('drawer-version-history');
   if (histContainer && asset.versionHistory) {
     histContainer.innerHTML = asset.versionHistory.map(v => {
+      const author = v.author || asset.technicalLead.name;
+      const status = v.status || 'Homologado';
       return `
-        <div class="flex items-start gap-3 py-2 border-b border-black/5 text-xs font-mono">
-          <span class="px-2 py-0.5 rounded bg-black/5 text-graphite font-bold shrink-0">${v.version}</span>
-          <div class="space-y-0.5">
-            <span class="text-muted text-[10px] block">${v.date}</span>
-            <p class="text-graphite text-[11px] leading-tight">${v.changes}</p>
+        <div class="py-2.5 border-b border-black/5 text-xs font-mono space-y-1">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded bg-black/5 text-graphite font-bold">${v.version}</span>
+              <span class="px-1.5 py-0.5 rounded text-[9px] uppercase font-bold bg-forest/10 text-forest">${status}</span>
+            </div>
+            <span class="text-muted text-[10px]">${v.date}</span>
           </div>
+          <p class="text-graphite text-[11px] leading-tight">${v.changes}</p>
+          <span class="text-[10px] text-muted block">Responsável: ${author}</span>
         </div>
       `;
     }).join('');

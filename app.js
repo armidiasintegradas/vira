@@ -140,11 +140,11 @@ const productsData = {
       { label: 'Procedência Industrial', val: 'Caruaru - PE | 100% Circular' }
     ],
     kgNodes: [
-      { id: 'VIRA-BIM-001', code: 'VIRA-BIM-001', title: 'Família Paramétrica BIM Revit (fck ≥ 35 MPa)', type: 'BIM' },
-      { id: 'VIRA-CAD-002', code: 'VIRA-CAD-002', title: 'Detalhamento Executivo CAD DWG (NBR 9050)', type: 'CAD' },
-      { id: 'VIRA-LAB-003', code: 'VIRA-LAB-003', title: 'Laudo Laboratorial Auditado IPT (38,2 MPa)', type: 'Laudo' },
-      { id: 'VIRA-MEM-004', code: 'VIRA-MEM-004', title: 'Memorial de Licitação (Lei Federal 14.133)', type: 'Memorial' },
-      { id: 'VIRA-ACV-010', code: 'VIRA-ACV-010', title: 'Estudo ACV CO2e Evitado (-2,15 kg CO2e/kg)', type: 'ACV' }
+      { id: 'VIRA-BIM-PAV-001', code: 'VIRA-BIM-PAV-001', title: 'Família Paramétrica BIM Revit (fck ≥ 35 MPa)', type: 'BIM' },
+      { id: 'VIRA-CAD-PAV-002', code: 'VIRA-CAD-PAV-002', title: 'Detalhamento Executivo CAD DWG (NBR 9050)', type: 'CAD' },
+      { id: 'VIRA-LAB-PAV-003', code: 'VIRA-LAB-PAV-003', title: 'Laudo Laboratorial Auditado IPT (38,2 MPa)', type: 'Laudo' },
+      { id: 'VIRA-MEM-PAV-004', code: 'VIRA-MEM-PAV-004', title: 'Memorial de Licitação (Lei Federal 14.133)', type: 'Memorial' },
+      { id: 'VIRA-ACV-ALL-010', code: 'VIRA-ACV-ALL-010', title: 'Estudo ACV CO2e Evitado (-2,15 kg CO2e/kg)', type: 'ACV' }
     ]
   },
   'painel-plano': {
@@ -165,9 +165,9 @@ const productsData = {
       { label: 'Procedência Industrial', val: 'Caruaru - PE | 100% Circular' }
     ],
     kgNodes: [
-      { id: 'VIRA-BIM-005', code: 'VIRA-BIM-005', title: 'Objeto BIM Revit: Painel Arquitetônico 15mm', type: 'BIM' },
-      { id: 'VIRA-CAD-006', code: 'VIRA-CAD-006', title: 'Detalhamento CAD: Fixação Oculta Ventilada', type: 'CAD' },
-      { id: 'VIRA-ACV-010', code: 'VIRA-ACV-010', title: 'Estudo ACV ISO 14044 Pegada de Carbono', type: 'ACV' }
+      { id: 'VIRA-BIM-PNL-005', code: 'VIRA-BIM-PNL-005', title: 'Objeto BIM Revit: Painel Arquitetônico 15mm', type: 'BIM' },
+      { id: 'VIRA-CAD-PNL-006', code: 'VIRA-CAD-PNL-006', title: 'Detalhamento CAD: Fixação Oculta Ventilada', type: 'CAD' },
+      { id: 'VIRA-ACV-ALL-010', code: 'VIRA-ACV-ALL-010', title: 'Estudo ACV ISO 14044 Pegada de Carbono', type: 'ACV' }
     ]
   },
   'perfil-estrutural': {
@@ -187,9 +187,9 @@ const productsData = {
       { label: 'Garantia Estrutural', val: '15 Anos' }
     ],
     kgNodes: [
-      { id: 'VIRA-BIM-007', code: 'VIRA-BIM-007', title: 'Perfil Estrutural BIM Maciço 80×80 Revit', type: 'BIM' },
-      { id: 'VIRA-TEX-008', code: 'VIRA-TEX-008', title: 'Texturas PBR 4K (ArchViz Shaders)', type: 'PBR' },
-      { id: 'VIRA-ACV-010', code: 'VIRA-ACV-010', title: 'Estudo ACV Pegada de Carbono Evitada', type: 'ACV' }
+      { id: 'VIRA-BIM-PRF-007', code: 'VIRA-BIM-PRF-007', title: 'Perfil Estrutural BIM Maciço 80×80 Revit', type: 'BIM' },
+      { id: 'VIRA-TEX-ALL-008', code: 'VIRA-TEX-ALL-008', title: 'Texturas PBR 4K (ArchViz Shaders)', type: 'PBR' },
+      { id: 'VIRA-ACV-ALL-010', code: 'VIRA-ACV-ALL-010', title: 'Estudo ACV Pegada de Carbono Evitada', type: 'ACV' }
     ]
   },
   'materia-micronizada': {
@@ -209,8 +209,8 @@ const productsData = {
       { label: 'Origem da Coleta', val: 'Cooperativas Auditadas do Agreste' }
     ],
     kgNodes: [
-      { id: 'VIRA-MAT-009', code: 'VIRA-MAT-009', title: 'Boletim Técnico Reológico & Curva MFI', type: 'Boletim' },
-      { id: 'VIRA-ACV-010', code: 'VIRA-ACV-010', title: 'Avaliação de Ciclo de Vida Cradle-to-Gate', type: 'ACV' }
+      { id: 'VIRA-MAT-RES-009', code: 'VIRA-MAT-RES-009', title: 'Boletim Técnico Reológico & Curva MFI', type: 'Boletim' },
+      { id: 'VIRA-ACV-ALL-010', code: 'VIRA-ACV-ALL-010', title: 'Avaliação de Ciclo de Vida Cradle-to-Gate', type: 'ACV' }
     ]
   }
 };
