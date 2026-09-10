@@ -4,12 +4,12 @@ Este documento é a **fonte oficial de verdade**, governança de versão e estad
 
 ---
 
-## 1. Governança de Release & Congelamento da V1
+## 1. Governança de Release & Congelamentos Oficiais
 
-- **Tag Oficial de Produção:** `v1.0.0`
-- **Branch de Release Congelada:** `release/v1` (nenhum desenvolvimento direto é permitido)
-- **Branch Ativa de Desenvolvimento / V2:** `next`
-- **Posicionamento Estratégico Oficial:** Plataforma Digital de Engenharia Circular para Infraestrutura Urbana (não utilizar a terminologia "site" ou "website" em documentações e entregas).
+- **V1.0.0 (Release Congelada):** Branch `release/v1` • Tag `v1.0.0` (Design System, Home 9 Capítulos, AVIF, Hardening WCAG AA).
+- **V2.0.0 (Release Congelada):** Branch `release/v2` • Tag `v2.0.0` (VIRA Engineering Hub™, Knowledge Graph, IDs Tripartites, Fichas de Governança, Changelog e Deep Linking).
+- **Branch Ativa de Desenvolvimento:** `next` (Desenvolvimento da V3).
+- **Missão Estratégica Oficial da V3:** *"Construir a plataforma de referência para quem projeta infraestrutura urbana com materiais circulares"*.
 
 ---
 
@@ -38,24 +38,37 @@ Este documento é a **fonte oficial de verdade**, governança de versão e estad
 - Ícones Lucide padronizados com stroke-width 1.75 (estilo blueprint técnico).
 - Fluid clamp scaling calibrado para todos os breakpoints (360px a 1920px).
 
-### [✓] V2 — Centro de Especificação & Knowledge Graph (Branch: `next`)
-- **Status:** CONCLUÍDO & HOMOLOGADO (Implementação das 10 Recomendações de Arquitetura)
-- **Nomenclatura Oficial:** Evolução da "Biblioteca Técnica" para o **Centro de Especificação & Engineering Center** (`centro-de-especificacao.html` e `especificacao.js`).
-- **Os 4 Portais de Entrada:** Acesso direto organizado por: Modelos BIM, Desenhos CAD, Laudos Laboratoriais e Memoriais para Licitação.
-- **Navegação por Intenção da Solução:** Agrupamento por solução técnica (Pavimentação 16 Faces, Fachadas 15mm, Decks 80x80, Resina VIRA-HD) e alternância instantânea para visualização por tipo de ativo.
-- **Engineering IDs Unificados:** Todos os 10 ativos catalogados sob códigos de governança da engenharia (`VIRA-BIM-001`, `VIRA-CAD-002`, `VIRA-LAB-003`, `VIRA-MEM-004`, `VIRA-BIM-005`, `VIRA-CAD-006`, `VIRA-BIM-007`, `VIRA-TEX-008`, `VIRA-MAT-009`, `VIRA-ACV-010`).
-- **Ficha Técnica & Governança:** Metadados estruturados (Código, Versão, Data, Normas ABNT/ISO, Softwares Compatíveis, Peso, Licença de Uso Profissional).
-- **Histórico de Versões (Changelog):** Histórico detalhado de revisões técnicas e notas de engenharia para cada ativo.
-- **Fluxo de Ação em 3 Passos:** Visualizar Ficha Técnica -> Copiar Memorial para Edital -> Download Imediato.
-- **Citação Padronizada ABNT NBR 6023:** Copiador formatado para citações acadêmicas, prefeituras e consultorias técnicas.
-- **Responsáveis Técnicos Homologadores:** Identificação nominal, registro profissional (CREA/CAU/OAB) e canal direto de consulta técnica para cada ativo.
-- **Grafo de Conhecimento (Knowledge Graph):** Camada de conexões bidirecionais entre a Home (Capítulos 4, 5, 6 e 7) e o Centro de Especificação, permitindo navegação fluida de materiais para laudos, modelos BIM, desenhos CAD, memoriais da Lei 14.133 e relatórios de ACV.
-- **Redirecionamento & Compatibilidade:** `biblioteca-tecnica.html` preservada com redirecionamento automático (zero links quebrados) e `sitemap.xml` atualizado com prioridade 0.95.
+### [✓] V2.0.0 — VIRA Engineering Hub™ & Knowledge Graph (Branch: `release/v2`, Tag `v2.0.0`)
+- **Status:** CONCLUÍDO, HOMOLOGADO & PERMANENTEMENTE CONGELADO
+- Conceito proprietário **VIRA Engineering Hub™** (`centro-de-especificacao.html` e `especificacao.js`).
+- 4 Portais de entrada de engenharia: Modelos BIM, Desenhos CAD, Laudos Laboratoriais e Memoriais de Licitação.
+- Navegação por intenção de solução integrada vs formato técnico.
+- Engineering IDs tripartites padronizados (`VIRA-BIM-PAV-001`, `VIRA-CAD-PAV-002`, `VIRA-LAB-PAV-003`, etc.).
+- Ficha de governança com metadados ABNT/ISO, compatibilidade e licença de uso.
+- Índice de Confiança & Autoridade Técnica (Homologado ★★★★★, downloads, citações ABNT).
+- Changelog com governança expandida (status, responsável técnico, data, versão e notas).
+- Fluxo de 3 passos: Visualizar -> Copiar Memorial (Lei 14.133) -> Download.
+- Citação padronizada ABNT NBR 6023 com 1 clique.
+- Knowledge Graph ativo interligando a Home (Cap. 4, 5, 6 e 7) ao Hub via Deep Linking bidirecional.
+- Redirecionamento transparente de `biblioteca-tecnica.html` e `sitemap.xml` atualizado.
 
 ---
 
-## 3. Próximos Módulos Estruturais do Ecossistema (Branch: `next`)
+## 3. ROADMAP OFICIAL V3 — The Knowledge Engine & Workspace (Branch: `next`)
 
-- [ ] **VIRA Obras & Infraestrutura Urbana** — Mapeamento interativo de intervenções executadas, estudos de caso e métricas de mitigação por município.
-- [ ] **VIRA Academy** — Formação técnica continuada para secretarias de planejamento, concessionárias e projetistas de infraestrutura circular.
-- [ ] **VIRA Lab & DPP** — Rastreabilidade digital de lote por Passaporte Digital de Produto e telemetria de caracterização de compósitos.
+A V3 encerra a fase de "site institucional" e materializa a VIRA como uma **ferramenta de trabalho e referência técnica contínua**:
+
+- [ ] **Sprint 1: Knowledge Workspace (O Motor Unificado de Engenharia)**
+  - O produto não abre apenas uma página; abre um **Workspace de Especificação** em tela única com abas de contexto:
+    *Visão Geral • Especificação & Ensaios • Aplicações Urbanas • Normas ABNT/ISO • BIM Paramétrico • CAD DWG • Laudos Laboratoriais • ACV & Descarbonização • Obras Executadas • VIRA Academy • FAQ Técnico • Downloads & Documentos • Contato / ART Técnica*.
+  - Painel lateral fixo **"Related Knowledge Graph"**: navegação context-aware pelo grafo em tempo real sem trocar de tela.
+- [ ] **Sprint 2: VIRA Academy**
+  - Guias de especificação de infraestrutura circular, cursos técnicos rápidos para fiscais de contratos públicos (Lei 14.133), webinars e certificação de especificador circular.
+- [ ] **Sprint 3: VIRA Lab & Rastreabilidade DPP**
+  - Ensaios reológicos e mecânicos em lote contínuo, Passaporte Digital de Produto (DPP) com verificação de autenticidade e telemetria de produção sustentável.
+- [ ] **Sprint 4: Mapa de Obras & Infraestrutura**
+  - Mapeamento georreferenciado e interativo de intervenções urbanas executadas, estudos de caso com prefeituras e concessionárias, fotos executivas e métricas de CO2e evitadas por município.
+- [ ] **Sprint 5: Analytics & Telemetria**
+  - Monitor de descarbonização em tempo real, painel de economia de recursos naturais e relatórios ESG prontos para emissão corporativa e governamental.
+- [ ] **Sprint 6: Área do Especificador / My Project Hub**
+  - Ambiente do engenheiro/arquiteto para salvar projetos, organizar pranchas e memoriais sob medida, gerar cadernos de encargos customizados e solicitar amostras com ART dedicada.
