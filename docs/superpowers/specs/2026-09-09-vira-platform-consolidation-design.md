@@ -102,7 +102,7 @@ Filtros locais:
 - Blocos
 - Guias e Meio-fio
 
-Os filtros podem funcionar em JavaScript no cliente, mas todo o catálogo deve permanecer legível sem JavaScript.
+Os filtros funcionarão em JavaScript no cliente como melhoria progressiva; todo o catálogo permanecerá legível sem JavaScript.
 
 ### Modelo de item
 
@@ -168,7 +168,7 @@ Não haverá consulta a banco de dados nesta fase. Os IDs apresentados serão fi
 
 A demonstração permitirá alternar entre Paver, Blocos e Guias para visualizar como os campos mudam por família. O conteúdo será estático e seguro.
 
-IDs demonstrativos sugeridos:
+IDs demonstrativos definidos para esta fase:
 
 - `VIRA-PAVER-DEMO-0001`
 - `VIRA-BLOCO-DEMO-0001`
@@ -180,7 +180,9 @@ Esses IDs são exemplos de interface e nunca serão descritos como lotes comerci
 
 As páginas de produto mantêm seus formulários atuais.
 
-A Central Técnica e o Passaporte terão CTA para `Especificar projeto`, direcionando para a Home ou para a família selecionada quando houver contexto.
+Na `central-tecnica.html`, o CTA geral `Especificar projeto` apontará para `index.html#contato`. Quando o usuário estiver visualizando uma família filtrada, links contextuais poderão apontar diretamente para o `#especificar` da respectiva página de produto.
+
+Na `passaporte.html`, cada demonstração de família terá CTA explícito para o `#especificar` da página correspondente: Paver → `paver.html#especificar`, Blocos → `blocos.html#especificar`, Guias → `guias.html#especificar`.
 
 Não será criada nesta fase uma API de envio. O fluxo por `mailto:` permanece como mecanismo atual, com assunto e contexto preenchidos pelo JavaScript da página quando aplicável.
 
@@ -188,7 +190,7 @@ A arquitetura deve permitir substituir `mailto:` por backend ou CRM no futuro se
 
 ## 9. Camada compartilhada de interface
 
-Criar uma camada pequena e isolada, preferencialmente:
+Criar exatamente dois arquivos compartilhados para esta fase:
 
 - `platform.css` — estilos apenas dos componentes compartilhados da Fase 2.4;
 - `platform.js` — comportamento opcional de filtros, estado visual e melhorias progressivas.
@@ -221,7 +223,7 @@ Cada nova página terá:
 
 Nesta fase, não serão adicionados schemas estruturados que contenham atributos técnicos ainda não documentados.
 
-As páginas de produto existentes poderão receber links para Central Técnica e Passaporte, mas seus títulos e textos técnicos não serão reescritos fora do necessário para a integração.
+As páginas de produto existentes receberão links para Central Técnica e Passaporte, mas seus títulos e textos técnicos não serão reescritos fora do necessário para a integração.
 
 ## 11. Mobile e acessibilidade
 
@@ -254,20 +256,20 @@ Fluxo da Central Técnica:
 
 Fluxo do Passaporte:
 
-`dataset demonstrativo estático → seleção de família → renderização dos campos demonstrativos → CTA de especificação`
+`dataset demonstrativo estático → seleção de família → renderização dos campos demonstrativos → CTA da família selecionada`
 
 ## 13. Tratamento de erro e degradação
 
 Sem JavaScript:
 
 - Central Técnica exibe todos os itens;
-- Passaporte exibe uma demonstração inicial e as explicações completas;
+- Passaporte exibe a demonstração inicial do Paver e as explicações completas das três famílias em conteúdo estático de apoio;
 - links entre páginas funcionam normalmente.
 
 Com JavaScript:
 
 - filtros devem ignorar seletores inexistentes sem lançar erro;
-- troca do Passaporte deve preservar um estado inicial válido;
+- troca do Passaporte deve preservar Paver como estado inicial válido;
 - nenhum erro de filtro pode esconder permanentemente todo o conteúdo;
 - formulários existentes continuam independentes da camada `platform.js`.
 
@@ -311,7 +313,7 @@ Modificações previstas:
 - `blocos.html`
 - `guias.html`
 
-`app.js` só deverá ser alterado se necessário para remover dependência de navegação em cards que forem convertidos para links HTML reais. Não haverá refatoração ampla.
+`app.js` só será alterado para remover dependência de navegação em cards que forem convertidos para links HTML reais. Não haverá refatoração ampla.
 
 ## 16. Fora de escopo
 
