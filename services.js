@@ -469,8 +469,58 @@ const ViraApi = {
   }
 };
 
+// ========================================================
+// ARQUITETURA DE STORES MODULAR (APPLICATION ROOT STORE)
+// ========================================================
+class ApplicationStore {
+  constructor() {
+    this.projectStore = null; // Vinculado dinamicamente via projectEngine.js
+    this.knowledgeStore = EngineeringKnowledgeBase;
+    this.services = ViraServices;
+    this.api = ViraApi;
+    this.uiStore = {
+      activeMode: 'solutions', // 'solutions' | 'projects'
+      activeSolution: 'paver',
+      activeTab: 'overview',
+      sidebarTab: 'graph', // 'graph' | 'copilot'
+      commandPaletteOpen: false
+    };
+    this.userStore = {
+      role: 'engenheiro', // 'engenheiro' | 'arquiteto' | 'gestor' | 'fiscal'
+      organization: 'Órgão Municipal / Consultoria',
+      preferences: {
+        units: 'metric',
+        exportFormatDefault: 'licitacao'
+      }
+    };
+  }
+
+  setProjectStore(store) {
+    this.projectStore = store;
+  }
+
+  getProjectStore() {
+    return this.projectStore || (typeof window !== 'undefined' ? window.projectStore : null);
+  }
+}
+
+const ViraStore = new ApplicationStore();
+
 // Exporta globalmente para o ecossistema VIRA OS
-window.DATA_TIERS = DATA_TIERS;
-window.EngineeringKnowledgeBase = EngineeringKnowledgeBase;
-window.ViraServices = ViraServices;
-window.ViraApi = ViraApi;
+if (typeof window !== 'undefined') {
+  window.DATA_TIERS = DATA_TIERS;
+  window.EngineeringKnowledgeBase = EngineeringKnowledgeBase;
+  window.ViraServices = ViraServices;
+  window.ViraApi = ViraApi;
+  window.ViraStore = ViraStore;
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    DATA_TIERS,
+    EngineeringKnowledgeBase,
+    ViraServices,
+    ViraApi,
+    ViraStore
+  };
+}

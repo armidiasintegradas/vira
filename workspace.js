@@ -1596,9 +1596,20 @@ function renderProjectsCanvas() {
               <i data-lucide="printer" class="w-3.5 h-3.5"></i>
               <span>Exportar Caderno (PDF)</span>
             </button>
+            <button onclick="window.projectEngine.exportProjectCsv('${activeProj.id}')" class="vira-btn-outline py-2.5 px-3 text-xs font-mono bg-white shadow-sm flex items-center gap-1.5" title="Baixar Planilha CSV de Quantitativos e Orçamento">
+              <i data-lucide="table" class="w-3.5 h-3.5"></i>
+              <span>CSV</span>
+            </button>
+            <button onclick="window.projectEngine.exportProjectText('${activeProj.id}')" class="vira-btn-outline py-2.5 px-3 text-xs font-mono bg-white shadow-sm flex items-center gap-1.5" title="Baixar Memorial Descritivo em Texto Simples">
+              <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+              <span>TXT</span>
+            </button>
             <button onclick="window.projectEngine.exportProjectJson('${activeProj.id}')" class="vira-btn-outline py-2.5 px-3 text-xs font-mono bg-white shadow-sm flex items-center gap-1.5" title="Baixar JSON do Projeto">
               <i data-lucide="download" class="w-3.5 h-3.5"></i>
               <span>JSON</span>
+            </button>
+            <button onclick="window.projectEngine.duplicateProject('${activeProj.id}'); window.updateWorkspace();" class="p-2.5 rounded-xl border border-border-subtle bg-white text-muted hover:text-forest transition-colors shadow-sm" title="Duplicar Projeto">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
             </button>
             <button onclick="handleDeleteProject()" class="p-2.5 rounded-xl border border-border-subtle bg-white text-muted hover:text-rose-600 transition-colors shadow-sm" title="Excluir Projeto">
               <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
@@ -1622,10 +1633,11 @@ function renderProjectsCanvas() {
         </div>
 
         <!-- Metadados de Governança do Projeto -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs font-mono border-t border-black/5 text-muted">
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 pt-2 text-xs font-mono border-t border-black/5 text-muted">
           <div><strong class="text-graphite">Resp. Técnico:</strong> ${activeProj.responsible}</div>
           <div><strong class="text-graphite">Enquadramento:</strong> ${activeProj.lawReference}</div>
           <div><strong class="text-graphite">Status:</strong> <span class="text-forest font-bold">${activeProj.status}</span></div>
+          <div><strong class="text-graphite">Governança:</strong> <span class="px-1.5 py-0.5 rounded text-[10px] ${activeProj.dataTier === 'homologado' ? 'bg-forest/10 text-forest' : (activeProj.dataTier === 'exemplo_ilustrativo' ? 'bg-amber-500/10 text-amber-700' : 'bg-blue-500/10 text-blue-700')} font-bold uppercase">${activeProj.dataTier || 'projeto_usuario'}</span></div>
         </div>
       </div>
 

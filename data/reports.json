@@ -1,0 +1,32 @@
+[
+  {
+    "id": "VIRA-LAB-PAV-003",
+    "protocol": "IPT nº 1.104.921-A",
+    "title": "Ensaio de Compressão Axial e Absorção d'Água em Blocos Intertravados",
+    "laboratory": "Instituto de Pesquisas Tecnológicas do Estado de São Paulo (IPT)",
+    "accreditation": "Inmetro CRL 0084 (Laboratório Acreditado Conforme ABNT NBR ISO/IEC 17025)",
+    "date": "14/03/2026",
+    "dataTier": "homologado",
+    "measuredParameters": {
+      "fckMpa": 38.2,
+      "waterAbsorptionPercent": 0.04,
+      "standardTargetMpa": 35.0,
+      "conformity": "Aprovado com folga de 9,1% sobre a classe de tráfego comercial"
+    }
+  },
+  {
+    "id": "VIRA-ACV-ALL-010",
+    "protocol": "LCA-VIRA-2026-B",
+    "title": "Inventário de Avaliação do Ciclo de Vida Cradle-to-Gate (ISO 14044)",
+    "laboratory": "Bureau de Auditoria de Descarbonização e Sustentabilidade",
+    "accreditation": "Verificação de Terceira Parte Independente Conforme ISO 14040/14044",
+    "date": "02/05/2026",
+    "dataTier": "homologado",
+    "measuredParameters": {
+      "carbonFactorKgCo2eKg": -2.15,
+      "landfillDiversionKg": 1.00,
+      "circularityIndex": "98,4%",
+      "conformity": "Crédito líquido auditado de descarbonização em substituição ao cimento Portland"
+    }
+  }
+]

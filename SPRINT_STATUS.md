@@ -131,6 +131,15 @@ VIRA OS v4.0 (Sistema Operacional para Engenharia Circular)
 - Classificação estrita de Dados em 3 Tiers (Homologado, Meta de Produto, Exemplo Ilustrativo).
 - Declaração explícita de Governança de Dados no Exportador de Cadernos e Projetos Demonstrativos.
 
+### [✓] Sprint Core Stabilization: Desacoplamento de Dados, Versionamento V4 & Multi-Exportação (Branch: `next`)
+- **Status:** CONCLUÍDO & HOMOLOGADO.
+- **Desacoplamento Canônico de Dados:** Criação do diretório `/data` com schemas JSON isolados (`projects.demo.json`, `materials.json`, `standards.json`, `laws.json`, `reports.json`).
+- **Versionamento de Schema (V4):** Armazenamento sob `VIRA_PROJECTS_STORE_V4` com envelope `{ schemaVersion: 4, updatedAt, projects }` e rotina de migração transparente para dados herdados da V3.
+- **Identificadores Criptográficos:** Geração de identificadores com `crypto.randomUUID()` (RFC 4122 v4) eliminando timestamps previsíveis.
+- **Exportação Multi-Formato:** Adição de exportadores nativos para planilhas (`.csv` com UTF-8 BOM e totais consolidados) e memoriais estruturados em texto simples (`.txt`).
+- **Arquitetura de Stores (`ViraStore`):** Encapsulamento modular em `ProjectStore`, `KnowledgeStore`, `UIStore` e `UserStore`, preparando a futura migração para persistência em banco de dados remoto (V5).
+- **Suíte de Testes Automatizados (`test/core_test.js`):** 14/14 testes unitários automatizados passando com 100% de sucesso (CRUD, migração V3->V4, colisões de UUID, cálculos e integridade de dados).
+
 ---
 
 ## 6. ROADMAP ESTRATÉGICO OFICIAL (V4.1 A V5)

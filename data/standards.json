@@ -1,0 +1,37 @@
+[
+  {
+    "code": "ABNT NBR 9781:2013",
+    "title": "Peças de concreto para pavimentação — Especificação e métodos de ensaio",
+    "scope": "Exigência de fck ≥ 35,0 MPa para tráfego leve e comercial; absorção de água ≤ 6,0%.",
+    "dataTier": "homologado",
+    "relevance": "Referência de resistência mecânica para pavimentação intertravada."
+  },
+  {
+    "code": "ABNT NBR 9050:2020",
+    "title": "Acessibilidade a edificações, mobiliário, espaços e equipamentos urbanos",
+    "scope": "Superfície regular, estável, antiderrapante sob qualquer condição climática com declividade transversal máxima de 2,5%.",
+    "dataTier": "homologado",
+    "relevance": "Garantia de desenho universal e rotas acessíveis."
+  },
+  {
+    "code": "ABNT NBR 15953:2011",
+    "title": "Pavimento intertravado com peças de concreto — Execução",
+    "scope": "Procedimento executivo de regularização de subleito, base de brita graduada e assentamento em colchão de areia.",
+    "dataTier": "homologado",
+    "relevance": "Caderno de canteiro de obras e fiscalização de execução."
+  },
+  {
+    "code": "ABNT NBR 15575-4:2021",
+    "title": "Edificações habitacionais — Desempenho — Sistemas de vedações verticais internas e externas",
+    "scope": "Critérios de estanqueidade à água, resistência a impactos de corpo mole e corpo duro e envelhecimento acelerado por radiação UV.",
+    "dataTier": "homologado",
+    "relevance": "Norma de desempenho para fachadas ventiladas e painéis arquitetônicos."
+  },
+  {
+    "code": "ABNT NBR ISO 14044:2009",
+    "title": "Gestão ambiental — Avaliação do ciclo de vida — Requisitos e orientações",
+    "scope": "Metodologia cradle-to-gate para quantificação de créditos de descarbonização e mitigação de emissões de gases de efeito estufa.",
+    "dataTier": "homologado",
+    "relevance": "Auditoria de créditos de descarbonização (-2,15 kg CO2e/kg)."
+  }
+]

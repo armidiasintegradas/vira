@@ -1,0 +1,85 @@
+[
+  {
+    "id": "paver",
+    "code": "VRA-PAV-2026",
+    "name": "Paver Intertravado 16 Faces",
+    "category": "Infraestrutura Viária & Calçamentos",
+    "dataTier": "homologado",
+    "properties": {
+      "fckMpa": 38.2,
+      "absorptionPercent": 0.04,
+      "densityKgM2": 18.5,
+      "sriAlbedo": 42,
+      "warrantyYears": 10,
+      "usefulLifeYears": 30,
+      "lcaCarbonFactor": -2.15,
+      "unitCostEstimate": 88.50
+    },
+    "audit": {
+      "lab": "Instituto de Pesquisas Tecnológicas (IPT)",
+      "reportNumber": "1.104.921-A",
+      "standard": "ABNT NBR 9781:2013"
+    }
+  },
+  {
+    "id": "painel",
+    "code": "VRA-PNL-1204",
+    "name": "Painel Plano 15mm Fachada",
+    "category": "Fachadas Ventiladas & Divisórias Técnicas",
+    "dataTier": "homologado",
+    "properties": {
+      "bendingMpa": 24.5,
+      "uvResistance": "UV-50+ (10.000h QUV)",
+      "densityKgM2": 14.4,
+      "warrantyYears": 10,
+      "usefulLifeYears": 25,
+      "lcaCarbonFactor": -2.15,
+      "unitCostEstimate": 145.00
+    },
+    "audit": {
+      "lab": "Laboratório de Degradação de Materiais",
+      "reportNumber": "1.098.442-B",
+      "standard": "ABNT NBR 15575-4:2021"
+    }
+  },
+  {
+    "id": "perfil",
+    "code": "VRA-PRF-0142",
+    "name": "Perfil Maciço 80×80",
+    "category": "Mobiliário Urbano, Decks & Guarda-Corpos",
+    "dataTier": "homologado",
+    "properties": {
+      "flexuralElasticityGpa": 2.1,
+      "linearDensityKgM": 6.14,
+      "salineImmunity": "100% Inerte (1.500h Salt Spray)",
+      "warrantyYears": 10,
+      "usefulLifeYears": 30,
+      "lcaCarbonFactor": -2.15,
+      "unitCostEstimate": 62.00
+    },
+    "audit": {
+      "lab": "IPT — Laboratório de Corrosão e Proteção",
+      "reportNumber": "1.101.883-C",
+      "standard": "ASTM B117 / ABNT NBR 8094"
+    }
+  },
+  {
+    "id": "insumo",
+    "code": "VRA-MAT-0099",
+    "name": "Composto Micronizado VIRA-HD",
+    "category": "Matéria-Prima Polimérica Circular",
+    "dataTier": "homologado",
+    "properties": {
+      "composition": "PEAD 65% / PP 25% / Aditivos Minerais 10%",
+      "flowIndex": "0.8 - 1.2 g/10min (190°C / 2.16kg)",
+      "densityGcm3": 0.965,
+      "lcaCarbonFactor": -2.15,
+      "unitCostEstimate": 14.80
+    },
+    "audit": {
+      "lab": "Centro de Tecnologia de Polímeros",
+      "reportNumber": "CTP-2026-VR-019",
+      "standard": "ASTM D1238"
+    }
+  }
+]

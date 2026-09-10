@@ -1,0 +1,70 @@
+[
+  {
+    "id": "proj-recife-orla",
+    "uuid": "4a7f9210-951b-4f9e-873b-e01fa8130001",
+    "name": "Requalificação Urbana da Orla de Boa Viagem (Estudo Demonstrativo)",
+    "client": "Prefeitura do Recife — Secretaria de Infraestrutura",
+    "responsible": "Eng. Roberto Silveira (CREA-PE 052.190-D)",
+    "lawReference": "Termo de Referência nº 042/2026 — Lei 14.133/2021",
+    "createdAt": "15/08/2026",
+    "updatedAt": "05/09/2026",
+    "status": "Simulação Técnica",
+    "dataTier": "exemplo_ilustrativo",
+    "auditNotice": "Simulação de anteprojeto para estudo de viabilidade e quantitativos de engenharia.",
+    "notes": "Projeto de pavimentação contínua de calçadão e ciclovia com alta exposição à maresia e tráfego intenso de pedestres e veículos leves de serviço.",
+    "items": [
+      {
+        "solutionId": "paver",
+        "name": "Paver Intertravado 16 Faces (Cinza Concreto)",
+        "code": "VRA-PAV-2026",
+        "quantityM2": 4200,
+        "densityKgM2": 18.5,
+        "lcaFactorCo2": 2.15,
+        "unitCostEstimate": 88.50
+      },
+      {
+        "solutionId": "perfil",
+        "name": "Perfil Estrutural Maciço 80×80 (Decks e Guarda-Corpo)",
+        "code": "VRA-PRF-0142",
+        "quantityM2": 450,
+        "densityKgM2": 6.14,
+        "lcaFactorCo2": 2.15,
+        "unitCostEstimate": 62.00
+      }
+    ]
+  },
+  {
+    "id": "proj-caruaru-linear",
+    "uuid": "8b3e5114-1c2a-4a6f-9981-d14bb9240002",
+    "name": "Parque Linear Capibaribe — Setor Industrial (Estudo Demonstrativo)",
+    "client": "Prefeitura Municipal de Caruaru — Secretaria de Urbanismo",
+    "responsible": "Arq. Larissa Mendonça (CAU-PE A92.311-2)",
+    "lawReference": "Edital de Concorrência Pública nº 018/2026",
+    "createdAt": "22/07/2026",
+    "updatedAt": "02/09/2026",
+    "status": "Simulação Técnica",
+    "dataTier": "exemplo_ilustrativo",
+    "auditNotice": "Estudo de caso paramétrico para simulação de praça e mobiliário urbano circular.",
+    "notes": "Praça pública sustentável integrada com passeios drenantes, rampas acessíveis NBR 9050 e fachada técnica do centro comunitário.",
+    "items": [
+      {
+        "solutionId": "paver",
+        "name": "Paver Intertravado 16 Faces (Ocre e Grafite)",
+        "code": "VRA-PAV-2026",
+        "quantityM2": 2500,
+        "densityKgM2": 18.5,
+        "lcaFactorCo2": 2.15,
+        "unitCostEstimate": 88.50
+      },
+      {
+        "solutionId": "painel",
+        "name": "Painel Arquitetônico 15mm para Fachada Ventilada",
+        "code": "VRA-PNL-1204",
+        "quantityM2": 600,
+        "densityKgM2": 14.4,
+        "lcaFactorCo2": 2.15,
+        "unitCostEstimate": 145.00
+      }
+    ]
+  }
+]

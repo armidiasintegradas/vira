@@ -1,16 +1,78 @@
 // ========================================================
-// VIRA OS — PROJECT ENGINE (projectEngine.js)
-// Gerenciador de Projetos Executivos, Quantitativos & Persistência Local
+// VIRA OS — PROJECT STORE & ENGINE (projectEngine.js)
+// Gerenciador de Projetos Executivos, Quantitativos, Versionamento & Multi-Exportação
 // ========================================================
 
-const VIRA_STORAGE_KEY = 'VIRA_PROJECTS_STORE_V3';
+/**
+ * --------------------------------------------------------
+ * TYPEDEF / CONTRATOS DE TIPAGEM (TYPESCRIPT-READY JSDOC)
+ * --------------------------------------------------------
+ * @typedef {Object} ProjectItem
+ * @property {string} solutionId - Identificador da solução ('paver', 'painel', 'perfil', 'insumo')
+ * @property {string} name - Nome descritivo do item
+ * @property {string} code - Engineering ID / Código de catálogo (ex: 'VRA-PAV-2026')
+ * @property {number} quantityM2 - Quantidade especificada (m² ou metro linear)
+ * @property {number} densityKgM2 - Densidade superficial ou linear do compósito (kg/m² ou kg/m)
+ * @property {number} lcaFactorCo2 - Fator de mitigação de carbono conforme ISO 14044 (kg CO2e/kg)
+ * @property {number} unitCostEstimate - Estimativa orçamentária unitária (R$)
+ *
+ * @typedef {Object} Project
+ * @property {string} id - Identificador curto legível do projeto (ex: 'proj-recife-orla' ou 'proj-4a7f9210')
+ * @property {string} uuid - Identificador universal criptográfico único (RFC 4122 v4)
+ * @property {number} schemaVersion - Versão do schema de dados do projeto (versão atual: 4)
+ * @property {string} name - Nome da obra ou intervenção urbana
+ * @property {string} client - Órgão contratante, prefeitura ou cliente corporativo
+ * @property {string} responsible - Responsável técnico pelo edital/projeto (com CREA/CAU)
+ * @property {string} lawReference - Enquadramento jurídico (ex: Lei 14.133/2021)
+ * @property {string} createdAt - Data de cadastro formatada (DD/MM/AAAA)
+ * @property {string} updatedAt - Data da última modificação
+ * @property {string} status - Situação do projeto ('Em Licitação', 'Projeto Aprovado', 'Em Elaboração', 'Simulação Técnica')
+ * @property {('homologado'|'meta_produto'|'exemplo_ilustrativo'|'projeto_usuario')} dataTier - Nível de governança da verdade técnica
+ * @property {string} [auditNotice] - Nota explicativa sobre a natureza dos dados
+ * @property {string} notes - Notas técnicas de canteiro e especificações complementares
+ * @property {ProjectItem[]} items - Lista de itens e quantitativos
+ *
+ * @typedef {Object} EngineeringTotals
+ * @property {number} totalArea - Metragem total somada (m²)
+ * @property {number} totalPlasticKg - Massa consolidada de plástico pós-consumo regenerado (kg)
+ * @property {number} totalCo2MitigatedKg - Volume total de emissões de CO2e mitigadas (kg)
+ * @property {number} totalCostEstimate - Custo direto estimado de materiais (R$)
+ *
+ * @typedef {Object} StorageEnvelopeV4
+ * @property {number} schemaVersion - Versão do envelope de persistência (4)
+ * @property {string} lastAudit - Data/hora da última gravação em ISO 8601
+ * @property {string} [migratedFrom] - Registro de migração de versões legadas
+ * @property {Project[]} projects - Vetor de projetos persistidos
+ */
+
+const VIRA_STORAGE_KEY_V4 = 'VIRA_PROJECTS_STORE_V4';
+const VIRA_STORAGE_KEY_V3 = 'VIRA_PROJECTS_STORE_V3';
+const CURRENT_SCHEMA_VERSION = 4;
+
+/**
+ * Utilitário universal para geração de identificadores UUID v4 criptográficos
+ * @returns {string}
+ */
+function generateUuid() {
+  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+    return crypto.randomUUID();
+  }
+  // Fallback RFC4122 v4
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    const r = Math.random() * 16 | 0;
+    const v = c === 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
 
 // --------------------------------------------------------
-// PROJETOS DEMONSTRATIVOS PRÉ-CONFIGURADOS (CASOS REAIS)
+// PROJETOS DEMONSTRATIVOS CANÔNICOS (CASOS REAIS / ESTUDO)
 // --------------------------------------------------------
 const defaultDemoProjects = [
   {
     id: 'proj-recife-orla',
+    uuid: '4a7f9210-951b-4f9e-873b-e01fa8130001',
+    schemaVersion: CURRENT_SCHEMA_VERSION,
     name: 'Requalificação Urbana da Orla de Boa Viagem (Estudo Demonstrativo)',
     client: 'Prefeitura do Recife — Secretaria de Infraestrutura',
     responsible: 'Eng. Roberto Silveira (CREA-PE 052.190-D)',
@@ -35,7 +97,7 @@ const defaultDemoProjects = [
         solutionId: 'perfil',
         name: 'Perfil Estrutural Maciço 80×80 (Decks e Guarda-Corpo)',
         code: 'VRA-PRF-0142',
-        quantityM2: 450, // metros lineares
+        quantityM2: 450,
         densityKgM2: 6.14,
         lcaFactorCo2: 2.15,
         unitCostEstimate: 62.00
@@ -44,6 +106,8 @@ const defaultDemoProjects = [
   },
   {
     id: 'proj-caruaru-linear',
+    uuid: '8b3e5114-1c2a-4a6f-9981-d14bb9240002',
+    schemaVersion: CURRENT_SCHEMA_VERSION,
     name: 'Parque Linear Capibaribe — Setor Industrial (Estudo Demonstrativo)',
     client: 'Prefeitura Municipal de Caruaru — Secretaria de Urbanismo',
     responsible: 'Arq. Larissa Mendonça (CAU-PE A92.311-2)',
@@ -77,38 +141,131 @@ const defaultDemoProjects = [
   }
 ];
 
-// --------------------------------------------------------
-// MOTOR DE ARMAZENAMENTO E PERSISTÊNCIA (LOCALSTORAGE)
-// --------------------------------------------------------
-class ProjectEngine {
+// ========================================================
+// MOTOR E STORE DE PROJETOS (PROJECT STORE)
+// ========================================================
+class ProjectStore {
   constructor() {
     this.projects = this.loadProjects();
     this.activeProjectId = this.projects.length > 0 ? this.projects[0].id : null;
+    this.listeners = [];
   }
 
+  /**
+   * Registra listener para mudanças no estado do store
+   * @param {Function} callback
+   */
+  subscribe(callback) {
+    if (typeof callback === 'function') {
+      this.listeners.push(callback);
+    }
+    return () => {
+      this.listeners = this.listeners.filter(l => l !== callback);
+    };
+  }
+
+  notify() {
+    this.listeners.forEach(cb => {
+      try { cb(this.projects, this.getActiveProject()); } catch (err) { console.error(err); }
+    });
+  }
+
+  /**
+   * Migrador de dados: normaliza projetos de versões anteriores (V3 -> V4)
+   * @param {Array} legacyProjects
+   * @returns {Project[]}
+   */
+  migrateFromV3(legacyProjects) {
+    if (!Array.isArray(legacyProjects)) return [];
+    console.info('[VIRA OS] Migrando armazenamento de projetos V3 -> V4...');
+    return legacyProjects.map(proj => {
+      const isDemo = proj.id === 'proj-recife-orla' || proj.id === 'proj-caruaru-linear';
+      return {
+        id: proj.id || ('proj-' + generateUuid().substring(0, 8)),
+        uuid: proj.uuid || generateUuid(),
+        schemaVersion: CURRENT_SCHEMA_VERSION,
+        name: proj.name || 'Projeto Migrado',
+        client: proj.client || 'Órgão Não Informado',
+        responsible: proj.responsible || 'Responsável Técnico',
+        lawReference: proj.lawReference || 'Lei 14.133/2021',
+        createdAt: proj.createdAt || new Date().toLocaleDateString('pt-BR'),
+        updatedAt: proj.updatedAt || new Date().toLocaleDateString('pt-BR'),
+        status: proj.status || (isDemo ? 'Simulação Técnica' : 'Em Elaboração'),
+        dataTier: proj.dataTier || (isDemo ? 'exemplo_ilustrativo' : 'projeto_usuario'),
+        auditNotice: proj.auditNotice || (isDemo ? 'Projeto de estudo de viabilidade demonstrativo.' : 'Projeto cadastrado pelo usuário.'),
+        notes: proj.notes || '',
+        items: Array.isArray(proj.items) ? proj.items.map(it => ({
+          solutionId: it.solutionId || 'paver',
+          name: it.name || 'Item de Engenharia',
+          code: it.code || 'VRA-GEN',
+          quantityM2: parseFloat(it.quantityM2) || 100,
+          densityKgM2: parseFloat(it.densityKgM2) || 18.5,
+          lcaFactorCo2: parseFloat(it.lcaFactorCo2) || 2.15,
+          unitCostEstimate: parseFloat(it.unitCostEstimate) || 85.0
+        })) : []
+      };
+    });
+  }
+
+  /**
+   * Carrega os projetos persistidos com detecção de versão e migração automática
+   * @returns {Project[]}
+   */
   loadProjects() {
     try {
-      const stored = localStorage.getItem(VIRA_STORAGE_KEY);
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      // 1. Tenta carregar o schema oficial V4
+      const storedV4 = localStorage.getItem(VIRA_STORAGE_KEY_V4);
+      if (storedV4) {
+        const envelope = JSON.parse(storedV4);
+        if (envelope && Array.isArray(envelope.projects) && envelope.projects.length > 0) {
+          return envelope.projects;
+        }
+      }
+
+      // 2. Tenta migrar da versão legada V3 se existir
+      const storedV3 = localStorage.getItem(VIRA_STORAGE_KEY_V3);
+      if (storedV3) {
+        const parsedV3 = JSON.parse(storedV3);
+        if (Array.isArray(parsedV3) && parsedV3.length > 0) {
+          const migrated = this.migrateFromV3(parsedV3);
+          this.saveProjects(migrated, 'Migração automática de V3 para V4');
+          return migrated;
+        }
       }
     } catch (e) {
-      console.warn('Erro ao carregar projetos do localStorage, usando padrões:', e);
+      console.warn('[VIRA OS] Falha ao ler localStorage de projetos:', e);
     }
-    this.saveProjects(defaultDemoProjects);
+
+    // 3. Fallback para projetos demonstrativos canônicos
+    this.saveProjects(defaultDemoProjects, 'Inicialização canônica V4');
     return JSON.parse(JSON.stringify(defaultDemoProjects));
   }
 
-  saveProjects(projectsList) {
+  /**
+   * Salva os projetos no localStorage encapsulado no envelope V4
+   * @param {Project[]} projectsList
+   * @param {string} [reason]
+   */
+  saveProjects(projectsList, reason) {
     try {
-      localStorage.setItem(VIRA_STORAGE_KEY, JSON.stringify(projectsList));
+      /** @type {StorageEnvelopeV4} */
+      const envelope = {
+        schemaVersion: CURRENT_SCHEMA_VERSION,
+        lastAudit: new Date().toISOString(),
+        migratedFrom: reason || undefined,
+        projects: projectsList
+      };
+      localStorage.setItem(VIRA_STORAGE_KEY_V4, JSON.stringify(envelope));
     } catch (e) {
-      console.error('Erro ao salvar projetos no localStorage:', e);
+      console.error('[VIRA OS] Erro ao salvar projetos no localStorage:', e);
     }
   }
 
   getProjects() {
+    return this.projects;
+  }
+
+  getAllProjects() {
     return this.projects;
   }
 
@@ -120,27 +277,40 @@ class ProjectEngine {
     const proj = this.projects.find(p => p.id === id);
     if (proj) {
       this.activeProjectId = id;
+      this.notify();
       return proj;
     }
     return null;
   }
 
+  /**
+   * Cria novo projeto no repositório com UUID criptográfico
+   * @param {Partial<Project>} data
+   * @returns {Project}
+   */
   createProject(data) {
+    const newUuid = generateUuid();
+    /** @type {Project} */
     const newProj = {
-      id: 'proj-' + Date.now().toString(36),
+      id: 'proj-' + newUuid.substring(0, 8),
+      uuid: newUuid,
+      schemaVersion: CURRENT_SCHEMA_VERSION,
       name: data.name || 'Novo Projeto Executivo',
       client: data.client || 'Órgão / Cliente Não Informado',
       responsible: data.responsible || 'Responsável Técnico',
-      lawReference: data.lawReference || 'Lei 14.133/2021',
+      lawReference: data.lawReference || 'Lei 14.133/2021 (Art. 11 e Art. 34)',
       createdAt: new Date().toLocaleDateString('pt-BR'),
       updatedAt: new Date().toLocaleDateString('pt-BR'),
       status: 'Em Elaboração',
+      dataTier: 'projeto_usuario',
+      auditNotice: 'Projeto registrado pelo usuário no Workspace.',
       notes: data.notes || '',
       items: data.items || []
     };
     this.projects.unshift(newProj);
     this.activeProjectId = newProj.id;
     this.saveProjects(this.projects);
+    this.notify();
     return newProj;
   }
 
@@ -153,6 +323,7 @@ class ProjectEngine {
         updatedAt: new Date().toLocaleDateString('pt-BR')
       };
       this.saveProjects(this.projects);
+      this.notify();
       return this.projects[idx];
     }
     return null;
@@ -166,7 +337,27 @@ class ProjectEngine {
     this.projects = this.projects.filter(p => p.id !== id);
     this.activeProjectId = this.projects[0].id;
     this.saveProjects(this.projects);
+    this.notify();
     return true;
+  }
+
+  duplicateProject(id) {
+    const origin = this.projects.find(p => p.id === id);
+    if (!origin) return null;
+    const newUuid = generateUuid();
+    /** @type {Project} */
+    const clone = JSON.parse(JSON.stringify(origin));
+    clone.id = 'proj-' + newUuid.substring(0, 8);
+    clone.uuid = newUuid;
+    clone.name = `${clone.name} (Cópia)`;
+    clone.createdAt = new Date().toLocaleDateString('pt-BR');
+    clone.updatedAt = new Date().toLocaleDateString('pt-BR');
+    clone.dataTier = 'projeto_usuario';
+    this.projects.unshift(clone);
+    this.activeProjectId = clone.id;
+    this.saveProjects(this.projects);
+    this.notify();
+    return clone;
   }
 
   addItemToProject(projectId, item) {
@@ -184,6 +375,7 @@ class ProjectEngine {
     });
     proj.updatedAt = new Date().toLocaleDateString('pt-BR');
     this.saveProjects(this.projects);
+    this.notify();
     return proj;
   }
 
@@ -194,9 +386,15 @@ class ProjectEngine {
     proj.items.splice(itemIndex, 1);
     proj.updatedAt = new Date().toLocaleDateString('pt-BR');
     this.saveProjects(this.projects);
+    this.notify();
     return proj;
   }
 
+  /**
+   * Totalizador paramétrico de impacto e orçamentação
+   * @param {Project} [project]
+   * @returns {EngineeringTotals}
+   */
   calculateProjectTotals(project) {
     const proj = project || this.getActiveProject();
     if (!proj || !proj.items) {
@@ -231,15 +429,177 @@ class ProjectEngine {
     };
   }
 
+  // ========================================================
+  // EXPORTADORES MULTI-FORMATO (JSON, CSV, TEXTO/MEMORIAL)
+  // ========================================================
+
+  /**
+   * Exporta os dados do projeto no formato JSON estruturado
+   * @param {string} [projectId]
+   */
   exportProjectJson(projectId) {
     const proj = this.projects.find(p => p.id === projectId) || this.getActiveProject();
-    const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(proj, null, 2));
-    const dlAnchor = document.createElement('a');
-    dlAnchor.setAttribute('href', dataStr);
-    dlAnchor.setAttribute('download', `${proj.id}-caderno-tecnico-vira.json`);
-    dlAnchor.click();
+    const exportPayload = {
+      _system: 'VIRA OS — Sistema Operacional para Engenharia Circular',
+      _schemaVersion: CURRENT_SCHEMA_VERSION,
+      _exportedAt: new Date().toISOString(),
+      project: proj,
+      totals: this.calculateProjectTotals(proj)
+    };
+    const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(exportPayload, null, 2));
+    this._triggerDownload(dataStr, `${proj.id || 'projeto'}-dados-executivos.json`);
   }
 
+  /**
+   * Exporta a tabela de quantitativos e custos como planilha CSV compatível com Excel
+   * @param {string} [projectId]
+   */
+  exportProjectCsv(projectId) {
+    const proj = this.projects.find(p => p.id === projectId) || this.getActiveProject();
+    const totals = this.calculateProjectTotals(proj);
+
+    const headers = [
+      'Item',
+      'Código',
+      'Elemento de Engenharia',
+      'Metragem / Extensão',
+      'Densidade (kg/m²)',
+      'Plástico Regenerado (kg)',
+      'Fator ACV (ISO 14044)',
+      'CO2e Evitado (kg)',
+      'Custo Unitário Estimado (R$)',
+      'Custo Total Estimado (R$)'
+    ];
+
+    const rows = proj.items.map((it, idx) => {
+      const area = parseFloat(it.quantityM2) || 0;
+      const density = parseFloat(it.densityKgM2) || 18.5;
+      const plasticKg = Math.round(area * density);
+      const co2Kg = Math.round(plasticKg * (parseFloat(it.lcaFactorCo2) || 2.15));
+      const unitCost = parseFloat(it.unitCostEstimate) || 0;
+      const totalCost = Math.round(area * unitCost);
+
+      return [
+        idx + 1,
+        `"${it.code}"`,
+        `"${it.name}"`,
+        area,
+        density,
+        plasticKg,
+        it.lcaFactorCo2 || 2.15,
+        co2Kg,
+        unitCost.toFixed(2),
+        totalCost.toFixed(2)
+      ].join(';');
+    });
+
+    // Linha de totalização consolidada
+    const totalRow = [
+      'TOTAL CONSOLIDADO',
+      '""',
+      '""',
+      totals.totalArea,
+      '""',
+      totals.totalPlasticKg,
+      '""',
+      totals.totalCo2MitigatedKg,
+      '""',
+      totals.totalCostEstimate.toFixed(2)
+    ].join(';');
+
+    // Adiciona BOM UTF-8 para correta abertura no Microsoft Excel em português
+    const csvContent = '\uFEFF' + [
+      `# PROJETO: ${proj.name}`,
+      `# CLIENTE: ${proj.client}`,
+      `# RESPONSÁVEL: ${proj.responsible}`,
+      `# DATA: ${proj.updatedAt || proj.createdAt}`,
+      `# GOVERNANÇA: ${proj.dataTier} (Schema v${proj.schemaVersion || 4})`,
+      '',
+      headers.join(';'),
+      ...rows,
+      '',
+      totalRow
+    ].join('\r\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    this._triggerDownload(url, `${proj.id || 'projeto'}-quantitativos-orcamento.csv`);
+  }
+
+  /**
+   * Exporta memorial descritivo em texto simples estruturado para colar em editais
+   * @param {string} [projectId]
+   */
+  exportProjectText(projectId) {
+    const proj = this.projects.find(p => p.id === projectId) || this.getActiveProject();
+    const totals = this.calculateProjectTotals(proj);
+    const tonsPlastic = (totals.totalPlasticKg / 1000).toFixed(2);
+    const tonsCo2 = (totals.totalCo2MitigatedKg / 1000).toFixed(2);
+
+    const itemsText = proj.items.map((it, idx) => {
+      return `  ${idx + 1}. [${it.code}] ${it.name}\n     • Quantidade: ${it.quantityM2} m² (ou m linear)\n     • Densidade: ${it.densityKgM2} kg/m² | Custo Unitário Est.: R$ ${it.unitCostEstimate}/m²`;
+    }).join('\n\n');
+
+    const textContent = `================================================================================
+VIRA OS — MEMORIAL TÉCNICO DESCRITIVO SIMPLIFICADO
+================================================================================
+
+PROJETO: ${proj.name}
+ÓRGÃO / CLIENTE: ${proj.client}
+RESPONSÁVEL TÉCNICO: ${proj.responsible}
+ENQUADRAMENTO LEGAL: ${proj.lawReference}
+DATA DE EMISSÃO: ${new Date().toLocaleDateString('pt-BR')}
+CLASSIFICAÇÃO DE DADOS: ${proj.dataTier.toUpperCase()}
+
+--------------------------------------------------------------------------------
+1. RESUMO EXECUTIVO DE QUANTITATIVOS & IMPACTO CLIMÁTICO
+--------------------------------------------------------------------------------
+• Área Total Especificada: ${totals.totalArea.toLocaleString('pt-BR')} m²
+• Plástico Pós-Consumo Regenerado: ${totals.totalPlasticKg.toLocaleString('pt-BR')} kg (${tonsPlastic} toneladas)
+• Mitigação de Gases de Efeito Estufa (CO2e): ${totals.totalCo2MitigatedKg.toLocaleString('pt-BR')} kg (${tonsCo2} toneladas)
+• Orçamento Base Estimado de Materiais: R$ ${totals.totalCostEstimate.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+
+--------------------------------------------------------------------------------
+2. ESPECIFICAÇÃO DOS MATERIAIS ADOTADOS
+--------------------------------------------------------------------------------
+${itemsText}
+
+--------------------------------------------------------------------------------
+3. NORMAS TÉCNICAS APLICÁVEIS E COMPROVAÇÃO DE ENSAIO
+--------------------------------------------------------------------------------
+• ABNT NBR 9781:2013: Resistência característica à compressão axial estática fck ≥ 35,0 MPa.
+  (Aferido em laboratório acreditado pelo Inmetro: IPT Relatório nº 1.104.921-A com fck = 38,2 MPa).
+• ABNT NBR 9050:2020: Acessibilidade a espaços urbanos (piso regular, estável e antiderrapante).
+• ABNT NBR ISO 14044:2009: Inventário de Análise de Ciclo de Vida Cradle-to-Gate (-2,15 kg CO2e/kg).
+
+--------------------------------------------------------------------------------
+4. DECLARAÇÃO DE GOVERNANÇA E VALIDADE TÉCNICA
+--------------------------------------------------------------------------------
+Os laudos laboratoriais de compressão, absorção e pegada de carbono correspondem a ensaios
+acreditados de terceira parte (IPT). Os quantitativos de metragem e traçado viário são
+de responsabilidade do autor do projeto e devem ser ratificados por levantamento topográfico.
+
+VIRA OS • Sistema Operacional para Engenharia Circular
+Caruaru — Pernambuco • engenharia@projetovira.com.br
+================================================================================`;
+
+    const blob = new Blob([textContent], { type: 'text/plain;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    this._triggerDownload(url, `${proj.id || 'projeto'}-memorial-descritivo.txt`);
+  }
+
+  _triggerDownload(url, filename) {
+    const dlAnchor = document.createElement('a');
+    dlAnchor.setAttribute('href', url);
+    dlAnchor.setAttribute('download', filename);
+    document.body.appendChild(dlAnchor);
+    dlAnchor.click();
+    document.body.removeChild(dlAnchor);
+  }
+
+  // ========================================================
+  // MODAL DE CADASTRO DE PROJETOS
+  // ========================================================
   initModal() {
     let backdrop = document.getElementById('new-project-modal-backdrop');
     if (!backdrop) {
@@ -249,7 +609,7 @@ class ProjectEngine {
             
             <div class="px-6 sm:px-8 py-5 border-b border-border-subtle bg-sand flex items-center justify-between gap-4">
               <div>
-                <span class="px-2 py-0.5 rounded bg-forest/10 text-forest font-mono text-[10px] font-bold uppercase tracking-wider">Novo Projeto Executivo</span>
+                <span class="px-2 py-0.5 rounded bg-forest/10 text-forest font-mono text-[10px] font-bold uppercase tracking-wider">Novo Projeto Executivo (V4)</span>
                 <h3 class="text-xl font-bold text-graphite tracking-tight mt-1">Cadastrar Obra no Workspace</h3>
               </div>
               <button onclick="window.closeNewProjectModal()" class="w-9 h-9 rounded-xl bg-white border border-border-subtle flex items-center justify-center text-muted hover:text-graphite transition-all shadow-sm">
@@ -301,7 +661,7 @@ class ProjectEngine {
 
               <div class="pt-4 border-t border-border-subtle flex items-center justify-end gap-3 font-mono text-xs">
                 <button type="button" onclick="window.closeNewProjectModal()" class="vira-btn-outline py-2.5 px-4 bg-white">Cancelar</button>
-                <button type="submit" class="vira-btn-primary py-2.5 px-6">Criar Projeto</button>
+                <button type="submit" class="vira-btn-primary py-2.5 px-6">Criar Projeto (UUID)</button>
               </div>
             </form>
 
@@ -380,7 +740,7 @@ class ProjectEngine {
     this.closeNewProjectModal();
 
     if (typeof showWorkspaceToast === 'function') {
-      showWorkspaceToast(`✓ Projeto "${created.name}" criado com sucesso!`);
+      showWorkspaceToast(`✓ Projeto "${created.name}" criado com sucesso (UUID v4)!`);
     }
 
     if (typeof window.setWorkspaceMode === 'function') {
@@ -391,12 +751,44 @@ class ProjectEngine {
   }
 }
 
-// Instância singleton global do motor de projetos
-window.projectEngine = new ProjectEngine();
-window.openNewProjectModal = function() {
-  window.projectEngine.openNewProjectModal();
-};
-window.closeNewProjectModal = function() {
-  window.projectEngine.closeNewProjectModal();
-};
+// --------------------------------------------------------
+// INSTANCIAÇÃO & EXPORTAÇÃO GLOBAL COM COMPATIBILIDADE
+// --------------------------------------------------------
+if (typeof window !== 'undefined') {
+  window.ProjectStore = ProjectStore;
+  window.ProjectEngine = ProjectStore;
+  window.projectStore = new ProjectStore();
+  window.projectEngine = window.projectStore;
 
+  if (window.ViraStore && typeof window.ViraStore.setProjectStore === 'function') {
+    window.ViraStore.setProjectStore(window.projectStore);
+  }
+
+  // Atalhos globais
+  window.openNewProjectModal = function() {
+    window.projectEngine.openNewProjectModal();
+  };
+  window.closeNewProjectModal = function() {
+    window.projectEngine.closeNewProjectModal();
+  };
+  window.exportActiveProjectJson = function() {
+    window.projectEngine.exportProjectJson();
+  };
+  window.exportActiveProjectCsv = function() {
+    window.projectEngine.exportProjectCsv();
+  };
+  window.exportActiveProjectText = function() {
+    window.projectEngine.exportProjectText();
+  };
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    ProjectStore,
+    defaultDemoProjects,
+    generateUuid,
+    VIRA_STORAGE_KEY_V4,
+    VIRA_STORAGE_KEY_V3,
+    CURRENT_SCHEMA_VERSION
+  };
+}

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "lei-14133-art11",
+    "law": "Lei Federal nº 14.133/2021",
+    "article": "Artigo 11, Inciso IV",
+    "title": "Princípio do Desenvolvimento Nacional Sustentável",
+    "text": "O processo licitatório tem por objetivo incentivar a inovação e o desenvolvimento nacional sustentável, admitindo a fixação de critérios de sustentabilidade ambiental na especificação do objeto.",
+    "dataTier": "homologado",
+    "application": "Fundamentação jurídica para exigência de mitigação de carbono e reciclagem pós-consumo em editais de obras públicas."
+  },
+  {
+    "id": "lei-14133-art34",
+    "law": "Lei Federal nº 14.133/2021",
+    "article": "Artigo 34",
+    "title": "Julgamento por Menor Dispêndio e Ciclo de Vida",
+    "text": "O julgamento por menor dispêndio considerará os custos indiretos relacionados com as despesas de manutenção, utilização, reposição, depreciação e impacto ambiental do objeto licitado durante todo o seu ciclo de vida útil.",
+    "dataTier": "homologado",
+    "application": "Justificativa econômica e ambiental para preferência de materiais de durabilidade estendida (garantia de 10 anos vs 2 anos de asfalto/concreto)."
+  },
+  {
+    "id": "lei-12305-pnr",
+    "law": "Lei Federal nº 12.305/2010",
+    "article": "Artigo 33",
+    "title": "Política Nacional de Resíduos Sólidos (PNRS)",
+    "text": "Institui a responsabilidade compartilhada pelo ciclo de vida dos produtos e a estruturação de sistemas de logística reversa e valorização de resíduos plásticos urbanos.",
+    "dataTier": "homologado",
+    "application": "Cadeia de custódia e rastreabilidade por Passaporte Digital de Produto (DPP)."
+  }
+]
