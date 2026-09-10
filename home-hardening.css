@@ -31,7 +31,7 @@
 .calc-result.plastic strong{color:#315330}
 .calc-result.plastic>p{color:#3f5940}
 
-/* Agenda 2030: painel verde e iconografia ODS ampliada */
+/* Agenda 2030: painel verde — compatibilidade da fase anterior */
 .calculator .ods-panel{background:#315330;color:#fff;padding:clamp(52px,6vw,84px);border-top:1px solid rgba(255,255,255,.34);border-radius:2px}
 .ods-panel>header{grid-template-columns:minmax(0,1fr) 150px;gap:clamp(30px,5vw,70px);align-items:start}
 .ods-panel>header>img{width:150px;height:auto;max-width:100%;object-fit:contain;image-rendering:auto;background:transparent}
@@ -45,3 +45,17 @@
 @media(max-width:900px){.ods-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){.product-card.product-featured{position:relative}.product-page-link{width:40px;height:40px}.metric strong.metric-word{font-size:clamp(42px,14vw,76px)}.hero-proof{display:none}.expertise-chapter{padding-left:var(--pad);padding-right:var(--pad)}.expertise-chapter h3{font-size:clamp(38px,11vw,48px)}.calculator{padding-top:80px;padding-bottom:80px}.calc-result{min-height:190px}.calc-footer{padding:32px var(--pad)}.calculator .ods-panel{margin-top:36px;padding:42px var(--pad)}.ods-panel>header{grid-template-columns:minmax(0,1fr) 120px}.ods-panel>header>img{width:120px}.ods-grid img{width:min(150px,100%)}}
 @media(max-width:520px){.ods-grid{grid-template-columns:1fr}.ods-grid article{min-height:auto}.ods-panel>header{grid-template-columns:1fr}.ods-panel>header>img{width:120px;margin-top:24px}}
+
+/* Agenda 2030: seção editorial independente, branca e sem contornos */
+.calculator .ods-panel{grid-column:1/-1;width:100vw;position:relative;left:50%;margin-left:-50vw;margin-top:clamp(88px,9vw,148px);margin-bottom:calc(-1 * clamp(90px,8vw,130px));background:#fff;color:#111;padding:clamp(76px,8vw,128px) clamp(24px,6vw,96px);border:0;border-radius:0}
+.ods-panel>header{display:grid;grid-template-columns:1fr;gap:clamp(34px,5vw,68px);align-items:start;max-width:1600px;margin:0 auto}
+.ods-panel .eyebrow,.ods-panel h2{color:#111}
+.ods-panel>header>img{display:none;width:min(787px,100%);height:auto;max-width:100%;object-fit:contain;image-rendering:auto;background:transparent;margin:0}
+.ods-panel>header::after{content:"";display:block;width:min(787px,100%);max-width:100%;aspect-ratio:787/65;background:url("assets/ods-logo-anexo.svg") left center/contain no-repeat}
+.ods-summary{max-width:760px;margin:clamp(30px,4vw,52px) auto clamp(52px,6vw,84px);color:#222;font-size:clamp(16px,1.4vw,20px);line-height:1.55}
+.ods-grid{max-width:1600px;margin:0 auto;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(34px,4vw,68px);border:0;background:transparent}
+.ods-grid article{min-width:0;min-height:0;padding:0;border:0;outline:0;box-shadow:none;background:transparent;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:20px}
+.ods-grid img{width:min(186px,100%);height:auto;max-width:100%;object-fit:contain;image-rendering:auto;background:transparent;margin:0;border:0;outline:0;box-shadow:none}
+.ods-grid p{max-width:30ch;font-size:14px;line-height:1.55;color:#111}
+@media(max-width:900px){.ods-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:44px}.calculator .ods-panel{padding-inline:var(--pad)}}
+@media(max-width:520px){.ods-grid{grid-template-columns:1fr}.ods-panel>header::after{width:100%}.ods-grid img{width:min(186px,55vw)}}
