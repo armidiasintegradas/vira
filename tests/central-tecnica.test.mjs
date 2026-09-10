@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+const html=fs.readFileSync(new URL('../central-tecnica.html',import.meta.url),'utf8');
+for(const family of ['paver','blocos','guias']) assert(html.includes(`data-family="${family}"`),`missing ${family}`);
+for(const status of ['Em consolidação','Em validação','Em preparação','Demonstração']) assert(html.includes(status),`missing ${status}`);
+assert.equal((html.match(/data-tech-item/g)||[]).length,15,'must expose 15 catalog items');
+assert(!html.includes('status-disponivel'),'no catalog asset is confirmed available');
+assert(html.includes('platform.js'),'must load platform.js');
+assert(!html.includes('href="#"'),'must not expose placeholder links');
+console.log('central-tecnica: ok');
