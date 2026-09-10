@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Central Técnica VIRA — Documentação por família</title>
+  <meta name="description" content="Central Técnica VIRA: acompanhe o estado de fichas, ensaios, manuais, arquivos de projeto e Passaporte Digital de Paver, Blocos e Guias e Meio-fio.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="platform.css?v=20260909-fase2-4">
+</head>
+<body class="platform-page">
+  <header class="platform-header">
+    <a href="index.html" aria-label="VIRA, início"><img src="assets/marca-logo-final.png" alt="VIRA"></a>
+    <a href="index.html#colecao">Produtos</a>
+  </header>
+  <nav class="product-switcher" aria-label="Famílias e recursos VIRA">
+    <a href="paver.html">Paver</a>
+    <a href="blocos.html">Blocos</a>
+    <a href="guias.html">Guias e Meio-fio</a>
+    <a href="central-tecnica.html" aria-current="page">Central Técnica</a>
+    <a href="passaporte.html">Passaporte</a>
+  </nav>
+
+  <main>
+    <section class="platform-hero">
+      <p class="platform-kicker">VIRA / Documentação</p>
+      <h1>Central Técnica VIRA</h1>
+      <p>Uma visão única do estado documental de Paver, Blocos e Guias e Meio-fio. Itens ainda não disponíveis aparecem com seu estado real e nunca geram downloads simulados.</p>
+    </section>
+
+    <section class="technical-library" id="biblioteca">
+      <div class="tech-library-head">
+        <div><p class="platform-kicker">Biblioteca técnica</p><h2>Documentação por família.</h2></div>
+        <p>Filtre a biblioteca para acompanhar o que está em consolidação, validação, preparação ou demonstração.</p>
+      </div>
+      <div class="tech-filters" aria-label="Filtrar por família">
+        <button class="tech-filter" type="button" data-filter="all" aria-pressed="true">Todas</button>
+        <button class="tech-filter" type="button" data-filter="paver" aria-pressed="false">Paver</button>
+        <button class="tech-filter" type="button" data-filter="blocos" aria-pressed="false">Blocos</button>
+        <button class="tech-filter" type="button" data-filter="guias" aria-pressed="false">Guias e Meio-fio</button>
+      </div>
+      <p class="sr-status" id="tech-filter-status" aria-live="polite">Exibindo todas as famílias.</p>
+
+      <div class="tech-catalog">
+        <article class="tech-item" data-tech-item data-family="paver"><small>Paver</small><h3>Ficha técnica</h3><p>Dados consolidados da configuração comercial.</p><b class="tech-status">Em consolidação</b></article>
+        <article class="tech-item" data-tech-item data-family="paver"><small>Paver</small><h3>Ensaios e laudos</h3><p>Resultados vinculados à configuração e ao método aplicável.</p><b class="tech-status">Em validação</b></article>
+        <article class="tech-item" data-tech-item data-family="paver"><small>Paver</small><h3>Manual de instalação</h3><p>Orientações de instalação da configuração homologada.</p><b class="tech-status">Em preparação</b></article>
+        <article class="tech-item" data-tech-item data-family="paver"><small>Paver</small><h3>DWG, BIM e texturas</h3><p>Arquivos de apoio à especificação e projeto.</p><b class="tech-status">Em preparação</b></article>
+        <article class="tech-item" data-tech-item data-family="paver"><small>Paver</small><h3>Passaporte Digital</h3><p>Estrutura demonstrativa de rastreabilidade por lote.</p><b class="tech-status">Demonstração</b></article>
+
+        <article class="tech-item" data-tech-item data-family="blocos"><small>Blocos</small><h3>Ficha técnica por geometria</h3><p>Dimensões, tolerâncias, aplicação e propriedades da configuração.</p><b class="tech-status">Em consolidação</b></article>
+        <article class="tech-item" data-tech-item data-family="blocos"><small>Blocos</small><h3>Ensaios e laudos</h3><p>Resultados vinculados à geometria e ao método aplicável.</p><b class="tech-status">Em validação</b></article>
+        <article class="tech-item" data-tech-item data-family="blocos"><small>Blocos</small><h3>Manual de aplicação</h3><p>Orientações específicas para cada uso homologado.</p><b class="tech-status">Em preparação</b></article>
+        <article class="tech-item" data-tech-item data-family="blocos"><small>Blocos</small><h3>Arquivos de projeto</h3><p>Arquivos de apoio publicados após congelamento da geometria.</p><b class="tech-status">Em preparação</b></article>
+        <article class="tech-item" data-tech-item data-family="blocos"><small>Blocos</small><h3>Passaporte Digital</h3><p>Estrutura demonstrativa para associar lote, configuração e documentação.</p><b class="tech-status">Demonstração</b></article>
+
+        <article class="tech-item" data-tech-item data-family="guias"><small>Guias e Meio-fio</small><h3>Ficha técnica por configuração</h3><p>Seção, dimensões, tolerâncias, aplicação e propriedades.</p><b class="tech-status">Em consolidação</b></article>
+        <article class="tech-item" data-tech-item data-family="guias"><small>Guias e Meio-fio</small><h3>Ensaios e laudos</h3><p>Resultados vinculados à configuração e ao método aplicável.</p><b class="tech-status">Em validação</b></article>
+        <article class="tech-item" data-tech-item data-family="guias"><small>Guias e Meio-fio</small><h3>Manual de instalação</h3><p>Orientações específicas para cada configuração homologada.</p><b class="tech-status">Em preparação</b></article>
+        <article class="tech-item" data-tech-item data-family="guias"><small>Guias e Meio-fio</small><h3>Arquivos de projeto</h3><p>Arquivos de apoio publicados após congelamento da geometria.</p><b class="tech-status">Em preparação</b></article>
+        <article class="tech-item" data-tech-item data-family="guias"><small>Guias e Meio-fio</small><h3>Passaporte Digital</h3><p>Estrutura demonstrativa para associar lote, configuração e documentação.</p><b class="tech-status">Demonstração</b></article>
+      </div>
+    </section>
+
+    <section class="platform-action">
+      <p class="platform-kicker">Especificação</p>
+      <h2>Precisa avaliar uma aplicação?</h2>
+      <p>Use a página da família para enviar o contexto técnico ou fale com a VIRA pela área de especificação.</p>
+      <div class="platform-action-links"><a href="paver.html#especificar">Paver</a><a href="blocos.html#especificar">Blocos</a><a href="guias.html#especificar">Guias e Meio-fio</a><a href="index.html#contato">Contato VIRA</a></div>
+    </section>
+  </main>
+
+  <footer class="platform-footer"><a href="index.html"><img src="assets/marca-logo-final.png" alt="VIRA"></a><span>Central Técnica VIRA · Caruaru — PE</span></footer>
+  <script src="platform.js?v=20260909-fase2-4"></script>
+</body>
+</html>
