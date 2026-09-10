@@ -1,0 +1,17 @@
+{
+  "name": "VIRA — Engenharia Circular para Infraestrutura Urbana",
+  "short_name": "VIRA",
+  "description": "Plataforma Industrial de Engenharia Circular para Infraestrutura Urbana.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#2A3233",
+  "theme_color": "#4A7135",
+  "icons": [
+    {
+      "src": "assets/marca.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

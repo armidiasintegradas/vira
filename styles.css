@@ -1,61 +1,143 @@
 /* ========================================================
-   VIRA × TROPICA FRAMER EXACT CLONE STYLES
+   VIRA NEXT — MASTER STYLESHEET (styles.css)
+   Plataforma Industrial de Engenharia Circular
    ======================================================== */
 
+@import url('./tokens.css');
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
-* {
+/* --------------------------------------------------------
+   1. RESET & BASE
+   -------------------------------------------------------- */
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html, body {
+html {
+  scroll-behavior: smooth;
+  text-size-adjust: 100%;
+}
+
+body {
   width: 100%;
   overflow-x: hidden;
-  background-color: #FFFFFF;
-  color: #141414;
-  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--color-white);
+  color: var(--color-graphite);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+::selection {
+  background-color: var(--color-ochre);
+  color: var(--color-white);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-forest);
+  outline-offset: 2px;
 }
 
 /* --------------------------------------------------------
-   1. EXACT TROPICA TOP BAR OVER FULL-SCREEN HERO
+   2. HEADER DINÂMICO (TRANSPARENTE -> SÓLIDO ON-SCROLL)
    -------------------------------------------------------- */
-.tropica-header-top {
-  position: absolute;
+.vira-header {
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 50;
+  z-index: 80;
   width: 100%;
-  padding: 32px 48px;
+  height: var(--header-height);
+  padding: 0 48px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  transition: background-color var(--transition-base), border-color var(--transition-base), backdrop-filter var(--transition-base), box-shadow var(--transition-base);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: transparent;
+}
+
+.vira-header.scrolled {
+  background-color: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--color-border-subtle);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 }
 
 @media (max-width: 768px) {
-  .tropica-header-top {
-    padding: 24px 24px;
+  .vira-header {
+    padding: 0 24px;
+    height: 68px;
   }
 }
 
-.tropica-logo-text {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  color: #FFFFFF;
-  text-decoration: none;
+.vira-header-logo {
   display: flex;
   align-items: center;
   gap: 12px;
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
 }
 
-.tropica-hamburger-btn {
+.vira-header-logo img {
+  height: 32px;
+  width: auto;
+  transition: filter var(--transition-base);
+}
+
+/* Logo branca no topo (sobre hero escuro) */
+.vira-header:not(.scrolled) .vira-header-logo img {
+  filter: brightness(0) invert(1);
+}
+
+/* Logo oficial no scroll (fundo branco) */
+.vira-header.scrolled .vira-header-logo img {
+  filter: none;
+}
+
+/* Desktop Navigation Links */
+.vira-nav-desktop {
+  display: none;
+  align-items: center;
+  gap: 32px;
+}
+
+@media (min-width: 1024px) {
+  .vira-nav-desktop {
+    display: flex;
+  }
+}
+
+.vira-nav-link {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.85);
+  transition: color var(--transition-fast);
+  position: relative;
+  padding: 4px 0;
+}
+
+.vira-header.scrolled .vira-nav-link {
+  color: var(--color-graphite);
+}
+
+.vira-nav-link:hover {
+  color: var(--color-white);
+}
+
+.vira-header.scrolled .vira-nav-link:hover {
+  color: var(--color-forest);
+}
+
+/* Hamburger button */
+.vira-hamburger-btn {
   background: transparent;
   border: none;
   cursor: pointer;
@@ -69,45 +151,115 @@ html, body {
   z-index: 100;
 }
 
-.tropica-hamburger-btn span {
+.vira-hamburger-btn span {
   display: block;
   width: 28px;
   height: 2px;
-  background-color: #FFFFFF;
+  background-color: var(--color-white);
   border-radius: 2px;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform var(--transition-base), background-color var(--transition-base);
 }
 
-.tropica-hamburger-btn.active span:nth-child(1) {
+.vira-header.scrolled:not(.menu-open) .vira-hamburger-btn span {
+  background-color: var(--color-graphite);
+}
+
+.vira-hamburger-btn.active span:nth-child(1) {
   transform: translateY(4px) rotate(45deg);
+  background-color: var(--color-white) !important;
 }
 
-.tropica-hamburger-btn.active span:nth-child(2) {
+.vira-hamburger-btn.active span:nth-child(2) {
   transform: translateY(-4px) rotate(-45deg);
+  background-color: var(--color-white) !important;
 }
 
 /* --------------------------------------------------------
-   2. EXACT TROPICA FULL-SCREEN HERO (100VH EDGE-TO-EDGE)
+   3. FULLSCREEN NAVIGATION MODAL
    -------------------------------------------------------- */
-.tropica-hero-fullscreen {
+.vira-menu-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background-color: var(--color-graphite-dark);
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 100px 48px 48px 48px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-16px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.vira-menu-modal.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .vira-menu-modal {
+    padding: 80px 24px 32px 24px;
+  }
+}
+
+.vira-menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 800px;
+  margin: auto 0;
+}
+
+.vira-menu-link {
+  font-family: var(--font-sans);
+  font-size: clamp(24px, 4vw, 48px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+  display: inline-flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.vira-menu-link span.num {
+  font-family: var(--font-mono);
+  font-size: 0.4em;
+  color: var(--color-ochre);
+  font-weight: 600;
+}
+
+.vira-menu-link:hover {
+  color: var(--color-white);
+  transform: translateX(10px);
+}
+
+/* --------------------------------------------------------
+   4. HERO 100VH CINEMATOGRÁFICO
+   -------------------------------------------------------- */
+.vira-hero-fullscreen {
   position: relative;
   width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 140px 48px 64px 48px;
-  background-color: #0c120c;
+  padding: 140px 48px 72px 48px;
+  background-color: var(--color-graphite-900);
   overflow: hidden;
 }
 
 @media (max-width: 768px) {
-  .tropica-hero-fullscreen {
+  .vira-hero-fullscreen {
     padding: 120px 24px 48px 24px;
   }
 }
 
-.tropica-hero-bg-img {
+.vira-hero-bg-img {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -116,221 +268,320 @@ html, body {
   object-position: center;
   z-index: 1;
   transform: scale(1.02);
+  filter: brightness(0.85);
 }
 
-.tropica-hero-overlay {
+.vira-hero-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.4) 0%,
-    rgba(0, 0, 0, 0.2) 40%,
-    rgba(0, 0, 0, 0.75) 100%
+    rgba(20, 24, 24, 0.5) 0%,
+    rgba(20, 24, 24, 0.25) 45%,
+    rgba(20, 24, 24, 0.85) 100%
   );
   z-index: 2;
 }
 
-.tropica-hero-content {
+.vira-hero-content {
   position: relative;
   z-index: 10;
-  max-width: 680px;
+  max-width: 860px;
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 24px;
 }
 
-.tropica-h1 {
-  font-family: 'DM Sans', sans-serif;
-  font-size: clamp(44px, 6.5vw, 84px);
+.vira-hero-tagline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-ochre);
+}
+
+.vira-hero-h1 {
+  font-family: var(--font-sans);
+  font-size: clamp(40px, 6.2vw, 76px);
   font-weight: 500;
-  line-height: 1.05;
+  line-height: 1.08;
   letter-spacing: -0.04em;
-  color: #FFFFFF;
+  color: var(--color-white);
 }
 
-.tropica-subtext {
-  font-family: 'DM Sans', sans-serif;
-  font-size: clamp(16px, 1.8vw, 20px);
+.vira-hero-subtext {
+  font-family: var(--font-sans);
+  font-size: clamp(16px, 1.6vw, 20px);
   font-weight: 400;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.85);
-  max-width: 540px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.88);
+  max-width: 640px;
 }
 
-.btn-tropica-white {
+.vira-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+/* --------------------------------------------------------
+   5. BOTÕES DO DESIGN SYSTEM
+   -------------------------------------------------------- */
+.vira-btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background-color: #FFFFFF;
-  color: #141414;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
+  background-color: var(--color-forest);
+  color: var(--color-white);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
   font-weight: 600;
   padding: 14px 28px;
-  border-radius: 9999px;
+  border-radius: var(--radius-full);
   text-decoration: none;
-  border: none;
-  width: fit-content;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--color-forest);
+  transition: all var(--transition-base);
+  box-shadow: 0 4px 16px rgba(74, 113, 53, 0.25);
+  cursor: pointer;
 }
 
-.btn-tropica-white:hover {
-  background-color: #EAEAEA;
+.vira-btn-primary:hover {
+  background-color: var(--color-forest-dark);
+  border-color: var(--color-forest-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(74, 113, 53, 0.35);
+}
+
+.vira-btn-white {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: var(--color-white);
+  color: var(--color-graphite);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  border: none;
+  transition: all var(--transition-base);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+.vira-btn-white:hover {
+  background-color: var(--color-sand);
   transform: translateY(-2px);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
 }
 
-.tropica-rating-widget {
-  display: flex;
+.vira-btn-outline {
+  display: inline-flex;
   align-items: center;
-  gap: 14px;
-  margin-top: 12px;
-}
-
-.avatar-stack {
-  display: flex;
-  align-items: center;
-}
-
-.avatar-stack img {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  border: 2px solid #FFFFFF;
-  margin-left: -10px;
-  object-fit: cover;
-}
-
-.avatar-stack img:first-child {
-  margin-left: 0;
-}
-
-.rating-info {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.rating-stars {
-  color: #FFFFFF;
-  font-size: 13px;
-  letter-spacing: 2px;
-}
-
-.rating-label {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
+  justify-content: center;
+  gap: 10px;
+  background-color: transparent;
+  color: var(--color-white);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.85);
-}
-
-/* --------------------------------------------------------
-   3. FULLSCREEN OVERLAY MENU
-   -------------------------------------------------------- */
-.tropica-menu-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 90;
-  background-color: #141414;
-  color: #FFFFFF;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 120px 48px 48px 48px;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-20px);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.tropica-menu-modal.open {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
-
-.menu-nav-links {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.menu-nav-link {
-  font-family: 'DM Sans', sans-serif;
-  font-size: clamp(32px, 5vw, 64px);
-  font-weight: 500;
-  letter-spacing: -0.03em;
-  color: rgba(255, 255, 255, 0.7);
+  padding: 13px 26px;
+  border-radius: var(--radius-full);
   text-decoration: none;
-  transition: all 0.25s ease;
-  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  transition: all var(--transition-base);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
 }
 
-.menu-nav-link:hover {
-  color: #FFFFFF;
-  transform: translateX(12px);
+.vira-btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-white);
+  color: var(--color-white);
 }
 
 /* --------------------------------------------------------
-   4. CONTENT SECTIONS
+   6. SEÇÕES & CAPÍTULOS
    -------------------------------------------------------- */
-.section-wrapper {
-  max-width: 1320px;
+.vira-section {
+  max-width: var(--container-max-width);
   margin: 0 auto;
-  padding: 100px 48px;
+  padding: 120px 48px;
 }
 
 @media (max-width: 768px) {
-  .section-wrapper {
-    padding: 60px 24px;
+  .vira-section {
+    padding: 72px 24px;
   }
 }
 
+.vira-chapter-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 56px;
+}
+
+.vira-chapter-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-forest);
+}
+
+.vira-chapter-badge.ochre {
+  color: var(--color-ochre);
+}
+
+.vira-chapter-title {
+  font-family: var(--font-sans);
+  font-size: clamp(32px, 4.5vw, 54px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--color-graphite);
+}
+
+.vira-chapter-lead {
+  font-family: var(--font-sans);
+  font-size: clamp(16px, 1.4vw, 19px);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-muted);
+  max-width: 720px;
+}
+
 /* --------------------------------------------------------
-   5. DRAWER MODAL (PRODUCT SPECIFICATIONS)
+   7. CARDS & GRID DO DESIGN SYSTEM
    -------------------------------------------------------- */
-.drawer-backdrop {
+.vira-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-2xl);
+  padding: 32px;
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+}
+
+.vira-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-border-medium);
+}
+
+/* --------------------------------------------------------
+   8. ESPECIFICAÇÃO TÉCNICA (TABELA DE ENGENHARIA)
+   -------------------------------------------------------- */
+.vira-spec-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.vira-spec-table th {
+  text-align: left;
+  padding: 16px 20px;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+  border-bottom: 2px solid var(--color-graphite);
+}
+
+.vira-spec-table td {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  vertical-align: middle;
+}
+
+.vira-spec-table tr:hover td {
+  background-color: var(--color-surface);
+}
+
+/* --------------------------------------------------------
+   9. DRAWER MODAL DE PRODUTOS
+   -------------------------------------------------------- */
+.drawer-backdrop, .vira-drawer-backdrop {
   position: fixed;
   inset: 0;
   z-index: 999;
-  background-color: rgba(0, 0, 0, 0.65);
+  background-color: rgba(20, 24, 24, 0.65);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
+  transition: opacity var(--transition-slow), visibility var(--transition-slow);
 }
 
-.drawer-backdrop.open {
+.drawer-backdrop.open, .vira-drawer-backdrop.open {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
 }
 
-.drawer-panel {
+.drawer-panel, .vira-drawer-panel {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   z-index: 1000;
   width: 100%;
-  max-width: 560px;
-  background-color: #FFFFFF;
-  box-shadow: -12px 0 50px rgba(0, 0, 0, 0.25);
+  max-width: 580px;
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-xl);
   transform: translateX(100%);
   visibility: hidden;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s ease;
+  transition: transform var(--transition-slow), visibility var(--transition-slow);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 40px;
+  padding: 44px;
   overflow-y: auto;
 }
 
-.drawer-panel.open {
+.drawer-panel.open, .vira-drawer-panel.open {
   transform: translateX(0);
   visibility: visible;
 }
+
+@media (max-width: 640px) {
+  .drawer-panel, .vira-drawer-panel {
+    padding: 28px 20px;
+  }
+}
+
+/* --------------------------------------------------------
+   10. MONUMENTAL WORDMARK & RODAPÉ
+   -------------------------------------------------------- */
+.footer-monumental-wordmark {
+  font-family: var(--font-sans);
+  font-size: clamp(64px, 14vw, 190px);
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 0.85;
+  color: rgba(255, 255, 255, 0.05);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* --------------------------------------------------------
+   11. COMPATIBILIDADE RETROATIVA (ALIASES)
+   -------------------------------------------------------- */
+.tropica-header-top { display: none; }
+.btn-tropica-white { composes: vira-btn-white; }
+.btn-tropica-pill { composes: vira-btn-primary; }

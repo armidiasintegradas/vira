@@ -3,24 +3,81 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VIRA — Live where you feel most alive | Indústria de Materiais Circulares</title>
-  <meta name="description" content="Plataforma industrial de economia circular em Caruaru-PE. Transformamos resíduos plásticos pós-consumo em artefatos de alto desempenho para arquitetura e cidades." />
+  <title>VIRA — Plataforma Industrial de Engenharia Circular para Infraestrutura Urbana</title>
+  
+  <!-- SEO & Meta Tags Fundamentais -->
+  <meta name="description" content="Engenharia circular aplicada à infraestrutura urbana. Transformação industrial de polímeros pós-consumo em artefatos normatizados de alto desempenho para cidades e arquitetura." />
+  <meta name="keywords" content="engenharia circular, materiais circulares, infraestrutura urbana, paver intertravado reciclado, ABNT NBR 9781, Caruaru, cidades sustentáveis, plástico reciclado industrial" />
+  <meta name="author" content="VIRA & AR Mídias Integradas" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <link rel="canonical" href="https://projetovira.com.br/" />
 
-  <!-- Tailwind CSS CDN -->
+  <!-- PWA & Web Manifest -->
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#4A7135" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <!-- Vector Favicon (SVG com símbolo VIRA) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%234A7135' d='M4 4h7l5 16 5-16h7L19 28h-6z'/%3E%3Ccircle cx='23' cy='25' r='3' fill='%23C68D2B'/%3E%3C/svg%3E" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="VIRA" />
+  <meta property="og:url" content="https://projetovira.com.br/" />
+  <meta property="og:title" content="VIRA — Engenharia Circular para Infraestrutura Urbana" />
+  <meta property="og:description" content="Tecnologia industrial desenvolvida para transformar materiais circulares em soluções para infraestrutura urbana." />
+  <meta property="og:image" content="https://projetovira.com.br/assets/factory-hero.jpg" />
+  <meta property="og:image:width" content="1024" />
+  <meta property="og:image:height" content="682" />
+  <meta property="og:image:alt" content="Parque Fabril VIRA em Caruaru-PE" />
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://projetovira.com.br/" />
+  <meta name="twitter:title" content="VIRA — Engenharia Circular para Infraestrutura Urbana" />
+  <meta name="twitter:description" content="Tecnologia industrial desenvolvida para transformar materiais circulares em soluções para infraestrutura urbana." />
+  <meta name="twitter:image" content="https://projetovira.com.br/assets/factory-hero.jpg" />
+
+  <!-- Core Web Vitals: Preload do LCP Image Hero em AVIF -->
+  <link rel="preload" as="image" href="assets/factory-hero.avif" type="image/avif" fetchpriority="high" />
+
+  <!-- Preconnect para Fontes Google com display=swap -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Design System Tokens & Master Stylesheet -->
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Tailwind CSS CDN para Utilities de Layout -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            'sand': '#F7F7F5',
-            'surface': '#F2F2EE',
-            'graphite': '#141414',
-            'forest': '#2C3E2D',
-            'brand-green': '#4A7135',
-            'ochre': '#C68D2B',
-            'muted': '#5E5E5E',
-            'border-subtle': 'rgba(20, 20, 20, 0.08)'
+            forest: {
+              DEFAULT: '#4A7135',
+              dark: '#375527',
+              light: '#5d8b43'
+            },
+            ochre: {
+              DEFAULT: '#C68D2B',
+              light: '#e0a544'
+            },
+            graphite: {
+              DEFAULT: '#2A3233',
+              dark: '#1A2021',
+              900: '#141818'
+            },
+            sand: '#F7F7F5',
+            surface: '#F2F2EE',
+            sprout: '#698E3C',
+            muted: '#5E696A',
+            'border-subtle': 'rgba(42, 50, 51, 0.08)'
           },
           fontFamily: {
             sans: ['"DM Sans"', '-apple-system', 'sans-serif'],
@@ -35,826 +92,987 @@
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <!-- Google Fonts: DM Sans, Instrument Serif, JetBrains Mono -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <style>
-/* ========================================================
-   VIRA × TROPICA FRAMER EXACT CLONE STYLES
-   ======================================================== */
-
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html, body {
-  width: 100%;
-  overflow-x: hidden;
-  background-color: #FFFFFF;
-  color: #141414;
-  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* --------------------------------------------------------
-   1. EXACT TROPICA TOP BAR OVER FULL-SCREEN HERO
-   -------------------------------------------------------- */
-.tropica-header-top {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 50;
-  width: 100%;
-  padding: 32px 48px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-@media (max-width: 768px) {
-  .tropica-header-top {
-    padding: 24px 24px;
+  <!-- Schema.org JSON-LD Structured Data: Organization & Catalog -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://projetovira.com.br/#organization",
+        "name": "VIRA",
+        "alternateName": "VIRA Engenharia Circular",
+        "url": "https://projetovira.com.br",
+        "logo": "https://projetovira.com.br/assets/marca.png",
+        "description": "Plataforma Industrial de Engenharia Circular para Infraestrutura Urbana.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Caruaru",
+          "addressRegion": "PE",
+          "addressCountry": "BR"
+        },
+        "knowsAbout": [
+          "Engenharia Circular",
+          "Pavimentação Intertravada Sustentável",
+          "ABNT NBR 9781",
+          "Economia Circular Industrial"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://projetovira.com.br/#website",
+        "url": "https://projetovira.com.br",
+        "name": "VIRA — Engenharia Circular para Infraestrutura Urbana",
+        "publisher": {
+          "@id": "https://projetovira.com.br/#organization"
+        },
+        "inLanguage": "pt-BR"
+      },
+      {
+        "@type": "ItemList",
+        "name": "Catálogo de Materiais Circulares VIRA",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Paver Intertravado 16 Faces",
+            "description": "Bloco intertravado maciço fabricado a partir de compósitos poliméricos circulares. ABNT NBR 9781:2013, fck ≥ 35 MPa."
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Painel Arquitetônico Plano 15mm",
+            "description": "Placa rígida obtida por termocompressão de alta tonelagem para fachadas ventiladas e divisórias. ABNT NBR 15575."
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Perfil Estrutural Maciço 80×80",
+            "description": "Vigas e pilares maciços de alta densidade estrutural em substituição a madeira de lei e perfis metálicos."
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Composto Micronizado VIRA-HD",
+            "description": "Matéria-prima circular homogênea de alta fluidez (PEAD/PP) com 99.4% de pureza técnica."
+          }
+        ]
+      }
+    ]
   }
-}
-
-.tropica-logo-text {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  color: #FFFFFF;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.tropica-hamburger-btn {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 6px;
-  width: 44px;
-  height: 44px;
-  padding: 8px;
-  z-index: 100;
-}
-
-.tropica-hamburger-btn span {
-  display: block;
-  width: 28px;
-  height: 2px;
-  background-color: #FFFFFF;
-  border-radius: 2px;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.tropica-hamburger-btn.active span:nth-child(1) {
-  transform: translateY(4px) rotate(45deg);
-}
-
-.tropica-hamburger-btn.active span:nth-child(2) {
-  transform: translateY(-4px) rotate(-45deg);
-}
-
-/* --------------------------------------------------------
-   2. EXACT TROPICA FULL-SCREEN HERO (100VH EDGE-TO-EDGE)
-   -------------------------------------------------------- */
-.tropica-hero-fullscreen {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 140px 48px 64px 48px;
-  background-color: #0c120c;
-  overflow: hidden;
-}
-
-@media (max-width: 768px) {
-  .tropica-hero-fullscreen {
-    padding: 120px 24px 48px 24px;
-  }
-}
-
-.tropica-hero-bg-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  z-index: 1;
-  transform: scale(1.02);
-}
-
-.tropica-hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.4) 0%,
-    rgba(0, 0, 0, 0.2) 40%,
-    rgba(0, 0, 0, 0.75) 100%
-  );
-  z-index: 2;
-}
-
-.tropica-hero-content {
-  position: relative;
-  z-index: 10;
-  max-width: 680px;
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
-
-.tropica-h1 {
-  font-family: 'DM Sans', sans-serif;
-  font-size: clamp(44px, 6.5vw, 84px);
-  font-weight: 500;
-  line-height: 1.05;
-  letter-spacing: -0.04em;
-  color: #FFFFFF;
-}
-
-.tropica-subtext {
-  font-family: 'DM Sans', sans-serif;
-  font-size: clamp(16px, 1.8vw, 20px);
-  font-weight: 400;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.85);
-  max-width: 540px;
-}
-
-.btn-tropica-white {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background-color: #FFFFFF;
-  color: #141414;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 14px 28px;
-  border-radius: 9999px;
-  text-decoration: none;
-  border: none;
-  width: fit-content;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-}
-
-.btn-tropica-white:hover {
-  background-color: #EAEAEA;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
-}
-
-.tropica-rating-widget {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-top: 12px;
-}
-
-.avatar-stack {
-  display: flex;
-  align-items: center;
-}
-
-.avatar-stack img {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  border: 2px solid #FFFFFF;
-  margin-left: -10px;
-  object-fit: cover;
-}
-
-.avatar-stack img:first-child {
-  margin-left: 0;
-}
-
-.rating-info {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.rating-stars {
-  color: #FFFFFF;
-  font-size: 13px;
-  letter-spacing: 2px;
-}
-
-.rating-label {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.85);
-}
-
-/* --------------------------------------------------------
-   3. FULLSCREEN OVERLAY MENU
-   -------------------------------------------------------- */
-.tropica-menu-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 90;
-  background-color: #141414;
-  color: #FFFFFF;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 120px 48px 48px 48px;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-20px);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.tropica-menu-modal.open {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
-
-.menu-nav-links {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.menu-nav-link {
-  font-family: 'DM Sans', sans-serif;
-  font-size: clamp(32px, 5vw, 64px);
-  font-weight: 500;
-  letter-spacing: -0.03em;
-  color: rgba(255, 255, 255, 0.7);
-  text-decoration: none;
-  transition: all 0.25s ease;
-  width: fit-content;
-}
-
-.menu-nav-link:hover {
-  color: #FFFFFF;
-  transform: translateX(12px);
-}
-
-/* --------------------------------------------------------
-   4. CONTENT SECTIONS
-   -------------------------------------------------------- */
-.section-wrapper {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 100px 48px;
-}
-
-@media (max-width: 768px) {
-  .section-wrapper {
-    padding: 60px 24px;
-  }
-}
-
-/* --------------------------------------------------------
-   5. DRAWER MODAL (PRODUCT SPECIFICATIONS)
-   -------------------------------------------------------- */
-.drawer-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 999;
-  background-color: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
-}
-
-.drawer-backdrop.open {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
-.drawer-panel {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1000;
-  width: 100%;
-  max-width: 560px;
-  background-color: #FFFFFF;
-  box-shadow: -12px 0 50px rgba(0, 0, 0, 0.25);
-  transform: translateX(100%);
-  visibility: hidden;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 40px;
-  overflow-y: auto;
-}
-
-.drawer-panel.open {
-  transform: translateX(0);
-  visibility: visible;
-}
-
-  </style>
+  </script>
 </head>
-<body class="bg-white text-graphite min-h-screen selection:bg-ochre selection:text-white">
+<body class="bg-white text-graphite min-h-screen">
+
+  <!-- Acessibilidade: Skip Link para Teclado/Leitores de Tela -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-white focus:text-graphite focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-xl focus:font-mono focus:text-xs focus:ring-2 focus:ring-forest">
+    Pular diretamente para o conteúdo principal (Enter)
+  </a>
 
   <!-- ========================================================
-       1. EXACT TROPICA TOP BAR (OVER FULL-SCREEN HERO)
+       HEADER DINÂMICO (TRANSPARENTE NO TOPO -> BRANCO ON-SCROLL)
        ======================================================== -->
-  <header class="tropica-header-top">
-    
-    <!-- Left: Brand Logo in Tropica style (vira.) -->
-    <a href="#" class="tropica-logo-text flex items-center gap-3">
-      <img src="assets/marca.png" alt="VIRA" class="h-8 w-auto filter brightness-0 invert" />
+  <header class="vira-header" role="banner">
+    <!-- Logotipo Oficial -->
+    <a href="#" class="vira-header-logo" aria-label="VIRA — Página Inicial">
+      <picture>
+        <source srcset="assets/marca.avif" type="image/avif" />
+        <img src="assets/marca.png" alt="Logotipo Oficial VIRA" width="120" height="37" />
+      </picture>
     </a>
 
-    <!-- Right: Minimalist Hamburger Menu Button (=) -->
-    <button id="tropica-menu-toggle" class="tropica-hamburger-btn" aria-label="Menu">
-      <span></span>
-      <span></span>
-    </button>
+    <!-- Navegação Desktop -->
+    <nav class="vira-nav-desktop" aria-label="Navegação Principal">
+      <a href="#engenharia" class="vira-nav-link">Engenharia</a>
+      <a href="#como-funciona" class="vira-nav-link">Processo</a>
+      <a href="#materiais" class="vira-nav-link">Materiais</a>
+      <a href="#aplicacoes" class="vira-nav-link">Aplicações</a>
+      <a href="#especificacao" class="vira-nav-link">Especificação</a>
+      <a href="#impacto" class="vira-nav-link">Impacto</a>
+      <a href="#agenda-2030" class="vira-nav-link">Agenda 2030</a>
+      <a href="#contato" class="vira-nav-link">Contato</a>
+    </nav>
 
+    <!-- Ações e Menu Mobile -->
+    <div class="flex items-center gap-4">
+      <a href="#contato" class="hidden sm:inline-flex vira-btn-primary py-2.5 px-5 text-xs">
+        <span>Falar com Engenharia</span>
+      </a>
+
+      <button id="vira-menu-toggle" class="vira-hamburger-btn" aria-label="Abrir Menu de Navegação" aria-expanded="false" aria-controls="vira-fullscreen-menu">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </header>
 
   <!-- ========================================================
-       2. FULLSCREEN OVERLAY MENU (TRIGGERED BY HAMBURGER)
+       MODAL DE NAVEGAÇÃO FULLSCREEN (ACCESSIBLE)
        ======================================================== -->
-  <div id="tropica-fullscreen-menu" class="tropica-menu-modal">
-    
-    <div class="flex justify-between items-center">
+  <div id="vira-fullscreen-menu" class="vira-menu-modal" role="dialog" aria-modal="true" aria-label="Menu Principal de Navegação">
+    <div class="flex justify-between items-center border-b border-white/10 pb-6">
       <span class="font-mono text-xs text-white/50 uppercase tracking-widest">• Menu de Navegação</span>
+      <span class="font-mono text-xs text-white/40">Plataforma VIRA NEXT 2026</span>
     </div>
 
-    <div class="menu-nav-links max-w-4xl mx-auto w-full my-auto">
-      <a href="#hero" class="menu-nav-link" onclick="toggleMenu()">01 Início</a>
-      <a href="#colecao" class="menu-nav-link" onclick="toggleMenu()">02 Coleção de Produtos</a>
-      <a href="#expertise" class="menu-nav-link" onclick="toggleMenu()">03 Expertise Industrial</a>
-      <a href="#colaboracao" class="menu-nav-link" onclick="toggleMenu()">04 Impacto & Cooperativas</a>
-      <a href="uniformes.html" class="menu-nav-link" onclick="toggleMenu()">05 Guia de Uniformes</a>
-      <a href="brandbook.html" class="menu-nav-link text-ochre" onclick="toggleMenu()">06 Brand Book 2026</a>
-      <a href="#calculadora" class="menu-nav-link" onclick="toggleMenu()">07 Calculadora de Impacto</a>
-      <a href="#faq" class="menu-nav-link" onclick="toggleMenu()">08 FAQ</a>
-      <a href="#contato" class="menu-nav-link" onclick="toggleMenu()">09 Especificar Projeto</a>
-    </div>
+    <nav class="vira-menu-links max-w-4xl mx-auto w-full" aria-label="Capítulos da Plataforma">
+      <a href="#hero" class="vira-menu-link"><span class="num">01</span> Início & Visão Geral</a>
+      <a href="#engenharia" class="vira-menu-link"><span class="num">02</span> Uma Única Engenharia</a>
+      <a href="#como-funciona" class="vira-menu-link"><span class="num">03</span> Como Funciona o Ciclo</a>
+      <a href="#materiais" class="vira-menu-link"><span class="num">04</span> Catálogo de Materiais</a>
+      <a href="#aplicacoes" class="vira-menu-link"><span class="num">05</span> Aplicações em Infraestrutura</a>
+      <a href="#especificacao" class="vira-menu-link"><span class="num">06</span> Especificação Técnica & Normas</a>
+      <a href="#impacto" class="vira-menu-link"><span class="num">07</span> Calculadora de Impacto</a>
+      <a href="#agenda-2030" class="vira-menu-link"><span class="num">08</span> Ecossistema & Agenda 2030</a>
+      <a href="#contato" class="vira-menu-link"><span class="num">09</span> Contato & Especificação Direta</a>
+    </nav>
 
-    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-white/50 border-t border-white/10 pt-8">
-      <p>Caruaru — PE (8°22′S 35°58′W)</p>
-      <p>© 2026 VIRA. Tudo pode se transformar.</p>
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-white/50 border-t border-white/10 pt-6">
+      <p>Polo Industrial de Caruaru — PE (8°17′S 35°58′W)</p>
+      <div class="flex gap-6">
+        <a href="brandbook.html" class="text-ochre hover:underline">Brand Book 2026</a>
+        <a href="uniformes.html" class="text-white/70 hover:underline">Guia de Uniformes</a>
+      </div>
     </div>
-
   </div>
 
-  <!-- ========================================================
-       3. EXACT TROPICA FULL-SCREEN HERO SECTION (100VH)
-       ======================================================== -->
-  <section id="hero" class="tropica-hero-fullscreen">
-    
-    <!-- Edge-to-Edge Cinematic Background Photo -->
-    <img src="assets/foto-institucional-oficial-pavers.jpg" alt="Fábrica VIRA em Caruaru-PE" class="tropica-hero-bg-img" />
-    <div class="tropica-hero-overlay"></div>
+  <main id="main-content">
 
-    <!-- Hero Content (Left-Aligned, Exactly Like Reference) -->
-    <div class="tropica-hero-content">
-      
-      <h1 class="tropica-h1">
-        Live where you<br>feel most alive.
-      </h1>
+    <!-- ========================================================
+         CAPÍTULO 1: HERO CINEMATOGRÁFICO (100VH)
+         ======================================================== -->
+    <section id="hero" class="vira-hero-fullscreen" aria-label="Abertura Institucional">
+      <!-- Imagem de Fundo Cinematográfica da Fábrica com suporte a Next-Gen AVIF -->
+      <picture>
+        <source srcset="assets/factory-hero.avif" type="image/avif" />
+        <img src="assets/factory-hero.jpg" alt="Complexo Industrial VIRA em Caruaru-PE" class="vira-hero-bg-img" width="1024" height="682" fetchpriority="high" decoding="sync" />
+      </picture>
+      <div class="vira-hero-overlay"></div>
 
-      <p class="tropica-subtext">
-        Thoughtfully crafted circular materials for those seeking harmony, nature, and space to breathe.
-      </p>
-
-      <a href="#colecao" class="btn-tropica-white">
-        <span>View Properties</span>
-      </a>
-
-      <!-- Bottom Rating Widget Exactly Like Screenshot -->
-      <div class="tropica-rating-widget">
-        <div class="avatar-stack">
-          <img src="assets/foto-institucional-recebimento-doca.jpg" alt="Doca VIRA" />
-          <img src="assets/foto-linha-uniformes-completa.jpg" alt="Equipe VIRA" />
-          <img src="assets/produto-paver-prensa.jpg" alt="Prensagem VIRA" />
+      <!-- Conteúdo Hero Alinhado à Esquerda com Respiro Generoso -->
+      <div class="vira-hero-content">
+        <div class="vira-hero-tagline">
+          <span>●</span>
+          <span>Plataforma Industrial de Engenharia Circular</span>
         </div>
-        <div class="rating-info">
-          <div class="rating-stars">★★★★★</div>
-          <span class="rating-label">+1.200t / mês • Caruaru - PE</span>
+
+        <h1 class="vira-hero-h1">
+          Construindo cidades melhores começa pelos materiais.
+        </h1>
+
+        <p class="vira-hero-subtext">
+          Tecnologia industrial desenvolvida para transformar materiais circulares em soluções para infraestrutura urbana.
+        </p>
+
+        <div class="vira-hero-actions">
+          <a href="#engenharia" class="vira-btn-white">
+            <span>Conhecer Plataforma</span>
+            <i data-lucide="arrow-down" class="w-4 h-4"></i>
+          </a>
+          <a href="#materiais" class="vira-btn-outline">
+            <span>Explorar Materiais</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
         </div>
-      </div>
 
-    </div>
-
-  </section>
-
-  <!-- ========================================================
-       4. KEY METRICS BAR (TROPICA STATS BAR)
-       ======================================================== -->
-  <section class="section-wrapper py-16">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 p-10 bg-sand rounded-3xl border border-border-subtle">
-      <div class="space-y-1 border-r border-black/5 pr-4">
-        <span class="font-mono text-[10px] text-muted uppercase block font-bold">Capacidade Mensal</span>
-        <p class="text-4xl font-bold text-graphite">+1.200t</p>
-        <p class="text-xs text-muted font-light">Polímeros reciclados</p>
-      </div>
-      <div class="space-y-1 md:border-r border-black/5 pr-4">
-        <span class="font-mono text-[10px] text-ochre uppercase block font-bold">Matriz Energética</span>
-        <p class="text-4xl font-bold text-ochre">100%</p>
-        <p class="text-xs text-muted font-light">Usinas solares no teto</p>
-      </div>
-      <div class="space-y-1 border-r border-black/5 pr-4">
-        <span class="font-mono text-[10px] text-brand-green uppercase block font-bold">Petróleo Virgem</span>
-        <p class="text-4xl font-bold text-brand-green">0%</p>
-        <p class="text-xs text-muted font-light">Matéria 100% regenerada</p>
-      </div>
-      <div class="space-y-1">
-        <span class="font-mono text-[10px] text-muted uppercase block font-bold">Garantia Decenal</span>
-        <p class="text-4xl font-bold text-graphite">10 Anos</p>
-        <p class="text-xs text-muted font-light">Durabilidade comprovada</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================================
-       5. AVAILABLE COLLECTION (TROPICA PROPERTIES GRID)
-       ======================================================== -->
-  <section id="colecao" class="section-wrapper py-16 space-y-10 scroll-mt-20">
-    
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-border-subtle pb-8">
-      <div class="space-y-2">
-        <span class="font-mono text-xs uppercase tracking-widest text-brand-green font-bold">• AVAILABLE PRODUCTS</span>
-        <h2 class="text-4xl sm:text-5xl font-medium text-graphite tracking-tight">
-          Nossa Coleção de Artefatos.
-        </h2>
-      </div>
-
-      <div class="flex flex-wrap items-center gap-2 p-1.5 rounded-full bg-sand border border-border-subtle">
-        <button data-filter="all" class="px-5 py-2 rounded-full bg-graphite text-white font-mono text-xs font-semibold">Todos</button>
-        <button data-filter="pavers" class="px-5 py-2 rounded-full hover:bg-white text-muted font-mono text-xs font-semibold">Pavers</button>
-        <button data-filter="paineis" class="px-5 py-2 rounded-full hover:bg-white text-muted font-mono text-xs font-semibold">Painéis</button>
-        <button data-filter="perfis" class="px-5 py-2 rounded-full hover:bg-white text-muted font-mono text-xs font-semibold">Perfis</button>
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      
-      <!-- Card 1 -->
-      <div class="p-6 rounded-3xl bg-white border border-border-subtle shadow-sm space-y-5 flex flex-col justify-between hover:shadow-lg transition-all">
-        <div class="space-y-4">
-          <div class="h-56 rounded-2xl overflow-hidden relative bg-sand">
-            <img src="assets/foto-institucional-oficial-pavers.jpg" alt="Paver 16 Faces" class="w-full h-full object-cover" />
-            <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-[10px] font-mono font-bold text-brand-green uppercase">
-              Pavimentação
-            </span>
+        <!-- Indicador Técnico de Escala Industrial -->
+        <div class="pt-8 border-t border-white/15 grid grid-cols-2 sm:grid-cols-3 gap-6 max-w-lg mt-4 font-mono text-xs text-white/80">
+          <div>
+            <span class="text-white/50 block uppercase text-[10px]">Capacidade Industrial</span>
+            <strong class="text-base text-white font-bold">+1.200 t / mês</strong>
           </div>
           <div>
-            <div class="flex items-baseline justify-between">
-              <h4 class="text-xl font-bold text-graphite">Paver 16 Faces</h4>
-              <span class="font-mono text-xs font-semibold text-ochre">Sob Consulta</span>
-            </div>
-            <p class="text-xs text-muted mt-1">Cinza Concreto • Encaixe Holandês</p>
-          </div>
-        </div>
-        <div class="pt-4 border-t border-black/5 flex items-center justify-between text-xs font-mono text-muted">
-          <span>35 MPa</span>
-          <span>•</span>
-          <span>60 mm</span>
-          <span>•</span>
-          <button onclick="openProductDrawer('paver-cinza')" class="w-8 h-8 rounded-full bg-sand hover:bg-graphite hover:text-white flex items-center justify-center transition-colors">
-            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="p-6 rounded-3xl bg-white border border-border-subtle shadow-sm space-y-5 flex flex-col justify-between hover:shadow-lg transition-all">
-        <div class="space-y-4">
-          <div class="h-56 rounded-2xl overflow-hidden relative bg-sand">
-            <img src="assets/produto-paver-prensa.jpg" alt="Painel Plano 15mm" class="w-full h-full object-cover" />
-            <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-[10px] font-mono font-bold text-ochre uppercase">
-              Fachadas
-            </span>
+            <span class="text-white/50 block uppercase text-[10px]">Origem Certificada</span>
+            <strong class="text-base text-white font-bold">100% Circular</strong>
           </div>
           <div>
-            <div class="flex items-baseline justify-between">
-              <h4 class="text-xl font-bold text-graphite">Painel Plano 15mm</h4>
-              <span class="font-mono text-xs font-semibold text-ochre">Sob Consulta</span>
-            </div>
-            <p class="text-xs text-muted mt-1">Acabamento Polido • 100% Reciclado</p>
+            <span class="text-white/50 block uppercase text-[10px]">Garantia Decenal</span>
+            <strong class="text-base text-ochre font-bold">10 Anos ABNT</strong>
           </div>
-        </div>
-        <div class="pt-4 border-t border-black/5 flex items-center justify-between text-xs font-mono text-muted">
-          <span>2440×1220</span>
-          <span>•</span>
-          <span>UV50+</span>
-          <span>•</span>
-          <button onclick="openProductDrawer('painel-plano')" class="w-8 h-8 rounded-full bg-sand hover:bg-graphite hover:text-white flex items-center justify-center transition-colors">
-            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-          </button>
         </div>
       </div>
+    </section>
 
-      <!-- Card 3 -->
-      <div class="p-6 rounded-3xl bg-white border border-border-subtle shadow-sm space-y-5 flex flex-col justify-between hover:shadow-lg transition-all">
-        <div class="space-y-4">
-          <div class="h-56 rounded-2xl overflow-hidden relative bg-sand">
-            <img src="assets/maquinario-matriz-prensa.jpg" alt="Perfil Estrutural 80x80" class="w-full h-full object-cover" />
-            <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-[10px] font-mono font-bold text-graphite uppercase">
-              Estrutural
-            </span>
-          </div>
-          <div>
-            <div class="flex items-baseline justify-between">
-              <h4 class="text-xl font-bold text-graphite">Perfil Maciço 80×80</h4>
-              <span class="font-mono text-xs font-semibold text-ochre">Sob Consulta</span>
-            </div>
-            <p class="text-xs text-muted mt-1">Vigamento de Decks & Pergolados</p>
-          </div>
-        </div>
-        <div class="pt-4 border-t border-black/5 flex items-center justify-between text-xs font-mono text-muted">
-          <span>3.000 mm</span>
-          <span>•</span>
-          <span>38.5 MPa</span>
-          <span>•</span>
-          <button onclick="openProductDrawer('perfil-estrutural')" class="w-8 h-8 rounded-full bg-sand hover:bg-graphite hover:text-white flex items-center justify-center transition-colors">
-            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- Card 4 -->
-      <div class="p-6 rounded-3xl bg-white border border-border-subtle shadow-sm space-y-5 flex flex-col justify-between hover:shadow-lg transition-all">
-        <div class="space-y-4">
-          <div class="h-56 rounded-2xl overflow-hidden relative bg-sand">
-            <img src="assets/materia-flakes-close.jpg" alt="Composto Micronizado VIRA-HD" class="w-full h-full object-cover" />
-            <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-[10px] font-mono font-bold text-brand-green uppercase">
-              Insumo
-            </span>
-          </div>
-          <div>
-            <div class="flex items-baseline justify-between">
-              <h4 class="text-xl font-bold text-graphite">Composto VIRA-HD</h4>
-              <span class="font-mono text-xs font-semibold text-ochre">Sob Consulta</span>
-            </div>
-            <p class="text-xs text-muted mt-1">Flakes Micronizados de Alta Fluidez</p>
-          </div>
-        </div>
-        <div class="pt-4 border-t border-black/5 flex items-center justify-between text-xs font-mono text-muted">
-          <span>99.4% Puro</span>
-          <span>•</span>
-          <span>Big Bags</span>
-          <span>•</span>
-          <button onclick="openProductDrawer('materia-micronizada')" class="w-8 h-8 rounded-full bg-sand hover:bg-graphite hover:text-white flex items-center justify-center transition-colors">
-            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-          </button>
-        </div>
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- ========================================================
-       6. OUR EXPERTISE ACCORDION
-       ======================================================== -->
-  <section id="expertise" class="section-wrapper py-16 space-y-10 scroll-mt-20">
-    <div class="space-y-2">
-      <span class="font-mono text-xs uppercase tracking-widest text-brand-green font-bold">• OUR EXPERTISE</span>
-      <h2 class="text-4xl sm:text-5xl font-medium text-graphite tracking-tight">
-        Como construímos o futuro circular.
-      </h2>
-    </div>
-
-    <div class="space-y-0 border-y border-border-subtle">
-      <div class="py-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border-subtle">
-        <div class="flex items-center gap-6">
-          <span class="font-mono text-sm text-muted">[01]</span>
-          <h3 class="text-2xl font-semibold text-graphite">Termocompressão de Alta Tonelagem</h3>
-        </div>
-        <p class="text-sm text-muted max-w-md font-light">
-          Engenharia térmica precisa que funde polímeros pós-consumo em peças maciças indeformáveis.
+    <!-- ========================================================
+         CAPÍTULO 2: UMA ÚNICA ENGENHARIA (MANIFESTO INDUSTRIAL)
+         ======================================================== -->
+    <section id="engenharia" class="vira-section scroll-mt-20" aria-label="Manifesto de Engenharia">
+      <div class="vira-chapter-header">
+        <span class="vira-chapter-badge">Capítulo 02 • Posicionamento</span>
+        <h2 class="vira-chapter-title">Uma única engenharia. Da molécula à malha urbana.</h2>
+        <p class="vira-chapter-lead">
+          A VIRA não é uma empresa de reciclagem convencional. Somos uma indústria de alta precisão que combina ciência de polímeros e engenharia de materiais para redefinir as fundações da infraestrutura pública.
         </p>
       </div>
 
-      <div class="py-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border-subtle">
-        <div class="flex items-center gap-6">
-          <span class="font-mono text-sm text-muted">[02]</span>
-          <h3 class="text-2xl font-semibold text-graphite">Micronização & Pureza Polimérica</h3>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Coluna de Texto Conceitual & Pilares Técnicos -->
+        <div class="lg:col-span-6 space-y-8">
+          <div class="space-y-4 text-base text-muted leading-relaxed">
+            <p>
+              O modelo linear de extração e descarte esgotou a capacidade de resiliência das cidades. A construção civil consome mais de 40% das matérias-primas globais enquanto milhões de toneladas de polímeros nobres sobrecarregam bacias hidrográficas e aterros sanitários.
+            </p>
+            <p>
+              Ao tratar o resíduo industrial e pós-consumo como uma liga técnica de alto desempenho, a VIRA aplica processos controlados de purificação reológica e termocompressão de alta tonelagem. O resultado são artefatos estruturais imunes à corrosão e formulados para resistir ao tempo.
+            </p>
+          </div>
+
+          <!-- 3 Pilares Fundamentais -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 border-t border-border-subtle">
+            <div class="space-y-1.5">
+              <span class="font-mono text-xs text-forest font-bold block">[01] Pureza Reológica</span>
+              <p class="text-xs text-muted">Controle rigoroso de índice de fluidez (MFI) e separação densimétrica precisa.</p>
+            </div>
+            <div class="space-y-1.5">
+              <span class="font-mono text-xs text-forest font-bold block">[02] Alta Tonelagem</span>
+              <p class="text-xs text-muted">Matrizes térmicas robotizadas que eliminam porosidades e garantem fck ≥ 35 MPa.</p>
+            </div>
+            <div class="space-y-1.5">
+              <span class="font-mono text-xs text-forest font-bold block">[03] Rastreabilidade DPP</span>
+              <p class="text-xs text-muted">Passaporte Digital de Produto com auditoria por lote e pegada de carbono mensurada.</p>
+            </div>
+          </div>
         </div>
-        <p class="text-sm text-muted max-w-md font-light">
-          Descontaminação de matéria-prima gerando flakes de alta fluidez com 99.4% de pureza técnica.
+
+        <!-- Coluna Visual Fotográfica Institucional -->
+        <div class="lg:col-span-6">
+          <figure class="relative rounded-3xl overflow-hidden border border-border-subtle shadow-lg bg-sand">
+            <picture>
+              <source srcset="assets/foto-institucional-inspecao-pavers.avif" type="image/avif" />
+              <img src="assets/foto-institucional-inspecao-pavers.jpg" alt="Inspeção técnica e dimensional de pavers circulares na fábrica VIRA" class="w-full h-[460px] object-cover" width="1376" height="768" loading="lazy" decoding="async" />
+            </picture>
+            <figcaption class="p-4 bg-white/90 backdrop-blur-md border-t border-border-subtle flex items-center justify-between text-xs font-mono text-muted">
+              <span>Inspeção Dimensional e Laudo de Dureza Shore D</span>
+              <span class="text-forest font-semibold">Polo Caruaru-PE</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         CAPÍTULO 3: COMO FUNCIONA (CICLO INDUSTRIAL PONTA A PONTA)
+         ======================================================== -->
+    <section id="como-funciona" class="vira-section bg-sand rounded-3xl my-12 scroll-mt-20" aria-label="Ciclo Industrial">
+      <div class="vira-chapter-header">
+        <span class="vira-chapter-badge">Capítulo 03 • Ciclo Industrial</span>
+        <h2 class="vira-chapter-title">Engenharia ponta a ponta. Como transformamos resíduos em infraestrutura.</h2>
+        <p class="vira-chapter-lead">
+          Um fluxo contínuo e rigoroso onde cada etapa é instrumentada para entregar conformidade normativa e controle de qualidade lote a lote.
         </p>
       </div>
 
-      <div class="py-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div class="flex items-center gap-6">
-          <span class="font-mono text-sm text-muted">[03]</span>
-          <h3 class="text-2xl font-semibold text-graphite">Digital Product Passport (DPP)</h3>
-        </div>
-        <p class="text-sm text-muted max-w-md font-light">
-          Certificação digital com QR Code gravado nas peças com histórico de coleta e carbono evitado.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================================
-       7. IMPACT CALCULATOR
-       ======================================================== -->
-  <section id="calculadora" class="section-wrapper py-16 bg-sand rounded-3xl space-y-8 scroll-mt-20">
-    <div class="space-y-2">
-      <span class="font-mono text-xs uppercase tracking-widest text-ochre font-bold">• CALCULADORA DE IMPACTO</span>
-      <h2 class="text-3xl sm:text-4xl font-medium text-graphite tracking-tight">
-        Simule o impacto do seu projeto.
-      </h2>
-    </div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-      <div class="lg:col-span-6 p-8 bg-white rounded-3xl border border-border-subtle space-y-6">
-        <div>
-          <div class="flex justify-between items-baseline">
-            <label for="calc-area" class="font-mono text-xs uppercase text-muted">Área da Obra</label>
-            <span class="text-3xl font-bold text-graphite"><span id="calc-area-val">500</span> m²</span>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Etapa 1 -->
+        <article class="bg-white p-8 rounded-2xl border border-border-subtle flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <div class="h-44 rounded-xl overflow-hidden relative">
+              <picture>
+                <source srcset="assets/foto-institucional-alimentacao-moega.avif" type="image/avif" />
+                <img src="assets/foto-institucional-alimentacao-moega.jpg" alt="Alimentação de moega e recepção de polímeros" class="w-full h-full object-cover" width="1376" height="768" loading="lazy" decoding="async" />
+              </picture>
+              <span class="absolute top-3 left-3 bg-graphite text-white font-mono text-[10px] font-bold px-2.5 py-1 rounded-md">ETAPA 01</span>
+            </div>
+            <h3 class="text-xl font-bold text-graphite">Recepção & Triagem Qualificada</h3>
+            <p class="text-xs text-muted leading-relaxed">
+              Triagem espectrométrica de polímeros pós-consumo e industriais provenientes de cooperativas auditadas do Agreste pernambucano.
+            </p>
           </div>
-          <input id="calc-area" type="range" min="50" max="5000" step="50" value="500" class="mt-4 w-full" />
-        </div>
-        <div class="flex gap-2">
-          <button onclick="setCalcPreset(200)" class="px-3 py-1.5 rounded-full bg-sand text-xs font-mono">Deck 200m²</button>
-          <button onclick="setCalcPreset(1000)" class="px-3 py-1.5 rounded-full bg-sand text-xs font-mono">Praça 1.000m²</button>
-        </div>
-      </div>
-
-      <div class="lg:col-span-6 grid grid-cols-2 gap-4">
-        <div class="p-6 bg-white rounded-2xl border border-border-subtle space-y-1">
-          <span class="font-mono text-[10px] text-brand-green uppercase font-bold">Plástico Desviado</span>
-          <p id="calc-res-plastic" class="text-2xl font-bold text-brand-green">9.250 kg</p>
-        </div>
-        <div class="p-6 bg-white rounded-2xl border border-border-subtle space-y-1">
-          <span class="font-mono text-[10px] text-ochre uppercase font-bold">CO2e Evitado</span>
-          <p id="calc-res-co2" class="text-2xl font-bold text-ochre">19.888 kg</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================================
-       8. PRE-FOOTER CTA & INQUIRY FORM
-       ======================================================== -->
-  <section id="contato" class="py-20 px-6 sm:px-12 bg-graphite text-white scroll-mt-20">
-    <div class="max-w-[1320px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-      
-      <div class="lg:col-span-6 space-y-6">
-        <span class="font-mono text-xs uppercase tracking-widest text-ochre font-bold">• CONTATO & ESPECIFICAÇÃO</span>
-        <h2 class="text-4xl sm:text-5xl font-medium text-white tracking-tight leading-tight">
-          Encontre o material que transforma sua visão.
-        </h2>
-        <p class="text-sm text-white/70 font-light leading-relaxed max-w-lg">
-          Nossa equipe técnica atende arquitetos, construtoras e prefeituras com amostras físicas e laudos laboratoriais.
-        </p>
-        <div class="font-mono text-xs text-white/60 space-y-1.5">
-          <p>✦ Distrito Industrial de Caruaru — PE, Brasil</p>
-          <p>✦ contato@projetovira.com.br</p>
-        </div>
-      </div>
-
-      <div class="lg:col-span-6 p-8 rounded-3xl bg-white text-graphite shadow-2xl">
-        <form id="vira-contact-form" class="space-y-4">
-          <div class="space-y-1">
-            <label class="font-mono text-xs uppercase text-muted block">Nome Completo</label>
-            <input type="text" required placeholder="Seu nome" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-sand text-sm focus:outline-none" />
+          <div class="pt-4 border-t border-black/5 font-mono text-[11px] text-forest">
+            ✦ Rastreabilidade na origem
           </div>
-          <div class="space-y-1">
-            <label class="font-mono text-xs uppercase text-muted block">E-mail Corporativo</label>
-            <input type="email" required placeholder="seu@email.com" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-sand text-sm focus:outline-none" />
+        </article>
+
+        <!-- Etapa 2 -->
+        <article class="bg-white p-8 rounded-2xl border border-border-subtle flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <div class="h-44 rounded-xl overflow-hidden relative">
+              <picture>
+                <source srcset="assets/maquinario-esteira-flocagem.avif" type="image/avif" />
+                <img src="assets/maquinario-esteira-flocagem.jpg" alt="Esteira de flocagem e micronização" class="w-full h-full object-cover" width="1024" height="682" loading="lazy" decoding="async" />
+              </picture>
+              <span class="absolute top-3 left-3 bg-graphite text-white font-mono text-[10px] font-bold px-2.5 py-1 rounded-md">ETAPA 02</span>
+            </div>
+            <h3 class="text-xl font-bold text-graphite">Micronização & Blend Técnico</h3>
+            <p class="text-xs text-muted leading-relaxed">
+              Lavagem a quente com circuito fechado de água, moagem micronizada e formulação de blends poliméricos com aditivos minerais inertes.
+            </p>
           </div>
-          <div class="space-y-1">
-            <label class="font-mono text-xs uppercase text-muted block">Mensagem / Projeto</label>
-            <textarea rows="3" placeholder="Metragem estimada ou aplicação desejada..." class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-sand text-sm focus:outline-none"></textarea>
+          <div class="pt-4 border-t border-black/5 font-mono text-[11px] text-forest">
+            ✦ Pureza ≥ 99.4%
           </div>
-          <button type="submit" class="btn-tropica-pill w-full justify-center py-3.5 text-sm">
-            <span>Enviar Solicitação</span>
-            <i data-lucide="send" class="w-4 h-4"></i>
-          </button>
-          <div id="contact-alert" class="hidden p-3 rounded-xl bg-brand-green/10 text-brand-green font-mono text-xs text-center">
-            ✓ Mensagem enviada com sucesso! Retornaremos em até 24h.
+        </article>
+
+        <!-- Etapa 3 -->
+        <article class="bg-white p-8 rounded-2xl border border-border-subtle flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <div class="h-44 rounded-xl overflow-hidden relative">
+              <picture>
+                <source srcset="assets/maquinario-prensa-completa.avif" type="image/avif" />
+                <img src="assets/maquinario-prensa-completa.jpg" alt="Termoprensagem industrial de alta tonelagem" class="w-full h-full object-cover" width="1024" height="682" loading="lazy" decoding="async" />
+              </picture>
+              <span class="absolute top-3 left-3 bg-graphite text-white font-mono text-[10px] font-bold px-2.5 py-1 rounded-md">ETAPA 03</span>
+            </div>
+            <h3 class="text-xl font-bold text-graphite">Termocompressão de Alta Tonelagem</h3>
+            <p class="text-xs text-muted leading-relaxed">
+              Matrizes de prensagem sob vácuo operando a mais de 300 toneladas de força, garantindo homogeneidade e ausência total de bolhas de ar.
+            </p>
           </div>
-        </form>
+          <div class="pt-4 border-t border-black/5 font-mono text-[11px] text-forest">
+            ✦ fck ≥ 35 MPa
+          </div>
+        </article>
+
+        <!-- Etapa 4 -->
+        <article class="bg-white p-8 rounded-2xl border border-border-subtle flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <div class="h-44 rounded-xl overflow-hidden relative">
+              <picture>
+                <source srcset="assets/passaporte-balanca-digital.avif" type="image/avif" />
+                <img src="assets/passaporte-balanca-digital.jpg" alt="Passaporte Digital de Produto e pesagem técnica" class="w-full h-full object-cover" width="1024" height="576" loading="lazy" decoding="async" />
+              </picture>
+              <span class="absolute top-3 left-3 bg-graphite text-white font-mono text-[10px] font-bold px-2.5 py-1 rounded-md">ETAPA 04</span>
+            </div>
+            <h3 class="text-xl font-bold text-graphite">Certificação & DPP Gravado</h3>
+            <p class="text-xs text-muted leading-relaxed">
+              Inspeção óptica por lote e gravação a laser do QR Code DPP (Digital Product Passport) contendo laudo reológico e dados de emissões evitadas.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-black/5 font-mono text-[11px] text-forest">
+            ✦ Rastreabilidade Digital Lote a Lote
+          </div>
+        </article>
       </div>
+    </section>
 
-    </div>
-  </section>
-
-  <!-- ========================================================
-       9. MONUMENTAL FOOTER
-       ======================================================== -->
-  <footer class="bg-graphite text-white pt-20 pb-12 px-6 sm:px-12 border-t border-white/10">
-    <div class="max-w-[1320px] mx-auto space-y-16">
-      
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 border-b border-white/10 pb-16">
-        <div class="md:col-span-6 space-y-4">
-          <img src="assets/marca.png" alt="VIRA" class="h-8 w-auto filter brightness-0 invert" />
-          <p class="text-sm text-white/70 max-w-sm font-light leading-relaxed">
-            Indústria de Materiais Circulares. Conectando ciência polimérica e arquitetura de alto padrão.
+    <!-- ========================================================
+         CAPÍTULO 4: MATERIAIS (CATÁLOGO TÉCNICO DE COMPOSTOS)
+         ======================================================== -->
+    <section id="materiais" class="vira-section scroll-mt-20" aria-label="Catálogo de Materiais">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-border-subtle pb-8 mb-12">
+        <div class="vira-chapter-header mb-0">
+          <span class="vira-chapter-badge">Capítulo 04 • Catálogo de Engenharia</span>
+          <h2 class="vira-chapter-title">Materiais Circulares de Alto Desempenho.</h2>
+          <p class="vira-chapter-lead">
+            Desenvolvidos para resistir a intempéries extremas, tráfego pesado e agentes químicos, substituindo o concreto e a madeira tradicional.
           </p>
         </div>
 
-        <div class="md:col-span-6 grid grid-cols-2 sm:grid-cols-3 gap-6 font-mono text-xs">
+        <!-- Filtros de Categoria -->
+        <div class="flex flex-wrap items-center gap-2 p-1.5 rounded-full bg-sand border border-border-subtle" role="tablist">
+          <button data-filter="all" role="tab" class="px-5 py-2 rounded-full bg-graphite text-white font-mono text-xs font-semibold">Todos</button>
+          <button data-filter="pavers" role="tab" class="px-5 py-2 rounded-full hover:bg-white text-muted font-mono text-xs font-semibold">Pavimentação</button>
+          <button data-filter="paineis" role="tab" class="px-5 py-2 rounded-full hover:bg-white text-muted font-mono text-xs font-semibold">Painéis</button>
+          <button data-filter="perfis" role="tab" class="px-5 py-2 rounded-full hover:bg-white text-muted font-mono text-xs font-semibold">Perfis</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Card 1: Paver 16 Faces -->
+        <div data-category="pavers" class="vira-card flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <div class="h-56 rounded-2xl overflow-hidden relative bg-sand">
+              <picture>
+                <source srcset="assets/foto-institucional-oficial-pavers.avif" type="image/avif" />
+                <img src="assets/foto-institucional-oficial-pavers.jpg" alt="Paver Intertravado 16 Faces VIRA" class="w-full h-full object-cover" width="1376" height="768" loading="lazy" decoding="async" />
+              </picture>
+              <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md text-[10px] font-mono font-bold text-forest uppercase">
+                ABNT NBR 9781
+              </span>
+            </div>
+            <div>
+              <div class="flex items-baseline justify-between">
+                <h3 class="text-xl font-bold text-graphite">Paver 16 Faces</h3>
+                <span class="font-mono text-xs font-semibold text-ochre">VRA-PVR-2026</span>
+              </div>
+              <p class="text-xs text-muted mt-1.5">Cinza Concreto • Encaixe Holandês Autobloqueante</p>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-black/5 flex items-center justify-between text-xs font-mono text-muted">
+            <span>≥ 35 MPa</span>
+            <span>•</span>
+            <span>60 mm</span>
+            <span>•</span>
+            <button onclick="openProductDrawer('paver-cinza')" class="w-9 h-9 rounded-full bg-sand hover:bg-forest hover:text-white flex items-center justify-center transition-colors" aria-label="Ver laudos do Paver 16 Faces">
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 2: Painel 15mm -->
+        <div data-category="paineis" class="vira-card flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <div class="h-56 rounded-2xl overflow-hidden relative bg-sand">
+              <picture>
+                <source srcset="assets/produto-paver-prensa.avif" type="image/avif" />
+                <img src="assets/produto-paver-prensa.jpg" alt="Painel Arquitetônico Plano 15mm VIRA" class="w-full h-full object-cover" width="1024" height="682" loading="lazy" decoding="async" />
+              </picture>
+              <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md text-[10px] font-mono font-bold text-ochre uppercase">
+                ABNT NBR 15575
+              </span>
+            </div>
+            <div>
+              <div class="flex items-baseline justify-between">
+                <h3 class="text-xl font-bold text-graphite">Painel Plano 15mm</h3>
+                <span class="font-mono text-xs font-semibold text-ochre">VRA-PRD-1204</span>
+              </div>
+              <p class="text-xs text-muted mt-1.5">Acabamento Acetinado • Fachadas Ventiladas & Brises</p>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-black/5 flex items-center justify-between text-xs font-mono text-muted">
+            <span>2440×1220</span>
+            <span>•</span>
+            <span>UV-50+</span>
+            <span>•</span>
+            <button onclick="openProductDrawer('painel-plano')" class="w-9 h-9 rounded-full bg-sand hover:bg-forest hover:text-white flex items-center justify-center transition-colors" aria-label="Ver laudos do Painel 15mm">
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 3: Perfil 80x80 -->
+        <div data-category="perfis" class="vira-card flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <div class="h-56 rounded-2xl overflow-hidden relative bg-sand">
+              <picture>
+                <source srcset="assets/maquinario-matriz-prensa.avif" type="image/avif" />
+                <img src="assets/maquinario-matriz-prensa.jpg" alt="Perfil Estrutural Maciço 80x80 VIRA" class="w-full h-full object-cover" width="1024" height="682" loading="lazy" decoding="async" />
+              </picture>
+              <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md text-[10px] font-mono font-bold text-graphite uppercase">
+                Maciço Estrutural
+              </span>
+            </div>
+            <div>
+              <div class="flex items-baseline justify-between">
+                <h3 class="text-xl font-bold text-graphite">Perfil Maciço 80×80</h3>
+                <span class="font-mono text-xs font-semibold text-ochre">VRA-LTE-0142</span>
+              </div>
+              <p class="text-xs text-muted mt-1.5">Substituto Direto de Vigas de Madeira e Aço</p>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-black/5 flex items-center justify-between text-xs font-mono text-muted">
+            <span>3.000 mm</span>
+            <span>•</span>
+            <span>38.5 MPa</span>
+            <span>•</span>
+            <button onclick="openProductDrawer('perfil-estrutural')" class="w-9 h-9 rounded-full bg-sand hover:bg-forest hover:text-white flex items-center justify-center transition-colors" aria-label="Ver laudos do Perfil Estrutural">
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 4: Composto VIRA-HD -->
+        <div data-category="insumo" class="vira-card flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <div class="h-56 rounded-2xl overflow-hidden relative bg-sand">
+              <picture>
+                <source srcset="assets/materia-flakes-close.avif" type="image/avif" />
+                <img src="assets/materia-flakes-close.jpg" alt="Composto Micronizado VIRA-HD" class="w-full h-full object-cover" width="1024" height="682" loading="lazy" decoding="async" />
+              </picture>
+              <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md text-[10px] font-mono font-bold text-forest uppercase">
+                Matéria-Prima
+              </span>
+            </div>
+            <div>
+              <div class="flex items-baseline justify-between">
+                <h3 class="text-xl font-bold text-graphite">Composto VIRA-HD</h3>
+                <span class="font-mono text-xs font-semibold text-ochre">VRA-MAT-0001</span>
+              </div>
+              <p class="text-xs text-muted mt-1.5">Flakes Micronizados de Alta Fluidez para Indústria</p>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-black/5 flex items-center justify-between text-xs font-mono text-muted">
+            <span>99.4% Puro</span>
+            <span>•</span>
+            <span>Big Bags</span>
+            <span>•</span>
+            <button onclick="openProductDrawer('materia-micronizada')" class="w-9 h-9 rounded-full bg-sand hover:bg-forest hover:text-white flex items-center justify-center transition-colors" aria-label="Ver laudos do Composto Micronizado">
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         CAPÍTULO 5: APLICAÇÕES (INFRAESTRUTURA URBANA E CIDADE)
+         ======================================================== -->
+    <section id="aplicacoes" class="vira-section scroll-mt-20" aria-label="Aplicações Urbanas">
+      <div class="vira-chapter-header">
+        <span class="vira-chapter-badge">Capítulo 05 • Aplicações Práticas</span>
+        <h2 class="vira-chapter-title">Engenharia construída para a escala das cidades.</h2>
+        <p class="vira-chapter-lead">
+          Soluções desenvolvidas para atender especificações de secretarias de obras públicas, concessionárias e incorporadoras em ambientes de alta demanda mecânica e exposição contínua.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Aplicação 1 -->
+        <div class="space-y-4">
+          <div class="h-72 rounded-3xl overflow-hidden relative border border-border-subtle bg-sand">
+            <picture>
+              <source srcset="assets/foto-institucional-pavers-cinza.avif" type="image/avif" />
+              <img src="assets/foto-institucional-pavers-cinza.jpg" alt="Pavimentação intertravada em vias urbanas de alto tráfego" class="w-full h-full object-cover" width="1376" height="768" loading="lazy" decoding="async" />
+            </picture>
+            <div class="absolute inset-0 bg-gradient-to-t from-graphite/80 via-transparent to-transparent"></div>
+            <div class="absolute bottom-4 left-4 right-4 text-white">
+              <span class="font-mono text-[10px] text-ochre uppercase font-bold">Infraestrutura Viária</span>
+              <h3 class="text-lg font-bold">Vias Urbanas & Calçadões</h3>
+            </div>
+          </div>
+          <p class="text-xs text-muted leading-relaxed">
+            Pavimentação permeável e intertravada com alta capacidade de carga (≥ 35 MPa), garantindo dissipação de calor superior ao asfalto e zero formação de poças.
+          </p>
+        </div>
+
+        <!-- Aplicação 2 -->
+        <div class="space-y-4">
+          <div class="h-72 rounded-3xl overflow-hidden relative border border-border-subtle bg-sand">
+            <picture>
+              <source srcset="assets/factory-sunset-facade.avif" type="image/avif" />
+              <img src="assets/factory-sunset-facade.jpg" alt="Mobiliário e estruturas arquitetônicas em parques públicos" class="w-full h-full object-cover" width="1024" height="576" loading="lazy" decoding="async" />
+            </picture>
+            <div class="absolute inset-0 bg-gradient-to-t from-graphite/80 via-transparent to-transparent"></div>
+            <div class="absolute bottom-4 left-4 right-4 text-white">
+              <span class="font-mono text-[10px] text-forest-light uppercase font-bold">Espaços Públicos</span>
+              <h3 class="text-lg font-bold">Parques, Orlas & Praças</h3>
+            </div>
+          </div>
+          <p class="text-xs text-muted leading-relaxed">
+            Decks resistentes a maresia e umidade contínua, bancos antivandalismo e pergolados que eliminam os custos periódicos de pintura e verniz da madeira convencional.
+          </p>
+        </div>
+
+        <!-- Aplicação 3 -->
+        <div class="space-y-4">
+          <div class="h-72 rounded-3xl overflow-hidden relative border border-border-subtle bg-sand">
+            <picture>
+              <source srcset="assets/factory-panoramic.avif" type="image/avif" />
+              <img src="assets/factory-panoramic.jpg" alt="Pátios logísticos e áreas industriais de carga" class="w-full h-full object-cover" width="1024" height="576" loading="lazy" decoding="async" />
+            </picture>
+            <div class="absolute inset-0 bg-gradient-to-t from-graphite/80 via-transparent to-transparent"></div>
+            <div class="absolute bottom-4 left-4 right-4 text-white">
+              <span class="font-mono text-[10px] text-ochre uppercase font-bold">Engenharia Pesada</span>
+              <h3 class="text-lg font-bold">Pátios Logísticos & Docas</h3>
+            </div>
+          </div>
+          <p class="text-xs text-muted leading-relaxed">
+            Pisos industriais com resistência a impacto, óleos lubrificantes, derivados de petróleo e manobras de empilhadeiras pesadas sem esfarelamento superficial.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         CAPÍTULO 6: ESPECIFICAÇÃO TÉCNICA NORMATIVA (ABNT)
+         ======================================================== -->
+    <section id="especificacao" class="vira-section bg-sand rounded-3xl my-12 scroll-mt-20" aria-label="Especificações Técnicas">
+      <div class="vira-chapter-header">
+        <span class="vira-chapter-badge">Capítulo 06 • Conformidade & Normas</span>
+        <h2 class="vira-chapter-title">Quadro comparativo e normas de engenharia.</h2>
+        <p class="vira-chapter-lead">
+          Dados ensaiados em conformidade com as diretrizes da ABNT e laudos de caracterização mecânica para incorporação imediata em memoriais descritivos de licitações e projetos executivos.
+        </p>
+      </div>
+
+      <!-- Tabela Técnica Profissional -->
+      <div class="overflow-x-auto bg-white rounded-2xl border border-border-subtle shadow-sm p-6">
+        <table class="vira-spec-table" aria-label="Comparativo Técnico VIRA vs Concreto Tradicional vs Madeira">
+          <thead>
+            <tr>
+              <th scope="col">Propriedade Física / Mecânica</th>
+              <th scope="col">Norma ABNT</th>
+              <th scope="col" class="text-forest font-bold">Compósito VIRA</th>
+              <th scope="col">Concreto Convencional</th>
+              <th scope="col">Madeira de Lei / Tratada</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-semibold text-graphite">Resistência à Compressão (fck)</td>
+              <td class="font-mono text-xs text-muted">NBR 9781</td>
+              <td class="font-mono font-bold text-forest">≥ 35.0 MPa</td>
+              <td class="font-mono text-xs">30.0 a 35.0 MPa</td>
+              <td class="font-mono text-xs text-muted">Não aplicável</td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-graphite">Absorção de Água (Impregnação)</td>
+              <td class="font-mono text-xs text-muted">NBR 9781</td>
+              <td class="font-mono font-bold text-forest">&lt; 0.05% (Imune)</td>
+              <td class="font-mono text-xs">4.0% a 6.0% (Poroso)</td>
+              <td class="font-mono text-xs text-red-600">Alta (&gt; 18%)</td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-graphite">Resistência a Sais & Maresia</td>
+              <td class="font-mono text-xs text-muted">Ensaios de Imersão</td>
+              <td class="font-mono font-bold text-forest">100% Imune</td>
+              <td class="font-mono text-xs">Degradação por cloretos</td>
+              <td class="font-mono text-xs">Apodrecimento acelerado</td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-graphite">Imunidade a Pragas e Cupins</td>
+              <td class="font-mono text-xs text-muted">Laudo Biológico</td>
+              <td class="font-mono font-bold text-forest">100% Inerte</td>
+              <td class="font-mono text-xs">Imune</td>
+              <td class="font-mono text-xs text-red-600">Suscetível (exige veneno)</td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-graphite">Pegada de Carbono (Emissões)</td>
+              <td class="font-mono text-xs text-muted">ISO 14044 (ACV)</td>
+              <td class="font-mono font-bold text-forest">-2.15 kg CO2e / kg</td>
+              <td class="font-mono text-xs text-red-600">+0.85 kg CO2e / kg</td>
+              <td class="font-mono text-xs">+0.30 kg CO2e / kg</td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-graphite">Garantia Estrutural Certificada</td>
+              <td class="font-mono text-xs text-muted">Garantia Decenal</td>
+              <td class="font-mono font-bold text-forest">10 Anos Estruturais</td>
+              <td class="font-mono text-xs">5 Anos</td>
+              <td class="font-mono text-xs">2 a 3 Anos</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         CAPÍTULO 7: IMPACTO & CALCULADORA INDUSTRIAL
+         ======================================================== -->
+    <section id="impacto" class="vira-section scroll-mt-20" aria-label="Calculadora de Impacto">
+      <div class="vira-chapter-header">
+        <span class="vira-chapter-badge ochre">Capítulo 07 • Engenharia de Impacto</span>
+        <h2 class="vira-chapter-title">Calculadora Industrial de Mitigação Ambiental.</h2>
+        <p class="vira-chapter-lead">
+          Quantifique em tempo real os benefícios de infraestrutura circular para o seu projeto com base em fatores reais de Análise de Ciclo de Vida (ACV).
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        <!-- Painel de Controle de Entrada -->
+        <div class="lg:col-span-5 p-8 bg-sand rounded-3xl border border-border-subtle flex flex-col justify-between space-y-8">
+          <div>
+            <div class="flex justify-between items-baseline mb-2">
+              <label for="calc-area" class="font-mono text-xs uppercase text-muted font-bold tracking-wider">Área Estimada da Intervenção</label>
+              <span class="text-4xl font-bold text-graphite"><span id="calc-area-val">500</span> <span class="text-xl font-normal text-muted">m²</span></span>
+            </div>
+            
+            <input id="calc-area" type="range" min="50" max="5000" step="50" value="500" class="w-full h-2 bg-black/10 rounded-lg appearance-none cursor-pointer accent-forest mt-4" aria-label="Área em metros quadrados" />
+
+            <div class="flex items-center justify-between text-[11px] font-mono text-muted mt-2">
+              <span>50 m² (Passeio)</span>
+              <span>2.500 m² (Praça)</span>
+              <span>5.000 m² (Parque/Via)</span>
+            </div>
+          </div>
+
+          <!-- Atalhos de Tipologia de Obra -->
+          <div class="space-y-3 pt-6 border-t border-black/10">
+            <span class="font-mono text-[11px] uppercase text-muted block font-semibold">Tipologias Recomendadas:</span>
+            <div class="flex flex-wrap gap-2">
+              <button onclick="setCalcPreset(200)" class="px-3.5 py-1.5 rounded-full bg-white hover:bg-forest hover:text-white border border-border-subtle text-xs font-mono transition-colors">Deck / Orla (200 m²)</button>
+              <button onclick="setCalcPreset(1000)" class="px-3.5 py-1.5 rounded-full bg-white hover:bg-forest hover:text-white border border-border-subtle text-xs font-mono transition-colors">Praça Pública (1.000 m²)</button>
+              <button onclick="setCalcPreset(3500)" class="px-3.5 py-1.5 rounded-full bg-white hover:bg-forest hover:text-white border border-border-subtle text-xs font-mono transition-colors">Pátio Logístico (3.500 m²)</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Indicadores de Saída de Engenharia -->
+        <div class="lg:col-span-7 flex flex-col justify-between space-y-6">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <!-- Métrica 1 -->
+            <div class="p-8 bg-white rounded-3xl border border-border-subtle shadow-sm flex flex-col justify-between space-y-4">
+              <div class="w-10 h-10 rounded-xl bg-forest/10 text-forest flex items-center justify-center">
+                <i data-lucide="recycle" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <span class="font-mono text-[10px] uppercase tracking-wider text-muted block font-bold">Plástico Desviado de Aterros</span>
+                <p id="calc-res-plastic" class="text-3xl sm:text-4xl font-bold text-forest mt-1">9.250 kg</p>
+                <p class="text-xs text-muted font-light mt-2">Equivale a mais de 450 mil sacolas e embalagens rígidas pós-consumo regeneradas.</p>
+              </div>
+            </div>
+
+            <!-- Métrica 2 -->
+            <div class="p-8 bg-white rounded-3xl border border-border-subtle shadow-sm flex flex-col justify-between space-y-4">
+              <div class="w-10 h-10 rounded-xl bg-ochre/10 text-ochre flex items-center justify-center">
+                <i data-lucide="cloud-off" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <span class="font-mono text-[10px] uppercase tracking-wider text-muted block font-bold">Emissões de CO2e Evitadas</span>
+                <p id="calc-res-co2" class="text-3xl sm:text-4xl font-bold text-ochre mt-1">19.888 kg</p>
+                <p class="text-xs text-muted font-light mt-2">Crédito de descarbonização direta frente à matriz fóssil de produção virgem.</p>
+              </div>
+            </div>
+
+            <!-- Métrica 3 -->
+            <div class="p-8 bg-white rounded-3xl border border-border-subtle shadow-sm flex flex-col justify-between space-y-4">
+              <div class="w-10 h-10 rounded-xl bg-graphite/10 text-graphite flex items-center justify-center">
+                <i data-lucide="box" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <span class="font-mono text-[10px] uppercase tracking-wider text-muted block font-bold">Volume de Aterro Poupado</span>
+                <p id="calc-res-landfill" class="text-3xl sm:text-4xl font-bold text-graphite mt-1">12.0 m³</p>
+                <p class="text-xs text-muted font-light mt-2">Espaço urbano preservado e alívio imediato no passivo ambiental dos aterros municipais.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sugestão 01: Nota Metodológica de ACV -->
+          <div class="p-4 rounded-2xl bg-sand border border-border-subtle flex items-start gap-3 text-xs text-muted font-mono">
+            <i data-lucide="info" class="w-4 h-4 text-forest shrink-0 mt-0.5"></i>
+            <p>
+              <strong class="text-graphite font-semibold">Nota Metodológica:</strong> Fatores configuráveis conforme metodologia ACV (Análise de Ciclo de Vida - ISO 14044) adotada pelo projeto. Fator de abatimento: 2,15 kg CO2e / kg de polímero circular regenerado; densidade média nominal: 18,5 kg de compósito por m² pavimentado (paver 60mm).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         CAPÍTULO 8: ECOSSISTEMA & AGENDA 2030 (ODS OFICIAIS ONU)
+         ======================================================== -->
+    <section id="agenda-2030" class="vira-section bg-white scroll-mt-20" aria-label="Compromisso Agenda 2030">
+      <div class="vira-chapter-header text-center max-w-2xl mx-auto mb-16">
+        <span class="vira-chapter-badge justify-center">Capítulo 08 • Governança & Ecossistema</span>
+        <h2 class="vira-chapter-title">Alinhamento Estratégico com a Agenda 2030 da ONU.</h2>
+        <p class="vira-chapter-lead mx-auto">
+          Nossa operação industrial integra as metas globais de desenvolvimento sustentável em cada etapa do ciclo produtivo, da inclusão de cooperativas à infraestrutura resiliente.
+        </p>
+      </div>
+
+      <!-- Grid com muito espaço em branco e sem bordas pesadas -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <!-- ODS 9 -->
+        <div class="space-y-4 p-6 rounded-2xl transition-all hover:bg-sand">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-white font-bold font-mono text-xl shadow-md" style="background-color: #FD6925;">
+            09
+          </div>
+          <h3 class="text-xl font-bold text-graphite">Indústria, Inovação & Infraestrutura</h3>
+          <p class="text-xs text-muted leading-relaxed">
+            Meta 9.4: Modernizar a infraestrutura e reequipar as indústrias para torná-las sustentáveis, com maior eficiência no uso de recursos e maior adoção de tecnologias limpas.
+          </p>
+          <span class="font-mono text-[11px] text-forest block font-semibold">✦ Processamento Industrial 100% Solar</span>
+        </div>
+
+        <!-- ODS 11 -->
+        <div class="space-y-4 p-6 rounded-2xl transition-all hover:bg-sand">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-white font-bold font-mono text-xl shadow-md" style="background-color: #FD9D24;">
+            11
+          </div>
+          <h3 class="text-xl font-bold text-graphite">Cidades & Comunidades Sustentáveis</h3>
+          <p class="text-xs text-muted leading-relaxed">
+            Meta 11.7: Proporcionar o acesso universal a espaços públicos seguros, inclusivos, acessíveis e verdes, com pavimentação permeável e mobiliário urbano durável.
+          </p>
+          <span class="font-mono text-[11px] text-forest block font-semibold">✦ Redução de Ilhas de Calor e Enchentes</span>
+        </div>
+
+        <!-- ODS 12 -->
+        <div class="space-y-4 p-6 rounded-2xl transition-all hover:bg-sand">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-white font-bold font-mono text-xl shadow-md" style="background-color: #BF8B2E;">
+            12
+          </div>
+          <h3 class="text-xl font-bold text-graphite">Consumo & Produção Responsáveis</h3>
+          <p class="text-xs text-muted leading-relaxed">
+            Meta 12.5: Reduzir substancialmente a geração de resíduos por meio da prevenção, redução, reciclagem e reuso sistemático em escala industrial.
+          </p>
+          <span class="font-mono text-[11px] text-forest block font-semibold">✦ 0% Petróleo Virgem na Linha</span>
+        </div>
+
+        <!-- ODS 17 -->
+        <div class="space-y-4 p-6 rounded-2xl transition-all hover:bg-sand">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-white font-bold font-mono text-xl shadow-md" style="background-color: #19486A;">
+            17
+          </div>
+          <h3 class="text-xl font-bold text-graphite">Parcerias em Prol das Metas</h3>
+          <p class="text-xs text-muted leading-relaxed">
+            Meta 17.17: Incentivar e promover parcerias eficazes nos setores público, público-privado e com a sociedade civil para qualificação da cadeia de reciclagem no Nordeste.
+          </p>
+          <span class="font-mono text-[11px] text-forest block font-semibold">✦ Remuneração Justa de Cooperativas</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         CAPÍTULO 9: CONTATO & ESPECIFICAÇÃO DIRETA
+         ======================================================== -->
+    <section id="contato" class="py-24 px-6 sm:px-12 bg-graphite text-white scroll-mt-20" aria-label="Contato e Especificação">
+      <div class="max-w-[1320px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-6 space-y-6">
+          <span class="font-mono text-xs uppercase tracking-widest text-ochre font-bold block">• CAPÍTULO 09 • ESPECIFICAÇÃO DIRETA</span>
+          <h2 class="text-4xl sm:text-5xl font-medium text-white tracking-tight leading-tight">
+            Especifique VIRA em seu próximo projeto urbano.
+          </h2>
+          <p class="text-sm text-white/70 font-light leading-relaxed max-w-lg">
+            Nosso departamento de engenharia atende prefeituras, concessionárias, incorporadoras e escritórios de arquitetura com amostras físicas, ensaios de lote e suporte em memoriais de licitação.
+          </p>
+          <div class="font-mono text-xs text-white/75 space-y-2 pt-4 border-t border-white/10">
+            <p class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-ochre"></i> Distrito Industrial de Caruaru — PE, Brasil</p>
+            <p class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4 text-ochre"></i> engenharia@projetovira.com.br</p>
+            <p class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-ochre"></i> Atendimento Técnico: Seg a Sex, 08h às 18h</p>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6 p-8 sm:p-10 rounded-3xl bg-white text-graphite shadow-2xl">
+          <form id="vira-contact-form" class="space-y-4" aria-label="Formulário de Solicitação Técnica">
+            <div class="space-y-1">
+              <label for="input-nome" class="font-mono text-xs uppercase text-muted block font-semibold">Nome Completo do Responsável</label>
+              <input id="input-nome" type="text" required placeholder="Engenheiro(a) ou Arquiteto(a)" autocomplete="name" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-sand text-sm focus:outline-none focus:ring-2 focus:ring-forest" />
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="space-y-1">
+                <label for="input-email" class="font-mono text-xs uppercase text-muted block font-semibold">E-mail Corporativo</label>
+                <input id="input-email" type="email" required placeholder="contato@orgao-empresa.com.br" autocomplete="email" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-sand text-sm focus:outline-none focus:ring-2 focus:ring-forest" />
+              </div>
+              <div class="space-y-1">
+                <label for="input-tel" class="font-mono text-xs uppercase text-muted block font-semibold">Telefone / WhatsApp</label>
+                <input id="input-tel" type="tel" placeholder="(81) 99999-0000" autocomplete="tel" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-sand text-sm focus:outline-none focus:ring-2 focus:ring-forest" />
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <label for="input-tipo" class="font-mono text-xs uppercase text-muted block font-semibold">Tipo de Aplicação / Interesse</label>
+              <select id="input-tipo" class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-sand text-sm focus:outline-none focus:ring-2 focus:ring-forest">
+                <option value="paver">Pavimentação Intertravada (Paver 16 Faces)</option>
+                <option value="painel">Painéis Arquitetônicos & Fachadas</option>
+                <option value="perfil">Perfis Maciços & Decks</option>
+                <option value="licitacao">Especificação em Edital Público / Licitação</option>
+                <option value="outro">Outro / Amostra Física</option>
+              </select>
+            </div>
+
+            <div class="space-y-1">
+              <label for="input-msg" class="font-mono text-xs uppercase text-muted block font-semibold">Metragem Estimada & Detalhes do Projeto</label>
+              <textarea id="input-msg" rows="3" placeholder="Local da obra, metragem estimada ou laudos específicos necessários..." class="w-full px-4 py-3 rounded-xl border border-border-subtle bg-sand text-sm focus:outline-none focus:ring-2 focus:ring-forest"></textarea>
+            </div>
+
+            <button type="submit" class="vira-btn-primary w-full justify-center py-3.5 text-sm">
+              <span>Solicitar Suporte Técnico & Amostras</span>
+              <i data-lucide="send" class="w-4 h-4"></i>
+            </button>
+
+            <div id="contact-alert" class="hidden p-4 rounded-xl bg-forest/15 text-forest font-mono text-xs text-center border border-forest/20" role="alert">
+              ✓ Solicitação encaminhada à equipe de engenharia. Retornaremos em até 24h úteis com a documentação técnica.
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================
+       RODAPÉ OFICIAL MONUMENTAL (4 COLUNAS INSTITUCIONAIS)
+       ======================================================== -->
+  <footer class="bg-graphite-dark text-white pt-20 pb-12 px-6 sm:px-12 border-t border-white/10" role="contentinfo">
+    <div class="max-w-[1320px] mx-auto space-y-16">
+      
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 border-b border-white/10 pb-16">
+        <!-- Coluna 1: Marca & Missão -->
+        <div class="md:col-span-5 space-y-4">
+          <picture>
+            <source srcset="assets/marca.avif" type="image/avif" />
+            <img src="assets/marca.png" alt="Logotipo Oficial VIRA" class="h-8 w-auto filter brightness-0 invert" width="120" height="37" />
+          </picture>
+          <p class="text-sm text-white/70 max-w-sm font-light leading-relaxed">
+            Plataforma Industrial de Engenharia Circular para Infraestrutura Urbana. Transformação de matérias poliméricas em artefatos de alto desempenho com certificação técnica e rastreabilidade digital.
+          </p>
+        </div>
+
+        <!-- Colunas 2, 3 e 4: Navegação, Documentos e Unidade Industrial -->
+        <div class="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8 font-mono text-xs">
           <div class="space-y-3">
-            <span class="text-white/40 uppercase tracking-wider block">Navegação</span>
+            <span class="text-white/40 uppercase tracking-wider block font-bold">Plataforma</span>
             <ul class="space-y-2 text-white/80">
-              <li><a href="#colecao" class="hover:text-white">Coleção</a></li>
-              <li><a href="#expertise" class="hover:text-white">Expertise</a></li>
-              <li><a href="#calculadora" class="hover:text-white">Calculadora</a></li>
+              <li><a href="#engenharia" class="hover:text-white transition-colors">Engenharia</a></li>
+              <li><a href="#como-funciona" class="hover:text-white transition-colors">Como Funciona</a></li>
+              <li><a href="#materiais" class="hover:text-white transition-colors">Materiais</a></li>
+              <li><a href="#aplicacoes" class="hover:text-white transition-colors">Aplicações</a></li>
+              <li><a href="#especificacao" class="hover:text-white transition-colors">Normas Técnicas</a></li>
+              <li><a href="#impacto" class="hover:text-white transition-colors">Calculadora</a></li>
             </ul>
           </div>
 
           <div class="space-y-3">
-            <span class="text-white/40 uppercase tracking-wider block">Recursos</span>
+            <span class="text-white/40 uppercase tracking-wider block font-bold">Documentos</span>
             <ul class="space-y-2 text-white/80">
-              <li><a href="brandbook.html" class="hover:text-white text-ochre font-bold">Brand Book</a></li>
-              <li><a href="uniformes.html" class="hover:text-white">Uniformes</a></li>
-              <li><a href="#contato" class="hover:text-white">Contato</a></li>
+              <li><a href="brandbook.html" class="hover:text-white text-ochre font-bold transition-colors">Brand Book 2026</a></li>
+              <li><a href="uniformes.html" class="hover:text-white transition-colors">Linha de Uniformes</a></li>
+              <li><a href="manual-marca-vira-2026.html" class="hover:text-white transition-colors">Manual da Marca</a></li>
+              <li><a href="#especificacao" class="hover:text-white transition-colors">Laudos ABNT NBR 9781</a></li>
             </ul>
           </div>
 
           <div class="space-y-3">
-            <span class="text-white/40 uppercase tracking-wider block">Fábrica</span>
-            <p class="text-white/80">Caruaru — PE<br />Distrito Industrial<br />Brasil</p>
+            <span class="text-white/40 uppercase tracking-wider block font-bold">Unidade Industrial</span>
+            <address class="not-italic text-white/80 space-y-1">
+              <p>Distrito Industrial</p>
+              <p>Caruaru — PE</p>
+              <p>Brasil • CEP 55000-000</p>
+              <p class="pt-2 text-white/60">engenharia@projetovira.com.br</p>
+            </address>
           </div>
         </div>
       </div>
 
-      <!-- Monumental Wordmark -->
-      <div class="text-center select-none">
+      <!-- Monumental Wordmark Institucional -->
+      <div class="text-center select-none" aria-hidden="true">
         <span class="footer-monumental-wordmark block">
           vira.
         </span>
       </div>
 
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-white/40 border-t border-white/10 pt-8">
-        <p>© 2026 VIRA. Todos os direitos reservados. Caruaru-PE.</p>
-        <p>Inspirado no design do Tropica.</p>
+      <!-- Linha de Direitos Autorais Rígida Exigida -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-white/50 border-t border-white/10 pt-8">
+        <p>© 2026 VIRA. Todos os direitos reservados. · Design & Tecnologia por AR Mídias Integradas</p>
+        <p>Polo Industrial de Caruaru — Pernambuco</p>
       </div>
 
     </div>
   </footer>
 
-  <!-- Drawer Modal -->
-  <div id="product-drawer-backdrop" onclick="closeProductDrawer()" class="drawer-backdrop fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"></div>
-  <div id="product-drawer-panel" class="drawer-panel fixed top-0 right-0 bottom-0 z-50 w-full max-w-xl bg-white shadow-2xl overflow-y-auto p-8 sm:p-12 flex flex-col justify-between">
+  <!-- ========================================================
+       DRAWER MODAL DE ESPECIFICAÇÃO TÉCNICA (ACCESSIBLE)
+       ======================================================== -->
+  <div id="product-drawer-backdrop" onclick="closeProductDrawer()" class="vira-drawer-backdrop" aria-hidden="true"></div>
+  <div id="product-drawer-panel" class="vira-drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
     <div class="space-y-6">
       <div class="flex items-center justify-between border-b border-border-subtle pb-6">
         <div>
-          <span id="drawer-cat" class="font-mono text-xs text-brand-green uppercase font-bold">Categoria</span>
-          <h3 id="drawer-title" class="text-2xl font-bold text-graphite mt-1">Título</h3>
+          <span id="drawer-cat" class="font-mono text-xs text-forest uppercase font-bold">Categoria</span>
+          <h2 id="drawer-title" class="text-2xl font-bold text-graphite mt-1">Título do Material</h2>
         </div>
-        <button id="product-drawer-close" onclick="closeProductDrawer()" class="p-2.5 rounded-full border border-border-subtle hover:bg-sand transition-colors" aria-label="Fechar">
+        <button id="product-drawer-close" onclick="closeProductDrawer()" class="p-2.5 rounded-full border border-border-subtle hover:bg-sand transition-colors" aria-label="Fechar Especificações">
           <i data-lucide="x" class="w-5 h-5 text-graphite"></i>
         </button>
       </div>
 
       <div class="space-y-2">
-        <span class="font-mono text-xs text-muted uppercase">Código: <strong id="drawer-code" class="text-graphite font-mono">VRA-PRD-1204</strong></span>
+        <span class="font-mono text-xs text-muted uppercase">Código do Lote: <strong id="drawer-code" class="text-graphite font-mono">VRA-PVR-2026</strong></span>
         <p id="drawer-desc" class="text-sm text-muted leading-relaxed"></p>
       </div>
 
       <div class="space-y-3">
-        <h4 class="font-mono text-xs uppercase tracking-wider text-graphite font-bold">Especificações Técnicas</h4>
+        <h3 class="font-mono text-xs uppercase tracking-wider text-graphite font-bold">Ensaios & Especificações Técnicas</h3>
         <div id="drawer-specs" class="space-y-1 bg-sand p-6 rounded-2xl border border-border-subtle"></div>
       </div>
     </div>
 
     <div class="pt-6 border-t border-border-subtle mt-6 space-y-2">
-      <a href="#contato" onclick="document.getElementById('product-drawer-close').click()" class="btn-tropica-pill w-full text-center justify-center py-3.5">
-        <span>Solicitar Amostra Física</span>
+      <a href="#contato" onclick="closeProductDrawer()" class="vira-btn-primary w-full text-center justify-center py-3.5">
+        <span>Solicitar Amostra Física & Laudo</span>
         <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
       </a>
     </div>
   </div>
 
-  <script src="app.js?v=20260829_5"></script>
-  <script>lucide.createIcons();</script>
+  <!-- Scripts -->
+  <script src="app.js?v=20260910_hardened"></script>
+  <script>
+    if (window.lucide) {
+      lucide.createIcons();
+    }
+  </script>
 </body>
 </html>

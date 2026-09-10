@@ -1,32 +1,63 @@
-// ==========================================
-// VIRA × TROPICA FRAMER EXACT CONTROLLER
-// ==========================================
+// ========================================================
+// VIRA NEXT — MASTER CONTROLLER (app.js)
+// Plataforma Industrial de Engenharia Circular
+// ========================================================
 
 document.addEventListener('DOMContentLoaded', () => {
+  initDynamicHeader();
   initHamburgerMenu();
   initProductTabs();
   initCalculator();
   initProductDrawer();
   initContactForm();
+  initSmoothScroll();
 });
 
-// ------------------------------------------
-// 1. HAMBURGER FULLSCREEN MENU TOGGLE
-// ------------------------------------------
+// --------------------------------------------------------
+// 1. DYNAMIC HEADER SCROLL EFFECT
+// Transição de transparente (topo) para sólido com blur
+// --------------------------------------------------------
+function initDynamicHeader() {
+  const header = document.querySelector('.vira-header') || document.querySelector('header');
+  if (!header) return;
+
+  let ticking = false;
+
+  function updateHeader() {
+    if (window.scrollY > 40) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateHeader);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  updateHeader();
+}
+
+// --------------------------------------------------------
+// 2. FULLSCREEN NAVIGATION MENU
+// --------------------------------------------------------
 function initHamburgerMenu() {
-  const toggleBtn = document.getElementById('tropica-menu-toggle');
-  const menuModal = document.getElementById('tropica-fullscreen-menu');
+  const toggleBtn = document.getElementById('vira-menu-toggle') || document.getElementById('tropica-menu-toggle');
+  const menuModal = document.getElementById('vira-fullscreen-menu') || document.getElementById('tropica-fullscreen-menu');
+  const header = document.querySelector('.vira-header') || document.querySelector('header');
 
   if (!toggleBtn || !menuModal) return;
 
   window.toggleMenu = function() {
-    toggleBtn.classList.toggle('active');
-    menuModal.classList.toggle('open');
-    if (menuModal.classList.contains('open')) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    const isOpen = menuModal.classList.toggle('open');
+    toggleBtn.classList.toggle('active', isOpen);
+    if (header) header.classList.toggle('menu-open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   };
 
   toggleBtn.addEventListener('click', window.toggleMenu);
@@ -36,14 +67,26 @@ function initHamburgerMenu() {
       window.toggleMenu();
     }
   });
+
+  // Fecha o menu ao clicar em links
+  const links = menuModal.querySelectorAll('a');
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      if (menuModal.classList.contains('open')) {
+        window.toggleMenu();
+      }
+    });
+  });
 }
 
-// ------------------------------------------
-// 2. PRODUCT FILTER TABS
-// ------------------------------------------
+// --------------------------------------------------------
+// 3. PRODUCT FILTER TABS
+// --------------------------------------------------------
 function initProductTabs() {
   const tabBtns = document.querySelectorAll('[data-filter]');
   const cards = document.querySelectorAll('[data-category]');
+
+  if (!tabBtns.length || !cards.length) return;
 
   tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -74,66 +117,75 @@ function initProductTabs() {
   });
 }
 
-// ------------------------------------------
-// 3. PRODUCT SPECIFICATION DRAWER
-// ------------------------------------------
+// --------------------------------------------------------
+// 4. PRODUCT SPECIFICATION DRAWER & CATALOG DATA
+// --------------------------------------------------------
 const productsData = {
   'paver-cinza': {
     title: 'Paver Intertravado 16 Faces',
     category: 'Pavimentação Urbana & Praças',
     code: 'VRA-PVR-2026',
-    desc: 'Bloco intertravado maciço fabricado a partir de polímeros reciclados e compósitos minerais de alta densidade. Apresenta alta resistência mecânica (>35 MPa), acabamento cinza concreto uniforme, imunidade a química/óleos e encaixe autobloqueante.',
+    norm: 'ABNT NBR 9781:2013',
+    desc: 'Bloco intertravado maciço fabricado a partir de compósitos poliméricos de alta densidade e agregados minerais inertes. Desenvolvido para pavimentação de vias públicas de tráfego pesado, calçadões e pátios logísticos. Imune a absorção de água, óleos ou sais.',
     specs: [
-      { label: 'Formato / Modelo', val: '16 Faces (Holandês)' },
-      { label: 'Dimensões', val: '200 × 100 × 60 mm' },
-      { label: 'Resistência à Compressão', val: '> 35 MPa (Tráfego Pesado)' },
-      { label: 'Cor / Acabamento', val: 'Cinza Concreto / Grafite Mineral' },
-      { label: 'Absorção de Água', val: '< 0.05% (Imune)' },
-      { label: 'Garantia Estrutural', val: '10 Anos' },
-      { label: 'Origem', val: 'Caruaru - PE' }
+      { label: 'Norma de Referência', val: 'ABNT NBR 9781:2013' },
+      { label: 'Formato / Geometria', val: '16 Faces Holandês Autobloqueante' },
+      { label: 'Dimensões Nominais', val: '200 × 100 × 60 mm (± 2mm)' },
+      { label: 'Resistência Característica (fck)', val: '≥ 35.0 MPa (Tráfego Comercial/Pesado)' },
+      { label: 'Absorção de Água', val: '< 0.05% (Impermeável / Sem Eflorescência)' },
+      { label: 'Resistência à Abrasão', val: 'Desgaste < 1.2 mm (Roda de Piche)' },
+      { label: 'Durabilidade Térmica', val: '-10°C a +80°C estável' },
+      { label: 'Garantia Estrutural', val: '10 Anos contra deformação' },
+      { label: 'Procedência Industrial', val: 'Caruaru - PE | 100% Circular' }
     ]
   },
   'painel-plano': {
-    title: 'Painel Arquitetônico Plano 15mm',
-    category: 'Arquitetura & Fachadas',
+    title: 'Painel Arquitetônico 15mm',
+    category: 'Fachadas Ventiladas & Divisórias',
     code: 'VRA-PRD-1204',
-    desc: 'Placa rígida de alta densidade desenvolvida a partir de polímeros pós-consumo e compósitos de alumínio. Resistente a intempéries, água e raios UV, ideal para divisórias, mobiliário e fachadas ventiladas.',
+    norm: 'ABNT NBR 15575',
+    desc: 'Placa arquitetônica rígida obtida por termocompressão de alta tonelagem de polímeros pós-consumo e cargas de reforço mineral. Alta resistência a raios ultravioleta, intempéries marinhas e impacto direto. Ideal para revestimentos e brises.',
     specs: [
       { label: 'Dimensões Padrão', val: '2440 × 1220 mm' },
-      { label: 'Espessuras', val: '10mm, 15mm, 20mm' },
-      { label: 'Densidade', val: '0.94 g/cm³' },
-      { label: 'Absorção de Água', val: '< 0.08% (Imune)' },
-      { label: 'Resistência à Tração', val: '22 MPa' },
-      { label: 'Acabamentos', val: 'Polido Terrazzo, Granulado, Fosco' },
-      { label: 'Origem', val: 'Caruaru - PE' }
+      { label: 'Espessuras Disponíveis', val: '10 mm, 15 mm, 20 mm' },
+      { label: 'Densidade Aparente', val: '0.96 g/cm³' },
+      { label: 'Proteção Ultravioleta', val: 'Aditivação UV-50+ (Cura 10 anos)' },
+      { label: 'Módulo de Elasticidade', val: '1.450 MPa' },
+      { label: 'Resistência à Flexão', val: '24.0 MPa' },
+      { label: 'Acabamento Superficial', val: 'Acetinado Mineral / Granulado' },
+      { label: 'Procedência Industrial', val: 'Caruaru - PE | 100% Circular' }
     ]
   },
   'perfil-estrutural': {
-    title: 'Perfil Estrutural VIRA 80×80',
-    category: 'Construção Civil & Decks',
+    title: 'Perfil Estrutural Maciço 80×80',
+    category: 'Construção Civil & Decks Públicos',
     code: 'VRA-LTE-0142',
-    desc: 'Vigas e colunas maciças que substituem com excelência a madeira tratada e o aço em decks, pergolados, cercamento e mobiliário urbano de praças.',
+    norm: 'Ensaios IPT / Laudo Mecânico',
+    desc: 'Vigas e pilares maciços de altíssima densidade estrutural para substituição direta de vigamentos de madeira de lei ou aço em áreas externas, decks de orla, pergolados urbanos e passadiços em áreas de preservação.',
     specs: [
-      { label: 'Seção Transversal', val: '80 × 80 mm (Maciço)' },
-      { label: 'Comprimento Padrão', val: '3000 mm / Sob Medida' },
+      { label: 'Seção Transversal', val: '80 × 80 mm (Perfil Maciço)' },
+      { label: 'Comprimentos Padrão', val: '3.000 mm e 4.000 mm' },
       { label: 'Carga Máxima de Ruptura', val: '38.5 MPa' },
-      { label: 'Resistência a Pragas', val: '100% Imune a cupins e fungos' },
-      { label: 'Trabalhabilidade', val: 'Permite furação e parafusamento' },
-      { label: 'Origem', val: 'Caruaru - PE' }
+      { label: 'Resistência a Fungos/Pragas', val: '100% Imune (Xilófagos e Cupins)' },
+      { label: 'Comportamento em Umidade', val: 'Zero inchaço em submersão' },
+      { label: 'Trabalhabilidade', val: 'Pode ser serrado, pregado e parafusado' },
+      { label: 'Garantia Estrutural', val: '15 Anos' }
     ]
   },
   'materia-micronizada': {
     title: 'Composto Micronizado VIRA-HD',
-    category: 'Matéria-Prima Circular',
+    category: 'Matéria-Prima Circular Industrial',
     code: 'VRA-MAT-0001',
-    desc: 'Grânulos e micronizados poliméricos homogêneos prontos para injeção, extrusão ou sopro industrial, com laudo reológico de fluidez e pureza química.',
+    norm: 'ASTM D1238 / ISO 1133',
+    desc: 'Flakes e micronizados poliméricos de alta pureza (PEAD / PP) submetidos a lavagem termoquímica, separação densimétrica e descontaminação para uso em linhas de injeção, extrusão contínua ou rotomoldagem industrial.',
     specs: [
-      { label: 'Polímero Base', val: 'PEAD / PP Reciclado' },
-      { label: 'Índice de Fluidez (MFI)', val: '0.8 a 4.5 g/10min' },
-      { label: 'Pureza Polimérica', val: '> 99.4%' },
-      { label: 'Apresentação', val: 'Big Bags de 1000 kg ou Sacos 25 kg' },
-      { label: 'Rastreabilidade', val: 'Passaporte Digital por Lote' },
-      { label: 'Origem', val: 'Caruaru - PE' }
+      { label: 'Polímeros Base', val: 'PEAD / PP Selecionado' },
+      { label: 'Índice de Fluidez (MFI)', val: '1.2 a 3.8 g/10 min (190°C/2.16kg)' },
+      { label: 'Pureza Polimérica', val: '≥ 99.4% isento de contaminantes' },
+      { label: 'Granulometria Média', val: '2.5 a 4.0 mm regular' },
+      { label: 'Embalagem Logística', val: 'Big Bags 1.000 kg / Sacos 25 kg' },
+      { label: 'Rastreabilidade DPP', val: 'QR Code de Lote com Laudo Reológico' },
+      { label: 'Origem da Coleta', val: 'Cooperativas Auditadas do Agreste' }
     ]
   }
 };
@@ -142,7 +194,7 @@ function initProductDrawer() {
   const backdrop = document.getElementById('product-drawer-backdrop');
   const panel = document.getElementById('product-drawer-panel');
   const closeBtn = document.getElementById('product-drawer-close');
-  
+
   const drawerTitle = document.getElementById('drawer-title');
   const drawerCat = document.getElementById('drawer-cat');
   const drawerCode = document.getElementById('drawer-code');
@@ -180,7 +232,7 @@ function initProductDrawer() {
 
   if (closeBtn) closeBtn.addEventListener('click', window.closeProductDrawer);
   if (backdrop) {
-    backdrop.addEventListener('click', (e) => {
+    backdrop.addEventListener('click', () => {
       window.closeProductDrawer();
     });
   }
@@ -192,15 +244,17 @@ function initProductDrawer() {
   });
 }
 
-// ------------------------------------------
-// 4. IMPACT CALCULATOR
-// ------------------------------------------
+// --------------------------------------------------------
+// 5. ENGENHARIA DE IMPACTO (CALCULADORA TÉCNICA)
+// Fatores de conversão com base em ensaios de densidade e ACV
+// --------------------------------------------------------
 function initCalculator() {
   const areaSlider = document.getElementById('calc-area');
   const areaValue = document.getElementById('calc-area-val');
   
   const metricPlastic = document.getElementById('calc-res-plastic');
   const metricCo2 = document.getElementById('calc-res-co2');
+  const metricLandfill = document.getElementById('calc-res-landfill');
 
   if (!areaSlider) return;
 
@@ -208,11 +262,16 @@ function initCalculator() {
     const sqMeters = parseFloat(areaSlider.value);
     if (areaValue) areaValue.innerText = sqMeters.toLocaleString('pt-BR');
 
+    // 1 m² de paver VIRA 60mm utiliza ~18.5 kg de polímero circular
     const plasticKg = Math.round(sqMeters * 18.5);
+    // Fator ACV: cada 1kg de plástico circular economiza ~2.15 kg de CO2e vs matéria virgem
     const co2Kg = Math.round(plasticKg * 2.15);
+    // Volume de aterro poupado (~0.024 m³ por m² instalado)
+    const landfillM3 = (sqMeters * 0.024).toFixed(1);
 
     if (metricPlastic) metricPlastic.innerText = plasticKg.toLocaleString('pt-BR') + ' kg';
     if (metricCo2) metricCo2.innerText = co2Kg.toLocaleString('pt-BR') + ' kg';
+    if (metricLandfill) metricLandfill.innerText = landfillM3.toLocaleString('pt-BR') + ' m³';
   }
 
   areaSlider.addEventListener('input', updateCalc);
@@ -224,9 +283,9 @@ function initCalculator() {
   };
 }
 
-// ------------------------------------------
-// 5. CONTACT FORM
-// ------------------------------------------
+// --------------------------------------------------------
+// 6. FORMULÁRIO TÉCNICO DE ESPECIFICAÇÃO
+// --------------------------------------------------------
 function initContactForm() {
   const form = document.getElementById('vira-contact-form');
   const alertBox = document.getElementById('contact-alert');
@@ -238,7 +297,32 @@ function initContactForm() {
     if (alertBox) {
       alertBox.classList.remove('hidden');
       form.reset();
-      setTimeout(() => alertBox.classList.add('hidden'), 5000);
+      setTimeout(() => alertBox.classList.add('hidden'), 6000);
     }
+  });
+}
+
+// --------------------------------------------------------
+// 7. SMOOTH SCROLL PARA ANCHORS
+// --------------------------------------------------------
+function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (targetId === '#' || targetId === '') return;
+      
+      const targetEl = document.querySelector(targetId);
+      if (targetEl) {
+        e.preventDefault();
+        const headerOffset = 80;
+        const elementPosition = targetEl.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
   });
 }

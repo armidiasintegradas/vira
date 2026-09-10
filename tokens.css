@@ -1,0 +1,84 @@
+/* ========================================================
+   VIRA NEXT — DESIGN SYSTEM TOKENS (tokens.css)
+   Plataforma Industrial de Engenharia Circular
+   ======================================================== */
+
+:root {
+  /* --------------------------------------------------------
+     1. COLOR SYSTEM (PALETA OFICIAL BRANDBOOK 2026)
+     -------------------------------------------------------- */
+  /* Primary & Accents */
+  --color-forest: #4A7135;            /* Verde Floresta (Primária) */
+  --color-forest-dark: #375527;       /* Verde Floresta Escuro */
+  --color-forest-light: #5d8b43;      /* Verde Floresta Claro */
+  --color-ochre: #C68D2B;             /* Dourado Ocre (Secundária) */
+  --color-ochre-light: #e0a544;       /* Dourado Ocre Claro */
+  --color-sprout: #698E3C;            /* Verde Broto (Acento) */
+
+  /* Neutrals & Surfaces */
+  --color-graphite: #2A3233;          /* Grafite Mineral (Institucional) */
+  --color-graphite-dark: #1A2021;     /* Grafite Profundo */
+  --color-graphite-900: #141818;      /* Quase Preto Industrial */
+  --color-muted: #5E696A;             /* Texto Secundário */
+  --color-muted-light: #8E999A;       /* Texto Auxiliar */
+  --color-sand: #F7F7F5;              /* Fundo Areia / Base */
+  --color-surface: #F2F2EE;           /* Superfície de Cards */
+  --color-surface-hover: #E8E8E2;     /* Hover de Superfície */
+  --color-white: #FFFFFF;             /* Branco Puro */
+
+  /* Borders & Dividers */
+  --color-border-subtle: rgba(42, 50, 51, 0.08);
+  --color-border-medium: rgba(42, 50, 51, 0.16);
+  --color-border-dark: rgba(255, 255, 255, 0.12);
+
+  /* --------------------------------------------------------
+     2. TYPOGRAPHY SYSTEM
+     -------------------------------------------------------- */
+  --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-mono: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Type Scale */
+  --text-xs: 0.75rem;       /* 12px */
+  --text-sm: 0.875rem;      /* 14px */
+  --text-base: 1rem;         /* 16px */
+  --text-lg: 1.125rem;      /* 18px */
+  --text-xl: 1.25rem;       /* 20px */
+  --text-2xl: 1.5rem;       /* 24px */
+  --text-3xl: 1.875rem;     /* 30px */
+  --text-4xl: 2.25rem;      /* 36px */
+  --text-5xl: 3rem;         /* 48px */
+  --text-6xl: 3.75rem;      /* 60px */
+  --text-7xl: 4.5rem;       /* 72px */
+
+  /* --------------------------------------------------------
+     3. SPACING & LAYOUT GRID
+     -------------------------------------------------------- */
+  --container-max-width: 1320px;
+  --header-height: 80px;
+
+  /* --------------------------------------------------------
+     4. RADIUS
+     -------------------------------------------------------- */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-full: 9999px;
+
+  /* --------------------------------------------------------
+     5. ELEVATIONS & SHADOWS
+     -------------------------------------------------------- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(42, 50, 51, 0.08);
+  --shadow-lg: 0 12px 32px rgba(42, 50, 51, 0.12);
+  --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.22);
+
+  /* --------------------------------------------------------
+     6. MOTION & TRANSITIONS
+     -------------------------------------------------------- */
+  --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-base: 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
