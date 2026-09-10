@@ -1,0 +1,28 @@
+:where(section[id],.applications[id],.passport[id],.specify[id]){scroll-margin-top:150px}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--ochre);outline-offset:4px}
+.product-nav>div a{position:relative}.product-nav>div a.active{color:var(--ink)}.product-nav>div a.active:after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:1px;background:var(--green)}
+.paver-hero .hero-media img{object-position:center 58%}.paver-hero .hero-overlay{background:linear-gradient(90deg,rgba(9,12,9,.8) 0%,rgba(9,12,9,.28) 58%,rgba(9,12,9,.12) 100%),linear-gradient(0deg,rgba(8,10,8,.78),transparent 58%)}
+.performance-card,.calc-output article,.technical-list article,.passport-card{transition:transform .28s var(--ease),background .28s var(--ease)}
+@media(hover:hover){.performance-card:hover,.calc-output article:hover{transform:translateY(-3px)}.technical-list article:hover{background:#fafaf6}}
+.technical-list b{white-space:nowrap}.passport-demo:hover{background:var(--green)}
+dialog{max-height:min(82vh,760px);overflow:auto}
+@media(max-width:700px){
+  body{padding-bottom:calc(58px + env(safe-area-inset-bottom))}
+  .paver-hero{min-height:780px;padding:112px 20px 92px;align-items:flex-end}
+  .paver-hero .hero-media img{object-position:center 62%}
+  .hero-meta{display:none}
+  .hero-copy{width:100%;max-width:none}
+  .hero-copy h1{font-size:clamp(56px,17vw,72px);line-height:.9}
+  .hero-lead{font-size:clamp(26px,8.4vw,34px);max-width:12ch}
+  .hero-text{max-width:34rem;margin:20px 0 26px}
+  .hero-actions{display:grid;grid-template-columns:1fr;gap:8px}
+  .hero-actions .button{width:100%;min-height:50px}
+  .product-nav{grid-template-columns:1fr auto;gap:12px}.product-nav>strong{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .comparison-row>strong:before,.comparison-row>p:before{display:block;margin-bottom:5px;font:600 9px "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .comparison-row>strong:before{content:"VIRA"}.comparison-row>p:before{content:"Convencional"}
+  .comparison-row>strong{padding:12px 0 4px}.comparison-row>p{padding-bottom:8px}
+  .technical-list b{white-space:normal}
+  .mobile-spec-cta{height:calc(58px + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom)}
+  dialog{width:calc(100% - 24px);padding:34px 22px 26px;max-height:calc(100dvh - 40px)}dialog h2{font-size:34px;overflow-wrap:anywhere}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
