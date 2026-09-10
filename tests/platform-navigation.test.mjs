@@ -12,5 +12,7 @@ for(const file of ['paver.html','blocos.html','guias.html']){
   for(const href of ['paver.html','blocos.html','guias.html','central-tecnica.html','passaporte.html']){
     assert(html.includes(`href="${href}"`),`${file} missing ${href}`);
   }
+  assert(html.includes('class="shared-tech-link"'),`${file} missing Central Técnica CTA`);
+  assert(html.includes('class="shared-passport-link"'),`${file} missing Passaporte CTA`);
 }
 console.log('platform-navigation: ok');
