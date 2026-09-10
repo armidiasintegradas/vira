@@ -204,11 +204,49 @@ O sucesso da plataforma é monitorado em tempo real por 3 dimensões objetivas:
 
 ## 8. ROADMAP ESTRATÉGICO OFICIAL (V4.1 A V5)
 
-| Release | Nome do Módulo | Escopo & Entregas de Engenharia |
-|---|---|---|
-| **V4.1** | **VIRA Academy Especializada** | Trilhas de capacitação por perfil: (1) Engenheiros de Infraestrutura Urbana, (2) Arquitetos & Paisagistas, (3) Gestores Públicos de Planejamento, (4) Fiscais de Contratos da Lei 14.133/2021. |
-| **V4.2** | **Mapa Operacional de Obras** | Cada intervenção urbana georreferenciada abre seu próprio Workspace de Obra com fotos de canteiro, dados de assentamento e quantitativos reais de CO2e evitado. |
-| **V4.3** | **Painel ESG Municipal & Corporativo** | Dashboards consolidados de sustentabilidade por município, indicadores de desvio de aterro e relatórios GHG Protocol / ODS da ONU. |
-| **V4.4** | **Portal do Parceiro** | Acessos segmentados: Construtoras (medições), Prefeituras (editais), Projetistas (plugins) e Universidades (pesquisa). |
-| **V5.0** | **Plataforma Colaborativa Multi-Usuário** | Transição de `localStorage` para Supabase / PostgreSQL, autenticação governamental/corporativa, permissões por equipe, edição concorrente em tempo real, versionamento de projetos e plugins BIM nativos. |
+| Release | Nome do Módulo | Status | Escopo & Entregas de Engenharia |
+|---|---|---|---|
+| **V4.1** | **VIRA Academy Especializada** | ✅ HOMOLOGADO | Trilhas de capacitação por perfil: (1) Engenheiros de Infraestrutura Urbana, (2) Arquitetos & Paisagistas, (3) Gestores Públicos de Planejamento, (4) Fiscais de Contratos da Lei 14.133/2021. 18 testes automatizados aprovados. |
+| **V4.2** | **Mapa Operacional de Obras** | Planejado (Fase 5) | Cada intervenção urbana georreferenciada abre seu próprio Workspace de Obra com fotos de canteiro, dados de assentamento e quantitativos reais de CO2e evitado. |
+| **V4.3** | **Painel ESG Municipal & Corporativo** | Planejado (Fase 5) | Dashboards consolidados de sustentabilidade por município, indicadores de desvio de aterro e relatórios GHG Protocol / ODS da ONU. |
+| **V4.4** | **Portal do Parceiro** | Planejado (Fase 5) | Acessos segmentados: Construtoras (medições), Prefeituras (editais), Projetistas (plugins) e Universidades (pesquisa). |
+| **V5.0** | **Plataforma Colaborativa Multi-Usuário** | Planejado (Fase 5) | Transição de `localStorage` para Supabase / PostgreSQL, autenticação governamental/corporativa, permissões por equipe, edição concorrente em tempo real, versionamento de projetos e plugins BIM nativos. |
+
+---
+
+## 9. FASE 5: INDUSTRIALIZAÇÃO (AR PLATFORM INITIATIVE)
+
+Por determinação estratégica executiva, **a fase de desenvolvimento bruto do VIRA OS é oficialmente encerrada**, declarando o software funcionalmente maduro além do estágio de MVP.
+
+A tecnologia é formalmente transferida como **ativo proprietário da holding AR Mídias Integradas**, inaugurando o programa:
+
+> **AR Platform Initiative**
+> *"Transformar o VIRA OS na primeira implementação de um núcleo tecnológico reutilizável da AR Mídias Integradas, capaz de alimentar VIRA, Verdis, Replasticando, RecicloBike, MUTA e futuros produtos sem que cada um precise começar do zero."*
+
+### 1. A Nova Divisão de Duas Camadas
+- **AR OS (Camada de Plataforma & Framework):** Motores (Project, Compliance, Specification, Academy, Analytics, Copilot, DPP, Comparison), Knowledge Graph, Application Store, Trilha de Auditoria com checksums, Design System agnóstico e Telemetria.
+- **VIRA OS (Implementação Vertical):** Conteúdo executivo, laudos acreditados IPT, normas ABNT de compósitos, catálogo de pavers/painéis e Academy de infraestrutura urbana.
+
+### 2. Estrutura dos 5 Novos Repositórios Institucionais
+1. `ar-docs` / `vira-docs`: Documentação técnica, RFCs, ADRs e cadernos de governança.
+2. `ar-api` / `vira-api`: Contratos digitais, OpenAPI 3.1, envelopes padronizados com `_governance`.
+3. `ar-backend` / `vira-backend`: Supabase, PostgreSQL 16+, PostGIS, pgvector, migrações SQL e RLS.
+4. `ar-sdk` / `vira-sdk`: Clientes oficiais em TypeScript, Python e plugins nativos BIM (Revit/ArchiCAD).
+5. `ar-design-system` / `vira-design-system`: Design System corporativo multi-marca desacoplado de produtos individuais.
+
+### 3. Governança Formal: RFCs & ADRs Ativos
+- **Ciclo de Engenharia:** `RFC` $\to$ `Discussão / Peer Review` $\to$ `Arquitetura (ADR)` $\to$ `Implementação` $\to$ `Homologação`.
+- **ADRs Registrados:**
+  - `ADR-001`: Adoção do Supabase / PostgreSQL como Backend Canônico da Plataforma.
+  - `ADR-002`: Adoção de Identificadores Universais Criptográficos (RFC 4122 v4 UUID).
+  - `ADR-003`: Modelagem em Knowledge Graph de Evidências Técnicas.
+  - `ADR-004`: Implementação do Passaporte Digital de Produto (DPP).
+  - `ADR-005`: Arquitetura de Workspace Centrada em Projetos.
+- **RFCs Registradas:**
+  - `RFC-000`: Processo de Governança de RFCs na AR Mídias Integradas.
+  - `RFC-001`: AR Platform Initiative & Desacoplamento Corporativo da Plataforma.
+
+### 4. P&D Experimental: VIRA LABS (AR LABS)
+Ambiente de testes e validação empírica com regra de ouro institucional: *"Nada entra em produção sem passar pelo laboratório"*. Linhas ativas: IA Generativa de Editais, Computer Vision de Canteiro, IoT de Desgaste e Digital Twin Urbano.
+
 
