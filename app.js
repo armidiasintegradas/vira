@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   menu.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>setMenu(false)));
   document.querySelectorAll(".site-header .brand,.footer-brand").forEach(brand=>brand.addEventListener("click",event=>{event.preventDefault();setMenu(false);window.scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});history.replaceState(null,"",`${location.pathname}${location.search}`)}));
   document.addEventListener("keydown",e=>{if(e.key==="Escape")setMenu(false)});
-  const lightSections=".manifesto,.stats,.collection,.expertise,.proof,.faq,.contact";
+  const lightSections=".manifesto,.stats,.collection,.expertise,.proof,.faq,.contact,.ods-section";
   const updateHeaderTheme=()=>{header.classList.toggle("scrolled",scrollY>50);const probeY=Math.max(1,Math.min(innerHeight-1,header.getBoundingClientRect().height/2));const section=document.elementsFromPoint(innerWidth/2,probeY).map(element=>element.closest?.("main>section")).find(Boolean);document.body.classList.toggle("header-on-light",Boolean(section?.matches(lightSections)))};
   addEventListener("scroll",updateHeaderTheme,{passive:true});addEventListener("resize",updateHeaderTheme);updateHeaderTheme();
 
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   const drawer=document.querySelector("#drawer"),backdrop=document.querySelector("#drawer-backdrop");
   const closeDrawer=()=>{drawer.classList.remove("open");backdrop.classList.remove("open");drawer.setAttribute("aria-hidden","true");document.body.classList.remove("locked")};
   const openDrawer=id=>{const p=products[id];if(!p)return;document.querySelector("#drawer-category").textContent=p.category;document.querySelector("#drawer-title").textContent=p.title;document.querySelector("#drawer-description").textContent=p.description;document.querySelector("#drawer-code").textContent=`Código: ${p.code}`;document.querySelector("#drawer-specs").innerHTML=p.specs.map(([a,b])=>`<div class="drawer-spec"><span>${a}</span><strong>${b}</strong></div>`).join("");drawer.classList.add("open");backdrop.classList.add("open");drawer.setAttribute("aria-hidden","false");document.body.classList.add("locked")};
-  document.querySelectorAll("[data-product]").forEach(button=>button.addEventListener("click",()=>openDrawer(button.dataset.product)));
+  document.querySelectorAll("[data-product]").forEach(button=>button.addEventListener("click",()=>{if(button.dataset.product==="bloco-concreto"){location.href="blocos.html";return}if(button.dataset.product==="guia-meio-fio"){location.href="guias.html";return}openDrawer(button.dataset.product)}));
   document.querySelector("#drawer-close").addEventListener("click",closeDrawer);backdrop.addEventListener("click",closeDrawer);document.querySelector(".drawer-cta").addEventListener("click",closeDrawer);
 
   const range=document.querySelector("#calc-area"),area=document.querySelector("#calc-area-val"),plastic=document.querySelector("#calc-res-plastic"),slag=document.querySelector("#calc-res-slag"),total=document.querySelector("#calc-res-total"),co2=document.querySelector("#calc-res-co2"),calculator=document.querySelector("#calculadora");
