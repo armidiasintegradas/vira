@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ar-platform-sdk"
+version = "1.0.0"
+authors = [
+  { name="AR Mídias Integradas", email="tecnologia@armidiasintegradas.com.br" },
+]
+description = "SDK oficial em Python para o sistema operacional AR OS da AR Mídias Integradas"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = []

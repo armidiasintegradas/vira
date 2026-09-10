@@ -122,20 +122,78 @@ class CommandPalette {
         action: () => { if (typeof setWorkspaceMode === 'function') setWorkspaceMode('projects'); switchProject('proj-caruaru-linear'); }
       },
 
-      // 5. ACADEMY & GUIAS DE CANTEIRO
+      // 5. ACADEMY ESPECIALIZADA (4 TRILHAS & CERTIFICAÇÃO)
       {
-        id: 'acad-paver',
-        title: 'Academy: Procedimento Executivo de Pavimentação',
+        id: 'acad-eng',
+        title: 'Academy: Trilha de Engenharia de Infraestrutura Urbana',
         category: 'Academy',
-        subtitle: 'Passo a passo em 4 fases: subleito, colchão de areia, assentamento e compactação',
-        action: () => { if (typeof setWorkspaceMode === 'function') setWorkspaceMode('solutions'); setWorkspaceSolution('paver'); setWorkspaceTab('academy'); }
+        subtitle: 'Dimensionamento estratigráfico (NBR 15953), fck 38,2 MPa e salinidade • Carga: 8h',
+        action: () => { if (typeof setWorkspaceMode === 'function') setWorkspaceMode('solutions'); setWorkspaceTab('academy'); if (window.selectAcademyTrack) window.selectAcademyTrack('engenheiro'); }
       },
       {
-        id: 'acad-painel',
-        title: 'Academy: Montagem de Fachadas Ventiladas',
+        id: 'acad-arq',
+        title: 'Academy: Trilha de Arquitetura da Paisagem & BIM',
         category: 'Academy',
-        subtitle: 'Estruturação de montantes em alumínio, fixação oculta inox 304 e juntas 4mm',
-        action: () => { if (typeof setWorkspaceMode === 'function') setWorkspaceMode('solutions'); setWorkspaceSolution('painel'); setWorkspaceTab('academy'); }
+        subtitle: 'Conforto térmico (SRI 42), desenho universal (NBR 9050) e Revit LOD 350 • Carga: 6h',
+        action: () => { if (typeof setWorkspaceMode === 'function') setWorkspaceMode('solutions'); setWorkspaceTab('academy'); if (window.selectAcademyTrack) window.selectAcademyTrack('arquiteto'); }
+      },
+      {
+        id: 'acad-gestor',
+        title: 'Academy: Trilha de Gestão Pública & Lei 14.133',
+        category: 'Academy',
+        subtitle: 'Art. 11 (sustentabilidade), Art. 34 (custo de ciclo de vida) e metas ESG • Carga: 5h',
+        action: () => { if (typeof setWorkspaceMode === 'function') setWorkspaceMode('solutions'); setWorkspaceTab('academy'); if (window.selectAcademyTrack) window.selectAcademyTrack('gestor'); }
+      },
+      {
+        id: 'acad-fiscal',
+        title: 'Academy: Trilha de Fiscalização de Contratos & Canteiro',
+        category: 'Academy',
+        subtitle: 'Recebimento de lote, ART, amostragem RBC e critérios de medição provisória • Carga: 6h',
+        action: () => { if (typeof setWorkspaceMode === 'function') setWorkspaceMode('solutions'); setWorkspaceTab('academy'); if (window.selectAcademyTrack) window.selectAcademyTrack('fiscal'); }
+      },
+      {
+        id: 'acad-cert',
+        title: 'Academy: Emitir Certificado de Especificador Circular',
+        category: 'Academy',
+        subtitle: 'Gera documento com protocolo criptográfico de autenticidade para CREA / CAU',
+        action: () => { if (typeof openCertificateModal === 'function') openCertificateModal('engenheiro'); }
+      },
+
+      // 6. AR PLATFORM — MARCAS CORPORATIVAS (AR MÍDIAS INTEGRADAS)
+      {
+        id: 'brand-vira',
+        title: 'AR Platform: Ativar Tema VIRA',
+        category: 'AR Platform',
+        subtitle: 'Engenharia Circular & Infraestrutura Pesada • Forest Green',
+        action: () => { if (window.arThemeSwitcher) window.arThemeSwitcher.setTheme('vira'); }
+      },
+      {
+        id: 'brand-verdis',
+        title: 'AR Platform: Ativar Tema Verdis',
+        category: 'AR Platform',
+        subtitle: 'Soluções Baseadas na Natureza & Restauração Ecológica • Leaf Green',
+        action: () => { if (window.arThemeSwitcher) window.arThemeSwitcher.setTheme('verdis'); }
+      },
+      {
+        id: 'brand-replasticando',
+        title: 'AR Platform: Ativar Tema Replasticando',
+        category: 'AR Platform',
+        subtitle: 'Rastreabilidade de Resíduos & Cadeia de Custódia • Ocean Teal',
+        action: () => { if (window.arThemeSwitcher) window.arThemeSwitcher.setTheme('replasticando'); }
+      },
+      {
+        id: 'brand-reciclobike',
+        title: 'AR Platform: Ativar Tema RecicloBike',
+        category: 'AR Platform',
+        subtitle: 'Micrologística Urbana & Mobilidade Ativa • Solar Amber',
+        action: () => { if (window.arThemeSwitcher) window.arThemeSwitcher.setTheme('reciclobike'); }
+      },
+      {
+        id: 'brand-muta',
+        title: 'AR Platform: Ativar Tema MUTA',
+        category: 'AR Platform',
+        subtitle: 'Mobiliário Urbano & Placemaking Circular • Terracotta Raw',
+        action: () => { if (window.arThemeSwitcher) window.arThemeSwitcher.setTheme('muta'); }
       },
 
       // 6. FAQ TÉCNICO & JURÍDICO

@@ -1,0 +1,186 @@
+/* ========================================================
+   AR OS — MULTI-BRAND DESIGN SYSTEM TOKENS
+   Holding: AR Mídias Integradas
+   Marcas Suportadas: VIRA, Verdis, Replasticando, RecicloBike, MUTA
+   ======================================================== */
+
+:root,
+[data-theme="vira"] {
+  /* Marca: VIRA (Engenharia Circular & Infraestrutura Pesada) */
+  --brand-name: "VIRA";
+  --brand-tagline: "Engenharia Circular & Infraestrutura Urbana";
+  
+  --color-primary: #4A7135;            /* Verde Floresta */
+  --color-primary-dark: #375527;
+  --color-primary-light: #5d8b43;
+  --color-secondary: #C68D2B;          /* Dourado Ocre */
+  --color-secondary-light: #e0a544;
+  --color-accent: #698E3C;             /* Verde Broto */
+
+  --color-graphite: #2A3233;          /* Grafite Mineral */
+  --color-graphite-dark: #1A2021;
+  --color-graphite-900: #141818;
+  --color-muted: #5E696A;
+  --color-muted-light: #8E999A;
+  --color-sand: #F7F7F5;
+  --color-surface: #F2F2EE;
+  --color-surface-hover: #E8E8E2;
+  --color-white: #FFFFFF;
+
+  --color-border-subtle: rgba(42, 50, 51, 0.08);
+  --color-border-medium: rgba(42, 50, 51, 0.16);
+  --color-border-dark: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="verdis"] {
+  /* Marca: Verdis (Soluções Baseadas na Natureza & Reflorestamento) */
+  --brand-name: "Verdis";
+  --brand-tagline: "Restauração Ecológica & Ativos Ambientais";
+
+  --color-primary: #2D5A27;            /* Verde Folha Profundo */
+  --color-primary-dark: #1E3E1A;
+  --color-primary-light: #3D7A35;
+  --color-secondary: #A86832;          /* Ocre Terra Viva */
+  --color-secondary-light: #C47F42;
+  --color-accent: #88B04B;             /* Verde Broto NbS */
+
+  --color-graphite: #262E25;
+  --color-graphite-dark: #181F17;
+  --color-graphite-900: #111710;
+  --color-muted: #576356;
+  --color-muted-light: #889687;
+  --color-sand: #F5F7F3;
+  --color-surface: #EEF2EC;
+  --color-surface-hover: #E3EADE;
+  --color-white: #FFFFFF;
+
+  --color-border-subtle: rgba(38, 46, 37, 0.08);
+  --color-border-medium: rgba(38, 46, 37, 0.16);
+  --color-border-dark: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="replasticando"] {
+  /* Marca: Replasticando (Gestão de Resíduos & Cadeia de Custódia) */
+  --brand-name: "Replasticando";
+  --brand-tagline: "Rastreabilidade de Resíduos & Logística Reversa";
+
+  --color-primary: #1A535C;            /* Azul Petróleo / Ocean Teal */
+  --color-primary-dark: #11383E;
+  --color-primary-light: #26727E;
+  --color-secondary: #4ECDC4;          /* Ciano Limpo */
+  --color-secondary-light: #72D8D1;
+  --color-accent: #FF6B6B;             /* Coral Alerta Técnico */
+
+  --color-graphite: #242D30;
+  --color-graphite-dark: #171E20;
+  --color-graphite-900: #0F1416;
+  --color-muted: #55666A;
+  --color-muted-light: #83979B;
+  --color-sand: #F4F7F7;
+  --color-surface: #ECF1F2;
+  --color-surface-hover: #DFE8E9;
+  --color-white: #FFFFFF;
+
+  --color-border-subtle: rgba(36, 45, 48, 0.08);
+  --color-border-medium: rgba(36, 45, 48, 0.16);
+  --color-border-dark: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="reciclobike"] {
+  /* Marca: RecicloBike (Micrologística Urbana & Mobilidade Ativa) */
+  --brand-name: "RecicloBike";
+  --brand-tagline: "Coleta Urbana Ativa & Inclusão Socioambiental";
+
+  --color-primary: #D97706;            /* Âmbar Solar / Ouro Cicloviário */
+  --color-primary-dark: #9A5303;
+  --color-primary-light: #F59E0B;
+  --color-secondary: #1F2937;          /* Asfalto Escuro */
+  --color-secondary-light: #374151;
+  --color-accent: #10B981;             /* Verde Mobilidade Limpa */
+
+  --color-graphite: #272C33;
+  --color-graphite-dark: #191D22;
+  --color-graphite-900: #101317;
+  --color-muted: #59616D;
+  --color-muted-light: #8791A0;
+  --color-sand: #F8F7F4;
+  --color-surface: #F2F0EB;
+  --color-surface-hover: #E7E4DC;
+  --color-white: #FFFFFF;
+
+  --color-border-subtle: rgba(39, 44, 51, 0.08);
+  --color-border-medium: rgba(39, 44, 51, 0.16);
+  --color-border-dark: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="muta"] {
+  /* Marca: MUTA (Mobiliário Urbano & Placemaking Circular) */
+  --brand-name: "MUTA";
+  --brand-tagline: "Mobiliário Urbano & Design Paramétrico";
+
+  --color-primary: #B91C1C;            /* Terracota Queimada / Argila Mineral */
+  --color-primary-dark: #7F1414;
+  --color-primary-light: #DC2626;
+  --color-secondary: #EA580C;          /* Cerâmica Quente */
+  --color-secondary-light: #F97316;
+  --color-accent: #CA8A04;             /* Bronze Arquitetônico */
+
+  --color-graphite: #2E2827;
+  --color-graphite-dark: #1F1918;
+  --color-graphite-900: #15100F;
+  --color-muted: #665A58;
+  --color-muted-light: #998B88;
+  --color-sand: #F8F5F4;
+  --color-surface: #F3EEEC;
+  --color-surface-hover: #E8E0DD;
+  --color-white: #FFFFFF;
+
+  --color-border-subtle: rgba(46, 40, 39, 0.08);
+  --color-border-medium: rgba(46, 40, 39, 0.16);
+  --color-border-dark: rgba(255, 255, 255, 0.12);
+}
+
+/* --------------------------------------------------------
+   TOKENS COMPARTILHADOS DA PLATAFORMA AR OS (AGNOSTICOS)
+   -------------------------------------------------------- */
+:root {
+  /* Tipografia Blueprint Padronizada */
+  --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-mono: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Escala Modular Clássica */
+  --text-xs: 0.75rem;       /* 12px */
+  --text-sm: 0.875rem;      /* 14px */
+  --text-base: 1rem;         /* 16px */
+  --text-lg: 1.125rem;      /* 18px */
+  --text-xl: 1.25rem;       /* 20px */
+  --text-2xl: 1.5rem;       /* 24px */
+  --text-3xl: 1.875rem;     /* 30px */
+  --text-4xl: 2.25rem;      /* 36px */
+  --text-5xl: 3rem;         /* 48px */
+
+  /* Espaçamento & Grid */
+  --container-max-width: 1320px;
+  --header-height: 80px;
+
+  /* Geometria & Blueprint */
+  --blueprint-stroke: 1.75;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-full: 9999px;
+
+  /* Elevações & Sombras */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.10);
+  --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.18);
+
+  /* Transições Suaves */
+  --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-base: 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}

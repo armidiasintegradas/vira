@@ -449,6 +449,80 @@ describe('9. VIRA Academy & Formação Técnica dos Design Partners', () => {
   });
 });
 
+// --------------------------------------------------------
+// 10. MULTI-BRAND DESIGN SYSTEM & THEME SWITCHER
+// --------------------------------------------------------
+describe('10. Multi-Brand Design System & Theme Switcher', () => {
+  it('Deve registrar as 5 marcas corporativas e permitir alternância reativa', () => {
+    const { BRANDS, ThemeSwitcher } = require('../packages/ar-design-system/themeSwitcher.js');
+    assert.strictEqual(Object.keys(BRANDS).length, 5, 'Deve conter exatamente 5 marcas');
+    assert(BRANDS.vira && BRANDS.verdis && BRANDS.replasticando && BRANDS.reciclobike && BRANDS.muta);
+
+    const switcher = new ThemeSwitcher('vira');
+    assert.strictEqual(switcher.getActiveBrand().id, 'vira');
+
+    let notifiedBrand = null;
+    switcher.subscribe(b => { notifiedBrand = b.id; });
+
+    switcher.setTheme('muta');
+    assert.strictEqual(switcher.getActiveBrand().id, 'muta');
+    assert.strictEqual(notifiedBrand, 'muta');
+    assert.strictEqual(switcher.getActiveBrand().primaryColor, '#B91C1C');
+
+    // Valida tokens.css
+    const css = fs.readFileSync(path.join(__dirname, '../packages/ar-design-system/tokens.css'), 'utf8');
+    assert(css.includes('data-theme="verdis"'));
+    assert(css.includes('data-theme="replasticando"'));
+    assert(css.includes('data-theme="reciclobike"'));
+    assert(css.includes('data-theme="muta"'));
+  });
+});
+
+// --------------------------------------------------------
+// 11. CONTRATOS DIGITAIS DE API (OPENAPI 3.1)
+// --------------------------------------------------------
+describe('11. Contratos Digitais de API (OpenAPI 3.1)', () => {
+  it('packages/ar-api/openapi.json deve estar em conformidade com OpenAPI 3.1 e conter GovernanceEnvelope', () => {
+    const raw = fs.readFileSync(path.join(__dirname, '../packages/ar-api/openapi.json'), 'utf8');
+    const spec = JSON.parse(raw);
+    assert.strictEqual(spec.openapi, '3.1.0');
+    assert(spec.info.title.includes('AR OS Core API'));
+    
+    // Valida rotas essenciais
+    assert(spec.paths['/materials']);
+    assert(spec.paths['/projects']);
+    assert(spec.paths['/compliance/{solutionId}']);
+    assert(spec.paths['/acv']);
+    assert(spec.paths['/dpp/{tenant}/{batchId}']);
+
+    // Valida schema do envelope de governança
+    const envSchema = spec.components.schemas.GovernanceEnvelope;
+    assert(envSchema);
+    assert.strictEqual(envSchema.properties.governance.properties.dataTier.enum.length, 3);
+  });
+});
+
+// --------------------------------------------------------
+// 12. SDK MULTI-LINGUAGEM (@ar-platform/sdk)
+// --------------------------------------------------------
+describe('12. SDK Multi-Linguagem (@ar-platform/sdk)', () => {
+  it('Cliente JavaScript deve inicializar e consultar materiais com governança e lote DPP', async () => {
+    const { createArClient } = require('../packages/ar-sdk/js/src/index.js');
+    const client = createArClient({ tenant: 'prefeitura-caruaru', brand: 'vira' });
+    
+    const matRes = await client.materials.list();
+    assert.strictEqual(matRes.status, 200);
+    assert.strictEqual(matRes.governance.dataTier, 'homologado');
+    assert(matRes.data.length >= 4);
+
+    const dppRes = await client.dpp.verify('LOTE-2026-VR09');
+    assert.strictEqual(dppRes.status, 200);
+    assert.strictEqual(dppRes.data.batchNumber, 'LOTE-2026-VR09');
+    assert.strictEqual(dppRes.data.fckMpa, 38.2);
+    assert.strictEqual(dppRes.data.verified, true);
+  });
+});
+
 console.log(`\n========================================================`);
 console.log(`✓ RESULTADO FINAL DOS TESTES: ${passedTests}/${totalTests} testes aprovados com sucesso!`);
 console.log(`========================================================\n`);

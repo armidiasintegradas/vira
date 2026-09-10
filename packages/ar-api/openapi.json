@@ -1,0 +1,252 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "AR OS Core API",
+    "version": "1.0.0",
+    "description": "Contratos formais de API e governança de dados para a plataforma corporativa da AR Mídias Integradas (VIRA, Verdis, Replasticando, RecicloBike, MUTA).",
+    "contact": {
+      "name": "Diretoria de Tecnologia • AR Mídias Integradas",
+      "url": "https://www.armidiasintegradas.com.br",
+      "email": "tecnologia@armidiasintegradas.com.br"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.arplatform.com.br/v1",
+      "description": "Servidor de Produção Multi-Tenant"
+    },
+    {
+      "url": "https://api.staging.arplatform.com.br/v1",
+      "description": "Ambiente de Homologação (Design Partners)"
+    }
+  ],
+  "paths": {
+    "/materials": {
+      "get": {
+        "summary": "Lista materiais e soluções circulares homologadas",
+        "operationId": "getMaterials",
+        "tags": ["Materiais"],
+        "responses": {
+          "200": {
+            "description": "Lista de soluções com envelope de governança",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GovernanceEnvelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/materials/{id}": {
+      "get": {
+        "summary": "Recupera dados detalhados de um material por ID",
+        "operationId": "getMaterialById",
+        "tags": ["Materiais"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Material encontrado com propriedades físicas, mecânicas e ACV",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/GovernanceEnvelope" }
+              }
+            }
+          },
+          "404": {
+            "description": "Material não encontrado"
+          }
+        }
+      }
+    },
+    "/specifications": {
+      "get": {
+        "summary": "Recupera acervo de normas ABNT e ISO vinculantes",
+        "operationId": "getSpecifications",
+        "tags": ["Normas & Conformidade"],
+        "responses": {
+          "200": {
+            "description": "Lista de normas técnicas auditadas",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/GovernanceEnvelope" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/compliance/{solutionId}": {
+      "get": {
+        "summary": "Emite laudo automatizado de conformidade para uma solução",
+        "operationId": "getCompliance",
+        "tags": ["Normas & Conformidade"],
+        "parameters": [
+          {
+            "name": "solutionId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Relatório de conformidade estrita",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/GovernanceEnvelope" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/acv": {
+      "get": {
+        "summary": "Retorna os fatores auditados de Avaliação de Ciclo de Vida (ISO 14044)",
+        "operationId": "getAcv",
+        "tags": ["Sustentabilidade & ACV"],
+        "responses": {
+          "200": {
+            "description": "Fator de descarbonização e compensação de aterro",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/GovernanceEnvelope" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects": {
+      "get": {
+        "summary": "Lista projetos do tenant autenticado",
+        "operationId": "getProjects",
+        "tags": ["Projetos & Workspace"],
+        "responses": {
+          "200": {
+            "description": "Array de projetos ativos",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/GovernanceEnvelope" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Cria novo projeto com UUID v4 e trilha de auditoria",
+        "operationId": "createProject",
+        "tags": ["Projetos & Workspace"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ProjectInput" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Projeto criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/GovernanceEnvelope" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dpp/{tenant}/{batchId}": {
+      "get": {
+        "summary": "Consulta passaporte digital de produto por lote e tenant",
+        "operationId": "getDppByBatch",
+        "tags": ["Passaporte Digital de Produto"],
+        "parameters": [
+          { "name": "tenant", "in": "path", "required": true, "schema": { "type": "string" } },
+          { "name": "batchId", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Passaporte digital auditado com ART e laudos laboratoriais",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/GovernanceEnvelope" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/academy/tracks": {
+      "get": {
+        "summary": "Lista as trilhas de capacitação técnica especializadas",
+        "operationId": "getAcademyTracks",
+        "tags": ["Academy"],
+        "responses": {
+          "200": {
+            "description": "Trilhas por perfil de engenharia, arquitetura, gestão e fiscalização",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/GovernanceEnvelope" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "GovernanceEnvelope": {
+        "type": "object",
+        "required": ["status", "timestamp", "governance", "data"],
+        "properties": {
+          "status": { "type": "integer", "example": 200 },
+          "timestamp": { "type": "string", "format": "date-time", "example": "2026-09-10T16:00:00Z" },
+          "governance": {
+            "type": "object",
+            "required": ["dataTier", "auditSource", "accreditationNotice"],
+            "properties": {
+              "dataTier": {
+                "type": "string",
+                "enum": ["homologado", "meta_produto", "exemplo_ilustrativo"],
+                "example": "homologado"
+              },
+              "auditSource": { "type": "string", "example": "IPT Relatório nº 1.104.921-A" },
+              "accreditationNotice": {
+                "type": "string",
+                "example": "Dados certificados por laboratório acreditado Inmetro ou norma ABNT vigente."
+              }
+            }
+          },
+          "data": { "type": "object" }
+        }
+      },
+      "ProjectInput": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": { "type": "string", "example": "Praça Central Sustentável" },
+          "client": { "type": "string", "example": "Prefeitura Municipal" },
+          "responsible": { "type": "string", "example": "Eng. Responsável (CREA 0001)" },
+          "dataTier": {
+            "type": "string",
+            "enum": ["homologado", "meta_produto", "exemplo_ilustrativo", "projeto_usuario"],
+            "default": "projeto_usuario"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "@ar-platform/sdk",
+  "version": "1.0.0",
+  "description": "SDK oficial em JavaScript/TypeScript para a plataforma AR OS (AR Mídias Integradas)",
+  "main": "src/index.js",
+  "types": "src/types.d.ts",
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "ar-os",
+    "engenharia-circular",
+    "sustentabilidade",
+    "abnt",
+    "licitacoes"
+  ],
+  "author": "AR Mídias Integradas <tecnologia@armidiasintegradas.com.br>",
+  "license": "Proprietary"
+}
