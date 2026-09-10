@@ -8,4 +8,6 @@ for(const id of ['VIRA-PAVER-DEMO-0001','VIRA-BLOCO-DEMO-0001','VIRA-GUIA-DEMO-0
 for(const family of ['paver','blocos','guias']) assert(html.includes(`data-passport="${family}"`),`missing ${family} tab`);
 assert.equal((html.match(/data-passport-panel=/g)||[]).length,3,'three static panels required');
 assert(js.includes('function initPassportDemo()'),'missing passport initializer');
+assert(html.includes('<title>Passaporte Digital VIRA — Rastreabilidade demonstrativa</title>'),'wrong Passport title');
+assert.equal((html.match(/<h1[ >]/g)||[]).length,1,'Passport must have one h1');
 console.log('passaporte: ok');
