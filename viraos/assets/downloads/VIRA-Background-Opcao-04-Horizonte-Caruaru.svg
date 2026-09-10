@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 2000" width="1200" height="2000">
+  <defs>
+    <radialGradient id="sky-glow-4" cx="50%" cy="44%" r="56%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="36%" stop-color="#FFFDF9" />
+      <stop offset="70%" stop-color="#E6EADF" />
+      <stop offset="100%" stop-color="#C8D2BF" />
+    </radialGradient>
+    <linearGradient id="serra-l" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1F2B23" />
+      <stop offset="50%" stop-color="#375027" />
+      <stop offset="100%" stop-color="#537B3B" />
+    </linearGradient>
+    <linearGradient id="serra-r" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#242D2D" />
+      <stop offset="50%" stop-color="#4E3B1C" />
+      <stop offset="100%" stop-color="#C88E28" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="2000" fill="url(#sky-glow-4)" />
+
+  <!-- Luminous Cloud Center -->
+  <ellipse cx="600" cy="880" rx="460" ry="380" fill="#FFFFFF" filter="blur(65px)" />
+
+  <!-- Left Serras & Pinheiros de Caruaru -->
+  <g opacity="0.93">
+    <path d="M0,2000 L160,2000 L360,1150 L280,650 L160,180 L0,0 Z" fill="url(#serra-l)" />
+    <path d="M0,1700 L120,1700 L260,1200 L180,750 L60,300 L0,150 Z" fill="#1B221E" />
+    <!-- Fine Pine Needles / Branch Details -->
+    <path d="M0,100 Q 300,350 400,600 Q 240,750 360,1050 Q 180,1250 80,1550 L0,1700 Z" fill="#2C3C26" opacity="0.8" />
+    <path d="M0,0 Q 340,240 450,480 Q 300,620 410,880 L0,1000 Z" fill="#4A7135" opacity="0.5" />
+  </g>
+
+  <!-- Right Serras & Estruturas Solares -->
+  <g opacity="0.93">
+    <path d="M1200,2000 L1040,2000 L840,1150 L920,650 L1040,180 L1200,0 Z" fill="url(#serra-r)" />
+    <path d="M1200,1700 L1080,1700 L940,1200 L1020,750 L1140,300 L1200,150 Z" fill="#202627" />
+    <path d="M1200,100 Q 900,350 800,600 Q 960,750 840,1050 Q 1020,1250 1120,1550 L1200,1700 Z" fill="#2A3233" opacity="0.8" />
+    <path d="M1200,0 Q 860,240 750,480 Q 900,620 790,880 L1200,1000 Z" fill="#C68D2B" opacity="0.45" />
+  </g>
+
+  <!-- Inverted Forest Arch at Top -->
+  <path d="M0,0 Q 600,260 1200,0 L1200,0 L0,0 Z" fill="#1A221E" opacity="0.9" />
+
+  <!-- Center Ascending Bird Motif -->
+  <g transform="translate(600, 880) scale(1.4)">
+    <path d="M0,0 C-36,-26 -82,-32 -112,-14 C-76,9 -36,4 0,0 Z" fill="#2A3233" />
+    <path d="M0,0 C36,-26 82,-32 112,-14 C76,9 36,4 0,0 Z" fill="#2A3233" />
+    <polygon points="0,-19 5,0 0,16 -5,0" fill="#2A3233" />
+    <polygon points="0,-7 6,5 -6,5" fill="#C68D2B" />
+  </g>
+</svg>

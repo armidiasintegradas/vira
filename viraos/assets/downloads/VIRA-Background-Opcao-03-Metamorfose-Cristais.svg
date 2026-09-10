@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 2000" width="1200" height="2000">
+  <defs>
+    <radialGradient id="sky-glow-3" cx="50%" cy="46%" r="58%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="38%" stop-color="#FFFDF7" />
+      <stop offset="72%" stop-color="#ECEEE6" />
+      <stop offset="100%" stop-color="#D3DACB" />
+    </radialGradient>
+    <linearGradient id="poly-flank-l" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#16211C" />
+      <stop offset="40%" stop-color="#2B4022" />
+      <stop offset="100%" stop-color="#698E3C" />
+    </linearGradient>
+    <linearGradient id="poly-flank-r" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1F2425" />
+      <stop offset="40%" stop-color="#4D3B1E" />
+      <stop offset="100%" stop-color="#D99C34" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="2000" fill="url(#sky-glow-3)" />
+
+  <!-- Soft Radiant Aura -->
+  <circle cx="600" cy="900" r="420" fill="#FFFFFF" opacity="0.9" filter="blur(60px)" />
+
+  <!-- Left Faceted Polymeric Crystal Towers -->
+  <g opacity="0.9">
+    <polygon points="0,2000 180,2000 340,1200 260,700 180,300 0,0" fill="url(#poly-flank-l)" />
+    <polygon points="0,1600 220,1600 300,1050 200,600 0,200" fill="#1B2620" opacity="0.8" />
+    <polygon points="180,300 340,700 260,1100 140,750" fill="#4A7135" opacity="0.5" />
+    <polygon points="60,100 240,400 180,750 20,500" fill="#698E3C" opacity="0.4" />
+  </g>
+
+  <!-- Right Faceted Polymeric Crystal Towers -->
+  <g opacity="0.9">
+    <polygon points="1200,2000 1020,2000 860,1200 940,700 1020,300 1200,0" fill="url(#poly-flank-r)" />
+    <polygon points="1200,1600 980,1600 900,1050 1000,600 1200,200" fill="#1F2526" opacity="0.8" />
+    <polygon points="1020,300 860,700 940,1100 1060,750" fill="#C68D2B" opacity="0.5" />
+    <polygon points="1140,100 960,400 1020,750 1180,500" fill="#E5B25D" opacity="0.4" />
+  </g>
+
+  <!-- Top Framing Arch -->
+  <path d="M0,0 Q 600,240 1200,0 L1200,0 L0,0 Z" fill="#171F1B" opacity="0.9" />
+
+  <!-- Center Ascending Bird / Leaf -->
+  <g transform="translate(600, 910) scale(1.4)">
+    <path d="M0,-5 C-38,-30 -85,-35 -115,-15 C-80,8 -38,3 0,-5 Z" fill="#2A3233" />
+    <path d="M0,-5 C38,-30 85,-35 115,-15 C80,8 38,3 0,-5 Z" fill="#2A3233" />
+    <polygon points="0,-20 6,-5 0,14 -6,-5" fill="#2A3233" />
+    <polygon points="0,-8 5,3 -5,3" fill="#C68D2B" />
+  </g>
+</svg>

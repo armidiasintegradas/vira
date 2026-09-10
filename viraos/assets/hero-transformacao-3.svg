@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <radialGradient id="bg-grad-3" cx="40%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#2B4522" />
+      <stop offset="50%" stop-color="#1C2621" />
+      <stop offset="100%" stop-color="#111516" />
+    </radialGradient>
+    <linearGradient id="leaf-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#698E3C" />
+      <stop offset="50%" stop-color="#4A7135" />
+      <stop offset="100%" stop-color="#C68D2B" />
+    </linearGradient>
+    <filter id="blur-soft">
+      <feGaussianBlur stdDeviation="35" />
+    </filter>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#bg-grad-3)" />
+
+  <!-- Large Organic Halo -->
+  <circle cx="960" cy="540" r="360" fill="#698E3C" opacity="0.2" filter="url(#blur-soft)" />
+
+  <!-- Botanical Leaf Metamorphosis to Architecture -->
+  <g transform="translate(960, 520)">
+    <!-- Concentric Wave Rings -->
+    <circle cx="0" cy="0" r="420" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" />
+    <circle cx="0" cy="0" r="320" fill="none" stroke="rgba(198,141,43,0.2)" stroke-width="2" stroke-dasharray="12 8" />
+    <circle cx="0" cy="0" r="220" fill="none" stroke="rgba(105,142,60,0.3)" stroke-width="2" />
+
+    <!-- Pure Botanical Curves -->
+    <path d="M-120,180 C-180,0 -80,-200 40,-260 C60,-120 180,40 120,180 C40,240 -60,240 -120,180 Z" fill="url(#leaf-grad)" opacity="0.65" />
+    <path d="M-60,120 C-100,-10 -30,-120 40,-160 C50,-80 110,20 70,120 C20,160 -40,160 -60,120 Z" fill="#FEFDF9" opacity="0.85" />
+  </g>
+
+  <text x="100" y="980" font-family="'JetBrains Mono', monospace" font-size="14" fill="rgba(255,255,255,0.4)" letter-spacing="4">
+    FASE 03 • MICRONIZAÇÃO POLIMÉRICA • 0% PETRÓLEO VIRGEM
+  </text>
+</svg>

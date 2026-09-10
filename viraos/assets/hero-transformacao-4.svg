@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <radialGradient id="bg-grad-4" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#38332A" />
+      <stop offset="50%" stop-color="#222323" />
+      <stop offset="100%" stop-color="#151717" />
+    </radialGradient>
+    <linearGradient id="paver-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C68D2B" />
+      <stop offset="100%" stop-color="#2A3233" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#bg-grad-4)" />
+
+  <!-- Urban Grid Pattern (Pavers & Modular Tiles) -->
+  <g stroke="rgba(255,255,255,0.08)" stroke-width="1.5" fill="none">
+    <rect x="460" y="240" width="200" height="200" rx="16" />
+    <rect x="680" y="240" width="200" height="200" rx="16" />
+    <rect x="900" y="240" width="200" height="200" rx="16" />
+    <rect x="1120" y="240" width="200" height="200" rx="16" />
+    <rect x="1340" y="240" width="200" height="200" rx="16" />
+
+    <rect x="460" y="460" width="200" height="200" rx="16" />
+    <rect x="680" y="460" width="200" height="200" rx="16" fill="url(#paver-grad)" opacity="0.6" />
+    <rect x="900" y="460" width="200" height="200" rx="16" fill="#4A7135" opacity="0.5" />
+    <rect x="1120" y="460" width="200" height="200" rx="16" fill="#C68D2B" opacity="0.7" />
+    <rect x="1340" y="460" width="200" height="200" rx="16" />
+
+    <rect x="460" y="680" width="200" height="200" rx="16" />
+    <rect x="680" y="680" width="200" height="200" rx="16" />
+    <rect x="900" y="680" width="200" height="200" rx="16" />
+    <rect x="1120" y="680" width="200" height="200" rx="16" />
+    <rect x="1340" y="680" width="200" height="200" rx="16" />
+  </g>
+
+  <text x="100" y="980" font-family="'JetBrains Mono', monospace" font-size="14" fill="rgba(255,255,255,0.4)" letter-spacing="4">
+    FASE 04 • TERMOCOMPRESSÃO & ARTEFATOS URBANOS
+  </text>
+</svg>
