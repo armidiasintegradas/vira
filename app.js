@@ -9,8 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initProductTabs();
   initCalculator();
   initProductDrawer();
+  initResourceCenter();
+  initSegmentedCta();
   initContactForm();
   initSmoothScroll();
+  initAnalyticsTracking();
 });
 
 // --------------------------------------------------------
@@ -384,11 +387,15 @@ function initCalculator() {
 function initContactForm() {
   const form = document.getElementById('vira-contact-form');
   const alertBox = document.getElementById('contact-alert');
+  const profileInput = document.getElementById('input-profile-type');
 
   if (!form) return;
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
+    const profile = profileInput ? profileInput.value : 'general';
+    viraAnalytics.track('cta_submitted', { profile });
+
     if (alertBox) {
       alertBox.classList.remove('hidden');
       form.reset();
@@ -418,6 +425,213 @@ function initSmoothScroll() {
           behavior: 'smooth'
         });
       }
+    });
+  });
+}
+
+// --------------------------------------------------------
+// 8. RESOURCE CENTER: BUSCA INSTANTÂNEA E FILTROS DE DOWNLOAD
+// --------------------------------------------------------
+function initResourceCenter() {
+  const searchInput = document.getElementById('resource-search-input');
+  const filterPills = document.querySelectorAll('[data-resource-filter]');
+  const cards = document.querySelectorAll('#resource-cards-grid .vira-resource-card');
+
+  if (!cards.length) return;
+
+  let currentCategory = 'all';
+  let searchQuery = '';
+
+  function applyFilters() {
+    const term = searchQuery.toLowerCase().trim();
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const cat = card.getAttribute('data-resource-category') || '';
+      const keywords = (card.getAttribute('data-resource-keywords') || '').toLowerCase();
+      const text = card.textContent.toLowerCase();
+
+      const matchesCat = (currentCategory === 'all' || cat === currentCategory);
+      const matchesSearch = (!term || keywords.includes(term) || text.includes(term));
+
+      if (matchesCat && matchesSearch) {
+        card.style.display = 'flex';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    if (term.length > 2) {
+      viraAnalytics.track('resource_search', { query: term, resultsCount: visibleCount });
+    }
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      applyFilters();
+    });
+  }
+
+  filterPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      filterPills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      currentCategory = pill.getAttribute('data-resource-filter') || 'all';
+      applyFilters();
+      viraAnalytics.track('resource_filter_click', { category: currentCategory });
+    });
+  });
+
+  cards.forEach(card => {
+    const link = card.querySelector('a[download], a[href*="centro-de-especificacao"]');
+    if (link) {
+      link.addEventListener('click', () => {
+        const title = card.querySelector('h3') ? card.querySelector('h3').textContent : 'Ativo';
+        const code = card.querySelector('.font-mono') ? card.querySelector('.font-mono').textContent : '';
+        viraAnalytics.track('resource_download', { title, code, href: link.getAttribute('href') });
+      });
+    }
+  });
+}
+
+// --------------------------------------------------------
+// 9. CTAS SEGMENTADOS POR PERFIL (PREFEITURAS, PROJETISTAS, CONSTRUTORAS)
+// --------------------------------------------------------
+function initSegmentedCta() {
+  const tabBtns = document.querySelectorAll('.vira-cta-tab-btn');
+  const banner = document.getElementById('cta-profile-banner');
+  const bannerText = document.getElementById('cta-banner-text');
+  const profileInput = document.getElementById('input-profile-type');
+  const labelEntidade = document.getElementById('label-entidade');
+  const inputEntidade = document.getElementById('input-entidade');
+  const labelMsg = document.getElementById('label-msg');
+  const inputMsg = document.getElementById('input-msg');
+  const selectTipo = document.getElementById('input-tipo');
+  const btnSubmitText = document.getElementById('btn-submit-text');
+
+  if (!tabBtns.length) return;
+
+  const profileConfigs = {
+    gov: {
+      btnClass: 'active-gov',
+      bannerClass: 'vira-banner-gov',
+      bannerText: 'Receba o Memorial Descritivo e Minuta de Edital da Lei 14.133/2021 prontos para o Termo de Referência.',
+      entidadeLabel: 'Órgão Público / Secretaria / Município',
+      entidadePlaceholder: 'Ex: Secretaria de Infraestrutura — Prefeitura Municipal',
+      msgLabel: 'Metragem Estimada & Especificidades do Edital',
+      msgPlaceholder: 'Informe o número do processo, área estimada em m² ou prazo previsto...',
+      selectVal: 'licitacao',
+      submitText: 'Receber Memorial para Licitação (Lei 14.133)'
+    },
+    arch: {
+      btnClass: 'active-arch',
+      bannerClass: 'vira-banner-arch',
+      bannerText: 'Receba a Biblioteca BIM Revit (.RVT) LOD 300, blocos DWG e texturas PBR para o seu projeto executivo.',
+      entidadeLabel: 'Escritório de Arquitetura / Registro Profissional (CAU/CREA)',
+      entidadePlaceholder: 'Ex: Studio Arquitetura & Paisagismo — CAU A92.311',
+      msgLabel: 'Fase do Projeto & Soluções Pretendidas',
+      msgPlaceholder: 'Descreva a tipologia (praça, orla, fachada) e se precisa de famílias BIM específicas...',
+      selectVal: 'bim',
+      submitText: 'Receber Pacote BIM Revit & CAD DWG'
+    },
+    builder: {
+      btnClass: 'active-builder',
+      bannerClass: 'vira-banner-builder',
+      bannerText: 'Solicite cotação por volume paletizado, cronograma de fornecimento e amostras para homologação em canteiro.',
+      entidadeLabel: 'Construtora / Incorporadora / CNPJ',
+      entidadePlaceholder: 'Ex: Construtora Metropolitana S/A — CNPJ 00.000.000/0001-00',
+      msgLabel: 'Volume Previsto, Local da Obra (CEP/UF) e Prazo',
+      msgPlaceholder: 'Metragem em m², endereço da entrega e previsão de início do assentamento...',
+      selectVal: 'orcamento',
+      submitText: 'Solicitar Cotação Direta de Fábrica'
+    }
+  };
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const profile = btn.getAttribute('data-profile');
+      const cfg = profileConfigs[profile];
+      if (!cfg) return;
+
+      tabBtns.forEach(b => {
+        b.classList.remove('active-gov', 'active-arch', 'active-builder');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add(cfg.btnClass);
+      btn.setAttribute('aria-selected', 'true');
+
+      if (banner && bannerText) {
+        banner.className = `vira-profile-banner ${cfg.bannerClass}`;
+        bannerText.textContent = cfg.bannerText;
+      }
+
+      if (profileInput) profileInput.value = profile;
+      if (labelEntidade) labelEntidade.textContent = cfg.entidadeLabel;
+      if (inputEntidade) inputEntidade.placeholder = cfg.entidadePlaceholder;
+      if (labelMsg) labelMsg.textContent = cfg.msgLabel;
+      if (inputMsg) inputMsg.placeholder = cfg.msgPlaceholder;
+      if (selectTipo) selectTipo.value = cfg.selectVal;
+      if (btnSubmitText) btnSubmitText.textContent = cfg.submitText;
+
+      viraAnalytics.track('cta_segment_selected', { profile });
+    });
+  });
+}
+
+// --------------------------------------------------------
+// 10. TELEMETRIA ANALÍTICA NATIVA (viraAnalytics)
+// --------------------------------------------------------
+const viraAnalytics = {
+  events: [],
+  track(eventName, payload = {}) {
+    const timestamp = new Date().toISOString();
+    const event = { event: eventName, payload, timestamp };
+    this.events.push(event);
+
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('vira:telemetry', { detail: event }));
+      if (Array.isArray(window.dataLayer)) {
+        window.dataLayer.push({ event: eventName, ...payload });
+      }
+    }
+
+    try {
+      const stored = JSON.parse(localStorage.getItem('VIRA_TELEMETRY_LOG') || '[]');
+      stored.push(event);
+      if (stored.length > 50) stored.shift();
+      localStorage.setItem('VIRA_TELEMETRY_LOG', JSON.stringify(stored));
+    } catch (e) {
+      // Ignora erro em modo anônimo estrito
+    }
+
+    console.info(`[VIRA Telemetry] ${eventName}:`, payload);
+  }
+};
+
+function initAnalyticsTracking() {
+  // Rastreio de marcos de scroll (25%, 50%, 75%, 90%)
+  const milestones = { 25: false, 50: false, 75: false, 90: false };
+  window.addEventListener('scroll', () => {
+    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (totalHeight <= 0) return;
+    const progress = Math.round((window.scrollY / totalHeight) * 100);
+
+    for (const [milestone, reached] of Object.entries(milestones)) {
+      if (!reached && progress >= Number(milestone)) {
+        milestones[milestone] = true;
+        viraAnalytics.track('scroll_milestone', { percent: Number(milestone) });
+      }
+    }
+  }, { passive: true });
+
+  // Rastreio de cliques em casos de estudo
+  document.querySelectorAll('#casos .vira-case-card a').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const card = this.closest('.vira-case-card');
+      const title = card && card.querySelector('h3') ? card.querySelector('h3').textContent.trim() : 'Caso';
+      viraAnalytics.track('case_study_click', { caseTitle: title, href: this.getAttribute('href') });
     });
   });
 }

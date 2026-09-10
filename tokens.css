@@ -15,6 +15,11 @@
   --color-ochre-light: #e0a544;       /* Dourado Ocre Claro */
   --color-sprout: #698E3C;            /* Verde Broto (Acento) */
 
+  /* Segmented Profile Colors */
+  --color-profile-gov: #2563EB;       /* Azul Institucional (Prefeituras & Setor Público) */
+  --color-profile-arch: #C68D2B;      /* Dourado Ocre (Projetistas & Arquitetos) */
+  --color-profile-builder: #4A7135;   /* Verde Floresta (Construtoras & Incorporadoras) */
+
   /* Neutrals & Surfaces */
   --color-graphite: #2A3233;          /* Grafite Mineral (Institucional) */
   --color-graphite-dark: #1A2021;     /* Grafite Profundo */
