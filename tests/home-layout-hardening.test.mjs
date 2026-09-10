@@ -12,8 +12,10 @@ test('Expertise limita conteúdo e título ao painel editorial', () => {
 });
 
 test('Calculadora elimina vazio excessivo e define contraste legível', () => {
-  assert.match(homeCss, /\.calculator\{[^}]*align-items:stretch/);
+  assert.match(homeCss, /\.calculator\{[^}]*align-items:start/);
   assert.match(homeCss, /\.calc-workspace\{[^}]*display:grid/);
+  assert.match(homeCss, /\.calc-workspace\{[^}]*align-content:start/);
+  assert.match(homeCss, /\.calc-footer\{[^}]*height:auto/);
   assert.match(homeCss, /\.calc-result\{[^}]*min-height:clamp\(/);
   assert.match(homeCss, /\.calc-result\.carbon\{[^}]*background:#eef0e8/);
   assert.match(homeCss, /\.calc-result\.carbon strong\{[^}]*color:#315330/);
