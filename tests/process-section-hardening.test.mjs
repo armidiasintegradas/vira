@@ -9,7 +9,7 @@ test('seção de processo possui estrutura editorial completa e ancoragem #proce
   assert.match(indexHtml, /id="processo"/, 'ID #processo deve existir');
   assert.match(indexHtml, /class="process-eyebrow"[^>]*><span>—<\/span>\s*PROCESSO<\/p>/);
   assert.match(indexHtml, /<h2 class="process-title"[^>]*>Da operação<br>ao projeto<\/h2>/);
-  assert.match(indexHtml, /Transformamos resíduos em soluções reais para cidades mais justas/);
+  assert.match(indexHtml, /Transformamos resíduos em soluções reais[\s\S]*?para cidades mais justas/);
   assert.match(indexHtml, /ECONOMIA CIRCULAR EM MOVIMENTO\./);
 });
 
@@ -30,14 +30,12 @@ test('as cinco etapas do processo estão documentadas com numeração, ícones e
   assert.match(indexHtml, /Infraestrutura sustentável para um futuro melhor/);
 });
 
-test('botão CTA, manifesto vertical e rótulos contextuais da fotomontagem estão presentes', () => {
+test('botão CTA e manifesto vertical estão presentes, e rótulos contextuais sobre a imagem foram removidos', () => {
   assert.match(indexHtml, /class="button process-button"[^>]*>[\s\S]*?Conheça o processo[\s\S]*?→/);
   assert.match(indexHtml, /class="process-button-arrow"/);
   assert.match(indexHtml, /class="process-foot-logo"/);
   assert.match(indexHtml, /class="process-vertical-manifesto"[\s\S]*?RESÍDUOS[\s\S]*?HOJE\.[\s\S]*?CIDADES[\s\S]*?AMANHÃ\./);
-  assert.match(indexHtml, /class="process-collage-label label-pessoas"[\s\S]*?PESSOAS[\s\S]*?MUDANÇAS/);
-  assert.match(indexHtml, /class="process-collage-label label-tecnologia"[\s\S]*?TECNOLOGIA[\s\S]*?IMPACTO/);
-  assert.match(indexHtml, /class="process-collage-label label-solucoes"[\s\S]*?SOLUÇÕES[\s\S]*?MELHORES/);
+  assert.doesNotMatch(indexHtml, /class="process-collage-labels"/, 'rótulos contextuais sobre a imagem devem ser removidos');
 });
 
 test('estilos de alta fidelidade para o palco de processo dourado ocre estão configurados', () => {
