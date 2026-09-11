@@ -670,10 +670,10 @@
   position: relative !important;
   background-color: #f1c546 !important;
   background-image: url('assets/processo-operacao-hero.png') !important;
-  background-size: auto clamp(322px, 33.6vw, 375px) !important;
+  background-size: auto clamp(483px, 50.4vw, 565px) !important;
   background-position: right top !important;
   background-repeat: no-repeat !important;
-  min-height: clamp(380px, 36vw, 504px);
+  min-height: clamp(520px, 52vw, 680px);
   padding: clamp(28px, 3.2vw, 44px) var(--pad, 40px) clamp(14px, 1.8vw, 24px) var(--pad, 40px) !important;
   box-sizing: border-box;
   overflow: hidden;
@@ -702,7 +702,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: clamp(20px, 2.6vw, 36px);
+  margin-bottom: clamp(36px, 4vw, 56px);
   position: relative;
   z-index: 4;
 }
