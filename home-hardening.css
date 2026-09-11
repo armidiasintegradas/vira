@@ -3,9 +3,9 @@
 /* Hardening visual: Expertise Industrial */
 .expertise-chapters{min-width:0}
 .expertise-chapter{min-width:0;overflow:hidden;padding-left:clamp(32px,3.6vw,58px);padding-right:clamp(32px,3.6vw,58px)}
-.expertise-chapter h3{font-size:clamp(40px,3vw,56px);line-height:.95;max-width:min(100%,520px);overflow-wrap:break-word;hyphens:auto}
+.expertise-chapter h3{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;font-weight:700;font-size:clamp(36px,3vw,52px);line-height:.95;max-width:min(100%,520px);overflow-wrap:break-word;hyphens:auto}
 .expertise-chapter>p{max-width:min(100%,560px)}
-.expertise-tags{max-width:100%}
+.expertise-tags{max-width:100%}.expertise-tags span{font-family:'IBM Plex Mono',monospace}
 
 /* Hardening visual: Calculadora */
 .calculator{align-items:start;gap:clamp(42px,5vw,88px);padding-top:clamp(90px,8vw,130px);padding-bottom:clamp(90px,8vw,130px)}
@@ -72,11 +72,11 @@
 }
 
 .ods-eyebrow {
-  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
   font-weight: 500;
   line-height: 1;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #666666;
   margin: 0 0 20px 0;
@@ -91,8 +91,8 @@
 
 #ods-title,
 .ods-header h2 {
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: clamp(38px, 4.4vw, 54px);
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(38px, 4.4vw, 52px);
   font-weight: 700;
   line-height: 1.08;
   letter-spacing: -0.035em;
@@ -101,8 +101,8 @@
 }
 
 .ods-summary {
-  font-family: 'Inter', 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: clamp(15px, 1.25vw, 17px);
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(16px, 1.3vw, 19px);
   font-weight: 400;
   line-height: 1.55;
   color: #555555;
@@ -246,9 +246,9 @@
 }
 
 .ods-card-content h3 {
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(15px, 1.25vw, 17px);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.25;
   color: #111111;
   margin: 0;
@@ -257,7 +257,7 @@
 
 .ods-card-content p,
 .ods-grid p {
-  font-family: 'Inter', 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(13px, 1.05vw, 14px);
   font-weight: 400;
   line-height: 1.5;
