@@ -29,3 +29,10 @@ test('marca oficial ONU e azulejos ODS estão presentes sem molduras ou contorno
   assert.match(indexHtml, /assets\/ods-marca-onu\.png/);
 });
 
+test('linhas separadoras internas do azulejo e colunas estão presentes', () => {
+  assert.match(homeCss, /\.ods-card-sep\s*\{[^}]*width:\s*1px/);
+  assert.match(homeCss, /\.ods-card:not\(:nth-child\(3n\)\)::after/);
+  assert.match(indexHtml, /class="ods-card-sep"/);
+});
+
+
