@@ -373,3 +373,290 @@
   }
 }
 
+/* ========================================================
+   Impacto e Cooperativas: High-Fidelity Cinematic Stage
+   ======================================================== */
+.collaboration#colaboracao {
+  display: flex !important;
+  position: relative !important;
+  background-color: #0b0f0c !important;
+  background-image: url('assets/impacto-cooperativas-hero.jpg') !important;
+  background-size: cover !important;
+  background-position: center right !important;
+  background-repeat: no-repeat !important;
+  min-height: clamp(660px, 64vw, 880px);
+  padding: clamp(72px, 7.5vw, 112px) var(--pad) !important;
+  box-sizing: border-box;
+  align-items: center;
+  overflow: hidden;
+  color: #ffffff;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.collaboration#colaboracao .impact-stage-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(9, 13, 11, 0.94) 0%, rgba(9, 13, 11, 0.88) 32%, rgba(9, 13, 11, 0.52) 52%, rgba(9, 13, 11, 0.1) 70%, transparent 86%),
+              linear-gradient(to top, rgba(9, 13, 11, 0.82) 0%, rgba(9, 13, 11, 0.25) 28%, transparent 52%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.impact-shell {
+  position: relative;
+  z-index: 2;
+  max-width: var(--max-w, 1360px);
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: clamp(32px, 4vw, 64px);
+}
+
+.impact-main {
+  flex: 1;
+  max-width: 660px;
+  display: flex;
+  flex-direction: column;
+}
+
+.impact-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0 0 clamp(22px, 2.6vw, 36px) 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.impact-eyebrow span {
+  opacity: 0.6;
+}
+
+.impact-title {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(42px, 4.6vw, 62px);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  color: #ffffff;
+  margin: 0 0 clamp(20px, 2.2vw, 28px) 0;
+}
+
+.impact-title-highlight {
+  color: #88ca66;
+}
+
+.impact-desc {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(15.5px, 1.25vw, 17.5px);
+  font-weight: 400;
+  line-height: 1.58;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 530px;
+  margin: 0 0 clamp(36px, 4vw, 50px) 0;
+}
+
+.impact-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin: 0 0 clamp(36px, 4vw, 48px) 0;
+  padding: 0;
+}
+
+.impact-metric-col {
+  position: relative;
+  padding: 0 clamp(12px, 1.4vw, 22px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.impact-metric-col:first-child {
+  padding-left: 0;
+}
+
+.impact-metric-col:not(:first-child)::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.impact-metric-icon {
+  color: #ffffff;
+  opacity: 0.95;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 28px;
+}
+
+.impact-metric-num {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(28px, 2.5vw, 36px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.impact-metric-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: clamp(10px, 0.76vw, 11px);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.impact-actions {
+  margin-bottom: clamp(34px, 3.8vw, 46px);
+}
+
+.impact-button {
+  background: #5E9B44 !important;
+  color: #ffffff !important;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  padding: 14px 28px !important;
+  border-radius: 6px !important;
+  border: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  width: fit-content;
+}
+
+.impact-button:hover {
+  background: #6bb04e !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(94, 155, 68, 0.35);
+}
+
+.impact-foot-kicker {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.58);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: auto 0 0 0;
+}
+
+.impact-aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  text-align: right;
+  min-width: 220px;
+}
+
+.impact-manifest-words {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  font-size: clamp(22px, 1.85vw, 28px);
+  line-height: 1.14;
+  letter-spacing: 0.03em;
+  color: #1a4d2d;
+}
+
+.impact-manifest-bar {
+  display: block;
+  width: 32px;
+  height: 5px;
+  background: #235835;
+  margin-top: 14px;
+  border-radius: 1px;
+}
+
+.impact-credit {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.72);
+  margin-top: auto;
+}
+
+.impact-credit strong {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+@media (max-width: 1024px) {
+  .impact-aside {
+    min-width: 180px;
+  }
+  .impact-manifest-words {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .collaboration#colaboracao {
+    min-height: auto;
+    background-position: 72% center !important;
+  }
+  .impact-shell {
+    flex-direction: column;
+    gap: 44px;
+  }
+  .impact-aside {
+    align-items: flex-start;
+    text-align: left;
+    min-width: 0;
+  }
+  .impact-manifest-words {
+    display: none;
+  }
+  .impact-credit {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .impact-metrics-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px 16px;
+  }
+  .impact-metric-col {
+    padding: 0 !important;
+  }
+  .impact-metric-col::before {
+    display: none !important;
+  }
+  .impact-button {
+    width: 100% !important;
+  }
+}
+
