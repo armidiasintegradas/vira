@@ -30,9 +30,13 @@ test('as cinco etapas do processo estão documentadas com numeração, ícones e
   assert.match(indexHtml, /Infraestrutura sustentável para um futuro melhor/);
 });
 
-test('botão CTA e rodapé com marca estão presentes', () => {
+test('botão CTA, manifesto vertical e rótulos contextuais da fotomontagem estão presentes', () => {
   assert.match(indexHtml, /class="button process-button"[^>]*>[\s\S]*?Conheça o processo →/);
   assert.match(indexHtml, /class="process-foot-logo"/);
+  assert.match(indexHtml, /class="process-vertical-manifesto"[\s\S]*?RESÍDUOS[\s\S]*?HOJE\.[\s\S]*?CIDADES[\s\S]*?AMANHÃ\./);
+  assert.match(indexHtml, /class="process-collage-label label-pessoas"[\s\S]*?PESSOAS[\s\S]*?MUDANÇAS/);
+  assert.match(indexHtml, /class="process-collage-label label-tecnologia"[\s\S]*?TECNOLOGIA[\s\S]*?IMPACTO/);
+  assert.match(indexHtml, /class="process-collage-label label-solucoes"[\s\S]*?SOLUÇÕES[\s\S]*?MELHORES/);
 });
 
 test('estilos de alta fidelidade para o palco de processo dourado ocre estão configurados', () => {
@@ -40,6 +44,7 @@ test('estilos de alta fidelidade para o palco de processo dourado ocre estão co
   assert.match(homeCss, /\.process-section#processo\s*\{[^}]*background-image:\s*url\(['"]assets\/processo-operacao-hero\.png['"]\)/);
   assert.match(homeCss, /\.process-steps-grid\s*\{[^}]*grid-template-columns:\s*repeat\(5,\s*1fr\)/);
   assert.match(homeCss, /\.process-button\s*\{[^}]*background:\s*#142519/);
+  assert.match(homeCss, /\.process-vertical-manifesto\s*\{[^}]*text-align:\s*left/);
   assert.match(homeCss, /@media\s*\(max-width:\s*720px\)[\s\S]*?\.process-steps-grid\s*\{[^}]*grid-template-columns:\s*1fr/);
 });
 
