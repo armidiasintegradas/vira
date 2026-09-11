@@ -16,3 +16,17 @@
 @media(max-width:700px){.product-switcher{padding-inline:16px}.platform-gateways{grid-template-columns:1fr}.platform-page{padding-bottom:max(24px,env(safe-area-inset-bottom))}.platform-hero{padding-top:64px}.platform-hero h1{font-size:clamp(52px,16vw,82px)}.platform-action{margin-inline:16px}.platform-footer{align-items:flex-start;flex-direction:column}.passport-story li{grid-template-columns:40px 1fr}.passport-story li p{grid-column:2}.passport-tabs,.tech-filters{scroll-snap-type:x proximity}.passport-tab,.tech-filter{scroll-snap-align:start}}
 @media(max-width:620px){.tech-catalog{grid-template-columns:1fr}}
 @media(max-width:520px){.passport-field-grid{grid-template-columns:1fr}}
+
+/* CO-001 — Processo: refinamento final aprovado */
+#processo .process-hero-copy{max-width:min(44vw,560px)}
+#processo .process-eyebrow{font-size:0!important;letter-spacing:0!important;gap:0!important;margin-bottom:clamp(16px,1.8vw,24px)!important}
+#processo .process-eyebrow>span{display:none!important}
+#processo .process-eyebrow::after{content:"NOSSO PROCESSO";font-family:var(--font-mono,"IBM Plex Mono",monospace);font-size:11px;font-weight:500;letter-spacing:.16em;line-height:1.2;text-transform:uppercase;color:#161a17}
+#processo .process-title{font-size:clamp(42px,4.4vw,64px)!important;font-weight:700!important;line-height:.98!important;letter-spacing:-.045em!important;max-width:9.5ch}
+#processo .process-title::after{content:"."}
+#processo .process-desc{font-size:0!important;line-height:0!important;max-width:460px!important;margin-bottom:0!important}
+#processo .process-desc::after{content:"Transformamos resíduos em soluções para cidades mais sustentáveis, unindo tecnologia, impacto social e desenvolvimento urbano.";display:block;font-family:var(--font-main,"Manrope",sans-serif);font-size:clamp(14px,1.05vw,16px);font-weight:400;line-height:1.55;color:rgba(20,24,21,.88)}
+#processo .process-actions{display:none!important}
+#processo .process-foot-logo{content:url('assets/downloads/VIRA-Logo-Policromatico.svg');height:clamp(17px,1.45vw,22px)!important;width:auto!important;opacity:.96!important}
+@media(max-width:720px){#processo.process-section{background-size:auto 56vw!important;background-position:right top!important;padding-top:32px!important}#processo .process-hero-copy{max-width:100%;padding-right:30vw}#processo .process-title{font-size:clamp(38px,11vw,52px)!important;max-width:8.5ch}#processo .process-desc{max-width:100%!important}#processo .process-top-row{gap:18px!important;margin-bottom:30px!important}#processo .process-vertical-manifesto{font-size:9px!important;line-height:1.45!important;max-width:18ch}#processo .process-foot-bar{gap:20px;align-items:flex-end}#processo .process-foot-kicker{font-size:9px!important;line-height:1.4;max-width:28ch}}
+@media(max-width:520px){#processo.process-section{background-size:auto 48vw!important;background-position:110% 0!important}#processo .process-hero-copy{padding-right:18vw}#processo .process-title{font-size:clamp(36px,10.5vw,46px)!important}#processo .process-top-row{padding-top:0}#processo .process-vertical-manifesto{margin-top:4px!important}#processo .process-foot-logo{height:18px!important}}
