@@ -1849,15 +1849,80 @@ footer#rodape.site-footer {
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-/* 3. Header Polish */
+/* 3. Header Polish & Dynamic Brand Contrast */
 .site-header {
-  transition: height 0.3s var(--ease), background-color 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease !important;
+  transition: height 0.3s var(--ease), background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 0.3s ease, border-color 0.3s ease !important;
 }
 
 .site-header.scrolled {
-  background: rgba(14, 18, 15, 0.92) !important;
   backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+
+/* Fundo Escuro (Padrão e Seções Escuras: Hero, Jornada, Calculadora, Impacto, Contato, Rodapé) */
+body:not(.header-on-light) .site-header.scrolled {
+  background: rgba(14, 18, 15, 0.94) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+body:not(.header-on-light) .site-header .brand img {
+  content: url("assets/marca-site-menu.webp") !important;
+  width: 150px;
+  height: auto;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4)) !important;
+}
+
+body:not(.header-on-light) .site-header .menu-toggle span {
+  background: #ffffff !important;
+}
+
+/* Fundo Claro (Seções Claras: Manifesto, Indicadores, Coleção, Expertise, Agenda 2030, Processo, FAQ) */
+body.header-on-light .site-header.scrolled {
+  background: rgba(248, 248, 244, 0.94) !important;
+  border-bottom: 1px solid rgba(21, 24, 20, 0.09) !important;
+}
+
+body.header-on-light .site-header:not(.scrolled) {
+  background: rgba(248, 248, 244, 0.92) !important;
+  border-bottom: 1px solid rgba(21, 24, 20, 0.08) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+}
+
+body.header-on-light .site-header .brand img {
+  content: url("assets/marca-logo-final.png") !important;
+  width: 150px;
+  height: auto;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.04)) !important;
+}
+
+body.header-on-light .site-header .menu-toggle span {
+  background: #151814 !important;
+}
+
+/* Menu Gaveta Aberto */
+body.menu-open .site-header {
+  background: transparent !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+body.menu-open .site-header .brand img {
+  content: url("assets/marca-site-menu.webp") !important;
+  filter: none !important;
+}
+
+body.menu-open .site-header .menu-toggle span {
+  background: #ffffff !important;
+}
+
+@media (max-width: 600px) {
+  .site-header .brand img,
+  body.header-on-light .site-header .brand img,
+  body:not(.header-on-light) .site-header .brand img {
+    width: 132px !important;
+  }
 }
 
 /* 4. Manifesto Editorial */

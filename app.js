@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded",()=>{
   menu.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>setMenu(false)));
   document.querySelectorAll(".site-header .brand,.footer-brand").forEach(brand=>brand.addEventListener("click",event=>{event.preventDefault();setMenu(false);window.scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});history.replaceState(null,"",`${location.pathname}${location.search}`)}));
   document.addEventListener("keydown",e=>{if(e.key==="Escape")setMenu(false)});
-  const lightSections=".manifesto,.stats,.collection,.expertise,.proof,.faq,.contact,.ods-section";
-  const updateHeaderTheme=()=>{header.classList.toggle("scrolled",scrollY>50);const probeY=Math.max(1,Math.min(innerHeight-1,header.getBoundingClientRect().height/2));const section=document.elementsFromPoint(innerWidth/2,probeY).map(element=>element.closest?.("main>section")).find(Boolean);document.body.classList.toggle("header-on-light",Boolean(section?.matches(lightSections)))};
+  const lightSections="#manifesto,#indicadores,#colecao,#expertise,#agenda-2030,#processo,#faq,.manifesto,.stats,.collection,.expertise,.ods-section,.faq";
+  const updateHeaderTheme=()=>{header.classList.toggle("scrolled",scrollY>50);const headerHeight=header.getBoundingClientRect().height||78;const probeY=Math.max(1,Math.min(innerHeight-1,headerHeight*.6));const probeX=Math.min(Math.max(24,innerWidth*.12),220);const hitElements=document.elementsFromPoint(probeX,probeY);const section=hitElements.map(el=>el.closest?.("main>section, footer, section")).find(Boolean);const isLight=Boolean(section&&section.matches(lightSections));document.body.classList.toggle("header-on-light",isLight)};
   addEventListener("scroll",updateHeaderTheme,{passive:true});addEventListener("resize",updateHeaderTheme);updateHeaderTheme();
 
   const manifesto=document.querySelector("#manifesto"),manifestoCopy=manifesto.querySelector(".manifesto-copy");
