@@ -670,16 +670,22 @@
   position: relative !important;
   background-color: #ECC24E !important;
   background-image: url('assets/processo-operacao-hero.png') !important;
-  background-size: auto clamp(420px, 44vw, 530px) !important;
+  background-size: auto clamp(460px, 48vw, 535px) !important;
   background-position: right top !important;
   background-repeat: no-repeat !important;
-  min-height: clamp(620px, 60vw, 840px);
-  padding: clamp(42px, 4.4vw, 64px) var(--pad, 40px) clamp(28px, 3vw, 44px) var(--pad, 40px) !important;
+  min-height: clamp(520px, 51.6vw, 720px);
+  padding: clamp(28px, 3.2vw, 44px) var(--pad, 40px) clamp(14px, 1.8vw, 24px) var(--pad, 40px) !important;
   box-sizing: border-box;
   overflow: hidden;
   color: #161a17;
   border-top: 1px solid rgba(22, 26, 23, 0.12);
   border-bottom: 1px solid rgba(22, 26, 23, 0.12);
+}
+
+@media (min-width: 1400px) {
+  .process-section#processo {
+    background-position: calc(50% + 700px - 1024px) top !important;
+  }
 }
 
 .process-shell {
@@ -696,13 +702,13 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: clamp(120px, 13vw, 180px);
+  margin-bottom: clamp(20px, 2.6vw, 36px);
   position: relative;
   z-index: 4;
 }
 
 .process-hero-copy {
-  max-width: clamp(240px, 22vw, 300px);
+  max-width: clamp(260px, 25vw, 320px);
 }
 
 .process-eyebrow {
@@ -812,6 +818,8 @@
   color: #141815 !important;
   margin: 0 !important;
   text-transform: uppercase !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 .process-manifesto-dash {
@@ -824,7 +832,7 @@
 .process-steps-grid {
   display: grid !important;
   grid-template-columns: repeat(5, 1fr) !important;
-  gap: 0 !important;
+  gap: clamp(10px, 1.4vw, 22px) !important;
   margin: 0 !important;
   padding: 0 !important;
   position: relative;
@@ -833,45 +841,29 @@
 
 .process-step-col {
   position: relative;
-  padding: 0 clamp(10px, 1.6vw, 24px) !important;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.process-step-col:first-child {
-  padding-left: 0 !important;
-}
-
-.process-step-col:last-child {
-  padding-right: 0 !important;
-}
-
-.process-step-col:not(:first-child)::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 32px;
-  bottom: 0;
-  width: 1px;
-  background: rgba(22, 26, 23, 0.22);
+.process-step-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: clamp(8px, 1vw, 14px);
+  margin-bottom: clamp(10px, 1.1vw, 14px);
+  width: 100%;
 }
 
 .process-step-num {
   font-family: var(--font-mono, 'IBM Plex Mono', monospace) !important;
-  font-size: 13px !important;
+  font-size: 12.5px !important;
   font-weight: 600 !important;
   letter-spacing: 0.04em !important;
   color: #141815 !important;
-  margin-bottom: 14px !important;
-}
-
-.process-step-icon-row {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 14px;
+  margin: 0 !important;
+  flex-shrink: 0;
+  width: 18px;
 }
 
 .process-step-icon {
@@ -879,7 +871,8 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  height: 32px;
+  height: 30px;
+  flex-shrink: 0;
 }
 
 .process-step-icon svg {
@@ -890,24 +883,36 @@
   display: flex;
   align-items: center;
   color: rgba(20, 24, 21, 0.55) !important;
-  margin-right: 6px;
+  margin-left: auto;
+  padding-right: 4px;
+}
+
+.process-step-body {
+  position: relative;
+  border-left: 1px solid rgba(22, 26, 23, 0.26);
+  padding-left: clamp(10px, 1.1vw, 16px);
+  margin-left: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .process-step-title {
   font-family: var(--font-main, 'Manrope', sans-serif) !important;
-  font-size: clamp(14px, 1.1vw, 15.5px) !important;
+  font-size: clamp(13px, 1.05vw, 15px) !important;
   font-weight: 800 !important;
   letter-spacing: 0.04em !important;
   text-transform: uppercase !important;
   color: #141815 !important;
-  margin: 0 0 8px 0 !important;
+  margin: 0 0 6px 0 !important;
+  line-height: 1.2 !important;
 }
 
 .process-step-text {
   font-family: var(--font-main, 'Manrope', sans-serif) !important;
-  font-size: clamp(12.5px, 0.95vw, 13.5px) !important;
+  font-size: clamp(11.5px, 0.86vw, 12.5px) !important;
   font-weight: 400 !important;
-  line-height: 1.5 !important;
+  line-height: 1.45 !important;
   color: rgba(20, 24, 21, 0.85) !important;
   margin: 0 !important;
 }
@@ -916,8 +921,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: clamp(28px, 3.4vw, 48px);
-  padding-top: 16px;
+  margin-top: clamp(14px, 1.8vw, 24px);
+  padding-top: 8px;
   position: relative;
   z-index: 4;
 }
@@ -936,22 +941,29 @@
 }
 
 .process-foot-logo {
-  height: clamp(20px, 1.8vw, 26px);
+  height: clamp(18px, 1.6vw, 24px);
   width: auto;
   opacity: 0.95;
   display: block;
 }
 
-@media (max-width: 1024px) {
+.process-step-icon svg {
+  stroke: #141815 !important;
+  stroke-width: 1.4 !important;
+}
+
+.process-step-arrow svg {
+  stroke: rgba(20, 24, 21, 0.55) !important;
+  stroke-width: 1.2 !important;
+}
+
+@media (max-width: 860px) {
   .process-steps-grid {
     grid-template-columns: repeat(3, 1fr) !important;
-    gap: 28px 20px !important;
+    gap: 24px 18px !important;
   }
-  .process-step-col {
-    padding: 0 !important;
-  }
-  .process-step-col::before {
-    display: none !important;
+  .process-step-body {
+    margin-left: 0;
   }
 }
 
@@ -964,10 +976,11 @@
   .process-top-row {
     flex-direction: column;
     gap: 28px;
+    margin-bottom: 32px !important;
   }
   .process-steps-grid {
     grid-template-columns: 1fr !important;
-    gap: 24px !important;
+    gap: 20px !important;
   }
   .process-step-arrow {
     display: none !important;
