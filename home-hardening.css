@@ -2070,6 +2070,16 @@ a, button {
   overflow: hidden;
 }
 
+/* Clareamento de 40% do palco cênico de fale conosco / contato */
+.contact.section#contato::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.40);
+  pointer-events: none;
+  z-index: 1;
+}
+
 .contact-stage-container {
   max-width: 1400px;
   margin: 0 auto;
