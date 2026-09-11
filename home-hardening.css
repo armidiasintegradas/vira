@@ -1798,6 +1798,90 @@ footer#rodape.site-footer {
   }
 }
 
+/* ==========================================================================
+   Harmonização Visual Global — Tipografia, Diagramação e Respiros
+   ========================================================================== */
+
+/* 1. Alinhamento Global e Ritmo de Containers */
+:root {
+  --site-max-w: 1400px;
+}
+
+/* 2. Hero Visual Polish */
+.hero {
+  background-color: #0b0e0c !important;
+}
+
+.hero-media img {
+  object-position: center 36% !important;
+}
+
+.hero-shade {
+  background: linear-gradient(
+      90deg,
+      rgba(8, 11, 9, 0.82) 0%,
+      rgba(8, 11, 9, 0.6) 42%,
+      rgba(8, 11, 9, 0.18) 72%,
+      rgba(8, 11, 9, 0.28) 100%
+    ),
+    linear-gradient(0deg, rgba(8, 11, 9, 0.7) 0%, transparent 55%) !important;
+}
+
+.hero h1 {
+  font-family: var(--font-main, 'Manrope', sans-serif) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.04em !important;
+  line-height: 1.02 !important;
+}
+
+.hero-content > p {
+  font-family: var(--font-main, 'Manrope', sans-serif) !important;
+  font-weight: 400 !important;
+  line-height: 1.55 !important;
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+
+.hero-proof {
+  background: rgba(15, 20, 16, 0.45);
+  backdrop-filter: blur(12px);
+  padding: 12px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* 3. Header Polish */
+.site-header {
+  transition: height 0.3s var(--ease), background-color 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease !important;
+}
+
+.site-header.scrolled {
+  background: rgba(14, 18, 15, 0.92) !important;
+  backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 4. Manifesto Editorial */
+.manifesto-copy {
+  font-family: var(--font-main, 'Manrope', sans-serif) !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.035em !important;
+  line-height: 1.2 !important;
+}
+
+/* 5. Unificação de Eyebrows e Kickers */
+:where(.eyebrow, .kicker, .ods-eyebrow, .platform-kicker, .resource-kicker, .faq-eyebrow, .impact-eyebrow, .process-eyebrow) {
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace) !important;
+  letter-spacing: 0.14em !important;
+  font-weight: 500 !important;
+  text-transform: uppercase !important;
+}
+
+/* 6. Suavidade de Transições Globais para Links e Botões */
+a, button {
+  transition-timing-function: var(--ease);
+}
+
+
 
 
 
