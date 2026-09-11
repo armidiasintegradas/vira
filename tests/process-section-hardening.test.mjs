@@ -39,7 +39,7 @@ test('botão CTA e manifesto vertical estão presentes, e rótulos contextuais s
 });
 
 test('estilos de alta fidelidade para o palco de processo dourado ocre estão configurados', () => {
-  assert.match(homeCss, /\.process-section#processo\s*\{[^}]*background-color:\s*#ECC24E/);
+  assert.match(homeCss, /\.process-section#processo\s*\{[^}]*background-color:\s*#f1c546/i);
   assert.match(homeCss, /\.process-section#processo\s*\{[^}]*background-image:\s*url\(['"]assets\/processo-operacao-hero\.png['"]\)/);
   assert.match(homeCss, /\.process-steps-grid\s*\{[^}]*grid-template-columns:\s*repeat\(5,\s*1fr\)/);
   assert.match(homeCss, /\.process-button\s*\{[^}]*background:\s*#142519/);

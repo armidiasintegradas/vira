@@ -668,12 +668,12 @@
 .process-section#processo {
   display: block !important;
   position: relative !important;
-  background-color: #ECC24E !important;
+  background-color: #f1c546 !important;
   background-image: url('assets/processo-operacao-hero.png') !important;
-  background-size: auto clamp(460px, 48vw, 535px) !important;
+  background-size: auto clamp(322px, 33.6vw, 375px) !important;
   background-position: right top !important;
   background-repeat: no-repeat !important;
-  min-height: clamp(520px, 51.6vw, 720px);
+  min-height: clamp(380px, 36vw, 504px);
   padding: clamp(28px, 3.2vw, 44px) var(--pad, 40px) clamp(14px, 1.8vw, 24px) var(--pad, 40px) !important;
   box-sizing: border-box;
   overflow: hidden;
