@@ -918,8 +918,23 @@
   background-position: left top !important;
   background-size: cover !important;
   padding: clamp(60px, 7vw, 95px) var(--pad, 40px) clamp(70px, 8vw, 105px) !important;
-  color: #111512;
+  color: #ffffff;
   overflow: hidden;
+}
+
+/* Escurecimento de 50% do palco cênico de dúvidas */
+.faq.section#faq::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(14, 18, 15, 0.50);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.faq.section#faq > * {
+  position: relative;
+  z-index: 2;
 }
 
 .faq-top-banner {
@@ -937,7 +952,7 @@
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #555e51;
+  color: rgba(255, 255, 255, 0.72) !important;
 }
 
 .faq-shell {
@@ -967,12 +982,12 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #555e51;
+  color: #8cc378 !important;
   margin-bottom: 20px;
 }
 
 .faq-eyebrow span {
-  color: #555e51;
+  color: #8cc378 !important;
 }
 
 .faq-title {
@@ -981,7 +996,7 @@
   font-weight: 800 !important;
   line-height: 1.05 !important;
   letter-spacing: -0.03em !important;
-  color: #111512 !important;
+  color: #ffffff !important;
   margin: 0 0 22px 0 !important;
 }
 
@@ -994,7 +1009,7 @@
   font-size: clamp(14px, 1.1vw, 15.5px);
   font-weight: 400;
   line-height: 1.6;
-  color: #535d50;
+  color: rgba(255, 255, 255, 0.86) !important;
   margin-bottom: 32px;
   max-width: 320px;
 }
@@ -1010,7 +1025,7 @@
   justify-content: center !important;
   padding: 13px 26px !important;
   border-radius: 999px !important;
-  background: #19271e !important;
+  background: #569d3d !important;
   color: #ffffff !important;
   font-family: var(--font-main, 'Manrope', sans-serif) !important;
   font-size: 11.5px !important;
@@ -1020,14 +1035,14 @@
   text-decoration: none !important;
   border: none !important;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(25, 39, 30, 0.16);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28) !important;
   transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
 }
 
 .faq-button:hover {
-  background: #253d2d !important;
+  background: #68b24d !important;
   transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(25, 39, 30, 0.22);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35) !important;
 }
 
 .faq-content {
@@ -1416,10 +1431,10 @@ footer#rodape.site-footer {
   background-color: #0b0f0c !important;
   background-image: linear-gradient(
       to bottom,
-      rgba(11, 15, 12, 0.42) 0%,
-      rgba(11, 15, 12, 0.22) 28%,
-      rgba(9, 13, 10, 0.82) 58%,
-      rgba(7, 10, 8, 0.96) 100%
+      rgba(7, 10, 8, 0.71) 0%,
+      rgba(7, 10, 8, 0.61) 28%,
+      rgba(6, 9, 7, 0.91) 58%,
+      rgba(4, 6, 5, 0.98) 100%
     ),
     url('assets/rodape-cidades-melhores-hero.jpg') !important;
   background-repeat: no-repeat !important;
