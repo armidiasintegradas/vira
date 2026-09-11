@@ -684,7 +684,7 @@
 
 @media (min-width: 1400px) {
   .process-section#processo {
-    background-position: calc(50% + 700px - 1024px) top !important;
+    background-position: right calc(50vw - 700px) top !important;
   }
 }
 
@@ -818,8 +818,8 @@
   color: #141815 !important;
   margin: 0 !important;
   text-transform: uppercase !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
 }
 
 .process-manifesto-dash {
