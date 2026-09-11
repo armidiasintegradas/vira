@@ -1406,5 +1406,398 @@
   }
 }
 
+/* ==========================================================================
+   Rodapé Institucional — Palco Cênico Urbano Sunset e Matriz de Navegação
+   ========================================================================== */
+
+footer#rodape.site-footer {
+  position: relative !important;
+  display: block !important;
+  background-color: #0b0f0c !important;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(11, 15, 12, 0.42) 0%,
+      rgba(11, 15, 12, 0.22) 28%,
+      rgba(9, 13, 10, 0.82) 58%,
+      rgba(7, 10, 8, 0.96) 100%
+    ),
+    url('assets/rodape-cidades-melhores-hero.jpg') !important;
+  background-repeat: no-repeat !important;
+  background-position: center top !important;
+  background-size: cover !important;
+  padding: clamp(75px, 8.5vw, 115px) var(--pad, 40px) 35px !important;
+  color: #ffffff !important;
+  overflow: hidden;
+}
+
+.footer-hero-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.footer-hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.footer-hero-left {
+  max-width: 680px;
+}
+
+.footer-hero-brand {
+  display: inline-block;
+  margin-bottom: clamp(34px, 4vw, 52px);
+  text-decoration: none;
+}
+
+.footer-hero-logo {
+  height: clamp(32px, 3.2vw, 40px);
+  width: auto;
+  display: block;
+}
+
+.footer-hero-title {
+  font-family: var(--font-main, 'Manrope', sans-serif) !important;
+  font-size: clamp(40px, 5.2vw, 68px) !important;
+  font-weight: 800 !important;
+  line-height: 1.04 !important;
+  letter-spacing: -0.035em !important;
+  color: #ffffff !important;
+  margin: 0 0 24px 0 !important;
+}
+
+.footer-hero-highlight {
+  color: #74b85c !important;
+}
+
+.footer-hero-subtitle {
+  font-family: var(--font-main, 'Manrope', sans-serif) !important;
+  font-size: clamp(15px, 1.25vw, 18px) !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  color: rgba(255, 255, 255, 0.82) !important;
+  margin: 0 0 32px 0 !important;
+}
+
+.footer-hero-cta {
+  display: flex;
+  align-items: center;
+}
+
+.footer-pill-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 12px;
+  padding: 13px 28px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  background: rgba(14, 20, 16, 0.38) !important;
+  backdrop-filter: blur(8px);
+  color: #ffffff !important;
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.footer-pill-btn:hover {
+  background: #569d3d !important;
+  border-color: #569d3d !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(86, 157, 61, 0.3);
+}
+
+.footer-pill-arrow {
+  font-size: 14px;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.footer-pill-btn:hover .footer-pill-arrow {
+  transform: translateX(3px);
+}
+
+.footer-hero-right {
+  flex-shrink: 0;
+  padding-top: 8px;
+}
+
+.footer-vertical-manifesto {
+  text-align: right;
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace) !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  line-height: 1.6 !important;
+  letter-spacing: 0.16em !important;
+  color: rgba(255, 255, 255, 0.72) !important;
+  margin: 0 !important;
+  text-transform: uppercase !important;
+}
+
+.footer-manifesto-dash {
+  display: block;
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.footer-divider-wrap {
+  max-width: 1400px;
+  margin: clamp(45px, 5.5vw, 75px) auto clamp(36px, 4vw, 55px);
+}
+
+.footer-divider {
+  border: none !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.16) !important;
+  margin: 0 !important;
+}
+
+.footer-nav-container {
+  max-width: 1400px;
+  margin: 0 auto clamp(40px, 4.5vw, 60px);
+}
+
+.footer-nav-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr 1.3fr 1fr !important;
+  gap: clamp(20px, 3vw, 40px) !important;
+}
+
+.footer-col-title {
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace) !important;
+  font-size: 10.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  color: rgba(255, 255, 255, 0.55) !important;
+  margin: 0 0 18px 0 !important;
+}
+
+.footer-col-links {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.footer-col-links li {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.footer-col-links li a {
+  font-family: var(--font-main, 'Manrope', sans-serif) !important;
+  font-size: 13.5px !important;
+  font-weight: 400 !important;
+  color: rgba(255, 255, 255, 0.82) !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease;
+}
+
+.footer-col-links li a:hover {
+  color: #74b85c !important;
+}
+
+.footer-contact-list {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.footer-contact-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-main, 'Manrope', sans-serif) !important;
+  font-size: 13.5px !important;
+  color: rgba(255, 255, 255, 0.82) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.footer-contact-list li svg {
+  color: #74b85c !important;
+  stroke: #74b85c !important;
+  flex-shrink: 0;
+}
+
+.footer-contact-list li a {
+  color: rgba(255, 255, 255, 0.82) !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease;
+}
+
+.footer-contact-list li a:hover {
+  color: #74b85c !important;
+}
+
+.footer-location-item {
+  align-items: flex-start !important;
+}
+
+.footer-location-item span {
+  font-size: 12.5px !important;
+  line-height: 1.4 !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.footer-social-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.footer-social-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-social-circle:hover {
+  border-color: #74b85c !important;
+  background: rgba(116, 184, 92, 0.18) !important;
+  transform: translateY(-2px);
+}
+
+.footer-social-circle svg {
+  color: #ffffff;
+  stroke: #ffffff;
+}
+
+.footer-sub-manifesto {
+  border-left: 1px solid rgba(255, 255, 255, 0.35);
+  padding-left: 14px;
+}
+
+.footer-sub-manifesto p {
+  margin: 0 !important;
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace) !important;
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.12em !important;
+  line-height: 1.55 !important;
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+
+.footer-bottom-bar-wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.footer-bottom-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-bottom-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footer-bottom-brand img {
+  height: 20px;
+  width: auto;
+  opacity: 0.88;
+  display: block;
+}
+
+.footer-copyright-text {
+  font-family: var(--font-main, 'Manrope', sans-serif) !important;
+  font-size: 12px !important;
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+
+.footer-bottom-right {
+  display: flex;
+  align-items: center;
+}
+
+.footer-equation {
+  margin: 0 !important;
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace) !important;
+  font-size: 10.5px !important;
+  letter-spacing: 0.1em !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+  text-transform: uppercase !important;
+}
+
+.footer-equation span {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.footer-eq-dash {
+  margin-left: 6px;
+}
+
+@media (max-width: 1024px) {
+  .footer-nav-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 32px 24px !important;
+  }
+  .footer-col-contact {
+    grid-column: 1 / 3 !important;
+  }
+  .footer-col-social {
+    grid-column: 3 / 4 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  footer#rodape.site-footer {
+    padding: 60px 20px 30px !important;
+  }
+  .footer-hero-top {
+    flex-direction: column;
+    gap: 32px;
+  }
+  .footer-hero-right {
+    align-self: flex-start;
+    padding-top: 0;
+  }
+  .footer-vertical-manifesto {
+    text-align: left !important;
+  }
+  .footer-nav-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+  .footer-col-contact {
+    grid-column: auto !important;
+  }
+  .footer-col-social {
+    grid-column: auto !important;
+  }
+  .footer-bottom-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+}
+
+
 
 

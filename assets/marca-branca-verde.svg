@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 136 38" width="136" height="38" fill="none">
+  <!-- V -->
+  <path d="M2 5h12l8.8 21.5L31.6 5h12L28.2 35H17.4L2 5z" fill="#FFFFFF"/>
+  <!-- I -->
+  <path d="M49 5h10v30H49V5z" fill="#FFFFFF"/>
+  <!-- R -->
+  <path d="M64 5h16.5c7.5 0 12.5 4.2 12.5 10.5 0 4.6-2.6 7.8-6.8 9.3l7.8 10.2H81.2l-6.8-9h-0.9v9H64V5zm9.5 13h6.8c2.8 0 4.5-1.4 4.5-4s-1.7-4-4.5-4h-6.8v8z" fill="#FFFFFF"/>
+  <!-- A -->
+  <path d="M96 35l13.2-30h11.6L134 35h-10.6l-2.6-6.5h-12.8L105.4 35H96zm15.4-14h8.4l-4.2-10.2-4.2 10.2z" fill="#FFFFFF"/>
+  <!-- Green Triangle Accent in A -->
+  <polygon points="113.2,28.5 120.8,28.5 117,19" fill="#569d3d"/>
+</svg>
