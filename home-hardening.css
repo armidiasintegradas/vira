@@ -2070,12 +2070,12 @@ a, button {
   overflow: hidden;
 }
 
-/* Clareamento de 40% do palco cênico de fale conosco / contato */
+/* Escurecimento de 30% do palco cênico de fale conosco / contato */
 .contact.section#contato::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.40);
+  background: rgba(14, 18, 15, 0.30);
   pointer-events: none;
   z-index: 1;
 }
@@ -2104,7 +2104,8 @@ a, button {
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #18221a;
+  color: #ffffff !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 }
 
 /* 2. Shell Grid Principal */
@@ -2121,6 +2122,18 @@ a, button {
   flex-direction: column;
   justify-content: space-between;
   min-height: 100%;
+}
+
+/* Moldura branca translúcida por trás dos elementos do lado esquerdo */
+.contact-editorial {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  border-radius: 16px;
+  padding: clamp(24px, 2.8vw, 36px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+  margin-bottom: 28px;
 }
 
 .contact-title {
@@ -2143,7 +2156,7 @@ a, button {
   line-height: 1.55 !important;
   color: #222a24 !important;
   max-width: 440px;
-  margin-bottom: 36px !important;
+  margin-bottom: 32px !important;
 }
 
 /* Trio de canais rápidos */
@@ -2151,14 +2164,13 @@ a, button {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
-  margin-bottom: clamp(48px, 6.5vw, 96px);
-  max-width: 500px;
+  margin-bottom: 0;
+  max-width: 100%;
 }
 
 .contact-channel-card {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.85);
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
   border-radius: 12px;
   padding: 12px 14px;
   display: flex;
@@ -2166,7 +2178,7 @@ a, button {
   gap: 10px;
   text-decoration: none;
   color: inherit;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -2207,7 +2219,7 @@ a, button {
   text-overflow: ellipsis;
 }
 
-/* Manifesto Vertical Inferior */
+/* Manifesto Vertical Inferior — Branco sobre o piso escurecido */
 .contact-vertical-manifesto {
   font-family: var(--font-mono, 'IBM Plex Mono', monospace) !important;
   font-size: 10.5px;
@@ -2215,10 +2227,11 @@ a, button {
   letter-spacing: 0.15em;
   line-height: 1.6;
   text-transform: uppercase;
-  color: #151c16;
-  border-left: 2px solid #151c16;
+  color: #ffffff !important;
+  border-left: 2px solid #ffffff !important;
   padding-left: 14px;
   margin-top: auto;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.75);
 }
 
 /* 4. Coluna Direita: Cartões Flutuantes */

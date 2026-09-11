@@ -65,7 +65,10 @@ test('cartão de especificação técnica possui vitrine dos 3 produtos com medi
 
 test('estilos CSS de alta fidelidade para o palco de contato estão configurados', () => {
   assert.match(homeCss, /\.contact\.section#contato\s*\{[^}]*background-image:\s*url\(['"]assets\/contato-parque-hero\.jpg['"]\)/);
-  assert.match(homeCss, /\.contact\.section#contato::before\s*\{[^}]*background:\s*rgba\(255,\s*255,\s*255,\s*0\.40\)/);
+  assert.match(homeCss, /\.contact\.section#contato::before\s*\{[^}]*background:\s*rgba\(14,\s*18,\s*15,\s*0\.30\)/);
+  assert.match(homeCss, /\.contact-editorial\s*\{[^}]*background:\s*rgba\(255,\s*255,\s*255,\s*0\.88\)/);
+  assert.match(homeCss, /\.contact-vertical-manifesto\s*\{[^}]*color:\s*#ffffff/);
+  assert.match(homeCss, /\.contact-vertical-manifesto\s*\{[^}]*border-left:\s*2px solid #ffffff/);
   assert.match(homeCss, /\.contact-title-highlight\s*\{[^}]*color:\s*#467A32/);
   assert.match(homeCss, /\.contact-channel-badge\s*\{[^}]*background:\s*#467A32/);
   assert.match(homeCss, /\.contact-btn-submit\s*\{[^}]*background:\s*#142519/);
