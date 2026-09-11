@@ -660,3 +660,249 @@
   }
 }
 
+/* ========================================================
+   Processo: Da Operação ao Projeto (Golden Ochre Stage)
+   ======================================================== */
+.process-section#processo {
+  display: block !important;
+  position: relative !important;
+  background-color: #ECC24E !important;
+  background-image: url('assets/processo-operacao-hero.png') !important;
+  background-size: cover !important;
+  background-position: center top !important;
+  background-repeat: no-repeat !important;
+  min-height: clamp(660px, 64vw, 880px);
+  padding: clamp(68px, 7.2vw, 108px) var(--pad) clamp(40px, 4.5vw, 60px) var(--pad) !important;
+  box-sizing: border-box;
+  overflow: hidden;
+  color: #161a17;
+  border-top: 1px solid rgba(22, 26, 23, 0.12);
+  border-bottom: 1px solid rgba(22, 26, 23, 0.12);
+}
+
+.process-shell {
+  max-width: var(--max-w, 1360px);
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.process-top-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: clamp(56px, 6vw, 90px);
+}
+
+.process-hero-copy {
+  max-width: 480px;
+}
+
+.process-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #161a17;
+  margin: 0 0 clamp(20px, 2.4vw, 32px) 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.process-eyebrow span {
+  opacity: 0.55;
+}
+
+.process-title {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(42px, 4.6vw, 62px);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  color: #141815;
+  margin: 0 0 clamp(20px, 2.2vw, 28px) 0;
+}
+
+.process-desc {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(15px, 1.2vw, 17px);
+  font-weight: 400;
+  line-height: 1.58;
+  color: rgba(20, 24, 21, 0.88);
+  margin: 0 0 clamp(32px, 3.8vw, 44px) 0;
+}
+
+.process-actions {
+  margin-bottom: 0;
+}
+
+.process-button {
+  background: #142519 !important;
+  color: #ffffff !important;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  padding: 14px 28px !important;
+  border-radius: 6px !important;
+  border: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  width: fit-content;
+}
+
+.process-button:hover {
+  background: #233e2b !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(20, 37, 25, 0.28);
+}
+
+.process-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.process-step-col {
+  position: relative;
+  padding: 0 clamp(10px, 1.4vw, 24px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.process-step-col:first-child {
+  padding-left: 0;
+}
+
+.process-step-col:not(:first-child)::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 1px;
+  background: rgba(22, 26, 23, 0.18);
+}
+
+.process-step-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #141815;
+  margin-bottom: 14px;
+}
+
+.process-step-icon-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.process-step-icon {
+  color: #141815;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 32px;
+}
+
+.process-step-arrow {
+  font-size: 18px;
+  color: rgba(20, 24, 21, 0.55);
+  font-weight: 400;
+  margin-right: 4px;
+}
+
+.process-step-title {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(14px, 1.1vw, 16px);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #141815;
+  margin: 0 0 8px 0;
+}
+
+.process-step-text {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(12.5px, 0.95vw, 14px);
+  font-weight: 400;
+  line-height: 1.48;
+  color: rgba(20, 24, 21, 0.82);
+  margin: 0;
+}
+
+.process-foot-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: clamp(42px, 4.6vw, 68px);
+  padding-top: 20px;
+}
+
+.process-foot-kicker {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(20, 24, 21, 0.65);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.process-foot-logo {
+  height: clamp(20px, 1.8vw, 26px);
+  width: auto;
+  opacity: 0.9;
+}
+
+@media (max-width: 1024px) {
+  .process-steps-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px 20px;
+  }
+  .process-step-col {
+    padding: 0 !important;
+  }
+  .process-step-col::before {
+    display: none !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .process-section#processo {
+    min-height: auto;
+    background-position: 80% top !important;
+  }
+  .process-steps-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .process-step-arrow {
+    display: none;
+  }
+  .process-button {
+    width: 100% !important;
+  }
+}
+
+
