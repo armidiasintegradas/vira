@@ -1431,10 +1431,10 @@ footer#rodape.site-footer {
   background-color: #0b0f0c !important;
   background-image: linear-gradient(
       to bottom,
-      rgba(7, 10, 8, 0.71) 0%,
-      rgba(7, 10, 8, 0.61) 28%,
-      rgba(6, 9, 7, 0.91) 58%,
-      rgba(4, 6, 5, 0.98) 100%
+      rgba(7, 10, 8, 0.80) 0%,
+      rgba(7, 10, 8, 0.73) 28%,
+      rgba(6, 9, 7, 0.94) 58%,
+      rgba(4, 6, 5, 0.99) 100%
     ),
     url('assets/rodape-cidades-melhores-hero.jpg') !important;
   background-repeat: no-repeat !important;

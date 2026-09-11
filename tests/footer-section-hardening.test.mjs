@@ -7,7 +7,7 @@ const homeCss = readFileSync(new URL('../home-hardening.css', import.meta.url), 
 
 test('seção de rodapé possui estrutura editorial, logo de alta fidelidade e ancoragem #rodape', () => {
   assert.match(indexHtml, /id="rodape"/, 'ID #rodape deve existir');
-  assert.match(indexHtml, /class="footer-hero-brand"[\s\S]*?src="assets\/marca-branca-verde\.svg"/);
+  assert.match(indexHtml, /class="footer-hero-brand"[\s\S]*?src="assets\/marca-site-menu\.webp"/);
   assert.match(indexHtml, /<h2 class="footer-hero-title"[^>]*>[\s\S]*?Cidades<br>\s*melhores<br>\s*<span class="footer-hero-highlight">começam<br>com novas<br>escolhas\.<\/span>/);
   assert.match(indexHtml, /Infraestrutura sustentável para um futuro real\./);
   assert.match(indexHtml, /class="footer-pill-btn"[^>]*>[\s\S]*?FALE CONOSCO[\s\S]*?→/);
