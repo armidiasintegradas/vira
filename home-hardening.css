@@ -33,13 +33,16 @@
 /* ========================================================
    Agenda 2030: White Editorial Grid (Declarative Redesign)
    ======================================================== */
+/* ========================================================
+   Agenda 2030: White Editorial Grid (Continuous Matrix)
+   ======================================================== */
 .ods-section,
 .ods-panel#agenda-2030 {
   display: block;
   width: 100%;
   background: #ffffff !important;
   color: #111111;
-  padding: clamp(80px, 10vw, 120px) var(--pad) !important;
+  padding: clamp(90px, 9vw, 130px) var(--pad) !important;
   margin: 0;
   border-top: 1px solid #e7e7e7;
   border-bottom: 1px solid #e7e7e7;
@@ -57,7 +60,7 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: clamp(32px, 5vw, 64px);
-  margin-bottom: clamp(48px, 6vw, 72px);
+  margin-bottom: clamp(56px, 6vw, 84px);
   padding: 0;
   border: none;
   background: transparent;
@@ -65,7 +68,7 @@
 
 .ods-header-copy {
   flex: 1;
-  max-width: 680px;
+  max-width: 660px;
 }
 
 .ods-eyebrow {
@@ -75,8 +78,8 @@
   line-height: 1;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #7A7A7A;
-  margin: 0 0 16px 0;
+  color: #666666;
+  margin: 0 0 20px 0;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -89,7 +92,7 @@
 #ods-title,
 .ods-header h2 {
   font-family: 'Satoshi', 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: clamp(36px, 4.5vw, 52px);
+  font-size: clamp(38px, 4.4vw, 54px);
   font-weight: 600;
   line-height: 1.08;
   letter-spacing: -0.03em;
@@ -99,11 +102,11 @@
 
 .ods-summary {
   font-family: 'Inter', 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: clamp(16px, 1.35vw, 18px);
+  font-size: clamp(15px, 1.25vw, 17px);
   font-weight: 400;
-  line-height: 1.6;
+  line-height: 1.55;
   color: #555555;
-  max-width: 540px;
+  max-width: 520px;
   margin: 0;
 }
 
@@ -112,7 +115,7 @@
   align-items: flex-start;
   justify-content: flex-end;
   flex-shrink: 0;
-  padding-top: 10px;
+  padding-top: 8px;
   background: transparent;
   border: none;
   box-shadow: none;
@@ -120,7 +123,7 @@
 
 .ods-brand-logo,
 .ods-panel > header > img {
-  width: clamp(230px, 25vw, 310px) !important;
+  width: clamp(280px, 32vw, 430px) !important;
   height: auto !important;
   max-width: 100%;
   object-fit: contain;
@@ -132,51 +135,73 @@
   padding: 0;
 }
 
-/* Editorial Matrix (3 columns, 2 rows) */
+/* Editorial Matrix Grid (3 columns x 2 rows with continuous intersecting hairlines) */
 .ods-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  column-gap: 48px;
-  row-gap: 56px;
+  gap: 0;
   border: none !important;
   background: transparent !important;
   padding: 0;
   margin: 0;
 }
 
-/* Card: horizontal, iconLeft, textRight, vertically centered */
+/* Base Card */
 .ods-card,
 .ods-grid article {
   display: flex !important;
   flex-direction: row !important;
   align-items: center !important;
-  gap: 20px !important;
-  border: none !important;
+  gap: clamp(18px, 1.8vw, 24px) !important;
+  border: none;
   background: transparent !important;
-  padding: 0 !important;
   min-height: auto !important;
   position: relative;
+  box-sizing: border-box;
 }
 
-/* Vertical dividers between columns (desktop: 3 cols) */
+/* Continuous Horizontal & Vertical Dividers (Desktop 3 cols) */
 @media (min-width: 901px) {
-  .ods-card:not(:nth-child(3n))::after {
-    content: '';
-    position: absolute;
-    right: -24px;
-    top: 10%;
-    height: 80%;
-    width: 1px;
-    background: #E7E7E7;
-    pointer-events: none;
+  /* Linha 1 (ODS 8, 9, 11): divisor horizontal contínuo */
+  .ods-card:nth-child(1),
+  .ods-card:nth-child(2),
+  .ods-card:nth-child(3) {
+    border-bottom: 1px solid #E5E5E5 !important;
+    padding-bottom: clamp(36px, 4vw, 52px) !important;
+  }
+  /* Linha 2 (ODS 12, 13, 17): respiro superior */
+  .ods-card:nth-child(4),
+  .ods-card:nth-child(5),
+  .ods-card:nth-child(6) {
+    padding-top: clamp(36px, 4vw, 52px) !important;
+  }
+  /* Coluna 1 (ODS 8, 12): divisor vertical à direita */
+  .ods-card:nth-child(1),
+  .ods-card:nth-child(4) {
+    border-right: 1px solid #E5E5E5 !important;
+    padding-right: clamp(28px, 3.2vw, 48px) !important;
+    padding-left: 0 !important;
+  }
+  /* Coluna 2 (ODS 9, 13): divisor vertical à direita com padding bilateral */
+  .ods-card:nth-child(2),
+  .ods-card:nth-child(5) {
+    border-right: 1px solid #E5E5E5 !important;
+    padding-left: clamp(28px, 3.2vw, 48px) !important;
+    padding-right: clamp(28px, 3.2vw, 48px) !important;
+  }
+  /* Coluna 3 (ODS 11, 17): padding à esquerda, flush na direita */
+  .ods-card:nth-child(3),
+  .ods-card:nth-child(6) {
+    padding-left: clamp(28px, 3.2vw, 48px) !important;
+    padding-right: 0 !important;
   }
 }
 
 /* Official square tiles (186x186 official files) */
 .ods-tile,
 .ods-grid img {
-  width: clamp(84px, 7vw, 100px) !important;
-  height: clamp(84px, 7vw, 100px) !important;
+  width: clamp(96px, 8.5vw, 116px) !important;
+  height: clamp(96px, 8.5vw, 116px) !important;
   aspect-ratio: 1 / 1;
   object-fit: contain;
   flex-shrink: 0;
@@ -202,7 +227,7 @@
 
 .ods-card-content h3 {
   font-family: 'Satoshi', 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 17px;
+  font-size: clamp(15px, 1.25vw, 17px);
   font-weight: 600;
   line-height: 1.25;
   color: #111111;
@@ -213,39 +238,60 @@
 .ods-card-content p,
 .ods-grid p {
   font-family: 'Inter', 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 14px;
+  font-size: clamp(13px, 1.05vw, 14px);
   font-weight: 400;
   line-height: 1.5;
-  color: #727272;
+  color: #666666;
   margin: 0;
   max-width: 32ch;
 }
 
 @media(max-width:1050px){.expertise-chapter h3{font-size:clamp(40px,6.5vw,64px);max-width:100%}.calculator{gap:54px}.calc-result{min-height:210px}}
 
-/* Responsive: Tablet <= 900px (2 columns) */
+/* Responsive: Tablet <= 900px (2 columns matrix) */
 @media(max-width:900px) {
   .ods-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 40px;
-    row-gap: 44px;
+    gap: 0;
   }
-  .ods-card:not(:nth-child(3n))::after {
-    display: none;
+  .ods-card:nth-child(1),
+  .ods-card:nth-child(2),
+  .ods-card:nth-child(3),
+  .ods-card:nth-child(4) {
+    border-bottom: 1px solid #E5E5E5 !important;
+    padding-bottom: clamp(28px, 3.5vw, 40px) !important;
   }
-  .ods-card:not(:nth-child(2n))::after {
-    content: '';
-    position: absolute;
-    right: -20px;
-    top: 10%;
-    height: 80%;
-    width: 1px;
-    background: #E7E7E7;
-    pointer-events: none;
+  .ods-card:nth-child(5),
+  .ods-card:nth-child(6) {
+    border-bottom: none !important;
+  }
+  .ods-card:nth-child(3),
+  .ods-card:nth-child(4),
+  .ods-card:nth-child(5),
+  .ods-card:nth-child(6) {
+    padding-top: clamp(28px, 3.5vw, 40px) !important;
+  }
+  .ods-card:nth-child(1),
+  .ods-card:nth-child(2) {
+    padding-top: 0 !important;
+  }
+  .ods-card:nth-child(1),
+  .ods-card:nth-child(3),
+  .ods-card:nth-child(5) {
+    border-right: 1px solid #E5E5E5 !important;
+    padding-right: clamp(20px, 2.5vw, 32px) !important;
+    padding-left: 0 !important;
+  }
+  .ods-card:nth-child(2),
+  .ods-card:nth-child(4),
+  .ods-card:nth-child(6) {
+    border-right: none !important;
+    padding-left: clamp(20px, 2.5vw, 32px) !important;
+    padding-right: 0 !important;
   }
   .ods-brand-logo,
   .ods-panel > header > img {
-    width: clamp(200px, 24vw, 260px) !important;
+    width: clamp(240px, 28vw, 330px) !important;
   }
 }
 
@@ -257,7 +303,7 @@
     flex-direction: column !important;
     align-items: flex-start !important;
     gap: 28px !important;
-    margin-bottom: 40px !important;
+    margin-bottom: 36px !important;
   }
   .ods-brand-wrap {
     justify-content: flex-start;
@@ -265,19 +311,25 @@
   }
   .ods-brand-logo,
   .ods-panel > header > img {
-    width: 210px !important;
+    width: min(280px, 85vw) !important;
   }
   .ods-grid {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 0;
   }
-  .ods-card::after {
-    display: none !important;
+  .ods-card {
+    border-right: none !important;
+    border-bottom: 1px solid #E5E5E5 !important;
+    padding: 22px 0 !important;
+  }
+  .ods-card:last-child {
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
   }
   .ods-tile,
   .ods-grid img {
-    width: 74px !important;
-    height: 74px !important;
+    width: 80px !important;
+    height: 80px !important;
   }
 }
 
