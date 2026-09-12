@@ -135,3 +135,31 @@
   #processo .process-foot-kicker{font-size:clamp(12px,.92vw,18px)!important;max-width:23ch!important;line-height:1.4!important}
   #processo .process-foot-logo{height:clamp(31px,2.55vw,48px)!important}
 }
+
+/* CO-001E — correção de causa-raiz e fidelidade ao mockup aprovado */
+@media(min-width:901px){
+  /* ch em elementos com font-size:0 colapsava as larguras do apoio e das descrições */
+  #processo .process-desc{width:clamp(280px,20vw,360px)!important;max-width:none!important}
+  #processo .process-step-text{width:clamp(150px,11vw,205px)!important;max-width:none!important}
+
+  /* proporções normalizadas a partir da referência 1536×1024 */
+  #processo .process-hero-copy{left:4.0%!important;top:5.3%!important;width:28.5%!important}
+  #processo .process-title{font-size:clamp(68px,6.0vw,116px)!important;line-height:.84!important;width:5.1ch!important;max-width:5.1ch!important}
+  #processo .process-desc{margin-top:1.7vw!important}
+
+  #processo.process-section::before{left:22.5%!important;top:6.9%!important;width:30.8%!important;height:55.0%!important;padding-left:3.8%!important;clip-path:polygon(0 0,80% 0,100% 100%,24% 100%)!important}
+  #processo.process-section::after{left:40.2%!important;top:14.0%!important;width:23.0%!important;height:49.0%!important;padding-left:4.2%!important;clip-path:polygon(0 0,78% 0,100% 100%,25% 100%)!important}
+  #processo .process-shell::before{left:51.3%!important;top:6.9%!important;width:29.4%!important;height:54.0%!important;padding-left:4.2%!important;clip-path:polygon(0 0,77% 0,100% 100%,24% 100%)!important}
+  #processo .process-shell::after{left:69.3%!important;top:16.2%!important;width:29.5%!important;height:54.0%!important;padding-left:4.2%!important;clip-path:polygon(0 0,87% 0,100% 100%,24% 100%)!important}
+
+  #processo .process-hero-right{right:4.6%!important;top:5.7%!important;width:20.0%!important}
+  #processo .process-vertical-manifesto::before{font-size:clamp(17px,1.42vw,27px)!important;line-height:1.18!important;letter-spacing:.19em!important}
+
+  #processo .process-steps-grid{left:6.5%!important;right:6.5%!important;bottom:13.2%!important;gap:0!important}
+  #processo .process-step-arrow{right:-8%!important;top:31%!important}
+  #processo .process-step-title{white-space:nowrap!important}
+  #processo .process-step-text::after{font-size:clamp(12px,.82vw,15px)!important;line-height:1.35!important}
+
+  #processo .process-foot-bar{left:3.8%!important;right:6.2%!important;bottom:4.1%!important}
+  #processo .process-foot-kicker{max-width:26ch!important}
+}
