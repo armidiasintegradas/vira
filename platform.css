@@ -30,3 +30,34 @@
 #processo .process-foot-logo{content:url('assets/downloads/VIRA-Logo-Policromatico.svg');height:clamp(17px,1.45vw,22px)!important;width:auto!important;opacity:.96!important}
 @media(max-width:720px){#processo.process-section{background-size:auto 56vw!important;background-position:right top!important;padding-top:32px!important}#processo .process-hero-copy{max-width:100%;padding-right:30vw}#processo .process-title{font-size:clamp(38px,11vw,52px)!important;max-width:8.5ch}#processo .process-desc{max-width:100%!important}#processo .process-top-row{gap:18px!important;margin-bottom:30px!important}#processo .process-vertical-manifesto{font-size:9px!important;line-height:1.45!important;max-width:18ch}#processo .process-foot-bar{gap:20px;align-items:flex-end}#processo .process-foot-kicker{font-size:9px!important;line-height:1.4;max-width:28ch}}
 @media(max-width:520px){#processo.process-section{background-size:auto 48vw!important;background-position:110% 0!important}#processo .process-hero-copy{padding-right:18vw}#processo .process-title{font-size:clamp(36px,10.5vw,46px)!important}#processo .process-top-row{padding-top:0}#processo .process-vertical-manifesto{margin-top:4px!important}#processo .process-foot-logo{height:18px!important}}
+
+/* CO-001B — desktop fiel ao layout aprovado */
+@media(min-width:901px){
+  #processo.process-section{
+    display:block!important;
+    position:relative!important;
+    width:100%!important;
+    aspect-ratio:3/2!important;
+    min-height:0!important;
+    height:auto!important;
+    padding:0!important;
+    margin:0!important;
+    border:0!important;
+    background-color:#F1C546!important;
+    background-image:url('assets/processo-operacao-mockup-referencia.png')!important;
+    background-position:center center!important;
+    background-repeat:no-repeat!important;
+    background-size:100% 100%!important;
+  }
+  #processo .process-shell{
+    position:absolute!important;
+    width:1px!important;
+    height:1px!important;
+    padding:0!important;
+    margin:-1px!important;
+    overflow:hidden!important;
+    clip:rect(0,0,0,0)!important;
+    white-space:nowrap!important;
+    border:0!important;
+  }
+}
