@@ -106,3 +106,32 @@
 @media(max-width:900px){
   #processo.process-section{background:#F1C546!important;background-image:none!important}
 }
+
+/* CO-001D — calibração pixel-level do desktop aprovado */
+@media(min-width:901px){
+  #processo.process-section,#processo .process-shell{height:66.6667vw!important;min-height:720px!important;max-height:1100px!important}
+  #processo .process-hero-copy{left:3.05%!important;top:5.35%!important;width:25.6%!important}
+  #processo .process-eyebrow{margin-bottom:2.15vw!important}
+  #processo .process-title{font-size:clamp(68px,6.05vw,116px)!important;line-height:.84!important;width:5.05ch!important;max-width:5.05ch!important}
+  #processo .process-desc{margin-top:1.45vw!important;width:29ch!important;max-width:29ch!important}
+  #processo .process-desc::after{font-size:clamp(15px,1.0vw,19px)!important;line-height:1.42!important}
+
+  #processo.process-section::before{left:17.9%!important;top:7.0%!important;width:24.0%!important;height:55.0%!important;padding-left:4.1%!important;clip-path:polygon(0 0,82% 0,100% 100%,22% 100%)!important}
+  #processo.process-section::after{left:31.7%!important;top:14.0%!important;width:21.3%!important;height:49.0%!important;padding-left:4.7%!important;clip-path:polygon(0 0,79% 0,100% 100%,23% 100%)!important}
+  #processo .process-shell::before{left:43.2%!important;top:7.0%!important;width:23.0%!important;height:54.0%!important;padding-left:4.7%!important;clip-path:polygon(0 0,79% 0,100% 100%,23% 100%)!important}
+  #processo .process-shell::after{left:55.1%!important;top:16.2%!important;width:38.0%!important;height:54.0%!important;padding-left:5.8%!important;clip-path:polygon(0 0,88% 0,100% 100%,24% 100%)!important}
+
+  #processo .process-hero-right{right:6.0%!important;top:5.55%!important;width:34%!important}
+  #processo .process-vertical-manifesto::before{font-size:clamp(17px,1.48vw,28px)!important;line-height:1.2!important;letter-spacing:.18em!important}
+
+  #processo .process-steps-grid{left:5.4%!important;right:21.0%!important;bottom:13.8%!important;gap:2.4%!important}
+  #processo .process-step-icon{width:clamp(62px,4.5vw,86px)!important;height:clamp(62px,4.5vw,86px)!important}
+  #processo .process-step-arrow{right:-15%!important;top:31%!important}
+  #processo .process-step-title{font-size:clamp(10px,.78vw,14px)!important;letter-spacing:.22em!important}
+  #processo .process-step-text{max-width:20ch!important}
+  #processo .process-step-text::after{font-size:clamp(12px,.82vw,15px)!important;line-height:1.35!important}
+
+  #processo .process-foot-bar{left:3.0%!important;right:6.0%!important;bottom:4.1%!important}
+  #processo .process-foot-kicker{font-size:clamp(12px,.92vw,18px)!important;max-width:23ch!important;line-height:1.4!important}
+  #processo .process-foot-logo{height:clamp(31px,2.55vw,48px)!important}
+}
