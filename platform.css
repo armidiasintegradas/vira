@@ -17,47 +17,92 @@
 @media(max-width:620px){.tech-catalog{grid-template-columns:1fr}}
 @media(max-width:520px){.passport-field-grid{grid-template-columns:1fr}}
 
-/* CO-001 — Processo: refinamento final aprovado */
-#processo .process-hero-copy{max-width:min(44vw,560px)}
-#processo .process-eyebrow{font-size:0!important;letter-spacing:0!important;gap:0!important;margin-bottom:clamp(16px,1.8vw,24px)!important}
-#processo .process-eyebrow>span{display:none!important}
-#processo .process-eyebrow::after{content:"NOSSO PROCESSO";font-family:var(--font-mono,"IBM Plex Mono",monospace);font-size:11px;font-weight:500;letter-spacing:.16em;line-height:1.2;text-transform:uppercase;color:#161a17}
-#processo .process-title{font-size:clamp(42px,4.4vw,64px)!important;font-weight:700!important;line-height:.98!important;letter-spacing:-.045em!important;max-width:9.5ch}
-#processo .process-title::after{content:"."}
-#processo .process-desc{font-size:0!important;line-height:0!important;max-width:460px!important;margin-bottom:0!important}
-#processo .process-desc::after{content:"Transformamos resíduos em soluções para cidades mais sustentáveis, unindo tecnologia, impacto social e desenvolvimento urbano.";display:block;font-family:var(--font-main,"Manrope",sans-serif);font-size:clamp(14px,1.05vw,16px);font-weight:400;line-height:1.55;color:rgba(20,24,21,.88)}
+/* CO-001 — Processo: conteúdo aprovado */
 #processo .process-actions{display:none!important}
-#processo .process-foot-logo{content:url('assets/downloads/VIRA-Logo-Policromatico.svg');height:clamp(17px,1.45vw,22px)!important;width:auto!important;opacity:.96!important}
-@media(max-width:720px){#processo.process-section{background-size:auto 56vw!important;background-position:right top!important;padding-top:32px!important}#processo .process-hero-copy{max-width:100%;padding-right:30vw}#processo .process-title{font-size:clamp(38px,11vw,52px)!important;max-width:8.5ch}#processo .process-desc{max-width:100%!important}#processo .process-top-row{gap:18px!important;margin-bottom:30px!important}#processo .process-vertical-manifesto{font-size:9px!important;line-height:1.45!important;max-width:18ch}#processo .process-foot-bar{gap:20px;align-items:flex-end}#processo .process-foot-kicker{font-size:9px!important;line-height:1.4;max-width:28ch}}
-@media(max-width:520px){#processo.process-section{background-size:auto 48vw!important;background-position:110% 0!important}#processo .process-hero-copy{padding-right:18vw}#processo .process-title{font-size:clamp(36px,10.5vw,46px)!important}#processo .process-top-row{padding-top:0}#processo .process-vertical-manifesto{margin-top:4px!important}#processo .process-foot-logo{height:18px!important}}
+#processo .process-foot-logo{content:url('assets/downloads/VIRA-Logo-Policromatico.svg');width:auto!important;opacity:1!important}
 
-/* CO-001B — desktop fiel ao layout aprovado */
+/* CO-001C — Processo real em HTML/CSS. O mockup é apenas referência; nunca é renderizado. */
 @media(min-width:901px){
   #processo.process-section{
-    display:block!important;
-    position:relative!important;
-    width:100%!important;
-    aspect-ratio:3/2!important;
-    min-height:0!important;
-    height:auto!important;
-    padding:0!important;
-    margin:0!important;
-    border:0!important;
-    background-color:#F1C546!important;
-    background-image:url('assets/processo-operacao-mockup-referencia.png')!important;
-    background-position:center center!important;
-    background-repeat:no-repeat!important;
-    background-size:100% 100%!important;
+    position:relative!important;display:block!important;isolation:isolate!important;overflow:hidden!important;
+    min-height:clamp(780px,52vw,1000px)!important;height:auto!important;width:100%!important;
+    padding:0!important;margin:0!important;background:#F1C546!important;background-image:none!important;color:#111814!important;
   }
   #processo .process-shell{
-    position:absolute!important;
-    width:1px!important;
-    height:1px!important;
-    padding:0!important;
-    margin:-1px!important;
-    overflow:hidden!important;
-    clip:rect(0,0,0,0)!important;
-    white-space:nowrap!important;
-    border:0!important;
+    position:relative!important;display:block!important;width:100%!important;height:clamp(780px,52vw,1000px)!important;
+    padding:0!important;margin:0!important;overflow:hidden!important;clip:auto!important;white-space:normal!important;border:0!important;
   }
+  #processo.process-section::before,#processo.process-section::after,#processo .process-shell::before,#processo .process-shell::after{
+    position:absolute;display:flex;align-items:flex-start;box-sizing:border-box;z-index:1;
+    padding:clamp(20px,2vw,34px);color:#fff;font-family:"IBM Plex Mono",monospace;font-weight:600;
+    font-size:clamp(10px,.82vw,15px);line-height:1.35;letter-spacing:.12em;white-space:pre-line;text-transform:uppercase;
+    background-repeat:no-repeat;background-size:cover;filter:saturate(.94) contrast(1.03);
+  }
+  #processo.process-section::before{
+    content:"PESSOAS\A QUE COLETAM\A OPORTUNIDADES\A ━━━";
+    left:21.4%;top:7%;width:27.2%;height:56%;
+    padding-left:4.1%;background-image:linear-gradient(180deg,rgba(0,0,0,.38),transparent 44%),url('assets/jornada-plastico-v1.webp');
+    background-position:center;clip-path:polygon(0 0,81% 0,100% 100%,22% 100%);
+  }
+  #processo.process-section::after{
+    content:"RESÍDUOS\A QUE VIRAM\A MATÉRIA-PRIMA\A ━━━";
+    left:36.5%;top:14%;width:23.2%;height:50%;
+    padding-left:5.1%;background-image:linear-gradient(180deg,rgba(0,0,0,.42),transparent 44%),url('assets/materia-flakes-close.jpg');
+    background-position:center;clip-path:polygon(0 0,79% 0,100% 100%,24% 100%);
+  }
+  #processo .process-shell::before{
+    content:"TECNOLOGIA\A QUE TRANSFORMA\A ━━━";
+    left:49.8%;top:7%;width:21.5%;height:54%;
+    padding-left:4.8%;background-image:linear-gradient(180deg,rgba(0,0,0,.42),transparent 44%),url('assets/maquinario-matriz-prensa.jpg');
+    background-position:center;clip-path:polygon(0 0,78% 0,100% 100%,24% 100%);
+  }
+  #processo .process-shell::after{
+    content:"SOLUÇÕES\A QUE CONSTROEM\A CIDADES MELHORES\A ━━━";
+    left:61.4%;top:16%;width:37.8%;height:55%;
+    padding-left:6.2%;background-image:linear-gradient(180deg,rgba(0,0,0,.30),transparent 42%),url('assets/footer-orla-pavers-finalizada-v1.webp');
+    background-position:center;clip-path:polygon(0 0,88% 0,100% 100%,24% 100%);
+  }
+  #processo .process-top-row{position:static!important;display:block!important;margin:0!important;padding:0!important}
+  #processo .process-hero-copy{position:absolute!important;z-index:4;left:3.2%;top:5.2%;width:27%;max-width:none!important;margin:0!important;padding:0!important}
+  #processo .process-eyebrow{display:flex!important;align-items:center!important;gap:16px!important;margin:0 0 clamp(28px,2.3vw,44px)!important;
+    font-family:"IBM Plex Mono",monospace!important;font-size:clamp(11px,.86vw,15px)!important;line-height:1!important;font-weight:500!important;letter-spacing:.28em!important;text-transform:uppercase!important;color:#121713!important}
+  #processo .process-eyebrow>span{display:inline!important;font-size:0!important;width:54px;height:2px;background:#121713;flex:0 0 auto}
+  #processo .process-eyebrow{font-size:0!important}
+  #processo .process-eyebrow::after{content:"NOSSO PROCESSO";font:500 clamp(11px,.86vw,15px)/1 "IBM Plex Mono",monospace;letter-spacing:.28em;color:#121713}
+  #processo .process-title{margin:0!important;width:5.25ch!important;max-width:5.25ch!important;font-family:"Manrope",sans-serif!important;
+    font-size:clamp(72px,6.25vw,120px)!important;font-weight:800!important;line-height:.84!important;letter-spacing:-.07em!important;color:#0d110e!important}
+  #processo .process-title::after{content:"."}
+  #processo .process-desc{margin:clamp(24px,2vw,38px) 0 0!important;width:18.5ch!important;max-width:18.5ch!important;font-size:0!important;line-height:0!important}
+  #processo .process-desc::after{content:"Transformamos resíduos em soluções para cidades mais sustentáveis, unindo tecnologia, impacto social e desenvolvimento urbano.";
+    display:block;font-family:"Manrope",sans-serif;font-size:clamp(15px,1.05vw,20px);font-weight:400;line-height:1.32;color:#141914}
+  #processo .process-hero-right{position:absolute!important;z-index:4;right:4.2%;top:5.5%;width:31%;margin:0!important;padding:0!important}
+  #processo .process-vertical-manifesto{margin:0!important;font-family:"IBM Plex Mono",monospace!important;font-size:0!important;line-height:1!important;letter-spacing:0!important;text-align:left!important;color:#111814!important}
+  #processo .process-vertical-manifesto::before{content:"RESÍDUOS HOJE.\A CIDADES AMANHÃ.";white-space:pre;display:block;font:500 clamp(18px,1.62vw,31px)/1.18 "IBM Plex Mono",monospace;letter-spacing:.19em}
+  #processo .process-manifesto-dash{display:block!important;width:56px;height:2px;background:#111814;margin-top:18px;font-size:0!important}
+  #processo .process-steps-grid{position:absolute!important;z-index:5;left:3%;right:3%;bottom:14.2%;display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:2.6%!important;margin:0!important;padding:0!important;align-items:start!important}
+  #processo .process-step-col{position:relative!important;display:flex!important;flex-direction:column!important;align-items:center!important;text-align:center!important;min-width:0!important;border:0!important;padding:0!important;background:transparent!important}
+  #processo .process-step-header{position:relative!important;width:100%!important;display:flex!important;flex-direction:column!important;align-items:center!important;gap:8px!important;margin:0!important;padding:0!important}
+  #processo .process-step-icon{order:1!important;width:clamp(64px,4.7vw,90px)!important;height:clamp(64px,4.7vw,90px)!important;border:2px solid #111814!important;border-radius:50%!important;display:grid!important;place-items:center!important;margin:0!important;color:#111814!important}
+  #processo .process-step-icon svg{width:46%!important;height:46%!important;stroke-width:1.55!important}
+  #processo .process-step-num{order:2!important;font:600 clamp(10px,.78vw,14px)/1 "IBM Plex Mono",monospace!important;letter-spacing:.08em!important;margin-top:2px!important;color:#111814!important}
+  #processo .process-step-arrow{position:absolute!important;display:block!important;right:-12%!important;top:34%!important;width:32px!important;height:14px!important;color:#111814!important}
+  #processo .process-step-arrow svg{width:32px!important;height:14px!important}
+  #processo .process-step-col:nth-child(5) .process-step-arrow{display:none!important}
+  #processo .process-step-body{border:0!important;padding:0!important;margin:8px 0 0!important;min-height:0!important;width:100%!important}
+  #processo .process-step-title{margin:0 0 7px!important;font-family:"IBM Plex Mono",monospace!important;font-size:clamp(11px,.82vw,15px)!important;font-weight:600!important;line-height:1.15!important;letter-spacing:.20em!important;color:#101510!important}
+  #processo .process-step-text{margin:0 auto!important;max-width:18ch!important;font-size:0!important;line-height:0!important;color:#161b16!important}
+  #processo .process-step-text::after{display:block;font-family:"Manrope",sans-serif;font-size:clamp(12px,.86vw,16px);font-weight:400;line-height:1.35;letter-spacing:0;color:#161b16}
+  #processo .process-step-col:nth-child(1) .process-step-text::after{content:"Resíduos ganham destino certo."}
+  #processo .process-step-col:nth-child(2) .process-step-text::after{content:"Materiais são separados e preparados."}
+  #processo .process-step-col:nth-child(3) .process-step-text::after{content:"Transformação em novos materiais."}
+  #processo .process-step-col:nth-child(4) .process-step-text::after{content:"Pavers, blocos e guias sustentáveis."}
+  #processo .process-step-col:nth-child(5) .process-step-text::after{content:"Infraestrutura que gera impacto real."}
+  #processo .process-foot-bar{position:absolute!important;z-index:6;left:3%;right:4.2%;bottom:4.2%;display:flex!important;align-items:flex-end!important;justify-content:space-between!important;margin:0!important;padding:0!important;border:0!important}
+  #processo .process-foot-kicker{position:relative!important;margin:0!important;padding-top:18px!important;font-family:"IBM Plex Mono",monospace!important;font-size:clamp(13px,1.05vw,20px)!important;font-weight:500!important;line-height:1.35!important;letter-spacing:.24em!important;text-transform:uppercase!important;color:#121713!important;max-width:25ch!important}
+  #processo .process-foot-kicker>span{font-size:0!important;position:absolute;left:0;top:0;width:56px;height:2px;background:#121713}
+  #processo .process-foot-logo{height:clamp(34px,2.8vw,52px)!important;width:auto!important;margin:0!important}
+}
+
+@media(max-width:900px){
+  #processo.process-section{background:#F1C546!important;background-image:none!important}
 }
