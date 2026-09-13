@@ -2805,6 +2805,142 @@ a, button {
   }
 }
 
+/* ==========================================================================
+   FASE 25 — O UNIVERSO VIRA // SISTEMA DE CAPÍTULOS DOCUMENTAIS
+   Indexação cinematográfica 01 a 09
+   ========================================================================== */
+
+.chapter-marker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #FCC929;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.chapter-marker .chapter-sep {
+  opacity: 0.55;
+  font-weight: 400;
+}
+
+.chapter-marker-dark {
+  color: #947113;
+}
+
+.stats-intro-head {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.chapter-marker-hero {
+  margin-bottom: 16px;
+}
+
+.chapter-marker-expertise {
+  margin-bottom: 8px;
+  color: #111813;
+  opacity: 0.75;
+}
+
+/* ==========================================================================
+   FASE 29 — O SISTEMA DE RESPIRAÇÃO // INTERLÚDIO EDITORIAL
+   Pausa contemplativa entre a escala industrial e a calculadora
+   ========================================================================== */
+
+.editorial-interlude {
+  display: block;
+  position: relative;
+  background-color: #070c09;
+  padding: clamp(70px, 8vw, 105px) var(--pad, 40px);
+  text-align: center;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.interlude-shell {
+  max-width: 820px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.interlude-rule {
+  width: clamp(60px, 12vw, 120px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(252, 201, 41, 0.6), transparent);
+}
+
+.interlude-rule-top {
+  margin-bottom: 24px;
+}
+
+.interlude-rule-bottom {
+  margin-top: 28px;
+}
+
+.interlude-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #FCC929;
+  margin-bottom: 16px;
+}
+
+.interlude-dot {
+  opacity: 0.5;
+  font-size: 8px;
+}
+
+.interlude-sub {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.interlude-statement {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: #F6F5F2;
+  margin: 0 0 14px;
+}
+
+.interlude-caption {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(14px, 1.15vw, 16px);
+  font-weight: 400;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.58);
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .editorial-interlude {
+    padding: 55px 20px;
+  }
+  .interlude-meta {
+    font-size: 9.5px;
+    letter-spacing: 0.16em;
+  }
+}
+
+
 
 
 

@@ -47,3 +47,30 @@ test('seção Perguntas Técnicas adota papel off-white e rodapé institucional 
   assert.match(homeCss, /footer#rodape\.site-footer\s*\{[^}]*background-color:\s*#08110D/);
 });
 
+test('sistema de 9 capítulos documentais cinematográficos está indexado no index.html', () => {
+  const chapters = [
+    'CAP. 01[\\s\\S]*?O PROBLEMA',
+    'CAP. 02[\\s\\S]*?A MATÉRIA-PRIMA',
+    'CAP. 03[\\s\\S]*?A ENGENHARIA',
+    'CAP. 04[\\s\\S]*?AS APLICAÇÕES',
+    'CAP. 05[\\s\\S]*?A INDÚSTRIA',
+    'CAP. 06[\\s\\S]*?A DECISÃO',
+    'CAP. 07[\\s\\S]*?A TRANSFORMAÇÃO',
+    'CAP. 08[\\s\\S]*?O CONHECIMENTO',
+    'CAP. 09[\\s\\S]*?O CONVITE'
+  ];
+  for (const ch of chapters) {
+    assert.match(indexHtml, new RegExp(ch));
+  }
+  assert.match(homeCss, /\.chapter-marker\s*\{[^}]*font-family:\s*['"]IBM Plex Mono['"]/);
+});
+
+test('interlúdio editorial de respiração (Fase 29) conecta Expertise e Calculadora com silêncio', () => {
+  assert.match(indexHtml, /class="editorial-interlude"/);
+  assert.match(indexHtml, /CAP\. 05\.B \/\/ INTERLÚDIO/);
+  assert.match(indexHtml, /Produzir em escala real\./);
+  assert.match(indexHtml, /A engenharia que transforma resíduos em infraestrutura para cidades\./);
+  assert.match(homeCss, /\.editorial-interlude\s*\{[^}]*background-color:\s*#070c09/);
+});
+
+
