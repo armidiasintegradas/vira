@@ -2074,12 +2074,12 @@ a, button {
   overflow: hidden;
 }
 
-/* Escurecimento de 30% do palco cênico de fale conosco / contato */
+/* Escurecimento de 60% do palco cênico de fale conosco / contato (+30% solicitado) */
 .contact.section#contato::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(14, 18, 15, 0.30);
+  background: rgba(14, 18, 15, 0.60);
   pointer-events: none;
   z-index: 1;
 }
