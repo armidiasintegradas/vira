@@ -42,8 +42,8 @@ test('assets oficiais da marca VIRA existem no diretório de assets', () => {
   assert.ok(existsSync(new URL('../assets/marca-branca-verde.svg', import.meta.url)), 'assets/marca-branca-verde.svg deve existir');
 });
 
-test('seções de dúvidas e rodapé possuem escurecimento ativo (FAQ 50% e rodapé 65%)', () => {
-  assert.match(homeCss, /\.faq\.section#faq::before\s*\{[^}]*background:\s*rgba\(14,\s*18,\s*15,\s*0\.50\)/);
+test('seção Perguntas Técnicas adota papel off-white e rodapé possui escurecimento ativo', () => {
+  assert.match(homeCss, /\.tech-qa\.section#faq\s*\{[^}]*background-color:\s*#F1EFEA/);
   assert.match(homeCss, /footer#rodape\.site-footer\s*\{[^}]*rgba\(7,\s*10,\s*8,\s*0\.80\)/);
 });
 
