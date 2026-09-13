@@ -1,4 +1,4 @@
-.product-card.product-featured .product-image{cursor:pointer}.product-card.product-featured .product-image:focus-visible,.product-page-link:focus-visible{outline:2px solid var(--green);outline-offset:4px}.product-page-link{margin-left:auto;width:34px;height:34px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;transition:.25s var(--ease)}.product-page-link:hover{background:var(--dark);color:#fff;border-color:var(--dark)}.metric strong.metric-word{font-size:clamp(48px,7vw,104px);letter-spacing:-.06em}.hero-proof .proof-safe strong{font-size:15px;letter-spacing:-.01em}.hero-proof .proof-safe span{max-width:220px;line-height:1.35}.benefit-carbon .benefit-symbol{font-size:19px}
+.product-card.product-featured .product-image{cursor:pointer}.product-card.product-featured .product-image:focus-visible,.product-page-link:focus-visible{outline:2px solid var(--green);outline-offset:4px}.product-page-link{margin-left:auto;width:34px;height:34px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;transition:.25s var(--ease)}.product-page-link:hover{background:var(--dark);color:#fff;border-color:var(--dark)}.metric strong.metric-word,.metric-data.metric-word{font-size:clamp(28px,3.6vw,50px);letter-spacing:-.035em;line-height:1.05}.benefit-carbon .benefit-symbol{font-size:19px}
 
 /* Hardening visual: Expertise Industrial */
 .expertise-chapters{min-width:0}
@@ -14,7 +14,7 @@
 .calc-composition{padding:clamp(32px,4vw,58px)}
 .calc-result{min-height:clamp(190px,18vw,240px);padding:clamp(24px,3vw,42px)}
 .calc-result>span{margin-top:28px}
-.calc-footer{height:auto;min-height:0;align-self:start;padding:clamp(24px,3vw,38px)}
+.calc-footer{height:auto;min-height:0;align-self:start;display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;padding:clamp(34px,4.2vw,48px) clamp(32px,4.5vw,56px);background:#0e1811}
 .calc-result.carbon{background:#eef0e8;color:#172418}
 .calc-result.carbon .impact-icon{color:#b7802a}
 .calc-result.carbon .impact-icon .icon-motion{stroke:#315330}
@@ -328,7 +328,7 @@
   }
 }
 
-@media(max-width:760px){.product-card.product-featured{position:relative}.product-page-link{width:40px;height:40px}.metric strong.metric-word{font-size:clamp(42px,14vw,76px)}.hero-proof{display:none}.expertise-chapter{padding-left:var(--pad);padding-right:var(--pad)}.expertise-chapter h3{font-size:clamp(38px,11vw,48px)}.calculator{padding-top:80px;padding-bottom:80px}.calc-result{min-height:190px}.calc-footer{padding:32px var(--pad)}}
+@media(max-width:760px){.product-card.product-featured{position:relative}.product-page-link{width:40px;height:40px}.metric strong.metric-word,.metric-data.metric-word{font-size:clamp(24px,6.8vw,36px);letter-spacing:-.03em}.expertise-chapter{padding-left:var(--pad);padding-right:var(--pad)}.expertise-chapter h3{font-size:clamp(38px,11vw,48px)}.calculator{padding-top:80px;padding-bottom:80px}.calc-result{min-height:190px}.calc-footer{padding:32px var(--pad)}}
 
 /* Responsive: Mobile <= 580px (1 column, stacked header) */
 @media(max-width:580px) {
@@ -584,33 +584,21 @@
   font-size: clamp(22px, 1.85vw, 28px);
   line-height: 1.14;
   letter-spacing: 0.03em;
-  color: #1a4d2d;
+  color: #ffffff !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
 }
 
 .impact-manifest-bar {
   display: block;
   width: 32px;
   height: 5px;
-  background: #235835;
+  background: #ffffff !important;
   margin-top: 14px;
   border-radius: 1px;
 }
 
 .impact-credit {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 2px;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  line-height: 1.45;
-  color: rgba(255, 255, 255, 0.72);
-  margin-top: auto;
-}
-
-.impact-credit strong {
-  font-weight: 700;
-  color: #ffffff;
+  display: none !important;
 }
 
 @media (max-width: 1024px) {
@@ -670,10 +658,10 @@
   position: relative !important;
   background-color: #f1c546 !important;
   background-image: url('assets/processo-operacao-hero.png') !important;
-  background-size: auto clamp(483px, 50.4vw, 565px) !important;
+  background-size: auto clamp(628px, 65.5vw, 735px) !important;
   background-position: right top !important;
   background-repeat: no-repeat !important;
-  min-height: clamp(520px, 52vw, 680px);
+  min-height: clamp(620px, 64vw, 820px);
   padding: clamp(28px, 3.2vw, 44px) var(--pad, 40px) clamp(14px, 1.8vw, 24px) var(--pad, 40px) !important;
   box-sizing: border-box;
   overflow: hidden;
@@ -702,7 +690,8 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: clamp(36px, 4vw, 56px);
+  min-height: clamp(340px, 35vw, 440px);
+  margin-bottom: clamp(52px, 5.8vw, 84px);
   position: relative;
   z-index: 4;
 }
@@ -762,8 +751,8 @@
   letter-spacing: 0.12em !important;
   text-transform: uppercase !important;
   padding: 10px 22px !important;
-  border-radius: 6px !important;
-  border: 1px solid rgba(20, 37, 25, 0.9) !important;
+  border-radius: 9999px !important;
+  border: 1px solid #142519 !important;
   display: inline-flex !important;
   align-items: center !important;
   gap: 12px !important;
@@ -775,10 +764,10 @@
 }
 
 .process-button:hover {
-  background: #233e2b !important;
-  border-color: #233e2b !important;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 22px rgba(20, 37, 25, 0.35);
+  background: #1e3624 !important;
+  border-color: #1e3624 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(20, 37, 25, 0.25);
 }
 
 .process-button span {
@@ -793,7 +782,7 @@
 }
 
 .process-button-arrow {
-  font-size: 15px !important;
+  font-size: 14px !important;
   line-height: 1 !important;
   display: inline-block !important;
   transition: transform 0.2s ease !important;
@@ -803,30 +792,93 @@
   transform: translateX(4px) !important;
 }
 
+/* Editorial Markers Container (Overlay on Collage) */
+.process-editorial-stage {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.process-editorial-tag {
+  position: absolute;
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace) !important;
+  font-size: clamp(8.5px, 0.72vw, 10px) !important;
+  font-weight: 500 !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: #141815 !important;
+  margin: 0 !important;
+  opacity: 0.96;
+}
+
+.process-editorial-tag p {
+  margin: 0 !important;
+  line-height: 1.35 !important;
+}
+
+.process-tag-dash {
+  display: block;
+  width: 20px;
+  height: 1.2px;
+  background: #141815;
+  margin-top: 5px;
+}
+
+/* Marker 1: Next to worker's cap */
+.process-tag-pessoas {
+  right: clamp(370px, 41vw, 460px);
+  top: clamp(28px, 3.4vw, 46px);
+}
+
+/* Marker 2: Above conveyor belt */
+.process-tag-tecnologia {
+  right: clamp(260px, 29vw, 340px);
+  top: clamp(96px, 11vw, 136px);
+}
+
+/* Marker 4: Beside VIRA paver block */
+.process-tag-solucoes {
+  right: clamp(24px, 3.2vw, 50px);
+  top: clamp(170px, 18vw, 220px);
+}
+
 .process-hero-right {
   flex-shrink: 0;
   padding-top: 0;
+  z-index: 5;
 }
 
 .process-vertical-manifesto {
   text-align: left !important;
   font-family: var(--font-mono, 'IBM Plex Mono', monospace) !important;
-  font-size: 11px !important;
+  font-size: clamp(9px, 0.75vw, 10.5px) !important;
   font-weight: 500 !important;
-  line-height: 1.6 !important;
-  letter-spacing: 0.16em !important;
+  line-height: 1.45 !important;
+  letter-spacing: 0.14em !important;
   color: #141815 !important;
   margin: 0 !important;
   text-transform: uppercase !important;
-  opacity: 1 !important;
+  opacity: 0.96 !important;
   pointer-events: auto !important;
 }
 
 .process-manifesto-dash {
   display: block;
+  width: 22px;
+  height: 1.2px;
+  background: #141815;
   margin-top: 6px;
-  font-weight: 700;
-  color: #141815;
+}
+
+/* Mobile-only elements hidden on desktop */
+.process-mobile-media {
+  display: none !important;
+}
+
+.process-mobile-cta {
+  display: none !important;
 }
 
 .process-steps-grid {
@@ -969,14 +1021,62 @@
 
 @media (max-width: 720px) {
   .process-section#processo {
-    min-height: auto;
-    background-size: cover !important;
-    background-position: 75% top !important;
+    min-height: auto !important;
+    background-image: none !important;
+    background-color: #f1c546 !important;
+    padding-top: 32px !important;
+    padding-bottom: 28px !important;
+  }
+  .process-editorial-stage {
+    display: none !important;
+  }
+  .process-desktop-actions {
+    display: none !important;
+  }
+  .process-hero-copy {
+    max-width: 100% !important;
+    padding-right: 0 !important;
   }
   .process-top-row {
     flex-direction: column;
-    gap: 28px;
-    margin-bottom: 32px !important;
+    gap: 18px;
+    margin-bottom: 20px !important;
+    min-height: auto !important;
+  }
+  .process-hero-right {
+    display: none !important;
+  }
+  .process-mobile-media {
+    display: block !important;
+    margin: 4px 0 28px 0;
+    width: 100%;
+  }
+  .process-mobile-image-wrap {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #ecc44e;
+    border: 1px solid rgba(22, 26, 23, 0.12);
+  }
+  .process-mobile-image-wrap img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .process-mobile-markers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+    margin-top: 10px;
+  }
+  .process-mobile-marker {
+    font-family: var(--font-mono, 'IBM Plex Mono', monospace);
+    font-size: 8.5px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(20, 24, 21, 0.85);
+    line-height: 1.4;
   }
   .process-steps-grid {
     grid-template-columns: 1fr !important;
@@ -984,6 +1084,17 @@
   }
   .process-step-arrow {
     display: none !important;
+  }
+  .process-mobile-cta {
+    display: flex !important;
+    justify-content: flex-start;
+    margin: 28px 0 16px 0;
+    width: 100%;
+  }
+  .process-mobile-cta .process-button {
+    width: 100% !important;
+    max-width: 320px;
+    justify-content: center !important;
   }
   .process-button {
     width: 100% !important;
@@ -1945,13 +2056,6 @@ footer#rodape.site-footer {
   color: rgba(255, 255, 255, 0.88) !important;
 }
 
-.hero-proof {
-  background: rgba(15, 20, 16, 0.45);
-  backdrop-filter: blur(12px);
-  padding: 12px 18px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-}
 
 /* 3. Header Polish & Dynamic Brand Contrast */
 .site-header {

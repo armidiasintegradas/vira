@@ -51,3 +51,15 @@ test('estilos de alta fidelidade para o palco de processo dourado ocre estão co
 test('arquivo de imagem da hero de processo existe em assets', () => {
   assert.ok(existsSync(new URL('../assets/processo-operacao-hero.png', import.meta.url)), 'assets/processo-operacao-hero.png deve existir');
 });
+
+test('quatro marcadores editoriais da composição industrial e stack mobile estão implementados', () => {
+  assert.match(indexHtml, /PESSOAS[\s\S]*?QUE MOVEM[\s\S]*?MUDANÇAS/);
+  assert.match(indexHtml, /TECNOLOGIA[\s\S]*?A SERVIÇO[\s\S]*?DO IMPACTO/);
+  assert.match(indexHtml, /RESÍDUOS[\s\S]*?HOJE\.[\s\S]*?CIDADES[\s\S]*?AMANHÃ\./);
+  assert.match(indexHtml, /SOLUÇÕES[\s\S]*?PARA CIDADES[\s\S]*?MELHORES/);
+  assert.match(indexHtml, /class="process-mobile-media"/);
+  assert.match(indexHtml, /class="process-mobile-cta"/);
+  assert.match(homeCss, /\.process-button\s*\{[^}]*border-radius:\s*9999px/);
+  assert.match(homeCss, /\.process-editorial-stage\s*\{[^}]*position:\s*absolute/);
+});
+

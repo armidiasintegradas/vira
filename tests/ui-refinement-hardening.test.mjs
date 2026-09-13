@@ -33,6 +33,12 @@ test('harmonização de UI, espaçamentos, containers e refinamento de diagrama�
   assert.match(homeCss, /--site-max-w:\s*1400px/);
   assert.match(homeCss, /\.hero-media img\s*\{[^}]*object-position:\s*center 36%/);
   assert.match(homeCss, /\.site-header\.scrolled\s*\{[^}]*backdrop-filter:\s*blur\(20px\)/);
-  assert.match(homeCss, /\.manifesto-copy\s*\{[^}]*letter-spacing:\s*-0\.035em/);
-  assert.match(homeCss, /\.hero-proof\s*\{[^}]*backdrop-filter:\s*blur\(12px\)/);
+  assert.equal(homeCss.includes('.hero-proof'), false, 'home-hardening.css não deve conter referências residuais a .hero-proof');
+});
+
+test('card informativo 50% + 50% foi completamente eliminado do Hero em HTML e CSS', () => {
+  assert.equal(indexHtml.includes('hero-proof'), false, 'index.html não deve conter .hero-proof');
+  assert.equal(indexHtml.includes('proof-safe'), false, 'index.html não deve conter .proof-safe');
+  assert.equal(stylesCss.includes('hero-proof'), false, 'styles.css não deve conter .hero-proof');
+  assert.equal(homeCss.includes('hero-proof'), false, 'home-hardening.css não deve conter .hero-proof');
 });
