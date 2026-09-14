@@ -12,7 +12,8 @@ test("todas as páginas principais importam as fontes Manrope e IBM Plex Mono", 
     "blocos.html",
     "central-tecnica.html",
     "passaporte.html",
-    "uniformes.html"
+    "uniformes.html",
+    "brandbook.html"
   ];
 
   for (const page of pages) {
