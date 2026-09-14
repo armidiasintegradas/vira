@@ -119,12 +119,12 @@ test('resolução do gap na rolagem da página e ocultação segura do Hero (FAS
   assert.match(appJs, /document\.body\.classList\.toggle\(['"]past-hero['"]/);
 });
 
-test('watermark da marca oficial VIRA com 50% de transparência (FASE 33)', () => {
+test('watermark da marca oficial VIRA com 5% de cor / opacidade (FASE 34)', () => {
   assert.ok(existsSync(new URL('../assets/marca-icone-v.png', import.meta.url)), 'assets/marca-icone-v.png deve existir');
   assert.match(indexHtml, /class="tech-qa-watermark"[\s\S]*?assets\/marca-icone-v\.png/);
   assert.match(indexHtml, /class="closing-watermark"[\s\S]*?assets\/marca-icone-v\.png/);
-  assert.match(homeCss, /\.tech-qa-watermark\s*\{[^}]*opacity:\s*0\.5/);
-  assert.match(homeCss, /\.closing-watermark\s*\{[^}]*opacity:\s*0\.5/);
+  assert.match(homeCss, /\.tech-qa-watermark\s*\{[^}]*opacity:\s*0\.05/);
+  assert.match(homeCss, /\.closing-watermark\s*\{[^}]*opacity:\s*0\.05/);
 });
 
 
