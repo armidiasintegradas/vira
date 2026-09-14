@@ -45,7 +45,7 @@ body.manifesto-active .menu-toggle span{background:var(--ink)}
 
 /* Camadas reais: o Hero permanece preso enquanto o Manifesto o atravessa. */
 .hero{position:sticky;top:0;z-index:1}
-main>section:not(.hero){position:relative;z-index:2}
+main>*:not(.hero),main>section,main>aside,.editorial-interlude{position:relative;z-index:2}
 main>.manifesto{z-index:4}
 
 /* Hero imóvel e seções opacas preservam a identidade cromática durante o scroll. */

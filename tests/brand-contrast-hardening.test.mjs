@@ -111,5 +111,21 @@ test('sistema de botões em formato cápsula (FASE 31) unifica dinâmica, tipogr
   assert.match(homeCss, /\.contact-btn-submit:hover\s*\{[^}]*gap:\s*18px/);
 });
 
+test('resolução do gap na rolagem da página e ocultação segura do Hero (FASE 33)', () => {
+  // Garante que todas as seções e interlúdios fiquem firmemente acima do Hero
+  assert.match(homeCss, /main\s*>\s*\*:not\(\.hero\)[\s\S]*?z-index:\s*10/);
+  assert.match(homeCss, /\.editorial-interlude\s*\{[^}]*z-index:\s*10/);
+  assert.match(homeCss, /body\.past-hero\s+\.hero\s*\{[^}]*visibility:\s*hidden/);
+  assert.match(appJs, /document\.body\.classList\.toggle\(['"]past-hero['"]/);
+});
+
+test('watermark da marca oficial VIRA com 50% de transparência (FASE 33)', () => {
+  assert.ok(existsSync(new URL('../assets/marca-icone-v.png', import.meta.url)), 'assets/marca-icone-v.png deve existir');
+  assert.match(indexHtml, /class="tech-qa-watermark"[\s\S]*?assets\/marca-icone-v\.png/);
+  assert.match(indexHtml, /class="closing-watermark"[\s\S]*?assets\/marca-icone-v\.png/);
+  assert.match(homeCss, /\.tech-qa-watermark\s*\{[^}]*opacity:\s*0\.5/);
+  assert.match(homeCss, /\.closing-watermark\s*\{[^}]*opacity:\s*0\.5/);
+});
+
 
 

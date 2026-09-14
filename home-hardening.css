@@ -1131,23 +1131,24 @@
   position: relative;
 }
 
-/* Watermark Decorativa 'V' no canto inferior esquerdo */
+/* Watermark Decorativa 'V' com a marca oficial e 50% de transparência */
 .tech-qa-watermark {
   position: absolute;
   bottom: -40px;
   left: -24px;
   width: clamp(240px, 26vw, 380px);
   height: auto;
-  color: #FCC929;
-  opacity: 0.92;
+  opacity: 0.5 !important;
   pointer-events: none;
   z-index: 1;
 }
 
+.tech-qa-watermark img,
 .tech-qa-watermark svg {
   display: block;
   width: 100%;
   height: auto;
+  object-fit: contain;
 }
 
 /* Grid Principal em 2 Colunas */
@@ -1465,7 +1466,7 @@
     width: 220px;
     bottom: -20px;
     left: -10px;
-    opacity: 0.6;
+    opacity: 0.5 !important;
   }
 }
 
@@ -1528,7 +1529,7 @@
   width: 100%;
 }
 
-/* Marca d'água angular VIRA sutil (4% de opacidade) */
+/* Marca d'água VIRA oficial com 50% de transparência */
 .closing-watermark {
   position: absolute;
   right: -2%;
@@ -1536,15 +1537,16 @@
   transform: translateY(-50%);
   width: clamp(340px, 38vw, 560px);
   pointer-events: none;
-  opacity: 0.04;
-  color: #16241b;
+  opacity: 0.5 !important;
   z-index: 0;
 }
 
+.closing-watermark img,
 .closing-watermark svg {
   width: 100%;
   height: auto;
   display: block;
+  object-fit: contain;
 }
 
 /* Grid Editorial */
@@ -3280,6 +3282,32 @@ body.hero-scrolled .hero .scroll-cue {
 
 .drawer-cta:hover i {
   transform: translateX(4px) !important;
+}
+
+/* ==========================================================================
+   FASE 33 — RESOLUÇÃO DO GAP NO SCROLL & HERO VISIBILITY HARDENING
+   Garante que todas as seções e interlúdios fiquem firmemente acima do Hero (z-index: 10)
+   e que o Hero fique invisível após o scroll do Manifesto, eliminando qualquer
+   vazamento ou gap onde a imagem do Hero possa aparecer.
+   ========================================================================== */
+
+main > *:not(.hero),
+main > section,
+main > aside,
+.editorial-interlude {
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+.editorial-interlude {
+  position: relative !important;
+  z-index: 10 !important;
+  background-color: #070c09 !important;
+}
+
+body.past-hero .hero {
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 
