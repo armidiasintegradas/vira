@@ -1,95 +1,1353 @@
-<!doctype html>
-<html lang="pt-BR">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Passaporte Digital VIRA — Rastreabilidade demonstrativa</title>
-  <meta name="description" content="Conheça a arquitetura demonstrativa do Passaporte Digital VIRA para conectar origem, composição, configuração, produção, controles, aplicação e documentos por lote.">
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-  <link rel="shortcut icon" href="favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="platform.css?v=20260909-fase2-4">
+<!DOCTYPE html><html class="scroll-smooth" lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>VIRA | Paver Intertravado Circular // Engenharia de Infraestrutura</title>
+<!-- Favicon Oficial VIRA -->
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "tertiary": "#08110D",
+            "tertiary-container": "#112017",
+            "primary": "#010e05",
+            "primary-container": "#142519",
+            "primary-fixed": "#d3e8d5",
+            "primary-fixed-dim": "#b7ccb9",
+            "on-primary": "#ffffff",
+            "on-primary-fixed": "#0e1f13",
+            "secondary": "#755b00",
+            "secondary-container": "#F1C546",
+            "secondary-fixed": "#ffdf90",
+            "secondary-fixed-dim": "#edc143",
+            "on-secondary": "#ffffff",
+            "on-secondary-container": "#08110D",
+            "safety-neon": "#D8F334",
+            "safety-green": "#4D8256",
+            "safety-orange": "#FF5722",
+            "surface": "#faf9f6",
+            "surface-bright": "#faf9f6",
+            "surface-dim": "#dbdad7",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f4f3f0",
+            "surface-container": "#efeeeb",
+            "surface-container-high": "#e9e8e5",
+            "surface-container-highest": "#e3e2df",
+            "surface-raised": "#FFFFFF",
+            "background": "#faf9f6",
+            "on-background": "#1b1c1a",
+            "on-surface": "#1b1c1a",
+            "on-surface-variant": "#434843",
+            "border-subtle": "#E2E0D8",
+            "outline": "#737872",
+            "outline-variant": "#c3c8c1",
+            "silver-prismatic": "#D9DDD8"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.375rem",
+            "xl": "0.5rem",
+            "2xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "margin": "1.25rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2.5rem",
+            "gutter": "1rem"
+          },
+          fontFamily: {
+            "display-hero": ["Manrope", "sans-serif"],
+            "headline-lg": ["Manrope", "sans-serif"],
+            "headline-md": ["Manrope", "sans-serif"],
+            "headline-sm": ["Manrope", "sans-serif"],
+            "body-lg": ["Manrope", "sans-serif"],
+            "body-md": ["Manrope", "sans-serif"],
+            "body-sm": ["Manrope", "sans-serif"],
+            "label-mono-lg": ["IBM Plex Mono", "monospace"],
+            "label-mono-md": ["IBM Plex Mono", "monospace"],
+            "label-mono-sm": ["IBM Plex Mono", "monospace"]
+          }
+        }
+      }
+    }
+  </script>
 </head>
-<body class="platform-page">
-  <header class="platform-header">
-    <a href="index.html" aria-label="VIRA, início"><img src="assets/marca-logo-final.png" alt="VIRA"></a>
-    <a href="index.html#colecao">Produtos</a>
-  </header>
-  <nav class="product-switcher" aria-label="Famílias e recursos VIRA">
-    <a href="paver.html">Paver</a>
-    <a href="blocos.html">Blocos</a>
-    <a href="guias.html">Guias e Meio-fio</a>
-    <a href="central-tecnica.html">Central Técnica</a>
-    <a href="passaporte.html" aria-current="page">Passaporte</a>
-  </nav>
-
-  <main>
-    <section class="platform-hero">
-      <p class="platform-kicker">VIRA / Rastreabilidade</p>
-      <h1>Passaporte Digital VIRA</h1>
-      <p>Uma arquitetura para conectar origem, composição, configuração, produção, controles, aplicação e documentos ao longo da vida de cada lote.</p>
-      <p class="demo-warning"><strong>DEMONSTRAÇÃO</strong> — esta página não consulta lotes comerciais reais.</p>
-    </section>
-
-    <section class="passport-story" aria-labelledby="passport-story-title">
-      <div><p class="platform-kicker">Arquitetura de informação</p><h2 id="passport-story-title">Da origem ao documento.</h2></div>
-      <ol>
-        <li><span>01</span><strong>Origem da matéria</strong><p>Registro da origem dos fluxos recuperados associados ao lote.</p></li>
-        <li><span>02</span><strong>Composição</strong><p>Formulação e composição-base vinculadas à configuração.</p></li>
-        <li><span>03</span><strong>Configuração</strong><p>Identificação da família e da configuração do componente.</p></li>
-        <li><span>04</span><strong>Produção</strong><p>Registro da produção e dos controles disponíveis por lote.</p></li>
-        <li><span>05</span><strong>Ensaios</strong><p>Associação aos documentos técnicos quando estiverem homologados.</p></li>
-        <li><span>06</span><strong>Aplicação</strong><p>Contexto de aplicação vinculado à configuração correspondente.</p></li>
-        <li><span>07</span><strong>Documentos</strong><p>Centralização dos arquivos reais e válidos associados ao lote.</p></li>
-      </ol>
-    </section>
-
-    <section class="passport-demo-section" aria-labelledby="passport-demo-title">
-      <p class="platform-kicker">DEMONSTRAÇÃO</p>
-      <h2 id="passport-demo-title">Explore a estrutura demonstrativa.</h2>
-      <div class="passport-tabs" role="group" aria-label="Selecionar família demonstrativa">
-        <button class="passport-tab" type="button" data-passport="paver" aria-pressed="true">Paver</button>
-        <button class="passport-tab" type="button" data-passport="blocos" aria-pressed="false">Blocos</button>
-        <button class="passport-tab" type="button" data-passport="guias" aria-pressed="false">Guias e Meio-fio</button>
+<body class="bg-background font-body-md text-on-surface antialiased selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- CABEÇALHO OFICIAL BRANDBOOK // SITE PRINCIPAL -->
+<header class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+<!-- Top Utility Bar / Kicker com dados de fábrica -->
+<div class="w-full bg-[#0b1610] text-[#a9b6ad] border-b border-[#1f3024]">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-8 text-[11px] font-label-mono-sm">
+<div class="flex items-center gap-2 sm:gap-4 overflow-x-auto whitespace-nowrap py-1">
+<span class="inline-flex items-center gap-1.5 text-white font-medium">
+<span class="w-2 h-2 rounded-full bg-safety-neon animate-pulse"></span>
+            UNIDADE INDUSTRIAL CARUARU // BR-104 KM 62
+          </span>
+<span class="text-[#2c4233] hidden sm:inline">|</span>
+<span class="inline-flex items-center gap-1 text-[#d3e8d5] font-semibold hidden md:inline-flex">
+<span class="material-symbols-outlined text-[13px] text-safety-neon">check_circle</span>
+            OPERAÇÃO ATIVA
+          </span>
+<span class="text-[#2c4233] hidden lg:inline">|</span>
+<span class="hidden lg:inline text-[#8a998e]">
+            CIRCULARIDADE: 86.4% // NBR 9781
+          </span>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<a class="inline-flex items-center gap-1 text-[#F1C546] hover:text-white transition-colors font-medium tracking-wide group" href="index.html">
+<span class="transition-transform group-hover:-translate-x-0.5">←</span> VOLTAR AO SITE
+          </a>
+</div>
+</div>
+</div>
+<!-- Main Navigation Bar Dark Glassmorphism -->
+<div class="w-full bg-[#142519]/95 backdrop-blur-md border-b border-[#233b2a] shadow-lg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 md:h-20">
+<!-- Logo Oficial VIRA -->
+<div class="flex items-center gap-6">
+<a class="flex items-center group py-2" href="index.html" title="VIRA - Engenharia Circular">
+<img alt="VIRA - Soluções para Cidades Melhores" class="h-8 sm:h-9 md:h-10 w-auto object-contain transition-transform group-hover:scale-[1.02]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkLX8sWAFnOCxA7fvoEwNz3CnlRdHhoztorv9CHXNkfR7qo-RHGrI4BcbL2FbemNS4cGDJz4TlNOM58GtHmXAfozpflLoBwqDWlbFrM03rUXH1HX1E5sJ9qlvHCxMK6cem_JRYvfQK6LOzjvfotUne6Bl0dJtNx-fgzhhZHXyGCvZAlJtjF5SW5UmxxH7gHGCkYZxPSeXV4NCum_5ggiqc6LMbKzmfFQO82clqxvLk7TY5dZwBncTz3iLeIkWWwX0j8-A">
+</a>
+<div class="hidden xl:block h-5 w-px bg-[#263e2e]"></div>
+<span class="hidden xl:inline-block px-2.5 py-1 bg-[#1a3322] border border-[#2b4d35] rounded font-label-mono-sm text-[11px] text-[#b7ccb9] uppercase tracking-wider">
+            Linha Pavimentação
+          </span>
+</div>
+<!-- Links de Navegação Oficial -->
+<nav class="hidden lg:flex items-center gap-1 xl:gap-2">
+<a class="px-3 py-1.5 rounded text-sm font-medium text-[#c8d4cc] hover:text-white hover:bg-white/5 transition-all" href="index.html">Início</a>
+<!-- Link Paver Ativo com Chip Dourado -->
+<a aria-current="page" class="px-3 py-1.5 rounded-md text-sm font-bold text-[#F1C546] bg-[#1d3524] border border-[#F1C546]/30 shadow-inner flex items-center gap-1.5" href="paver.html">
+<span class="w-1.5 h-1.5 rounded-full bg-[#F1C546]"></span>
+            Paver
+          </a>
+<a class="px-3 py-1.5 rounded text-sm font-medium text-[#c8d4cc] hover:text-white hover:bg-white/5 transition-all" href="blocos.html">Blocos</a>
+<a class="px-3 py-1.5 rounded text-sm font-medium text-[#c8d4cc] hover:text-white hover:bg-white/5 transition-all" href="guias.html">Guias</a>
+<a class="px-3 py-1.5 rounded text-sm font-medium text-[#c8d4cc] hover:text-white hover:bg-white/5 transition-all" href="#central-tecnica">Central Técnica</a>
+<a class="px-3 py-1.5 rounded text-sm font-medium text-[#c8d4cc] hover:text-white hover:bg-white/5 transition-all" href="#passaporte">Passaporte DPP</a>
+<a class="px-3 py-1.5 rounded text-sm font-medium text-[#c8d4cc] hover:text-white hover:bg-white/5 transition-all" href="brandbook.html">Brandbook</a>
+</nav>
+<!-- Ações do Header -->
+<div class="flex items-center gap-2 sm:gap-3">
+<a class="hidden sm:inline-flex items-center justify-center px-3.5 py-2 rounded border border-[#3b5942] text-[#d6e2d9] hover:text-white hover:border-[#F1C546] text-xs font-semibold uppercase tracking-wider transition-all" href="#especificar">
+            Especificar Projeto
+          </a>
+<a class="inline-flex items-center justify-center gap-1.5 px-3.5 sm:px-4 py-2 rounded bg-secondary-container text-on-secondary-container hover:bg-[#e4b83b] text-xs font-bold uppercase tracking-wider shadow transition-all" href="#especificar">
+<span class="material-symbols-outlined text-[15px]">token</span>
+            Solicitar Amostra
+          </a>
+</div>
+</div>
+</div>
+</header>
+<!-- CONTEÚDO PRINCIPAL -->
+<main class="w-full pt-[96px] md:pt-[112px] bg-background min-h-screen">
+<div class="flex flex-col w-full">
+<!-- SECTION HERO INDUSTRIAL COM PARTÍCULAS E TELEMETRIA -->
+<section class="relative w-full bg-tertiary text-white overflow-hidden">
+<!-- Canvas de Partículas Dinâmicas (Polímeros 50/50 em Verde e Ocre) -->
+<canvas class="absolute inset-0 w-full h-full pointer-events-none opacity-50 z-0" id="hero-particles" width="1280" height="732"></canvas>
+<!-- Imagem de Fundo Industrial com Blend Escuro -->
+<div class="absolute inset-0 bg-cover bg-center mix-blend-luminosity opacity-20 z-0 pointer-events-none" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQFrdgMKcGtA9y9L_SOeGhZAO8We_o3g7CSAbiDJHNWkhV2xjeWMjx1-fuBZ5JkF9AIrmN0eAuh2ycdUSwqwekjFifyJZeCkVbvDKCn39TjmFejp6bKxb_KiSBjZ75K6XOcob-Cy9pewl1B0IxkaqXJoFXw5tqinYfgRJi7KBYUhYoTecBPJnK_C8pQSKXq0Izc6S2PE5BS3TYI8njZeKTLnJe3HhOnWAEPjgEI7fGhbLw_b1Z4gKjIg')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-tertiary via-tertiary/90 to-tertiary/60 z-0"></div>
+<div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-24">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+<!-- Bloco Principal Editorial -->
+<div class="lg:col-span-7 flex flex-col space-y-5">
+<!-- Kicker de Rastreabilidade / Status -->
+<div class="flex flex-wrap items-center gap-2">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-[#142519] text-[#F1C546] border border-[#F1C546]/30 font-label-mono-sm text-[11px] uppercase tracking-wider rounded">
+<span class="w-1.5 h-1.5 rounded-full bg-safety-neon animate-ping"></span>
+                  PRODUTO HOMOLOGADO // LINHA PAVIMENTAÇÃO URBANA
+                </span>
+<span class="inline-flex items-center px-2.5 py-1 bg-[#16271c] text-[#b7ccb9] font-label-mono-sm text-[11px] tracking-wider rounded border border-[#27422f]">
+                  NBR 9781 // CARUARU — PE
+                </span>
+</div>
+<!-- Título Hero -->
+<h1 class="font-display-hero text-3xl sm:text-5xl md:text-6xl font-extrabold text-white uppercase tracking-tight leading-[1.08]">
+                PAVER INTERTRAVADO <br class="hidden sm:inline">
+<span class="text-[#F1C546]">CIRCULAR VIRA.</span>
+</h1>
+<!-- Subtítulo Técnico -->
+<p class="font-body-lg text-base md:text-lg text-[#cbd8cf] max-w-2xl leading-relaxed">
+                Engenharia circular para o chão das cidades. Componentes de alto desempenho que transformam <strong class="text-white font-semibold">50% de polímeros pós-consumo</strong> e <strong class="text-white font-semibold">50% de escória mineral</strong> em infraestrutura resiliente, com rastreabilidade lote a lote via Passaporte DPP.
+              </p>
+<!-- CTAs Industriais -->
+<div class="flex flex-wrap items-center gap-3 sm:gap-4 pt-2">
+<a class="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-secondary-container text-on-secondary-container hover:bg-[#e4b83b] font-headline-sm text-sm font-bold uppercase tracking-wider rounded transition-all shadow-md active:scale-95" href="#especificar">
+<span class="material-symbols-outlined text-[18px]">rule</span>
+                  Solicitar Especificação Técnica
+                </a>
+<a class="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-[#142519] hover:bg-[#1d3524] text-[#d6e2d9] hover:text-white border border-[#2b4733] font-headline-sm text-sm font-semibold uppercase tracking-wider rounded transition-colors" href="#central-tecnica">
+<span class="material-symbols-outlined text-[18px]">lab_profile</span>
+                  Explorar Laudos &amp; Ensaios
+                </a>
+</div>
+<!-- Metadados em Linha -->
+<div class="pt-4 grid grid-cols-2 sm:grid-cols-3 gap-3">
+<div class="p-3.5 bg-[#101e15] border border-[#1e3325] rounded">
+<span class="block font-label-mono-sm text-[11px] text-[#F1C546] uppercase font-semibold">Absorção H₂O</span>
+<span class="font-label-mono-lg text-base md:text-lg text-white font-bold">0,2% — 0,3%</span>
+<span class="block font-label-mono-sm text-[10px] text-[#899c8f]">Ultra baixa permeabilidade</span>
+</div>
+<div class="p-3.5 bg-[#101e15] border border-[#1e3325] rounded">
+<span class="block font-label-mono-sm text-[11px] text-[#F1C546] uppercase font-semibold">Resistência</span>
+<span class="font-label-mono-lg text-base md:text-lg text-white font-bold">20 — 30 MPa</span>
+<span class="block font-label-mono-sm text-[10px] text-[#899c8f]">20 a 30 N/mm²</span>
+</div>
+<div class="col-span-2 sm:col-span-1 p-3.5 bg-[#101e15] border border-[#1e3325] rounded">
+<span class="block font-label-mono-sm text-[11px] text-[#F1C546] uppercase font-semibold">Cura / Síntese</span>
+<span class="font-label-mono-lg text-base md:text-lg text-safety-neon font-bold">0% Cimento</span>
+<span class="block font-label-mono-sm text-[10px] text-[#899c8f]">Termocompressão direta</span>
+</div>
+</div>
+</div>
+<!-- Card Plaque Lateral: HUB TÉCNICO & RASTREABILIDADE -->
+<div class="lg:col-span-5 w-full bg-[#142519] border border-[#274430] text-white p-5 md:p-6 rounded-lg shadow-2xl">
+<div class="flex items-center justify-between pb-3 mb-3 border-b border-[#233a2a]">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-safety-neon"></span>
+<span class="font-label-mono-md text-xs uppercase tracking-widest text-[#F1C546] font-bold">HUB TÉCNICO VIRA // LOTE 01</span>
+</div>
+<span class="font-label-mono-sm text-[11px] text-[#97a89c] px-2 py-0.5 bg-[#0e1c12] rounded border border-[#1f3825]">MATRIZ 50/50</span>
+</div>
+<!-- Foto Operacional de Ensaio com Badge Oficial -->
+<div class="relative w-full h-44 mb-4 rounded overflow-hidden bg-tertiary border border-[#274430]">
+<img alt="Engenheira verificando paver de polímero reciclado com paquímetro" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNb6WycSq5Cbx_dNBjIrMP8kMKUdaATI9H3lDp7zk4kCeBOwrE5Tl_k3cLk1h0BUYgietxHjALjx_nOBLeLlHJCHmKf0mDmUw8J4s52RAN1EEdeAQnT-9DakNDkVVqJAPH0tMqLYTJG0rcktpJwaS_Z8BqVxwwAQu5oLizmNrD_4YhLscI0CyLJIroM_J2qM1w6seK9Y9CjpXamhHQENzQzwukzR5k2puIIWle5l9gsIdHrT2dlaDh1w">
+<div class="absolute bottom-2 left-2 px-2.5 py-1 bg-[#0d1811]/90 backdrop-blur-sm text-white font-label-mono-sm text-[10px] uppercase rounded flex items-center gap-1.5 border border-white/10">
+<span class="material-symbols-outlined text-[13px] text-[#F1C546]">verified</span>
+                  Ensaio Dimensional de Lote
+                </div>
+</div>
+<!-- Especificações Monospaçadas com Ação Rápida de Cópia -->
+<div class="space-y-2 font-label-mono-sm text-[11px]">
+<div class="flex items-center justify-between py-2 px-3 bg-[#0d1a12] hover:bg-[#172c1e] border border-[#1f3826] rounded cursor-pointer group transition-all" onclick="copyToken('COMPOSIÇÃO: 50% Plástico Pós-Consumo + 50% Escória Siderúrgica', this)">
+<span class="text-[#899c8f]">FORMULAÇÃO</span>
+<span class="text-white font-semibold group-hover:text-[#F1C546]">50% POLÍMERO + 50% MINERAL</span>
+<span class="text-[#F1C546] copy-badge font-bold text-[10px]">COPIAR</span>
+</div>
+<div class="flex items-center justify-between py-2 px-3 bg-[#0d1a12] hover:bg-[#172c1e] border border-[#1f3826] rounded cursor-pointer group transition-all" onclick="copyToken('ABSORÇÃO: 0,2% - 0,3%', this)">
+<span class="text-[#899c8f]">ABSORÇÃO DE ÁGUA</span>
+<span class="text-white font-semibold group-hover:text-[#F1C546]">0,2% — 0,3% (NBR 9781 REF)</span>
+<span class="text-[#F1C546] copy-badge font-bold text-[10px]">COPIAR</span>
+</div>
+<div class="flex items-center justify-between py-2 px-3 bg-[#0d1a12] hover:bg-[#172c1e] border border-[#1f3826] rounded cursor-pointer group transition-all" onclick="copyToken('RESISTÊNCIA COMPRESSÃO: 25 a 30 N/mm²', this)">
+<span class="text-[#899c8f]">RESISTÊNCIA FPK</span>
+<span class="text-white font-semibold group-hover:text-[#F1C546]">25 a 30 MPa (40-60mm)</span>
+<span class="text-[#F1C546] copy-badge font-bold text-[10px]">COPIAR</span>
+</div>
+<div class="flex items-center justify-between py-2 px-3 bg-[#0d1a12] hover:bg-[#172c1e] border border-[#1f3826] rounded cursor-pointer group transition-all" onclick="copyToken('MATRIZ ENERGÉTICA: 100% Solar Fotovoltaica na Planta de Caruaru', this)">
+<span class="text-[#899c8f]">ENERGIA FABRIL</span>
+<span class="text-safety-neon font-semibold">100% SOLAR FOTOVOLTAICA</span>
+<span class="text-[#F1C546] copy-badge font-bold text-[10px]">COPIAR</span>
+</div>
+<div class="flex items-center justify-between py-2 px-3 bg-[#0d1a12] hover:bg-[#172c1e] border border-[#1f3826] rounded cursor-pointer group transition-all" onclick="copyToken('DPP ID: VIRA-DEMO-0001-PE-2026', this)">
+<span class="text-[#899c8f]">PASSAPORTE DPP</span>
+<span class="text-[#F1C546] font-mono font-bold">VIRA-DEMO-0001</span>
+<span class="text-[#F1C546] copy-badge font-bold text-[10px]">COPIAR</span>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-[#233a2a] flex items-center justify-between text-[#899c8f] font-label-mono-sm text-[11px]">
+<span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-safety-neon"></span> TELEMETRIA ON-GRID</span>
+<a class="text-[#F1C546] hover:text-white underline underline-offset-2 transition-colors font-semibold" href="#passaporte">Conferir Cadeia de Custódia →</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SUB-NAV TÉCNICO STICKY -->
+<nav class="sticky top-[96px] md:top-[112px] z-40 w-full bg-surface-raised border-y border-border-subtle shadow-sm">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-12 overflow-x-auto whitespace-nowrap gap-4">
+<div class="flex items-center gap-4 text-xs font-label-mono-sm uppercase text-on-surface-variant">
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#materia"><span class="text-secondary font-bold">01 //</span> O Material</a>
+<span class="text-outline-variant">•</span>
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#anatomia"><span class="text-secondary font-bold">02 //</span> Dimensões &amp; Anatomia</a>
+<span class="text-outline-variant">•</span>
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#comparador"><span class="text-secondary font-bold">03 //</span> Desempenho</a>
+<span class="text-outline-variant">•</span>
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#paginacao"><span class="text-secondary font-bold">04 //</span> Paginação</a>
+<span class="text-outline-variant">•</span>
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#calculadora"><span class="text-secondary font-bold">05 //</span> Calculadora</a>
+<span class="text-outline-variant">•</span>
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#passaporte"><span class="text-secondary font-bold">06 //</span> Passaporte DPP</a>
+</div>
+<a class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1 bg-primary-container text-white text-xs font-label-mono-sm uppercase rounded hover:bg-primary transition-colors" href="#especificar">
+<span class="material-symbols-outlined text-[14px]">send</span> Orçar Lote
+          </a>
+</div>
+</nav>
+<!-- SEÇÃO 01 // CIÊNCIA DOS MATERIAIS & FORMULAÇÃO 50/50 -->
+<section class="w-full py-16 md:py-24 bg-background" id="materia">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<span class="font-label-mono-sm text-xs text-secondary uppercase font-bold tracking-widest block mb-2">
+                01 // CIÊNCIA DOS MATERIAIS // FORMULAÇÃO 50/50
+              </span>
+<h2 class="font-headline-lg text-2xl sm:text-3xl md:text-4xl text-on-surface uppercase tracking-tight font-extrabold">
+                Dois resíduos convergentes. Uma formulação de engenharia.
+              </h2>
+</div>
+<p class="font-body-md text-sm md:text-base text-on-surface-variant max-w-md">
+              A formulação combina uma matriz polimérica recuperada com fração mineral selecionada, sob rigoroso controle termomecânico sem geração de efluentes ou queima fóssil de clínquer.
+            </p>
+</div>
+<!-- Grid dos 3 Pilares Materiais -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Bloco Polímero -->
+<div class="bg-surface-raised p-6 rounded-lg border border-border-subtle shadow-sm flex flex-col justify-between space-y-4 hover:-translate-y-1 transition-transform">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="font-label-mono-md text-xs text-secondary uppercase font-bold">FLUXO A // MATRIZ</span>
+<span class="px-2 py-0.5 bg-[#F1C546] text-[#08110D] font-label-mono-sm text-[11px] font-bold rounded">50% EM MASSA</span>
+</div>
+<h3 class="font-headline-md text-lg font-bold text-on-surface">50% Plástico Pós-Consumo</h3>
+<p class="font-body-sm text-sm text-on-surface-variant leading-relaxed">
+                  Polímeros termoplásticos (PEAD, PEBD e PP) micronizados e purificados. Resíduos de embalagens industriais e urbanas desviados permanentemente de aterros e bacias fluviais.
+                </p>
+</div>
+<div class="p-3 bg-surface-container rounded font-label-mono-sm text-xs text-on-surface-variant space-y-1.5 border border-border-subtle/60">
+<div class="flex justify-between"><span class="">Tolerância Térmica:</span><span class="text-on-surface font-semibold">-10°C a +95°C</span></div>
+<div class="flex justify-between"><span class="">Resistência UV:</span><span class="text-on-surface font-semibold">Aditivado Copolímero</span></div>
+</div>
+</div>
+<!-- Bloco Escória -->
+<div class="bg-surface-raised p-6 rounded-lg border border-border-subtle shadow-sm flex flex-col justify-between space-y-4 hover:-translate-y-1 transition-transform">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="font-label-mono-md text-xs text-secondary uppercase font-bold">FLUXO B // CARGA</span>
+<span class="px-2 py-0.5 bg-[#F1C546] text-[#08110D] font-label-mono-sm text-[11px] font-bold rounded">50% EM MASSA</span>
+</div>
+<h3 class="font-headline-md text-lg font-bold text-on-surface">50% Escória Mineral</h3>
+<p class="font-body-sm text-sm text-on-surface-variant leading-relaxed">
+                  Coproduto mineral e siderúrgico de altíssima dureza Mohs, classificado por granulometria milimétrica. Fornece o esqueleto inerte que confere estabilidade e resistência ao cisalhamento.
+                </p>
+</div>
+<div class="p-3 bg-surface-container rounded font-label-mono-sm text-xs text-on-surface-variant space-y-1.5 border border-border-subtle/60">
+<div class="flex justify-between"><span class="">Dureza Mohs:</span><span class="text-on-surface font-semibold">6.5 — 7.0</span></div>
+<div class="flex justify-between"><span class="">Origem:</span><span class="text-on-surface font-semibold">Cadeia Industrial PE/PB</span></div>
+</div>
+</div>
+<!-- Bloco Síntese Termocompressão -->
+<div class="bg-primary-container text-white p-6 rounded-lg border border-[#274430] shadow-md flex flex-col justify-between space-y-4 hover:-translate-y-1 transition-transform">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="font-label-mono-md text-xs text-[#F1C546] uppercase font-bold">PROCESSO ZERO-CÔMPUTO</span>
+<span class="px-2 py-0.5 bg-tertiary text-safety-neon font-label-mono-sm text-[11px] font-bold rounded border border-safety-neon/30">100% ELÉTRICO</span>
+</div>
+<h3 class="font-headline-md text-lg font-bold text-white">Termocompressão Molecular</h3>
+<p class="font-body-sm text-sm text-[#cbd8cf] leading-relaxed">
+                  Fórmula consolidada sob prensa hidráulica a quente de 180 toneladas. O polímero funde-se perfeitamente em torno da escória mineral, extinguindo microporos e dispensando hidratação e cimento Portland.
+                </p>
+</div>
+<div class="p-3 bg-[#0d1b12] rounded font-label-mono-sm text-xs text-[#9ab0a1] space-y-1.5 border border-[#1f3a27]">
+<div class="flex justify-between"><span class="">Cura com Água:</span><span class="text-[#F1C546] font-semibold">0 Litros</span></div>
+<div class="flex justify-between"><span class="">Consumo de Matéria Virgem:</span><span class="text-[#F1C546] font-semibold">0% Extração</span></div>
+</div>
+</div>
+</div>
+<!-- Barra de Síntese e Fluxo de Produção em Linha do Tempo -->
+<div class="bg-surface-container p-6 rounded-lg border border-border-subtle">
+<div class="flex items-center justify-between pb-3 mb-4 border-b border-border-subtle">
+<span class="font-label-mono-sm text-xs uppercase text-on-surface-variant font-bold">FLUXO INDUSTRIAL CONTÍNUO // PLANTA 01 CARUARU</span>
+<span class="font-label-mono-sm text-xs text-secondary uppercase font-semibold">7 ESTÁGIOS AUDITADOS</span>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 text-center font-label-mono-sm text-xs">
+<div class="p-2.5 bg-surface-raised rounded border border-border-subtle">
+<span class="block text-secondary font-bold text-xs">01</span>
+<span class="font-bold text-on-surface">Recuperação</span>
+<span class="block text-outline text-[10px]">Pós-Consumo</span>
+</div>
+<div class="p-2.5 bg-surface-raised rounded border border-border-subtle">
+<span class="block text-secondary font-bold text-xs">02</span>
+<span class="font-bold text-on-surface">Triagem</span>
+<span class="block text-outline text-[10px]">Lavagem/Corte</span>
+</div>
+<div class="p-2.5 bg-surface-raised rounded border border-border-subtle">
+<span class="block text-secondary font-bold text-xs">03</span>
+<span class="font-bold text-on-surface">Micronização</span>
+<span class="block text-outline text-[10px]">Pó Termoplástico</span>
+</div>
+<div class="p-2.5 bg-surface-raised rounded border border-border-subtle">
+<span class="block text-secondary font-bold text-xs">04</span>
+<span class="font-bold text-on-surface">Dosagem 50/50</span>
+<span class="block text-outline text-[10px]">Mistura Homogênea</span>
+</div>
+<div class="p-2.5 bg-surface-raised rounded border border-border-subtle">
+<span class="block text-secondary font-bold text-xs">05</span>
+<span class="font-bold text-on-surface">Prensa Térmica</span>
+<span class="block text-outline text-[10px]">Formação Molde</span>
+</div>
+<div class="p-2.5 bg-surface-raised rounded border border-border-subtle">
+<span class="block text-secondary font-bold text-xs">06</span>
+<span class="font-bold text-on-surface">Controle Lote</span>
+<span class="block text-outline text-[10px]">NBR 9781</span>
+</div>
+<div class="p-2.5 bg-primary-container text-white rounded col-span-2 sm:col-span-1 border border-[#274430]">
+<span class="block text-[#F1C546] font-bold text-xs">07</span>
+<span class="font-bold text-white">Passaporte DPP</span>
+<span class="block text-[#9ab0a1] text-[10px]">QR Code Ativo</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SEÇÃO 02 // ANATOMIA DA PEÇA & DIMENSÕES TÉCNICAS -->
+<section class="w-full py-16 md:py-24 bg-surface-raised border-t border-border-subtle" id="anatomia">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<span class="font-label-mono-sm text-xs text-secondary uppercase font-bold tracking-widest block mb-2">
+                02 // ANATOMIA &amp; GEOMETRIA MODULAR
+              </span>
+<h2 class="font-headline-lg text-2xl sm:text-3xl md:text-4xl text-on-surface uppercase tracking-tight font-extrabold">
+                Uma peça geométrica. Duas referências de espessura.
+              </h2>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-1 bg-surface-container font-label-mono-sm text-xs text-on-surface font-semibold rounded border border-border-subtle">16 FACES INTERTRAVADAS</span>
+<span class="px-2.5 py-1 bg-primary-fixed text-on-primary-fixed font-label-mono-sm text-xs font-semibold rounded border border-primary-fixed-dim">MODULAÇÃO 200 × 100 mm</span>
+</div>
+</div>
+<!-- Diagrama Técnico e Visualização do Produto -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+<!-- Esquerda: Blueprint Dimensional SVG -->
+<div class="lg:col-span-7 bg-surface p-6 rounded-lg border border-border-subtle shadow-sm flex flex-col items-center">
+<div class="w-full flex items-center justify-between pb-3 mb-3 border-b border-border-subtle text-on-surface-variant font-label-mono-sm text-xs">
+<span class="">VISTA ISOMÉTRICA &amp; CORTE SECCIONAL</span>
+<span class="text-secondary font-mono font-bold">ESCALA 1:1 COTA MM</span>
+</div>
+<!-- SVG Isometric Blueprint -->
+<svg class="w-full h-auto max-h-[280px] text-primary" fill="none" viewBox="0 0 540 280" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern height="20" id="tech-grid" patternUnits="userSpaceOnUse" width="20">
+<path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" stroke-opacity="0.06" stroke-width="1"></path>
+</pattern>
+</defs>
+<rect fill="url(#tech-grid)" height="100%" width="100%"></rect>
+<!-- Face Superior -->
+<polygon fill="#E2E0D8" points="270,40 430,110 270,180 110,110" stroke="#142519" stroke-width="2"></polygon>
+<!-- Chanfro Superior -->
+<polygon fill="#F4F3F0" points="270,46 418,110 270,174 122,110" stroke="#737872" stroke-dasharray="2 2" stroke-width="1"></polygon>
+<!-- Face Esquerda Frontal -->
+<polygon fill="#D9DDD8" points="110,110 270,180 270,240 110,170" stroke="#142519" stroke-width="2"></polygon>
+<!-- Face Direita Frontal -->
+<polygon fill="#C3C8C1" points="270,180 430,110 430,170 270,240" stroke="#142519" stroke-width="2"></polygon>
+<!-- Cotas de Dimensão e Anotações -->
+<line stroke="#FF5722" stroke-width="1.5" x1="80" x2="240" y1="125" y2="195"></line>
+<circle cx="80" cy="125" fill="#FF5722" r="2.5"></circle>
+<circle cx="240" cy="195" fill="#FF5722" r="2.5"></circle>
+<text fill="#FF5722" font-family="IBM Plex Mono" font-size="11" font-weight="700" x="140" y="175">200 mm</text>
+<line stroke="#FF5722" stroke-width="1.5" x1="300" x2="455" y1="195" y2="125"></line>
+<circle cx="300" cy="195" fill="#FF5722" r="2.5"></circle>
+<circle cx="455" cy="125" fill="#FF5722" r="2.5"></circle>
+<text fill="#FF5722" font-family="IBM Plex Mono" font-size="11" font-weight="700" x="390" y="175">100 mm</text>
+<line stroke="#755B00" stroke-dasharray="3 2" stroke-width="1.5" x1="450" x2="450" y1="110" y2="170"></line>
+<path d="M446,110 L454,110 M446,170 L454,170" stroke="#755B00" stroke-width="1.5"></path>
+<text fill="#755B00" font-family="IBM Plex Mono" font-size="10" font-weight="600" x="460" y="145">e: 40 / 50 / 60 mm</text>
+<circle cx="270" cy="110" fill="#142519" r="4"></circle>
+<line stroke="#142519" stroke-width="1" x1="270" x2="270" y1="110" y2="60"></line>
+<line stroke="#142519" stroke-width="1" x1="270" x2="210" y1="60" y2="60"></line>
+<text fill="#142519" font-family="IBM Plex Mono" font-size="10" x="90" y="55">ESPACADOR AUTO-ALINHANTE 2.5mm</text>
+</svg>
+<div class="w-full grid grid-cols-3 gap-2 mt-4 text-center font-label-mono-sm text-xs">
+<div class="p-2.5 bg-surface-raised rounded border border-border-subtle">
+<span class="text-outline block text-[11px]">Massa Unidade</span>
+<span class="font-bold text-on-surface">~1,85 kg (40mm)</span>
+</div>
+<div class="p-2.5 bg-surface-raised rounded border border-border-subtle">
+<span class="text-outline block text-[11px]">Rendimento / m²</span>
+<span class="font-bold text-on-surface">50 peças / m²</span>
+</div>
+<div class="p-2.5 bg-surface-raised rounded border border-border-subtle">
+<span class="text-outline block text-[11px]">Junta Recomendada</span>
+<span class="font-bold text-on-surface">2 a 3 mm (areia)</span>
+</div>
+</div>
+</div>
+<!-- Direita: As Duas Configurações de Espessura -->
+<div class="lg:col-span-5 space-y-4">
+<!-- Espessura 40mm -->
+<div class="p-5 md:p-6 bg-surface rounded-lg border border-border-subtle shadow-sm space-y-3 hover:border-[#F1C546] transition-colors">
+<div class="flex items-center justify-between">
+<span class="px-2.5 py-1 bg-secondary-container text-on-secondary-container font-label-mono-sm text-xs font-bold rounded">
+                    ESPESSURA 40 MM
+                  </span>
+<span class="font-label-mono-sm text-xs text-secondary font-bold">CLASSE 20-25 N/mm²</span>
+</div>
+<h3 class="font-headline-sm text-base md:text-lg font-bold text-on-surface">Tráfego Pedonal &amp; Mobilidade Ativa</h3>
+<p class="font-body-sm text-sm text-on-surface-variant leading-relaxed">
+                  Desenvolvido com peso reduzido para assentamento ergonômico e veloz. Ideal para passeios públicos, calçadas acessíveis, ciclovias segregadas, pátios escolares e praças públicas.
+                </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 bg-surface-raised font-label-mono-sm text-[11px] text-outline border border-border-subtle rounded font-medium">Calçadas</span>
+<span class="px-2 py-0.5 bg-surface-raised font-label-mono-sm text-[11px] text-outline border border-border-subtle rounded font-medium">Ciclovias</span>
+<span class="px-2 py-0.5 bg-surface-raised font-label-mono-sm text-[11px] text-outline border border-border-subtle rounded font-medium">Passeios NBR 9050</span>
+</div>
+</div>
+<!-- Espessura 50mm / 60mm -->
+<div class="p-5 md:p-6 bg-surface rounded-lg border border-border-subtle shadow-sm space-y-3 hover:border-primary-fixed-dim transition-colors">
+<div class="flex items-center justify-between">
+<span class="px-2.5 py-1 bg-primary-fixed text-on-primary-fixed font-label-mono-sm text-xs font-bold rounded">
+                    ESPESSURA 50 MM / 60 MM
+                  </span>
+<span class="font-label-mono-sm text-xs text-secondary font-bold">CLASSE 25-30 N/mm²</span>
+</div>
+<h3 class="font-headline-sm text-base md:text-lg font-bold text-on-surface">Tráfego Comercial &amp; Veicular Leve</h3>
+<p class="font-body-sm text-sm text-on-surface-variant leading-relaxed">
+                  Massa densificada de alta inércia física para estacionamentos comerciais, acessos prediais, condomínios fechados horizontais e pistas internas de manobra veicular leve.
+                </p>
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 bg-surface-raised font-label-mono-sm text-[11px] text-outline border border-border-subtle rounded font-medium">Estacionamentos</span>
+<span class="px-2 py-0.5 bg-surface-raised font-label-mono-sm text-[11px] text-outline border border-border-subtle rounded font-medium">Vias Internas</span>
+<span class="px-2 py-0.5 bg-surface-raised font-label-mono-sm text-[11px] text-outline border border-border-subtle rounded font-medium">Carga Leve</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SEÇÃO 03 // COMPARADOR DE DESEMPENHO INDUSTRIAL -->
+<section class="w-full py-16 md:py-24 bg-background border-t border-border-subtle" id="comparador">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<span class="font-label-mono-sm text-xs text-secondary uppercase font-bold tracking-widest block mb-2">
+                03 // ENGENHARIA COMPARATIVA // METROLOGIA
+              </span>
+<h2 class="font-headline-lg text-2xl sm:text-3xl md:text-4xl text-on-surface uppercase tracking-tight font-extrabold">
+                Compare pelo que pode ser comprovado.
+              </h2>
+</div>
+<p class="font-body-md text-sm md:text-base text-on-surface-variant max-w-md">
+              Sem promessas abstratas: separamos métricas quantificadas em ensaios laboratoriais das variáveis convencionais do mercado cimentício.
+            </p>
+</div>
+<!-- Tabela Comparativa Industrial -->
+<div class="w-full overflow-x-auto bg-surface-raised rounded-lg border border-border-subtle shadow-sm">
+<table class="w-full text-left border-collapse min-w-[650px]">
+<thead>
+<tr class="bg-primary-container text-white font-label-mono-sm text-xs uppercase tracking-wider">
+<th class="p-4 w-1/4">Parâmetro de Engenharia</th>
+<th class="p-4 w-3/8 text-[#F1C546] bg-[#0c1810] border-x border-[#1e3825]">Paver Circular VIRA (50/50)</th>
+<th class="p-4 w-3/8 text-[#cbd8cf]">Paver Convencional de Concreto</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-subtle font-body-sm text-sm text-on-surface">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-4 font-headline-sm font-bold text-on-surface">
+                    Composição Básica
+                    <span class="block font-label-mono-sm text-xs text-outline font-normal">Matriz e Agregados</span>
+</td>
+<td class="p-4 bg-[#F1C546]/10 font-semibold text-primary border-x border-border-subtle">
+                    50% Plástico Pós-Consumo (PE/PP) + 50% Escória Siderúrgica Selecionada
+                  </td>
+<td class="p-4 text-on-surface-variant">
+                    Areia virgem, brita de pedreira, água e cimento Portland CP-II/CP-V
+                  </td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-4 font-headline-sm font-bold text-on-surface">
+                    Absorção de Água
+                    <span class="block font-label-mono-sm text-xs text-outline font-normal">Porosidade Aberta</span>
+</td>
+<td class="p-4 bg-[#F1C546]/10 font-bold text-secondary border-x border-border-subtle">
+                    0,2% — 0,3% (Praticamente Nula)
+                    <span class="block font-label-mono-sm text-xs text-on-surface-variant font-normal">Imune a lodo, fungos e trincas por congelamento</span>
+</td>
+<td class="p-4 text-on-surface-variant">
+                    6,0% — 8,0% (NBR 9781 admite até 6%)
+                    <span class="block font-label-mono-sm text-xs text-outline font-normal">Suscetível a eflorescência e absorção capilar</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-4 font-headline-sm font-bold text-on-surface">
+                    Rastreabilidade
+                    <span class="block font-label-mono-sm text-xs text-outline font-normal">Cadeia de Custódia</span>
+</td>
+<td class="p-4 bg-[#F1C546]/10 font-bold text-primary border-x border-border-subtle">
+                    Passaporte Digital do Produto (DPP)
+                    <span class="block font-label-mono-sm text-xs text-secondary font-medium">QR code gravado lote a lote com laudo anexado</span>
+</td>
+<td class="p-4 text-on-surface-variant">
+                    Inexistente ou NF genérica
+                    <span class="block font-label-mono-sm text-xs text-outline font-normal">Sem registro público de origem de insumos</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-4 font-headline-sm font-bold text-on-surface">
+                    Emissão de CO₂e
+                    <span class="block font-label-mono-sm text-xs text-outline font-normal">Ciclo de Vida do Material</span>
+</td>
+<td class="p-4 bg-[#F1C546]/10 font-semibold text-primary border-x border-border-subtle">
+                    Mitigação radical: Zero queima de calcário
+                    <span class="block font-label-mono-sm text-xs text-on-surface-variant font-normal">Fábrica 100% fotovoltaica em Caruaru</span>
+</td>
+<td class="p-4 text-on-surface-variant">
+                    Alta intensidade de carbono
+                    <span class="block font-label-mono-sm text-xs text-outline font-normal">~0,85 kg CO₂ por kg de clínquer cimentício</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-4 font-headline-sm font-bold text-on-surface">
+                    Massa &amp; Manuseio
+                    <span class="block font-label-mono-sm text-xs text-outline font-normal">Ergonomia no Assentamento</span>
+</td>
+<td class="p-4 bg-[#F1C546]/10 font-semibold text-primary border-x border-border-subtle">
+                    ~18,5 kg/m² (Massa específica otimizada)
+                    <span class="block font-label-mono-sm text-xs text-on-surface-variant font-normal">Facilidade de corte e baixo desgaste de discos</span>
+</td>
+<td class="p-4 text-on-surface-variant">
+                    ~90 a 130 kg/m²
+                    <span class="block font-label-mono-sm text-xs text-outline font-normal">Gera poeira de sílica no corte e desgaste físico</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- SEÇÃO 04 // ESTUDOS VISUAIS DE PAGINAÇÃO & APLICAÇÕES -->
+<section class="w-full py-16 md:py-24 bg-surface-raised border-t border-border-subtle" id="paginacao">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<span class="font-label-mono-sm text-xs text-secondary uppercase font-bold tracking-widest block mb-2">
+                04 // PROJETO EXECUTIVO // ARQUITETURA DE PISO
+              </span>
+<h2 class="font-headline-lg text-2xl sm:text-3xl md:text-4xl text-on-surface uppercase tracking-tight font-extrabold">
+                Desenhe com VIRA. Padrões de Paginação.
+              </h2>
+</div>
+<p class="font-body-md text-sm md:text-base text-on-surface-variant max-w-md">
+              Estudos modulares para apoiar a concepção formal de escritórios de arquitetura, urbanismo e secretarias de obras públicas.
+            </p>
+</div>
+<!-- Grid dos 3 Padrões de Paginação -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Padrão 01: Linear -->
+<div class="bg-surface p-6 rounded-lg border border-border-subtle shadow-sm flex flex-col justify-between space-y-4">
+<div>
+<div class="flex items-center justify-between pb-2 mb-3 border-b border-border-subtle">
+<span class="font-label-mono-sm text-xs text-secondary font-bold">PADRÃO 01</span>
+<span class="font-label-mono-sm text-[11px] text-outline">LINE / DIRECTION</span>
+</div>
+<h3 class="font-headline-sm text-lg font-bold text-on-surface">Paginação Linear</h3>
+<p class="font-body-sm text-sm text-on-surface-variant pt-1 leading-relaxed">
+                  Alinhamento ortogonal contínuo. Reforça o sentido de percurso, perfeito para faixas de ciclovia e pistas de caminhada retilíneas.
+                </p>
+</div>
+<div class="w-full h-36 bg-surface-container rounded p-3 flex items-center justify-center border border-border-subtle">
+<svg class="w-full h-full text-primary" fill="none" stroke="currentColor" viewBox="0 0 160 80">
+<rect fill="#E9E8E5" height="25" stroke-width="1.5" width="40" x="10" y="10"></rect>
+<rect fill="#E9E8E5" height="25" stroke-width="1.5" width="40" x="55" y="10"></rect>
+<rect fill="#E9E8E5" height="25" stroke-width="1.5" width="40" x="100" y="10"></rect>
+<rect fill="#E9E8E5" height="25" stroke-width="1.5" width="40" x="10" y="40"></rect>
+<rect fill="#E9E8E5" height="25" stroke-width="1.5" width="40" x="55" y="40"></rect>
+<rect fill="#E9E8E5" height="25" stroke-width="1.5" width="40" x="100" y="40"></rect>
+</svg>
+</div>
+</div>
+<!-- Padrão 02: Alternado -->
+<div class="bg-surface p-6 rounded-lg border border-border-subtle shadow-sm flex flex-col justify-between space-y-4">
+<div>
+<div class="flex items-center justify-between pb-2 mb-3 border-b border-border-subtle">
+<span class="font-label-mono-sm text-xs text-secondary font-bold">PADRÃO 02</span>
+<span class="font-label-mono-sm text-[11px] text-outline">RUNNING BOND</span>
+</div>
+<h3 class="font-headline-sm text-lg font-bold text-on-surface">Paginação Alternada (Tijolinho)</h3>
+<p class="font-body-sm text-sm text-on-surface-variant pt-1 leading-relaxed">
+                  Desencontro a 50% no comprimento. Excelente travamento para calçadas urbanas de média intensidade e passeios residenciais.
+                </p>
+</div>
+<div class="w-full h-36 bg-surface-container rounded p-3 flex items-center justify-center border border-border-subtle">
+<svg class="w-full h-full text-primary" fill="none" stroke="currentColor" viewBox="0 0 160 80">
+<rect fill="#E9E8E5" height="25" stroke-width="1.5" width="40" x="10" y="10"></rect>
+<rect fill="#E9E8E5" height="25" stroke-width="1.5" width="40" x="55" y="10"></rect>
+<rect fill="#E9E8E5" height="25" stroke-width="1.5" width="40" x="100" y="10"></rect>
+<rect fill="#E9E8E5" height="25" stroke-width="1.5" width="40" x="30" y="40"></rect>
+<rect fill="#E9E8E5" height="25" stroke-width="1.5" width="40" x="75" y="40"></rect>
+<rect fill="#E9E8E5" height="25" stroke-width="1.5" width="30" x="120" y="40"></rect>
+</svg>
+</div>
+</div>
+<!-- Padrão 03: Espinha de Peixe -->
+<div class="bg-surface p-6 rounded-lg border border-border-subtle shadow-sm flex flex-col justify-between space-y-4">
+<div>
+<div class="flex items-center justify-between pb-2 mb-3 border-b border-border-subtle">
+<span class="font-label-mono-sm text-xs text-secondary font-bold">PADRÃO 03</span>
+<span class="font-label-mono-sm text-[11px] text-outline">HERRINGBONE 45°/90°</span>
+</div>
+<h3 class="font-headline-sm text-lg font-bold text-on-surface">Espinha de Peixe (Trava Máxima)</h3>
+<p class="font-body-sm text-sm text-on-surface-variant pt-1 leading-relaxed">
+                  Disposição diagonal intertravada de máxima capacidade de suporte. Recomendado para tráfego veicular e zonas de frenagem e giro.
+                </p>
+</div>
+<div class="w-full h-36 bg-surface-container rounded p-3 flex items-center justify-center border border-border-subtle">
+<svg class="w-full h-full text-primary" fill="none" stroke="currentColor" viewBox="0 0 160 80">
+<rect fill="#E9E8E5" height="18" stroke-width="1.5" transform="rotate(45 40 10)" width="35" x="40" y="10"></rect>
+<rect fill="#E9E8E5" height="18" stroke-width="1.5" transform="rotate(-45 65 10)" width="35" x="65" y="10"></rect>
+<rect fill="#E9E8E5" height="18" stroke-width="1.5" transform="rotate(45 90 10)" width="35" x="90" y="10"></rect>
+<rect fill="#E9E8E5" height="18" stroke-width="1.5" transform="rotate(-45 115 10)" width="35" x="115" y="10"></rect>
+</svg>
+</div>
+</div>
+</div>
+<!-- Grid de Aplicações Urbanas -->
+<div class="p-6 bg-surface-container rounded-lg border border-border-subtle space-y-4">
+<span class="font-label-mono-sm text-xs text-secondary uppercase font-bold tracking-widest block">
+              APLICAÇÕES URBANAS HOMOLOGADAS
+            </span>
+<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+<div class="p-3 bg-surface-raised rounded border border-border-subtle flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">directions_walk</span>
+<span class="font-body-sm text-xs font-semibold text-on-surface">Calçadas Públicas</span>
+</div>
+<div class="p-3 bg-surface-raised rounded border border-border-subtle flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">park</span>
+<span class="font-body-sm text-xs font-semibold text-on-surface">Praças &amp; Parques</span>
+</div>
+<div class="p-3 bg-surface-raised rounded border border-border-subtle flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">apartment</span>
+<span class="font-body-sm text-xs font-semibold text-on-surface">Condomínios</span>
+</div>
+<div class="p-3 bg-surface-raised rounded border border-border-subtle flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">storefront</span>
+<span class="font-body-sm text-xs font-semibold text-on-surface">Pátios Comerciais</span>
+</div>
+<div class="p-3 bg-surface-raised rounded border border-border-subtle flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">forest</span>
+<span class="font-body-sm text-xs font-semibold text-on-surface">Áreas Paisagísticas</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SEÇÃO 05 // CALCULADORA DE MATÉRIA RECUPERADA & IMPACTO AMBIENTAL -->
+<section class="w-full py-16 md:py-24 bg-background border-t border-border-subtle" id="calculadora">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<span class="font-label-mono-sm text-xs text-secondary uppercase font-bold tracking-widest block mb-2">
+                05 // DIMENSIONAMENTO PRELIMINAR // FÍSICA CIRCULAR
+              </span>
+<h2 class="font-headline-lg text-2xl sm:text-3xl md:text-4xl text-on-surface uppercase tracking-tight font-extrabold">
+                Comece pela área do seu projeto.
+              </h2>
+</div>
+<p class="font-body-md text-sm md:text-base text-on-surface-variant max-w-md">
+              Cálculo dinâmico baseado na premissa técnica de 18,5 kg de material por metro quadrado instalado (50 peças/m²).
+            </p>
+</div>
+<!-- Card da Calculadora Interativa -->
+<div class="bg-surface-raised p-6 md:p-8 rounded-lg border border-border-subtle shadow-md grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Controles Interativos -->
+<div class="lg:col-span-6 space-y-5">
+<div>
+<label class="block font-label-mono-sm text-xs uppercase text-on-surface-variant font-bold mb-2">
+                  Tipo de Aplicação Prevista
+                </label>
+<div class="grid grid-cols-2 gap-2">
+<button class="app-btn p-3 bg-primary-container text-white font-label-mono-sm text-xs uppercase rounded text-left font-bold border border-primary-container" onclick="selectApp(this, 'Passeio / Calçada')" type="button">Passeio / Calçada</button>
+<button class="app-btn p-3 bg-surface-container hover:bg-surface-dim text-on-surface font-label-mono-sm text-xs uppercase rounded text-left border border-border-subtle" onclick="selectApp(this, 'Praça / Parque')" type="button">Praça / Parque</button>
+<button class="app-btn p-3 bg-surface-container hover:bg-surface-dim text-on-surface font-label-mono-sm text-xs uppercase rounded text-left border border-border-subtle" onclick="selectApp(this, 'Condomínio Residencial')" type="button">Condomínio</button>
+<button class="app-btn p-3 bg-surface-container hover:bg-surface-dim text-on-surface font-label-mono-sm text-xs uppercase rounded text-left border border-border-subtle" onclick="selectApp(this, 'Projeto Viário Especial')" type="button">Projeto Viário</button>
+</div>
+</div>
+<!-- Slider de Área -->
+<div class="space-y-2 pt-2">
+<div class="flex items-center justify-between">
+<label class="font-label-mono-sm text-xs uppercase text-on-surface-variant font-bold" for="areaRange">
+                    Área Estimada do Pavimento
+                  </label>
+<span class="font-display-hero text-xl md:text-2xl text-primary font-extrabold" id="areaDisplay">500 m²</span>
+</div>
+<input class="w-full accent-secondary-container h-2.5 bg-surface-container-high rounded cursor-pointer" id="areaRange" max="5000" min="50" oninput="updateCalculator(this.value)" step="50" type="range" value="500">
+<div class="flex items-center justify-between text-outline font-label-mono-sm text-[11px] pt-1">
+<span class="">50 m² (Pequeno porte)</span>
+<span class="">2.500 m²</span>
+<span class="">5.000 m² (Grande obra)</span>
+</div>
+</div>
+<!-- Botões de Preset Rápido -->
+<div class="flex items-center gap-2 pt-1">
+<span class="font-label-mono-sm text-xs text-outline uppercase">Atalhos:</span>
+<button class="px-3 py-1 bg-surface-container hover:bg-surface-dim text-on-surface font-label-mono-sm text-xs rounded border border-border-subtle" onclick="setArea(200)" type="button">200 m²</button>
+<button class="px-3 py-1 bg-surface-container hover:bg-surface-dim text-on-surface font-label-mono-sm text-xs rounded border border-border-subtle" onclick="setArea(1000)" type="button">1.000 m²</button>
+<button class="px-3 py-1 bg-surface-container hover:bg-surface-dim text-on-surface font-label-mono-sm text-xs rounded border border-border-subtle" onclick="setArea(3000)" type="button">3.000 m²</button>
+</div>
+</div>
+<!-- Painel de Resultados Imediatos -->
+<div class="lg:col-span-6 bg-primary-container text-white p-6 rounded-lg border border-[#274430] flex flex-col justify-between space-y-6">
+<div class="space-y-4">
+<div class="flex items-center justify-between pb-2 border-b border-[#243d2c]">
+<span class="font-label-mono-sm text-xs text-[#F1C546] uppercase tracking-wider font-bold">BALANÇO DE MASSA RECUPERADA</span>
+<span class="font-label-mono-sm text-[11px] text-[#97a89c]">COEF. 18,5 KG/M²</span>
+</div>
+<!-- Total em destaque -->
+<div>
+<span class="block font-label-mono-sm text-xs text-[#cbd8cf] uppercase">Massa Total Estimada</span>
+<div class="flex items-baseline gap-2">
+<span class="font-display-hero text-3xl md:text-4xl font-black text-white" id="massaTotal">9.250</span>
+<span class="font-label-mono-lg text-lg text-[#F1C546]">kg</span>
+</div>
+</div>
+<!-- Divisão 50/50 -->
+<div class="grid grid-cols-2 gap-3 pt-1">
+<div class="p-3.5 bg-[#0e1c12] rounded border border-[#1f3825]">
+<span class="font-label-mono-sm text-xs text-[#cbd8cf] uppercase block">Plástico Recuperado</span>
+<span class="font-headline-md text-lg font-bold text-safety-neon block" id="massaPlastico">4.625 kg</span>
+<span class="text-[10px] text-[#8fa093] font-mono block mt-1">~230.000 embalagens</span>
+</div>
+<div class="p-3.5 bg-[#0e1c12] rounded border border-[#1f3825]">
+<span class="font-label-mono-sm text-xs text-[#cbd8cf] uppercase block">Escória Reaproveitada</span>
+<span class="font-headline-md text-lg font-bold text-[#F1C546] block" id="massaEscoria">4.625 kg</span>
+<span class="text-[10px] text-[#8fa093] font-mono block mt-1">Coproduto mineral</span>
+</div>
+</div>
+</div>
+<div class="space-y-3 pt-2">
+<div class="p-2.5 bg-[#0b160e] rounded border border-[#1b3021] flex items-center justify-between font-label-mono-sm text-xs text-[#cbd8cf]">
+<span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-[#F1C546]"></span> Indicador Climático:</span>
+<span class="text-[#F1C546] font-semibold">Em Validação Metodológica</span>
+</div>
+<a class="w-full inline-flex items-center justify-center gap-2 py-3 bg-secondary-container text-on-secondary-container hover:bg-[#e4b83b] font-headline-sm text-xs font-bold uppercase tracking-wider rounded transition-colors" href="#especificar">
+<span class="material-symbols-outlined text-[18px]">forward</span>
+                  Levar Estimativa à Especificação
+                </a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SEÇÃO 06 // PASSAPORTE DIGITAL DPP (DEMONSTRAÇÃO DO LOTE VIRA-DEMO-0001) -->
+<section class="w-full py-16 md:py-24 bg-surface-raised border-t border-border-subtle" id="passaporte">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<span class="font-label-mono-sm text-xs text-secondary uppercase font-bold tracking-widest block mb-2">
+                06 // CUSTÓDIA DIGITAL // DPP TELEMETRY
+              </span>
+<h2 class="font-headline-lg text-2xl sm:text-3xl md:text-4xl text-on-surface uppercase tracking-tight font-extrabold">
+                Cada lote pode contar sua própria história.
+              </h2>
+</div>
+<p class="font-body-md text-sm md:text-base text-on-surface-variant max-w-md">
+              A interface demonstra a arquitetura do passaporte digital ativo por lote, reunindo insumos, coordenadas geográficas, parâmetros de prensagem e laudo NBR.
+            </p>
+</div>
+<!-- Placa Digital DPP Interativa -->
+<div class="bg-primary-container text-white p-6 md:p-8 rounded-lg border border-[#274430] shadow-xl">
+<div class="flex flex-col lg:flex-row items-start lg:items-center justify-between pb-5 mb-6 border-b border-[#233c2a] gap-4">
+<div class="flex items-center gap-3.5">
+<div class="w-12 h-12 bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold text-lg rounded font-mono shadow">
+                  DPP
+                </div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-label-mono-md text-xs uppercase tracking-widest text-white font-bold">PASSAPORTE DIGITAL DO PRODUTO</span>
+<span class="px-2 py-0.5 bg-safety-neon text-tertiary font-label-mono-sm text-[10px] uppercase font-bold rounded">PILOTO DEMO</span>
+</div>
+<span class="font-label-mono-sm text-[11px] text-[#97a89c]">DIGITAL PRODUCT PASSPORT // ECO-REGULATION 2026</span>
+</div>
+</div>
+<div class="font-label-mono-sm text-xs text-[#97a89c] text-left lg:text-right">
+<span class="">HASH CRIPTOGRÁFICA DO LOTE:</span>
+<span class="block text-[#F1C546] font-mono font-bold">0x7F84A9...31E4B</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Coluna 1: Dados do Lote -->
+<div class="p-4 bg-[#0e1c12] rounded border border-[#1f3825] space-y-2 font-label-mono-sm text-xs">
+<span class="text-[#F1C546] font-bold block uppercase pb-1 border-b border-[#1b3021]">01 // IDENTIFICAÇÃO</span>
+<div class="flex justify-between text-[#cbd8cf]"><span class="">Lote Registrado:</span><span class="text-white font-bold">VIRA-DEMO-0001</span></div>
+<div class="flex justify-between text-[#cbd8cf]"><span class="">Data Fabricação:</span><span class="text-white">2026-02-18</span></div>
+<div class="flex justify-between text-[#cbd8cf]"><span class="">Planta Origem:</span><span class="text-white">Caruaru - PE</span></div>
+<div class="flex justify-between text-[#cbd8cf]"><span class="">Status:</span><span class="text-safety-neon font-bold">VALIDADO</span></div>
+</div>
+<!-- Coluna 2: Insumos -->
+<div class="p-4 bg-[#0e1c12] rounded border border-[#1f3825] space-y-2 font-label-mono-sm text-xs">
+<span class="text-[#F1C546] font-bold block uppercase pb-1 border-b border-[#1b3021]">02 // MATÉRIA-PRIMA</span>
+<div class="flex justify-between text-[#cbd8cf]"><span class="">Polímero Pós-Consumo:</span><span class="text-white font-bold">50.0% (Massa)</span></div>
+<div class="flex justify-between text-[#cbd8cf]"><span class="">Escória Mineral:</span><span class="text-white font-bold">50.0% (Massa)</span></div>
+<div class="flex justify-between text-[#cbd8cf]"><span class="">Cimento Portland:</span><span class="text-safety-neon font-bold">0.0%</span></div>
+<div class="flex justify-between text-[#cbd8cf]"><span class="">Água de Cura:</span><span class="text-safety-neon font-bold">0.0 Litros</span></div>
+</div>
+<!-- Coluna 3: Ensaio de Compressão -->
+<div class="p-4 bg-[#0e1c12] rounded border border-[#1f3825] space-y-2 font-label-mono-sm text-xs">
+<span class="text-[#F1C546] font-bold block uppercase pb-1 border-b border-[#1b3021]">03 // ENSAIOS FÍSICOS</span>
+<div class="flex justify-between text-[#cbd8cf]"><span class="">Resistência Média:</span><span class="text-white font-bold">28.4 MPa</span></div>
+<div class="flex justify-between text-[#cbd8cf]"><span class="">Absorção H₂O:</span><span class="text-white font-bold">0.24%</span></div>
+<div class="flex justify-between text-[#cbd8cf]"><span class="">Tolerância Linear:</span><span class="text-white font-bold">± 1.2 mm</span></div>
+<div class="flex justify-between text-[#cbd8cf]"><span class="">Norma Balizadora:</span><span class="text-[#F1C546]">NBR 9781</span></div>
+</div>
+<!-- Coluna 4: QR Code e Ação -->
+<div class="p-4 bg-[#0e1c12] rounded border border-[#1f3825] flex flex-col justify-between items-center text-center">
+<div class="w-20 h-20 bg-white p-1.5 rounded shadow">
+<svg class="w-full h-full text-[#142519]" fill="currentColor" viewBox="0 0 29 29">
+<path d="M0,0 h7 v7 h-7 z M2,2 h3 v3 h-3 z M22,0 h7 v7 h-7 z M24,2 h3 v3 h-3 z M0,22 h7 v7 h-7 z M2,24 h3 v3 h-3 z M9,2 h2 v2 h-2 z M13,2 h4 v2 h-4 z M9,6 h4 v2 h-4 z M15,6 h2 v4 h-2 z M2,9 h2 v4 h-2 z M6,11 h2 v2 h-2 z M9,11 h3 v3 h-3 z M17,11 h4 v2 h-4 z M24,9 h2 v4 h-2 z M22,14 h4 v2 h-4 z M2,17 h4 v2 h-4 z M9,16 h2 v2 h-2 z M13,16 h4 v4 h-4 z M20,18 h2 v2 h-2 z M24,18 h4 v4 h-4 z M9,20 h2 v2 h-2 z M2,22 h2 v2 h-2 z M9,24 h4 v2 h-4 z M15,24 h2 v4 h-2 z M19,24 h4 v2 h-4 z M24,24 h2 v4 h-2 z M10,27 h3 v2 h-3 z M20,27 h4 v2 h-4 z"></path>
+</svg>
+</div>
+<span class="font-label-mono-sm text-[10px] text-[#cbd8cf] mt-2">AUTENTICAÇÃO BLOCKCHAIN</span>
+<button class="w-full mt-2 py-1.5 bg-secondary-container text-on-secondary-container font-label-mono-sm text-xs font-bold uppercase rounded hover:bg-[#e4b83b] transition-colors" onclick="alert('Demonstração: DPP ID VIRA-DEMO-0001 verificado com sucesso.')" type="button">
+                  Validar Chave
+                </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SEÇÃO 07 // CENTRAL TÉCNICA & FORMULÁRIO -->
+<section class="w-full py-16 md:py-24 bg-background border-t border-border-subtle" id="central-tecnica">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<span class="font-label-mono-sm text-xs text-secondary uppercase font-bold tracking-widest block mb-2">
+                07 // CENTRAL DE DOCUMENTAÇÃO // ARQUIVOS E ESPECIFICAÇÃO
+              </span>
+<h2 class="font-headline-lg text-2xl sm:text-3xl md:text-4xl text-on-surface uppercase tracking-tight font-extrabold">
+                Tudo o que existe. Nada do que ainda não existe.
+              </h2>
+</div>
+<p class="font-body-md text-sm md:text-base text-on-surface-variant max-w-md">
+              Transparência radical: sinalizamos com rigor o estado de consolidação de cada arquivo para assegurar dados verídicos à sua equipe de engenharia.
+            </p>
+</div>
+<!-- Grid de Fichas e Arquivos de Download com Estados Claros -->
+<div class="space-y-3">
+<!-- Item 1: Ficha Técnica -->
+<div class="p-4 md:p-5 bg-surface-raised rounded-lg border border-border-subtle shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-center gap-3.5">
+<span class="px-2.5 py-1.5 bg-primary-fixed text-on-primary-fixed font-label-mono-sm text-xs font-bold rounded border border-primary-fixed-dim">.PDF</span>
+<div>
+<h4 class="font-headline-sm font-bold text-on-surface text-base">Ficha Técnica Provisória — Paver Intertravado 50/50</h4>
+<p class="font-body-sm text-xs text-on-surface-variant">Propriedades mecânicas, tolerâncias geométricas preliminares e recomendações de assentamento.</p>
+</div>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<span class="px-2.5 py-0.5 bg-[#F1C546]/20 text-secondary font-label-mono-sm text-[11px] font-bold rounded border border-[#F1C546]/40">EM CONSOLIDAÇÃO</span>
+<button class="px-3.5 py-2 bg-primary-container hover:bg-primary text-white font-label-mono-sm text-xs uppercase rounded flex items-center gap-1.5 transition-colors" onclick="alert('Download da Ficha Técnica Provisória VIRA iniciado.')" type="button">
+<span class="material-symbols-outlined text-[16px]">download</span> Baixar
+                </button>
+</div>
+</div>
+<!-- Item 2: Ensaios e Laudos -->
+<div class="p-4 md:p-5 bg-surface-raised rounded-lg border border-border-subtle shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-center gap-3.5">
+<span class="px-2.5 py-1.5 bg-surface-container text-on-surface font-label-mono-sm text-xs font-bold rounded border border-border-subtle">.PDF</span>
+<div>
+<h4 class="font-headline-sm font-bold text-on-surface text-base">Laudos de Compressão Hidráulica &amp; Absorção</h4>
+<p class="font-body-sm text-xs text-on-surface-variant">Resultados de ensaios de rompimento por prensa com base na NBR 9781 em laboratório acreditado.</p>
+</div>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<span class="px-2.5 py-0.5 bg-surface-container text-outline font-label-mono-sm text-[11px] font-bold rounded border border-border-subtle">EM VALIDAÇÃO</span>
+<button class="px-3.5 py-2 bg-surface-container hover:bg-surface-dim text-on-surface font-label-mono-sm text-xs uppercase rounded border border-border-subtle flex items-center gap-1.5 transition-colors" onclick="alert('Laudos laboratoriais vinculados aos lotes em homologação comercial.')" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility</span> Ver Amostra
+                </button>
+</div>
+</div>
+<!-- Item 3: CAD / BIM -->
+<div class="p-4 md:p-5 bg-surface-raised rounded-lg border border-border-subtle shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-center gap-3.5">
+<span class="px-2.5 py-1.5 bg-surface-container text-on-surface font-label-mono-sm text-xs font-bold rounded border border-border-subtle">.DWG / .RVT</span>
+<div>
+<h4 class="font-headline-sm font-bold text-on-surface text-base">Biblioteca BIM (Revit) &amp; Blocos DWG de Paginação</h4>
+<p class="font-body-sm text-xs text-on-surface-variant">Famílias paramétricas com texturas renderizadas e propriedades circulares incorporadas.</p>
+</div>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<span class="px-2.5 py-0.5 bg-surface-container text-outline font-label-mono-sm text-[11px] font-bold rounded border border-border-subtle">EM PREPARAÇÃO</span>
+<button class="px-3.5 py-2 bg-surface-container text-outline cursor-not-allowed font-label-mono-sm text-xs uppercase rounded border border-border-subtle flex items-center gap-1.5" disabled="" type="button">
+<span class="material-symbols-outlined text-[16px]">lock</span> Em Breve
+                </button>
+</div>
+</div>
+</div>
+<!-- SEÇÃO FORMULÁRIO // ESPECIFIQUE VIRA NO SEU PROJETO -->
+<div class="bg-surface-raised p-6 md:p-10 rounded-lg border border-border-subtle shadow-md" id="especificar">
+<div class="max-w-3xl">
+<span class="font-label-mono-sm text-xs text-secondary uppercase font-bold tracking-widest block mb-1">
+                FORMULÁRIO DIRECIONADO // ENGENHARIA &amp; VENDAS B2B
+              </span>
+<h3 class="font-headline-lg text-2xl md:text-3xl font-extrabold text-on-surface uppercase tracking-tight mb-2">
+                Seu próximo projeto pode começar pelo material.
+              </h3>
+<p class="font-body-md text-sm md:text-base text-on-surface-variant mb-6">
+                Conte o contexto da obra. Nossa equipe técnica de Caruaru responde com memorial descritivo, plano de entregas e amostras físicas de comprovação.
+              </p>
+</div>
+<form class="space-y-4" id="contact-form" onsubmit="handleFormSubmit(event)">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+<div>
+<label class="block font-label-mono-sm text-xs uppercase text-on-surface-variant font-bold mb-1">Nome Completo</label>
+<input class="w-full p-2.5 bg-surface-container rounded border border-border-subtle font-body-sm text-sm text-on-surface focus:outline-none focus:border-primary focus:bg-surface-raised transition-colors" placeholder="Ex: Eng. Mariana Albuquerque" required="" type="text">
+</div>
+<div>
+<label class="block font-label-mono-sm text-xs uppercase text-on-surface-variant font-bold mb-1">E-mail Corporativo</label>
+<input class="w-full p-2.5 bg-surface-container rounded border border-border-subtle font-body-sm text-sm text-on-surface focus:outline-none focus:border-primary focus:bg-surface-raised transition-colors" placeholder="mariana@construtora.com.br" required="" type="email">
+</div>
+<div>
+<label class="block font-label-mono-sm text-xs uppercase text-on-surface-variant font-bold mb-1">Empresa / Órgão Público</label>
+<input class="w-full p-2.5 bg-surface-container rounded border border-border-subtle font-body-sm text-sm text-on-surface focus:outline-none focus:border-primary focus:bg-surface-raised transition-colors" placeholder="Prefeitura / Construtora / Studio" required="" type="text">
+</div>
+<div>
+<label class="block font-label-mono-sm text-xs uppercase text-on-surface-variant font-bold mb-1">Cidade / UF da Obra</label>
+<input class="w-full p-2.5 bg-surface-container rounded border border-border-subtle font-body-sm text-sm text-on-surface focus:outline-none focus:border-primary focus:bg-surface-raised transition-colors" placeholder="Ex: Caruaru - PE" required="" type="text">
+</div>
+<div>
+<label class="block font-label-mono-sm text-xs uppercase text-on-surface-variant font-bold mb-1">Área Estimada (m²)</label>
+<input class="w-full p-2.5 bg-surface-container rounded border border-border-subtle font-body-sm text-sm text-on-surface focus:outline-none focus:border-primary focus:bg-surface-raised transition-colors" id="formArea" min="10" placeholder="500" type="number" value="500">
+</div>
+<div>
+<label class="block font-label-mono-sm text-xs uppercase text-on-surface-variant font-bold mb-1">Tipo de Aplicação</label>
+<select class="w-full p-2.5 bg-surface-container rounded border border-border-subtle font-body-sm text-sm text-on-surface focus:outline-none focus:border-primary focus:bg-surface-raised transition-colors" id="formAppSelect">
+<option>Passeio Público / Calçada Acessível</option>
+<option>Praça Urbana / Parque</option>
+<option>Condomínio Residencial Horizontal</option>
+<option>Estacionamento / Pátio Comercial</option>
+<option>Outra aplicação especial</option>
+</select>
+</div>
+</div>
+<div>
+<label class="block font-label-mono-sm text-xs uppercase text-on-surface-variant font-bold mb-1">Detalhes do Projeto / Requisitos Especiais</label>
+<textarea class="w-full p-2.5 bg-surface-container rounded border border-border-subtle font-body-sm text-sm text-on-surface focus:outline-none focus:border-primary focus:bg-surface-raised transition-colors" placeholder="Indique se há exigência de certificação LEED/AQUA, prazo de fornecimento e interesse em amostra física." rows="3"></textarea>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-3">
+<span class="font-label-mono-sm text-xs text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified_user</span>
+                  Retorno técnico direto do corpo de engenharia em até 24h úteis.
+                </span>
+<button class="px-6 py-3.5 bg-secondary-container text-on-secondary-container hover:bg-[#e4b83b] font-headline-sm text-xs font-bold uppercase tracking-wider rounded transition-all shadow-md active:scale-95" type="submit">
+                  Enviar Solicitação para Engenharia
+                </button>
+</div>
+</form>
+</div>
+</div>
+</section>
+<!-- FAQ TÉCNICO RETRÁTIL -->
+<section class="w-full py-16 bg-surface-container-low border-t border-border-subtle">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+<div class="text-center space-y-1">
+<span class="font-label-mono-sm text-xs text-secondary uppercase font-bold tracking-widest block">DÚVIDAS FREQUENTES</span>
+<h3 class="font-headline-lg text-2xl md:text-3xl font-extrabold text-on-surface uppercase">Perguntas de Quem Especifica</h3>
+</div>
+<div class="space-y-3 font-body-sm text-sm">
+<details class="p-4 bg-surface-raised rounded-lg border border-border-subtle shadow-sm cursor-pointer group">
+<summary class="font-headline-sm font-bold text-on-surface flex items-center justify-between list-none">
+<span class="">O Paver VIRA pode substituir o paver de concreto convencional em qualquer calçada?</span>
+<span class="material-symbols-outlined text-secondary group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<p class="text-on-surface-variant pt-3 leading-relaxed">
+                Sim. Para passeios públicos, calçadas, praças e ciclovias, o Paver VIRA de 40 mm ou 50 mm atende com folga as cargas normativas da NBR 9781. Além de ser até 4x mais leve por m², tem absorção hídrica praticamente nula (0,2%), prevenindo a eflorescência e desagregação superficial.
+              </p>
+</details>
+<details class="p-4 bg-surface-raised rounded-lg border border-border-subtle shadow-sm cursor-pointer group">
+<summary class="font-headline-sm font-bold text-on-surface flex items-center justify-between list-none">
+<span class="">Como o material se comporta sob sol forte e calor do Nordeste?</span>
+<span class="material-symbols-outlined text-secondary group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<p class="text-on-surface-variant pt-3 leading-relaxed">
+                A formulação possui 50% de escória siderúrgica de alta capacidade térmica e dureza mineral, o que confere estabilidade dimensional estrita e impede a deformação plástica até 95°C. Aditivos anti-UV incorporados na micronização garantem resistência ao intemperismo solar severo.
+              </p>
+</details>
+<details class="p-4 bg-surface-raised rounded-lg border border-border-subtle shadow-sm cursor-pointer group">
+<summary class="font-headline-sm font-bold text-on-surface flex items-center justify-between list-none">
+<span class="">Como funciona a verificação do Passaporte Digital (DPP)?</span>
+<span class="material-symbols-outlined text-secondary group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<p class="text-on-surface-variant pt-3 leading-relaxed">
+                Cada fardo e palete expedido da fábrica em Caruaru recebe uma etiqueta QR indelével com identificador único (ex: VIRA-DEMO-0001). Ao apontar a câmera, o fiscal de obra, projetista ou auditor acessa o laudo de compressão do lote, percentual de plástico desviado de aterro e geolocalização dos resíduos.
+              </p>
+</details>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- RODAPÉ OFICIAL VIRA // ALINHADO AO BRANDBOOK & SITE -->
+<footer class="w-full bg-[#0d1a12] text-white pt-16 pb-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-16">
+      <!-- Coluna 1: Logo, Slogan, Descrição e Redes Sociais -->
+      <div class="lg:col-span-4 flex flex-col space-y-6">
+        <div>
+          <a class="inline-block" href="index.html" title="VIRA">
+            <img alt="VIRA" class="h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkLX8sWAFnOCxA7fvoEwNz3CnlRdHhoztorv9CHXNkfR7qo-RHGrI4BcbL2FbemNS4cGDJz4TlNOM58GtHmXAfozpflLoBwqDWlbFrM03rUXH1HX1E5sJ9qlvHCxMK6cem_JRYvfQK6LOzjvfotUne6Bl0dJtNx-fgzhhZHXyGCvZAlJtjF5SW5UmxxH7gHGCkYZxPSeXV4NCum_5ggiqc6LMbKzmfFQO82clqxvLk7TY5dZwBncTz3iLeIkWWwX0j8-A">
+          </a>
+        </div>
+        <div>
+          <p class="font-headline-sm text-xs md:text-[13px] font-bold tracking-wider uppercase text-white">
+            SOLUÇÕES PARA CIDADES MELHORES.
+          </p>
+          <div class="w-8 h-[2px] bg-[#F1C546] mt-2"></div>
+        </div>
+        <p class="font-body-md text-sm text-[#8fa093] leading-relaxed max-w-sm">
+          Engenharia, tecnologia e impacto real para transformar resíduos em infraestrutura urbana.
+        </p>
+        <div class="flex items-center gap-3 pt-2">
+          <a aria-label="LinkedIn" class="w-9 h-9 rounded-full bg-[#16271c] border border-[#233c2a] flex items-center justify-center text-[#cbd8cf] hover:text-[#F1C546] hover:border-[#F1C546] transition-colors font-bold text-xs" href="https://linkedin.com" rel="noopener" target="_blank">
+            in
+          </a>
+          <a aria-label="Instagram" class="w-9 h-9 rounded-full bg-[#16271c] border border-[#233c2a] flex items-center justify-center text-[#cbd8cf] hover:text-[#F1C546] hover:border-[#F1C546] transition-colors" href="https://instagram.com" rel="noopener" target="_blank">
+            <span class="material-symbols-outlined text-[16px]">photo_camera</span>
+          </a>
+          <a aria-label="YouTube" class="w-9 h-9 rounded-full bg-[#16271c] border border-[#233c2a] flex items-center justify-center text-[#cbd8cf] hover:text-[#F1C546] hover:border-[#F1C546] transition-colors" href="https://youtube.com" rel="noopener" target="_blank">
+            <span class="material-symbols-outlined text-[16px]">play_arrow</span>
+          </a>
+        </div>
       </div>
-      <p id="passport-live" class="sr-status" aria-live="polite">Demonstração Paver selecionada.</p>
 
-      <article class="passport-panel" data-passport-panel="paver">
-        <small>DEMONSTRAÇÃO</small>
-        <h3>VIRA-PAVER-DEMO-0001</h3>
-        <p>Este registro demonstra a arquitetura de informação e não representa um lote comercial real.</p>
-        <div class="passport-field-grid"><div><small>Família</small><strong>Paver VIRA</strong></div><div><small>Composição</small><strong>50 / 50</strong></div><div><small>Configuração</small><strong>Conforme demonstração</strong></div><div><small>Documentação</small><strong>Conforme estado publicado</strong></div></div>
-      </article>
+      <!-- Coluna 2: PRODUTOS -->
+      <div class="lg:col-span-2 space-y-4">
+        <div>
+          <span class="font-headline-sm text-xs font-bold uppercase tracking-wider text-white block">
+            PRODUTOS
+          </span>
+          <div class="w-5 h-[2px] bg-[#F1C546] mt-1.5"></div>
+        </div>
+        <ul class="space-y-3 font-body-sm text-sm text-[#9ab0a1]">
+          <li class=""><a class="hover:text-white transition-colors block" href="paver.html">Pavers</a></li>
+          <li class=""><a class="hover:text-white transition-colors block" href="blocos.html">Blocos</a></li>
+          <li class=""><a class="hover:text-white transition-colors block" href="guias.html">Guias</a></li>
+          <li class=""><a class="hover:text-white transition-colors block" href="index.html#aplicacoes">Aplicações</a></li>
+        </ul>
+      </div>
 
-      <article class="passport-panel" data-passport-panel="blocos">
-        <small>DEMONSTRAÇÃO</small>
-        <h3>VIRA-BLOCO-DEMO-0001</h3>
-        <p>Este registro demonstra a arquitetura de informação e não representa um lote comercial real.</p>
-        <div class="passport-field-grid"><div><small>Família</small><strong>Blocos VIRA</strong></div><div><small>Composição</small><strong>50 / 50</strong></div><div><small>Configuração</small><strong>Em consolidação</strong></div><div><small>Documentação</small><strong>Conforme estado publicado</strong></div></div>
-      </article>
+      <!-- Coluna 3: ENGENHARIA -->
+      <div class="lg:col-span-2 space-y-4">
+        <div>
+          <span class="font-headline-sm text-xs font-bold uppercase tracking-wider text-white block">
+            ENGENHARIA
+          </span>
+          <div class="w-5 h-[2px] bg-[#F1C546] mt-1.5"></div>
+        </div>
+        <ul class="space-y-3 font-body-sm text-sm text-[#9ab0a1]">
+          <li class=""><a class="hover:text-white transition-colors block" href="#materia">Base Técnica</a></li>
+          <li class=""><a class="hover:text-white transition-colors block" href="#materia">Processo</a></li>
+          <li class=""><a class="hover:text-white transition-colors block" href="#passaporte">Rastreabilidade</a></li>
+          <li class=""><a class="hover:text-white transition-colors block" href="#central-tecnica">Qualidade</a></li>
+          <li class=""><a class="hover:text-white transition-colors block" href="index.html#impacto">Impacto</a></li>
+        </ul>
+      </div>
 
-      <article class="passport-panel" data-passport-panel="guias">
-        <small>DEMONSTRAÇÃO</small>
-        <h3>VIRA-GUIA-DEMO-0001</h3>
-        <p>Este registro demonstra a arquitetura de informação e não representa um lote comercial real.</p>
-        <div class="passport-field-grid"><div><small>Família</small><strong>Guias e Meio-fio VIRA</strong></div><div><small>Composição</small><strong>50 / 50</strong></div><div><small>Configuração</small><strong>Em consolidação</strong></div><div><small>Documentação</small><strong>Conforme estado publicado</strong></div></div>
-      </article>
-    </section>
+      <!-- Coluna 4: A VIRA -->
+      <div class="lg:col-span-2 space-y-4">
+        <div>
+          <span class="font-headline-sm text-xs font-bold uppercase tracking-wider text-white block">
+            A VIRA
+          </span>
+          <div class="w-5 h-[2px] bg-[#F1C546] mt-1.5"></div>
+        </div>
+        <ul class="space-y-3 font-body-sm text-sm text-[#9ab0a1]">
+          <li class=""><a class="hover:text-white transition-colors block" href="index.html#manifesto">Manifesto</a></li>
+          <li class=""><a class="hover:text-white transition-colors block" href="index.html#historia">Nossa História</a></li>
+          <li class=""><a class="hover:text-white transition-colors block" href="index.html#esg">ESG</a></li>
+          <li class=""><a class="hover:text-white transition-colors block" href="index.html#faq">Perguntas Técnicas</a></li>
+          <li class=""><a class="hover:text-white transition-colors block" href="index.html#trabalhe-conosco">Trabalhe Conosco</a></li>
+        </ul>
+      </div>
 
-    <section class="platform-action">
-      <p class="platform-kicker">Especificação</p>
-      <h2>O lote real começa pela configuração correta.</h2>
-      <p>Enquanto o Passaporte operacional não estiver conectado a dados reais, a especificação continua sendo o ponto de entrada para definir produto, aplicação e documentação.</p>
-      <div class="platform-action-links"><a href="index.html#contato">Especificar projeto</a><a href="central-tecnica.html">Abrir Central Técnica</a></div>
-    </section>
-  </main>
+      <!-- Coluna 5: CONTATO -->
+      <div class="lg:col-span-2 space-y-4">
+        <div>
+          <span class="font-headline-sm text-xs font-bold uppercase tracking-wider text-white block">
+            CONTATO
+          </span>
+          <div class="w-5 h-[2px] bg-[#F1C546] mt-1.5"></div>
+        </div>
+        <div class="space-y-4 font-body-sm text-sm">
+          <div class="flex items-start gap-2.5">
+            <span class="material-symbols-outlined text-[18px] text-[#F1C546] shrink-0 mt-0.5">location_on</span>
+            <div>
+              <span class="font-semibold text-white block">Recife, PE</span>
+              <span class="text-xs text-[#8fa093] block">Atuação em todo o Brasil</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-2.5">
+            <span class="material-symbols-outlined text-[18px] text-[#F1C546] shrink-0">mail</span>
+            <a class="text-[#cbd8cf] hover:text-white transition-colors" href="mailto:contato@vira.eco">contato@vira.eco</a>
+          </div>
+          <div class="flex items-center gap-2.5">
+            <span class="material-symbols-outlined text-[18px] text-[#F1C546] shrink-0">call</span>
+            <span class="text-[#cbd8cf]">+55 81 99999.9999</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <footer class="platform-footer"><a href="index.html"><img src="assets/marca-logo-final.png" alt="VIRA"></a><span>Passaporte Digital VIRA · DEMONSTRAÇÃO</span></footer>
-  <script src="platform.js?v=20260909-fase2-4"></script>
-</body>
-</html>
+    <!-- Sub-footer com Linha de Separação Sutil -->
+    <div class="border-t border-[#1e3826] pt-8 flex flex-col md:flex-row items-center justify-between gap-4 font-label-mono-sm text-xs text-[#8fa093]">
+      <p class="text-center md:text-left">
+        © 2026 VIRA. Todos os direitos reservados.
+      </p>
+      <p class="text-center text-[#8fa093]">
+        Desenvolvido por AR Mídias Integradas.
+      </p>
+      <div class="flex items-center gap-2 text-white font-semibold tracking-wider">
+        <span class="">ECONOMIA CIRCULAR EM MOVIMENTO.</span>
+        <span class="w-4 h-[2px] bg-[#F1C546] inline-block"></span>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- SCRIPTS PARA MICRO-INTERAÇÕES & PARTÍCULAS -->
+<script>
+    // 1. ANIMAÇÃO CANVAS DE PARTÍCULAS HERO (POLÍMEROS & MINERAIS EM VERDE E OCRE)
+    (function initHeroParticles() {
+      const canvas = document.getElementById('hero-particles');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let width, height, particles = [];
+
+      function resize() {
+        width = canvas.width = canvas.parentElement.offsetWidth;
+        height = canvas.height = canvas.parentElement.offsetHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      const colors = ['#4D8256', '#F1C546', '#D8F334', '#ffffff'];
+
+      for (let i = 0; i < 40; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 2 + 1,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35
+        });
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, width, height);
+
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 90) {
+              ctx.beginPath();
+              ctx.strokeStyle = `rgba(77, 130, 86, ${0.18 * (1 - dist / 90)})`;
+              ctx.lineWidth = 0.8;
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+
+        for (let p of particles) {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.fill();
+
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < 0) p.x = width;
+          if (p.x > width) p.x = 0;
+          if (p.y < 0) p.y = height;
+          if (p.y > height) p.y = 0;
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+
+    // 2. CÓPIA DE TOKENS TÉCNICOS
+    function copyToken(text, el) {
+      navigator.clipboard.writeText(text).then(() => {
+        const badge = el.querySelector('.copy-badge');
+        if (badge) {
+          const originalText = badge.innerText;
+          badge.innerText = 'COPIADO ✓';
+          badge.classList.add('text-safety-neon');
+          setTimeout(() => {
+            badge.innerText = originalText;
+            badge.classList.remove('text-safety-neon');
+          }, 1800);
+        }
+      });
+    }
+
+    // 3. CALCULADORA DE MASSA RECUPERADA (18.5 kg / m²)
+    function updateCalculator(area) {
+      const areaNum = parseInt(area, 10);
+      document.getElementById('areaDisplay').innerText = areaNum.toLocaleString('pt-BR') + ' m²';
+      
+      const total = Math.round(areaNum * 18.5);
+      const half = Math.round(total / 2);
+
+      document.getElementById('massaTotal').innerText = total.toLocaleString('pt-BR');
+      document.getElementById('massaPlastico').innerText = half.toLocaleString('pt-BR') + ' kg';
+      document.getElementById('massaEscoria').innerText = half.toLocaleString('pt-BR') + ' kg';
+
+      const formAreaInput = document.getElementById('formArea');
+      if (formAreaInput) formAreaInput.value = areaNum;
+    }
+
+    function setArea(val) {
+      const range = document.getElementById('areaRange');
+      if (range) {
+        range.value = val;
+        updateCalculator(val);
+      }
+    }
+
+    function selectApp(button, appName) {
+      document.querySelectorAll('.app-btn').forEach(btn => {
+        btn.className = 'app-btn p-3 bg-surface-container hover:bg-surface-dim text-on-surface font-label-mono-sm text-xs uppercase rounded text-left border border-border-subtle';
+      });
+      button.className = 'app-btn p-3 bg-primary-container text-white font-label-mono-sm text-xs uppercase rounded text-left font-bold border border-primary-container';
+      
+      const formSelect = document.getElementById('formAppSelect');
+      if (formSelect) {
+        for (let i = 0; i < formSelect.options.length; i++) {
+          if (formSelect.options[i].text.includes(appName.split('/')[0].trim())) {
+            formSelect.selectedIndex = i;
+            break;
+          }
+        }
+      }
+    }
+
+    // 4. SUBMISSÃO DO FORMULÁRIO COM FEEDBACK
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      alert('Solicitação de especificação enviada com sucesso ao departamento de engenharia da VIRA (Caruaru - PE). Você receberá o memorial técnico em seu e-mail.');
+      e.target.reset();
+    }
+  </script>
+
+
+</body></html>
