@@ -47,27 +47,35 @@ test('seção Perguntas Técnicas adota papel off-white e rodapé institucional 
   assert.match(homeCss, /footer#rodape\.site-footer\s*\{[^}]*background-color:\s*#08110D/);
 });
 
-test('sistema de 9 capítulos documentais cinematográficos está indexado no index.html', () => {
-  const chapters = [
-    'CAP. 01[\\s\\S]*?O PROBLEMA',
-    'CAP. 02[\\s\\S]*?A MATÉRIA-PRIMA',
-    'CAP. 03[\\s\\S]*?A ENGENHARIA',
-    'CAP. 04[\\s\\S]*?AS APLICAÇÕES',
-    'CAP. 05[\\s\\S]*?A INDÚSTRIA',
-    'CAP. 06[\\s\\S]*?A DECISÃO',
-    'CAP. 07[\\s\\S]*?A TRANSFORMAÇÃO',
-    'CAP. 08[\\s\\S]*?O CONHECIMENTO',
-    'CAP. 09[\\s\\S]*?O CONVITE'
+test('sistema de seções com títulos limpos sem prefixo CAP e scroll-cue sem clipping (FASE 32)', () => {
+  // Garante que nenhum título ou kicker mantenha o prefixo "CAP."
+  assert.doesNotMatch(indexHtml, /CAP\.\s*\d+/i, 'index.html não deve conter prefixo CAP.');
+
+  // Garante que cada seção exibe seu nome limpo e autêntico
+  const sectionNames = [
+    'O PROBLEMA',
+    'Jornada do material',
+    'Base técnica',
+    'NOSSOS PRODUTOS',
+    'EXPERTISE INDUSTRIAL',
+    'INTERLÚDIO',
+    'Calculadora de matéria',
+    'PROCESSO',
+    'PERGUNTAS TÉCNICAS',
+    'VAMOS JUNTOS'
   ];
-  for (const ch of chapters) {
-    assert.match(indexHtml, new RegExp(ch));
+  for (const name of sectionNames) {
+    assert.ok(indexHtml.includes(name), `index.html deve conter o nome da seção "${name}"`);
   }
-  assert.match(homeCss, /\.chapter-marker\s*\{[^}]*font-family:\s*['"]IBM Plex Mono['"]/);
+
+  // Garante elevação segura do .scroll-cue no Hero acima do -24px do #manifesto
+  assert.match(homeCss, /\.hero\s+\.scroll-cue\s*\{[^}]*bottom:\s*clamp/);
+  assert.match(homeCss, /\.hero\s+\.scroll-cue\s*\{[^}]*z-index:\s*3/);
 });
 
-test('interlúdio editorial de respiração (Fase 29) conecta Expertise e Calculadora com silêncio', () => {
+test('interlúdio editorial de respiração conecta Expertise e Calculadora com silêncio', () => {
   assert.match(indexHtml, /class="editorial-interlude"/);
-  assert.match(indexHtml, /CAP\. 05\.B \/\/ INTERLÚDIO/);
+  assert.match(indexHtml, /class="interlude-num">INTERLÚDIO<\/span>/);
   assert.match(indexHtml, /Produzir em escala real\./);
   assert.match(indexHtml, /A engenharia que transforma resíduos em infraestrutura para cidades\./);
   assert.match(homeCss, /\.editorial-interlude\s*\{[^}]*background-color:\s*#070c09/);
