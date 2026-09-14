@@ -2,6 +2,12 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>VIRA Engenharia Circular — Brandbook &amp; Design System 2026</title>
+<meta name="description" content="Diretrizes oficiais de marca, arquitetura de design, paleta cromática, especificações tipográficas e central de ativos vetoriais da VIRA.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="shortcut icon" href="favicon.ico">
+
 <!-- Google Fonts: Manrope + IBM Plex Mono -->
 <link href="https://fonts.googleapis.com" rel="preconnect">
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
@@ -49,6 +55,25 @@
     }
     .rounded-vira {
       border-radius: 24px;
+    }
+    /* Estilização de Botões Cápsula (FASE 31) */
+    .capsule-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 9999px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      cursor: pointer;
+    }
+    .capsule-btn:hover {
+      gap: 18px;
     }
     /* Estilização suave para scrollbars */
     ::-webkit-scrollbar {
@@ -224,7 +249,7 @@
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
 <div class="lg:col-span-7">
 <span class="inline-block bg-[#142519] text-vira-gold font-mono text-[10px] uppercase font-bold tracking-wider px-3 py-1 rounded-full mb-4">
-              TUDO PODE SE TRANSFORMAR
+              MATERIAIS FEITOS PARA VIVER MUITAS VIDAS
             </span>
 <h3 class="text-xl sm:text-2xl font-bold text-vira-dark leading-snug mb-4">
               Transformamos passivos ambientais em infraestrutura durável com rigor científico, valorização humana e zero cimento.
@@ -341,7 +366,7 @@
         </span>
 </div>
 <!-- 4 Standard Variations Grid (Same Rounded Radius) -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"><div class="bg-white border border-vira-border rounded-vira p-6 sm:p-8 flex flex-col items-center justify-between min-h-[220px] shadow-sm"><div class="flex-1 flex items-center justify-center w-full"><img alt="VIRA Policromático" class="h-10 sm:h-12 w-auto object-contain" onerror="this.onerror=null; this.src='https://armidiasintegradas.github.io/vira/assets/marca-logo-final.png'" src="assets/marca-logo-final.png"></div><span class="font-mono text-[11px] font-bold text-vira-dark uppercase tracking-wider mt-4">POLICROMÁTICO OFICIAL</span></div><div class="bg-[#08110D] border border-[#1b2b20] rounded-vira p-6 sm:p-8 flex flex-col items-center justify-between min-h-[220px] shadow-sm"><div class="flex-1 flex items-center justify-center w-full"><img alt="VIRA Negativo Branco" class="h-10 sm:h-12 w-auto object-contain" onerror="this.onerror=null; this.src='https://armidiasintegradas.github.io/vira/assets/MarcaWhite.png'" src="assets/MarcaWhite.png"></div><span class="font-mono text-[11px] font-bold text-white uppercase tracking-wider mt-4">NEGATIVO BRANCO</span></div><div class="bg-[#142519] border border-[#2d4734] rounded-vira p-6 sm:p-8 flex flex-col items-center justify-between min-h-[220px] shadow-sm"><div class="flex-1 flex items-center justify-center w-full"><img alt="Símbolo V Monocromático" class="h-12 sm:h-14 w-auto object-contain brightness-0 invert" onerror="this.onerror=null; this.src='https://armidiasintegradas.github.io/vira/assets/IconWhite.png'" src="assets/IconWhite.png"></div><span class="font-mono text-[11px] font-bold text-white uppercase tracking-wider mt-4">SÍMBOLO V • MONOCROMÁTICO</span></div><div class="bg-[#F1C546] border border-amber-400 rounded-vira p-6 sm:p-8 flex flex-col items-center justify-between min-h-[220px] shadow-sm"><div class="flex-1 flex items-center justify-center w-full"><img alt="VIRA Sobre Ocre Dourado" class="h-10 sm:h-12 w-auto object-contain" onerror="this.onerror=null; this.src='https://armidiasintegradas.github.io/vira/assets/marca-logo-final.png'" src="assets/marca-logo-final.png"></div><span class="font-mono text-[11px] font-bold text-[#08110D] uppercase tracking-wider mt-4">SOBRE OCRE DOURADO</span></div></div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"><div class="bg-white border border-vira-border rounded-vira p-6 sm:p-8 flex flex-col items-center justify-between min-h-[220px] shadow-sm"><div class="flex-1 flex items-center justify-center w-full"><img alt="VIRA Policromático" class="h-10 sm:h-12 w-auto object-contain" onerror="this.onerror=null; this.src='https://armidiasintegradas.github.io/vira/assets/marca-logo-final.png'" src="assets/marca-logo-final.png"></div><span class="font-mono text-[11px] font-bold text-vira-dark uppercase tracking-wider mt-4">POLICROMÁTICO OFICIAL</span></div><div class="bg-[#08110D] border border-[#1b2b20] rounded-vira p-6 sm:p-8 flex flex-col items-center justify-between min-h-[220px] shadow-sm"><div class="flex-1 flex items-center justify-center w-full"><img alt="VIRA Negativo Branco" class="h-10 sm:h-12 w-auto object-contain" onerror="this.onerror=null; this.src='https://armidiasintegradas.github.io/vira/assets/MarcaWhite.png'" src="assets/MarcaWhite.png"></div><span class="font-mono text-[11px] font-bold text-white uppercase tracking-wider mt-4">NEGATIVO BRANCO</span></div><div class="bg-[#142519] border border-[#2d4734] rounded-vira p-6 sm:p-8 flex flex-col items-center justify-between min-h-[220px] shadow-sm"><div class="flex-1 flex items-center justify-center w-full"><img alt="Símbolo V Monocromático" class="h-12 sm:h-14 w-auto object-contain brightness-0 invert" onerror="this.onerror=null; this.src='https://armidiasintegradas.github.io/vira/assets/marca-icone-v.png'" src="assets/marca-icone-v.png"></div><span class="font-mono text-[11px] font-bold text-white uppercase tracking-wider mt-4">SÍMBOLO V • MONOCROMÁTICO</span></div><div class="bg-[#F1C546] border border-amber-400 rounded-vira p-6 sm:p-8 flex flex-col items-center justify-between min-h-[220px] shadow-sm"><div class="flex-1 flex items-center justify-center w-full"><img alt="VIRA Sobre Ocre Dourado" class="h-10 sm:h-12 w-auto object-contain" onerror="this.onerror=null; this.src='https://armidiasintegradas.github.io/vira/assets/marca-logo-final.png'" src="assets/marca-logo-final.png"></div><span class="font-mono text-[11px] font-bold text-[#08110D] uppercase tracking-wider mt-4">SOBRE OCRE DOURADO</span></div></div>
 </div>
 </section>
 <!-- ================= 03 // MATRIZ CROMÁTICA OFICIAL ================= -->
@@ -421,10 +446,10 @@
             </p>
 </div>
 <div class="bg-vira-surface rounded-xl p-4 font-mono text-xs text-vira-dark space-y-1.5 mt-6 border border-vira-border">
-<button class="w-full flex justify-between font-bold hover:underline text-left text-vira-green" onclick="navigator.clipboard.writeText('#FAF9F6'); alert('HEX Copiado: #FAF9F6');">
-<span class="">HEX:</span> <span class="">#FAF9F6</span>
+<button class="w-full flex justify-between font-bold hover:underline text-left text-vira-green" onclick="navigator.clipboard.writeText('#F6F5F2'); alert('HEX Copiado: #F6F5F2');">
+<span class="">HEX:</span> <span class="">#F6F5F2</span>
 </button>
-<div class="flex justify-between text-[11px] text-gray-500"><span class="">RGB:</span> <span class="">250, 249, 246</span></div>
+<div class="flex justify-between text-[11px] text-gray-500"><span class="">RGB:</span> <span class="">246, 245, 242</span></div>
 <div class="flex justify-between text-[11px] text-gray-500"><span class="">CMYK:</span> <span class="">2, 2, 4, 0</span></div>
 <div class="flex justify-between text-[11px] text-gray-500"><span class="">PANTONE:</span> <span class="">Warm Gray 1 C</span></div>
 </div>
@@ -447,7 +472,7 @@
 <div class="bg-vira-surface border border-vira-border rounded-vira p-6 sm:p-8 shadow-sm">
 <div class="flex items-center justify-between border-b border-vira-border pb-4 mb-6">
 <div>
-<span class="font-mono text-[10px] uppercase text-gray-400 font-bold block">FAMÍLIA PRINCIPAL // DISPLAY &amp; CORPO</span>
+<span class="font-mono text-[10px] uppercase text-gray-400 font-bold block">FAMÍLIA PRINCIPAL // Display & Editorial</span>
 <h3 class="text-2xl font-bold text-vira-dark">Manrope</h3>
 </div>
 <span class="font-mono text-xs bg-vira-green/10 text-vira-green font-semibold px-2.5 py-1 rounded">PROPORÇÃO HUMANA</span>
@@ -471,7 +496,7 @@
 <div class="bg-[#08110D] border border-[#1b2b20] rounded-vira p-6 sm:p-8 shadow-sm text-white">
 <div class="flex items-center justify-between border-b border-[#1b2b20] pb-4 mb-6">
 <div>
-<span class="font-mono text-[10px] uppercase text-vira-gold font-bold block">FAMÍLIA TÉCNICA // METADADOS &amp; CÓDIGO</span>
+<span class="font-mono text-[10px] uppercase text-vira-gold font-bold block">FAMÍLIA TÉCNICA // Metadados & Código</span>
 <h3 class="text-2xl font-bold text-white font-mono">IBM Plex Mono</h3>
 </div>
 <span class="font-mono text-xs bg-[#142519] text-vira-gold font-semibold px-2.5 py-1 rounded border border-[#2d4734]">NORMATIVA FABRIL</span>
@@ -649,7 +674,13 @@
 <span class="text-[11px] font-mono uppercase tracking-widest text-vira-green font-bold block mb-1">06 // DIRETRIZES DE VESTUÁRIO &amp; SEGURANÇA</span>
 <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-vira-dark">INDUMENTÁRIA FABRIL &amp; EPIS</h2>
 </div>
-<p class="font-mono text-xs text-vira-muted">NR-6 // NR-10 // PASSAPORTE DIGITAL DPP INTEGRADO</p>
+<div class="flex flex-col sm:items-end gap-2">
+  <p class="font-mono text-xs text-vira-muted">NR-6 // NR-10 // PASSAPORTE DIGITAL DPP INTEGRADO</p>
+  <a href="uniformes.html" class="capsule-btn bg-[#142519] text-white border border-[#2d4734] px-4 py-2 hover:bg-[#1f3826] text-[11px]">
+    <span>Ver Catálogo Completo (5 Categorias)</span>
+    <span class="arrow">→</span>
+  </a>
+</div>
 </div>
 <!-- Banner Panorama da Equipe -->
 <div class="bg-white border border-vira-border rounded-vira overflow-hidden mb-12 shadow-sm">
@@ -658,17 +689,109 @@
 <div class="absolute inset-0 bg-gradient-to-t from-vira-dark/90 via-vira-dark/30 to-transparent flex items-end p-6 sm:p-10">
 <div>
 <span class="font-mono text-[10px] sm:text-xs text-vira-gold uppercase tracking-widest font-bold block mb-1">
-                CINCO CATEGORIAS OPERACIONAIS HOMOLOGADAS
-              </span>
+  CINCO CATEGORIAS OPERACIONAIS HOMOLOGADAS
+</span>
 <h3 class="text-xl sm:text-3xl font-extrabold text-white tracking-tight">
-                PESSOAS. MATERIAIS. CIDADES EM TRANSFORMAÇÃO.
-              </h3>
+  PESSOAS. MATERIAIS. CIDADES EM TRANSFORMAÇÃO.
+</h3>
 </div>
 </div>
 </div>
 </div>
-<!-- Uniform Cards Grid -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"><div class="bg-white border border-vira-border rounded-vira overflow-hidden flex flex-col shadow-sm hover:border-vira-green transition-all"><div class="aspect-[3/4] bg-gray-100 overflow-hidden relative"><img alt="EPI Colete Amarelo Flúor" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-300" onerror="this.onerror=null; this.src='https://armidiasintegradas.github.io/vira/assets/uniforme-03-epi-colete-amarelo-cracha.jpg'" src="assets/uniforme-03-epi-colete-amarelo-cracha.jpg"><span class="absolute top-3 left-3 bg-vira-dark/90 text-vira-gold font-mono text-[10px] px-2.5 py-1 rounded">01 // PÁTIO</span></div><div class="p-5 flex-1 flex flex-col justify-between"><div><h4 class="font-bold text-vira-dark text-base mb-1">Crachá DPP &amp; Colete Flúor</h4><p class="text-xs text-gray-600 leading-relaxed font-light mb-3">Malha perfurada fluorescente classe 2 com porta-crachá selado contendo QR Code vinculado à rastreabilidade de lote.</p></div><div class="pt-3 border-t border-vira-border text-[11px] font-mono text-gray-500 flex justify-between"><span class="">VISIBILIDADE: CLASSE 2</span><span class="text-vira-green font-bold">DPP ATIVO</span></div></div></div><div class="bg-white border border-vira-border rounded-vira overflow-hidden flex flex-col shadow-sm hover:border-vira-green transition-all"><div class="aspect-[3/4] bg-gray-100 overflow-hidden relative"><img alt="Polo Técnica Cinza e Verde" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-300" onerror="this.onerror=null; this.src='https://armidiasintegradas.github.io/vira/assets/uniforme-02-producao-masculino.jpg'" src="assets/uniforme-02-producao-masculino.jpg"><span class="absolute top-3 left-3 bg-vira-dark/90 text-vira-gold font-mono text-[10px] px-2.5 py-1 rounded">02 // PRODUÇÃO</span></div><div class="p-5 flex-1 flex flex-col justify-between"><div><h4 class="font-bold text-vira-dark text-base mb-1">Polo Técnica Cinza &amp; Verde</h4><p class="text-xs text-gray-600 leading-relaxed font-light mb-3">Malha piquet técnica respirável com detalhes em verde floresta oficial para linhas de extrusão, prensagem e ensaios.</p></div><div class="pt-3 border-t border-vira-border text-[11px] font-mono text-gray-500 flex justify-between"><span class="">ERGONOMIA TÉRMICA</span><span class="text-vira-green font-bold">100% ALGODÃO</span></div></div></div><div class="bg-white border border-vira-border rounded-vira overflow-hidden flex flex-col shadow-sm hover:border-vira-green transition-all"><div class="aspect-[3/4] bg-gray-100 overflow-hidden relative"><img alt="Colete Laranja Cooperativa" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-300" onerror="this.onerror=null; this.src='https://armidiasintegradas.github.io/vira/assets/uniforme-05-cooperativa-laranja.jpg'" src="assets/uniforme-05-cooperativa-laranja.jpg"><span class="absolute top-3 left-3 bg-vira-dark/90 text-vira-gold font-mono text-[10px] px-2.5 py-1 rounded">03 // COOPERATIVA</span></div><div class="p-5 flex-1 flex flex-col justify-between"><div><h4 class="font-bold text-vira-dark text-base mb-1">Colete de Cooperativa Laranja</h4><p class="text-xs text-gray-600 leading-relaxed font-light mb-3">Identificação de alto contraste para cooperados e catadores nas docas de descarregamento e triagem de termoplásticos.</p></div><div class="pt-3 border-t border-vira-border text-[11px] font-mono text-gray-500 flex justify-between"><span class="">INCLUSÃO SOCIAL</span><span class="text-amber-600 font-bold">REDE VIRA</span></div></div></div><div class="bg-white border border-vira-border rounded-vira overflow-hidden flex flex-col shadow-sm hover:border-vira-green transition-all"><div class="aspect-[3/4] bg-gray-100 overflow-hidden relative"><img alt="Camisa Social Executiva" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-300" onerror="this.onerror=null; this.src='https://armidiasintegradas.github.io/vira/assets/uniforme-04-administrativo-masculino.jpg'" src="assets/uniforme-04-administrativo-masculino.jpg"><span class="absolute top-3 left-3 bg-vira-dark/90 text-vira-gold font-mono text-[10px] px-2.5 py-1 rounded">04 // GESTÃO</span></div><div class="p-5 flex-1 flex flex-col justify-between"><div><h4 class="font-bold text-vira-dark text-base mb-1">Camisa Social Executiva</h4><p class="text-xs text-gray-600 leading-relaxed font-light mb-3">Algodão egípcio com elastano para diretoria e corpo técnico em relacionamento institucional e visitas a escritórios de arquitetura.</p></div><div class="pt-3 border-t border-vira-border text-[11px] font-mono text-gray-500 flex justify-between"><span class="">BORDADO DISCRETO</span><span class="text-vira-dark font-bold">ALFAIATARIA</span></div></div></div></div>
+<!-- Uniform Cards Grid (5 Categories) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-12">
+
+<!-- 01 OPERACIONAL -->
+<div class="bg-white border border-vira-border rounded-vira overflow-hidden flex flex-col shadow-sm hover:border-vira-green transition-all">
+  <div class="aspect-[3/4] bg-gray-100 overflow-hidden relative">
+    <img alt="Operador Operacional Masculino" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-300" src="assets/uniforme-01-operacional-masculino.jpg">
+    <span class="absolute top-3 left-3 bg-vira-dark/90 text-vira-gold font-mono text-[10px] px-2.5 py-1 rounded">01 // OPERACIONAL</span>
+  </div>
+  <div class="p-5 flex-1 flex flex-col justify-between">
+    <div>
+      <h4 class="font-bold text-vira-dark text-sm mb-1">Camisa UV Manga Longa</h4>
+      <p class="text-xs text-gray-600 leading-relaxed font-light mb-3">Proteção UV50+, faixas refletivas Classe 2 e sarja verde para pátio e movimentação pesada.</p>
+    </div>
+    <div class="pt-3 border-t border-vira-border text-[10px] font-mono text-gray-500 flex justify-between">
+      <span>MASC / FEM</span>
+      <a href="assets/uniforme-01-operacional-feminino.jpg" target="_blank" class="text-vira-green font-bold hover:underline">Feminino →</a>
+    </div>
+  </div>
+</div>
+
+<!-- 02 PRODUÇÃO -->
+<div class="bg-white border border-vira-border rounded-vira overflow-hidden flex flex-col shadow-sm hover:border-vira-green transition-all">
+  <div class="aspect-[3/4] bg-gray-100 overflow-hidden relative">
+    <img alt="Polo Técnica Cinza e Verde" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-300" src="assets/uniforme-02-producao-masculino.jpg">
+    <span class="absolute top-3 left-3 bg-vira-dark/90 text-vira-gold font-mono text-[10px] px-2.5 py-1 rounded">02 // PRODUÇÃO</span>
+  </div>
+  <div class="p-5 flex-1 flex flex-col justify-between">
+    <div>
+      <h4 class="font-bold text-vira-dark text-sm mb-1">Polo Técnica Cinza &amp; Verde</h4>
+      <p class="text-xs text-gray-600 leading-relaxed font-light mb-3">Malha piquet respirável com detalhes em verde floresta para linhas de extrusão e prensa.</p>
+    </div>
+    <div class="pt-3 border-t border-vira-border text-[10px] font-mono text-gray-500 flex justify-between">
+      <span>MASC / FEM</span>
+      <a href="assets/uniforme-02-producao-feminino.jpg" target="_blank" class="text-vira-green font-bold hover:underline">Feminino →</a>
+    </div>
+  </div>
+</div>
+
+<!-- 03 TÉCNICO -->
+<div class="bg-white border border-vira-border rounded-vira overflow-hidden flex flex-col shadow-sm hover:border-vira-green transition-all">
+  <div class="aspect-[3/4] bg-gray-100 overflow-hidden relative">
+    <img alt="EPI Colete Amarelo Pátio" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-300" src="assets/uniforme-03-epi-colete-amarelo-patio.jpg">
+    <span class="absolute top-3 left-3 bg-vira-dark/90 text-vira-gold font-mono text-[10px] px-2.5 py-1 rounded">03 // TÉCNICO</span>
+  </div>
+  <div class="p-5 flex-1 flex flex-col justify-between">
+    <div>
+      <h4 class="font-bold text-vira-dark text-sm mb-1">Jaqueta Operacional &amp; Colete</h4>
+      <p class="text-xs text-gray-600 leading-relaxed font-light mb-3">Sarja pesada antiestática para manutenção mecânica, automação e ensaios normativos.</p>
+    </div>
+    <div class="pt-3 border-t border-vira-border text-[10px] font-mono text-gray-500 flex justify-between">
+      <span>NR-10 / PÁTIO</span>
+      <a href="assets/uniforme-03-epi-colete-amarelo-cracha.jpg" target="_blank" class="text-vira-green font-bold hover:underline">Crachá DPP →</a>
+    </div>
+  </div>
+</div>
+
+<!-- 04 ADMINISTRATIVO -->
+<div class="bg-white border border-vira-border rounded-vira overflow-hidden flex flex-col shadow-sm hover:border-vira-green transition-all">
+  <div class="aspect-[3/4] bg-gray-100 overflow-hidden relative">
+    <img alt="Camisa Social Executiva" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-300" src="assets/uniforme-04-administrativo-masculino.jpg">
+    <span class="absolute top-3 left-3 bg-vira-dark/90 text-vira-gold font-mono text-[10px] px-2.5 py-1 rounded">04 // ADMINISTRATIVO</span>
+  </div>
+  <div class="p-5 flex-1 flex flex-col justify-between">
+    <div>
+      <h4 class="font-bold text-vira-dark text-sm mb-1">Camisa Social Executiva</h4>
+      <p class="text-xs text-gray-600 leading-relaxed font-light mb-3">Algodão circular com elastano para diretoria, comercial e visitas a escritórios de arquitetura.</p>
+    </div>
+    <div class="pt-3 border-t border-vira-border text-[10px] font-mono text-gray-500 flex justify-between">
+      <span>MASC / FEM</span>
+      <a href="assets/uniforme-04-administrativo-feminino.jpg" target="_blank" class="text-vira-green font-bold hover:underline">Feminino →</a>
+    </div>
+  </div>
+</div>
+
+<!-- 05 COOPERATIVA -->
+<div class="bg-white border border-vira-border rounded-vira overflow-hidden flex flex-col shadow-sm hover:border-vira-green transition-all">
+  <div class="aspect-[3/4] bg-gray-100 overflow-hidden relative">
+    <img alt="Colete Laranja Cooperativa" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-300" src="assets/uniforme-05-cooperativa-laranja.jpg">
+    <span class="absolute top-3 left-3 bg-vira-dark/90 text-vira-gold font-mono text-[10px] px-2.5 py-1 rounded">05 // COOPERATIVA</span>
+  </div>
+  <div class="p-5 flex-1 flex flex-col justify-between">
+    <div>
+      <h4 class="font-bold text-vira-dark text-sm mb-1">Colete de Cooperativa Laranja</h4>
+      <p class="text-xs text-gray-600 leading-relaxed font-light mb-3">Identificação de alto contraste para cooperados e catadores nas docas de descarregamento.</p>
+    </div>
+    <div class="pt-3 border-t border-vira-border text-[10px] font-mono text-gray-500 flex justify-between">
+      <span>INCLUSÃO SOCIAL</span>
+      <span class="text-amber-600 font-bold">REDE VIRA</span>
+    </div>
+  </div>
+</div>
+
+</div>
 <!-- EPI Normative Table -->
 <div class="bg-white border border-vira-border rounded-vira p-6 sm:p-8 shadow-sm">
 <div class="flex items-center justify-between border-b border-vira-border pb-4 mb-6">
@@ -680,39 +803,39 @@
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 font-mono text-xs">
 <div class="p-4 bg-vira-surface rounded-xl border border-vira-border">
-<span class="text-gray-400 block text-[10px] mb-1">EPI 01 // VESTIBILIDADE</span>
-<strong class="text-vira-dark text-sm block mb-1">Colete Amarelo Flúor</strong>
-<p class="text-gray-600 font-sans text-xs mb-2">Malha perfurada com faixas refletivas Classe 2 e zíper tratorado.</p>
+<span class="text-gray-400 block text-[10px] mb-1">EPI 01 // VESTIBILIDADE &amp; DPP</span>
+<strong class="text-vira-dark text-sm block mb-1">Colete Amarelo Flúor com Crachá DPP</strong>
+<p class="text-gray-600 font-sans text-xs mb-2">Malha perfurada com faixas refletivas Classe 2, zíper tratorado e porta-crachá impermeável com QR Code vinculado ao Passaporte Digital (DPP).</p>
 <span class="text-vira-green font-bold">NBR 15292 / NR-6</span>
 </div>
 <div class="p-4 bg-vira-surface rounded-xl border border-vira-border">
 <span class="text-gray-400 block text-[10px] mb-1">EPI 02 // CRANIANA</span>
-<strong class="text-vira-dark text-sm block mb-1">Capacete de Polímero Circular</strong>
-<p class="text-gray-600 font-sans text-xs mb-2">Injetado em PCR de alta resistência mecânica com suspensão 6 pontos.</p>
+<strong class="text-vira-dark text-sm block mb-1">Capacete de Segurança VIRA</strong>
+<p class="text-gray-600 font-sans text-xs mb-2">Injetado em polímero circular de alta resistência mecânica com suspensão têxtil de 6 pontos e ajuste de catraca.</p>
 <span class="text-vira-green font-bold">NBR 8221 / TIPO II</span>
 </div>
 <div class="p-4 bg-vira-surface rounded-xl border border-vira-border">
 <span class="text-gray-400 block text-[10px] mb-1">EPI 03 // MANUAL</span>
 <strong class="text-vira-dark text-sm block mb-1">Luvas Táticas Antiderrapantes</strong>
-<p class="text-gray-600 font-sans text-xs mb-2">Banho em poliuretano na palma e dedos para manuseio seguro de pavers.</p>
+<p class="text-gray-600 font-sans text-xs mb-2">Banho em poliuretano na palma e dedos para manuseio seguro de pavers e compósitos minerais.</p>
 <span class="text-vira-green font-bold">EN 388 / NÍVEL 4</span>
 </div>
 <div class="p-4 bg-vira-surface rounded-xl border border-vira-border">
 <span class="text-gray-400 block text-[10px] mb-1">EPI 04 // OCULAR</span>
 <strong class="text-vira-dark text-sm block mb-1">Óculos Balísticos UV400</strong>
-<p class="text-gray-600 font-sans text-xs mb-2">Lentes em policarbonato óptico com tratamento antiembaçante contra fragmentos.</p>
+<p class="text-gray-600 font-sans text-xs mb-2">Lentes em policarbonato óptico com tratamento antiembaçante contra fragmentos minerais e raios UV.</p>
 <span class="text-vira-green font-bold">ANSI Z87.1</span>
 </div>
 <div class="p-4 bg-vira-surface rounded-xl border border-vira-border">
 <span class="text-gray-400 block text-[10px] mb-1">EPI 05 // PODAL</span>
-<strong class="text-vira-dark text-sm block mb-1">Botina com Biqueira Composite</strong>
-<p class="text-gray-600 font-sans text-xs mb-2">Couro hidrofugado preto, solado PU bidensidade antiderrapante e zero metal.</p>
+<strong class="text-vira-dark text-sm block mb-1">Calçado de Segurança com Composite</strong>
+<p class="text-gray-600 font-sans text-xs mb-2">Couro hidrofugado preto, solado PU bidensidade antiderrapante e biqueira de composite ultraleve.</p>
 <span class="text-vira-green font-bold">NBR ISO 20345</span>
 </div>
 <div class="p-4 bg-vira-surface rounded-xl border border-vira-border">
 <span class="text-gray-400 block text-[10px] mb-1">EPI 06 // AUDITIVA</span>
-<strong class="text-vira-dark text-sm block mb-1">Protetor Auricular Concha</strong>
-<p class="text-gray-600 font-sans text-xs mb-2">Conchas acolchoadas com amortecimento acústico para operação nas prensas.</p>
+<strong class="text-vira-dark text-sm block mb-1">Protetor Auricular de Alta Atenuação</strong>
+<p class="text-gray-600 font-sans text-xs mb-2">Conchas acolchoadas com atenuação NRRsf de 22 dB para controle de ruído nas salas de prensagem.</p>
 <span class="text-vira-green font-bold">NR-15 / 22dB</span>
 </div>
 </div>
@@ -820,7 +943,7 @@
 </div>
 </section>
 <!-- ================= FOOTER OFICIAL VIRA (100% IDÊNTICO AO SITE PRINCIPAL) ================= -->
-<footer class="bg-vira-dark text-white pt-16 pb-12 border-t border-[#1b2b20]">
+<footer class="brandbook-footer bg-vira-dark text-white pt-16 pb-12 border-t border-[#1b2b20]">
 <div class="max-w-7xl mx-auto px-4 sm:px-8">
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 mb-14">
 <!-- Col 1: Brand & Social -->
@@ -878,6 +1001,8 @@
 <li class=""><a class="hover:text-white transition-colors" href="index.html#manifesto">Manifesto</a></li>
 <li class=""><a class="hover:text-white transition-colors" href="index.html#historia">Nossa História</a></li>
 <li class=""><a class="hover:text-white transition-colors" href="index.html#esg">ESG</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="brandbook.html">Brandbook 2026</a></li>
+<li class=""><a class="hover:text-white transition-colors" href="uniformes.html">Uniformes &amp; EPIs</a></li>
 <li class=""><a class="hover:text-white transition-colors" href="index.html#faq">Perguntas Técnicas</a></li>
 <li class=""><a class="hover:text-white transition-colors" href="index.html#trabalhe-conosco">Trabalhe Conosco</a></li>
 </ul>
@@ -907,7 +1032,7 @@
 </div>
 <!-- Bottom Subfooter Bar -->
 <div class="pt-8 border-t border-[#1b2b20] flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-gray-400">
-<p class="">© 2026 VIRA. Todos os direitos reservados.</p>
+<p class="">© 2026 VIRA Engenharia Circular. Todos os direitos reservados.</p>
 <p class="text-gray-400">Desenvolvido por AR Mídias Integradas.</p>
 <div class="flex items-center gap-2 text-white">
 <span class="text-gray-400">ECONOMIA CIRCULAR EM MOVIMENTO.</span>
