@@ -529,28 +529,33 @@
 .impact-button {
   background: #5E9B44 !important;
   color: #ffffff !important;
-  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  font-size: 13px !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.08em !important;
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
   text-transform: uppercase !important;
-  padding: 14px 28px !important;
-  border-radius: 6px !important;
-  border: none !important;
+  padding: 13px 26px !important;
+  border-radius: 9999px !important;
+  border: 1px solid #5E9B44 !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
+  gap: 14px !important;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.25s ease;
+  transition: all 0.35s var(--ease) !important;
   width: fit-content;
 }
 
 .impact-button:hover {
-  background: #6bb04e !important;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(94, 155, 68, 0.35);
+  background: #ffffff !important;
+  color: #142519 !important;
+  border-color: #ffffff !important;
+  gap: 18px !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
 }
+
 
 .impact-foot-kicker {
   font-family: 'IBM Plex Mono', monospace;
@@ -746,28 +751,30 @@
   background: #142519 !important;
   color: #ffffff !important;
   font-family: var(--font-mono, 'IBM Plex Mono', monospace) !important;
-  font-size: 10.5px !important;
+  font-size: 11px !important;
   font-weight: 600 !important;
-  letter-spacing: 0.12em !important;
+  letter-spacing: 0.1em !important;
   text-transform: uppercase !important;
-  padding: 10px 22px !important;
+  padding: 13px 26px !important;
   border-radius: 9999px !important;
   border: 1px solid #142519 !important;
   display: inline-flex !important;
   align-items: center !important;
-  gap: 12px !important;
+  gap: 14px !important;
   cursor: pointer;
   text-decoration: none !important;
   overflow: visible !important;
-  transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+  transition: all 0.35s var(--ease) !important;
   width: fit-content;
 }
 
 .process-button:hover {
-  background: #1e3624 !important;
-  border-color: #1e3624 !important;
+  background: #FCC929 !important;
+  color: #142519 !important;
+  border-color: #FCC929 !important;
+  gap: 18px !important;
   transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(20, 37, 25, 0.25);
+  box-shadow: 0 4px 18px rgba(252, 201, 41, 0.28);
 }
 
 .process-button span {
@@ -782,10 +789,11 @@
 }
 
 .process-button-arrow {
-  font-size: 14px !important;
+  font-size: 13px !important;
   line-height: 1 !important;
   display: inline-block !important;
-  transition: transform 0.2s ease !important;
+  font-style: normal !important;
+  transition: transform 0.35s var(--ease) !important;
 }
 
 .process-button:hover .process-button-arrow {
@@ -1613,33 +1621,37 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 14px;
   height: 48px;
   padding: 0 28px;
   border-radius: 999px;
   background: #FCC929;
   color: #111813;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace);
+  font-size: 11.5px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
   border: 1px solid #FCC929;
   box-shadow: 0 4px 18px rgba(252, 201, 41, 0.28);
-  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
+  transition: all 0.35s var(--ease);
 }
 
 .closing-btn-primary:hover {
-  background: #e5b41e;
-  border-color: #e5b41e;
+  background: #111813;
+  color: #FCC929;
+  border-color: #111813;
+  gap: 18px;
   transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(252, 201, 41, 0.4);
+  box-shadow: 0 6px 24px rgba(17, 24, 19, 0.35);
 }
 
 .closing-btn-arrow {
   display: inline-block;
-  transition: transform 0.22s ease;
+  font-style: normal;
+  font-size: 13px;
+  transition: transform 0.35s var(--ease);
 }
 
 .closing-btn-primary:hover .closing-btn-arrow,
@@ -1651,25 +1663,27 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 14px;
   height: 48px;
   padding: 0 26px;
   border-radius: 999px;
   background: transparent;
   color: #1e2b22;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace);
+  font-size: 11.5px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
-  border: 1.5px solid rgba(22, 36, 27, 0.28);
-  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  border: 1px solid rgba(22, 36, 27, 0.32);
+  transition: all 0.35s var(--ease);
 }
 
 .closing-btn-secondary:hover {
   border-color: #111813;
-  background-color: rgba(22, 36, 27, 0.04);
+  background-color: #111813;
+  color: #ffffff;
+  gap: 18px;
   transform: translateY(-2px);
 }
 
@@ -2562,9 +2576,9 @@ a, button {
 .contact-btn-submit {
   background: #142519 !important;
   color: #ffffff !important;
-  border: none !important;
-  border-radius: 6px !important;
-  padding: 11px 20px !important;
+  border: 1px solid #142519 !important;
+  border-radius: 9999px !important;
+  padding: 13px 26px !important;
   font-family: var(--font-mono, 'IBM Plex Mono', monospace) !important;
   font-size: 11px !important;
   font-weight: 600 !important;
@@ -2572,12 +2586,20 @@ a, button {
   text-transform: uppercase !important;
   cursor: pointer;
   white-space: nowrap;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 14px !important;
+  transition: all 0.35s var(--ease) !important;
 }
 
 .contact-btn-submit:hover {
-  background: #253d2d !important;
+  background: #FCC929 !important;
+  color: #142519 !important;
+  border-color: #FCC929 !important;
+  gap: 18px !important;
   transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(252, 201, 41, 0.28);
 }
 
 /* Cartão de Especificação Técnica */
@@ -2651,46 +2673,54 @@ a, button {
 .contact-btn-tech {
   background: #142519 !important;
   color: #ffffff !important;
-  border-radius: 6px !important;
-  padding: 9px 13px !important;
+  border-radius: 9999px !important;
+  padding: 11px 22px !important;
   font-family: var(--font-mono, 'IBM Plex Mono', monospace) !important;
-  font-size: 10px !important;
+  font-size: 10.5px !important;
   font-weight: 600 !important;
   letter-spacing: 0.08em !important;
   text-transform: uppercase !important;
   text-decoration: none !important;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
   border: 1px solid #142519 !important;
-  transition: background 0.2s ease;
+  transition: all 0.35s var(--ease) !important;
 }
 
 .contact-btn-tech:hover {
-  background: #253d2d !important;
+  background: #FCC929 !important;
+  color: #142519 !important;
+  border-color: #FCC929 !important;
+  gap: 14px !important;
+  box-shadow: 0 4px 14px rgba(252, 201, 41, 0.25);
+  transform: translateY(-1px);
 }
 
 .contact-btn-quote {
   background: transparent !important;
   color: #142519 !important;
-  border: 1px solid #142519 !important;
-  border-radius: 6px !important;
-  padding: 9px 13px !important;
+  border: 1px solid rgba(20, 37, 25, 0.38) !important;
+  border-radius: 9999px !important;
+  padding: 11px 22px !important;
   font-family: var(--font-mono, 'IBM Plex Mono', monospace) !important;
-  font-size: 10px !important;
+  font-size: 10.5px !important;
   font-weight: 600 !important;
   letter-spacing: 0.08em !important;
   text-transform: uppercase !important;
   text-decoration: none !important;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  transition: background 0.2s ease, color 0.2s ease;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  transition: all 0.35s var(--ease) !important;
 }
 
 .contact-btn-quote:hover {
   background: #142519 !important;
   color: #ffffff !important;
+  border-color: #142519 !important;
+  gap: 14px !important;
+  transform: translateY(-1px);
 }
 
 /* Bullets de Desempenho */
@@ -2939,6 +2969,265 @@ a, button {
     letter-spacing: 0.16em;
   }
 }
+
+/* ==========================================================================
+   UNIFICAÇÃO EDITORIAL DE BOTÕES // SISTEMA CÁPSULA VIRA (FASE 31)
+   Todos os botões do ecossistema adotam a mesma dinâmica de .territory-btn:
+   - Formato Cápsula / Pill (border-radius: 9999px)
+   - Tipografia Monospaçada (IBM Plex Mono, 11px, 600, uppercase, letter-spacing: 0.1em)
+   - Dinâmica & Animação: gap expande no hover de 14px para 18px, seta translada,
+     fundo inverte suavemente com contraste cirúrgico para cada seção.
+   ========================================================================== */
+
+/* Hero Button (#hero) */
+.hero-btn,
+.hero .button-light {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 14px !important;
+  padding: 13px 26px !important;
+  min-height: auto !important;
+  height: auto !important;
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  border-radius: 9999px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(8px) !important;
+  color: #ffffff !important;
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  overflow: visible !important;
+  transition: all 0.35s var(--ease) !important;
+}
+
+.hero-btn:hover,
+.hero .button-light:hover {
+  background: #ffffff !important;
+  color: #0a0d0a !important;
+  border-color: #ffffff !important;
+  gap: 18px !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25) !important;
+}
+
+.hero-btn span,
+.hero .button-light span {
+  height: auto !important;
+  display: inline !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+.hero-btn i,
+.hero .button-light i {
+  font-style: normal !important;
+  font-size: 13px !important;
+  display: inline-block !important;
+  transition: transform 0.35s var(--ease) !important;
+}
+
+.hero-btn:hover i,
+.hero .button-light:hover i {
+  transform: translateX(4px) !important;
+}
+
+/* Expertise Pill Button - Painel Amarelo (#expertise Bloco 01) */
+.expertise-pill-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  background: #14281a !important;
+  color: #ffffff !important;
+  padding: 13px 26px !important;
+  border-radius: 9999px !important;
+  border: 1px solid #14281a !important;
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 16px rgba(20, 40, 26, 0.22) !important;
+  transition: all 0.35s var(--ease) !important;
+}
+
+.expertise-pill-btn:hover {
+  background: #08110b !important;
+  color: #FCC929 !important;
+  border-color: #08110b !important;
+  gap: 18px !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px rgba(8, 17, 11, 0.35) !important;
+}
+
+.expertise-btn-arrow {
+  display: inline-block !important;
+  font-style: normal !important;
+  font-size: 13px !important;
+  transition: transform 0.35s var(--ease) !important;
+}
+
+.expertise-pill-btn:hover .expertise-btn-arrow {
+  transform: translateX(4px) !important;
+}
+
+/* Expertise Final Button - Palco Escuro (#expertise Bloco 03) */
+.expertise-final-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  background: transparent !important;
+  color: #ffffff !important;
+  padding: 13px 26px !important;
+  border-radius: 9999px !important;
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  transition: all 0.35s var(--ease) !important;
+}
+
+.expertise-final-btn:hover {
+  background: #ffffff !important;
+  color: #08110b !important;
+  border-color: #ffffff !important;
+  gap: 18px !important;
+  transform: translateY(-1px) !important;
+}
+
+.expertise-final-btn-arrow {
+  display: inline-block !important;
+  font-style: normal !important;
+  font-size: 13px !important;
+  transition: transform 0.35s var(--ease) !important;
+}
+
+.expertise-final-btn:hover .expertise-final-btn-arrow {
+  transform: translateX(4px) !important;
+}
+
+/* Calculadora CTA Principal (#calculadora) */
+.calc-pill-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  color: #ffffff !important;
+  padding: 13px 26px !important;
+  border-radius: 9999px !important;
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  transition: all 0.35s var(--ease) !important;
+  box-shadow: none !important;
+  width: auto !important;
+}
+
+.calc-pill-btn:hover {
+  background: #FCC929 !important;
+  color: #0f1c12 !important;
+  border-color: #FCC929 !important;
+  gap: 18px !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px rgba(252, 201, 41, 0.35) !important;
+}
+
+.calc-pill-btn .calc-btn-arrow {
+  display: inline-block !important;
+  font-style: normal !important;
+  font-size: 13px !important;
+  transition: transform 0.35s var(--ease) !important;
+}
+
+.calc-pill-btn:hover .calc-btn-arrow {
+  transform: translateX(4px) !important;
+}
+
+/* Calculadora Presets Pills */
+.calculator .presets button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 10px 18px !important;
+  border: 1px solid rgba(25, 26, 24, 0.22) !important;
+  border-radius: 9999px !important;
+  background: transparent !important;
+  color: var(--ink) !important;
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  transition: all 0.35s var(--ease) !important;
+}
+
+.calculator .presets button:hover {
+  background: var(--ink) !important;
+  color: #ffffff !important;
+  border-color: var(--ink) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Drawer CTA (#drawer) */
+.drawer-cta {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 14px !important;
+  padding: 13px 26px !important;
+  height: auto !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  border-radius: 9999px !important;
+  background: transparent !important;
+  color: #ffffff !important;
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  overflow: visible !important;
+  transition: all 0.35s var(--ease) !important;
+}
+
+.drawer-cta:hover {
+  background: #ffffff !important;
+  color: #08110b !important;
+  border-color: #ffffff !important;
+  gap: 18px !important;
+  transform: translateY(-1px) !important;
+}
+
+.drawer-cta span {
+  height: auto !important;
+  display: inline !important;
+  transform: none !important;
+}
+
+.drawer-cta i {
+  font-style: normal !important;
+  font-size: 13px !important;
+  display: inline-block !important;
+  transition: transform 0.35s var(--ease) !important;
+}
+
+.drawer-cta:hover i {
+  transform: translateX(4px) !important;
+}
+
 
 
 

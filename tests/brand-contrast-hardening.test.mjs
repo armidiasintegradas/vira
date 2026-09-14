@@ -73,4 +73,35 @@ test('interlúdio editorial de respiração (Fase 29) conecta Expertise e Calcul
   assert.match(homeCss, /\.editorial-interlude\s*\{[^}]*background-color:\s*#070c09/);
 });
 
+test('sistema de botões em formato cápsula (FASE 31) unifica dinâmica, tipografia mono e expansão de gap no hover', () => {
+  const buttonSelectors = [
+    /\.hero-btn[^{]*\{[^}]*border-radius:\s*9999px/,
+    /\.hero-btn[^{]*\{[^}]*font-family:\s*var\(--font-mono/,
+    /\.impact-button\s*\{[^}]*border-radius:\s*9999px/,
+    /\.process-button\s*\{[^}]*border-radius:\s*9999px/,
+    /\.contact-btn-submit\s*\{[^}]*border-radius:\s*9999px/,
+    /\.contact-btn-tech\s*\{[^}]*border-radius:\s*9999px/,
+    /\.contact-btn-quote\s*\{[^}]*border-radius:\s*9999px/,
+    /\.closing-btn-primary\s*\{[^}]*border-radius:\s*999px/,
+    /\.closing-btn-secondary\s*\{[^}]*border-radius:\s*999px/,
+    /\.calc-pill-btn\s*\{[^}]*border-radius:\s*9999px/,
+    /\.expertise-pill-btn\s*\{[^}]*border-radius:\s*9999px/,
+    /\.expertise-final-btn\s*\{[^}]*border-radius:\s*9999px/
+  ];
+
+  for (const sel of buttonSelectors) {
+    assert.match(homeCss, sel);
+  }
+
+  // Verificação da dinâmica de expansão no hover (gap de 18px ou translação da seta)
+  assert.match(homeCss, /\.hero-btn:hover[^{]*\{[^}]*gap:\s*18px/);
+  assert.match(homeCss, /\.process-button:hover\s*\{[^}]*gap:\s*18px/);
+  assert.match(homeCss, /\.calc-pill-btn:hover\s*\{[^}]*gap:\s*18px/);
+  assert.match(homeCss, /\.expertise-pill-btn:hover\s*\{[^}]*gap:\s*18px/);
+  assert.match(homeCss, /\.expertise-final-btn:hover\s*\{[^}]*gap:\s*18px/);
+  assert.match(homeCss, /\.closing-btn-primary:hover\s*\{[^}]*gap:\s*18px/);
+  assert.match(homeCss, /\.contact-btn-submit:hover\s*\{[^}]*gap:\s*18px/);
+});
+
+
 

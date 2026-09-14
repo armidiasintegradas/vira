@@ -21,3 +21,81 @@
 #processo .process-hero-copy { max-width: clamp(280px, 26vw, 340px); }
 #processo .process-desktop-actions { display: block !important; }
 #processo .process-button { display: inline-flex !important; }
+
+/* ==========================================================================
+   UNIFICAÇÃO EDITORIAL DE BOTÕES // SISTEMA CÁPSULA PLATAFORMA VIRA
+   ========================================================================== */
+.button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 14px !important;
+  padding: 13px 26px !important;
+  min-height: auto !important;
+  height: auto !important;
+  border-radius: 9999px !important;
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  overflow: visible !important;
+  transition: all 0.35s var(--ease, cubic-bezier(0.16, 1, 0.3, 1)) !important;
+}
+
+.button:hover {
+  gap: 18px !important;
+  transform: translateY(-1px);
+}
+
+.button-light {
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(8px);
+  color: #ffffff !important;
+}
+
+.button-light:hover {
+  background: #ffffff !important;
+  color: #0a0d0a !important;
+  border-color: #ffffff !important;
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
+}
+
+.button-dark {
+  border: 1px solid #142519 !important;
+  background: #142519 !important;
+  color: #ffffff !important;
+}
+
+.button-dark:hover {
+  background: #FCC929 !important;
+  color: #142519 !important;
+  border-color: #FCC929 !important;
+  box-shadow: 0 4px 16px rgba(252, 201, 41, 0.28);
+}
+
+.button-ghost {
+  border: 1px solid rgba(255, 255, 255, 0.38) !important;
+  background: transparent !important;
+  color: #ffffff !important;
+}
+
+.button-ghost:hover {
+  background: #ffffff !important;
+  color: #0a0d0a !important;
+  border-color: #ffffff !important;
+}
+
+.button span {
+  height: auto !important;
+  display: inline !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+.button:hover span {
+  transform: none !important;
+}
+
