@@ -127,5 +127,16 @@ test('watermark da marca oficial VIRA com 5% de cor / opacidade (FASE 34)', () =
   assert.match(homeCss, /\.closing-watermark\s*\{[^}]*opacity:\s*0\.05/);
 });
 
+test('favicon oficial da marca VIRA em múltiplos formatos e resoluções (FASE 35)', () => {
+  assert.ok(existsSync(new URL('../favicon.ico', import.meta.url)), 'favicon.ico na raiz deve existir');
+  assert.ok(existsSync(new URL('../assets/favicon.svg', import.meta.url)), 'assets/favicon.svg deve existir');
+  assert.ok(existsSync(new URL('../assets/favicon-32x32.png', import.meta.url)), 'assets/favicon-32x32.png deve existir');
+  assert.ok(existsSync(new URL('../assets/favicon-16x16.png', import.meta.url)), 'assets/favicon-16x16.png deve existir');
+  assert.ok(existsSync(new URL('../assets/apple-touch-icon.png', import.meta.url)), 'assets/apple-touch-icon.png deve existir');
+  assert.match(indexHtml, /<link rel="icon" type="image\/svg\+xml" href="assets\/favicon\.svg">/);
+  assert.match(indexHtml, /<link rel="icon" type="image\/png" sizes="32x32" href="assets\/favicon-32x32\.png">/);
+  assert.match(indexHtml, /<link rel="apple-touch-icon" sizes="180x180" href="assets\/apple-touch-icon\.png">/);
+});
+
 
 
