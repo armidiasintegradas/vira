@@ -56,3 +56,41 @@ test("brandbook.html possui rodapé institucional escuro (#08110D) com créditos
   assert.match(html, /Desenvolvido por AR Mídias/, "deve conter créditos da AR Mídias");
   assert.match(html, /VIRA Engenharia Circular/, "deve conter razão VIRA Engenharia Circular");
 });
+
+test("brandbook.html e uniformes.html implementam as 5 categorias operacionais oficiais de vestuário fabril", () => {
+  for (const page of ["brandbook.html", "uniformes.html"]) {
+    const html = read(page);
+    assert.match(html, /01\s*\/\/\s*OPERACIONAL/i, page + " deve conter Categoria 01 Operacional");
+    assert.match(html, /02\s*\/\/\s*PRODUÇÃO/i, page + " deve conter Categoria 02 Produção");
+    assert.match(html, /03\s*\/\/\s*TÉCNICO/i, page + " deve conter Categoria 03 Técnico");
+    assert.match(html, /04\s*\/\/\s*ADMINISTRATIVO/i, page + " deve conter Categoria 04 Administrativo");
+    assert.match(html, /05\s*\/\/\s*COOPERATIVA/i, page + " deve conter Categoria 05 Cooperativa");
+  }
+});
+
+test("brandbook.html e uniformes.html referenciam os novos ativos fotográficos de uniformes e EPIs", () => {
+  for (const page of ["brandbook.html", "uniformes.html"]) {
+    const html = read(page);
+    assert.match(html, /assets\/uniforme-painel-geral-5-categorias\.jpg/, page + " deve referenciar o painel panorâmico geral");
+    assert.match(html, /assets\/uniforme-01-operacional-masculino\.jpg/, page + " deve referenciar operacional masculino");
+    assert.match(html, /assets\/uniforme-01-operacional-feminino\.jpg/, page + " deve referenciar operacional feminino");
+    assert.match(html, /assets\/uniforme-02-producao-masculino\.jpg/, page + " deve referenciar produção masculino");
+    assert.match(html, /assets\/uniforme-02-producao-feminino\.jpg/, page + " deve referenciar produção feminino");
+    assert.match(html, /assets\/uniforme-03-epi-colete-amarelo-patio\.jpg/, page + " deve referenciar colete amarelo no pátio");
+    assert.match(html, /assets\/uniforme-03-epi-colete-amarelo-cracha\.jpg/, page + " deve referenciar crachá DPP com QR Code");
+    assert.match(html, /assets\/uniforme-04-administrativo-masculino\.jpg/, page + " deve referenciar administrativo masculino");
+    assert.match(html, /assets\/uniforme-04-administrativo-feminino\.jpg/, page + " deve referenciar administrativo feminino");
+    assert.match(html, /assets\/uniforme-05-cooperativa-laranja\.jpg/, page + " deve referenciar cooperativa laranja");
+  }
+});
+
+test("brandbook.html e uniformes.html implementam a vitrine técnica de EPIs com crachá DPP e QR Code", () => {
+  for (const page of ["brandbook.html", "uniformes.html"]) {
+    const html = read(page);
+    assert.match(html, /Passaporte Digital.*DPP/i, page + " deve mencionar Passaporte Digital DPP");
+    assert.match(html, /QR Code/i, page + " deve mencionar QR Code");
+    assert.match(html, /Capacete de Segurança VIRA/i, page + " deve detalhar o Capacete VIRA");
+    assert.match(html, /Luvas Táticas Antiderrapantes/i, page + " deve detalhar as Luvas VIRA");
+    assert.match(html, /Óculos Balísticos/i, page + " deve detalhar os Óculos Balísticos");
+  }
+});

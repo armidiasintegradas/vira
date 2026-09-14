@@ -364,28 +364,34 @@
     .section-kicker {
       font-family: var(--font-mono);
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 500;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--green);
-      margin-bottom: 8px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .section-title {
       font-family: var(--font-main);
-      font-size: clamp(28px, 3.5vw, 44px);
-      font-weight: 800;
-      letter-spacing: -0.03em;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 700;
+      letter-spacing: -0.035em;
       color: var(--ink);
-      line-height: 1.15;
-      margin-bottom: 10px;
+      line-height: 1.06;
+      margin-bottom: 14px;
     }
 
     .section-subtitle {
       font-family: var(--font-main);
-      font-size: 15px;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.62;
+      letter-spacing: -0.01em;
       color: var(--muted);
-      max-width: 720px;
+      max-width: 760px;
     }
 
     /* Section 01: Overview Cards */
@@ -815,11 +821,422 @@
       border-color: var(--ink);
     }
 
-    /* Section 06: Signage / Factory */
+    /* ========================================================
+       Section 06: Uniformes, EPIs & Sinalização Fabril
+       ======================================================== */
+    .uniform-section-block {
+      margin-bottom: 48px;
+    }
+
+    /* Master Directive Panoramic Frame */
+    .uniform-master-frame {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: clamp(16px, 2.5vw, 24px);
+      margin-bottom: 44px;
+      box-shadow: 0 4px 20px rgba(8, 17, 13, 0.04);
+      position: relative;
+    }
+
+    .master-frame-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 16px;
+    }
+
+    .master-frame-badge .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--yellow);
+      box-shadow: 0 0 0 3px rgba(241, 197, 70, 0.35);
+    }
+
+    .master-panorama-img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      display: block;
+      object-fit: cover;
+    }
+
+    .master-frame-footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    .master-frame-footer .slogan-motto {
+      font-family: var(--font-main);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+
+    .master-frame-footer .slogan-sub {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    /* 5 Categories Grid */
+    .uniform-categories-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      margin-bottom: 56px;
+    }
+
+    .uniform-category-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: clamp(20px, 3.5vw, 36px);
+      box-shadow: 0 4px 20px rgba(8, 17, 13, 0.04);
+      display: grid;
+      grid-template-columns: minmax(280px, 360px) 1fr;
+      gap: clamp(24px, 4vw, 44px);
+      align-items: start;
+    }
+
+    @media (max-width: 920px) {
+      .uniform-category-card {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .uniform-card-photos {
+      display: grid;
+      gap: 12px;
+    }
+
+    .uniform-card-photos.photos-duo {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .uniform-photo-wrapper {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #e9eae5;
+      aspect-ratio: 2/3;
+    }
+
+    .uniform-photo-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .uniform-photo-wrapper:hover img {
+      transform: scale(1.03);
+    }
+
+    .uniform-photo-tag {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      background: rgba(8, 17, 13, 0.85);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 4px;
+      z-index: 2;
+    }
+
+    .uniform-card-info {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .uniform-card-header .cat-index {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .uniform-card-header h3 {
+      font-family: var(--font-main);
+      font-size: clamp(20px, 2.2vw, 26px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      color: var(--ink);
+    }
+
+    .uniform-pillars-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pillar-chip {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border-radius: 9999px;
+      background: rgba(20, 37, 25, 0.06);
+      color: var(--green);
+      border: 1px solid rgba(20, 37, 25, 0.12);
+    }
+
+    .pillar-chip.featured {
+      background: rgba(241, 197, 70, 0.15);
+      color: #7a5806;
+      border-color: rgba(241, 197, 70, 0.35);
+    }
+
+    .uniform-card-desc {
+      font-family: var(--font-main);
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .uniform-specs-box {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .uniform-specs-box h5 {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .uniform-specs-box ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .uniform-specs-box li {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--muted);
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .uniform-specs-box li::before {
+      content: "•";
+      color: var(--green);
+      font-weight: bold;
+    }
+
+    /* Sub-section EPIs & Rastreabilidade */
+    .epi-section-wrapper {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: clamp(24px, 4vw, 40px);
+      margin-bottom: 48px;
+      box-shadow: 0 4px 20px rgba(8, 17, 13, 0.04);
+    }
+
+    .epi-sub-header {
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .epi-sub-header .epi-kicker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 6px;
+    }
+
+    .epi-sub-header h3 {
+      font-family: var(--font-main);
+      font-size: clamp(22px, 2.5vw, 30px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .epi-sub-header p {
+      font-family: var(--font-main);
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .epi-layout-grid {
+      display: grid;
+      grid-template-columns: minmax(280px, 340px) 1fr;
+      gap: clamp(24px, 4vw, 40px);
+      align-items: start;
+    }
+
+    @media (max-width: 860px) {
+      .epi-layout-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .epi-visual-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .epi-visual-card {
+      background: #e9eae5;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      position: relative;
+    }
+
+    .epi-visual-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .epi-visual-caption {
+      padding: 12px 14px;
+      background: var(--surface);
+      border-top: 1px solid var(--line);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .epi-items-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .epi-item-box {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .epi-item-box .epi-tag {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    .epi-item-box h4 {
+      font-family: var(--font-main);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .epi-item-box p {
+      font-size: 12px;
+      line-height: 1.55;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .epi-item-box .norma-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      color: #7a5806;
+      background: rgba(241, 197, 70, 0.2);
+      padding: 2px 6px;
+      border-radius: 4px;
+      align-self: flex-start;
+      margin-top: 4px;
+    }
+
+    /* Sinalização Física do Território */
+    .signage-sub-title {
+      font-family: var(--font-main);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .signage-sub-title span {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--green);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
     .signage-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
     }
 
     .signage-card {
@@ -833,13 +1250,13 @@
 
     .signage-card img {
       width: 100%;
-      height: 220px;
+      height: 200px;
       object-fit: cover;
       display: block;
     }
 
     .signage-card-body {
-      padding: 20px;
+      padding: 18px;
     }
 
     .signage-card-body .cat-tag {
@@ -854,7 +1271,7 @@
 
     .signage-card-body h4 {
       font-family: var(--font-main);
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 700;
       color: var(--ink);
       margin-bottom: 6px;
@@ -1045,7 +1462,7 @@
           <a href="#color"><span class="num">03 //</span> Paleta Cromática</a>
           <a href="#typography"><span class="num">04 //</span> Tipografia</a>
           <a href="#downloads"><span class="num">05 //</span> Downloads</a>
-          <a href="#signage"><span class="num">06 //</span> Sinalização Fabril</a>
+          <a href="#uniformes"><span class="num">06 //</span> Uniformes & EPIs</a>
         </nav>
       </div>
 
@@ -1398,17 +1815,290 @@
         </div>
       </section>
 
-      <!-- 06 — SINALIZAÇÃO & INDÚSTRIA -->
-      <section id="signage" class="bb-section">
+      <!-- 06 — UNIFORMES, EPIS & SINALIZAÇÃO FABRIL -->
+      <section id="uniformes" class="bb-section">
+        <span id="signage" style="display: block; position: relative; top: -110px; visibility: hidden;"></span>
+        
         <div class="section-header">
-          <p class="section-kicker">06 // Sinalização & Indústria</p>
-          <h2 class="section-title">A Marca no Espaço Fabril</h2>
-          <p class="section-subtitle">Diretrizes de aplicação em fachadas industriais, frotas, maquinário de precisão e vestuário operacional.</p>
+          <p class="section-kicker">06 // Uniformes & EPIs Industriais</p>
+          <h2 class="section-title">Indumentária Fabril, Ergonomia & EPIs</h2>
+          <p class="section-subtitle">Diretrizes oficiais de vestuário e segurança operacional da VIRA, organizadas em cinco categorias funcionais, quinze pilares institucionais e equipamentos de proteção individual integrados ao Passaporte Digital (DPP).</p>
+        </div>
+
+        <!-- Master Directive Panoramic Banner -->
+        <div class="uniform-master-frame">
+          <div class="master-frame-badge">
+            <span class="pulse-dot"></span>
+            <span>DIRETRIZ OFICIAL DE VESTUÁRIO // MATRIZ FABRIL CARUARU — PE // CINCO CATEGORIAS OPERACIONAIS</span>
+          </div>
+          <img src="assets/uniforme-painel-geral-5-categorias.jpg" alt="Diretriz Geral de Indumentária e Segurança VIRA com 5 Categorias Operacionais" class="master-panorama-img" />
+          <div class="master-frame-footer">
+            <p class="slogan-motto">PESSOAS. MATERIAIS. CIDADES EM TRANSFORMAÇÃO.</p>
+            <span class="slogan-sub">BRASIL CIRCULAR. CIDADES MELHORES.</span>
+          </div>
+        </div>
+
+        <!-- 5 Operational Categories Showcase -->
+        <div class="uniform-categories-grid">
+
+          <!-- 01 OPERACIONAL -->
+          <article class="uniform-category-card">
+            <div class="uniform-card-photos photos-duo">
+              <div class="uniform-photo-wrapper">
+                <img src="assets/uniforme-01-operacional-masculino.jpg" alt="Operador Operacional VIRA com Camisa UV Manga Longa" loading="lazy" />
+                <span class="uniform-photo-tag">01 · Masculino</span>
+              </div>
+              <div class="uniform-photo-wrapper">
+                <img src="assets/uniforme-01-operacional-feminino.jpg" alt="Operária Operacional VIRA com Camisa UV Manga Longa" loading="lazy" />
+                <span class="uniform-photo-tag">01 · Feminino</span>
+              </div>
+            </div>
+            <div class="uniform-card-info">
+              <div class="uniform-card-header">
+                <span class="cat-index">01 // OPERACIONAL</span>
+                <h3>Camisa UV Manga Longa Alta Visibilidade</h3>
+              </div>
+              <div class="uniform-pillars-row">
+                <span class="pillar-chip featured">Segurança Sempre</span>
+                <span class="pillar-chip">Equipe Mais Forte</span>
+                <span class="pillar-chip">Cidades Mais Limpas</span>
+              </div>
+              <p class="uniform-card-desc">
+                Conjunto primário para movimentação de fardos, triagem pesada e operação em pátio aberto sob alta incidência solar. Desenvolvido para máxima ventilação, proteção cutânea e visibilidade à distância por operadores de empilhadeiras e caminhões.
+              </p>
+              <div class="uniform-specs-box">
+                <h5>Especificações Técnicas Têxteis</h5>
+                <ul>
+                  <li><strong>Proteção UV50+:</strong> Tecido tecnológico respirável com bloqueio permanente de raios ultravioleta.</li>
+                  <li><strong>Faixas Retrorrefletivas Classe 2:</strong> Fitas duplas (amarela fluorescente + prata microprismática) no tórax e antebraços.</li>
+                  <li><strong>Calça Cargo Verde Floresta:</strong> Sarja mista antiabrasão com costuras triplas reforçadas, bolsos laterais e fitas refletivas nas pernas.</li>
+                  <li><strong>Acessórios de Linha:</strong> Boné verde VIRA estruturado com bordado institucional e luvas de alta sensibilidade tátil.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- 02 PRODUÇÃO -->
+          <article class="uniform-category-card">
+            <div class="uniform-card-photos photos-duo">
+              <div class="uniform-photo-wrapper">
+                <img src="assets/uniforme-02-producao-masculino.jpg" alt="Operador de Produção VIRA com Polo Técnica" loading="lazy" />
+                <span class="uniform-photo-tag">02 · Masculino</span>
+              </div>
+              <div class="uniform-photo-wrapper">
+                <img src="assets/uniforme-02-producao-feminino.jpg" alt="Operária de Produção VIRA com Polo Técnica" loading="lazy" />
+                <span class="uniform-photo-tag">02 · Feminino</span>
+              </div>
+            </div>
+            <div class="uniform-card-info">
+              <div class="uniform-card-header">
+                <span class="cat-index">02 // PRODUÇÃO</span>
+                <h3>Polo Técnica Conforto e Identidade</h3>
+              </div>
+              <div class="uniform-pillars-row">
+                <span class="pillar-chip featured">Produtividade Real</span>
+                <span class="pillar-chip">Economia Circular</span>
+                <span class="pillar-chip">Resultados Sustentáveis</span>
+              </div>
+              <p class="uniform-card-desc">
+                Indumentária de trabalho para as linhas internas de extrusão, moagem fina, prensagem hidráulica e laboratório de conformidade. Combina toque macio, respirabilidade constante e corte ergonômico que facilita movimentos repetitivos.
+              </p>
+              <div class="uniform-specs-box">
+                <h5>Especificações Técnicas Têxteis</h5>
+                <ul>
+                  <li><strong>Malha Piquet Técnica:</strong> Composição mescla cinza com gola e punhos canelados em verde floresta oficial.</li>
+                  <li><strong>Bordado Institucional:</strong> Aplicação do monograma VIRA com fios de alta resistência mecânica à lavagem industrial.</li>
+                  <li><strong>Calça Operacional:</strong> Sarja verde floresta com bolso cargo embutido e faixa retrorrefletiva cinza nos tornozelos.</li>
+                  <li><strong>Ergonomia Térmica:</strong> Tratamento antibacteriano e secagem acelerada para conforto em turnos contínuos.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- 03 TÉCNICO -->
+          <article class="uniform-category-card">
+            <div class="uniform-card-photos" style="max-width: 320px;">
+              <div class="uniform-photo-wrapper" style="aspect-ratio: 4/5;">
+                <img src="assets/maquinario-prensa-completa.jpg" alt="Ambiente Técnico Industrial VIRA" loading="lazy" />
+                <span class="uniform-photo-tag">03 · Técnico & Manutenção</span>
+              </div>
+            </div>
+            <div class="uniform-card-info">
+              <div class="uniform-card-header">
+                <span class="cat-index">03 // TÉCNICO & MANUTENÇÃO</span>
+                <h3>Jaqueta Operacional Proteção e Segurança</h3>
+              </div>
+              <div class="uniform-pillars-row">
+                <span class="pillar-chip featured">Proteção em Campo</span>
+                <span class="pillar-chip">Manutenção Eficiente</span>
+                <span class="pillar-chip">Tecnologia a Serviço</span>
+              </div>
+              <p class="uniform-card-desc">
+                Conjunto blindado para equipes de engenharia eletromecânica, automação predial e manutenção preditiva de prensas industriais. Desenhado para proteger contra abrasão, respingos oleosos e atrito mecânico.
+              </p>
+              <div class="uniform-specs-box">
+                <h5>Especificações Técnicas Têxteis</h5>
+                <ul>
+                  <li><strong>Sarja Pesada Antiestática:</strong> Fios condutivos dissipativos que evitam acúmulo de carga eletrostática (NR-10).</li>
+                  <li><strong>Faixas Retrorrefletivas Duplas:</strong> Identificação transversal no tórax e antebraços para trabalhos em subestações e áreas sombreadas.</li>
+                  <li><strong>Fechamento Oculto:</strong> Zíper protegido por pala com fechamento em velcro para evitar engate em polias móveis.</li>
+                  <li><strong>Bolsos Utilitários:</strong> Compartimentos com reforço para multímetros, leitores digitais e ferramentas manuais.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- 04 ADMINISTRATIVO -->
+          <article class="uniform-category-card">
+            <div class="uniform-card-photos photos-duo">
+              <div class="uniform-photo-wrapper">
+                <img src="assets/uniforme-04-administrativo-masculino.jpg" alt="Gestor Administrativo VIRA com Camisa Social" loading="lazy" />
+                <span class="uniform-photo-tag">04 · Masculino</span>
+              </div>
+              <div class="uniform-photo-wrapper">
+                <img src="assets/uniforme-04-administrativo-feminino.jpg" alt="Gestora Administrativa VIRA com Camisa Social" loading="lazy" />
+                <span class="uniform-photo-tag">04 · Feminino</span>
+              </div>
+            </div>
+            <div class="uniform-card-info">
+              <div class="uniform-card-header">
+                <span class="cat-index">04 // ADMINISTRATIVO & GESTÃO</span>
+                <h3>Camisa Social Profissionalismo</h3>
+              </div>
+              <div class="uniform-pillars-row">
+                <span class="pillar-chip featured">Gestão com Propósito</span>
+                <span class="pillar-chip">Planejamento para o Futuro</span>
+                <span class="pillar-chip">Impacto Positivo</span>
+              </div>
+              <p class="uniform-card-desc">
+                Peça executiva de contato comercial, atendimento a escritórios de arquitetura, relações institucionais e liderança executiva. Projetada para transição fluida entre reuniões corporativas e auditorias técnicas na fábrica.
+              </p>
+              <div class="uniform-specs-box">
+                <h5>Especificações Técnicas Têxteis</h5>
+                <ul>
+                  <li><strong>Algodão Nobre com Elastano:</strong> Tecido 97% algodão circular e 3% elastano para ajuste impecável e liberdade de movimento.</li>
+                  <li><strong>Bordado de Precisão:</strong> Logo VIRA bordado em policromia milimétrica no peito esquerdo.</li>
+                  <li><strong>Calça de Sarja Grafite Chumbo:</strong> Corte alfaiataria industrial contemporâneo com bolsos funcionais e cinto preto.</li>
+                  <li><strong>Acabamento Easy-Iron:</strong> Fibras de fácil manutenção com toque frio e resistência a vincos.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- 05 COOPERATIVA -->
+          <article class="uniform-category-card">
+            <div class="uniform-card-photos" style="max-width: 320px;">
+              <div class="uniform-photo-wrapper">
+                <img src="assets/uniforme-05-cooperativa-laranja.jpg" alt="Operadora de Cooperativa Parceira VIRA" loading="lazy" />
+                <span class="uniform-photo-tag">05 · Cooperativa Parceira</span>
+              </div>
+            </div>
+            <div class="uniform-card-info">
+              <div class="uniform-card-header">
+                <span class="cat-index">05 // COOPERATIVA PARCEIRA</span>
+                <h3>Colete de Identificação Visibilidade e Orgulho</h3>
+              </div>
+              <div class="uniform-pillars-row">
+                <span class="pillar-chip featured">Inclusão Social</span>
+                <span class="pillar-chip">Renda para Famílias</span>
+                <span class="pillar-chip">Transformação de Resíduos</span>
+              </div>
+              <p class="uniform-card-desc">
+                Vestimenta de reconhecimento e proteção para cooperados e catadores integrados ao ecossistema de logística reversa e triagem de polímeros. Traduz a dignidade do trabalho circular e garante total segurança em centros de triagem e docas de descarga.
+              </p>
+              <div class="uniform-specs-box">
+                <h5>Especificações Técnicas Têxteis</h5>
+                <ul>
+                  <li><strong>Colete Laranja Alta Visibilidade:</strong> Tecido fluorescente leve e respirável com faixas retrorrefletivas horizontais duplas.</li>
+                  <li><strong>Marcação de Parceria:</strong> Inscrição frontal e dorsal "COOPERATIVA VIRA", assegurando identificação oficial e respeito na cadeia.</li>
+                  <li><strong>Base de Manga Longa:</strong> Camisa UV verde floresta com a palavra "COOPERATIVA" estampada no braço.</li>
+                  <li><strong>Calça Cargo Operacional:</strong> Sarja verde floresta com faixas refletivas nas canelas e bolso com aba protetora.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Sub-section EPIs & Rastreabilidade Digital -->
+        <div class="epi-section-wrapper">
+          <div class="epi-sub-header">
+            <p class="epi-kicker">EPIs & Rastreabilidade Digital // Segurança Homologada</p>
+            <h3>Equipamentos de Proteção Individual & Crachá com QR Code DPP</h3>
+            <p>Todo colaborador e visitante da unidade fabril Caruaru utiliza equipamentos certificados com identificação instrumental. O crachá de segurança incorpora um QR Code diretamente vinculado ao Passaporte Digital de Produto (DPP) para conferência de treinamentos e zonas de acesso permitidas.</p>
+          </div>
+
+          <div class="epi-layout-grid">
+            <!-- Photos Stack -->
+            <div class="epi-visual-stack">
+              <div class="epi-visual-card">
+                <img src="assets/uniforme-03-epi-colete-amarelo-patio.jpg" alt="Operadora VIRA no pátio fabril com Colete Amarelo e Capacete" loading="lazy" />
+                <div class="epi-visual-caption">Pátio Fabril Caruaru · Colete Amarelo e Capacete Branco</div>
+              </div>
+              <div class="epi-visual-card">
+                <img src="assets/uniforme-03-epi-colete-amarelo-cracha.jpg" alt="Detalhe do Colete com Crachá DPP QR Code" loading="lazy" />
+                <div class="epi-visual-caption">Porta-Crachá Selado com QR Code DPP Rastreável</div>
+              </div>
+            </div>
+
+            <!-- Specs Grid -->
+            <div class="epi-items-grid">
+              
+              <div class="epi-item-box">
+                <span class="epi-tag">EPI 01 // Alta Visibilidade</span>
+                <h4>Colete Amarelo Fluor com Crachá DPP</h4>
+                <p>Colete Classe 2 em malha perfurada fluorescente, zíper frontal tratorado, múltiplos bolsos funcionais e porta-crachá impermeável com QR Code vinculado à cadeia de custódia e NR-6.</p>
+                <span class="norma-tag">NBR 15292 / NR-6</span>
+              </div>
+
+              <div class="epi-item-box">
+                <span class="epi-tag">EPI 02 // Proteção Craniana</span>
+                <h4>Capacete de Segurança VIRA</h4>
+                <p>Injetado em polímero circular de alto impacto, com suspensão têxtil de 6 pontos, catraca de regulagem precisa, fita jugular e logo frontal. Branco para diretoria e verde para produção.</p>
+                <span class="norma-tag">NBR 8221 / Tipo II</span>
+              </div>
+
+              <div class="epi-item-box">
+                <span class="epi-tag">EPI 03 // Proteção Manual</span>
+                <h4>Luvas Táticas Antiderrapantes</h4>
+                <p>Malha respirável de alta tenacidade com banho em poliuretano na palma e dedos para máxima sensibilidade e aderência na manipulação de fardos, pavers e compostos minerais.</p>
+                <span class="norma-tag">EN 388 / Nível 4</span>
+              </div>
+
+              <div class="epi-item-box">
+                <span class="epi-tag">EPI 04 // Proteção Ocular</span>
+                <h4>Óculos Balísticos UV400</h4>
+                <p>Armação ergonômica com hastes emborrachadas e lentes em policarbonato óptico incolor classe 1 com tratamento antiembaçante e antirrisco, protegendo contra fragmentos minerais.</p>
+                <span class="norma-tag">ANSI Z87.1</span>
+              </div>
+
+              <div class="epi-item-box">
+                <span class="epi-tag">EPI 05 // Proteção Podal</span>
+                <h4>Calçado de Segurança com Composite</h4>
+                <p>Botina de cano médio em couro hidrofugado preto, solado de PU bidensidade antiderrapante e biqueira de composite ultraleve e resistente ao esmagamento mecânico.</p>
+                <span class="norma-tag">NBR ISO 20345</span>
+              </div>
+
+              <div class="epi-item-box">
+                <span class="epi-tag">EPI 06 // Proteção Auditiva</span>
+                <h4>Protetor Auricular de Alta Atenuação</h4>
+                <p>Protetores tipo concha acolchoados para operadores em salas de prensagem contínua e moinhos de polímeros, com atenuação NRRsf de 22 dB para controle de fadiga acústica.</p>
+                <span class="norma-tag">NR-15 / NRRsf 22dB</span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Sinalização Física no Espaço Fabril -->
+        <div class="signage-sub-title">
+          <span>Infraestrutura Espacial</span>
+          A Marca no Território Industrial
         </div>
 
         <div class="signage-grid">
           <article class="signage-card">
-            <img src="assets/factory-portal-front.jpg" alt="Pórtico da fábrica VIRA" />
+            <img src="assets/factory-portal-front.jpg" alt="Pórtico da fábrica VIRA" loading="lazy" />
             <div class="signage-card-body">
               <span class="cat-tag">Fachada & Pórtico</span>
               <h4>Pórtico Fabril Caruaru</h4>
@@ -1417,16 +2107,7 @@
           </article>
 
           <article class="signage-card">
-            <img src="assets/foto-linha-uniformes-completa.jpg" alt="Linha de uniformes" />
-            <div class="signage-card-body">
-              <span class="cat-tag">Vestuário Operacional</span>
-              <h4>Uniformes & EPIs</h4>
-              <p>Padronização em cinco categorias funcionais, combinando segurança UV50+ e sobriedade estética.</p>
-            </div>
-          </article>
-
-          <article class="signage-card">
-            <img src="assets/maquinario-prensa-completa.jpg" alt="Prensa industrial" />
+            <img src="assets/maquinario-prensa-completa.jpg" alt="Prensa industrial" loading="lazy" />
             <div class="signage-card-body">
               <span class="cat-tag">Maquinário & Frota</span>
               <h4>Identificação Instrumental</h4>
@@ -1435,7 +2116,7 @@
           </article>
 
           <article class="signage-card">
-            <img src="assets/foto-institucional-oficial-pavers.jpg" alt="Paletes de pavers" />
+            <img src="assets/foto-institucional-oficial-pavers.jpg" alt="Paletes de pavers" loading="lazy" />
             <div class="signage-card-body">
               <span class="cat-tag">Expedição & Carga</span>
               <h4>Paletização & Rastreabilidade</h4>
