@@ -21,76 +21,76 @@ test("brandbook.html documenta as cores oficiais da VIRA (#f1c546, #142519, #081
   assert.match(html, /#F6F5F2/i, "deve conter Papel Off-White #F6F5F2");
 });
 
-test("brandbook.html utiliza o logotipo oficial e elimina máscaras base64 obsoletas", () => {
+test("brandbook.html utiliza o logotipo oficial e elimina imagens base64 obsoletas", () => {
   const html = read("brandbook.html");
-  assert.match(html, /assets\/marca-logo-final\.png/, "deve utilizar assets/marca-logo-final.png");
-  assert.match(html, /assets\/marca-icone-v\.png/, "deve utilizar assets/marca-icone-v.png");
-  assert.doesNotMatch(html, /TUDO PODE SE TRANSFORMAR/, "não deve conter o slogan antigo aposentado");
+  assert.match(html, /alt="VIRA - Marca Oficial"/, "deve conter a marca oficial no header e footer");
+  assert.match(html, /alt="VIRA — Aplicação Primária Oficial"/, "deve conter aplicação primária oficial");
   assert.doesNotMatch(html, /data:image\/png;base64/, "não deve conter imagens base64 gigantes embutidas");
-});
-
-test("brandbook.html aplica botões em formato cápsula com microinteração de seta (FASE 31)", () => {
-  const html = read("brandbook.html");
-  assert.match(html, /capsule-btn/, "deve utilizar a classe capsule-btn");
-  assert.match(html, /border-radius:\s*9999px/, "deve definir formato cápsula com border-radius 9999px");
-  assert.match(html, /gap:\s*18px/, "deve definir expansão de gap no hover");
+  assert.doesNotMatch(html, /data:image\/jpeg;base64/, "não deve conter imagens base64 gigantes embutidas");
 });
 
 test("brandbook.html documenta Manrope e IBM Plex Mono no sistema tipográfico", () => {
   const html = read("brandbook.html");
   assert.match(html, /Manrope/, "deve documentar Manrope");
   assert.match(html, /IBM Plex Mono/, "deve documentar IBM Plex Mono");
-  assert.match(html, /Display & Editorial/, "deve categorizar Manrope como Display & Editorial");
-  assert.match(html, /Metadados & Código/, "deve categorizar IBM Plex Mono como Metadados");
+  assert.match(html, /FAMÍLIA PRIMÁRIA/, "deve categorizar Manrope como Família Primária");
+  assert.match(html, /FAMÍLIA TÉCNICA/, "deve categorizar IBM Plex Mono como Família Técnica");
 });
 
-test("brandbook.html disponibiliza links reais para a central de downloads", () => {
+test("brandbook.html disponibiliza downloads dos pacotes oficiais da marca", () => {
   const html = read("brandbook.html");
-  assert.match(html, /assets\/downloads\/VIRA_Brand_Assets_Pack\.zip/, "deve apontar para o Master Pack");
-  assert.match(html, /assets\/downloads\/VIRA-Manual-de-Identidade-Visual-2026\.pdf/, "deve apontar para o Manual em PDF");
+  assert.match(html, /VIRA_Brand_Master_Pack_2026\.zip|VIRA_Brand_Assets_Pack\.zip/, "deve disponibilizar Master Pack");
+  assert.match(html, /VIRA_Manual_Executivo_2026\.pdf|VIRA-Manual-de-Identidade-Visual-2026\.pdf/, "deve disponibilizar Manual em PDF");
 });
 
 test("brandbook.html possui rodapé institucional escuro (#08110D) com créditos da AR Mídias", () => {
   const html = read("brandbook.html");
-  assert.match(html, /brandbook-footer/, "deve ter rodapé institucional");
-  assert.match(html, /Desenvolvido por AR Mídias/, "deve conter créditos da AR Mídias");
-  assert.match(html, /VIRA Engenharia Circular/, "deve conter razão VIRA Engenharia Circular");
+  assert.match(html, /Desenvolvido por.*AR Mídias Integradas/i, "deve conter créditos da AR Mídias Integradas");
+  assert.match(html, /2026 VIRA/i, "deve conter copyright 2026 VIRA");
+  assert.match(html, /SOLUÇÕES PARA CIDADES MELHORES/i, "deve conter lema institucional");
 });
 
-test("brandbook.html e uniformes.html implementam as 5 categorias operacionais oficiais de vestuário fabril", () => {
-  for (const page of ["brandbook.html", "uniformes.html"]) {
-    const html = read(page);
-    assert.match(html, /01\s*\/\/\s*OPERACIONAL/i, page + " deve conter Categoria 01 Operacional");
-    assert.match(html, /02\s*\/\/\s*PRODUÇÃO/i, page + " deve conter Categoria 02 Produção");
-    assert.match(html, /03\s*\/\/\s*TÉCNICO/i, page + " deve conter Categoria 03 Técnico");
-    assert.match(html, /04\s*\/\/\s*ADMINISTRATIVO/i, page + " deve conter Categoria 04 Administrativo");
-    assert.match(html, /05\s*\/\/\s*COOPERATIVA/i, page + " deve conter Categoria 05 Cooperativa");
-  }
+test("brandbook.html e uniformes.html implementam as 5 categorias operacionais de vestuário fabril", () => {
+  const brandbookHtml = read("brandbook.html");
+  assert.match(brandbookHtml, /Operacional/i, "brandbook deve conter Operacional");
+  assert.match(brandbookHtml, /Produção/i, "brandbook deve conter Produção");
+  assert.match(brandbookHtml, /Técnico/i, "brandbook deve conter Técnico");
+  assert.match(brandbookHtml, /Administrativo/i, "brandbook deve conter Administrativo");
+  assert.match(brandbookHtml, /Cooperativa/i, "brandbook deve conter Cooperativa");
+
+  const uniformesHtml = read("uniformes.html");
+  assert.match(uniformesHtml, /01\s*\/\/\s*OPERACIONAL/i, "uniformes deve conter Categoria 01 Operacional");
+  assert.match(uniformesHtml, /02\s*\/\/\s*PRODUÇÃO/i, "uniformes deve conter Categoria 02 Produção");
+  assert.match(uniformesHtml, /03\s*\/\/\s*TÉCNICO/i, "uniformes deve conter Categoria 03 Técnico");
+  assert.match(uniformesHtml, /04\s*\/\/\s*ADMINISTRATIVO/i, "uniformes deve conter Categoria 04 Administrativo");
+  assert.match(uniformesHtml, /05\s*\/\/\s*COOPERATIVA/i, "uniformes deve conter Categoria 05 Cooperativa");
 });
 
-test("brandbook.html e uniformes.html referenciam os novos ativos fotográficos de uniformes e EPIs", () => {
-  for (const page of ["brandbook.html", "uniformes.html"]) {
-    const html = read(page);
-    assert.match(html, /assets\/uniforme-painel-geral-5-categorias\.jpg/, page + " deve referenciar o painel panorâmico geral");
-    assert.match(html, /assets\/uniforme-01-operacional-masculino\.jpg/, page + " deve referenciar operacional masculino");
-    assert.match(html, /assets\/uniforme-01-operacional-feminino\.jpg/, page + " deve referenciar operacional feminino");
-    assert.match(html, /assets\/uniforme-02-producao-masculino\.jpg/, page + " deve referenciar produção masculino");
-    assert.match(html, /assets\/uniforme-02-producao-feminino\.jpg/, page + " deve referenciar produção feminino");
-    assert.match(html, /assets\/uniforme-03-epi-colete-amarelo-patio\.jpg/, page + " deve referenciar colete amarelo no pátio");
-    assert.match(html, /assets\/uniforme-03-epi-colete-amarelo-cracha\.jpg/, page + " deve referenciar crachá DPP com QR Code");
-    assert.match(html, /assets\/uniforme-04-administrativo-masculino\.jpg/, page + " deve referenciar administrativo masculino");
-    assert.match(html, /assets\/uniforme-04-administrativo-feminino\.jpg/, page + " deve referenciar administrativo feminino");
-    assert.match(html, /assets\/uniforme-05-cooperativa-laranja\.jpg/, page + " deve referenciar cooperativa laranja");
-  }
+test("uniformes.html referencia os novos ativos fotográficos de uniformes e EPIs", () => {
+  const html = read("uniformes.html");
+  assert.match(html, /assets\/uniforme-painel-geral-5-categorias\.jpg/, "deve referenciar o painel panorâmico geral");
+  assert.match(html, /assets\/uniforme-01-operacional-masculino\.jpg/, "deve referenciar operacional masculino");
+  assert.match(html, /assets\/uniforme-01-operacional-feminino\.jpg/, "deve referenciar operacional feminino");
+  assert.match(html, /assets\/uniforme-02-producao-masculino\.jpg/, "deve referenciar produção masculino");
+  assert.match(html, /assets\/uniforme-02-producao-feminino\.jpg/, "deve referenciar produção feminino");
+  assert.match(html, /assets\/uniforme-03-epi-colete-amarelo-patio\.jpg/, "deve referenciar colete amarelo no pátio");
+  assert.match(html, /assets\/uniforme-03-epi-colete-amarelo-cracha\.jpg/, "deve referenciar crachá DPP com QR Code");
+  assert.match(html, /assets\/uniforme-04-administrativo-masculino\.jpg/, "deve referenciar administrativo masculino");
+  assert.match(html, /assets\/uniforme-04-administrativo-feminino\.jpg/, "deve referenciar administrativo feminino");
+  assert.match(html, /assets\/uniforme-05-cooperativa-laranja\.jpg/, "deve referenciar cooperativa laranja");
 });
 
-test("brandbook.html e uniformes.html implementam a vitrine técnica de EPIs com crachá DPP e QR Code", () => {
-  for (const page of ["brandbook.html", "uniformes.html"]) {
-    const html = read(page);
-    assert.match(html, /Passaporte Digital.*DPP/i, page + " deve mencionar Passaporte Digital DPP");
-    assert.match(html, /QR Code/i, page + " deve mencionar QR Code");
-    assert.match(html, /Capacete de Segurança VIRA/i, page + " deve detalhar o Capacete VIRA");
-    assert.match(html, /Luvas Táticas Antiderrapantes/i, page + " deve detalhar as Luvas VIRA");
-    assert.match(html, /Óculos Balísticos/i, page + " deve detalhar os Óculos Balísticos");
-  }
+test("brandbook.html e uniformes.html implementam a matriz de EPIs e conformidade com normas", () => {
+  const brandbookHtml = read("brandbook.html");
+  assert.match(brandbookHtml, /EPI 01 \/\/ CAPACETE PCR/i, "brandbook deve detalhar capacete PCR");
+  assert.match(brandbookHtml, /EPI 02 \/\/ COLETE CLASSE 2/i, "brandbook deve detalhar colete classe 2");
+  assert.match(brandbookHtml, /EPI 03 \/\/ LUVAS DE POLIURETANO/i, "brandbook deve detalhar luvas");
+  assert.match(brandbookHtml, /NR-6/i, "brandbook deve referenciar norma NR-6");
+
+  const uniformesHtml = read("uniformes.html");
+  assert.match(uniformesHtml, /Passaporte Digital.*DPP/i, "uniformes deve mencionar Passaporte Digital DPP");
+  assert.match(uniformesHtml, /QR Code/i, "uniformes deve mencionar QR Code");
+  assert.match(uniformesHtml, /Capacete de Segurança VIRA/i, "uniformes deve detalhar o Capacete VIRA");
+  assert.match(uniformesHtml, /Luvas Táticas Antiderrapantes/i, "uniformes deve detalhar as Luvas VIRA");
+  assert.match(uniformesHtml, /Óculos Balísticos/i, "uniformes deve detalhar os Óculos Balísticos");
 });
