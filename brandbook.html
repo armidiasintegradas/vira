@@ -1,634 +1,556 @@
 <!DOCTYPE html><html class="scroll-smooth" lang="pt-BR" style=""><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>VIRA — Manual de Identidade &amp; Diretrizes Técnicas 2026</title>
-<meta name="description" content="Diretrizes oficiais de marca, arquitetura de design, paleta cromática, especificações tipográficas e central de ativos vetoriais da VIRA.">
+<title>VIRA Engenharia Circular — Brandbook &amp; Design System 2026</title>
+<!-- Favicon Oficial VIRA -->
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-<link rel="shortcut icon" href="favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<!-- Google Fonts: Manrope + IBM Plex Mono -->
 <link href="https://fonts.googleapis.com" rel="preconnect">
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<style>
-    @layer base {
-      html, body { margin: 0; padding: 0; }
-      body { overscroll-behavior: none; }
-    }
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #08110D; }
-    ::-webkit-scrollbar-thumb { background: #1f3525; border-radius: 3px; }
-  </style>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- FontAwesome / Lucide Icons Support -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<!-- Tailwind CSS via CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
     tailwind.config = {
-      darkMode: "class",
       theme: {
         extend: {
           colors: {
-            "surface": "#FAF9F6",
-            "surface-dim": "#F2EFE9",
-            "surface-container-low": "#F6F5F2",
-            "surface-raised": "#FFFFFF",
-            "primary-container": "#142519",
-            "primary-dark": "#08110D",
-            "secondary-container": "#F1C546",
-            "secondary-hover": "#e2b635",
-            "on-surface": "#08110D",
-            "on-surface-variant": "#57605A",
-            "border-subtle": "#E2E0D8",
-            "border-dark": "#1d2e23",
-            "safety-neon": "#D8F334",
-            "safety-orange": "#FF5722",
-            "tertiary": "#142519"
+            'vira-green': '#142519',
+            'vira-green-light': '#2d4734',
+            'vira-gold': '#F1C546',
+            'vira-gold-hover': '#e5b634',
+            'vira-dark': '#08110D',
+            'vira-dark-surface': '#0d1812',
+            'vira-surface': '#FAF9F6',
+            'vira-surface-dim': '#f0eeea',
+            'vira-border': '#e2ded5',
+            'vira-muted': '#6b7280'
           },
           fontFamily: {
-            "headline": ["Manrope", "sans-serif"],
-            "mono": ["IBM Plex Mono", "monospace"]
+            sans: ['Manrope', 'sans-serif'],
+            mono: ['"IBM Plex Mono"', 'monospace']
+          },
+          borderRadius: {
+            'vira': '24px'
           }
         }
       }
-    };
+    }
   </script>
+<style>
+    body {
+      font-family: 'Manrope', sans-serif;
+      background-color: #FAF9F6;
+      color: #08110D;
+      overflow-x: hidden;
+    }
+    .font-mono {
+      font-family: 'IBM Plex Mono', monospace;
+    }
+    .rounded-vira {
+      border-radius: 24px;
+    }
+    /* Estilização suave para scrollbars */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #08110D;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2d4734;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #F1C546;
+    }
+  </style>
 </head>
-<body class="bg-[#FAF9F6] font-['Manrope'] text-[#08110D] antialiased selection:bg-[#F1C546] selection:text-[#08110D]">
-<!-- TOAST NOTIFICATION COMPONENT -->
-<div class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-3 bg-[#08110D] text-[#F1C546] border border-[#F1C546]/30 px-5 py-3 rounded shadow-2xl font-mono text-xs tracking-wider uppercase" id="copyToast">
-<span class="material-symbols-outlined text-base text-[#F1C546]">check_circle</span>
-<span id="copyToastText" class="">VALOR COPIADO COM SUCESSO</span>
-</div>
-<!-- HEADER OFICIAL DA VIRA (DARK INDUSTRIAL) -->
-<header class="fixed top-0 left-0 w-full z-50 bg-[#08110D]/95 backdrop-blur-md border-b border-[#1d2e23] transition-all">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="h-20 flex items-center justify-between gap-4">
-<!-- Logo Brand & Geolocation Coordinates -->
-<div class="flex items-center gap-6">
-<a class="flex items-center gap-3 group" href="#"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOmwjp4kFztHCtKLiATUfz2OBU9gjdSH_eOOTcpgpQ2vxC9iGYnPKjixN4S8UQL60WWPQPLEA5f_FjXr69WfQ_Mg598s095Ap0GeUXVbZoGa7cGsaLp1jd8wxKdlVsLDwkR_cd3sP-Q88LwHeun6Z3kBYOYgFgjiXDuYDQ3oNTNN847x377gXFQYVVJfh_iyIZmWdqgxW7YvggJ4P30kqbzRCLVj78_racAS5b9cpPfN_JZYdvfg_Gr-fZUrsMKNqX4yw" alt="VIRA - Marca Oficial" class="h-8 sm:h-9 w-auto object-contain"><div class="hidden sm:flex flex-col border-l border-[#1d2e23] pl-3"><span class="font-mono text-[10px] text-[#86998c] uppercase tracking-widest">Brandbook 2026</span></div></a>
-<div class="hidden xl:flex items-center gap-2 px-3 py-1 rounded bg-[#142519]/70 border border-[#1d2e23] font-mono text-[11px] text-[#8ea495]">
-<span class="w-2 h-2 rounded-full bg-[#F1C546] animate-pulse"></span>
-<span class="">CARUARU — PE</span>
-<span class="text-[#3c5744]">·</span>
-<span class="">8°22′S 35°58′W</span>
-</div>
-</div>
-<!-- Navigation Menu -->
-<nav class="hidden lg:flex items-center gap-1 font-mono text-xs uppercase tracking-wider text-[#A0B0A5]">
-<a class="px-3 py-2 rounded hover:text-white hover:bg-white/5 transition-colors" href="#visao-geral">01 // Visão</a>
-<a class="px-3 py-2 rounded hover:text-white hover:bg-white/5 transition-colors" href="#logotipo">02 // Logotipo</a>
-<a class="px-3 py-2 rounded hover:text-white hover:bg-white/5 transition-colors" href="#cores">03 // Cores</a>
-<a class="px-3 py-2 rounded hover:text-white hover:bg-white/5 transition-colors" href="#tipografia">04 // Tipografia</a>
-<a class="px-3 py-2 rounded hover:text-white hover:bg-white/5 transition-colors" href="#sinalizacao">05 // Sinalização</a><a class="px-3 py-2 rounded hover:text-white hover:bg-white/5 transition-colors" href="#uniformes">06 // Indumentária</a>
-<a class="px-3 py-2 rounded hover:text-white hover:bg-white/5 transition-colors" href="#downloads">07 // Downloads</a>
-</nav>
-<!-- CTA & Status -->
+<body class="min-h-screen flex flex-col antialiased selection:bg-vira-gold selection:text-vira-dark">
+<!-- ================= TOP TECHNICAL HEADER / TELEMETRY ================= -->
+<div class="bg-vira-dark text-[#8f9b92] text-[11px] font-mono border-b border-[#1b2b20] py-2 px-4 sm:px-8">
+<div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
 <div class="flex items-center gap-3">
-<a class="inline-flex items-center gap-2 h-10 px-4 rounded bg-[#F1C546] hover:bg-[#e2b635] text-[#08110D] font-mono text-xs font-bold uppercase tracking-wider transition-all transform hover:-translate-y-0.5 shadow-sm" href="#downloads">
-<span class="material-symbols-outlined text-base">download</span>
-<span class="hidden sm:inline">Manual PDF</span>
-<span class="inline sm:hidden">PDF</span>
+<span class="inline-flex items-center gap-1.5 text-vira-gold font-medium">
+<span class="w-2 h-2 rounded-full bg-vira-gold animate-pulse"></span>
+          NORMATIVA 2026
+        </span>
+<span class="text-[#415446]">/</span>
+<span class="hidden sm:inline">REV. 4.0.2 BRAND SYSTEM SPEC</span>
+<span class="text-[#415446] hidden sm:inline">/</span>
+<span class="">CARUARU — PE (8°17′S 35°58′W)</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="hidden md:inline">CIRCULARIDADE: <strong class="text-white">100% AUDITADA</strong></span>
+<span class="hidden md:inline text-[#415446]">/</span>
+<span class="">STATUS: <strong class="text-emerald-400">OPERAÇÃO ATIVA</strong></span>
+<a class="text-vira-gold hover:underline flex items-center gap-1 ml-2" href="index.html">
+<span class="">IR AO SITE</span>
+<i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
 </a>
 </div>
+</div>
+</div>
+<!-- ================= MAIN NAVIGATION ================= -->
+<header class="sticky top-0 z-50 bg-vira-dark/95 backdrop-blur-md border-b border-[#1b2b20]">
+<div class="max-w-7xl mx-auto px-4 sm:px-8 py-3.5 flex items-center justify-between">
+<!-- Brand Logo -->
+<a class="flex items-center gap-3 group" href="index.html">
+<img alt="VIRA Engenharia Circular" class="h-8 sm:h-9 w-auto opacity-95 group-hover:opacity-100 transition-opacity object-contain" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuCEm0A89VKy2Z27PzPyrDYlTcdXszM20x2BimhGH0SB5o8J0dqBnmMBfidICrswDfu0369XC6rCniPXb4zCtPVhPvaTc1kaWgntVqAR_4lGVbBAuzNvaC__8DKZ_0lT-v8a_upUizZrqbERwHVZ5yjD6F7eNeG3UuBCAZk4BCnWUa7hSfUoP9NgerUWp3UWrUFJ_MPxYbQ8yLsoo1gV_u8Q6fOPqubhZZ1beO9dD2GQgykw9Cq3rkqikH1NJZdDb8UkKCY'" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0CeuSC4ke7u0SNUJgmHkdsBsxCUHh6cgtb5lsKksNF7HunE0ZcCgW1tQ0TAP0LN_aLI9D1Tb2YvreWHBvHCtKXZ3uVUnLMvioRwAG8qgOgbGhnX53nWiNeMq4nTNetD2j8pvPsXcFSsMVsLpautQ5gT6Qc2vZtnebN8z0wW9H21Y7FPI7QB2PJa1ngCgH8Al6UOxRV89iyWIyetBjThbQlKKXcqP9nPa9-he8Q8tWSzgPYC6FVpXq75coNJ1w09duZso">
+<div class="border-l border-[#2d4734] pl-3 hidden lg:block">
+<p class="text-[10px] font-mono tracking-wider text-vira-gold uppercase">Brandbook Oficial</p>
+<p class="text-[11px] text-gray-300 font-medium">Diretrizes de Identidade</p>
+</div>
+</a>
+<!-- Desktop Nav -->
+<nav class="hidden md:flex items-center gap-6 lg:gap-8 font-mono text-[12px] text-gray-300">
+<a class="hover:text-vira-gold transition-colors" href="#visao-geral">01 // Visão Geral</a>
+<a class="hover:text-vira-gold transition-colors" href="#logotipo">02 // Logotipo</a>
+<a class="hover:text-vira-gold transition-colors" href="#cores">03 // Cores</a>
+<a class="hover:text-vira-gold transition-colors" href="#tipografia">04 // Tipografia</a>
+<a class="hover:text-vira-gold transition-colors" href="#sinalizacao">05 // Sinalização</a>
+<a class="hover:text-vira-gold transition-colors" href="#uniformes">06 // Uniformes</a>
+<a class="hover:text-vira-gold transition-colors" href="#downloads">07 // Downloads</a>
+</nav>
+<!-- CTA Button & Mobile Menu Toggle -->
+<div class="flex items-center gap-3">
+<a class="hidden sm:inline-flex items-center gap-2 bg-vira-gold text-vira-dark font-mono text-xs font-bold px-4 py-2 rounded-lg hover:bg-vira-gold-hover transition-colors shadow-sm" href="#downloads">
+<i class="fa-solid fa-download text-[11px]"></i>
+<span class="">MANUAL 2026 .PDF</span>
+</a>
+<button aria-label="Abrir Menu" class="md:hidden p-2 text-gray-300 hover:text-vira-gold focus:outline-none" id="mobileMenuBtn">
+<i class="fa-solid fa-bars text-xl"></i>
+</button>
+</div>
+</div>
+<!-- Mobile Drawer -->
+<div class="hidden md:hidden bg-vira-dark border-t border-[#1b2b20] px-6 py-4 font-mono text-xs space-y-3" id="mobileMenu">
+<a class="block py-1.5 text-gray-300 hover:text-vira-gold border-b border-[#1b2b20]/50" href="#visao-geral">01 // Visão Geral</a>
+<a class="block py-1.5 text-gray-300 hover:text-vira-gold border-b border-[#1b2b20]/50" href="#logotipo">02 // Logotipo Oficial</a>
+<a class="block py-1.5 text-gray-300 hover:text-vira-gold border-b border-[#1b2b20]/50" href="#cores">03 // Matriz Cromática</a>
+<a class="block py-1.5 text-gray-300 hover:text-vira-gold border-b border-[#1b2b20]/50" href="#tipografia">04 // Tipografia</a>
+<a class="block py-1.5 text-gray-300 hover:text-vira-gold border-b border-[#1b2b20]/50" href="#sinalizacao">05 // Sinalização Fabril</a>
+<a class="block py-1.5 text-gray-300 hover:text-vira-gold border-b border-[#1b2b20]/50" href="#uniformes">06 // Uniformes &amp; EPIs</a>
+<a class="block py-1.5 text-vira-gold font-bold" href="#downloads">07 // Central de Ativos &amp; Downloads</a>
+<div class="pt-2">
+<a class="inline-flex items-center gap-2 text-[#8f9b92] hover:text-white" href="index.html">
+<i class="fa-solid fa-arrow-left text-[10px]"></i>
+<span class="">Voltar ao Portal VIRA</span>
+</a>
 </div>
 </div>
 </header>
-<main class="w-full pt-20">
-<!-- SEÇÃO HERO: EDITORIAL INDUSTRIAL VIRA -->
-<section class="relative w-full bg-[#08110D] text-white border-b border-[#1d2e23] overflow-hidden">
-<!-- Background Factory Portal Image with atmospheric treatment -->
-<div class="absolute inset-0 z-0 opacity-25 mix-blend-luminosity bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida/AEtjO1WbBkzwyJ-Uup0VtDQlY3JVoGNuCqoKYvgj2V_sFaWp9iCk8-rRNRZwiqrsiB6OBijn6DmIU67DrHev0NrdrfE3TFTQrQn7WMoHbRTcVmmrMmRHe2SkyGLADGmZlucPMAhG2vxu2VqVWqaCY8mKEO29sP3sw5YpB0aB6SCj9xKkvBZBRbpTilWNcHGa5oyuA7bT6V-aKrq77kyzpi-ewrzeWnFHJm_oWHtE1Qb6xLxcz5wQgIGo408JZe_d');"></div>
-<div class="absolute inset-0 z-0 bg-gradient-to-t from-[#08110D] via-[#08110D]/90 to-transparent"></div>
-<div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24">
-<!-- Technical Kicker -->
-<div class="flex flex-wrap items-center gap-2 font-mono text-xs tracking-widest text-[#8ea495] uppercase mb-6">
-<span class="px-2 py-0.5 rounded bg-[#142519] text-[#F1C546] border border-[#2d4936]">SISTEMA TÉCNICO NORMATIVO</span>
-<span class="">//</span>
-<span class="">DIRETRIZES DE MARCA 2026</span>
-<span class="">//</span>
-<span class="text-white font-medium">REV. 4.8.2</span>
+<!-- ================= HERO SECTION COM REDE / MALHA CIRCULAR INTERATIVA ================= -->
+<section class="relative bg-vira-dark text-white pt-12 pb-16 sm:pt-20 sm:pb-24 overflow-hidden border-b border-[#1b2b20]" id="hero-section">
+<!-- Canvas de Partículas / Constelação da Economia Circular -->
+<canvas class="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-80" id="hero-particles-canvas" width="2560" height="1125"></canvas>
+<div class="absolute inset-0 opacity-10 bg-[radial-gradient(#F1C546_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none"></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+<div class="lg:col-span-7">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#142519] border border-[#2d4734] text-vira-gold text-[11px] font-mono uppercase tracking-wider mb-6 backdrop-blur-sm">
+<i class="fa-solid fa-shield-halved text-[10px]"></i>
+<span class="">Diretrizes Oficiais // VIRA Engenharia Circular</span>
 </div>
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
-<div class="lg:col-span-8 flex flex-col gap-6">
-<h1 class="font-['Manrope'] text-4xl sm:text-6xl lg:text-7xl font-extrabold uppercase tracking-tight text-white leading-[1.05]">
-              A Identidade <br>da <span class="text-[#F1C546]">VIRA.</span>
+<h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6">
+            A IDENTIDADE <br class="hidden sm:block">DA <span class="text-vira-gold">VIRA.</span>
 </h1>
-<p class="font-['Manrope'] text-lg sm:text-xl text-[#B9C6BD] max-w-2xl font-light leading-relaxed">
-              A VIRA é uma indústria de materiais circulares que transforma resíduos plásticos e coprodutos minerais em componentes urbanos de alto desempenho. Esta central consolida os padrões visuais, cromáticos, tipográficos e a indumentária de conformidade da nossa cadeia produtiva.
-            </p>
-<div class="flex flex-wrap items-center gap-4 pt-4">
-<a class="inline-flex items-center gap-3 px-6 py-4 rounded bg-[#F1C546] hover:bg-[#e2b635] text-[#08110D] font-mono text-xs font-bold uppercase tracking-wider transition-all transform hover:-translate-y-0.5 shadow-lg" href="#downloads">
+<p class="text-base sm:text-lg text-gray-300 leading-relaxed max-w-2xl font-light mb-8">
+            A VIRA é uma indústria de materiais circulares que transforma resíduos plásticos pós-consumo e coprodutos minerais em componentes urbanos de alto desempenho. Esta central consolida os padrões visuais, cromáticos, tipográficos, sinalização fabril e indumentária homologada.
+          </p>
+<div class="flex flex-wrap items-center gap-4">
+<a class="inline-flex items-center gap-2.5 bg-vira-gold text-vira-dark font-mono text-xs font-bold px-6 py-3.5 rounded-vira hover:bg-vira-gold-hover transition-all shadow-md" href="#downloads">
+<i class="fa-solid fa-box-archive"></i>
 <span class="">BAIXAR MASTER PACK (.ZIP)</span>
-<span class="font-bold">→</span>
 </a>
-<a class="inline-flex items-center gap-2 px-6 py-4 rounded bg-[#142519] hover:bg-[#1f3826] text-white border border-[#2d4936] font-mono text-xs uppercase tracking-wider transition-colors" href="#logotipo">
-<span class="material-symbols-outlined text-base text-[#F1C546]">tune</span>
-<span class="">Explorar Diretrizes</span>
+<a class="inline-flex items-center gap-2.5 bg-[#142519] text-white border border-[#2d4734] font-mono text-xs font-semibold px-6 py-3.5 rounded-vira hover:bg-[#1f3826] transition-all" href="#logotipo">
+<i class="fa-solid fa-shapes"></i>
+<span class="">EXPLORAR DIRETRIZES</span>
 </a>
 </div>
 </div>
-<!-- Quick Telemetry Card -->
-<div class="lg:col-span-4 bg-[#142519]/90 border border-[#2d4936] rounded-[24px] p-6 backdrop-blur-sm flex flex-col gap-4">
-<div class="flex items-center justify-between pb-3 border-b border-[#243d2b] font-mono text-xs">
-<span class="text-[#8ea495] uppercase">Planta Matriz</span>
-<span class="text-[#F1C546] font-bold">Caruaru — PE</span>
+<!-- Telemetry Data Card -->
+<div class="lg:col-span-5">
+<div class="bg-[#0d1812]/90 backdrop-blur-md border border-[#223829] rounded-vira p-6 sm:p-8 shadow-2xl relative">
+<div class="flex items-center justify-between border-b border-[#223829] pb-4 mb-5">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+<span class="font-mono text-xs font-bold text-white uppercase tracking-wider">Hub Industrial &amp; Rastreabilidade</span>
 </div>
-<div class="flex items-center justify-between pb-3 border-b border-[#243d2b] font-mono text-xs">
-<span class="text-[#8ea495] uppercase">Composição Nominal</span>
-<span class="text-white font-bold">50% PCR + 50% Mineral</span>
+<span class="font-mono text-[10px] text-vira-gold bg-vira-gold/10 px-2.5 py-0.5 rounded border border-vira-gold/30">DPP V4</span>
 </div>
-<div class="flex items-center justify-between pb-3 border-b border-[#243d2b] font-mono text-xs">
-<span class="text-[#8ea495] uppercase">Rastreabilidade DPP</span>
-<span class="text-white font-bold">100% Auditada</span>
+<dl class="space-y-4 font-mono text-xs">
+<div class="flex justify-between items-center py-1 border-b border-[#1b2b20]">
+<dt class="text-gray-400">PLANTA MATRIZ</dt>
+<dd class="text-white font-semibold">Caruaru — PE (Nordeste BR)</dd>
 </div>
-<div class="flex items-center justify-between font-mono text-xs">
-<span class="text-[#8ea495] uppercase">Status Operacional</span>
-<span class="inline-flex items-center gap-1.5 text-[#D8F334] font-bold">
-<span class="w-2 h-2 rounded-full bg-[#D8F334] animate-ping"></span> Operação Ativa
-              </span>
+<div class="flex justify-between items-center py-1 border-b border-[#1b2b20]">
+<dt class="text-gray-400">COMPOSIÇÃO NOMINAL</dt>
+<dd class="text-vira-gold font-bold">50% PCR + 50% Mineral</dd>
+</div>
+<div class="flex justify-between items-center py-1 border-b border-[#1b2b20]">
+<dt class="text-gray-400">RASTREABILIDADE DPP</dt>
+<dd class="text-emerald-400 font-semibold">100% Auditada por Lote</dd>
+</div>
+<div class="flex justify-between items-center py-1 border-b border-[#1b2b20]">
+<dt class="text-gray-400">RESISTÊNCIA COMPRESSÃO</dt>
+<dd class="text-white font-semibold">&gt; 35 MPa (Norma NBR)</dd>
+</div>
+<div class="flex justify-between items-center py-1">
+<dt class="text-gray-400">MATRIZ ENERGÉTICA</dt>
+<dd class="text-white font-semibold">Geração Fotovoltaica 100%</dd>
+</div>
+</dl>
+<div class="mt-6 pt-4 border-t border-[#223829] flex items-center justify-between text-[11px] font-mono text-gray-400">
+<span class="">SISTEMA AUDITADO</span>
+<span class="text-vira-gold">ECO-ENG 2026</span>
 </div>
 </div>
-</div>
-<!-- Metric strip -->
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-8 border-t border-[#1d2e23] font-mono text-xs text-[#8ea495]">
-<div>
-<span class="text-[#F1C546] font-bold block text-sm mb-0.5">01 // MATÉRIA</span>
-<span class="">100% Circularidade Fechada</span>
-</div>
-<div>
-<span class="text-[#F1C546] font-bold block text-sm mb-0.5">02 // ESCALA</span>
-<span class="">+1.400 ton/ano Revalorizadas</span>
-</div>
-<div>
-<span class="text-[#F1C546] font-bold block text-sm mb-0.5">03 // SOCIAL</span>
-<span class="">+350 Famílias Cooperadas</span>
-</div>
-<div>
-<span class="text-[#F1C546] font-bold block text-sm mb-0.5">04 // TELEMETRIA</span>
-<span class="">Passaporte Digital (DPP)</span>
 </div>
 </div>
 </div>
 </section>
-<!-- SEÇÃO 01: VISÃO GERAL & OS TRÊS PILARES (ESTILO 50/50 COMPOSIÇÃO) -->
-<section class="py-20 bg-[#FAF9F6] border-b border-[#E2E0D8]" id="visao-geral">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<!-- Header de Seção Técnica -->
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-[#E2E0D8] mb-12">
+<!-- ================= 01 // A PROMESSA DA MARCA ================= -->
+<section class="py-16 sm:py-24 bg-vira-surface border-b border-vira-border" id="visao-geral">
+<div class="max-w-7xl mx-auto px-4 sm:px-8">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
 <div>
-<span class="font-mono text-xs uppercase font-bold text-[#142519] tracking-wider">— IDENTIDADE // 01 VISÃO GERAL</span>
-<h2 class="font-['Manrope'] text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-[#08110D] mt-1">
-              A Promessa da Marca
-            </h2>
+<span class="text-[11px] font-mono uppercase tracking-widest text-vira-green font-bold block mb-1">01 // VISÃO GERAL DA MARCA</span>
+<h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-vira-dark">A PROMESSA DA MARCA</h2>
 </div>
-<p class="font-mono text-xs text-[#57605A] uppercase tracking-wider">
-            EIXO TRIPLO // CARUARU — AGRESTE PERNAMBUCANO
-          </p>
+<p class="font-mono text-xs text-vira-muted">EIXO TRIPLO // CARUARU // AGRESTE PERNAMBUCANO</p>
 </div>
-<!-- Manifesto Lead Block -->
-<div class="bg-white border border-[#E2E0D8] rounded-[24px] p-8 sm:p-10 mb-10 shadow-sm flex flex-col lg:flex-row gap-10 items-start">
-<div class="lg:w-2/3 flex flex-col gap-4">
-<span class="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#142519] text-[#F1C546] font-mono text-xs font-bold uppercase tracking-wider w-fit">
+<!-- Manifesto Block -->
+<div class="bg-white border border-vira-border rounded-vira p-6 sm:p-10 mb-8 shadow-sm">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+<div class="lg:col-span-7">
+<span class="inline-block bg-[#142519] text-vira-gold font-mono text-[10px] uppercase font-bold tracking-wider px-3 py-1 rounded-full mb-4">
               TUDO PODE SE TRANSFORMAR
             </span>
-<p class="font-['Manrope'] text-2xl sm:text-3xl text-[#08110D] font-bold leading-snug">
+<h3 class="text-xl sm:text-2xl font-bold text-vira-dark leading-snug mb-4">
               Transformamos passivos ambientais em infraestrutura durável com rigor científico, valorização humana e zero cimento.
-            </p>
-<p class="font-['Manrope'] text-[#57605A] text-base leading-relaxed">
-              Nossa expressão visual é direta, instrumental e austera: rejeitamos adornos cosméticos em favor da clareza técnica dos canteiros de obras, fábricas químicas e auditorias de ciclo de vida. O que comunicamos é exatamente o que colocamos nas ruas.
+            </h3>
+<p class="text-gray-600 text-sm sm:text-base leading-relaxed font-light">
+              Nossa expressão visual é direta, instrumental e austera: rejeitamos adornos cosméticos em prol da clareza técnica dos canteiros de obras, fábricas químicas e auditorias de ciclo de vida. O que comunicamos é exatamente o que colocamos nas ruas.
             </p>
 </div>
-<!-- Quick Fact Card -->
-<div class="lg:w-1/3 w-full bg-[#F6F5F2] border border-[#E2E0D8] rounded-[24px] p-6 flex flex-col gap-3 font-mono text-xs">
-<div class="text-[#142519] font-bold text-sm border-b border-[#E2E0D8] pb-2 flex items-center justify-between">
+<!-- Process Indicators -->
+<div class="lg:col-span-5 bg-vira-surface rounded-2xl p-6 border border-vira-border/80">
+<h4 class="font-mono text-xs font-bold uppercase text-vira-dark tracking-wider mb-4 flex items-center justify-between">
 <span class="">INDICADORES DE PROCESSO</span>
-<span class="material-symbols-outlined text-base">verified</span>
+<i class="fa-solid fa-circle-info text-vira-green"></i>
+</h4>
+<div class="space-y-3 font-mono text-xs">
+<div class="flex justify-between py-1 border-b border-vira-border/60">
+<span class="text-gray-500">CAPACIDADE</span>
+<span class="font-bold text-vira-dark">+1.400 TON/ANO</span>
 </div>
-<div class="flex justify-between py-1 border-b border-[#E2E0D8]">
-<span class="text-[#57605A]">CAPACIDADE:</span>
-<span class="font-bold text-[#08110D]">+1.400 TON/ANO</span>
+<div class="flex justify-between py-1 border-b border-vira-border/60">
+<span class="text-gray-500">MATRIZ POLÍMERO</span>
+<span class="font-bold text-vira-dark">100% RECICLADO</span>
 </div>
-<div class="flex justify-between py-1 border-b border-[#E2E0D8]">
-<span class="text-[#57605A]">MATRIZ POLÍMERO:</span>
-<span class="font-bold text-[#142519]">100% RECICLADO</span>
-</div>
-<div class="flex justify-between py-1 border-b border-[#E2E0D8]">
-<span class="text-[#57605A]">COMPRESSÃO NBR 9781:</span>
-<span class="font-bold text-[#08110D]">&gt; 35 MPa</span>
+<div class="flex justify-between py-1 border-b border-vira-border/60">
+<span class="text-gray-500">DUREZA // NBR 9781</span>
+<span class="font-bold text-vira-dark">&gt; 35 MPa</span>
 </div>
 <div class="flex justify-between py-1">
-<span class="text-[#57605A]">LOCALIDADE:</span>
-<span class="font-bold text-[#08110D]">AGRESTE (PE)</span>
+<span class="text-gray-500">LOCALIDADE</span>
+<span class="font-bold text-vira-dark">AGRESTE (PE)</span>
 </div>
 </div>
 </div>
-<!-- 3 Pilares em Grid Estilo Composição Industrial -->
+</div>
+</div>
+<!-- 3 Pillars Grid -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-<!-- Pilar 01 -->
-<div class="bg-white border border-[#E2E0D8] rounded-[24px] p-8 flex flex-col justify-between hover:border-[#142519] transition-colors group">
+<!-- Pillar 01 -->
+<div class="bg-white border border-vira-border rounded-vira p-6 sm:p-8 flex flex-col justify-between hover:border-vira-green transition-all shadow-sm">
 <div>
-<div class="flex items-baseline justify-between mb-4">
-<span class="font-['Manrope'] text-5xl font-extrabold text-[#142519]">01</span>
-<span class="font-mono text-xs px-2 py-0.5 rounded bg-[#FAF9F6] border border-[#E2E0D8] text-[#57605A] uppercase">MATÉRIA</span>
+<div class="flex items-center justify-between mb-4">
+<span class="text-3xl font-extrabold text-vira-green font-mono">01</span>
+<span class="font-mono text-[10px] uppercase tracking-wider bg-vira-surface px-2.5 py-1 rounded-md text-gray-600 border border-vira-border">MATÉRIA</span>
 </div>
-<h3 class="font-['Manrope'] text-xl font-bold uppercase text-[#08110D] mb-3">
-                100% Matéria Circular
-              </h3>
-<p class="font-['Manrope'] text-sm text-[#57605A] leading-relaxed">
-                Reaproveitamento de polímeros pós-consumo e coprodutos minerais por meio de formulação mecânica exclusiva. Eliminamos cimento e extração virgem.
-              </p>
+<h4 class="text-lg font-bold text-vira-dark mb-2">100% Matéria Circular</h4>
+<p class="text-gray-600 text-sm leading-relaxed">
+              Reaproveitamento de polímeros pós-consumo e coprodutos minerais por meio de formulação mecânica exclusiva. Eliminamos cimento e extração virgem.
+            </p>
 </div>
-<div class="pt-6 mt-6 border-t border-[#E2E0D8] font-mono text-xs text-[#142519] flex items-center justify-between font-bold">
-<span class="">NBR 9781 / ISO 14021</span>
-<span class="material-symbols-outlined text-base text-[#F1C546]">recycling</span>
+<div class="mt-6 pt-4 border-t border-vira-border/60 font-mono text-[11px] text-gray-500 flex justify-between">
+<span class="">ZERO CLÍNQUER</span>
+<span class="text-vira-gold font-bold">ISO 14021</span>
 </div>
 </div>
-<!-- Pilar 02 -->
-<div class="bg-white border border-[#E2E0D8] rounded-[24px] p-8 flex flex-col justify-between hover:border-[#142519] transition-colors group">
+<!-- Pillar 02 -->
+<div class="bg-white border border-vira-border rounded-vira p-6 sm:p-8 flex flex-col justify-between hover:border-vira-green transition-all shadow-sm">
 <div>
-<div class="flex items-baseline justify-between mb-4">
-<span class="font-['Manrope'] text-5xl font-extrabold text-[#142519]">02</span>
-<span class="font-mono text-xs px-2 py-0.5 rounded bg-[#FAF9F6] border border-[#E2E0D8] text-[#57605A] uppercase">DIGITAL</span>
+<div class="flex items-center justify-between mb-4">
+<span class="text-3xl font-extrabold text-vira-green font-mono">02</span>
+<span class="font-mono text-[10px] uppercase tracking-wider bg-vira-surface px-2.5 py-1 rounded-md text-gray-600 border border-vira-border">DIGITAL</span>
 </div>
-<h3 class="font-['Manrope'] text-xl font-bold uppercase text-[#08110D] mb-3">
-                Passaporte DPP
-              </h3>
-<p class="font-['Manrope'] text-sm text-[#57605A] leading-relaxed">
-                Cadeia de custódia com rastreabilidade digital indelével. Cada paver e lote carrega origem dos materiais, dados laboratoriais e emissão de carbono mitigada.
-              </p>
+<h4 class="text-lg font-bold text-vira-dark mb-2">Passaporte DPP</h4>
+<p class="text-gray-600 text-sm leading-relaxed">
+              Cadeia de custódia com rastreabilidade digital indelével. Cada paver e lote carrega origem dos materiais, dados laboratoriais e emissão de carbono mitigada.
+            </p>
 </div>
-<div class="pt-6 mt-6 border-t border-[#E2E0D8] font-mono text-xs text-[#142519] flex items-center justify-between font-bold">
-<span class="">E.U. DPP STANDARD READY</span>
-<span class="material-symbols-outlined text-base text-[#F1C546]">qr_code_2</span>
+<div class="mt-6 pt-4 border-t border-vira-border/60 font-mono text-[11px] text-gray-500 flex justify-between">
+<span class="">BLOCO POR BLOCO</span>
+<span class="text-vira-gold font-bold">E.U. DPP READY</span>
 </div>
 </div>
-<!-- Pilar 03 -->
-<div class="bg-white border border-[#E2E0D8] rounded-[24px] p-8 flex flex-col justify-between hover:border-[#142519] transition-colors group">
+<!-- Pillar 03 -->
+<div class="bg-white border border-vira-border rounded-vira p-6 sm:p-8 flex flex-col justify-between hover:border-vira-green transition-all shadow-sm">
 <div>
-<div class="flex items-baseline justify-between mb-4">
-<span class="font-['Manrope'] text-5xl font-extrabold text-[#142519]">03</span>
-<span class="font-mono text-xs px-2 py-0.5 rounded bg-[#FAF9F6] border border-[#E2E0D8] text-[#57605A] uppercase">SOCIAL</span>
+<div class="flex items-center justify-between mb-4">
+<span class="text-3xl font-extrabold text-vira-green font-mono">03</span>
+<span class="font-mono text-[10px] uppercase tracking-wider bg-vira-surface px-2.5 py-1 rounded-md text-gray-600 border border-vira-border">SOCIAL</span>
 </div>
-<h3 class="font-['Manrope'] text-xl font-bold uppercase text-[#08110D] mb-3">
-                Dignidade Humana
-              </h3>
-<p class="font-['Manrope'] text-sm text-[#57605A] leading-relaxed">
-                Integração direta com catadores e cooperativas de Pernambuco. Remuneração justa acima do piso de mercado, EPIs de alta qualidade e capacitação técnica contínua.
-              </p>
+<h4 class="text-lg font-bold text-vira-dark mb-2">Dignidade Humana</h4>
+<p class="text-gray-600 text-sm leading-relaxed">
+              Integração direta com catadores e cooperativas de Pernambuco. Remuneração justa acima do piso de mercado, EPIs de alta qualidade e capacitação técnica contínua.
+            </p>
 </div>
-<div class="pt-6 mt-6 border-t border-[#E2E0D8] font-mono text-xs text-[#142519] flex items-center justify-between font-bold">
-<span class="">+350 FAMÍLIAS BENEFICIADAS</span>
-<span class="material-symbols-outlined text-base text-[#F1C546]">groups</span>
+<div class="mt-6 pt-4 border-t border-vira-border/60 font-mono text-[11px] text-gray-500 flex justify-between">
+<span class="">+350 FAMÍLIAS</span>
+<span class="text-vira-gold font-bold">NR-6 &amp; COOP</span>
 </div>
 </div>
 </div>
 </div>
 </section>
-<!-- SEÇÃO 02: O LOGOTIPO OFICIAL & REGRAS GEOMÉTRICAS -->
-<section class="py-20 bg-[#08110D] text-white border-b border-[#1d2e23]" id="logotipo">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-[#1d2e23] mb-12">
+<!-- ================= 02 // LOGOTIPO OFICIAL & MOLDURAS ARREDONDADAS ================= -->
+<section class="py-16 sm:py-24 bg-white border-b border-vira-border" id="logotipo">
+<div class="max-w-7xl mx-auto px-4 sm:px-8">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
 <div>
-<span class="font-mono text-xs uppercase font-bold text-[#F1C546] tracking-wider">— GEOMETRIA // 02 LOGOTIPO OFICIAL</span>
-<h2 class="font-['Manrope'] text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-white mt-1">
-              Construção &amp; Aplicações
-            </h2>
+<span class="text-[11px] font-mono uppercase tracking-widest text-vira-green font-bold block mb-1">02 // GEOMETRIA &amp; LOGOTIPO OFICIAL</span>
+<h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-vira-dark">CONSTRUÇÃO &amp; APLICAÇÕES</h2>
 </div>
-<p class="font-mono text-xs text-[#8ea495] uppercase tracking-wider">
-            MODULARIDADE DELTA 1X // PROPORÇÕES TÉCNICAS
-          </p>
+<p class="font-mono text-xs text-vira-muted">MODULARIDADE DELTA 1X // PROPORÇÕES TÉCNICAS</p>
 </div>
-<!-- Instrução Técnica de Clearance -->
-<div class="bg-[#142519] border border-[#2d4936] rounded p-4 mb-8 flex items-center gap-3 font-mono text-xs text-[#B9C6BD]">
-<span class="material-symbols-outlined text-[#F1C546] text-xl">straighten</span>
-<span class="">
-            Área de proteção compulsória equivalente a <strong>1X</strong> da altura do monograma V. Nenhuma tipografia ou elemento de terceiros pode invadir este perímetro em plantas, sacarias ou telas.
-          </span>
+<!-- Technical Callout -->
+<div class="bg-vira-surface border border-vira-border rounded-vira p-4 sm:p-6 mb-8 flex items-start gap-4">
+<i class="fa-solid fa-vector-square text-vira-green text-xl mt-1"></i>
+<p class="text-xs sm:text-sm text-gray-700 leading-relaxed font-light">
+          Área de proteção compositiva equivalente a <strong class="font-mono text-vira-dark">1X</strong> da altura do monograma V. Nenhuma tipografia ou elemento de terceiros pode invadir este perímetro em plantas, sacarias ou frotas.
+        </p>
 </div>
-<!-- 4 Grid Cards de Aplicação -->
-<div class="flex flex-col gap-6"><!-- Card Master Homologado Superior -->
-<div class="bg-white border border-[#E2E0D8] rounded-xl p-8 sm:p-14 flex flex-col items-center justify-center text-center relative shadow-sm hover:border-[#142519] transition-all">
-  <div class="py-12 sm:py-16 md:py-20 flex items-center justify-center w-full">
-    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdZiuFVhOAkIOu6tfxWVYhiwwFvh-bWa_0cSxxZ8-es0UEZL9cjvytdrjh4GW0hRntOR5fd0w7DYMtOctvq3pCSaImPC3cOGpZEwsOaYf_Rz2Ngk4I2tbnN-5fdBVhgTwe_Gh5l3qsquScYb7_KyAA8j_zIS8mqfJhMOG1Dcw9sbBEcQ2H7BhSMRpYON7V-SltI8MC49vMVXzaesQ7kcqXBExMnOdoy1jr0wByobBZixFnRqV3cZtBR_fNs8W2G2tks4w" alt="VIRA — Aplicação Primária Oficial" class="h-28 sm:h-36 md:h-40 w-auto max-w-full object-contain drop-shadow-sm">
-  </div>
+<!-- Master Brand Application (Aplicação Primária Oficial) -->
+<div class="bg-vira-surface border border-vira-border rounded-vira p-8 sm:p-14 mb-8 text-center flex flex-col items-center justify-center min-h-[300px] sm:min-h-[360px] shadow-sm">
+<img alt="Logotipo VIRA Policromático Oficial" class="h-20 sm:h-28 md:h-32 w-auto max-w-full object-contain mb-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCn5Y_DDsvrXS9BHK98edPP8IbqSJ9hicGjQT5YXq0y1J2k7gFVs_K339Cv5yVJtIdLF49_-nZAv2qoSzCLMzhwUm6DDS4EPzicXisUGo8LyYjozfUi2KH2kMDDjc9huOEHSxFQDo6unlGUPyjE-KjQw965oPMd4A_ynQe6Ad5RpZ9-3scbW4O2IwmREU_CmTWs-Gh7XJ3d1fBAYgro1mQEhPiJdHxJislXPTVvwTk07xyOWI--cf1aaP2ThQDJ7pISCbg">
+<span class="font-mono text-[11px] sm:text-xs text-gray-500 tracking-widest uppercase font-medium">
+          APLICAÇÃO PRIMÁRIA OFICIAL • FUNDO CLARO OFF-WHITE
+        </span>
 </div>
-
-<!-- Grid com 4 Cards de Variação Oficial -->
+<!-- 4 Standard Variations Grid (Same Rounded Radius) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"><div class="bg-white border border-vira-border rounded-vira p-6 sm:p-8 flex flex-col items-center justify-between min-h-[220px] shadow-sm"><div class="flex-1 flex items-center justify-center w-full"><img alt="VIRA Policromático" class="h-10 sm:h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5hahPXZ3XepdLUeSktzxDJF2kwEsu25I9MtGCpjKhO_yjBbrxBUV1oiNjpxWeQFV9Q1W-FfLuXZ5bJeto5X4gDIiyrz4IDLjhT5ApH1tEU_Al8FQTAmtayJe7rlcu1ByzdHyab1pvcxqrES1ZfMc8lJikgDkMC_5LFZnKSYbRRkPtIxAEysbY7Uhon8vBPeGrWpxpy5EzTIT_ZvAqCW50ECkJavY-eo1wIS04HrCXPQnDs-X9LEi2lWEf-qEHGCRVRcA"></div><span class="font-mono text-[11px] font-bold text-vira-dark uppercase tracking-wider mt-4">POLICROMÁTICO OFICIAL</span></div><div class="bg-[#08110D] border border-[#1b2b20] rounded-vira p-6 sm:p-8 flex flex-col items-center justify-between min-h-[220px] shadow-sm"><div class="flex-1 flex items-center justify-center w-full"><img alt="VIRA Negativo Branco" class="max-h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHMP-G0eR0NNH0MjrB62G4m_1fgfpWmws99F9Q9tzj_RJWrmT2EukFqqZnZVhV1uyyrLx1ThtR2PpNeRq_3oIAmIYKUf3yq96dXcGT8OFywaeYZ0SHDGxtEroKgp4p5diM_cXp-0oyBbi-OsXA14fYBseJR9rIZfYCqz1qi0GD0FM509yWtIOoaRQi2dqobTKkNS5ukE4547ZtEWUr3OEKnb2qE_HX9IPUhuqWWHuAMpYvLVun_53GTh36pILOcBKE0-4"></div><span class="font-mono text-[11px] font-bold text-white uppercase tracking-wider mt-4">NEGATIVO BRANCO</span></div><div class="bg-[#142519] border border-[#2d4734] rounded-vira p-6 sm:p-8 flex flex-col items-center justify-between min-h-[220px] shadow-sm"><div class="flex-1 flex items-center justify-center w-full"><img alt="VIRA Símbolo V Monocromático" class="max-h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTUC2qP17UhzQvn8udZ0pf450x4r33-zYfW3-SKRnn4KHAnHryXbZnqpvYZDgOMCYlKzedwe1KGinlEbGwzI0JwZFUHxxuta14l_YLG_SHm_U9t9mdvhGUVRHKQzsxjYa0UOyk37Za-ZUkwnv7BOPEqUT4sct9xk_AxZZnJKUezDKCUBWcxcwYupjfUefNObbLS2vWFfvoSsBbTaxk69PKZ5ZaDWoMjfoplR1ATH5tQufmjJ3TpSo0ASGMsfZlbqbtCV8"></div><span class="font-mono text-[11px] font-bold text-white uppercase tracking-wider mt-4">SÍMBOLO V • MONOCROMÁTICO</span></div><div class="bg-[#F1C546] border border-amber-400 rounded-vira p-6 sm:p-8 flex flex-col items-center justify-between min-h-[220px] shadow-sm"><div class="flex-1 flex items-center justify-center w-full"><img alt="VIRA Sobre Ocre Dourado" class="h-10 sm:h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAH3kE-CUD-6f3diQBzMbfv6uXKXpQK-uj9KSFkVX3VJ7aRAbbOcq_HAZl1huAvH5zLEDzB120lh9oylO89HTCbBnB48Al1JKQbdSNfyGm9pBF8v38yTi7ReYLFwyDrIGHfXDyiK5fr6n2Pfp3gpevOTGJ-L3GLzY7WraRinI8-wBJcU9AO9Y1UE7WuAlYhB5-AYZBryHGrhr6MgBS8CA2cPMEsJefZ7TCVuO4oYZ2Q2B7fy8DD9zgXxok6p6IfS7bIhs8"></div><span class="font-mono text-[11px] font-bold text-[#08110D] uppercase tracking-wider mt-4">SOBRE OCRE DOURADO</span></div></div>
+</div>
+</section>
+<!-- ================= 03 // MATRIZ CROMÁTICA OFICIAL ================= -->
+<section class="py-16 sm:py-24 bg-vira-surface border-b border-vira-border" id="cores">
+<div class="max-w-7xl mx-auto px-4 sm:px-8">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+<div>
+<span class="text-[11px] font-mono uppercase tracking-widest text-vira-green font-bold block mb-1">03 // ESPECIFICAÇÃO // SISTEMA CROMÁTICO</span>
+<h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-vira-dark">MATRIZ CROMÁTICA OFICIAL</h2>
+</div>
+<span class="font-mono text-xs text-vira-green font-bold bg-vira-gold/20 px-3 py-1.5 rounded-lg border border-vira-gold/40">
+          CLIQUE NOS CÓDIGOS HEX PARA COPIAR
+        </span>
+</div>
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-  <!-- Card 1: Policromático Oficial (Fundo Off-White/Branco) -->
-  <div class="bg-white border border-[#E2E0D8] rounded-xl p-6 flex flex-col justify-center items-center text-center shadow-sm hover:border-[#142519] transition-all h-full">
-    <div class="h-40 w-full flex items-center justify-center p-2">
-      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9b3ju0M2u6lSiBMU4RnXl0ho25sZWVmBqUhoHbLTPBEJ16JEfdR-nQVOBYEYZY0OlPo0tPcgh9apAiWYUPijq-lsilWKE4mZhUh5meqwvGHLfizPpuCORNbjSSYUPhDNq-tW_2_eKQTRBoWPjL5OMx3ZoQvdXfe_IlvdVN8EV4wNMVDzcdoggD_JtrWy2CV_9oM3X7bGcqagUm9zF0Sau3FQWITqh8tEjBYBgobMVHthVzy0ENOR6YiGvcmusEMa_tvs" alt="VIRA — Policromático Oficial" class="h-12 sm:h-14 w-auto max-w-full object-contain">
-    </div>
-  </div>
-
-  <!-- Card 2: Negativo Branco (Fundo Grafite Mineral) -->
-  <div class="bg-[#08110D] border border-[#1d2e23] rounded-xl p-6 flex flex-col justify-between items-center text-center shadow-sm hover:border-[#F1C546]/40 transition-all">
-    <div class="h-40 w-full flex items-center justify-center p-2">
-      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqyi7QIG_CseCt87gMLxQmPpl2shhPqoSItD5MxI2ff8514tQVcrs2WEI6A9NEfhjx7gth2kkYaOJruKufZe_Lom-K4PoGojIDRJ8fAEveU6OJfpNEnfAu0l_1CMkwcwTBM5APQYdkEsUXG01Orsfodzxq4AlU4uipsHgRSAvetBuNAqWdrJra5K2DyxpT3wZe47wVtu9UpyZ3DMrlmwm1n_jcB0nJ8SluzGIKtYJxfo7ZHDhSDauZRGx8B37hKBTXfYY" alt="Negativo Branco" class="h-12 sm:h-14 w-auto max-w-full object-contain drop-shadow-sm">
-    </div>
-    <div class="w-full pt-4 border-t border-[#1d2e23]">
-      <span class="font-mono text-xs font-bold uppercase tracking-widest text-white">NEGATIVO BRANCO</span>
-    </div>
-  </div>
-
-  <!-- Card 3: Símbolo V • Monocromático (Fundo Verde Floresta com IMAGE_2) -->
-  <div class="bg-[#142519] border border-[#2d4936] rounded-xl p-6 flex flex-col justify-between items-center text-center shadow-sm hover:border-[#D8F334]/40 transition-all">
-    <div class="h-40 w-full flex items-center justify-center p-2">
-      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBs97yepK-Zmj3t4GsSGeVEDQ-7c4VdpxSaXgTDUVZrKnthYMw7VTCn_yNansTul9mMl9chaH5odSf37NSYEjqjK4HhO20dywRdswtjSXnZ0J_Qj59KXNYos2TLZHamd-fUQQUF9Uut2WrAllvrL-w_e02H0V3w5LnZ32_YHhEpP93N4r5SpRdncoU22h27JMWyvONGQU9oqWQo5dXNXyLv3gA0BOG-K72_ISnunTPXRI96zzFw27bUYiVJPGF7rUQpKk" alt="Símbolo Oficial VIRA" class="h-16 sm:h-20 w-auto max-w-full object-contain drop-shadow-sm">
-    </div>
-    <div class="w-full pt-4 border-t border-[#243d2b]">
-      <span class="font-mono text-xs font-bold uppercase tracking-widest text-white">SÍMBOLO V • MONOCROMÁTICO</span>
-    </div>
-  </div>
-
-  <!-- Card 4: Sobre Ocre Dourado (Fundo Ocre com IMAGE_7 Marca Black) -->
-  <div class="bg-[#F1C546] border border-[#e2b635] rounded-xl p-6 flex flex-col justify-between items-center text-center shadow-sm hover:border-[#142519] transition-all">
-    <div class="h-40 w-full flex items-center justify-center p-2">
-      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAESkWS_Dxuw7147WPygkVY_p-NR0rA7ZbU1mW274zkWCI31uE39ut1T4eXNVsHmL4FoAI-JLnFklGSYkPHILHi8dDEFfO0RVi2SrhyZ7S8RgVoezqsvtotcqLfDwjEM78cuW2xbyeJuZGbmGp60QCxZJQTrLK0n8XZ0UpcsxipkB4K3Gw3BcClDmaskUgajNmbRa68qWODNjwqrc1rZlK6-_r2C3T7z_hkdfRiUUkaJqb2BGKahZx5S1V0aaoEFXBZPwc" alt="Logotipo sobre Ocre Dourado" class="h-12 sm:h-14 w-auto max-w-full object-contain">
-    </div>
-    <div class="w-full pt-4 border-t border-[#08110D]/20">
-      <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#08110D]">SOBRE OCRE DOURADO</span>
-    </div>
-  </div>
-</div></div>
-</div>
-</section>
-<!-- SEÇÃO 03: SISTEMA CROMÁTICO & TOKENS DE ENGENHARIA -->
-<section class="py-20 bg-[#FAF9F6] border-b border-[#E2E0D8]" id="cores">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-[#E2E0D8] mb-12">
+<!-- Cor 01: Ocre Dourado -->
+<div class="bg-[#F1C546] rounded-vira p-6 sm:p-8 flex flex-col justify-between min-h-[280px] shadow-sm border border-amber-300">
 <div>
-<span class="font-mono text-xs uppercase font-bold text-[#142519] tracking-wider">— ESPECIFICAÇÃO // 03 SISTEMA CROMÁTICO</span>
-<h2 class="font-['Manrope'] text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-[#08110D] mt-1">
-              Matriz Cromática Oficial
-            </h2>
+<span class="font-mono text-[10px] font-bold uppercase tracking-wider text-black/70 block mb-1">DESTAQUE VISUAL</span>
+<h3 class="text-2xl font-extrabold text-[#08110D] mb-4">Ocre Dourado</h3>
+<p class="text-xs text-[#08110D]/80 leading-relaxed">
+              Sinalização de alta visibilidade, botão de ação e destaque ao delta do monograma.
+            </p>
 </div>
-<span class="font-mono text-xs px-3 py-1 rounded bg-[#F1C546] text-[#08110D] font-bold uppercase tracking-wider">
-            CLIQUE NO CÓDIGO HEX PARA COPIAR
-          </span>
-</div>
-<!-- 4 Blocos Sólidos da Paleta VIRA -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-<!-- Swatch 1: Ocre Dourado -->
-<div class="bg-white border border-[#E2E0D8] rounded-[24px] overflow-hidden shadow-sm flex flex-col">
-<div class="h-32 bg-[#F1C546] p-4 flex flex-col justify-between text-[#08110D]">
-<div class="flex justify-between items-start font-mono text-[11px] font-bold tracking-wider uppercase">
-<span class="">DESTAQUE VIRA</span>
-<span class="material-symbols-outlined text-base">palette</span>
-</div>
-<span class="font-['Manrope'] text-xl font-extrabold uppercase">Ocre Dourado</span>
-</div>
-<div class="p-5 flex flex-col gap-2 font-mono text-xs text-[#08110D]">
-<button class="w-full flex items-center justify-between p-2 rounded bg-[#FAF9F6] hover:bg-[#F1C546]/20 transition-colors group" onclick="copyColor('#F1C546', this)">
-<span class="text-[#57605A]">HEX</span>
-<span class="font-bold group-hover:text-[#142519] flex items-center gap-1.5">
-                  #F1C546
-                  <span class="material-symbols-outlined text-xs">content_copy</span>
-</span>
+<div class="bg-black/10 backdrop-blur-sm rounded-xl p-4 font-mono text-xs text-[#08110D] space-y-1.5 mt-6">
+<button class="w-full flex justify-between font-bold hover:underline text-left" onclick="navigator.clipboard.writeText('#F1C546'); alert('HEX Copiado: #F1C546');">
+<span class="">HEX:</span> <span class="">#F1C546</span>
 </button>
-<div class="flex justify-between p-2 rounded bg-[#FAF9F6]">
-<span class="text-[#57605A]">RGB</span>
-<span class="">241, 197, 70</span>
-</div>
-<div class="flex justify-between p-2 rounded bg-[#FAF9F6]">
-<span class="text-[#57605A]">CMYK</span>
-<span class="">5, 20, 80, 0</span>
-</div>
-<div class="flex justify-between p-2 rounded bg-[#FAF9F6]">
-<span class="text-[#57605A]">PANTONE</span>
-<span class="font-bold text-[#142519]">123 C</span>
-</div>
-<p class="font-['Manrope'] text-xs text-[#57605A] pt-2 border-t border-[#E2E0D8] mt-1">
-                Sinalização de alta visibilidade, botão de ação e destaque do Delta V.
-              </p>
+<div class="flex justify-between text-[11px] text-black/70"><span class="">RGB:</span> <span class="">241, 197, 70</span></div>
+<div class="flex justify-between text-[11px] text-black/70"><span class="">CMYK:</span> <span class="">5, 20, 80, 0</span></div>
+<div class="flex justify-between text-[11px] text-black/70"><span class="">PANTONE:</span> <span class="">123 C</span></div>
 </div>
 </div>
-<!-- Swatch 2: Verde Floresta -->
-<div class="bg-white border border-[#E2E0D8] rounded-[24px] overflow-hidden shadow-sm flex flex-col">
-<div class="h-32 bg-[#142519] p-4 flex flex-col justify-between text-white">
-<div class="flex justify-between items-start font-mono text-[11px] font-bold tracking-wider uppercase text-[#F1C546]">
-<span class="">PRIMÁRIA / RAIZ</span>
-<span class="material-symbols-outlined text-base">park</span>
+<!-- Cor 02: Verde Floresta -->
+<div class="bg-[#142519] rounded-vira p-6 sm:p-8 flex flex-col justify-between min-h-[280px] shadow-sm border border-[#2d4734] text-white">
+<div>
+<span class="font-mono text-[10px] font-bold uppercase tracking-wider text-vira-gold block mb-1">PRIMÁRIA // RAIZ</span>
+<h3 class="text-2xl font-extrabold text-white mb-4">Verde Floresta</h3>
+<p class="text-xs text-gray-300 leading-relaxed">
+              Superfícies de peso arquitetônico, sarja fabril e representação orgânica.
+            </p>
 </div>
-<span class="font-['Manrope'] text-xl font-extrabold uppercase">Verde Floresta</span>
-</div>
-<div class="p-5 flex flex-col gap-2 font-mono text-xs text-[#08110D]">
-<button class="w-full flex items-center justify-between p-2 rounded bg-[#FAF9F6] hover:bg-[#F1C546]/20 transition-colors group" onclick="copyColor('#142519', this)">
-<span class="text-[#57605A]">HEX</span>
-<span class="font-bold group-hover:text-[#142519] flex items-center gap-1.5">
-                  #142519
-                  <span class="material-symbols-outlined text-xs">content_copy</span>
-</span>
+<div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 font-mono text-xs text-white space-y-1.5 mt-6">
+<button class="w-full flex justify-between font-bold hover:underline text-left text-vira-gold" onclick="navigator.clipboard.writeText('#142519'); alert('HEX Copiado: #142519');">
+<span class="">HEX:</span> <span class="">#142519</span>
 </button>
-<div class="flex justify-between p-2 rounded bg-[#FAF9F6]">
-<span class="text-[#57605A]">RGB</span>
-<span class="">20, 37, 25</span>
-</div>
-<div class="flex justify-between p-2 rounded bg-[#FAF9F6]">
-<span class="text-[#57605A]">CMYK</span>
-<span class="">75, 45, 75, 70</span>
-</div>
-<div class="flex justify-between p-2 rounded bg-[#FAF9F6]">
-<span class="text-[#57605A]">PANTONE</span>
-<span class="font-bold text-[#142519]">560 C</span>
-</div>
-<p class="font-['Manrope'] text-xs text-[#57605A] pt-2 border-t border-[#E2E0D8] mt-1">
-                Superfícies de peso arquitetônico, sarja fabril e representação orgânica.
-              </p>
+<div class="flex justify-between text-[11px] text-gray-300"><span class="">RGB:</span> <span class="">20, 37, 25</span></div>
+<div class="flex justify-between text-[11px] text-gray-300"><span class="">CMYK:</span> <span class="">75, 45, 75, 70</span></div>
+<div class="flex justify-between text-[11px] text-gray-300"><span class="">PANTONE:</span> <span class="">560 C</span></div>
 </div>
 </div>
-<!-- Swatch 3: Grafite Mineral -->
-<div class="bg-white border border-[#E2E0D8] rounded-[24px] overflow-hidden shadow-sm flex flex-col">
-<div class="h-32 bg-[#08110D] p-4 flex flex-col justify-between text-white">
-<div class="flex justify-between items-start font-mono text-[11px] font-bold tracking-wider uppercase text-[#8ea495]">
-<span class="">BASE / CONTRASTE</span>
-<span class="material-symbols-outlined text-base">architecture</span>
+<!-- Cor 03: Grafite Mineral -->
+<div class="bg-[#08110D] rounded-vira p-6 sm:p-8 flex flex-col justify-between min-h-[280px] shadow-sm border border-[#1b2b20] text-white">
+<div>
+<span class="font-mono text-[10px] font-bold uppercase tracking-wider text-gray-400 block mb-1">BASE // CONTRASTE</span>
+<h3 class="text-2xl font-extrabold text-white mb-4">Grafite Mineral</h3>
+<p class="text-xs text-gray-300 leading-relaxed">
+              Fundos de máxima imersão, tipografia-mãe e estruturas pesadas de ferro fundido.
+            </p>
 </div>
-<span class="font-['Manrope'] text-xl font-extrabold uppercase">Grafite Mineral</span>
-</div>
-<div class="p-5 flex flex-col gap-2 font-mono text-xs text-[#08110D]">
-<button class="w-full flex items-center justify-between p-2 rounded bg-[#FAF9F6] hover:bg-[#F1C546]/20 transition-colors group" onclick="copyColor('#08110D', this)">
-<span class="text-[#57605A]">HEX</span>
-<span class="font-bold group-hover:text-[#142519] flex items-center gap-1.5">
-                  #08110D
-                  <span class="material-symbols-outlined text-xs">content_copy</span>
-</span>
+<div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 font-mono text-xs text-white space-y-1.5 mt-6">
+<button class="w-full flex justify-between font-bold hover:underline text-left text-vira-gold" onclick="navigator.clipboard.writeText('#08110D'); alert('HEX Copiado: #08110D');">
+<span class="">HEX:</span> <span class="">#08110D</span>
 </button>
-<div class="flex justify-between p-2 rounded bg-[#FAF9F6]">
-<span class="text-[#57605A]">RGB</span>
-<span class="">8, 17, 13</span>
-</div>
-<div class="flex justify-between p-2 rounded bg-[#FAF9F6]">
-<span class="text-[#57605A]">CMYK</span>
-<span class="">75, 60, 65, 85</span>
-</div>
-<div class="flex justify-between p-2 rounded bg-[#FAF9F6]">
-<span class="text-[#57605A]">PANTONE</span>
-<span class="font-bold text-[#08110D]">Black 6 C</span>
-</div>
-<p class="font-['Manrope'] text-xs text-[#57605A] pt-2 border-t border-[#E2E0D8] mt-1">
-                Fundo de máxima imersão, tipografia mãe e estruturas pesadas de ferro fundido.
-              </p>
+<div class="flex justify-between text-[11px] text-gray-300"><span class="">RGB:</span> <span class="">8, 17, 13</span></div>
+<div class="flex justify-between text-[11px] text-gray-300"><span class="">CMYK:</span> <span class="">75, 60, 65, 85</span></div>
+<div class="flex justify-between text-[11px] text-gray-300"><span class="">PANTONE:</span> <span class="">Black 6 C</span></div>
 </div>
 </div>
-<!-- Swatch 4: Papel Off-White -->
-<div class="bg-white border border-[#E2E0D8] rounded-[24px] overflow-hidden shadow-sm flex flex-col">
-<div class="h-32 bg-[#F6F5F2] p-4 flex flex-col justify-between text-[#08110D] border-b border-[#E2E0D8]">
-<div class="flex justify-between items-start font-mono text-[11px] font-bold tracking-wider uppercase text-[#57605A]">
-<span class="">SUPERFÍCIE / BASE</span>
-<span class="material-symbols-outlined text-base">description</span>
+<!-- Cor 04: Papel Off-White -->
+<div class="bg-white rounded-vira p-6 sm:p-8 flex flex-col justify-between min-h-[280px] shadow-sm border border-vira-border">
+<div>
+<span class="font-mono text-[10px] font-bold uppercase tracking-wider text-gray-400 block mb-1">SUPERFÍCIE // BASE</span>
+<h3 class="text-2xl font-extrabold text-vira-dark mb-4">Papel Off-White</h3>
+<p class="text-xs text-gray-600 leading-relaxed">
+              Fundo editorial com descanso visual, laudos técnicos e embalagens limpas.
+            </p>
 </div>
-<span class="font-['Manrope'] text-xl font-extrabold uppercase">Papel Off-White</span>
-</div>
-<div class="p-5 flex flex-col gap-2 font-mono text-xs text-[#08110D]">
-<button class="w-full flex items-center justify-between p-2 rounded bg-[#FAF9F6] hover:bg-[#F1C546]/20 transition-colors group" onclick="copyColor('#F6F5F2', this)">
-<span class="text-[#57605A]">HEX</span>
-<span class="font-bold group-hover:text-[#142519] flex items-center gap-1.5">
-                  #F6F5F2
-                  <span class="material-symbols-outlined text-xs">content_copy</span>
-</span>
+<div class="bg-vira-surface rounded-xl p-4 font-mono text-xs text-vira-dark space-y-1.5 mt-6 border border-vira-border">
+<button class="w-full flex justify-between font-bold hover:underline text-left text-vira-green" onclick="navigator.clipboard.writeText('#FAF9F6'); alert('HEX Copiado: #FAF9F6');">
+<span class="">HEX:</span> <span class="">#FAF9F6</span>
 </button>
-<div class="flex justify-between p-2 rounded bg-[#FAF9F6]">
-<span class="text-[#57605A]">RGB</span>
-<span class="">246, 245, 242</span>
-</div>
-<div class="flex justify-between p-2 rounded bg-[#FAF9F6]">
-<span class="text-[#57605A]">CMYK</span>
-<span class="">2, 2, 4, 0</span>
-</div>
-<div class="flex justify-between p-2 rounded bg-[#FAF9F6]">
-<span class="text-[#57605A]">PANTONE</span>
-<span class="font-bold text-[#57605A]">Warm Gray 1 C</span>
-</div>
-<p class="font-['Manrope'] text-xs text-[#57605A] pt-2 border-t border-[#E2E0D8] mt-1">
-                Fundo editorial com descanso visual, laudos técnicos e embalagens limpas.
-              </p>
+<div class="flex justify-between text-[11px] text-gray-500"><span class="">RGB:</span> <span class="">250, 249, 246</span></div>
+<div class="flex justify-between text-[11px] text-gray-500"><span class="">CMYK:</span> <span class="">2, 2, 4, 0</span></div>
+<div class="flex justify-between text-[11px] text-gray-500"><span class="">PANTONE:</span> <span class="">Warm Gray 1 C</span></div>
 </div>
 </div>
 </div>
 </div>
 </section>
-<!-- SEÇÃO 04: SISTEMA TIPOGRÁFICO UNIFICADO -->
-<section class="py-20 bg-white border-b border-[#E2E0D8]" id="tipografia">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-[#E2E0D8] mb-12">
+<!-- ================= 04 // SISTEMA TIPOGRÁFICO ================= -->
+<section class="py-16 sm:py-24 bg-white border-b border-vira-border" id="tipografia">
+<div class="max-w-7xl mx-auto px-4 sm:px-8">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
 <div>
-<span class="font-mono text-xs uppercase font-bold text-[#142519] tracking-wider">— NORMATIVA // 04 TIPOGRAFIA</span>
-<h2 class="font-['Manrope'] text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-[#08110D] mt-1">
-              Hierarquia &amp; Codificação
-            </h2>
+<span class="text-[11px] font-mono uppercase tracking-widest text-vira-green font-bold block mb-1">04 // HIERARQUIA &amp; CODIFICAÇÃO</span>
+<h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-vira-dark">SISTEMA TIPOGRÁFICO UNIFICADO</h2>
 </div>
-<p class="font-mono text-xs text-[#57605A] uppercase tracking-wider">
-            SISTEMA HÍBRIDO: MANROPE + IBM PLEX MONO
-          </p>
+<p class="font-mono text-xs text-vira-muted">DUPLA NORMATIVA: MANROPE + IBM PLEX MONO</p>
 </div>
-<!-- 2 Blocos de Tipografias -->
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-<!-- Bloco Manrope -->
-<div class="bg-[#FAF9F6] border border-[#E2E0D8] rounded-[24px] p-8 flex flex-col justify-between">
-<div class="flex flex-col gap-4">
-<div class="flex justify-between items-center">
-<span class="font-mono text-xs font-bold uppercase text-[#142519]">FAMÍLIA PRIMÁRIA // DISPLAY &amp; CORPO</span>
-<span class="font-mono text-xs px-2 py-0.5 rounded bg-white border border-[#E2E0D8] text-[#57605A]">MANROPE</span>
+<!-- Manrope Box -->
+<div class="bg-vira-surface border border-vira-border rounded-vira p-6 sm:p-8 shadow-sm">
+<div class="flex items-center justify-between border-b border-vira-border pb-4 mb-6">
+<div>
+<span class="font-mono text-[10px] uppercase text-gray-400 font-bold block">FAMÍLIA PRINCIPAL // DISPLAY &amp; CORPO</span>
+<h3 class="text-2xl font-bold text-vira-dark">Manrope</h3>
 </div>
-<h3 class="font-['Manrope'] text-4xl sm:text-5xl font-extrabold text-[#08110D] tracking-tight">
-                Manrope
-              </h3>
-<p class="font-['Manrope'] text-sm text-[#57605A] leading-relaxed">
-                Sans-serif de proporções geométricas modernas e alta legibilidade mecânica. Utilizada em todos os títulos, cabeçalhos de produtos, manifestos de transformação e corpos de texto da VIRA.
-              </p>
-<div class="bg-white border border-[#E2E0D8] rounded-[24px] p-4 font-['Manrope']">
-<p class="font-extrabold text-lg text-[#08110D] mb-1">
-                  Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz
-                </p>
-<p class="text-xs text-[#57605A]">
-                  0123456789 • !@#$%&amp;*()_+-=[]{}|;:,.?
-                </p>
+<span class="font-mono text-xs bg-vira-green/10 text-vira-green font-semibold px-2.5 py-1 rounded">PROPORÇÃO HUMANA</span>
 </div>
+<p class="text-xs sm:text-sm text-gray-600 mb-6 leading-relaxed">
+            Sans-serif geométrica contemporânea balanceada para títulos fortes, manifestos de marca e documentação técnica de alta densidade sem fadiga visual.
+          </p>
+<div class="bg-white p-5 rounded-xl border border-vira-border font-sans mb-4">
+<p class="text-xl sm:text-2xl font-extrabold text-vira-dark tracking-tight mb-2">
+              Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz
+            </p>
+<p class="text-sm text-gray-500 font-mono">0123456789 • !@#$%&amp;*()_+-=[]{}:;</p>
 </div>
-<div class="pt-4 mt-4 border-t border-[#E2E0D8] font-mono text-xs text-[#57605A] flex justify-between">
-<span class="">PESOS: 400 (REGULAR) · 600 (SEMIBOLD) · 800 (EXTRABOLD)</span>
+<div class="flex flex-wrap gap-2 font-mono text-[11px] text-gray-500">
+<span class="bg-gray-200/70 px-2 py-0.5 rounded">REGULAR (400)</span>
+<span class="bg-gray-200/70 px-2 py-0.5 rounded">SEMIBOLD (600)</span>
+<span class="bg-gray-200/70 px-2 py-0.5 rounded">EXTRABOLD (800)</span>
 </div>
 </div>
-<!-- Bloco IBM Plex Mono -->
-<div class="bg-[#08110D] text-white border border-[#1d2e23] rounded-[24px] p-8 flex flex-col justify-between">
-<div class="flex flex-col gap-4">
-<div class="flex justify-between items-center">
-<span class="font-mono text-xs font-bold uppercase text-[#F1C546]">FAMÍLIA TÉCNICA // METADADOS &amp; TELEMETRIA</span>
-<span class="font-mono text-xs px-2 py-0.5 rounded bg-[#142519] border border-[#2d4936] text-[#8ea495]">IBM PLEX MONO</span>
+<!-- IBM Plex Mono Box -->
+<div class="bg-[#08110D] border border-[#1b2b20] rounded-vira p-6 sm:p-8 shadow-sm text-white">
+<div class="flex items-center justify-between border-b border-[#1b2b20] pb-4 mb-6">
+<div>
+<span class="font-mono text-[10px] uppercase text-vira-gold font-bold block">FAMÍLIA TÉCNICA // METADADOS &amp; CÓDIGO</span>
+<h3 class="text-2xl font-bold text-white font-mono">IBM Plex Mono</h3>
 </div>
-<h3 class="font-mono text-4xl sm:text-5xl font-bold text-white tracking-tight">
-                IBM Plex Mono
-              </h3>
-<p class="font-['Manrope'] text-sm text-[#B9C6BD] leading-relaxed">
-                Tipografia monoespaçada técnica para kickers de seção, chips de conformidade técnica, metadados de rastreabilidade DPP, carimbos de sacaria e indicações geográficas.
-              </p>
-<div class="bg-[#142519] border border-[#2d4936] rounded-[24px] p-4 font-mono">
-<p class="font-bold text-sm text-[#F1C546] mb-1">
-                  Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz
-                </p>
-<p class="text-xs text-[#8ea495]">
-                  0123456789 • [01] // COORD_81735 // LOT_2026_DPP
-                </p>
+<span class="font-mono text-xs bg-[#142519] text-vira-gold font-semibold px-2.5 py-1 rounded border border-[#2d4734]">NORMATIVA FABRIL</span>
 </div>
+<p class="text-xs sm:text-sm text-gray-300 mb-6 leading-relaxed">
+            Tipografia monoespaçada técnica para etiquetas de fardos, números de lote, coordenadas de geolocalização e chips de conformidade técnica.
+          </p>
+<div class="bg-[#0d1812] p-5 rounded-xl border border-[#223829] font-mono mb-4">
+<p class="text-lg sm:text-xl font-bold text-vira-gold tracking-tight mb-2">
+              Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz
+            </p>
+<p class="text-xs text-gray-400">[01] // DATA_STAMP // DPP_ID_85735 // CARUARU</p>
 </div>
-<div class="pt-4 mt-4 border-t border-[#1d2e23] font-mono text-xs text-[#8ea495] flex justify-between">
-<span class="">PESOS: 500 (MEDIUM) · 700 (BOLD) // MONOESPAÇADO</span>
+<div class="flex flex-wrap gap-2 font-mono text-[11px] text-gray-400">
+<span class="bg-[#142519] px-2 py-0.5 rounded text-gray-300">REGULAR (400)</span>
+<span class="bg-[#142519] px-2 py-0.5 rounded text-gray-300">MEDIUM (500)</span>
+<span class="bg-[#142519] px-2 py-0.5 rounded text-gray-300">BOLD (700)</span>
 </div>
 </div>
 </div>
-<!-- Tabela Técnica de Aplicação de Tipografia -->
-<div class="border border-[#E2E0D8] rounded-[24px] overflow-hidden">
-<div class="bg-[#FAF9F6] px-6 py-3 border-b border-[#E2E0D8] flex items-center justify-between font-mono text-xs">
-<span class="font-bold text-[#08110D] uppercase">ESCALA &amp; TOKENS DE ENGENHARIA TIPOGRÁFICA</span>
-<span class="text-[#57605A]">SPEC OFICIAL CSS</span>
+<!-- Typography Token Table -->
+<div class="border border-vira-border rounded-vira overflow-hidden bg-white shadow-sm">
+<div class="bg-vira-surface px-6 py-4 border-b border-vira-border flex justify-between items-center">
+<span class="font-mono text-xs font-bold uppercase text-vira-dark">Escala &amp; Tokens de Engenharia Tipográfica</span>
+<span class="font-mono text-[11px] text-gray-500">SPEC CSS 2026</span>
 </div>
 <div class="overflow-x-auto">
-<table class="w-full text-left font-['Manrope'] text-xs sm:text-sm">
-<thead class="bg-white text-[#57605A] font-mono text-xs border-b border-[#E2E0D8]">
+<table class="w-full text-left text-xs font-mono">
+<thead class="bg-vira-surface/50 border-b border-vira-border text-gray-500 uppercase text-[10px]">
 <tr>
-<th class="py-3 px-6">NÍVEL HIERÁRQUICO</th>
-<th class="py-3 px-6">FAMÍLIA</th>
-<th class="py-3 px-6">PESO &amp; TRACKING</th>
-<th class="py-3 px-6">TAMANHO / LINE-HEIGHT</th>
-<th class="py-3 px-6">APLICAÇÃO DE PROJETO</th>
+<th class="py-3 px-6">Nível Hierárquico</th>
+<th class="py-3 px-6">Família</th>
+<th class="py-3 px-6">Peso &amp; Tracking</th>
+<th class="py-3 px-6">Tamanho / Leading</th>
+<th class="py-3 px-6">Aplicação de Projeto</th>
 </tr>
 </thead>
-<tbody class="divide-y divide-[#E2E0D8] text-[#08110D] bg-white">
+<tbody class="divide-y divide-vira-border text-gray-700">
 <tr>
-<td class="py-3 px-6 font-extrabold text-base">Display / H1</td>
-<td class="py-3 px-6">Manrope</td>
-<td class="py-3 px-6 font-mono text-xs">ExtraBold (800) / -0.02em</td>
-<td class="py-3 px-6 font-mono text-xs">48px – 72px / 1.05</td>
-<td class="py-3 px-6 text-[#57605A]">Títulos hero, declarações de impacto e capas de manuais.</td>
+<td class="py-3.5 px-6 font-bold text-vira-dark">Display / H1</td>
+<td class="py-3.5 px-6 font-sans font-semibold">Manrope</td>
+<td class="py-3.5 px-6">ExtraBold (800) / -0.02em</td>
+<td class="py-3.5 px-6">48px – 72px / 1.05</td>
+<td class="py-3.5 px-6 font-sans">Heróis e manchetes de impacto editorial industrial</td>
 </tr>
 <tr>
-<td class="py-3 px-6 font-bold text-sm">Seção / H2</td>
-<td class="py-3 px-6">Manrope</td>
-<td class="py-3 px-6 font-mono text-xs">Bold (700) / -0.01em</td>
-<td class="py-3 px-6 font-mono text-xs">32px – 40px / 1.15</td>
-<td class="py-3 px-6 text-[#57605A]">Títulos de módulos normativos e divisores de conteúdo.</td>
+<td class="py-3.5 px-6 font-bold text-vira-dark">Seção / H2</td>
+<td class="py-3.5 px-6 font-sans font-semibold">Manrope</td>
+<td class="py-3.5 px-6">Bold (700) / -0.01em</td>
+<td class="py-3.5 px-6">32px – 44px / 1.15</td>
+<td class="py-3.5 px-6 font-sans">Divisores capitulares e módulos de especificação técnica</td>
 </tr>
 <tr>
-<td class="py-3 px-6 font-semibold">Subtítulo / H3</td>
-<td class="py-3 px-6">Manrope</td>
-<td class="py-3 px-6 font-mono text-xs">SemiBold (600) / 0</td>
-<td class="py-3 px-6 font-mono text-xs">18px – 22px / 1.3</td>
-<td class="py-3 px-6 text-[#57605A]">Cabeçalhos de produtos, ensaios mecânicos e fichas técnicas.</td>
+<td class="py-3.5 px-6 font-bold text-vira-dark">Subtítulo / H3</td>
+<td class="py-3.5 px-6 font-sans font-semibold">Manrope</td>
+<td class="py-3.5 px-6">SemiBold (600) / 0</td>
+<td class="py-3.5 px-6">18px – 24px / 1.3</td>
+<td class="py-3.5 px-6 font-sans">Cabeçalhos de cards de produtos, ensaios e componentes</td>
 </tr>
 <tr>
-<td class="py-3 px-6">Corpo / Body</td>
-<td class="py-3 px-6">Manrope</td>
-<td class="py-3 px-6 font-mono text-xs">Regular (400) / normal</td>
-<td class="py-3 px-6 font-mono text-xs">14px – 16px / 1.6</td>
-<td class="py-3 px-6 text-[#57605A]">Parágrafos explicativos, memoriais de cálculo e especificações.</td>
+<td class="py-3.5 px-6 font-bold text-vira-dark">Corpo / Body</td>
+<td class="py-3.5 px-6 font-sans font-semibold">Manrope</td>
+<td class="py-3.5 px-6">Regular (400) / normal</td>
+<td class="py-3.5 px-6">14px – 16px / 1.6</td>
+<td class="py-3.5 px-6 font-sans">Parágrafos explicativos, laudos, relatórios técnicos e memoriais</td>
 </tr>
-<tr class="bg-[#FAF9F6]">
-<td class="py-3 px-6 font-mono text-[#142519] font-bold">Kicker Técnico</td>
-<td class="py-3 px-6 font-mono text-[#142519]">IBM Plex Mono</td>
-<td class="py-3 px-6 font-mono text-xs">Medium (500) / +0.05em</td>
-<td class="py-3 px-6 font-mono text-xs">11px – 12px / 1.0</td>
-<td class="py-3 px-6 text-[#57605A]">Identificadores DPP, coordenadas de satélite e chips de status.</td>
+<tr>
+<td class="py-3.5 px-6 font-bold text-vira-green">Técnico / Kicker</td>
+<td class="py-3.5 px-6 font-mono font-bold text-vira-green">IBM Plex Mono</td>
+<td class="py-3.5 px-6">Medium (500) / +0.05em</td>
+<td class="py-3.5 px-6">11px – 12px / 1.0</td>
+<td class="py-3.5 px-6 font-sans">Rótulos, metadados DPP, coordenadas de satélite e chips</td>
 </tr>
 </tbody>
 </table>
@@ -636,714 +558,632 @@
 </div>
 </div>
 </section>
-<!-- SEÇÃO 05: INDUMENTÁRIA FABRIL & EPIS DE SEGURANÇA (FOTOS REAIS) -->
-<section class="py-20 bg-[#FAF9F6] border-b border-[#E2E0D8]" id="sinalizacao">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <!-- Header de Seção Técnica -->
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-[#E2E0D8] mb-12">
-      <div>
-        <span class="font-mono text-xs uppercase font-bold text-[#142519] tracking-wider">— INFRAESTRUTURA ESPACIAL // 05 SINALIZAÇÃO INDUSTRIAL</span>
-        <h2 class="font-['Manrope'] text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-[#08110D] mt-1">
-          A Marca no Território: Sinalização &amp; Identidade Espacial
-        </h2>
-      </div>
-      <p class="font-mono text-xs text-[#57605A] uppercase tracking-wider">
-        WAYFINDING · PÓRTICOS · GESTÃO DE TRÁFEGO · PLANTA CARUARU-PE
-      </p>
-    </div>
-
-    <!-- Descrição Técnica & Princípios da Aplicação Espacial -->
-    <div class="bg-white border border-[#E2E0D8] rounded-[24px] p-8 sm:p-10 mb-10 shadow-sm flex flex-col lg:flex-row gap-8 items-start">
-      <div class="lg:w-2/3 flex flex-col gap-4">
-        <div class="flex items-center gap-2">
-          <span class="px-3 py-1 rounded bg-[#142519] text-[#F1C546] font-mono text-xs font-bold uppercase tracking-wider w-fit">
-            ENGENHARIA VISUAL APLICADA AO CANTEIRO INDUSTRIAL
-          </span>
-        </div>
-        <p class="font-['Manrope'] text-xl sm:text-2xl text-[#08110D] font-bold leading-snug">
-          A identidade tridimensional da VIRA guia veículos pesados, colaboradores e visitantes com segurança operacional, legibilidade instantânea e eficiência biofílica.
-        </p>
-        <p class="font-['Manrope'] text-[#57605A] text-sm leading-relaxed">
-          Na unidade fabril de Caruaru (PE), cada elemento arquitetônico — desde o imponente pórtico frontal em aço estrutural na rodovia até os letreiros com LED de alta eficiência nas docas e os totens de inspeção — segue um rigoroso módulo de espaçamento. As cores Verde Floresta (#142519), Ocre Dourado (#F1C546) e o Grafite Mineral garantem visibilidade estrita sob a alta incidência solar do Agreste e no turno noturno de expedição contínua.
-        </p>
-      </div>
-      <div class="lg:w-1/3 w-full bg-[#F6F5F2] border border-[#E2E0D8] rounded-[24px] p-6 flex flex-col gap-3 font-mono text-xs">
-        <div class="text-[#142519] font-bold text-sm border-b border-[#E2E0D8] pb-2 flex items-center justify-between">
-          <span class="">DIRETRIZES DE CAMPO</span>
-          <span class="material-symbols-outlined text-base text-[#F1C546]">signpost</span>
-        </div>
-        <div class="flex justify-between py-1 border-b border-[#E2E0D8]">
-          <span class="text-[#57605A]">PÓRTICO PRINCIPAL:</span>
-          <span class="font-bold text-[#08110D]">AÇO CORTEN &amp; VERDE #142519</span>
-        </div>
-        <div class="flex justify-between py-1 border-b border-[#E2E0D8]">
-          <span class="text-[#57605A]">LETREIRO FABRIL:</span>
-          <span class="font-bold text-[#142519]">BACKLIGHT LED 4000K</span>
-        </div>
-        <div class="flex justify-between py-1 border-b border-[#E2E0D8]">
-          <span class="text-[#57605A]">DISTÂNCIA VISADA:</span>
-          <span class="font-bold text-[#08110D]">&gt; 350M (RODOVIA)</span>
-        </div>
-        <div class="flex justify-between py-1">
-          <span class="text-[#57605A]">NORMAS COMPULSÓRIAS:</span>
-          <span class="font-bold text-[#08110D]">NR-26 / ABNT NBR 7195</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Galeria de Registro da Planta: Diurna & Noturna -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
-      <!-- Card Diurno -->
-      <div class="bg-white border border-[#E2E0D8] rounded-[24px] overflow-hidden shadow-sm flex flex-col group hover:border-[#142519] transition-all">
-        <div class="relative h-72 sm:h-96 w-full overflow-hidden bg-[#08110D]">
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeQMz24TrKAm_VDx54XUkgFRyulIMywGd1vrYFtEjyud977sbeTm0gcRd2ZxcfRyiHuraE6gZ_aXCLAnWdJaFDtVxobTEZHREWIFuAivMwKdFIxcf-XtlYvsuXqF6sb5234nAdYbj4ZgXZt94mgbaj9N0Uf82wIKT0P0cwk2rlGYNwoGeByWzW9_Ue2JG7dqCVerzYydARLyNzqEddH6d7oiK-y-uXB7hjrjXRYoDAPdrHxcLocS3hYslH_R0zVmmPiPo" alt="Operação Diurna — Planta Matriz VIRA Caruaru" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
-          <div class="absolute top-4 left-4 bg-[#08110D]/90 backdrop-blur-sm border border-[#1d2e23] px-3 py-1 rounded font-mono text-[11px] text-white flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-[#F1C546]"></span>
-            <span class="">REGISTRO DIURNO // INCIDÊNCIA SOLAR ALTA</span>
-          </div>
-          <div class="absolute bottom-4 right-4 bg-[#142519]/90 backdrop-blur-sm border border-[#2d4936] px-3 py-1 rounded font-mono text-[11px] text-[#D8F334] font-bold">
-            SOLAR ROOF 100% OPERACIONAL
-          </div>
-        </div>
-        <div class="p-6 sm:p-8 flex flex-col justify-between flex-grow">
-          <div>
-            <div class="flex items-center justify-between mb-2 font-mono text-xs text-[#57605A]">
-              <span class="">SETOR A1 // ACESSO E PRODUÇÃO</span>
-              <span class="text-[#142519] font-bold uppercase">CROMIA MATRIZ</span>
+<!-- ================= 05 // SINALIZAÇÃO DA FÁBRICA & IDENTIDADE ESPACIAL ================= -->
+<section class="py-16 sm:py-24 bg-vira-dark text-white border-b border-[#1b2b20]" id="sinalizacao">
+<div class="max-w-7xl mx-auto px-4 sm:px-8">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+<div>
+<span class="text-[11px] font-mono uppercase tracking-widest text-vira-gold font-bold block mb-1">05 // ARQUITETURA &amp; SINALIZAÇÃO ESPACIAL</span>
+<h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">SINALIZAÇÃO DA PLANTA FABRIL</h2>
+</div>
+<p class="font-mono text-xs text-gray-400">WAYFINDING INDUSTRIAL // NORMAS NR-26 &amp; NBR 7195</p>
+</div>
+<!-- Diurno / Noturno Industrial Gallery -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+<!-- Vista Diurna -->
+<div class="bg-[#0d1812] border border-[#223829] rounded-vira overflow-hidden flex flex-col shadow-xl">
+<div class="relative overflow-hidden aspect-[16/9]">
+<img alt="Planta Industrial VIRA Caruaru - Operação Diurna" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='assets/factory-portal-front.jpg'" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnxHEPsx2Piha8BkLBhT-L4iFo7SfJ-RMnt4NRSvyyD1W3bkvqAB5ZH4_JhldaX3-XgmisO0O5mRWUOpk_DaKPU0-sFX54wTPofRjuAJgXiUMNNRRxFz3cE7AFj_BYetukeDdyEKGrTXzZVGiD4Lo08H0X-Acz9Xp9bNoRgR7XoxG6d2Os7L9pl7yADOJNLE9dwNHrGITngcXsdstNeUgIud0b1H3Qq0A7D3H2hQhqKa4RuygpEmmYdpmg_HsJtZWRh8I">
+<div class="absolute top-4 left-4 bg-vira-dark/90 backdrop-blur-md px-3 py-1.5 rounded-full font-mono text-[11px] text-vira-gold border border-vira-gold/30">
+<i class="fa-regular fa-sun mr-1.5"></i> OPERAÇÃO DIURNA
             </div>
-            <h3 class="font-['Manrope'] text-xl font-bold uppercase text-[#08110D] mb-2">
-              Operação Diurna • Pórtico de Acesso e Galpão Principal
-            </h3>
-            <p class="font-['Manrope'] text-sm text-[#57605A] leading-relaxed mb-4">
-              Aplicação do logotipo em escala monumental na fachada frontal e no pórtico de controle rodoviário. O contraste do Verde Floresta com o off-white das telhas termoacústicas garante reconhecimento imediato à velocidade da via e integração aos painéis solares da cobertura sustentável.
-            </p>
-          </div>
-          <div class="pt-4 border-t border-[#E2E0D8] font-mono text-xs text-[#142519] flex items-center justify-between font-bold">
-            <span class="">VISIBILIDADE SOLAR NR-26</span>
-            <span class="material-symbols-outlined text-base text-[#F1C546]">wb_sunny</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card Noturno -->
-      <div class="bg-[#08110D] text-white border border-[#1d2e23] rounded-[24px] overflow-hidden shadow-sm flex flex-col group hover:border-[#F1C546]/50 transition-all">
-        <div class="relative h-72 sm:h-96 w-full overflow-hidden bg-[#08110D]">
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuARNTZF-G4UVz_5FzpcokauLYcla1-LQKAr0SgkYWCcFzERSd6HERl9NF2EzE9UAEjHSaueF5eGnqtDWAMEU3H42pYcqhOcpEBX8r8ZAkl-BBa3lBME3valpirYXufARCsgBEdkhtpIUC3b0BxPQZl_uR9qO0nohc2m47xO4EcnbnYl71Kv0OOm3qWMSP2Km9wNRZKLiDeXNJbyI1-DurITZ5uP2wEi3iMTEcQAbhoNds1v3GsnelPK1b_ix_UYLutnR1k" alt="Operação Noturna — Iluminação e Sinalização Retroiluminada VIRA" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500">
-          <div class="absolute top-4 left-4 bg-[#08110D]/90 backdrop-blur-sm border border-[#1d2e23] px-3 py-1 rounded font-mono text-[11px] text-[#F1C546] flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-[#D8F334] animate-ping"></span>
-            <span class="">REGISTRO NOTURNO // TURNO CONTÍNUO</span>
-          </div>
-          <div class="absolute bottom-4 right-4 bg-[#08110D]/90 backdrop-blur-sm border border-[#F1C546]/30 px-3 py-1 rounded font-mono text-[11px] text-[#F1C546] font-bold">
-            LED 4000K EFICIÊNCIA ENERGÉTICA
-          </div>
-        </div>
-        <div class="p-6 sm:p-8 flex flex-col justify-between flex-grow">
-          <div>
-            <div class="flex items-center justify-between mb-2 font-mono text-xs text-[#8ea495]">
-              <span class="">SETOR E2 // LOGÍSTICA &amp; EXPEDIÇÃO</span>
-              <span class="text-[#F1C546] font-bold uppercase">BACKLIGHT LED</span>
+</div>
+<div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="text-xl font-bold text-white mb-2">Fachada Monumental &amp; Usina Solar</h3>
+<p class="text-xs sm:text-sm text-gray-300 leading-relaxed font-light mb-4">
+                Letreiro volumétrico principal posicionado a 14 metros de altura com contraste do Verde Floresta sobre painel termoacústico off-white. Telhado equipado com matriz fotovoltaica que supre 100% das prensas e extrusoras.
+              </p>
+</div>
+<div class="pt-4 border-t border-[#1b2b20] font-mono text-xs text-gray-400 flex justify-between">
+<span class="">VISIBILIDADE RODOVIÁRIA: <strong class="text-white">+800M</strong></span>
+<span class="text-vira-gold font-bold">100% SOLAR</span>
+</div>
+</div>
+</div>
+<!-- Vista Noturna -->
+<div class="bg-[#0d1812] border border-[#223829] rounded-vira overflow-hidden flex flex-col shadow-xl">
+<div class="relative overflow-hidden aspect-[16/9]">
+<img alt="Planta Industrial VIRA Caruaru - Operação Noturna" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='assets/foto-institucional-oficial-pavers.jpg'" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASL9acA51EFYKMV8fNAJIirzaLCoqplTtCXNlaF5wwg-nbAoHDCWIEwXJyAy6F7z8vJa2agyF_RSsrXeMcq71hIhAxcM9gbEx6uxXQz60Ed0876YlrIo3Mb2S5CZo3HX67UyFVNUk3hezdFUtz-7_q2TA5W2V89gntD1PWfd9m6CcBWTXYmPV5wdxs66OP0vRRBzvD7e4QXZIDhoB-JfAol6auW1QBWyKe6VT5Gz6UTcenVnpN5OKtltTGtmWXLNYuQks">
+<div class="absolute top-4 left-4 bg-vira-dark/90 backdrop-blur-md px-3 py-1.5 rounded-full font-mono text-[11px] text-emerald-400 border border-emerald-500/30">
+<i class="fa-regular fa-moon mr-1.5"></i> OPERAÇÃO NOTURNA 24/7
             </div>
-            <h3 class="font-['Manrope'] text-xl font-bold uppercase text-white mb-2">
-              Operação Noturna • Iluminação e Sinalização Retroiluminada
-            </h3>
-            <p class="font-['Manrope'] text-sm text-[#B9C6BD] leading-relaxed mb-4">
-              Letreiros volumétricos com caixas de luz estanque e iluminação em fita LED de alta durabilidade com emissão em 4000K (branco neutro industrial). As baías de expedição 01, 02 e 03 contam com numeração de balizamento retroiluminada para atracagem precisa de carretas de transporte.
-            </p>
-          </div>
-          <div class="pt-4 border-t border-[#1d2e23] font-mono text-xs text-[#F1C546] flex items-center justify-between font-bold">
-            <span class="">SEGURANÇA PATRIMONIAL &amp; BALIZAMENTO</span>
-            <span class="material-symbols-outlined text-base text-[#D8F334]">nightlight</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 3 Cards de Diretrizes Normativas de Wayfinding Interno -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <!-- Diretriz 1 -->
-      <div class="bg-white border border-[#E2E0D8] rounded-[24px] p-8 flex flex-col justify-between hover:border-[#142519] transition-colors group shadow-sm">
-        <div>
-          <div class="flex items-baseline justify-between mb-4">
-            <span class="font-['Manrope'] text-4xl font-extrabold text-[#142519]">01</span>
-            <span class="font-mono text-xs px-2 py-0.5 rounded bg-[#FAF9F6] border border-[#E2E0D8] text-[#57605A] uppercase">PÓRTICO DE ACESSO</span>
-          </div>
-          <h4 class="font-['Manrope'] text-lg font-bold uppercase text-[#08110D] mb-2">
-            Pórtico Monumental &amp; Guarita
-          </h4>
-          <p class="font-['Manrope'] text-xs text-[#57605A] leading-relaxed">
-            Portal de entrada em vigas perfil I com acabamento em pintura eletrostática Verde Floresta e letreiro luminoso. Guarita integrada com cancelas automatizadas, leitura de QR Code DPP dos lotes recebidos e pesagem automatizada.
-          </p>
-        </div>
-        <div class="pt-6 mt-6 border-t border-[#E2E0D8] font-mono text-xs text-[#142519] flex items-center justify-between font-bold">
-          <span class="">GABARITO: 5.50M ALTURA</span>
-          <span class="material-symbols-outlined text-base text-[#F1C546]">door_front</span>
-        </div>
-      </div>
-
-      <!-- Diretriz 2 -->
-      <div class="bg-white border border-[#E2E0D8] rounded-[24px] p-8 flex flex-col justify-between hover:border-[#142519] transition-colors group shadow-sm">
-        <div>
-          <div class="flex items-baseline justify-between mb-4">
-            <span class="font-['Manrope'] text-4xl font-extrabold text-[#142519]">02</span>
-            <span class="font-mono text-xs px-2 py-0.5 rounded bg-[#FAF9F6] border border-[#E2E0D8] text-[#57605A] uppercase">DEMARCAÇÃO HORIZONTAL</span>
-          </div>
-          <h4 class="font-['Manrope'] text-lg font-bold uppercase text-[#08110D] mb-2">
-            Piso &amp; Docas de Carga 01 / 02 / 03
-          </h4>
-          <p class="font-['Manrope'] text-xs text-[#57605A] leading-relaxed">
-            Pintura epóxi de alta resistência à abrasão com faixas de pedestre sinalizadas em resina termoplástica. Identificação das docas com numerais em fonte IBM Plex Mono de 120cm de altura para orientação dos motoristas e manobras de empilhadeiras.
-          </p>
-        </div>
-        <div class="pt-6 mt-6 border-t border-[#E2E0D8] font-mono text-xs text-[#142519] flex items-center justify-between font-bold">
-          <span class="">EPÓXI ALTA RESISTÊNCIA</span>
-          <span class="material-symbols-outlined text-base text-[#F1C546]">local_shipping</span>
-        </div>
-      </div>
-
-      <!-- Diretriz 3 -->
-      <div class="bg-white border border-[#E2E0D8] rounded-[24px] p-8 flex flex-col justify-between hover:border-[#142519] transition-colors group shadow-sm">
-        <div>
-          <div class="flex items-baseline justify-between mb-4">
-            <span class="font-['Manrope'] text-4xl font-extrabold text-[#142519]">03</span>
-            <span class="font-mono text-xs px-2 py-0.5 rounded bg-[#FAF9F6] border border-[#E2E0D8] text-[#57605A] uppercase">TOTENS &amp; PAINÉIS</span>
-          </div>
-          <h4 class="font-['Manrope'] text-lg font-bold uppercase text-[#08110D] mb-2">
-            Totens Verticais &amp; Wayfinding
-          </h4>
-          <p class="font-['Manrope'] text-xs text-[#57605A] leading-relaxed">
-            Totens modulares bilíngues instalados nos cruzamentos de fluxo interno. Pictogramas industriais em Ocre Dourado e Verde Floresta que indicam rotas de fuga, estações de triagem, prensas mecânicas e laboratório de ensaios NBR.
-          </p>
-        </div>
-        <div class="pt-6 mt-6 border-t border-[#E2E0D8] font-mono text-xs text-[#142519] flex items-center justify-between font-bold">
-          <span class="">IBM PLEX MONO + ISO 7010</span>
-          <span class="material-symbols-outlined text-base text-[#F1C546]">alt_route</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section><section class="py-20 bg-[#FAF9F6] border-b border-[#E2E0D8]" id="uniformes">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-[#E2E0D8] mb-12">
+</div>
+<div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
 <div>
-<span class="font-mono text-xs uppercase font-bold text-[#142519] tracking-wider">— VESTUÁRIO // 06 DIRETRIZES DE CAMPO</span>
-<h2 class="font-['Manrope'] text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-[#08110D] mt-1">
-              Indumentária Fabril, Ergonomia &amp; EPIs
-            </h2>
-</div>
-<p class="font-mono text-xs text-[#57605A] uppercase tracking-wider">
-            NORMATIVAS NR-6 · NR-10 · UV50+ · TELEMETRIA DPP
-          </p>
-</div>
-<!-- Banner Painel Geral 5 Categorias -->
-<div class="bg-white border border-[#E2E0D8] rounded-[24px] overflow-hidden shadow-sm mb-10">
-<div class="relative w-full h-80 lg:h-[420px] bg-[#08110D] overflow-hidden">
-<img alt="Painel Geral 5 Uniformes VIRA" class="w-full h-full object-cover object-top" src="https://lh3.googleusercontent.com/aida/AEtjO1Up67dXRZSbh5VQZr_kOS-iJH_DLG9rUepzz3THI6oB_z76zR_SceVquRI3LlKBirp2yxPZhMWYGcbnQlAO5QcPDCfqy3IcGvRyBAns3oRboiqwA70VbccQE57pyCgJM9_22aUj6ouQg7ib3f0oQFdLTkbQWbSoHTx5n7ZFnEqs1WlZ1b_EOK8HmDjp4BToJj9vUACV1pcufsEz7BXPAZpWyfx4t3OVxHRpvO_l4GRb4RSw1RvwwRdTvny9">
-<div class="absolute inset-0 bg-gradient-to-t from-[#08110D]/90 via-transparent to-transparent flex items-end p-6 sm:p-8">
-<div class="flex flex-col sm:flex-row sm:items-end justify-between w-full gap-4 text-white">
-<div>
-<span class="font-mono text-xs text-[#F1C546] uppercase tracking-wider">PLANTA CARUARU — PE // PAINEL GERAL</span>
-<h3 class="font-['Manrope'] text-xl sm:text-3xl font-extrabold uppercase tracking-tight text-white mt-1">
-                    Pessoas. Materiais. Cidades em Transformação.
-                  </h3>
-</div>
-<span class="font-mono text-xs px-3 py-1.5 rounded bg-[#142519] border border-[#2d4936] text-[#D8F334] font-bold uppercase whitespace-nowrap">
-                  5 CATEGORIAS HOMOLOGADAS
-                </span>
-</div>
-</div>
-</div>
-<!-- Linha de 5 Colunas Descritivas -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 divide-y sm:divide-y-0 sm:divide-x divide-[#E2E0D8] bg-[#F6F5F2] font-['Manrope']">
-<div class="p-5 flex flex-col justify-between gap-3">
-<div>
-<span class="font-mono text-xs text-[#142519] font-bold">01 // PÁTIO</span>
-<h4 class="font-bold text-sm text-[#08110D] mt-0.5">Operacional</h4>
-<p class="text-xs text-[#57605A] mt-1">Manga longa UV50+ e faixas retrorrefletivas duplas classe 2.</p>
-</div>
-<span class="font-mono text-[10px] text-[#142519] font-bold">ALTA VISIBILIDADE</span>
-</div>
-<div class="p-5 flex flex-col justify-between gap-3">
-<div>
-<span class="font-mono text-xs text-[#142519] font-bold">02 // EXTRUSÃO</span>
-<h4 class="font-bold text-sm text-[#08110D] mt-0.5">Produção</h4>
-<p class="text-xs text-[#57605A] mt-1">Polo piquet com gola estruturada verde floresta e calça técnica.</p>
-</div>
-<span class="font-mono text-[10px] text-[#142519] font-bold">RESPIRABILIDADE</span>
-</div>
-<div class="p-5 flex flex-col justify-between gap-3">
-<div>
-<span class="font-mono text-xs text-[#142519] font-bold">03 // MANUTENÇÃO</span>
-<h4 class="font-bold text-sm text-[#08110D] mt-0.5">Técnico</h4>
-<p class="text-xs text-[#57605A] mt-1">Jaqueta blindada em sarja pesada com fechamento oculto.</p>
-</div>
-<span class="font-mono text-[10px] text-[#142519] font-bold">NR-10 ANTIESTÁTICA</span>
-</div>
-<div class="p-5 flex flex-col justify-between gap-3">
-<div>
-<span class="font-mono text-xs text-[#142519] font-bold">04 // GESTÃO</span>
-<h4 class="font-bold text-sm text-[#08110D] mt-0.5">Administrativo</h4>
-<p class="text-xs text-[#57605A] mt-1">Camisa social de algodão nobre com bordado milimétrico.</p>
-</div>
-<span class="font-mono text-[10px] text-[#142519] font-bold">CORTE ALFAIATARIA</span>
-</div>
-<div class="p-5 flex flex-col justify-between gap-3">
-<div>
-<span class="font-mono text-xs text-[#142519] font-bold">05 // PARCERIA</span>
-<h4 class="font-bold text-sm text-[#08110D] mt-0.5">Cooperativa</h4>
-<p class="text-xs text-[#57605A] mt-1">Colete de alta visibilidade laranja fluorescente institucional.</p>
-</div>
-<span class="font-mono text-[10px] text-[#F1C546] font-bold text-yellow-800">DIGNIDADE &amp; RENDA</span>
-</div>
-</div>
-</div>
-<!-- 4 Cards com as Fotos dos Uniformes Autênticos -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-<!-- Foto 1: Colete Amarelo & Crachá DPP (IMAGE_8) -->
-<div class="bg-white border border-[#E2E0D8] rounded-[24px] overflow-hidden shadow-sm flex flex-col">
-<div class="h-80 overflow-hidden bg-[#FAF9F6]">
-<img alt="EPI Colete Amarelo com Crachá DPP" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1Wa04lpvweiZUxz52d2E1G5sLccZ2hRjEvCuppcsYLUjs3lDL2EOn3_8_wE9bOh2ks6cEigmmJFZOd24yGwuSft_Z1aHxmCaiJKGSGZr4wZqe365gO_YYopokrwYm32OhVHfvoaf-twBhjDeYEbC-FYG5__vNpcX-oSPjdVqiYYZsiprtiW4hwmdrsIglaiHYupUhTenUGbs_Sz84XkrbcQPyzcaxkwTZ6advug97nMQXSDbLD8GSnzkdO_">
-</div>
-<div class="p-5 flex flex-col gap-2">
-<span class="font-mono text-[10px] text-[#142519] font-bold uppercase">REGISTRO DE CAMPO // 03 EPI</span>
-<h4 class="font-['Manrope'] font-bold text-base text-[#08110D]">Crachá DPP &amp; Colete Flúor</h4>
-<p class="font-['Manrope'] text-xs text-[#57605A] leading-relaxed">
-                Porta-crachá selado com QR Code do Passaporte Digital de Produto acoplado ao colete Classe 2 de alta visibilidade.
+<h3 class="text-xl font-bold text-white mb-2">Backlight LED &amp; Balizamento das Docas</h3>
+<p class="text-xs sm:text-sm text-gray-300 leading-relaxed font-light mb-4">
+                Sinalização luminosa de alta eficiência (LED 4000K neutro) no pórtico de acesso e nas docas de carga 01, 02 e 03. O monograma V possui iluminação difusa perimetral garantindo legibilidade para comboios rodoviários noturnos.
               </p>
-<div class="pt-2 border-t border-[#E2E0D8] font-mono text-[10px] text-[#57605A] flex justify-between">
-<span class="">NBR 15292 / NR-6</span>
-<span class="text-[#142519] font-bold">DPP ATIVO</span>
 </div>
-</div>
-</div>
-<!-- Foto 2: Produção Polo Feminino (IMAGE_14) -->
-<div class="bg-white border border-[#E2E0D8] rounded-[24px] overflow-hidden shadow-sm flex flex-col">
-<div class="h-80 overflow-hidden bg-[#FAF9F6]">
-<img alt="Uniforme Produção Polo Feminino VIRA" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1VfsAc45pqv4B8VoPt-KfzcheIhsUQAXaNkXCL3H-TAaoWjfyNo33NGk9JyG9Q_8QJ37lXwLy1L0bAEcDMHYnut78EWlCn3Smv6nlKUJ7KJOSXUgPDMm6ICCiWVKzJwmCqarKFS3aJhatG1vXqSHc8Vul5vvX1WDu4Hj2fwsq0op_IBMBp3jrOq-HFaMtwA5FmaL5YBdHpcrQBr0iaZxEvSQegHDmpfISch1laaPTPkHxUJnbIUxYrRIzHF">
-</div>
-<div class="p-5 flex flex-col gap-2">
-<span class="font-mono text-[10px] text-[#142519] font-bold uppercase">REGISTRO DE CAMPO // 02 PRODUÇÃO</span>
-<h4 class="font-['Manrope'] font-bold text-base text-[#08110D]">Polo Técnica Cinza &amp; Verde</h4>
-<p class="font-['Manrope'] text-xs text-[#57605A] leading-relaxed">
-                Malha piquet com calça cargo em sarja reforçada para operadores de maquinário e laboratório de ensaios.
-              </p>
-<div class="pt-2 border-t border-[#E2E0D8] font-mono text-[10px] text-[#57605A] flex justify-between">
-<span class="">SARJA CONFORT</span>
-<span class="text-[#142519] font-bold">PLENA MOBILIDADE</span>
-</div>
-</div>
-</div>
-<!-- Foto 3: Cooperativa Laranja (IMAGE_10) -->
-<div class="bg-white border border-[#E2E0D8] rounded-[24px] overflow-hidden shadow-sm flex flex-col">
-<div class="h-80 overflow-hidden bg-[#FAF9F6]">
-<img alt="Uniforme Cooperativa Laranja VIRA" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1XM4kweVSYoKmqHxjszRhHiAL5W479CPxn_Ntw8dembTGynRKusZf_TVvhYjYplH7kko4u_LYJM4me-woW8MfQBmDUIAR610EsR5k8Dq5lxF3FIqiv8JHuurBJR5n821Jqw8_3XdLnENIHeJxphFF_OxftJuIaIWNeHAHhi0RZnTSlMzm07lWtt2wp-2cCIjQZL_MsJcyg7SVdidbEksrZ7OvXh0OKb1ivdGqIPKZLJKf_lfrMa4-OJJpk">
-</div>
-<div class="p-5 flex flex-col gap-2">
-<span class="font-mono text-[10px] text-[#142519] font-bold uppercase">REGISTRO DE CAMPO // 05 COOP</span>
-<h4 class="font-['Manrope'] font-bold text-base text-[#08110D]">Colete de Cooperativa Laranja</h4>
-<p class="font-['Manrope'] text-xs text-[#57605A] leading-relaxed">
-                Identificação compulsória para membros das cooperativas parceiras com prioridade de pesagem e descarregamento seguro.
-              </p>
-<div class="pt-2 border-t border-[#E2E0D8] font-mono text-[10px] text-[#57605A] flex justify-between">
-<span class="">INCLUSÃO SOCIAL</span>
-<span class="text-orange-600 font-bold">RENDA DIRETA</span>
-</div>
-</div>
-</div>
-<!-- Foto 4: Administrativo Feminino (IMAGE_11) -->
-<div class="bg-white border border-[#E2E0D8] rounded-[24px] overflow-hidden shadow-sm flex flex-col">
-<div class="h-80 overflow-hidden bg-[#FAF9F6]">
-<img alt="Uniforme Administrativo Social VIRA" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1Xedu5UMUxsq0m1AdAiemXwEfnWw0-W-0ATDzG5u7SA1c8OFOgisHwYB3PxZ03paXfFLZX_mzl9K8BpgvmY5_jAjNq5OMIQKvZNYIJ7O_eJyGJo7-A775xh1e-GdbXEPNpMrS-JAAv7sJFaMM37i5XO59nNw2RR_NXCsa3tQKV7LkT6DfvJeh5q8D_E3wCe0twgLUMkk9-y6Fd64Qumw0X29k9AEKXCNzWvAnc6WbFpmtWPEHE3o0qvCg9W">
-</div>
-<div class="p-5 flex flex-col gap-2">
-<span class="font-mono text-[10px] text-[#142519] font-bold uppercase">REGISTRO DE CAMPO // 04 GESTÃO</span>
-<h4 class="font-['Manrope'] font-bold text-base text-[#08110D]">Camisa Social Executiva</h4>
-<p class="font-['Manrope'] text-xs text-[#57605A] leading-relaxed">
-                Algodão com elastano e calça de corte alfaiataria técnica para diretoria, relacionamento institucional e engenharia civil.
-              </p>
-<div class="pt-2 border-t border-[#E2E0D8] font-mono text-[10px] text-[#57605A] flex justify-between">
-<span class="">BORDADO MILIMÉTRICO</span>
-<span class="text-[#142519] font-bold">OFFICE &amp; CAMPO</span>
+<div class="pt-4 border-t border-[#1b2b20] font-mono text-xs text-gray-400 flex justify-between">
+<span class="">EFICIÊNCIA LUMÍNICA: <strong class="text-white">IP66 / IK10</strong></span>
+<span class="text-emerald-400 font-bold">LED 4000K</span>
 </div>
 </div>
 </div>
 </div>
-<!-- Matriz de EPIs NR-6 (Grid 6 Itens) -->
-<div class="bg-[#F6F5F2] border border-[#E2E0D8] rounded-[24px] p-6 sm:p-8">
-<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-[#E2E0D8]">
-<h3 class="font-['Manrope'] text-lg font-bold uppercase text-[#08110D] flex items-center gap-2">
-<span class="material-symbols-outlined text-[#142519]">health_and_safety</span>
-              Matriz de Equipamentos de Proteção Individual (NR-6)
-            </h3>
-<span class="font-mono text-xs text-[#57605A]">CONFORMIDADE OBRIGATÓRIA</span>
+<!-- Wayfinding Specs Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-[#0d1812] border border-[#223829] rounded-vira p-6">
+<div class="w-10 h-10 rounded-xl bg-vira-green flex items-center justify-center text-vira-gold mb-4 text-base">
+<i class="fa-solid fa-road"></i>
 </div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 font-mono text-xs">
-<div class="bg-white p-4 rounded-[24px] border border-[#E2E0D8] flex flex-col justify-between">
+<h4 class="text-base font-bold text-white mb-2">Demarcação de Piso</h4>
+<p class="text-xs text-gray-300 leading-relaxed font-light mb-4">
+            Pintura epóxi bicomponente em Ocre Dourado e Grafite para delimitação de tráfego de empilhadeiras, áreas de estocagem de pavers e faixas de circulação de pedestres (NR-26).
+          </p>
+<span class="font-mono text-[10px] text-vira-gold uppercase">ABNT NBR 7195</span>
+</div>
+<div class="bg-[#0d1812] border border-[#223829] rounded-vira p-6">
+<div class="w-10 h-10 rounded-xl bg-vira-green flex items-center justify-center text-vira-gold mb-4 text-base">
+<i class="fa-solid fa-archway"></i>
+</div>
+<h4 class="text-base font-bold text-white mb-2">Pórtico de Guarita</h4>
+<p class="text-xs text-gray-300 leading-relaxed font-light mb-4">
+            Viga metálica com pintura epóxi Verde Floresta (#142519) contendo logotipo VIRA com delta retroiluminado e totem integrado para leitura óptica de Passaporte DPP de cargas.
+          </p>
+<span class="font-mono text-[10px] text-emerald-400 uppercase">CONTROLE DE ACESSO DPP</span>
+</div>
+<div class="bg-[#0d1812] border border-[#223829] rounded-vira p-6">
+<div class="w-10 h-10 rounded-xl bg-vira-green flex items-center justify-center text-vira-gold mb-4 text-base">
+<i class="fa-solid fa-signs-post"></i>
+</div>
+<h4 class="text-base font-bold text-white mb-2">Totens Direcionais</h4>
+<p class="text-xs text-gray-300 leading-relaxed font-light mb-4">
+            Módulos verticais de orientação em chapa de aço corten e policarbonato, com tipografia técnica em IBM Plex Mono para identificação clara de setores fabris e rotas de segurança.
+          </p>
+<span class="font-mono text-[10px] text-vira-gold uppercase">IBM PLEX MONO 14PX</span>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= 06 // INDUMENTÁRIA FABRIL, ERGONOMIA & EPIS ================= -->
+<section class="py-16 sm:py-24 bg-vira-surface border-b border-vira-border" id="uniformes">
+<div class="max-w-7xl mx-auto px-4 sm:px-8">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
 <div>
-<div class="flex justify-between text-[#142519] font-bold mb-1">
-<span class="">EPI 01 // CAPACETE PCR</span>
-<span class="">NBR 8221</span>
+<span class="text-[11px] font-mono uppercase tracking-widest text-vira-green font-bold block mb-1">06 // DIRETRIZES DE VESTUÁRIO &amp; SEGURANÇA</span>
+<h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-vira-dark">INDUMENTÁRIA FABRIL &amp; EPIS</h2>
 </div>
-<p class="font-['Manrope'] text-xs text-[#57605A]">Injetado em polímero reciclado de alto impacto com suspensão 6 pontos.</p>
+<p class="font-mono text-xs text-vira-muted">NR-6 // NR-10 // PASSAPORTE DIGITAL DPP INTEGRADO</p>
 </div>
-<span class="text-[10px] text-[#8ea495] pt-2 border-t border-[#E2E0D8] mt-2">BRANCO (VISITA) · VERDE (CAMPO)</span>
+<!-- Uniform Cards Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 mb-12"><!-- Category 01: OPERACIONAL -->
+<div class="bg-white border border-vira-border rounded-vira overflow-hidden flex flex-col shadow-sm hover:border-vira-green transition-all group">
+<div class="aspect-[3/4] bg-gray-100 overflow-hidden relative group cursor-pointer">
+<img alt="01 OPERACIONAL - Masculino VIRA" class="w-full h-full object-cover object-top transition-opacity duration-500 group-hover:opacity-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1GEdeF0ehZagyUUNGNgDCDJTPN6T587mhgqXDAeW9iPiT6JfIjKtRmZnn82lDcDv26rgcHRIyKKaDxjpHgnTdj-XwW8nG8acnfWNtqkyGFNV-HLYBR9hQCy89K4TeEwqvNKWNZqVtlRC7_Y7DKbtiKFOgb9lY4IL7NwMJhy9qDfyy5zppGLdnZdFpjoR-uROGn2b3DFebaVAOQWgH-oNXt5I3alPWMeWwcF6FNaS-4QYU1_XIwQuSqfhpEaOGm5rXtjY">
+<img alt="01 OPERACIONAL - Feminino VIRA" class="absolute inset-0 w-full h-full object-cover object-top opacity-0 transition-opacity duration-500 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8enwYVAm_YTw-QtR3pi67mpqIy4NIiHqL8VAFG8RuLZ2f206oJE_gCfk4F9s1xCuwsjldE8GunZ2cMTNd9Viu4clihblCUsOf4-l8ako-pgh7ElsWmHT_iAp3kBuJHCAHuftebUkwmQElstGKHI_esa3oETsZeuJ4LRbwYKZu1_AUICMA8MFUZdClQwn26bulkQLo5p4JeNNDwp_StHskHv9DEkdCM_lYRnuM_zL_nnAOYGq2XhbfKNRQqo0-KOi_tBQ">
+<span class="absolute top-3 left-3 bg-vira-dark/90 backdrop-blur-sm text-vira-gold font-mono text-[10px] px-2.5 py-1 rounded border border-vira-gold/30 z-10">01 // OPERACIONAL</span>
+<span class="absolute bottom-3 right-3 bg-vira-dark/80 backdrop-blur-sm text-white/90 font-mono text-[9px] px-2 py-0.5 rounded border border-white/20 z-10 flex items-center gap-1 group-hover:border-vira-gold transition-colors">
+<span class="">M</span><span class="text-vira-gold">⇄</span><span class="">F</span>
+</span>
 </div>
-<div class="bg-white p-4 rounded-[24px] border border-[#E2E0D8] flex flex-col justify-between">
+<div class="p-4 flex-1 flex flex-col justify-between">
 <div>
-<div class="flex justify-between text-[#142519] font-bold mb-1">
-<span class="">EPI 02 // COLETE CLASSE 2</span>
-<span class="">NBR 15292</span>
+<div class="flex items-center gap-1.5 mb-1">
+<span class="w-2 h-2 rounded-full bg-vira-green"></span>
+<h4 class="font-bold text-vira-dark text-sm">01 OPERACIONAL</h4>
 </div>
-<p class="font-['Manrope'] text-xs text-[#57605A]">Fita retrorrefletiva microprismática para operação diurna e noturna no pátio.</p>
+<p class="text-xs text-vira-green font-medium mb-2">Camisa UV Manga Longa · Alta Visibilidade</p>
+<p class="text-[11px] text-gray-600 leading-relaxed font-light mb-3">
+          Tecido UV50+ respirável, faixas refletivas Classe 2 e calça cargo verde floresta.
+        </p>
+<div class="space-y-1 mb-3 text-[10px] font-mono text-gray-500 bg-vira-surface p-2 rounded border border-vira-border/60">
+<div class="">• Segurança Sempre</div>
+<div class="">• Equipe Mais Forte</div>
+<div class="">• Cidades Mais Limpas</div>
 </div>
-<span class="text-[10px] text-[#8ea495] pt-2 border-t border-[#E2E0D8] mt-2">VISIBILIDADE TOTAL</span>
 </div>
-<div class="bg-white p-4 rounded-[24px] border border-[#E2E0D8] flex flex-col justify-between">
+<div class="pt-2.5 border-t border-vira-border/70 text-[10px] font-mono text-gray-500 flex justify-between items-center">
+<span class="">MANGA UV</span>
+<span class="text-vira-green font-bold">CLASSE 2</span>
+</div>
+</div>
+</div>
+<!-- Category 02: PRODUÇÃO -->
+<div class="bg-white border border-vira-border rounded-vira overflow-hidden flex flex-col shadow-sm hover:border-vira-green transition-all group">
+<div class="aspect-[3/4] bg-gray-100 overflow-hidden relative group cursor-pointer">
+<img alt="02 PRODUÇÃO - Masculino VIRA" class="w-full h-full object-cover object-top transition-opacity duration-500 group-hover:opacity-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsADQxqC5G7ErINovkcxn_3fG5DY2TJpPUcfs0nIaF3qptD6P_qASm6AheuDUSOln-fD__AbiVfCATQNt1xFt_gVi_Ji01Hy4-cDGUPzNaGJNKjsDFGVn24IWGmhtj56erp62ck6Z1Rp0g2mMVk7o6svP7nf5Fs_OBvBB_ylVWido_SoyqXbgloDX8QN8WdWMRyI24amswLhJLLIcCf0kzCFpTVcCqiuPnJ72tB9Z1iLFzKAM3Q9bXs3xshgJJ4vx1oz8">
+<img alt="02 PRODUÇÃO - Feminino VIRA" class="absolute inset-0 w-full h-full object-cover object-top opacity-0 transition-opacity duration-500 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0seewAf0piOnunwA-2AcIpL-8eP2ij995vJxW_Qp4eQ20sdA09kTlMm74lm75jL-XpdaTguXkWttuz3nfJkZgS6yoVDIk2epaYU5vdr7w6o6mxrtvlqA_v6A4uPr1P5E7oasXecBxrRKz0socVfFYtblgGTZYqAfRCn4lm6oJd7iqFjPV1xz59xKg_eF7U7Y_hYLg8Xki5jak5OAed7e0ykcTMh-sK4BE9JI4FtxNGNZOUGtvYgCrcghDMyUHxh7CaWk">
+<span class="absolute top-3 left-3 bg-vira-dark/90 backdrop-blur-sm text-vira-gold font-mono text-[10px] px-2.5 py-1 rounded border border-vira-gold/30 z-10">02 // PRODUÇÃO</span>
+<span class="absolute bottom-3 right-3 bg-vira-dark/80 backdrop-blur-sm text-white/90 font-mono text-[9px] px-2 py-0.5 rounded border border-white/20 z-10 flex items-center gap-1 group-hover:border-vira-gold transition-colors">
+<span class="">M</span><span class="text-vira-gold">⇄</span><span class="">F</span>
+</span>
+</div>
+<div class="p-4 flex-1 flex flex-col justify-between">
 <div>
-<div class="flex justify-between text-[#142519] font-bold mb-1">
-<span class="">EPI 03 // LUVAS DE POLIURETANO</span>
-<span class="">EN 388</span>
+<div class="flex items-center gap-1.5 mb-1">
+<span class="w-2 h-2 rounded-full bg-vira-green"></span>
+<h4 class="font-bold text-vira-dark text-sm">02 PRODUÇÃO</h4>
 </div>
-<p class="font-['Manrope'] text-xs text-[#57605A]">Aderência extrema para movimentação segura de pavers e blocos minerais.</p>
+<p class="text-xs text-vira-green font-medium mb-2">Polo Técnica · Conforto e Identidade</p>
+<p class="text-[11px] text-gray-600 leading-relaxed font-light mb-3">
+          Malha piquet mescla, gola/punhos verde floresta e calça com costura reforçada.
+        </p>
+<div class="space-y-1 mb-3 text-[10px] font-mono text-gray-500 bg-vira-surface p-2 rounded border border-vira-border/60">
+<div class="">• Produtividade Real</div>
+<div class="">• Economia Circular</div>
+<div class="">• Orgulho de Fazer Parte</div>
 </div>
-<span class="text-[10px] text-[#8ea495] pt-2 border-t border-[#E2E0D8] mt-2">RESISTÊNCIA AO CORTE</span>
 </div>
-<div class="bg-white p-4 rounded-[24px] border border-[#E2E0D8] flex flex-col justify-between">
+<div class="pt-2.5 border-t border-vira-border/70 text-[10px] font-mono text-gray-500 flex justify-between items-center">
+<span class="">ERGONOMIA</span>
+<span class="text-vira-green font-bold">PIQUET TÉCNICO</span>
+</div>
+</div>
+</div>
+<!-- Category 03: TÉCNICO / EPI -->
+<div class="bg-white border border-vira-border rounded-vira overflow-hidden flex flex-col shadow-sm hover:border-vira-green transition-all group">
+<div class="aspect-[3/4] bg-gray-100 overflow-hidden relative group cursor-pointer">
+<img alt="03 TÉCNICO &amp; EPI - Masculino VIRA" class="w-full h-full object-cover object-top transition-opacity duration-500 group-hover:opacity-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOzT7HPqgpXiSU10FKwx3or5ljTNPAvgZPZ1QvRF-tl6GWrgGs5h-DhCKOH7Sd4Noie0vHjza_6cYTqGZ_6fvo1rt2Xgsh09Wx_DlyCyov3wkVW-PsSvwiuJGgcbGJHqKv0r7yTwVmT8fm0u1IhJtn7E4TKpoF3a1bMfol0gv3K_DO6iFmPBHvrWVelbqZL4iXyF0KqSJvJ7Yl5l9lGZyZwSMEXHK-JteZMJn8kg8zhnm5XOz-EhN79EH8zd8sVx3_iz0">
+<img alt="03 TÉCNICO &amp; EPI - Feminino VIRA" class="absolute inset-0 w-full h-full object-cover object-top opacity-0 transition-opacity duration-500 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDTotc6lAMt26EAqAOLKwFBkwZ9kIX2yFpu5rgLDS35sKatfkLCnid7d3NxGZ6GmzbwKf30nAldHBvQfAeehPFv4QgOZqQMLmCPfRXQ5OK_t7szjQ7swSJb-NkRoDeyWm_lhSWHNQPJywiFflgDAfNjnqgb7Q19_H3RWDl83ghgutblH8ZDGiizzaTGk7ZkW-iaZesqlsWlITWuPd8KPCyCTYLvRJxcpl9IdhJdNYdIxVo8R8LIrTkfFYNgTOMQeNqlUA">
+<span class="absolute top-3 left-3 bg-vira-dark/90 backdrop-blur-sm text-vira-gold font-mono text-[10px] px-2.5 py-1 rounded border border-vira-gold/30 z-10">03 // TÉCNICO &amp; EPI</span>
+<span class="absolute bottom-3 right-3 bg-vira-dark/80 backdrop-blur-sm text-white/90 font-mono text-[9px] px-2 py-0.5 rounded border border-white/20 z-10 flex items-center gap-1 group-hover:border-vira-gold transition-colors">
+<span class="">M</span><span class="text-vira-gold">⇄</span><span class="">F</span>
+</span>
+</div>
+<div class="p-4 flex-1 flex flex-col justify-between">
 <div>
-<div class="flex justify-between text-[#142519] font-bold mb-1">
-<span class="">EPI 04 // ÓCULOS UV400</span>
-<span class="">ANSI Z87.1</span>
+<div class="flex items-center gap-1.5 mb-1">
+<span class="w-2 h-2 rounded-full bg-vira-gold"></span>
+<h4 class="font-bold text-vira-dark text-sm">03 TÉCNICO &amp; EPI</h4>
 </div>
-<p class="font-['Manrope'] text-xs text-[#57605A]">Proteção contra fagulhas mecânicas e raios solares intensos do semiárido.</p>
+<p class="text-xs text-vira-green font-medium mb-2">Colete Amarelo Flúor · Crachá DPP</p>
+<p class="text-[11px] text-gray-600 leading-relaxed font-light mb-3">
+          Colete Classe 2 ventilado, capacete de polímero circular e porta-crachá integrado ao DPP.
+        </p>
+<div class="space-y-1 mb-3 text-[10px] font-mono text-gray-500 bg-vira-surface p-2 rounded border border-vira-border/60">
+<div class="">• Proteção em Campo</div>
+<div class="">• Manutenção Eficiente</div>
+<div class="">• Tecnologia a Serviço</div>
 </div>
-<span class="text-[10px] text-[#8ea495] pt-2 border-t border-[#E2E0D8] mt-2">LENTE INCOLOR &amp; FUMÊ</span>
 </div>
-<div class="bg-white p-4 rounded-[24px] border border-[#E2E0D8] flex flex-col justify-between">
+<div class="pt-2.5 border-t border-vira-border/70 text-[10px] font-mono text-gray-500 flex justify-between items-center">
+<span class="">RASTREABILIDADE</span>
+<span class="text-vira-green font-bold">DPP VINCULADO</span>
+</div>
+</div>
+</div>
+<!-- Category 04: ADMINISTRATIVO -->
+<div class="bg-white border border-vira-border rounded-vira overflow-hidden flex flex-col shadow-sm hover:border-vira-green transition-all group">
+<div class="aspect-[3/4] bg-gray-100 overflow-hidden relative group cursor-pointer">
+<img alt="04 ADMINISTRATIVO - Masculino VIRA" class="w-full h-full object-cover object-top transition-opacity duration-500 group-hover:opacity-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkKV-49uVcbyi9qKVPASKanQDHE-6J-NOVGzVGA70VfArX1c58jYZuKVJgLrzHGFVaW7QaoZZ8UfmOqGHuF7_hj-YqR-ftwAGGjGunsGizMFM_4Rd0UswyD6cxJv5qDNi4yLi400drwu_1KNVHub0u97tb1nfD5amQ2RHhvfAZTKr9Rpdd9YAvF9W35VXdJu7bdG8OEDHF-yM6whDUM1bMD-Cxg9YDdQVTgUhh1WZcBuaXLh440XXDis0gSmA2BWbPfOE">
+<img alt="04 ADMINISTRATIVO - Feminino VIRA" class="absolute inset-0 w-full h-full object-cover object-top opacity-0 transition-opacity duration-500 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/AEtjO1Xedu5UMUxsq0m1AdAiemXwEfnWw0-W-0ATDzG5u7SA1c8OFOgisHwYB3PxZ03paXfFLZX_mzl9K8BpgvmY5_jAjNq5OMIQKvZNYIJ7O_eJyGJo7-A775xh1e-GdbXEPNpMrS-JAAv7sJFaMM37i5XO59nNw2RR_NXCsa3tQKV7LkT6DfvJeh5q8D_E3wCe0twgLUMkk9-y6Fd64Qumw0X29k9AEKXCNzWvAnc6WbFpmtWPEHE3o0qvCg9W">
+<span class="absolute top-3 left-3 bg-vira-dark/90 backdrop-blur-sm text-vira-gold font-mono text-[10px] px-2.5 py-1 rounded border border-vira-gold/30 z-10">04 // ADMIN</span>
+<span class="absolute bottom-3 right-3 bg-vira-dark/80 backdrop-blur-sm text-white/90 font-mono text-[9px] px-2 py-0.5 rounded border border-white/20 z-10 flex items-center gap-1 group-hover:border-vira-gold transition-colors">
+<span class="">M</span><span class="text-vira-gold">⇄</span><span class="">F</span>
+</span>
+</div>
+<div class="p-4 flex-1 flex flex-col justify-between">
 <div>
-<div class="flex justify-between text-[#142519] font-bold mb-1">
-<span class="">EPI 05 // BOTINA COMPOSITE</span>
-<span class="">NBR 20345</span>
+<div class="flex items-center gap-1.5 mb-1">
+<span class="w-2 h-2 rounded-full bg-vira-dark"></span>
+<h4 class="font-bold text-vira-dark text-sm">04 ADMINISTRATIVO</h4>
 </div>
-<p class="font-['Manrope'] text-xs text-[#57605A]">Biqueira leve não metálica com solado de borracha antiderrapante de alta tração.</p>
+<p class="text-xs text-vira-green font-medium mb-2">Camisa Social · Profissionalismo</p>
+<p class="text-[11px] text-gray-600 leading-relaxed font-light mb-3">
+          Camisa 97% algodão circular, bordado institucional e calça sarja grafite chumbo.
+        </p>
+<div class="space-y-1 mb-3 text-[10px] font-mono text-gray-500 bg-vira-surface p-2 rounded border border-vira-border/60">
+<div class="">• Gestão com Propósito</div>
+<div class="">• Planejamento para o Futuro</div>
+<div class="">• Resultados Sustentáveis</div>
 </div>
-<span class="text-[10px] text-[#8ea495] pt-2 border-t border-[#E2E0D8] mt-2">ISOLAMENTO ELÉTRICO</span>
 </div>
-<div class="bg-white p-4 rounded-[24px] border border-[#E2E0D8] flex flex-col justify-between">
+<div class="pt-2.5 border-t border-vira-border/70 text-[10px] font-mono text-gray-500 flex justify-between items-center">
+<span class="">ALFAIATARIA</span>
+<span class="text-vira-dark font-bold">97% ALGODÃO</span>
+</div>
+</div>
+</div>
+<!-- Category 05: COOPERATIVA -->
+<div class="bg-white border border-vira-border rounded-vira overflow-hidden flex flex-col shadow-sm hover:border-vira-green transition-all group">
+<div class="aspect-[3/4] bg-gray-100 overflow-hidden relative group cursor-pointer"><img alt="05 COOPERATIVA - Masculino VIRA" class="w-full h-full object-cover object-top transition-opacity duration-500 group-hover:opacity-0" onerror="this.onerror=null; this.src='assets/Img11.png'" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_1K1m_uzjLkJZxyxQBs82tTQ0RnmnTvlriDjZHBsfIZT8qCGaSG9HzcYbS0ECgq6IvwFahQIDvX2mnD3zK74tEtUwohGZa45d92X4ybtbkpIElExsJrfbtm7_CT0czXa_Pqfe89OyGWIQJGXneNNJDfJPRkFzczbXgr6KS-lsvCyFEYTJqFCb5f8PEaDK5e3T8g-1Uw2ssO9ZwIX15NxB1fpvTlF2HqQ8CiJic25mOM7vBWiESPDbQzWN4aGRqu--dtw"><img alt="05 COOPERATIVA - Feminino VIRA" class="absolute inset-0 w-full h-full object-cover object-top opacity-0 transition-opacity duration-500 group-hover:opacity-100" onerror="this.onerror=null; this.src='assets/Img10.png'" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDy5CVUjUiuNyCqE2kYGF5y28Zgbn51AdtQJBKstmt9I9Zq1Q61vwKtkyiMYWJuuWtMhBZMU_A80Onb5B1MaJgaJhGzXenlG8IIKd_EJL0BLVzQkr50DqktGGcKgzQtp0qEN04mbOIcaa2CydNpQ2rphfJZlgOfoPSgJcqNh8mZmkUs1d_zHWlrYNjHCfzxHBlVrbvw12gSG1JzkwzI-i4fN2Vti-CGAfeBjk8IkHO2w-hOuSDj6bn3NGrwJIXADKaR1iU"><span class="absolute top-3 left-3 bg-vira-dark/90 backdrop-blur-sm text-vira-gold font-mono text-[10px] px-2.5 py-1 rounded border border-vira-gold/30 z-10">05 // COOPERATIVA</span><span class="absolute bottom-3 right-3 bg-vira-dark/80 backdrop-blur-sm text-white/90 font-mono text-[9px] px-2 py-0.5 rounded border border-white/20 z-10 flex items-center gap-1 group-hover:border-vira-gold transition-colors"><span class="">M</span><span class="text-vira-gold">⇄</span><span class="">F</span></span></div>
+<div class="p-4 flex-1 flex flex-col justify-between">
 <div>
-<div class="flex justify-between text-[#142519] font-bold mb-1">
-<span class="">EPI 06 // PROTETOR CONCHA</span>
-<span class="">NR-15 / 22dB</span>
+<div class="flex items-center gap-1.5 mb-1">
+<span class="w-2 h-2 rounded-full bg-amber-500"></span>
+<h4 class="font-bold text-vira-dark text-sm">05 COOPERATIVA</h4>
 </div>
-<p class="font-['Manrope'] text-xs text-[#57605A]">Atenuação acústica para operadores de trituradores e extrusão contínua.</p>
+<p class="text-xs text-amber-600 font-medium mb-2">Colete Laranja · Visibilidade e Orgulho</p>
+<p class="text-[11px] text-gray-600 leading-relaxed font-light mb-3">
+          Colete fluorescente alta visibilidade "COOPERATIVA VIRA", mangas longas UV e calça verde operacional.
+        </p>
+<div class="space-y-1 mb-3 text-[10px] font-mono text-gray-500 bg-vira-surface p-2 rounded border border-vira-border/60">
+<div class="">• Inclusão Social</div>
+<div class="">• Renda para Famílias</div>
+<div class="">• Transformação de Resíduos</div>
 </div>
-<span class="text-[10px] text-[#8ea495] pt-2 border-t border-[#E2E0D8] mt-2">FADIGA AUDITIVA ZERO</span>
+</div>
+<div class="pt-2.5 border-t border-vira-border/70 text-[10px] font-mono text-gray-500 flex justify-between items-center">
+<span class="">INCLUSÃO</span>
+<span class="text-amber-600 font-bold">REDE VIRA</span>
+</div>
+</div>
+</div></div>
+<!-- EPI Normative Table -->
+<div class="bg-white border border-vira-border rounded-vira p-6 sm:p-8 shadow-sm">
+<div class="flex items-center justify-between border-b border-vira-border pb-4 mb-6">
+<div class="flex items-center gap-3">
+<i class="fa-solid fa-hard-hat text-vira-green text-xl"></i>
+<h4 class="text-base sm:text-lg font-bold text-vira-dark">MATRIZ DE EQUIPAMENTOS DE PROTEÇÃO INDIVIDUAL (NR-6)</h4>
+</div>
+<span class="font-mono text-xs bg-vira-green/10 text-vira-green px-3 py-1 rounded font-bold">CONFORMIDADE ABNT</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 font-mono text-xs">
+<div class="p-4 bg-vira-surface rounded-xl border border-vira-border">
+<span class="text-gray-400 block text-[10px] mb-1">EPI 01 // VESTIBILIDADE</span>
+<strong class="text-vira-dark text-sm block mb-1">Colete Amarelo Flúor</strong>
+<p class="text-gray-600 font-sans text-xs mb-2">Malha perfurada com faixas refletivas Classe 2 e zíper tratorado.</p>
+<span class="text-vira-green font-bold">NBR 15292 / NR-6</span>
+</div>
+<div class="p-4 bg-vira-surface rounded-xl border border-vira-border">
+<span class="text-gray-400 block text-[10px] mb-1">EPI 02 // CRANIANA</span>
+<strong class="text-vira-dark text-sm block mb-1">Capacete de Polímero Circular</strong>
+<p class="text-gray-600 font-sans text-xs mb-2">Injetado em PCR de alta resistência mecânica com suspensão 6 pontos.</p>
+<span class="text-vira-green font-bold">NBR 8221 / TIPO II</span>
+</div>
+<div class="p-4 bg-vira-surface rounded-xl border border-vira-border">
+<span class="text-gray-400 block text-[10px] mb-1">EPI 03 // MANUAL</span>
+<strong class="text-vira-dark text-sm block mb-1">Luvas Táticas Antiderrapantes</strong>
+<p class="text-gray-600 font-sans text-xs mb-2">Banho em poliuretano na palma e dedos para manuseio seguro de pavers.</p>
+<span class="text-vira-green font-bold">EN 388 / NÍVEL 4</span>
+</div>
+<div class="p-4 bg-vira-surface rounded-xl border border-vira-border">
+<span class="text-gray-400 block text-[10px] mb-1">EPI 04 // OCULAR</span>
+<strong class="text-vira-dark text-sm block mb-1">Óculos Balísticos UV400</strong>
+<p class="text-gray-600 font-sans text-xs mb-2">Lentes em policarbonato óptico com tratamento antiembaçante contra fragmentos.</p>
+<span class="text-vira-green font-bold">ANSI Z87.1</span>
+</div>
+<div class="p-4 bg-vira-surface rounded-xl border border-vira-border">
+<span class="text-gray-400 block text-[10px] mb-1">EPI 05 // PODAL</span>
+<strong class="text-vira-dark text-sm block mb-1">Botina com Biqueira Composite</strong>
+<p class="text-gray-600 font-sans text-xs mb-2">Couro hidrofugado preto, solado PU bidensidade antiderrapante e zero metal.</p>
+<span class="text-vira-green font-bold">NBR ISO 20345</span>
+</div>
+<div class="p-4 bg-vira-surface rounded-xl border border-vira-border">
+<span class="text-gray-400 block text-[10px] mb-1">EPI 06 // AUDITIVA</span>
+<strong class="text-vira-dark text-sm block mb-1">Protetor Auricular Concha</strong>
+<p class="text-gray-600 font-sans text-xs mb-2">Conchas acolchoadas com amortecimento acústico para operação nas prensas.</p>
+<span class="text-vira-green font-bold">NR-15 / 22dB</span>
 </div>
 </div>
 </div>
 </div>
 </section>
-<!-- SEÇÃO 06: CENTRAL DE DOWNLOADS & ATIVOS VETORIAIS -->
-<section class="py-20 bg-white border-b border-[#E2E0D8]" id="downloads">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-[#E2E0D8] mb-12">
+<!-- ================= 07 // CENTRAL DE ATIVOS & DOWNLOADS ================= -->
+<section class="py-16 sm:py-24 bg-white border-b border-vira-border" id="downloads">
+<div class="max-w-7xl mx-auto px-4 sm:px-8">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
 <div>
-<span class="font-mono text-xs uppercase font-bold text-[#142519] tracking-wider">— REPOSITÓRIO // 07 ARQUIVOS OFICIAIS</span>
-<h2 class="font-['Manrope'] text-3xl sm:text-4xl font-extrabold uppercase tracking-tight text-[#08110D] mt-1">
-              Central de Ativos &amp; Downloads
-            </h2>
+<span class="text-[11px] font-mono uppercase tracking-widest text-vira-green font-bold block mb-1">07 // REPOSITÓRIO // ARQUIVOS OFICIAIS</span>
+<h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-vira-dark">CENTRAL DE ATIVOS &amp; DOWNLOADS</h2>
 </div>
-<p class="font-mono text-xs text-[#57605A] uppercase tracking-wider">
-            PACOTES VETORIAIS HOMOLOGADOS (.ZIP / .PDF / .SVG)
-          </p>
+<p class="font-mono text-xs text-vira-muted">PACOTES HOMOLOGADOS // .ZIP // .PDF // .SVG</p>
 </div>
-<!-- Master Pack Banner -->
-<div class="bg-[#08110D] text-white border border-[#1d2e23] rounded-[24px] p-8 sm:p-10 mb-8 flex flex-col lg:flex-row items-center justify-between gap-6 shadow-xl">
-<div class="flex items-center gap-6">
-<div class="w-16 h-16 rounded-[24px] bg-[#142519] border border-[#2d4936] text-[#F1C546] flex items-center justify-center shrink-0">
-<span class="material-symbols-outlined text-4xl">folder_zip</span>
+<!-- Master Pack Consolidated Box -->
+<div class="bg-vira-dark text-white rounded-vira p-8 sm:p-12 mb-8 shadow-xl border border-[#1b2b20]">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+<div class="flex items-start gap-5">
+<div class="w-14 h-14 rounded-2xl bg-[#142519] border border-[#2d4734] flex items-center justify-center text-vira-gold text-2xl shrink-0">
+<i class="fa-solid fa-box-open"></i>
 </div>
-<div class="flex flex-col">
-<div class="flex items-center gap-2 font-mono text-xs text-[#F1C546] uppercase mb-1">
-<span class="w-2 h-2 rounded-full bg-[#F1C546]"></span>
-<span class="">MASTER PACK CONSOLIDADO 2026 // 2.8 MB</span>
-</div>
-<h3 class="font-['Manrope'] text-2xl font-extrabold uppercase text-white">
+<div>
+<span class="font-mono text-xs text-vira-gold uppercase font-bold block mb-1">
+                PACOTE MASTER CONSOLIDADO // 2.8 MB
+              </span>
+<h3 class="text-xl sm:text-2xl font-bold text-white mb-2">
                 Kit Completo de Identidade Visual VIRA
               </h3>
-<p class="font-['Manrope'] text-sm text-[#B9C6BD] mt-1">
-                Inclui logos vetoriais em curvas (.AI, .EPS, .SVG), biblioteca digital de cores (ASE/CLP), tipografias e guia rápido de aplicação.
+<p class="text-xs sm:text-sm text-gray-300 font-light max-w-xl">
+                Contém todos os logotipos vetoriais (.AI, .EPS, .SVG), paleta digital de cores (ASE/CLP), tipografias e guia rápido de aplicação para engenharia.
               </p>
 </div>
 </div>
-<button class="w-full lg:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded bg-[#F1C546] hover:bg-[#e2b635] text-[#08110D] font-mono text-xs font-bold uppercase tracking-wider transition-all transform hover:-translate-y-0.5 whitespace-nowrap shadow-md" onclick="simulateDownload('VIRA_Brand_Master_Pack_2026.zip')">
-<span class="material-symbols-outlined text-base">download</span>
-<span class="">Baixar Master Pack (.ZIP)</span>
-</button>
+<a class="inline-flex items-center justify-center gap-3 bg-vira-gold text-vira-dark font-mono text-xs font-bold px-8 py-4 rounded-vira hover:bg-vira-gold-hover transition-all shrink-0 shadow-lg" download="" href="assets/downloads/VIRA_Brand_Assets_Pack.zip">
+<i class="fa-solid fa-download text-sm"></i>
+<span class="">BAIXAR MASTER PACK (.ZIP)</span>
+</a>
 </div>
-<!-- Grid de Arquivos Individuais -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-<!-- Ativo 1 -->
-<div class="bg-[#FAF9F6] border border-[#E2E0D8] rounded-[24px] p-6 flex flex-col justify-between">
+</div>
+<!-- Assets Grid Download -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+<div class="bg-vira-surface border border-vira-border rounded-vira p-6 flex flex-col justify-between">
 <div>
-<div class="flex items-center justify-between font-mono text-xs text-[#57605A] mb-2">
-<span class="">ARQUIVO 01</span>
-<span class="px-2 py-0.5 rounded bg-white border border-[#E2E0D8] text-[#142519] font-bold">VETOR</span>
+<span class="font-mono text-[10px] text-gray-400 block mb-1">ARQUIVO 01 // VETOR</span>
+<h4 class="font-bold text-vira-dark text-sm mb-2">Logo Policromático</h4>
+<p class="text-xs text-gray-600 font-light mb-4">Aplicação primária com delta dourado e corpo Verde Floresta.</p>
 </div>
-<h4 class="font-['Manrope'] font-bold text-base text-[#08110D] mb-1">Logo Policromático</h4>
-<p class="font-['Manrope'] text-xs text-[#57605A] mb-4">Aplicação primária oficial com Delta Dourado e corpo Verde Floresta.</p>
-</div>
-<div class="pt-4 border-t border-[#E2E0D8] flex items-center justify-between font-mono text-xs">
-<span class="text-[#57605A]">.AI · .EPS · .SVG</span>
-<button class="text-[#142519] hover:text-[#08110D] font-bold flex items-center gap-1" onclick="simulateDownload('VIRA_Logo_Policromatico.zip')">
-                Baixar <span class="material-symbols-outlined text-sm">download</span>
-</button>
+<div class="pt-4 border-t border-vira-border flex items-center justify-between font-mono text-xs">
+<span class="text-gray-500">.AI • .EPS • .SVG</span>
+<a class="text-vira-green font-bold hover:underline" download="" href="assets/marca-logo-final.png">Baixar <i class="fa-solid fa-arrow-down text-[10px]"></i></a>
 </div>
 </div>
-<!-- Ativo 2 -->
-<div class="bg-[#FAF9F6] border border-[#E2E0D8] rounded-[24px] p-6 flex flex-col justify-between">
+<div class="bg-vira-surface border border-vira-border rounded-vira p-6 flex flex-col justify-between">
 <div>
-<div class="flex items-center justify-between font-mono text-xs text-[#57605A] mb-2">
-<span class="">ARQUIVO 02</span>
-<span class="px-2 py-0.5 rounded bg-white border border-[#E2E0D8] text-[#142519] font-bold">VETOR</span>
+<span class="font-mono text-[10px] text-gray-400 block mb-1">ARQUIVO 02 // VETOR</span>
+<h4 class="font-bold text-vira-dark text-sm mb-2">Logo Negativo Branco</h4>
+<p class="text-xs text-gray-600 font-light mb-4">Para fundos escuros, pórticos metálicos e embalagens industriais.</p>
 </div>
-<h4 class="font-['Manrope'] font-bold text-base text-[#08110D] mb-1">Logo Negativo Branco</h4>
-<p class="font-['Manrope'] text-xs text-[#57605A] mb-4">Para superfícies industriais escuras, pórticos de fábrica e fotografias.</p>
-</div>
-<div class="pt-4 border-t border-[#E2E0D8] flex items-center justify-between font-mono text-xs">
-<span class="text-[#57605A]">.AI · .EPS · .SVG</span>
-<button class="text-[#142519] hover:text-[#08110D] font-bold flex items-center gap-1" onclick="simulateDownload('VIRA_Logo_Negativo.zip')">
-                Baixar <span class="material-symbols-outlined text-sm">download</span>
-</button>
+<div class="pt-4 border-t border-vira-border flex items-center justify-between font-mono text-xs">
+<span class="text-gray-500">.AI • .EPS • .SVG</span>
+<a class="text-vira-green font-bold hover:underline" download="" href="assets/MarcaWhite.png">Baixar <i class="fa-solid fa-arrow-down text-[10px]"></i></a>
 </div>
 </div>
-<!-- Ativo 3 -->
-<div class="bg-[#FAF9F6] border border-[#E2E0D8] rounded-[24px] p-6 flex flex-col justify-between">
+<div class="bg-vira-surface border border-vira-border rounded-vira p-6 flex flex-col justify-between">
 <div>
-<div class="flex items-center justify-between font-mono text-xs text-[#57605A] mb-2">
-<span class="">ARQUIVO 03</span>
-<span class="px-2 py-0.5 rounded bg-white border border-[#E2E0D8] text-[#142519] font-bold">SÍMBOLO</span>
+<span class="font-mono text-[10px] text-gray-400 block mb-1">ARQUIVO 03 // SÍMBOLO</span>
+<h4 class="font-bold text-vira-dark text-sm mb-2">Monograma Delta V</h4>
+<p class="text-xs text-gray-600 font-light mb-4">Símbolo botânico para sacarias, ensaios laboratoriais e favicons.</p>
 </div>
-<h4 class="font-['Manrope'] font-bold text-base text-[#08110D] mb-1">Monograma Delta V</h4>
-<p class="font-['Manrope'] text-xs text-[#57605A] mb-4">Símbolo solo para carimbos térmicos, favicons e crachás de acesso.</p>
-</div>
-<div class="pt-4 border-t border-[#E2E0D8] flex items-center justify-between font-mono text-xs">
-<span class="text-[#57605A]">.PNG (4K) · .SVG</span>
-<button class="text-[#142519] hover:text-[#08110D] font-bold flex items-center gap-1" onclick="simulateDownload('VIRA_Delta_Symbol.zip')">
-                Baixar <span class="material-symbols-outlined text-sm">download</span>
-</button>
+<div class="pt-4 border-t border-vira-border flex items-center justify-between font-mono text-xs">
+<span class="text-gray-500">.PNG • .SVG • .ICO</span>
+<a class="text-vira-green font-bold hover:underline" download="" href="assets/Icon.png">Baixar <i class="fa-solid fa-arrow-down text-[10px]"></i></a>
 </div>
 </div>
-<!-- Ativo 4 -->
-<div class="bg-[#FAF9F6] border border-[#E2E0D8] rounded-[24px] p-6 flex flex-col justify-between">
+<div class="bg-vira-surface border border-vira-border rounded-vira p-6 flex flex-col justify-between">
 <div>
-<div class="flex items-center justify-between font-mono text-xs text-[#57605A] mb-2">
-<span class="">ARQUIVO 04</span>
-<span class="px-2 py-0.5 rounded bg-[#F1C546] text-[#08110D] font-bold">PDF TÉCNICO</span>
+<span class="font-mono text-[10px] text-vira-gold font-bold block mb-1">ARQUIVO 04 // PDF TÉCNICO</span>
+<h4 class="font-bold text-vira-dark text-sm mb-2">Manual de Marca 2026</h4>
+<p class="text-xs text-gray-600 font-light mb-4">Caderno executivo completo para arquitetos e projetistas.</p>
 </div>
-<h4 class="font-['Manrope'] font-bold text-base text-[#08110D] mb-1">Manual de Marca 2026</h4>
-<p class="font-['Manrope'] text-xs text-[#57605A] mb-4">Caderno completo diagramado com 48 páginas de normas de engenharia visual.</p>
+<div class="pt-4 border-t border-vira-border flex items-center justify-between font-mono text-xs">
+<span class="text-gray-500">A4 PAISAGEM • 1.9 MB</span>
+<a class="text-vira-gold font-bold hover:underline" download="" href="assets/downloads/VIRA-Manual-de-Identidade-Visual-2026.pdf">Baixar <i class="fa-solid fa-arrow-down text-[10px]"></i></a>
 </div>
-<div class="pt-4 border-t border-[#E2E0D8] flex items-center justify-between font-mono text-xs">
-<span class="text-[#57605A]">48 PÁG · 1.9 MB</span>
-<button class="text-[#142519] hover:text-[#08110D] font-bold flex items-center gap-1" onclick="simulateDownload('VIRA_Manual_Executivo_2026.pdf')">
-                Baixar <span class="material-symbols-outlined text-sm">download</span>
-</button>
 </div>
+</div>
+<!-- Support CTA Banner -->
+<div class="bg-vira-dark rounded-vira p-8 text-white flex flex-col md:flex-row items-center justify-between gap-6 border border-[#1b2b20]">
+<div>
+<span class="font-mono text-xs text-vira-gold uppercase font-bold block mb-1">GOVERNANÇA &amp; DIRETORIA CIRCULAR</span>
+<h4 class="text-xl sm:text-2xl font-bold">VAMOS CONSTRUIR CIDADES MELHORES <span class="text-vira-gold">JUNTOS.</span></h4>
+<p class="text-xs sm:text-sm text-gray-300 font-light mt-1">Dúvidas sobre o uso de marca em projetos de pavimentação, plantas de arquitetura ou embalagens? Nossa diretoria técnica auxilia na homologação.</p>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<a class="bg-vira-gold text-vira-dark font-mono text-xs font-bold px-6 py-3.5 rounded-vira hover:bg-vira-gold-hover transition-colors" href="mailto:contato@vira.eco">
+            SOLICITAR HOMOLOGAÇÃO
+          </a>
+<a class="border border-[#2d4734] text-gray-300 font-mono text-xs font-semibold px-4 py-3.5 rounded-vira hover:bg-[#142519] transition-colors" href="#visao-geral">
+            VOLTAR AO TOPO ↑
+          </a>
 </div>
 </div>
 </div>
 </section>
-<!-- CALL TO ACTION FINAL: CONSTRUIR CIDADES MELHORES JUNTOS -->
-<section class="py-20 bg-[#FAF9F6]">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="bg-[#08110D] text-white border border-[#1d2e23] rounded-[24px] p-8 sm:p-14 flex flex-col lg:flex-row items-center justify-between gap-8">
-<div class="max-w-2xl">
-<span class="font-mono text-xs text-[#F1C546] uppercase tracking-wider font-bold">GOVERNANÇA &amp; AUDITORIA CIRCULAR</span>
-<h3 class="font-['Manrope'] text-3xl sm:text-4xl font-extrabold uppercase text-white mt-2 leading-tight">
-              Vamos construir cidades melhores <span class="text-[#F1C546]">juntos.</span>
-</h3>
-<p class="font-['Manrope'] text-sm sm:text-base text-[#B9C6BD] mt-4 leading-relaxed">
-              Dúvidas sobre o uso da marca em projetos de pavimentação, plantas de arquitetura ou embalagens? Nossa diretoria técnica audita aplicações para garantir a conformidade institucional.
-            </p>
-</div>
-<div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
-<a class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded bg-[#F1C546] hover:bg-[#e2b635] text-[#08110D] font-mono text-xs font-bold uppercase tracking-wider transition-all" href="mailto:brand@viraengenharia.com.br">
-<span class="material-symbols-outlined text-base">mail</span>
-<span class="">Solicitar Avaliação</span>
-</a>
-<a class="inline-flex items-center justify-center gap-2 px-6 py-4 rounded bg-[#142519] hover:bg-[#1f3826] text-white border border-[#2d4936] font-mono text-xs uppercase tracking-wider transition-colors" href="#visao-geral">
-<span class="">Voltar ao Topo ↑</span>
-</a>
-</div>
-</div>
-</div>
-</section>
-</main>
-<!-- RODAPÉ INDUSTRIAL DA VIRA (ESPELHADO DO WEBSITE OFICIAL) -->
-<footer class="w-full bg-[#08110D] text-white border-t border-[#1d2e23]">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-16">
-      <!-- Coluna 1: Marca, Propósito & Redes (lg:col-span-4) -->
-      <div class="lg:col-span-4 flex flex-col gap-4">
-        <div class="flex items-center gap-2"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuASQIotGVN9hC8M-GpvFHCAX-mG5qH8UGAkQu3Ore-v1zOF5j10yiyr5wRWWjDOmjD4GVqETabDGaytRAOZ7GQaKgnf6QP-Pjx7Y9Nx4-y1ZqhoPy_JQoTf-JoD2XHPmYa1wnk9SUe42qkqsr-QMUTsJnfWGIZ_QpDsslOGTBTHiibfR4qdQTvu-DNbEA9ICL-bHMCWIdws_sgzMA7WN9hagb6qnUonPyyzNh79t5G0itkFjfXzdEo3qqiTyCixxNZjWJ8" alt="VIRA - Marca Oficial" class="h-10 w-auto object-contain"></div>
-        <div>
-          <p class="font-mono text-xs font-bold uppercase tracking-wider text-[#FAF9F6]">SOLUÇÕES PARA CIDADES MELHORES.</p>
-          <div class="w-8 h-0.5 bg-[#F1C546] mt-1.5"></div>
-        </div>
-        <p class="font-['Manrope'] text-sm text-[#8ea495] leading-relaxed max-w-sm mt-1">
-          Engenharia, tecnologia e impacto real para transformar resíduos em infraestrutura urbana.
-        </p>
-        <div class="flex items-center gap-3 pt-2">
-          <a href="#" class="w-9 h-9 rounded-full border border-[#2d4936] flex items-center justify-center text-[#B9C6BD] hover:text-[#F1C546] hover:border-[#F1C546] transition-colors" aria-label="LinkedIn">
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.32a1.65 1.65 0 0 0-1.66 1.64 1.66 1.66 0 0 0 1.66 1.65 1.66 1.66 0 0 0 1.65-1.65c0-.9-.74-1.64-1.65-1.64"></path>
-            </svg>
-          </a>
-          <a href="#" class="w-9 h-9 rounded-full border border-[#2d4936] flex items-center justify-center text-[#B9C6BD] hover:text-[#F1C546] hover:border-[#F1C546] transition-colors" aria-label="Instagram">
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path>
-            </svg>
-          </a>
-          <a href="#" class="w-9 h-9 rounded-full border border-[#2d4936] flex items-center justify-center text-[#B9C6BD] hover:text-[#F1C546] hover:border-[#F1C546] transition-colors" aria-label="YouTube">
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-              <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Coluna 2: PRODUTOS (lg:col-span-2) -->
-      <div class="lg:col-span-2 flex flex-col gap-3 font-['Manrope'] text-xs">
-        <div>
-          <span class="font-mono text-xs font-bold uppercase tracking-wider text-white">PRODUTOS</span>
-          <div class="w-6 h-0.5 bg-[#F1C546] mt-1.5"></div>
-        </div>
-        <div class="flex flex-col gap-2.5 mt-2">
-          <a class="text-[#8ea495] hover:text-white transition-colors" href="paver.html">Pavers</a>
-          <a class="text-[#8ea495] hover:text-white transition-colors" href="blocos.html">Blocos</a>
-          <a class="text-[#8ea495] hover:text-white transition-colors" href="guias.html">Guias</a>
-          <a class="text-[#8ea495] hover:text-white transition-colors" href="index.html#colecao">Aplicações</a>
-        </div>
-      </div>
-
-      <!-- Coluna 3: ENGENHARIA (lg:col-span-2) -->
-      <div class="lg:col-span-2 flex flex-col gap-3 font-['Manrope'] text-xs">
-        <div>
-          <span class="font-mono text-xs font-bold uppercase tracking-wider text-white">ENGENHARIA</span>
-          <div class="w-6 h-0.5 bg-[#F1C546] mt-1.5"></div>
-        </div>
-        <div class="flex flex-col gap-2.5 mt-2">
-          <a class="text-[#8ea495] hover:text-white transition-colors" href="index.html#indicadores">Base Técnica</a>
-          <a class="text-[#8ea495] hover:text-white transition-colors" href="index.html#processo">Processo</a>
-          <a class="text-[#8ea495] hover:text-white transition-colors" href="passaporte.html">Rastreabilidade</a>
-          <a class="text-[#8ea495] hover:text-white transition-colors" href="index.html#expertise">Qualidade</a>
-          <a class="text-[#8ea495] hover:text-white transition-colors" href="index.html#colaboracao">Impacto</a>
-        </div>
-      </div>
-
-      <!-- Coluna 4: A VIRA (lg:col-span-2) -->
-      <div class="lg:col-span-2 flex flex-col gap-3 font-['Manrope'] text-xs">
-        <div>
-          <span class="font-mono text-xs font-bold uppercase tracking-wider text-white">A VIRA</span>
-          <div class="w-6 h-0.5 bg-[#F1C546] mt-1.5"></div>
-        </div>
-        <div class="flex flex-col gap-2.5 mt-2">
-          <a class="text-[#8ea495] hover:text-white transition-colors" href="index.html#manifesto">Manifesto</a>
-          <a class="text-[#8ea495] hover:text-white transition-colors" href="index.html#jornada">Nossa História</a>
-          <a class="text-[#8ea495] hover:text-white transition-colors" href="index.html#agenda-2030">ESG</a>
-          <a class="text-[#8ea495] hover:text-white transition-colors" href="brandbook.html">Brandbook 2026</a>
-          <a class="text-[#8ea495] hover:text-white transition-colors" href="uniformes.html">Uniformes &amp; EPIs</a>
-          <a class="text-[#8ea495] hover:text-white transition-colors" href="index.html#faq">Perguntas Técnicas</a>
-          <a class="text-[#8ea495] hover:text-white transition-colors" href="index.html#contato">Trabalhe Conosco</a>
-        </div>
-      </div>
-
-      <!-- Coluna 5: CONTATO (lg:col-span-2) -->
-      <div class="lg:col-span-2 flex flex-col gap-3 font-['Manrope'] text-xs">
-        <div>
-          <span class="font-mono text-xs font-bold uppercase tracking-wider text-white">CONTATO</span>
-          <div class="w-6 h-0.5 bg-[#F1C546] mt-1.5"></div>
-        </div>
-        <div class="flex flex-col gap-3.5 mt-2">
-          <div class="flex items-start gap-2.5">
-            <span class="material-symbols-outlined text-sm text-[#F1C546] shrink-0 mt-0.5">location_on</span>
-            <div>
-              <p class="text-white font-medium">Recife, PE</p>
-              <p class="text-[#8ea495] text-[11px]">Atuação em todo o Brasil</p>
-            </div>
-          </div>
-          <div class="flex items-center gap-2.5">
-            <span class="material-symbols-outlined text-sm text-[#F1C546] shrink-0">mail</span>
-            <a class="text-[#8ea495] hover:text-white transition-colors" href="mailto:contato@vira.eco">contato@vira.eco</a>
-          </div>
-          <div class="flex items-center gap-2.5">
-            <span class="material-symbols-outlined text-sm text-[#F1C546] shrink-0">call</span>
-            <span class="text-[#8ea495]">+55 81 99999.9999</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Sub-rodapé inferior com linha divisória -->
-    <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 font-mono text-[11px] text-[#8ea495]">
-      <div class="flex items-center gap-2 text-center md:text-left">
-        <span class="">© 2026 VIRA Engenharia Circular. Todos os direitos reservados.</span>
-      </div>
-      <div class="text-center">
-        <span class="">Desenvolvido por <span class="text-white font-medium">AR Mídias Integradas.</span></span>
-      </div>
-      <div class="flex items-center gap-2">
-        <span class="text-white font-semibold uppercase tracking-wider">ECONOMIA CIRCULAR EM MOVIMENTO.</span>
-        <span class="text-[#F1C546] font-bold">—</span>
-      </div>
-    </div>
-  </div>
-</footer>
-<!-- SCRIPT INTERATIVO PARA CÓPIA DE CORES & DOWNLOAD -->
+<!-- ================= FOOTER OFICIAL VIRA (100% IDÊNTICO AO SITE PRINCIPAL) ================= -->
+<footer class="relative text-white pt-16 pb-10 border-t border-[#1b2b20] overflow-hidden bg-[#142519]"><div class="max-w-7xl mx-auto px-4 sm:px-8 relative z-10"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-10 pb-16 pt-4"><div class="flex flex-col justify-between pr-2"><div><a class="inline-block mb-6" href="index.html"><img alt="VIRA Engenharia Circular" class="h-10 sm:h-12 w-auto object-contain" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuC3KksjCHOFRaHucr4TSmV6FLiE-YyXyZPABaoz8vAHN-j2FvoA3mVaei4zSBeGSFbIPDWxThm4US5o0UJPujAIZQvQfaBxhUInwXFwdgOAkUDNNqP7OiFGxHFoKRiqbtkwJ1v-twHJgrF6eu2y9x4m4-CdFlIPz5itQHTFqGcqff6hLtptXX2JLtyNpVkQv_jq7qakRKtda9VnYOe9Bj7NuWFVYiNVLVBX6x-U9LH1Y_6xJl7l9bO3C-JerGeOgMpjPXk'" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAE37uCLA-tWLrK7DYUSgPAjwK_RyQsJQ4N_cCBIF_LCrEMw-HzL29Rn8f-hiTSgXdIDiqh-xVfStgZSFvSZfGVdNYBbUfOuSfw5h5CiyVF3RxldZepG4rW9XAqP7nxt_jttud6xJFiEI6wvBRaGrQ3Oa_isuzpAmDy3-QjfG_zaPLfoHBu_IL0m3b1hVEGVEQ5GEK_zOioUNcOYRKIy42CTDBrY-p-H6vEjo5boj4eurvuGsbL0okP6Gj9U2XELt-HC_Q"></a><div class="mb-3"><p class="font-mono text-[11px] font-bold tracking-widest text-white uppercase mb-2">SOLUÇÕES PARA CIDADES MELHORES.</p><div class="w-8 h-[2px] bg-[#F1C546]"></div></div><p class="text-xs sm:text-sm text-gray-400 font-light leading-relaxed mb-6">Engenharia, tecnologia e impacto real para transformar resíduos em infraestrutura urbana.</p><div class="flex items-center gap-2.5"><a aria-label="LinkedIn" class="w-9 h-9 rounded-full border border-white/20 bg-white/5 flex items-center justify-center text-white/80 hover:text-[#F1C546] hover:border-[#F1C546] transition-colors" href="https://linkedin.com" rel="noopener" target="_blank"><i class="fa-brands fa-linkedin-in text-xs"></i></a><a aria-label="Instagram" class="w-9 h-9 rounded-full border border-white/20 bg-white/5 flex items-center justify-center text-white/80 hover:text-[#F1C546] hover:border-[#F1C546] transition-colors" href="https://instagram.com" rel="noopener" target="_blank"><i class="fa-brands fa-instagram text-xs"></i></a><a aria-label="YouTube" class="w-9 h-9 rounded-full border border-white/20 bg-white/5 flex items-center justify-center text-white/80 hover:text-[#F1C546] hover:border-[#F1C546] transition-colors" href="https://youtube.com" rel="noopener" target="_blank"><i class="fa-brands fa-youtube text-xs"></i></a></div></div></div><div><h5 class="font-mono text-xs font-bold text-white uppercase tracking-wider mb-2">PRODUTOS</h5><div class="w-5 h-[2px] bg-[#F1C546] mb-5"></div><ul class="space-y-3 text-xs sm:text-sm text-gray-400 font-light"><li class=""><a class="hover:text-white transition-colors" href="paver.html">Pavers</a></li><li class=""><a class="hover:text-white transition-colors" href="blocos.html">Blocos</a></li><li class=""><a class="hover:text-white transition-colors" href="guias.html">Guias</a></li><li class=""><a class="hover:text-white transition-colors" href="index.html#aplicacoes">Aplicações</a></li></ul></div><div><h5 class="font-mono text-xs font-bold text-white uppercase tracking-wider mb-2">ENGENHARIA</h5><div class="w-5 h-[2px] bg-[#F1C546] mb-5"></div><ul class="space-y-3 text-xs sm:text-sm text-gray-400 font-light"><li class=""><a class="hover:text-white transition-colors" href="index.html#base-tecnica">Base Técnica</a></li><li class=""><a class="hover:text-white transition-colors" href="index.html#processo">Processo</a></li><li class=""><a class="hover:text-white transition-colors" href="passaporte.html">Rastreabilidade</a></li><li class=""><a class="hover:text-white transition-colors" href="index.html#qualidade">Qualidade</a></li><li class=""><a class="hover:text-white transition-colors" href="index.html#impacto">Impacto</a></li></ul></div><div><h5 class="font-mono text-xs font-bold text-white uppercase tracking-wider mb-2">A VIRA</h5><div class="w-5 h-[2px] bg-[#F1C546] mb-5"></div><ul class="space-y-3 text-xs sm:text-sm text-gray-400 font-light"><li class=""><a class="hover:text-white transition-colors" href="index.html#manifesto">Manifesto</a></li><li class=""><a class="hover:text-white transition-colors" href="index.html#historia">Nossa História</a></li><li class=""><a class="hover:text-white transition-colors" href="index.html#esg">ESG</a></li><li class=""><a class="hover:text-white transition-colors" href="index.html#faq">Perguntas Técnicas</a></li><li class=""><a class="hover:text-white transition-colors" href="index.html#trabalhe-conosco">Trabalhe Conosco</a></li></ul></div><div><h5 class="font-mono text-xs font-bold text-white uppercase tracking-wider mb-2">CONTATO</h5><div class="w-5 h-[2px] bg-[#F1C546] mb-5"></div><div class="space-y-4 font-light text-xs sm:text-sm text-gray-400"><div class="flex items-start gap-2.5"><i class="fa-solid fa-location-dot text-[#F1C546] text-sm mt-0.5 shrink-0"></i><div><strong class="text-white block font-medium text-xs sm:text-sm">Recife, PE</strong><span class="text-[11px] text-gray-400 block mt-0.5">Atuação em todo o Brasil</span></div></div><div class="flex items-center gap-2.5"><i class="fa-solid fa-envelope text-[#F1C546] text-xs shrink-0"></i><a class="hover:text-white transition-colors text-xs font-mono text-gray-300" href="mailto:contato@vira.eco">contato@vira.eco</a></div><div class="flex items-center gap-2.5"><i class="fa-solid fa-phone text-[#F1C546] text-xs shrink-0"></i><a class="hover:text-white transition-colors text-xs font-mono text-gray-300" href="tel:+5581999999999">+55 81 99999.9999</a></div></div></div></div><div class="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-gray-400"><p class="">© 2026 VIRA. Todos os direitos reservados.</p><p class="text-gray-400">Desenvolvido por AR Mídias Integradas.</p><div class="flex items-center gap-2"><span class="text-gray-400 uppercase tracking-wider text-[11px]">ECONOMIA CIRCULAR EM MOVIMENTO.</span><div class="w-4 h-[2px] bg-[#F1C546]"></div></div></div></div></footer>
+<!-- Interactivity Script for Mobile Drawer -->
 <script>
-    function copyColor(hex, btn) {
-      navigator.clipboard.writeText(hex).then(function() {
-        showToast("CÓDIGO " + hex + " COPIADO!");
-        const originalContent = btn.innerHTML;
-        btn.innerHTML = '<span class="text-[#57605A]">HEX</span><span class="font-bold text-[#142519] flex items-center gap-1 font-mono">COPIADO ✓</span>';
-        setTimeout(function() {
-          btn.innerHTML = originalContent;
-        }, 1600);
-      }).catch(function() {
-        showToast("ERRO AO COPIAR!");
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+      // Fecha o menu ao clicar em qualquer link
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
       });
     }
-
-    function simulateDownload(filename) {
-      showToast("INICIANDO DOWNLOAD: " + filename);
-      const linkMap = {
-        'VIRA_Brand_Master_Pack_2026.zip': 'assets/downloads/VIRA_Brand_Assets_Pack.zip',
-        'VIRA_Logo_Policromatico.zip': 'assets/downloads/VIRA-Logo-Policromatico.svg',
-        'VIRA_Logo_Negativo.zip': 'assets/downloads/VIRA-Logo-Negativo-Branco.svg',
-        'VIRA_Delta_Symbol.zip': 'assets/marca-icone-v.png',
-        'VIRA_Manual_Executivo_2026.pdf': 'assets/downloads/VIRA-Manual-de-Identidade-Visual-2026.pdf'
-      };
-      const target = linkMap[filename] || ('assets/downloads/' + filename);
-      const a = document.createElement('a');
-      a.href = target;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    }
-
-    function showToast(msg) {
-      const toast = document.getElementById('copyToast');
-      const text = document.getElementById('copyToastText');
-      if (!toast || !text) return;
-      text.textContent = msg;
-      toast.classList.remove('translate-y-24', 'opacity-0');
-      toast.classList.add('translate-y-0', 'opacity-100');
-      setTimeout(function() {
-        toast.classList.remove('translate-y-0', 'opacity-100');
-        toast.classList.add('translate-y-24', 'opacity-0');
-      }, 2500);
-    }
   </script>
+<!-- Script de Partículas & Malha Circular (Constellation / Network Particles) Interativa -->
+<script>
+  (function() {
+    const heroSection = document.getElementById('hero-section');
+    const canvas = document.getElementById('hero-particles-canvas');
+    if (!canvas || !heroSection) return;
+
+    const ctx = canvas.getContext('2d');
+    let width = 0;
+    let height = 0;
+    let particles = [];
+    let animationFrameId = null;
+
+    // Posição do cursor com amortecimento
+    const mouse = {
+      x: -1000,
+      y: -1000,
+      radius: 140,
+      active: false
+    };
+
+    // Paleta oficial VIRA com opacidades calculadas
+    const colorPalette = [
+      { r: 241, g: 197, b: 70 },  // Ocre Dourado (#F1C546)
+      { r: 77, g: 130, b: 86 },   // Verde Floresta Claro (#4D8256)
+      { r: 45, g: 71, b: 52 },    // Verde Floresta Médio (#2D4734)
+      { r: 240, g: 245, b: 240 }  // Off-white / Mineral (#F0F5F0)
+    ];
+
+    function resizeCanvas() {
+      const rect = heroSection.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = rect.width;
+      height = rect.height;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.scale(dpr, dpr);
+      initParticles();
+    }
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.45;
+        this.vy = (Math.random() - 0.5) * 0.45;
+        this.radius = Math.random() * 2.2 + 1.2;
+        this.baseRadius = this.radius;
+        this.colorObj = colorPalette[Math.floor(Math.random() * colorPalette.length)];
+        this.alpha = Math.random() * 0.35 + 0.25;
+        this.phase = Math.random() * Math.PI * 2;
+        this.pulseSpeed = 0.02 + Math.random() * 0.02;
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        // Rebater suavemente nas bordas
+        if (this.x < 0 || this.x > width) this.vx *= -1;
+        if (this.y < 0 || this.y > height) this.vy *= -1;
+
+        // Pulsação sutil
+        this.phase += this.pulseSpeed;
+        this.currentAlpha = this.alpha + Math.sin(this.phase) * 0.12;
+
+        // Interatividade com o cursor
+        if (mouse.active) {
+          const dx = mouse.x - this.x;
+          const dy = mouse.y - this.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < mouse.radius) {
+            const force = (1 - dist / mouse.radius) * 0.8;
+            this.x -= (dx / dist) * force;
+            this.y -= (dy / dist) * force;
+            this.currentAlpha = Math.min(0.9, this.currentAlpha + 0.35);
+          }
+        }
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${this.colorObj.r}, ${this.colorObj.g}, ${this.colorObj.b}, ${Math.max(0.1, this.currentAlpha)})`;
+        ctx.shadowBlur = 4;
+        ctx.shadowColor = `rgba(${this.colorObj.r}, ${this.colorObj.g}, ${this.colorObj.b}, 0.5)`;
+        ctx.fill();
+        ctx.shadowBlur = 0; // reset
+      }
+    }
+
+    function initParticles() {
+      particles = [];
+      // Densidade baseada na área disponível, ótima em mobile e desktop
+      const count = Math.min(85, Math.floor((width * height) / 10000));
+      for (let i = 0; i < count; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function connectParticles() {
+      const maxDistance = Math.min(130, width * 0.16);
+      const pLen = particles.length;
+
+      for (let i = 0; i < pLen; i++) {
+        for (let j = i + 1; j < pLen; j++) {
+          const p1 = particles[i];
+          const p2 = particles[j];
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < maxDistance) {
+            const factor = 1 - dist / maxDistance;
+            const lineAlpha = factor * 0.28;
+            
+            // Gradiente orgânico conectando os dois pontos
+            const grad = ctx.createLinearGradient(p1.x, p1.y, p2.x, p2.y);
+            grad.addColorStop(0, `rgba(${p1.colorObj.r}, ${p1.colorObj.g}, ${p1.colorObj.b}, ${lineAlpha})`);
+            grad.addColorStop(1, `rgba(${p2.colorObj.r}, ${p2.colorObj.g}, ${p2.colorObj.b}, ${lineAlpha * 0.7})`);
+
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = grad;
+            ctx.lineWidth = factor * 1.1;
+            ctx.stroke();
+          }
+        }
+
+        // Conexão sutil com o cursor
+        if (mouse.active) {
+          const dxM = mouse.x - particles[i].x;
+          const dyM = mouse.y - particles[i].y;
+          const distM = Math.sqrt(dxM * dxM + dyM * dyM);
+          if (distM < mouse.radius) {
+            const factorM = 1 - distM / mouse.radius;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.strokeStyle = `rgba(241, 197, 70, ${factorM * 0.35})`; // Ocre Dourado sutil
+            ctx.lineWidth = factorM * 1.2;
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Atualiza e desenha conexões
+      connectParticles();
+
+      // Desenha nós
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+      }
+
+      animationFrameId = requestAnimationFrame(animate);
+    }
+
+    // Interatividade com Mouse & Touch na Hero Section
+    heroSection.addEventListener('mousemove', (e) => {
+      const rect = heroSection.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+      mouse.active = true;
+    });
+
+    heroSection.addEventListener('mouseleave', () => {
+      mouse.active = false;
+      mouse.x = -1000;
+      mouse.y = -1000;
+    });
+
+    heroSection.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) {
+        const rect = heroSection.getBoundingClientRect();
+        mouse.x = e.touches[0].clientX - rect.left;
+        mouse.y = e.touches[0].clientY - rect.top;
+        mouse.active = true;
+      }
+    }, { passive: true });
+
+    heroSection.addEventListener('touchend', () => {
+      mouse.active = false;
+    });
+
+    // Resize listener com debounce
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        resizeCanvas();
+      }, 100);
+    });
+
+    // Inicialização
+    resizeCanvas();
+    animate();
+  })();
+</script>
 
 
 </body></html>

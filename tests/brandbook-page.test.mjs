@@ -18,13 +18,13 @@ test("brandbook.html documenta as cores oficiais da VIRA (#f1c546, #142519, #081
   assert.match(html, /#f1c546/i, "deve conter Ocre Dourado #f1c546");
   assert.match(html, /#142519/i, "deve conter Verde Floresta #142519");
   assert.match(html, /#08110D/i, "deve conter Grafite Mineral #08110D");
-  assert.match(html, /#F6F5F2/i, "deve conter Papel Off-White #F6F5F2");
+  assert.match(html, /#F6F5F2|#FAF9F6/i, "deve conter Papel Off-White #F6F5F2 ou #FAF9F6");
 });
 
 test("brandbook.html utiliza o logotipo oficial e elimina imagens base64 obsoletas", () => {
   const html = read("brandbook.html");
-  assert.match(html, /alt="VIRA - Marca Oficial"/, "deve conter a marca oficial no header e footer");
-  assert.match(html, /alt="VIRA — Aplicação Primária Oficial"/, "deve conter aplicação primária oficial");
+  assert.match(html, /alt="VIRA (Engenharia Circular|- Marca Oficial)"/, "deve conter a marca oficial no header e footer");
+  assert.match(html, /alt="(Logotipo )?VIRA (— Aplicação Primária Oficial|Policromático Oficial)"/, "deve conter aplicação primária oficial");
   assert.doesNotMatch(html, /data:image\/png;base64/, "não deve conter imagens base64 gigantes embutidas");
   assert.doesNotMatch(html, /data:image\/jpeg;base64/, "não deve conter imagens base64 gigantes embutidas");
 });
@@ -33,7 +33,7 @@ test("brandbook.html documenta Manrope e IBM Plex Mono no sistema tipográfico",
   const html = read("brandbook.html");
   assert.match(html, /Manrope/, "deve documentar Manrope");
   assert.match(html, /IBM Plex Mono/, "deve documentar IBM Plex Mono");
-  assert.match(html, /FAMÍLIA PRIMÁRIA/, "deve categorizar Manrope como Família Primária");
+  assert.match(html, /FAMÍLIA PRINCIPAL|FAMÍLIA PRIMÁRIA/, "deve categorizar Manrope como Família Principal/Primária");
   assert.match(html, /FAMÍLIA TÉCNICA/, "deve categorizar IBM Plex Mono como Família Técnica");
 });
 
@@ -82,9 +82,9 @@ test("uniformes.html referencia os novos ativos fotográficos de uniformes e EPI
 
 test("brandbook.html e uniformes.html implementam a matriz de EPIs e conformidade com normas", () => {
   const brandbookHtml = read("brandbook.html");
-  assert.match(brandbookHtml, /EPI 01 \/\/ CAPACETE PCR/i, "brandbook deve detalhar capacete PCR");
-  assert.match(brandbookHtml, /EPI 02 \/\/ COLETE CLASSE 2/i, "brandbook deve detalhar colete classe 2");
-  assert.match(brandbookHtml, /EPI 03 \/\/ LUVAS DE POLIURETANO/i, "brandbook deve detalhar luvas");
+  assert.match(brandbookHtml, /Colete Amarelo Flúor/i, "brandbook deve detalhar colete amarelo");
+  assert.match(brandbookHtml, /Capacete de Polímero Circular/i, "brandbook deve detalhar capacete circular");
+  assert.match(brandbookHtml, /Luvas Táticas Antiderrapantes/i, "brandbook deve detalhar luvas táticas");
   assert.match(brandbookHtml, /NR-6/i, "brandbook deve referenciar norma NR-6");
 
   const uniformesHtml = read("uniformes.html");
