@@ -100,28 +100,85 @@
 <!-- END: TopTelemetryRibbon -->
 <!-- BEGIN: MainHeader -->
 <header class="bg-[#08110D]/95 backdrop-blur-md border-b border-[#142519] sticky top-[33px] z-40" data-purpose="primary-navigation">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-<div class="flex items-center space-x-4">
-<a aria-label="Página Inicial VIRA" class="flex items-center space-x-2 group focus:outline-none" href="index.html"><div class="flex items-center gap-3"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhzmy9X4hLoTq7ywTJRCrTPJM98BZgX7i_icoaBj5_4urTmKJBG53G5G626vvFOdU2dKdMCSQbTgR9rE0ezzG6R4xORiPnBrC6GRXKCFi2xNVRhMYcAovSmJsDOrTkvqzxX8jxuxMlwdGSlR4SVXQ3MMU6zebyiQbeiSTyPvxBucIi3b6vRgBbkig5LBw8Ynat01K6VKlafO3YOoBvyKzg1RiWttC6dglACoDT0Gc0bLcbPeKrYT9SlygadzNRCnvHTwE" alt="VIRA" class="h-8 w-auto object-contain"><span class="text-[9px] font-mono-code text-emerald-400 tracking-widest uppercase hidden sm:inline-block border-l border-zinc-700 pl-3">ALVENARIA NBR 6136</span></div></a>
-</div>
-<nav class="hidden xl:flex items-center space-x-1 text-xs font-mono-code tracking-wider uppercase text-zinc-400">
-<a class="px-3 py-1.5 hover:text-white transition-colors duration-150" href="paver.html">01 // PAVER</a>
-<a class="px-3.5 py-1.5 rounded-full border border-vira-gold text-vira-gold bg-vira-gold/10 font-semibold flex items-center space-x-2 shadow-inner" href="blocos.html" aria-current="page">
-<span class="w-1.5 h-1.5 rounded-full bg-vira-gold inline-block"></span>
-<span class="">02 // BLOCOS</span>
-</a>
-<a class="px-3 py-1.5 hover:text-white transition-colors duration-150" href="guias.html">03 // GUIAS</a>
-<a class="px-3 py-1.5 hover:text-white transition-colors duration-150" href="central-tecnica.html">04 // CENTRAL TÉCNICA</a>
-<a class="px-3 py-1.5 hover:text-white transition-colors duration-150" href="passaporte.html">05 // PASSAPORTE DPP</a>
-<a class="px-3 py-1.5 hover:text-white transition-colors duration-150" href="brandbook.html">06 // BRANDBOOK</a>
-</nav>
-<div class="flex items-center space-x-3">
-<a class="inline-flex items-center justify-center bg-vira-gold hover:bg-vira-gold-hover text-black font-manrope font-bold text-xs uppercase px-5 py-2.5 rounded-full transition-all duration-200 transform hover:-translate-y-0.5 shadow-md shadow-vira-gold/20" href="#especificar">
-<span class="">Especificar Projeto</span>
-<span class="ml-1.5 font-mono-code">→</span>
-</a>
-</div>
-</div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <!-- Brand Logo Container -->
+    <div class="flex items-center space-x-4">
+      <a aria-label="Página Inicial VIRA" class="flex items-center space-x-2 group focus:outline-none" href="index.html">
+        <div class="flex items-center gap-3">
+          <img alt="VIRA" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhzmy9X4hLoTq7ywTJRCrTPJM98BZgX7i_icoaBj5_4urTmKJBG53G5G626vvFOdU2dKdMCSQbTgR9rE0ezzG6R4xORiPnBrC6GRXKCFi2xNVRhMYcAovSmJsDOrTkvqzxX8jxuxMlwdGSlR4SVXQ3MMU6zebyiQbeiSTyPvxBucIi3b6vRgBbkig5LBw8Ynat01K6VKlafO3YOoBvyKzg1RiWttC6dglACoDT0Gc0bLcbPeKrYT9SlygadzNRCnvHTwE"/>
+          <div class="border-l border-neutral-700/80 pl-3 leading-tight hidden sm:flex flex-col justify-center">
+            <span class="text-[9px] font-mono text-emerald-400 tracking-widest uppercase font-semibold">ALVENARIA NBR</span>
+            <span class="text-[9px] font-mono text-emerald-400 tracking-widest uppercase font-semibold">6136</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Navigation Links with Instrumental Indexing (Annex 1 & 2 Specification) -->
+    <nav class="hidden xl:flex items-center gap-1.5 2xl:gap-3 text-neutral-400 product-switcher">
+        <a class="px-2.5 py-1.5 text-zinc-400 hover:text-white transition-colors duration-150 flex items-center group shrink-0" href="paver.html">
+          <span class="flex flex-col text-left leading-tight font-mono text-[10px] tracking-wider uppercase">
+            <span>01 //</span>
+            <span class="font-medium text-zinc-300 group-hover:text-white">PAVER</span>
+          </span>
+        </a>
+        <a class="px-3.5 py-1.5 rounded-full border border-[#F1C546] text-[#F1C546] bg-[#F1C546]/10 font-semibold flex items-center gap-2 shadow-inner group shrink-0" href="blocos.html" aria-current="page">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#F1C546] inline-block shrink-0"></span>
+          <span class="flex flex-col text-left leading-tight font-mono text-[10px] tracking-wider uppercase">
+            <span>02 //</span>
+            <span class="font-bold">BLOCOS</span>
+          </span>
+        </a>
+        <a class="px-2.5 py-1.5 text-zinc-400 hover:text-white transition-colors duration-150 flex items-center group shrink-0" href="guias.html">
+          <span class="flex flex-col text-left leading-tight font-mono text-[10px] tracking-wider uppercase">
+            <span>03 //</span>
+            <span class="font-medium text-zinc-300 group-hover:text-white">GUIAS</span>
+          </span>
+        </a>
+        <a class="px-2.5 py-1.5 text-zinc-400 hover:text-white transition-colors duration-150 flex items-center group shrink-0" href="central-tecnica.html">
+          <span class="flex flex-col text-left leading-tight font-mono text-[10px] tracking-wider uppercase">
+            <span>04 // CENTRAL</span>
+            <span class="font-medium text-zinc-300 group-hover:text-white">TÉCNICA</span>
+          </span>
+        </a>
+        <a class="px-2.5 py-1.5 text-zinc-400 hover:text-white transition-colors duration-150 flex items-center group shrink-0" href="passaporte.html">
+          <span class="flex flex-col text-left leading-tight font-mono text-[10px] tracking-wider uppercase">
+            <span>05 // PASSAPORTE</span>
+            <span class="font-medium text-zinc-300 group-hover:text-white">DPP</span>
+          </span>
+        </a>
+        <a class="px-2.5 py-1.5 text-zinc-400 hover:text-white transition-colors duration-150 flex items-center group shrink-0" href="brandbook.html">
+          <span class="flex flex-col text-left leading-tight font-mono text-[10px] tracking-wider uppercase">
+            <span>06 //</span>
+            <span class="font-medium text-zinc-300 group-hover:text-white">BRANDBOOK</span>
+          </span>
+        </a>
+    </nav>
+
+    <!-- CTA Button & Mobile Toggle (Annex 1 Specification) -->
+    <div class="flex items-center gap-3">
+      <a class="px-5 py-2 rounded-full bg-[#F1C546] hover:bg-[#ffcf4d] text-[#08110D] font-bold text-[11px] uppercase tracking-wider transition-all duration-200 shadow-md hover:scale-105 active:scale-95 flex flex-col items-center justify-center leading-tight font-sans shrink-0" href="#especificar">
+        <span>ESPECIFICAR</span>
+        <span class="flex items-center gap-1">PROJETO <span class="font-mono font-bold">→</span></span>
+      </a>
+      <button aria-label="Abrir Menu" class="xl:hidden p-2 text-zinc-300 hover:text-[#F1C546] focus:outline-none" onclick="const m=document.getElementById('mobileNavDrawer'); if(m) m.classList.toggle('hidden');">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer -->
+  <div class="hidden xl:hidden bg-[#08110D] border-t border-[#142519] px-6 py-4 font-mono text-xs space-y-2.5 shadow-2xl" id="mobileNavDrawer">
+    <a class="block py-1.5 text-zinc-300 hover:text-[#F1C546] border-b border-[#142519]/60" href="paver.html">01 // PAVER</a>
+    <a class="block py-1.5 text-[#F1C546] font-bold border-b border-[#142519]/60" href="blocos.html">02 // BLOCOS</a>
+    <a class="block py-1.5 text-zinc-300 hover:text-[#F1C546] border-b border-[#142519]/60" href="guias.html">03 // GUIAS</a>
+    <a class="block py-1.5 text-zinc-300 hover:text-[#F1C546] border-b border-[#142519]/60" href="central-tecnica.html">04 // CENTRAL TÉCNICA</a>
+    <a class="block py-1.5 text-zinc-300 hover:text-[#F1C546] border-b border-[#142519]/60" href="passaporte.html">05 // PASSAPORTE DPP</a>
+    <a class="block py-1.5 text-zinc-300 hover:text-[#F1C546] border-b border-[#142519]/60" href="brandbook.html">06 // BRANDBOOK</a>
+    <div class="pt-2">
+      <a class="block text-center py-2 rounded-full bg-[#F1C546] text-[#08110D] font-bold uppercase font-sans text-xs" href="#especificar">ESPECIFICAR PROJETO →</a>
+    </div>
+  </div>
 </header>
 <!-- END: MainHeader -->
 <main>

@@ -98,54 +98,100 @@
 </div>
 </div>
 <!-- ================= MAIN NAVIGATION ================= -->
-<header class="sticky top-0 z-50 bg-vira-dark/95 backdrop-blur-md border-b border-[#1b2b20]">
-<div class="max-w-7xl mx-auto px-4 sm:px-8 py-3.5 flex items-center justify-between">
-<!-- Brand Logo -->
-<a class="flex items-center gap-3 group" href="index.html">
-<img alt="VIRA Engenharia Circular" class="h-8 sm:h-9 w-auto opacity-95 group-hover:opacity-100 transition-opacity object-contain" onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuCEm0A89VKy2Z27PzPyrDYlTcdXszM20x2BimhGH0SB5o8J0dqBnmMBfidICrswDfu0369XC6rCniPXb4zCtPVhPvaTc1kaWgntVqAR_4lGVbBAuzNvaC__8DKZ_0lT-v8a_upUizZrqbERwHVZ5yjD6F7eNeG3UuBCAZk4BCnWUa7hSfUoP9NgerUWp3UWrUFJ_MPxYbQ8yLsoo1gV_u8Q6fOPqubhZZ1beO9dD2GQgykw9Cq3rkqikH1NJZdDb8UkKCY'" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0CeuSC4ke7u0SNUJgmHkdsBsxCUHh6cgtb5lsKksNF7HunE0ZcCgW1tQ0TAP0LN_aLI9D1Tb2YvreWHBvHCtKXZ3uVUnLMvioRwAG8qgOgbGhnX53nWiNeMq4nTNetD2j8pvPsXcFSsMVsLpautQ5gT6Qc2vZtnebN8z0wW9H21Y7FPI7QB2PJa1ngCgH8Al6UOxRV89iyWIyetBjThbQlKKXcqP9nPa9-he8Q8tWSzgPYC6FVpXq75coNJ1w09duZso">
-<div class="border-l border-[#2d4734] pl-3 hidden lg:block">
-<p class="text-[10px] font-mono tracking-wider text-vira-gold uppercase">Brandbook Oficial</p>
-<p class="text-[11px] text-gray-300 font-medium">Diretrizes de Identidade</p>
-</div>
-</a>
-<!-- Desktop Nav -->
-<nav class="hidden md:flex items-center gap-6 lg:gap-8 font-mono text-[12px] text-gray-300">
-<a class="hover:text-vira-gold transition-colors" href="#visao-geral">01 // Visão Geral</a>
-<a class="hover:text-vira-gold transition-colors" href="#logotipo">02 // Logotipo</a>
-<a class="hover:text-vira-gold transition-colors" href="#cores">03 // Cores</a>
-<a class="hover:text-vira-gold transition-colors" href="#tipografia">04 // Tipografia</a>
-<a class="hover:text-vira-gold transition-colors" href="#sinalizacao">05 // Sinalização</a>
-<a class="hover:text-vira-gold transition-colors" href="#uniformes">06 // Uniformes</a>
-<a class="hover:text-vira-gold transition-colors" href="#downloads">07 // Downloads</a>
-</nav>
-<!-- CTA Button & Mobile Menu Toggle -->
-<div class="flex items-center gap-3">
-<a class="hidden sm:inline-flex items-center gap-2 bg-vira-gold text-vira-dark font-mono text-xs font-bold px-4 py-2 rounded-lg hover:bg-vira-gold-hover transition-colors shadow-sm" href="#downloads">
-<i class="fa-solid fa-download text-[11px]"></i>
-<span class="">MANUAL 2026 .PDF</span>
-</a>
-<button aria-label="Abrir Menu" class="md:hidden p-2 text-gray-300 hover:text-vira-gold focus:outline-none" id="mobileMenuBtn">
-<i class="fa-solid fa-bars text-xl"></i>
-</button>
-</div>
-</div>
-<!-- Mobile Drawer -->
-<div class="hidden md:hidden bg-vira-dark border-t border-[#1b2b20] px-6 py-4 font-mono text-xs space-y-3" id="mobileMenu">
-<a class="block py-1.5 text-gray-300 hover:text-vira-gold border-b border-[#1b2b20]/50" href="#visao-geral">01 // Visão Geral</a>
-<a class="block py-1.5 text-gray-300 hover:text-vira-gold border-b border-[#1b2b20]/50" href="#logotipo">02 // Logotipo Oficial</a>
-<a class="block py-1.5 text-gray-300 hover:text-vira-gold border-b border-[#1b2b20]/50" href="#cores">03 // Matriz Cromática</a>
-<a class="block py-1.5 text-gray-300 hover:text-vira-gold border-b border-[#1b2b20]/50" href="#tipografia">04 // Tipografia</a>
-<a class="block py-1.5 text-gray-300 hover:text-vira-gold border-b border-[#1b2b20]/50" href="#sinalizacao">05 // Sinalização Fabril</a>
-<a class="block py-1.5 text-gray-300 hover:text-vira-gold border-b border-[#1b2b20]/50" href="#uniformes">06 // Uniformes &amp; EPIs</a>
-<a class="block py-1.5 text-vira-gold font-bold" href="#downloads">07 // Central de Ativos &amp; Downloads</a>
-<div class="pt-2">
-<a class="inline-flex items-center gap-2 text-[#8f9b92] hover:text-white" href="index.html">
-<i class="fa-solid fa-arrow-left text-[10px]"></i>
-<span class="">Voltar ao Portal VIRA</span>
-</a>
-</div>
-</div>
+<header class="bg-[#08110D]/95 backdrop-blur-md border-b border-[#142519] sticky top-[33px] z-40" data-purpose="primary-navigation">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <!-- Brand Logo Container -->
+    <div class="flex items-center space-x-4">
+      <a aria-label="Página Inicial VIRA" class="flex items-center space-x-2 group focus:outline-none" href="index.html">
+        <div class="flex items-center gap-3">
+          <img alt="VIRA Engenharia Circular" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhzmy9X4hLoTq7ywTJRCrTPJM98BZgX7i_icoaBj5_4urTmKJBG53G5G626vvFOdU2dKdMCSQbTgR9rE0ezzG6R4xORiPnBrC6GRXKCFi2xNVRhMYcAovSmJsDOrTkvqzxX8jxuxMlwdGSlR4SVXQ3MMU6zebyiQbeiSTyPvxBucIi3b6vRgBbkig5LBw8Ynat01K6VKlafO3YOoBvyKzg1RiWttC6dglACoDT0Gc0bLcbPeKrYT9SlygadzNRCnvHTwE"/>
+          <div class="border-l border-neutral-700/80 pl-3 leading-tight hidden sm:flex flex-col justify-center">
+            <span class="text-[9px] font-mono text-emerald-400 tracking-widest uppercase font-semibold">BRANDBOOK OFICIAL</span>
+            <span class="text-[9px] font-mono text-emerald-400 tracking-widest uppercase font-semibold">DIRETRIZES DE IDENTIDADE</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Navigation Links with Instrumental Indexing (Annex 1 & 2 Specification) -->
+    <nav class="hidden xl:flex items-center gap-1.5 2xl:gap-3 text-neutral-400 product-switcher">
+        <a class="px-2.5 py-1.5 text-zinc-400 hover:text-white transition-colors duration-150 flex items-center group shrink-0" href="paver.html">
+          <span class="flex flex-col text-left leading-tight font-mono text-[10px] tracking-wider uppercase">
+            <span>01 //</span>
+            <span class="font-medium text-zinc-300 group-hover:text-white">PAVER</span>
+          </span>
+        </a>
+        <a class="px-2.5 py-1.5 text-zinc-400 hover:text-white transition-colors duration-150 flex items-center group shrink-0" href="blocos.html">
+          <span class="flex flex-col text-left leading-tight font-mono text-[10px] tracking-wider uppercase">
+            <span>02 //</span>
+            <span class="font-medium text-zinc-300 group-hover:text-white">BLOCOS</span>
+          </span>
+        </a>
+        <a class="px-2.5 py-1.5 text-zinc-400 hover:text-white transition-colors duration-150 flex items-center group shrink-0" href="guias.html">
+          <span class="flex flex-col text-left leading-tight font-mono text-[10px] tracking-wider uppercase">
+            <span>03 //</span>
+            <span class="font-medium text-zinc-300 group-hover:text-white">GUIAS</span>
+          </span>
+        </a>
+        <a class="px-2.5 py-1.5 text-zinc-400 hover:text-white transition-colors duration-150 flex items-center group shrink-0" href="central-tecnica.html">
+          <span class="flex flex-col text-left leading-tight font-mono text-[10px] tracking-wider uppercase">
+            <span>04 // CENTRAL</span>
+            <span class="font-medium text-zinc-300 group-hover:text-white">TÉCNICA</span>
+          </span>
+        </a>
+        <a class="px-2.5 py-1.5 text-zinc-400 hover:text-white transition-colors duration-150 flex items-center group shrink-0" href="passaporte.html">
+          <span class="flex flex-col text-left leading-tight font-mono text-[10px] tracking-wider uppercase">
+            <span>05 // PASSAPORTE</span>
+            <span class="font-medium text-zinc-300 group-hover:text-white">DPP</span>
+          </span>
+        </a>
+        <a class="px-3.5 py-1.5 rounded-full border border-[#F1C546] text-[#F1C546] bg-[#F1C546]/10 font-semibold flex items-center gap-2 shadow-inner group shrink-0" href="brandbook.html" aria-current="page">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#F1C546] inline-block shrink-0"></span>
+          <span class="flex flex-col text-left leading-tight font-mono text-[10px] tracking-wider uppercase">
+            <span>06 //</span>
+            <span class="font-bold">BRANDBOOK</span>
+          </span>
+        </a>
+    </nav>
+
+    <!-- CTA Button & Mobile Toggle (Annex 1 Specification) -->
+    <div class="flex items-center gap-3">
+      <a class="px-5 py-2 rounded-full bg-[#F1C546] hover:bg-[#ffcf4d] text-[#08110D] font-bold text-[11px] uppercase tracking-wider transition-all duration-200 shadow-md hover:scale-105 active:scale-95 flex flex-col items-center justify-center leading-tight font-sans shrink-0" href="paver.html#especificar">
+        <span>ESPECIFICAR</span>
+        <span class="flex items-center gap-1">PROJETO <span class="font-mono font-bold">→</span></span>
+      </a>
+      <button aria-label="Abrir Menu" class="xl:hidden p-2 text-zinc-300 hover:text-[#F1C546] focus:outline-none" onclick="const m=document.getElementById('mobileNavDrawer'); if(m) m.classList.toggle('hidden');">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer -->
+  <div class="hidden xl:hidden bg-[#08110D] border-t border-[#142519] px-6 py-4 font-mono text-xs space-y-2.5 shadow-2xl" id="mobileNavDrawer">
+    <a class="block py-1.5 text-zinc-300 hover:text-[#F1C546] border-b border-[#142519]/60" href="paver.html">01 // PAVER</a>
+    <a class="block py-1.5 text-zinc-300 hover:text-[#F1C546] border-b border-[#142519]/60" href="blocos.html">02 // BLOCOS</a>
+    <a class="block py-1.5 text-zinc-300 hover:text-[#F1C546] border-b border-[#142519]/60" href="guias.html">03 // GUIAS</a>
+    <a class="block py-1.5 text-zinc-300 hover:text-[#F1C546] border-b border-[#142519]/60" href="central-tecnica.html">04 // CENTRAL TÉCNICA</a>
+    <a class="block py-1.5 text-zinc-300 hover:text-[#F1C546] border-b border-[#142519]/60" href="passaporte.html">05 // PASSAPORTE DPP</a>
+    <a class="block py-1.5 text-[#F1C546] font-bold border-b border-[#142519]/60" href="brandbook.html">06 // BRANDBOOK</a>
+    <div class="pt-2">
+      <a class="block text-center py-2 rounded-full bg-[#F1C546] text-[#08110D] font-bold uppercase font-sans text-xs" href="paver.html#especificar">ESPECIFICAR PROJETO →</a>
+    </div>
+  </div>
 </header>
+<!-- Sub-navigation for Brandbook Chapters -->
+<nav class="bg-[#040A07]/90 backdrop-blur-sm border-b border-[#142519] py-2.5 px-4 sm:px-8 overflow-x-auto text-[11px] font-mono sticky top-[73px] z-30">
+  <div class="max-w-7xl mx-auto flex items-center gap-5 lg:gap-7 whitespace-nowrap text-zinc-400">
+    <span class="text-[#F1C546] font-bold uppercase tracking-wider text-[10px]">CAPÍTULOS //</span>
+    <a class="hover:text-[#F1C546] transition-colors" href="#visao-geral">01 // Visão Geral</a>
+    <a class="hover:text-[#F1C546] transition-colors" href="#logotipo">02 // Logotipo</a>
+    <a class="hover:text-[#F1C546] transition-colors" href="#cores">03 // Cores</a>
+    <a class="hover:text-[#F1C546] transition-colors" href="#tipografia">04 // Tipografia</a>
+    <a class="hover:text-[#F1C546] transition-colors" href="#sinalizacao">05 // Sinalização</a>
+    <a class="hover:text-[#F1C546] transition-colors" href="#uniformes">06 // Uniformes</a>
+    <a class="hover:text-[#F1C546] transition-colors" href="#downloads">07 // Downloads</a>
+  </div>
+</nav>
 <!-- ================= HERO SECTION COM REDE / MALHA CIRCULAR INTERATIVA ================= -->
 <section class="relative bg-vira-dark text-white pt-12 pb-16 sm:pt-20 sm:pb-24 overflow-hidden border-b border-[#1b2b20]" id="hero-section">
 <!-- Canvas de Partículas / Constelação da Economia Circular -->

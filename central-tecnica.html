@@ -83,39 +83,84 @@
 
 <!-- BEGIN: MainHeader -->
 <!-- Cabeçalho institucional e navegação indexada -->
-<header class="w-full bg-[#0d1a12]/95 backdrop-blur-md border-b border-white/10 px-4 md:px-8 py-3.5 sticky top-[29px] z-40">
-  <div class="max-w-[1440px] mx-auto flex items-center justify-between">
-    <div class="flex items-center gap-4">
-      <a class="flex items-center gap-2 group" href="index.html" aria-label="Página Inicial VIRA">
-        <div class="h-8 flex items-center">
-          <svg class="h-7 w-auto fill-current text-white" fill="none" viewBox="0 0 160 40" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 4L22 34H14L5 4H12Z" fill="white"></path>
-            <path d="M16 4L28 34H20L11 4H16Z" fill="#F1C546"></path>
-            <path d="M38 4V34H31V4H38Z" fill="white"></path>
-            <path d="M47 4H59C64 4 67 7 67 12C67 16 64 19 59 19H54V34H47V4ZM54 13.5H58C60 13.5 61 12.8 61 11.5C61 10.2 60 9.5 58 9.5H54V13.5Z" fill="white"></path>
-            <path d="M58 19L68 34H60L51 20.5L58 19Z" fill="white"></path>
-            <path d="M84 4L94 34H86L83 24H73L70 34H63L73 4H84ZM75 18H81L78 8.5L75 18Z" fill="white"></path>
-          </svg>
+<header class="bg-[#08110D]/95 backdrop-blur-md border-b border-[#142519] sticky top-[29px] z-40" data-purpose="primary-navigation">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <!-- Brand Logo Container -->
+    <div class="flex items-center space-x-4">
+      <a aria-label="Página Inicial VIRA" class="flex items-center space-x-2 group focus:outline-none" href="index.html">
+        <div class="flex items-center gap-3">
+          <img alt="VIRA" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhzmy9X4hLoTq7ywTJRCrTPJM98BZgX7i_icoaBj5_4urTmKJBG53G5G626vvFOdU2dKdMCSQbTgR9rE0ezzG6R4xORiPnBrC6GRXKCFi2xNVRhMYcAovSmJsDOrTkvqzxX8jxuxMlwdGSlR4SVXQ3MMU6zebyiQbeiSTyPvxBucIi3b6vRgBbkig5LBw8Ynat01K6VKlafO3YOoBvyKzg1RiWttC6dglACoDT0Gc0bLcbPeKrYT9SlygadzNRCnvHTwE"/>
+          <div class="border-l border-neutral-700/80 pl-3 leading-tight hidden sm:flex flex-col justify-center">
+            <span class="text-[9px] font-mono text-emerald-400 tracking-widest uppercase font-semibold">CENTRAL TÉCNICA //</span>
+            <span class="text-[9px] font-mono text-emerald-400 tracking-widest uppercase font-semibold">ENGENHARIA &amp; LAUDOS</span>
+          </div>
         </div>
       </a>
-      <div class="hidden lg:block border-l border-white/20 pl-4 py-0.5">
-        <span class="font-mono text-[11px] text-zinc-400 uppercase tracking-widest block font-medium">CENTRAL TÉCNICA // ENGENHARIA &amp; LAUDOS</span>
-      </div>
     </div>
-    <nav class="hidden md:flex items-center gap-1.5 lg:gap-2 font-mono text-xs">
-      <a class="px-3 py-1.5 rounded-full text-zinc-400 hover:text-white hover:bg-white/5 transition-colors" href="paver.html">01 // PAVER</a>
-      <a class="px-3 py-1.5 rounded-full text-zinc-400 hover:text-white hover:bg-white/5 transition-colors" href="blocos.html">02 // BLOCOS</a>
-      <a class="px-3 py-1.5 rounded-full text-zinc-400 hover:text-white hover:bg-white/5 transition-colors" href="guias.html">03 // GUIAS</a>
-      <a class="px-3.5 py-1.5 rounded-full bg-[#142519] border border-amber-400/40 text-[#F1C546] font-semibold flex items-center shadow-[0_0_12px_rgba(241,197,70,0.15)]" href="central-tecnica.html">
-        <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 mr-2 animate-pulse"></span>04 // CENTRAL TÉCNICA
-      </a>
-      <a class="px-3 py-1.5 rounded-full text-zinc-400 hover:text-white hover:bg-white/5 transition-colors" href="passaporte.html">05 // PASSAPORTE DPP</a>
-      <a class="px-3 py-1.5 rounded-full text-zinc-400 hover:text-white hover:bg-white/5 transition-colors" href="brandbook.html">06 // BRANDBOOK</a>
+
+    <!-- Navigation Links with Instrumental Indexing (Annex 1 & 2 Specification) -->
+    <nav class="hidden xl:flex items-center gap-1.5 2xl:gap-3 text-neutral-400 product-switcher">
+        <a class="px-2.5 py-1.5 text-zinc-400 hover:text-white transition-colors duration-150 flex items-center group shrink-0" href="paver.html">
+          <span class="flex flex-col text-left leading-tight font-mono text-[10px] tracking-wider uppercase">
+            <span>01 //</span>
+            <span class="font-medium text-zinc-300 group-hover:text-white">PAVER</span>
+          </span>
+        </a>
+        <a class="px-2.5 py-1.5 text-zinc-400 hover:text-white transition-colors duration-150 flex items-center group shrink-0" href="blocos.html">
+          <span class="flex flex-col text-left leading-tight font-mono text-[10px] tracking-wider uppercase">
+            <span>02 //</span>
+            <span class="font-medium text-zinc-300 group-hover:text-white">BLOCOS</span>
+          </span>
+        </a>
+        <a class="px-2.5 py-1.5 text-zinc-400 hover:text-white transition-colors duration-150 flex items-center group shrink-0" href="guias.html">
+          <span class="flex flex-col text-left leading-tight font-mono text-[10px] tracking-wider uppercase">
+            <span>03 //</span>
+            <span class="font-medium text-zinc-300 group-hover:text-white">GUIAS</span>
+          </span>
+        </a>
+        <a class="px-3.5 py-1.5 rounded-full border border-[#F1C546] text-[#F1C546] bg-[#F1C546]/10 font-semibold flex items-center gap-2 shadow-inner group shrink-0" href="central-tecnica.html" aria-current="page">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#F1C546] inline-block shrink-0"></span>
+          <span class="flex flex-col text-left leading-tight font-mono text-[10px] tracking-wider uppercase">
+            <span>04 // CENTRAL</span>
+            <span class="font-bold">TÉCNICA</span>
+          </span>
+        </a>
+        <a class="px-2.5 py-1.5 text-zinc-400 hover:text-white transition-colors duration-150 flex items-center group shrink-0" href="passaporte.html">
+          <span class="flex flex-col text-left leading-tight font-mono text-[10px] tracking-wider uppercase">
+            <span>05 // PASSAPORTE</span>
+            <span class="font-medium text-zinc-300 group-hover:text-white">DPP</span>
+          </span>
+        </a>
+        <a class="px-2.5 py-1.5 text-zinc-400 hover:text-white transition-colors duration-150 flex items-center group shrink-0" href="brandbook.html">
+          <span class="flex flex-col text-left leading-tight font-mono text-[10px] tracking-wider uppercase">
+            <span>06 //</span>
+            <span class="font-medium text-zinc-300 group-hover:text-white">BRANDBOOK</span>
+          </span>
+        </a>
     </nav>
-    <div class="flex items-center">
-      <a class="px-5 py-2 rounded-full bg-[#F1C546] hover:bg-[#ffcf4d] text-[#08110D] font-bold text-xs uppercase tracking-wider transition-all duration-200 shadow-md hover:scale-105 active:scale-95 flex items-center gap-1.5" href="#solicitar">
-        ESPECIFICAR PROJETO →
+
+    <!-- CTA Button & Mobile Toggle (Annex 1 Specification) -->
+    <div class="flex items-center gap-3">
+      <a class="px-5 py-2 rounded-full bg-[#F1C546] hover:bg-[#ffcf4d] text-[#08110D] font-bold text-[11px] uppercase tracking-wider transition-all duration-200 shadow-md hover:scale-105 active:scale-95 flex flex-col items-center justify-center leading-tight font-sans shrink-0" href="#solicitar">
+        <span>ESPECIFICAR</span>
+        <span class="flex items-center gap-1">PROJETO <span class="font-mono font-bold">→</span></span>
       </a>
+      <button aria-label="Abrir Menu" class="xl:hidden p-2 text-zinc-300 hover:text-[#F1C546] focus:outline-none" onclick="const m=document.getElementById('mobileNavDrawer'); if(m) m.classList.toggle('hidden');">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer -->
+  <div class="hidden xl:hidden bg-[#08110D] border-t border-[#142519] px-6 py-4 font-mono text-xs space-y-2.5 shadow-2xl" id="mobileNavDrawer">
+    <a class="block py-1.5 text-zinc-300 hover:text-[#F1C546] border-b border-[#142519]/60" href="paver.html">01 // PAVER</a>
+    <a class="block py-1.5 text-zinc-300 hover:text-[#F1C546] border-b border-[#142519]/60" href="blocos.html">02 // BLOCOS</a>
+    <a class="block py-1.5 text-zinc-300 hover:text-[#F1C546] border-b border-[#142519]/60" href="guias.html">03 // GUIAS</a>
+    <a class="block py-1.5 text-[#F1C546] font-bold border-b border-[#142519]/60" href="central-tecnica.html">04 // CENTRAL TÉCNICA</a>
+    <a class="block py-1.5 text-zinc-300 hover:text-[#F1C546] border-b border-[#142519]/60" href="passaporte.html">05 // PASSAPORTE DPP</a>
+    <a class="block py-1.5 text-zinc-300 hover:text-[#F1C546] border-b border-[#142519]/60" href="brandbook.html">06 // BRANDBOOK</a>
+    <div class="pt-2">
+      <a class="block text-center py-2 rounded-full bg-[#F1C546] text-[#08110D] font-bold uppercase font-sans text-xs" href="#solicitar">ESPECIFICAR PROJETO →</a>
     </div>
   </div>
 </header>
