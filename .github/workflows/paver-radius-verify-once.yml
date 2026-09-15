@@ -30,8 +30,9 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Run proven responsive visual smoke against current branch
         run: |
-          git show 3eeac51386d29d6706b562ded364e4b0b4a031a6:scripts/internal-pages-visual-smoke.mjs > /tmp/internal-pages-visual-smoke.mjs
-          cp /tmp/internal-pages-visual-smoke.mjs scripts/internal-pages-visual-smoke.mjs
+          mkdir -p scripts
+          git show 3eeac51386d29d6706b562ded364e4b0b4a031a6:scripts/internal-pages-visual-smoke.mjs > scripts/internal-pages-visual-smoke.mjs
           node scripts/internal-pages-visual-smoke.mjs
+          rm -f scripts/internal-pages-visual-smoke.mjs
       - name: Verify canonical Paver radius contract
         run: node --test tests/internal-pages-visual-unity.test.mjs
