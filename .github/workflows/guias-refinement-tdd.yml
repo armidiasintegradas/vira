@@ -1,0 +1,37 @@
+name: Guias refinement TDD
+
+on:
+  push:
+    branches:
+      - feat/internal-pages-visual-unity
+    paths:
+      - tests/guias-page.test.mjs
+      - internal-pages.css
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/internal-pages-visual-unity
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify Guias visual contract
+        run: node --test tests/guias-page.test.mjs
+      - name: Run complete static suite
+        run: node --test tests/*.test.mjs
+      - name: Install browser harness
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Run responsive visual smoke
+        run: |
+          mkdir -p scripts
+          git show 3eeac51386d29d6706b562ded364e4b0b4a031a6:scripts/internal-pages-visual-smoke.mjs > scripts/internal-pages-visual-smoke.mjs
+          node scripts/internal-pages-visual-smoke.mjs
