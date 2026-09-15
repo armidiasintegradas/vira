@@ -22,7 +22,9 @@ jobs:
         with:
           node-version: 22
       - name: Apply approved Brandbook refinement
-        run: python3 scripts/brandbook-refinement-apply.py
+        run: |
+          python3 scripts/brandbook-refinement-apply.py
+          python3 scripts/brandbook-refinement-selector-fix.py
       - name: Verify targeted contract is green
         run: node --test tests/brandbook-page.test.mjs
       - name: Commit approved Brandbook refinement
