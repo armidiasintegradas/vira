@@ -181,7 +181,7 @@
   </div>
 </header>
 <!-- Sub-navigation for Brandbook Chapters -->
-<nav class="bg-[#040A07]/90 backdrop-blur-sm border-b border-[#142519] py-2.5 px-4 sm:px-8 overflow-x-auto text-[11px] font-mono sticky top-[73px] z-30">
+<nav class="bg-[#040A07]/90 backdrop-blur-sm border-b border-[#142519] py-2.5 px-4 sm:px-8 overflow-x-auto text-[11px] font-mono sticky top-[73px] z-30" data-purpose="brandbook-chapter-nav">
   <div class="max-w-7xl mx-auto flex items-center gap-5 lg:gap-7 whitespace-nowrap text-zinc-400">
     <span class="text-[#F1C546] font-bold uppercase tracking-wider text-[10px]">CAPÍTULOS //</span>
     <a class="hover:text-[#F1C546] transition-colors" href="#visao-geral">01 // Visão Geral</a>
@@ -194,7 +194,7 @@
   </div>
 </nav>
 <!-- ================= HERO SECTION COM REDE / MALHA CIRCULAR INTERATIVA ================= -->
-<section data-internal-hero="true" class="relative bg-vira-dark text-white pt-12 pb-16 sm:pt-20 sm:pb-24 overflow-hidden border-b border-[#1b2b20]" id="hero-section">
+<section data-internal-hero="true" class="relative bg-vira-dark text-white pt-12 pb-16 sm:pt-20 sm:pb-24 overflow-hidden border-b border-[#1b2b20]" data-purpose="brandbook-hero" id="hero-section">
 <!-- Canvas de Partículas / Constelação da Economia Circular -->
 <canvas class="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-80" id="hero-particles-canvas" width="2560" height="1125"></canvas>
 <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#F1C546_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none"></div>
@@ -223,7 +223,7 @@
 </div>
 </div>
 <!-- Telemetry Data Card -->
-<div class="lg:col-span-5">
+<div class="lg:col-span-5" data-purpose="brandbook-hero-metrics">
 <div class="bg-[#0d1812]/90 backdrop-blur-md border border-[#223829] rounded-vira p-6 sm:p-8 shadow-2xl relative">
 <div class="flex items-center justify-between border-b border-[#223829] pb-4 mb-5">
 <div class="flex items-center gap-2">
@@ -264,7 +264,7 @@
 </div>
 </section>
 <!-- ================= 01 // A PROMESSA DA MARCA ================= -->
-<section class="py-16 sm:py-24 bg-vira-surface border-b border-vira-border" id="visao-geral">
+<section class="py-16 sm:py-24 bg-vira-surface border-b border-vira-border" data-purpose="brand-overview" id="visao-geral">
 <div class="max-w-7xl mx-auto px-4 sm:px-8">
 <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
 <div>
@@ -371,7 +371,7 @@
 </div>
 </section>
 <!-- ================= 02 // LOGOTIPO OFICIAL & MOLDURAS ARREDONDADAS ================= -->
-<section class="py-16 sm:py-24 bg-white border-b border-vira-border" id="logotipo">
+<section class="py-16 sm:py-24 bg-white border-b border-vira-border" data-purpose="brand-logo-system" id="logotipo">
 <div class="max-w-7xl mx-auto px-4 sm:px-8">
 <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
 <div>
@@ -399,7 +399,7 @@
 </div>
 </section>
 <!-- ================= 03 // MATRIZ CROMÁTICA OFICIAL ================= -->
-<section class="py-16 sm:py-24 bg-vira-surface border-b border-vira-border" id="cores">
+<section class="py-16 sm:py-24 bg-vira-surface border-b border-vira-border" data-purpose="brand-colors" id="cores">
 <div class="max-w-7xl mx-auto px-4 sm:px-8">
 <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
 <div>
@@ -487,7 +487,7 @@
 </div>
 </section>
 <!-- ================= 04 // SISTEMA TIPOGRÁFICO ================= -->
-<section class="py-16 sm:py-24 bg-white border-b border-vira-border" id="tipografia">
+<section class="py-16 sm:py-24 bg-white border-b border-vira-border" data-purpose="brand-typography" id="tipografia">
 <div class="max-w-7xl mx-auto px-4 sm:px-8">
 <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
 <div>
@@ -606,7 +606,7 @@
 </div>
 </section>
 <!-- ================= 05 // SINALIZAÇÃO DA FÁBRICA & IDENTIDADE ESPACIAL ================= -->
-<section class="py-16 sm:py-24 bg-vira-dark text-white border-b border-[#1b2b20]" id="sinalizacao">
+<section class="py-16 sm:py-24 bg-vira-dark text-white border-b border-[#1b2b20]" data-purpose="brand-signage" id="sinalizacao">
 <div class="max-w-7xl mx-auto px-4 sm:px-8">
 <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
 <div>
@@ -696,7 +696,7 @@
 </div>
 </section>
 <!-- ================= 06 // INDUMENTÁRIA FABRIL, ERGONOMIA & EPIS ================= -->
-<section class="py-16 sm:py-24 bg-vira-surface border-b border-vira-border" id="uniformes">
+<section class="py-16 sm:py-24 bg-vira-surface border-b border-vira-border" data-purpose="brand-uniforms" id="uniformes">
 <div class="max-w-7xl mx-auto px-4 sm:px-8">
 <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
 <div>
@@ -910,7 +910,7 @@
 </div>
 </section>
 <!-- ================= 07 // CENTRAL DE ATIVOS & DOWNLOADS ================= -->
-<section class="py-16 sm:py-24 bg-white border-b border-vira-border" id="downloads">
+<section class="py-16 sm:py-24 bg-white border-b border-vira-border" data-purpose="brand-downloads" id="downloads">
 <div class="max-w-7xl mx-auto px-4 sm:px-8">
 <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
 <div>
