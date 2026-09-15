@@ -1551,13 +1551,13 @@
 }
 
 @media (max-width:639px) {
-  [data-vira-internal="passaporte"] [data-purpose="dpp-architecture"] .overflow-x-auto,
+  [data-vira-internal="passaporte"] [data-purpose="audit-terminal"] .overflow-x-auto,
   [data-vira-internal="passaporte"] [data-purpose="legal-matrix"] .overflow-x-auto {
     position:relative;
     padding-top:28px;
   }
 
-  [data-vira-internal="passaporte"] [data-purpose="dpp-architecture"] .overflow-x-auto::before,
+  [data-vira-internal="passaporte"] [data-purpose="audit-terminal"] .overflow-x-auto::before,
   [data-vira-internal="passaporte"] [data-purpose="legal-matrix"] .overflow-x-auto::before {
     content:"DESLIZE →";
     position:absolute;
@@ -1574,7 +1574,7 @@
     pointer-events:none;
   }
 
-  [data-vira-internal="passaporte"] [data-purpose="dpp-architecture"] .overflow-x-auto::before {
+  [data-vira-internal="passaporte"] [data-purpose="audit-terminal"] .overflow-x-auto::before {
     border:1px solid rgba(241,197,70,.28);
     background:rgba(8,17,13,.88);
     color:var(--vira-gold);
@@ -1586,7 +1586,7 @@
     color:var(--vira-dark);
   }
 
-  [data-vira-internal="passaporte"] [data-purpose="dpp-architecture"] .overflow-x-auto::after,
+  [data-vira-internal="passaporte"] [data-purpose="audit-terminal"] .overflow-x-auto::after,
   [data-vira-internal="passaporte"] [data-purpose="legal-matrix"] .overflow-x-auto::after {
     content:"";
     position:absolute;
@@ -1598,7 +1598,7 @@
     pointer-events:none;
   }
 
-  [data-vira-internal="passaporte"] [data-purpose="dpp-architecture"] .overflow-x-auto::after {
+  [data-vira-internal="passaporte"] [data-purpose="audit-terminal"] .overflow-x-auto::after {
     background:linear-gradient(to left,rgba(8,17,13,.96),rgba(8,17,13,0));
   }
 
