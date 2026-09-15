@@ -1,0 +1,33 @@
+name: Passaporte mobile diagnose
+
+on:
+  push:
+    branches:
+      - feat/internal-pages-visual-unity
+    paths:
+      - '.github/workflows/passaporte-mobile-diagnose.yml'
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/internal-pages-visual-unity
+      - name: Inspect technical table ancestry
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          lines=Path('passaporte.html').read_text(encoding='utf-8').splitlines()
+          needle='Origem dos Polímeros'
+          idx=next(i for i,l in enumerate(lines) if needle in l)
+          print('TARGET_LINE', idx+1)
+          for i in range(max(0,idx-90), min(len(lines),idx+30)):
+              print(f'{i+1:04d}: {lines[i]}')
+          print('\nNEAREST_SECTION_BACKWARD:')
+          for i in range(idx,-1,-1):
+              if '<section' in lines[i]:
+                  print(f'{i+1:04d}: {lines[i]}')
+                  break
+          PY
