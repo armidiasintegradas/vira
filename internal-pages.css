@@ -314,7 +314,9 @@
 [data-vira-internal] main :where(p,li) { font-family:"Manrope",sans-serif; }
 [data-vira-internal] main section:not([data-internal-hero="true"]) { scroll-margin-top:calc(var(--vira-page-top) + 20px); }
 [data-vira-internal] main h2 { letter-spacing:-.03em; }
-[data-vira-internal] main :where(.rounded-4xl,.rounded-3xl,.rounded-2xl) { border-radius:24px; }
+[data-vira-internal] main .rounded-2xl { border-radius:16px; }
+[data-vira-internal] main .rounded-3xl { border-radius:24px; }
+[data-vira-internal] main .rounded-4xl { border-radius:32px; }
 [data-vira-internal] main :where(.font-mono,.font-mono-tech,.font-mono-code) { font-family:"IBM Plex Mono",monospace!important; letter-spacing:.02em; }
 [data-vira-internal] main table { border-color:var(--vira-border-subtle); }
 [data-vira-internal] main details { border-color:var(--vira-border-subtle); }
