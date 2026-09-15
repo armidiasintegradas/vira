@@ -33,7 +33,7 @@ jobs:
           SERVER_PID=$!
           trap 'kill $SERVER_PID || true' EXIT
           sleep 2
-          cat > /tmp/blocos-review.mjs <<'EOF'
+          cat > blocos-review.mjs <<'EOF'
           import { chromium } from 'playwright';
           const browser = await chromium.launch({headless:true});
           const cases = [
@@ -70,7 +70,8 @@ jobs:
           }
           await browser.close();
           EOF
-          node /tmp/blocos-review.mjs
+          node blocos-review.mjs
+          rm -f blocos-review.mjs
       - uses: actions/upload-artifact@v4
         with:
           name: blocos-visual-review
