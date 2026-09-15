@@ -55,8 +55,9 @@
     ::-webkit-scrollbar { display: none; }
     .canvas-container { position: absolute; inset: 0; pointer-events: auto; }
   </style>
+<link rel="stylesheet" href="internal-pages.css">
 </head>
-<body class="bg-vira-dark font-body-md text-zinc-100 antialiased selection:bg-[#F1C546] selection:text-[#08110D]">
+<body class="bg-vira-dark font-body-md text-zinc-100 antialiased selection:bg-[#F1C546] selection:text-[#08110D]" data-vira-internal="guias">
 <!-- BEGIN: TopTelemetryRibbon -->
 <aside class="bg-[#040A07] text-zinc-300 border-b border-[#142519] text-[11px] font-mono tracking-wider uppercase py-2.5 px-4 sticky top-0 z-50" data-purpose="telemetry-bar">
 <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
@@ -87,7 +88,7 @@
     <div class="flex items-center space-x-4">
       <a aria-label="Página Inicial VIRA" class="flex items-center space-x-2 group focus:outline-none" href="index.html">
         <div class="flex items-center gap-3">
-          <img alt="VIRA" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhzmy9X4hLoTq7ywTJRCrTPJM98BZgX7i_icoaBj5_4urTmKJBG53G5G626vvFOdU2dKdMCSQbTgR9rE0ezzG6R4xORiPnBrC6GRXKCFi2xNVRhMYcAovSmJsDOrTkvqzxX8jxuxMlwdGSlR4SVXQ3MMU6zebyiQbeiSTyPvxBucIi3b6vRgBbkig5LBw8Ynat01K6VKlafO3YOoBvyKzg1RiWttC6dglACoDT0Gc0bLcbPeKrYT9SlygadzNRCnvHTwE"/>
+          <img alt="VIRA" class="h-8 w-auto object-contain" src="assets/marca-site-menu.webp"/>
           <div class="border-l border-neutral-700/80 pl-3 leading-tight hidden sm:flex flex-col justify-center">
             <span class="text-[9px] font-mono text-emerald-400 tracking-widest uppercase font-semibold">GUIAS &amp; MEIO-FIO</span>
             <span class="text-[9px] font-mono text-emerald-400 tracking-widest uppercase font-semibold">NBR 14890</span>
@@ -165,7 +166,7 @@
 <!-- END: MainHeader -->
 <main>
 <!-- BEGIN: HeroSection with Interactive Particle Canvas -->
-<section class="relative min-h-[88vh] flex items-center justify-center overflow-hidden border-b border-[#142519] bg-[#08110D]" data-purpose="hero-interactive">
+<section data-internal-hero="true" class="relative min-h-[88vh] flex items-center justify-center overflow-hidden border-b border-[#142519] bg-[#08110D]" data-purpose="hero-interactive">
 <!-- HTML5 Particle Canvas Background -->
 <canvas class="canvas-container z-0 opacity-45" id="heroParticles"></canvas>
 <!-- Subtle Urban Grid Overlay -->
@@ -1095,4 +1096,5 @@
     }
   });
 </script>
+<script defer src="internal-pages.js"></script>
 </body></html>
