@@ -47,6 +47,7 @@ jobs:
           SERVER_PID=$!
           trap 'kill $SERVER_PID || true' EXIT
           sleep 2
+          mkdir -p scripts
           cat > scripts/telemetry-responsive-verify.mjs <<'EOF'
           import { chromium } from 'playwright';
           import assert from 'node:assert/strict';
@@ -100,6 +101,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          mkdir -p scripts
           git show 3eeac51386d29d6706b562ded364e4b0b4a031a6:scripts/internal-pages-visual-smoke.mjs > scripts/internal-pages-visual-smoke.mjs
           node scripts/internal-pages-visual-smoke.mjs
           rm -f scripts/internal-pages-visual-smoke.mjs
