@@ -5,8 +5,8 @@ const home=read('index.html');
 for(const href of ['paver.html','blocos.html','guias.html','central-tecnica.html','passaporte.html']){
   assert(home.includes(`href="${href}"`),`Home missing ${href}`);
 }
-// 2026 Brand Specification for paver.html, blocos.html, guias.html and central-tecnica.html
-for(const file of ['paver.html','blocos.html','guias.html','central-tecnica.html']){
+// 2026 Brand Specification for paver.html, blocos.html, guias.html, central-tecnica.html and passaporte.html
+for(const file of ['paver.html','blocos.html','guias.html','central-tecnica.html','passaporte.html']){
   const html = read(file);
   for(const href of ['paver.html','blocos.html','guias.html','central-tecnica.html','passaporte.html']){
     assert(html.includes(`href="${href}"`),`${file} missing ${href}`);
