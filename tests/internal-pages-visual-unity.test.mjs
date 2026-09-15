@@ -60,6 +60,9 @@ assert(sharedCss.includes('[data-purpose="telemetry-bar"]'), 'internal-pages.css
 assert(sharedCss.includes('[data-purpose="primary-navigation"]'), 'internal-pages.css: regra de header ausente');
 assert(sharedCss.includes('[data-internal-hero="true"]'), 'internal-pages.css: regra de hero ausente');
 assert(sharedCss.includes('prefers-reduced-motion'), 'internal-pages.css: redução de movimento ausente');
+assert(sharedCss.includes('[data-vira-internal] main .rounded-2xl { border-radius:16px; }'), 'internal-pages.css: rounded-2xl deve preservar 16px do golden master Paver');
+assert(sharedCss.includes('[data-vira-internal] main .rounded-3xl { border-radius:24px; }'), 'internal-pages.css: rounded-3xl deve preservar 24px do golden master Paver');
+assert(sharedCss.includes('[data-vira-internal] main .rounded-4xl { border-radius:32px; }'), 'internal-pages.css: rounded-4xl deve preservar 32px do golden master Paver');
 
 const home = read('index.html');
 assert.equal(gitBlobSha(home), '47919a654cb923c0f32c9c1a4f29d89419af0f3c', 'index.html foi alterado nesta fase');
