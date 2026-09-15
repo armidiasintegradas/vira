@@ -1,0 +1,66 @@
+name: Finalize Brandbook refinement once
+
+on:
+  push:
+    branches:
+      - feat/internal-pages-visual-unity
+    paths:
+      - '.github/workflows/brandbook-finalize-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/internal-pages-visual-unity
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Create clean final commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'armidiasintegradas'
+          git config user.email 'armidiasintegradas@gmail.com'
+          git rm -f .github/workflows/brandbook-refinement-tdd.yml
+          git rm -f .github/workflows/brandbook-apply-once.yml
+          git rm -f .github/workflows/brandbook-finalize-once.yml
+          git rm -f scripts/brandbook-refinement-apply.py
+          git rm -f scripts/brandbook-refinement-selector-fix.py
+          git commit -m 'chore: clean Brandbook refinement QA harness'
+
+      - name: Verify Brandbook contract on clean final commit
+        run: node --test tests/brandbook-page.test.mjs
+
+      - name: Run complete static suite on clean final commit
+        run: node --test tests/*.test.mjs
+
+      - name: Install browser harness
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Run responsive visual smoke on clean final commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p scripts
+          git show 3eeac51386d29d6706b562ded364e4b0b4a031a6:scripts/internal-pages-visual-smoke.mjs > scripts/internal-pages-visual-smoke.mjs
+          node scripts/internal-pages-visual-smoke.mjs
+          rm -f scripts/internal-pages-visual-smoke.mjs
+
+      - name: Remove temporary browser harness
+        run: rm -rf node_modules
+
+      - name: Confirm clean working tree and push
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "$(git status --porcelain)"
+          git push origin HEAD:feat/internal-pages-visual-unity
