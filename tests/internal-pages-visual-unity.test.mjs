@@ -22,13 +22,22 @@ function gitBlobSha(content) {
   return crypto.createHash('sha1').update(header).update(body).digest('hex');
 }
 
+function primaryHeader(html) {
+  const start = html.indexOf('<header');
+  const end = start >= 0 ? html.indexOf('</header>', start) : -1;
+  return start >= 0 && end >= 0 ? html.slice(start, end + '</header>'.length) : '';
+}
+
 for (const [file, key] of targets) {
   const html = read(file);
   assert(html.includes('href="internal-pages.css"'), `${file}: shared CSS ausente`);
   assert(html.includes('src="internal-pages.js"'), `${file}: shared JS ausente`);
   assert(html.includes(`data-vira-internal="${key}"`), `${file}: page key ausente`);
-  assert(html.includes('data-purpose="internal-hero"'), `${file}: hero compartilhado não marcado`);
-  assert(!html.includes('lh3.googleusercontent.com/aida-public/'), `${file}: logo externa temporária ainda presente`);
+  assert(html.includes('data-internal-hero="true"'), `${file}: hero compartilhado não marcado`);
+  const header = primaryHeader(html);
+  assert(header, `${file}: header primário ausente`);
+  assert(!header.includes('lh3.googleusercontent.com/aida-public/'), `${file}: header ainda depende de logo externa temporária`);
+  assert(header.includes('assets/marca-site-menu.webp'), `${file}: header não usa a marca local oficial`);
 }
 
 const sharedJs = read('internal-pages.js');
@@ -49,7 +58,7 @@ for (const token of ['#040A07', '#08110D', '#0D1A12', '#142519', '#F1C546', '#D9
 assert(sharedCss.includes('[data-vira-internal]'), 'internal-pages.css: escopo interno ausente');
 assert(sharedCss.includes('[data-purpose="telemetry-bar"]'), 'internal-pages.css: regra de telemetria ausente');
 assert(sharedCss.includes('[data-purpose="primary-navigation"]'), 'internal-pages.css: regra de header ausente');
-assert(sharedCss.includes('[data-purpose="internal-hero"]'), 'internal-pages.css: regra de hero ausente');
+assert(sharedCss.includes('[data-internal-hero="true"]'), 'internal-pages.css: regra de hero ausente');
 assert(sharedCss.includes('prefers-reduced-motion'), 'internal-pages.css: redução de movimento ausente');
 
 const home = read('index.html');
