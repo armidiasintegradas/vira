@@ -33,7 +33,7 @@ jobs:
           trap 'kill $SERVER_PID || true' EXIT
           sleep 2
           mkdir -p review-shots
-          cat > /tmp/capture-paver.mjs <<'EOF'
+          cat > capture-paver.mjs <<'EOF'
           import { chromium } from 'playwright';
           const browser = await chromium.launch({headless:true});
           const cases = [
@@ -59,7 +59,8 @@ jobs:
           }
           await browser.close();
           EOF
-          node /tmp/capture-paver.mjs
+          node capture-paver.mjs
+          rm -f capture-paver.mjs
       - uses: actions/upload-artifact@v4
         with:
           name: paver-visual-review
