@@ -1,0 +1,98 @@
+name: Brandbook visual review once
+
+on:
+  push:
+    branches:
+      - feat/internal-pages-visual-unity
+    paths:
+      - .github/workflows/brandbook-visual-review-once.yml
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/internal-pages-visual-unity
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Capture Brandbook
+        run: |
+          set -euo pipefail
+          mkdir -p visual-review
+          python3 -m http.server 4173 >/tmp/vira-brandbook-review.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          sleep 2
+          cat > capture-brandbook.mjs <<'EOF'
+          import { chromium } from 'playwright';
+          import assert from 'node:assert/strict';
+
+          const browser = await chromium.launch({headless:true});
+          const cases = [
+            ['desktop',1440,900],
+            ['tablet',1024,768],
+            ['mobile',390,844],
+          ];
+          const sections = [
+            ['hero','[data-purpose="brandbook-hero"]'],
+            ['overview','[data-purpose="brand-overview"]'],
+            ['logo','[data-purpose="brand-logo-system"]'],
+            ['colors','[data-purpose="brand-colors"]'],
+            ['typography','[data-purpose="brand-typography"]'],
+            ['signage','[data-purpose="brand-signage"]'],
+            ['uniforms','[data-purpose="brand-uniforms"]'],
+            ['downloads','[data-purpose="brand-downloads"]'],
+          ];
+
+          for (const [name,width,height] of cases) {
+            const page = await browser.newPage({viewport:{width,height}});
+            const errors=[];
+            page.on('pageerror', e => errors.push(e.message));
+            await page.goto('http://127.0.0.1:4173/brandbook.html',{waitUntil:'networkidle',timeout:30000});
+            await page.waitForFunction(() => document.documentElement.dataset.viraInternalReady === 'true', null, {timeout:10000});
+            const state = await page.evaluate(() => {
+              const header=document.querySelector('[data-purpose="primary-navigation"]')?.getBoundingClientRect();
+              const chapters=document.querySelector('[data-purpose="brandbook-chapter-nav"]')?.getBoundingClientRect();
+              return {
+                noHorizontalOverflow: document.documentElement.scrollWidth <= innerWidth,
+                scrollWidth: document.documentElement.scrollWidth,
+                innerWidth,
+                header: header ? {top:header.top,height:header.height,width:header.width} : null,
+                chapters: chapters ? {top:chapters.top,height:chapters.height,width:chapters.width} : null,
+                canvas: Boolean(document.querySelector('#hero-particles-canvas')),
+                activeBrandbook: Boolean(document.querySelector('a[href="brandbook.html"][aria-current="page"]')),
+              };
+            });
+            assert(state.header, `${name}: header ausente`);
+            assert(state.chapters, `${name}: navegação capitular ausente`);
+            assert(state.canvas, `${name}: canvas do hero ausente`);
+            assert(state.activeBrandbook, `${name}: estado ativo Brandbook ausente`);
+            assert(state.noHorizontalOverflow, `${name}: overflow horizontal global`);
+            assert.equal(errors.length,0,`${name}: page errors: ${errors.join(' | ')}`);
+            await page.screenshot({path:`visual-review/brandbook-${name}-full.png`,fullPage:true});
+            for (const [label,selector] of sections) {
+              const el=page.locator(selector).first();
+              if (await el.count()) {
+                await el.screenshot({path:`visual-review/brandbook-${name}-${label}.png`});
+              }
+            }
+            console.log(`brandbook ${name}: ok`, JSON.stringify(state));
+            await page.close();
+          }
+          await browser.close();
+          EOF
+          node capture-brandbook.mjs
+          rm -f capture-brandbook.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: brandbook-visual-review
+          path: visual-review/*.png
+          retention-days: 1
