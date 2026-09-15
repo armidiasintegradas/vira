@@ -38,6 +38,12 @@ assert(sharedCss.includes('[data-vira-internal="guias"] [data-purpose="calculato
 assert(sharedCss.includes('[data-vira-internal="guias"] [data-purpose="specification-form"]'), 'Guias: formulário de especificação não possui acabamento canônico');
 assert(sharedCss.includes('@media (max-width:1023px)') && sharedCss.includes('@media (max-width:639px)'), 'Guias: refinamento responsivo tablet/mobile ausente');
 
+// Refinamento mobile aprovado na revisão visual
+assert(sharedCss.includes('/* Guias mobile visual review refinement */'), 'Guias: refinamento mobile da revisão visual não está documentado');
+assert(sharedCss.includes('@media (min-width:360px) and (max-width:639px)') && sharedCss.includes('[data-vira-internal="guias"] [data-internal-hero="true"] > div.relative:not(.absolute) > div.mt-14'), 'Guias: hero mobile 2x2 em 360–639px ausente');
+assert(sharedCss.includes('[data-vira-internal="guias"] [data-purpose="technical-anatomy"] .lg\\:col-span-7.overflow-x-auto::before') && sharedCss.includes('content:"DESLIZE →"'), 'Guias: affordance DESLIZE da tabela técnica ausente');
+assert(sharedCss.includes('[data-vira-internal="guias"] [data-purpose="technical-anatomy"] .lg\\:col-span-7.overflow-x-auto::after') && sharedCss.includes('linear-gradient(to left,rgba(8,17,13,.96),rgba(8,17,13,0))'), 'Guias: fade lateral da tabela técnica ausente');
+
 // Integração com Card da Home
 assert(app.includes('button.dataset.product==="guia-meio-fio"') && app.includes('location.href="guias.html"'), 'home não direciona Guias para guias.html');
 
