@@ -1433,3 +1433,49 @@
     padding-block:64px!important;
   }
 }
+
+/* Guias mobile visual review refinement */
+@media (min-width:360px) and (max-width:639px) {
+  [data-vira-internal="guias"] [data-internal-hero="true"] > div.relative:not(.absolute) > div.mt-14 {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+@media (max-width:639px) {
+  [data-vira-internal="guias"] [data-purpose="technical-anatomy"] .lg\:col-span-7.overflow-x-auto {
+    position:relative;
+    padding-top:26px;
+    isolation:isolate;
+  }
+
+  [data-vira-internal="guias"] [data-purpose="technical-anatomy"] .lg\:col-span-7.overflow-x-auto::before {
+    content:"DESLIZE →";
+    position:absolute;
+    z-index:4;
+    top:0;
+    right:2px;
+    padding:3px 7px;
+    border:1px solid rgba(241,197,70,.28);
+    border-radius:999px;
+    background:rgba(8,17,13,.88);
+    color:var(--vira-gold);
+    font-family:"IBM Plex Mono",monospace;
+    font-size:9px;
+    line-height:1.2;
+    font-weight:700;
+    letter-spacing:.08em;
+    pointer-events:none;
+  }
+
+  [data-vira-internal="guias"] [data-purpose="technical-anatomy"] .lg\:col-span-7.overflow-x-auto::after {
+    content:"";
+    position:absolute;
+    z-index:3;
+    top:26px;
+    right:0;
+    bottom:0;
+    width:38px;
+    background:linear-gradient(to left,rgba(8,17,13,.96),rgba(8,17,13,0));
+    pointer-events:none;
+  }
+}
