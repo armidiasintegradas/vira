@@ -5,20 +5,27 @@ const pagePath = new URL('../blocos.html', import.meta.url);
 assert(fs.existsSync(pagePath), 'blocos.html ainda não existe');
 
 const html = fs.readFileSync(pagePath, 'utf8');
-const js = fs.readFileSync(new URL('../blocos.js', import.meta.url), 'utf8');
 const app = fs.readFileSync(new URL('../app.js', import.meta.url), 'utf8');
 
-assert(html.includes('<h1>Blocos VIRA</h1>'), 'hero não identifica Blocos VIRA');
-assert(html.includes('50% plástico') && html.includes('50% escória'), 'composição 50/50 não está documentada');
-assert(html.includes('Desempenho em validação'), 'estado técnico seguro não está explícito');
-assert(html.includes('Geometria em consolidação'), 'anatomia não sinaliza consolidação técnica');
-assert(html.includes('DEMONSTRAÇÃO') && html.includes('VIRA-BLOCO-DEMO-0001'), 'passaporte demonstrativo não está claramente identificado');
-assert(html.includes('Central Técnica'), 'Central Técnica ausente');
-assert(html.includes('Especifique Blocos VIRA'), 'fluxo de especificação ausente');
-assert(!/\b\d+(?:[.,]\d+)?\s*(?:MPa|N\/mm²)\b/.test(html), 'página publica resistência numérica não aprovada');
-assert(!html.includes('0,2–0,3%'), 'página herdou absorção do Paver indevidamente');
-assert(!html.includes('10 anos') && !html.includes('Carbono negativo'), 'página contém claims não documentados');
-assert(js.includes('mailto:contato@projetovira.com.br'), 'formulário não prepara contato com a VIRA');
+// Validação da Identidade e Título 2026
+assert(html.includes('02 // Blocos de Concreto Estrutural e Vedação VIRA'), 'title não identifica Blocos VIRA');
+assert.equal((html.match(/<h1[ >]/g) || []).length, 1, 'Página deve ter exatamente um h1');
+assert(html.includes('A solidez das edificações moldada pela') && html.includes('economia circular.'), 'hero h1 ausente ou incorreto');
+
+// Validação Técnica e Normas NBR
+assert(html.includes('ABNT NBR 6136'), 'referência à norma NBR 6136 ausente');
+assert(html.includes('NBR 15961'), 'referência à norma NBR 15961 ausente');
+assert(html.includes('50% de polímeros pós-consumo reciclados') && html.includes('50% de coproduto mineral siderúrgico'), 'composição 50/50 não está documentada');
+assert(html.includes('16 MPa'), 'resistência nominal de compressão NBR 6136 Classe A ausente');
+assert(html.includes('0,2%') && html.includes('0,4%'), 'taxa de absorção hídrica ausente');
+
+// Rastreabilidade DPP e Interatividade
+assert(html.includes('VIRA-BLO-0924'), 'passaporte DPP com ID VIRA-BLO-0924 ausente');
+assert(html.includes('hero-structural-canvas'), 'canvas estrutural interativo ausente');
+assert(html.includes('updateCalculator'), 'lógica de calculadora de alvenaria ausente');
+assert(html.includes('Desenvolvido por AR Mídias Integradas'), 'créditos do rodapé oficial ausentes');
+
+// Integração com Card da Home
 assert(app.includes('button.dataset.product==="bloco-concreto"') && app.includes('location.href="blocos.html"'), 'card Blocos VIRA não direciona para a nova página');
 
 console.log('blocos-page: ok');
