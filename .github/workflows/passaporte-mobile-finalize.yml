@@ -1,0 +1,161 @@
+name: Passaporte mobile final verification
+
+on:
+  push:
+    branches:
+      - feat/internal-pages-visual-unity
+    paths:
+      - '.github/workflows/passaporte-mobile-finalize.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/internal-pages-visual-unity
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Create clean final commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'armidiasintegradas'
+          git config user.email 'armidiasintegradas@gmail.com'
+          git rm -f .github/workflows/passaporte-mobile-contract.yml
+          git rm -f .github/workflows/passaporte-mobile-apply.yml
+          git rm -f .github/workflows/passaporte-mobile-finalize.yml
+          git commit -m 'chore: clean Passaporte mobile QA harness'
+      - name: Verify Passaporte targeted contract on clean commit
+        run: node --test tests/passaporte.test.mjs
+      - name: Run complete static suite on clean commit
+        run: node --test tests/*.test.mjs
+      - name: Install browser harness
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Verify Passaporte responsive geometry and six-page smoke
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p scripts visual-review
+          python3 -m http.server 4173 >/tmp/vira-passaporte-mobile-final.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          sleep 2
+          cat > scripts/passaporte-mobile-final.mjs <<'EOF'
+          import { chromium } from 'playwright';
+          import assert from 'node:assert/strict';
+
+          const browser = await chromium.launch({headless:true});
+          const cases = [
+            ['desktop',1440,900,4],
+            ['tablet',1024,768,4],
+            ['tablet-edge',768,768,2],
+            ['mobile',390,844,2],
+            ['narrow',350,780,1],
+          ];
+
+          for (const [name,width,height,expectedColumns] of cases) {
+            const page = await browser.newPage({viewport:{width,height}});
+            const errors=[];
+            page.on('pageerror',e=>errors.push(e.message));
+            await page.goto('http://127.0.0.1:4173/passaporte.html',{waitUntil:'networkidle',timeout:30000});
+            await page.waitForFunction(() => document.documentElement.dataset.viraInternalReady === 'true', null, {timeout:10000});
+            const state = await page.evaluate(() => {
+              const grid = document.querySelector('[data-purpose="hero-section"] [data-purpose="compliance-badges"]');
+              const architectureScroll = document.querySelector('[data-purpose="dpp-architecture"] .overflow-x-auto');
+              const legalScroll = document.querySelector('[data-purpose="legal-matrix"] .overflow-x-auto');
+              const actionGroup = document.querySelector('[data-purpose="audit-terminal"] .flex.flex-wrap.items-center.gap-3.pt-4');
+              const actionRects = actionGroup ? [...actionGroup.querySelectorAll(':scope > button, :scope > a')].map(el => {
+                const r=el.getBoundingClientRect();
+                return {width:r.width,height:r.height};
+              }) : [];
+              const groupRect=actionGroup?.getBoundingClientRect();
+              return {
+                columns:grid ? getComputedStyle(grid).gridTemplateColumns.split(/\s+/).filter(Boolean).length : 0,
+                noHorizontalOverflow:document.documentElement.scrollWidth <= innerWidth,
+                architectureBefore:architectureScroll ? getComputedStyle(architectureScroll,'::before').content : null,
+                architectureAfter:architectureScroll ? getComputedStyle(architectureScroll,'::after').backgroundImage : null,
+                legalBefore:legalScroll ? getComputedStyle(legalScroll,'::before').content : null,
+                legalAfter:legalScroll ? getComputedStyle(legalScroll,'::after').backgroundImage : null,
+                actionDirection:actionGroup ? getComputedStyle(actionGroup).flexDirection : null,
+                actionGroupWidth:groupRect?.width ?? 0,
+                actionRects,
+              };
+            });
+            assert.equal(state.columns,expectedColumns,`${name}: grade do hero incorreta`);
+            assert(state.noHorizontalOverflow,`${name}: overflow horizontal global detectado`);
+            if (width <= 639) {
+              assert(state.architectureBefore?.includes('DESLIZE'),`${name}: indicador DESLIZE ausente na arquitetura DPP`);
+              assert(state.architectureAfter?.includes('linear-gradient'),`${name}: fade lateral ausente na arquitetura DPP`);
+              assert(state.legalBefore?.includes('DESLIZE'),`${name}: indicador DESLIZE ausente na matriz legal`);
+              assert(state.legalAfter?.includes('linear-gradient'),`${name}: fade lateral ausente na matriz legal`);
+              assert.equal(state.actionDirection,'column',`${name}: ações do terminal não estão empilhadas`);
+              assert.equal(state.actionRects.length,3,`${name}: quantidade de ações do terminal inesperada`);
+              for (const rect of state.actionRects) {
+                assert(rect.height >= 44,`${name}: ação do terminal abaixo de 44px`);
+                assert(rect.width >= state.actionGroupWidth - 1,`${name}: ação do terminal não ocupa a largura disponível`);
+              }
+            }
+            if (name === 'mobile') {
+              await page.screenshot({path:'visual-review/passaporte-mobile-after.png',fullPage:true});
+            }
+            assert.equal(errors.length,0,`${name}: page errors: ${errors.join(' | ')}`);
+            console.log(`passaporte ${name}: ok`,JSON.stringify(state));
+            await page.close();
+          }
+
+          const pages=['paver.html','blocos.html','guias.html','central-tecnica.html','passaporte.html','brandbook.html'];
+          const viewports=[['desktop',1440,900],['tablet',1024,768],['mobile',390,844]];
+          for (const [label,width,height] of viewports) {
+            let reference=null;
+            for (const file of pages) {
+              const page=await browser.newPage({viewport:{width,height}});
+              const errors=[];
+              page.on('pageerror',e=>errors.push(e.message));
+              await page.goto(`http://127.0.0.1:4173/${file}`,{waitUntil:'networkidle',timeout:30000});
+              await page.waitForFunction(() => document.documentElement.dataset.viraInternalReady === 'true', null, {timeout:10000});
+              const state=await page.evaluate(()=>{
+                const h=document.querySelector('[data-purpose="primary-navigation"]')?.getBoundingClientRect();
+                return {scrollWidth:document.documentElement.scrollWidth,innerWidth,header:h?{top:h.top,height:h.height,width:h.width}:null};
+              });
+              assert(state.header,`${label}/${file}: header ausente`);
+              assert(state.scrollWidth<=state.innerWidth,`${label}/${file}: overflow horizontal`);
+              assert.equal(errors.length,0,`${label}/${file}: page errors: ${errors.join(' | ')}`);
+              if (!reference) reference=state.header;
+              else {
+                assert.equal(state.header.top,reference.top,`${label}/${file}: top do header divergente`);
+                assert.equal(state.header.height,reference.height,`${label}/${file}: altura do header divergente`);
+                assert.equal(state.header.width,reference.width,`${label}/${file}: largura do header divergente`);
+              }
+              console.log(`visual-smoke ${label}/${file}: ok`);
+              await page.close();
+            }
+            console.log(`visual-smoke ${label}: shared header geometry consistent`);
+          }
+          await browser.close();
+          console.log('Passaporte responsive mobile refinement and internal-pages smoke: ok');
+          EOF
+          node scripts/passaporte-mobile-final.mjs
+          rm -f scripts/passaporte-mobile-final.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: passaporte-mobile-after
+          path: visual-review/passaporte-mobile-after.png
+          retention-days: 1
+          if-no-files-found: error
+      - name: Clean browser artifacts and confirm working tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf node_modules visual-review
+          rmdir scripts 2>/dev/null || true
+          test -z "$(git status --porcelain)"
+      - name: Push clean final commit
+        run: git push origin HEAD:feat/internal-pages-visual-unity
