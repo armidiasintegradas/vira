@@ -5,7 +5,15 @@ const home=read('index.html');
 for(const href of ['paver.html','blocos.html','guias.html','central-tecnica.html','passaporte.html']){
   assert(home.includes(`href="${href}"`),`Home missing ${href}`);
 }
-for(const file of ['paver.html','blocos.html','guias.html']){
+// 2026 Brand Specification for paver.html
+const paverHtml = read('paver.html');
+for(const href of ['paver.html','blocos.html','guias.html','central-tecnica.html','passaporte.html']){
+  assert(paverHtml.includes(`href="${href}"`),`paver.html missing ${href}`);
+}
+assert(paverHtml.includes('<nav'), 'paver.html missing navigation bar');
+
+// Legacy platform navigation for remaining product pages
+for(const file of ['blocos.html','guias.html']){
   const html=read(file);
   assert(html.includes('class="product-switcher"'),`${file} missing product-switcher`);
   assert(html.includes('platform.css'),`${file} missing platform.css`);
