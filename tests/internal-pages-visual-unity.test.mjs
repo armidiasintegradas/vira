@@ -70,4 +70,4 @@ assert(!home.includes('internal-pages.css'), 'index.html não deve carregar inte
 assert(!home.includes('internal-pages.js'), 'index.html não deve carregar internal-pages.js');
 
 console.log('internal-pages-visual-unity: ok');
-// TDD GREEN verification trigger 2
+// TDD GREEN verification trigger 3
