@@ -1,0 +1,35 @@
+name: Apply Passaporte refinement once
+
+on:
+  push:
+    branches:
+      - feat/internal-pages-visual-unity
+    paths:
+      - .github/workflows/passaporte-apply-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/internal-pages-visual-unity
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Apply approved Passaporte refinement
+        run: python3 scripts/passaporte-refinement-apply.py
+      - name: Verify targeted contract is green
+        run: node --test tests/passaporte.test.mjs
+      - name: Commit approved Passaporte refinement
+        shell: bash
+        run: |
+          git config user.name 'armidiasintegradas'
+          git config user.email 'armidiasintegradas@gmail.com'
+          git add passaporte.html internal-pages.css
+          git commit -m 'style: refine Passaporte DPP to Paver visual system'
+          git push origin HEAD:feat/internal-pages-visual-unity
