@@ -1,0 +1,39 @@
+name: Apply Central Tecnica refinement once
+
+on:
+  push:
+    branches:
+      - feat/internal-pages-visual-unity
+    paths:
+      - .github/workflows/central-tecnica-apply-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/internal-pages-visual-unity
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Apply scoped Central Tecnica refinement
+        run: python3 scripts/central-tecnica-refinement-apply.py
+      - name: Verify targeted contract before commit
+        run: node --test tests/central-tecnica.test.mjs
+      - name: Commit scoped refinement
+        shell: bash
+        run: |
+          git config user.name 'armidiasintegradas'
+          git config user.email 'armidiasintegradas@gmail.com'
+          git add central-tecnica.html internal-pages.css
+          if git diff --cached --quiet; then
+            echo 'No production changes to commit'
+            exit 0
+          fi
+          git commit -m 'style: refine Central Tecnica against Paver golden master'
+          git push origin HEAD:feat/internal-pages-visual-unity
