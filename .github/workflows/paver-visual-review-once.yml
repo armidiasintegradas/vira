@@ -1,0 +1,67 @@
+name: Paver visual review once
+
+on:
+  push:
+    branches:
+      - feat/internal-pages-visual-unity
+    paths:
+      - '.github/workflows/paver-visual-review-once.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/internal-pages-visual-unity
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install browser harness
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Capture Paver at review viewports
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 4173 >/tmp/vira-paver-review-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          sleep 2
+          mkdir -p review-shots
+          cat > /tmp/capture-paver.mjs <<'EOF'
+          import { chromium } from 'playwright';
+          const browser = await chromium.launch({headless:true});
+          const cases = [
+            ['desktop', 1440, 900],
+            ['tablet', 1024, 768],
+            ['mobile', 390, 844],
+          ];
+          for (const [name,width,height] of cases) {
+            const page = await browser.newPage({ viewport: { width, height }, deviceScaleFactor: 1 });
+            await page.goto('http://127.0.0.1:4173/paver.html', { waitUntil: 'networkidle' });
+            await page.screenshot({ path:`review-shots/paver-${name}-hero.png`, fullPage:false });
+            await page.screenshot({ path:`review-shots/paver-${name}-full.png`, fullPage:true });
+            const sections = await page.locator('main section[id]').evaluateAll(nodes => nodes.map(n => n.id));
+            for (const id of sections.slice(0,8)) {
+              const el = page.locator(`#${id}`).first();
+              if (await el.count()) {
+                await el.scrollIntoViewIfNeeded();
+                await page.waitForTimeout(120);
+                await page.screenshot({ path:`review-shots/paver-${name}-${id}.png`, fullPage:false });
+              }
+            }
+            await page.close();
+          }
+          await browser.close();
+          EOF
+          node /tmp/capture-paver.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: paver-visual-review
+          path: review-shots/
+          retention-days: 1
