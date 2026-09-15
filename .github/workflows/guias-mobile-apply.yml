@@ -6,7 +6,7 @@ permissions:
   contents: write
 jobs:
   apply:
-    if: startsWith(github.event.head_commit.message, 'test: prepare Guias mobile GREEN')
+    if: "${{ startsWith(github.event.head_commit.message, 'test: prepare Guias mobile GREEN') }}"
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
