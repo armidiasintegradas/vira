@@ -62,8 +62,9 @@
       display: none;
     }
   </style>
+<link rel="stylesheet" href="internal-pages.css">
 </head>
-<body class="antialiased selection:bg-[#F1C546] selection:text-[#08110D]">
+<body class="antialiased selection:bg-[#F1C546] selection:text-[#08110D]" data-vira-internal="central-tecnica">
 <!-- BEGIN: TopTelemetryRibbon -->
 <!-- Barra de telemetria técnica e status normativo -->
 <div class="w-full bg-[#08110D] border-b border-white/10 text-[10px] font-mono-tech tracking-wider text-zinc-400 py-1.5 px-4 md:px-8 flex flex-wrap items-center justify-between sticky top-0 z-50" data-purpose="telemetry-bar">
@@ -89,7 +90,7 @@
     <div class="flex items-center space-x-4">
       <a aria-label="Página Inicial VIRA" class="flex items-center space-x-2 group focus:outline-none" href="index.html">
         <div class="flex items-center gap-3">
-          <img alt="VIRA" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhzmy9X4hLoTq7ywTJRCrTPJM98BZgX7i_icoaBj5_4urTmKJBG53G5G626vvFOdU2dKdMCSQbTgR9rE0ezzG6R4xORiPnBrC6GRXKCFi2xNVRhMYcAovSmJsDOrTkvqzxX8jxuxMlwdGSlR4SVXQ3MMU6zebyiQbeiSTyPvxBucIi3b6vRgBbkig5LBw8Ynat01K6VKlafO3YOoBvyKzg1RiWttC6dglACoDT0Gc0bLcbPeKrYT9SlygadzNRCnvHTwE"/>
+          <img alt="VIRA" class="h-8 w-auto object-contain" src="assets/marca-site-menu.webp"/>
           <div class="border-l border-neutral-700/80 pl-3 leading-tight hidden sm:flex flex-col justify-center">
             <span class="text-[9px] font-mono text-emerald-400 tracking-widest uppercase font-semibold">CENTRAL TÉCNICA //</span>
             <span class="text-[9px] font-mono text-emerald-400 tracking-widest uppercase font-semibold">ENGENHARIA &amp; LAUDOS</span>
@@ -168,7 +169,7 @@
 
 <!-- BEGIN: HeroSection -->
 <!-- Seção Principal com Canvas Interativo de Partículas -->
-<section class="relative bg-gradient-to-b from-[#0d1a12] via-[#142519] to-[#0d1a12] py-20 lg:py-28 px-4 md:px-8 border-b border-white/10 overflow-hidden">
+<section data-internal-hero="true" class="relative bg-gradient-to-b from-[#0d1a12] via-[#142519] to-[#0d1a12] py-20 lg:py-28 px-4 md:px-8 border-b border-white/10 overflow-hidden">
   <!-- Canvas Interativo -->
   <canvas class="absolute inset-0 w-full h-full pointer-events-none opacity-40" id="particlesCanvas"></canvas>
   <div class="max-w-[1440px] mx-auto relative z-10">
@@ -1093,5 +1094,6 @@
     })();
   </script>
 <!-- END: InteractiveScripts -->
+<script defer src="internal-pages.js"></script>
 </body>
 </html>

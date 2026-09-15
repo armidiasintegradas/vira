@@ -84,8 +84,9 @@
       display: none;
     }
   </style>
+<link rel="stylesheet" href="internal-pages.css">
 </head>
-<body class="antialiased selection:bg-vira-gold selection:text-vira-dark">
+<body class="antialiased selection:bg-vira-gold selection:text-vira-dark" data-vira-internal="passaporte">
 <!-- ========================================================================= -->
 <!-- TOP TELEMETRY BAR (Consistent with paver.html)                           -->
 <!-- ========================================================================= -->
@@ -117,7 +118,7 @@
     <div class="flex items-center space-x-4">
       <a aria-label="Página Inicial VIRA" class="flex items-center space-x-2 group focus:outline-none" href="index.html">
         <div class="flex items-center gap-3">
-          <img alt="VIRA" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhzmy9X4hLoTq7ywTJRCrTPJM98BZgX7i_icoaBj5_4urTmKJBG53G5G626vvFOdU2dKdMCSQbTgR9rE0ezzG6R4xORiPnBrC6GRXKCFi2xNVRhMYcAovSmJsDOrTkvqzxX8jxuxMlwdGSlR4SVXQ3MMU6zebyiQbeiSTyPvxBucIi3b6vRgBbkig5LBw8Ynat01K6VKlafO3YOoBvyKzg1RiWttC6dglACoDT0Gc0bLcbPeKrYT9SlygadzNRCnvHTwE"/>
+          <img alt="VIRA" class="h-8 w-auto object-contain" src="assets/marca-site-menu.webp"/>
           <div class="border-l border-neutral-700/80 pl-3 leading-tight hidden sm:flex flex-col justify-center">
             <span class="text-[9px] font-mono text-emerald-400 tracking-widest uppercase font-semibold">PASSAPORTE DPP</span>
             <span class="text-[9px] font-mono text-emerald-400 tracking-widest uppercase font-semibold">ISO 59020</span>
@@ -197,7 +198,7 @@
 <!-- ========================================================================= -->
 <!-- HERO SECTION WITH CRYPTOGRAPHIC MESH PARTICLES CANVAS (Ref paver.html)    -->
 <!-- ========================================================================= -->
-<section class="relative bg-vira-dark text-white pt-16 pb-24 overflow-hidden border-b border-vira-border" data-purpose="hero-section">
+<section data-internal-hero="true" class="relative bg-vira-dark text-white pt-16 pb-24 overflow-hidden border-b border-vira-border" data-purpose="hero-section">
 <!-- Interactive Background Particle Canvas -->
 <canvas class="absolute inset-0 w-full h-full pointer-events-auto z-0 opacity-45" height="766" id="hero-dpp-canvas" width="1280"></canvas>
 <!-- Radial Mask to enhance readability -->
@@ -1333,5 +1334,6 @@
     };
   })();
 </script>
+<script defer src="internal-pages.js"></script>
 </body>
 </html>

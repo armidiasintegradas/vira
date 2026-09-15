@@ -71,8 +71,9 @@
       background: #F1C546;
     }
   </style>
+<link rel="stylesheet" href="internal-pages.css">
 </head>
-<body class="min-h-screen flex flex-col antialiased selection:bg-vira-gold selection:text-vira-dark">
+<body class="min-h-screen flex flex-col antialiased selection:bg-vira-gold selection:text-vira-dark" data-vira-internal="brandbook">
 <!-- ================= TOP TECHNICAL HEADER / TELEMETRY ================= -->
 <div class="bg-vira-dark text-[#8f9b92] text-[11px] font-mono border-b border-[#1b2b20] py-2 px-4 sm:px-8">
 <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
@@ -104,7 +105,7 @@
     <div class="flex items-center space-x-4">
       <a aria-label="Página Inicial VIRA" class="flex items-center space-x-2 group focus:outline-none" href="index.html">
         <div class="flex items-center gap-3">
-          <img alt="VIRA Engenharia Circular" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhzmy9X4hLoTq7ywTJRCrTPJM98BZgX7i_icoaBj5_4urTmKJBG53G5G626vvFOdU2dKdMCSQbTgR9rE0ezzG6R4xORiPnBrC6GRXKCFi2xNVRhMYcAovSmJsDOrTkvqzxX8jxuxMlwdGSlR4SVXQ3MMU6zebyiQbeiSTyPvxBucIi3b6vRgBbkig5LBw8Ynat01K6VKlafO3YOoBvyKzg1RiWttC6dglACoDT0Gc0bLcbPeKrYT9SlygadzNRCnvHTwE"/>
+          <img alt="VIRA Engenharia Circular" class="h-8 w-auto object-contain" src="assets/marca-site-menu.webp"/>
           <div class="border-l border-neutral-700/80 pl-3 leading-tight hidden sm:flex flex-col justify-center">
             <span class="text-[9px] font-mono text-emerald-400 tracking-widest uppercase font-semibold">BRANDBOOK OFICIAL</span>
             <span class="text-[9px] font-mono text-emerald-400 tracking-widest uppercase font-semibold">DIRETRIZES DE IDENTIDADE</span>
@@ -193,7 +194,7 @@
   </div>
 </nav>
 <!-- ================= HERO SECTION COM REDE / MALHA CIRCULAR INTERATIVA ================= -->
-<section class="relative bg-vira-dark text-white pt-12 pb-16 sm:pt-20 sm:pb-24 overflow-hidden border-b border-[#1b2b20]" id="hero-section">
+<section data-internal-hero="true" class="relative bg-vira-dark text-white pt-12 pb-16 sm:pt-20 sm:pb-24 overflow-hidden border-b border-[#1b2b20]" id="hero-section">
 <!-- Canvas de Partículas / Constelação da Economia Circular -->
 <canvas class="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-80" id="hero-particles-canvas" width="2560" height="1125"></canvas>
 <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#F1C546_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none"></div>
@@ -1232,4 +1233,5 @@
 </script>
 
 
+<script defer src="internal-pages.js"></script>
 </body></html>
