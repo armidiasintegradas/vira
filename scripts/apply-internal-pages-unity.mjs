@@ -47,12 +47,26 @@ function addPageKey(html, key) {
   return html.replace(bodyMatch[0], tag);
 }
 
+function contentStartAfterPrimaryHeader(html) {
+  const purposeIndex = html.indexOf('data-purpose="primary-navigation"');
+  if (purposeIndex < 0) throw new Error('Header primário não encontrado');
+  const headerEnd = html.indexOf('</header>', purposeIndex);
+  if (headerEnd < 0) throw new Error('Fim do header primário não encontrado');
+  return headerEnd + '</header>'.length;
+}
+
 function markHero(html) {
   if (html.includes('data-internal-hero="true"')) return html;
+
   const mainStart = html.search(/<main\b/i);
-  if (mainStart < 0) throw new Error('Documento sem <main>');
-  const sectionStart = html.indexOf('<section', mainStart);
-  if (sectionStart < 0) throw new Error('Documento sem hero <section> após <main>');
+  const searchFrom = mainStart >= 0 ? mainStart : contentStartAfterPrimaryHeader(html);
+  const sectionStart = html.indexOf('<section', searchFrom);
+  if (sectionStart < 0) {
+    throw new Error(mainStart >= 0
+      ? 'Documento sem hero <section> após <main>'
+      : 'Documento sem hero <section> após o header primário');
+  }
+
   const sectionEnd = html.indexOf('>', sectionStart);
   if (sectionEnd < 0) throw new Error('Tag de hero inválida');
   const originalTag = html.slice(sectionStart, sectionEnd + 1);
