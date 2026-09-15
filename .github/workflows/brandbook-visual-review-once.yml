@@ -11,7 +11,7 @@ permissions:
   contents: read
 
 jobs:
-  capture:
+  diagnose:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -23,76 +23,68 @@ jobs:
       - run: |
           npm install --no-save playwright@1.55.0
           npx playwright install --with-deps chromium
-      - name: Capture Brandbook
+      - name: Diagnose Brandbook anchors and mobile overflow
         run: |
           set -euo pipefail
-          mkdir -p visual-review
-          python3 -m http.server 4173 >/tmp/vira-brandbook-review.log 2>&1 &
+          python3 -m http.server 4173 >/tmp/vira-brandbook-diagnose.log 2>&1 &
           SERVER_PID=$!
           trap 'kill $SERVER_PID || true' EXIT
           sleep 2
-          cat > capture-brandbook.mjs <<'EOF'
+          cat > diagnose-brandbook.mjs <<'EOF'
           import { chromium } from 'playwright';
           import assert from 'node:assert/strict';
 
           const browser = await chromium.launch({headless:true});
-          const cases = [
-            ['desktop',1440,900],
-            ['tablet',1024,768],
-            ['mobile',390,844],
-          ];
-          const sections = [
-            ['hero','[data-purpose="brandbook-hero"]'],
-            ['overview','[data-purpose="brand-overview"]'],
-            ['logo','[data-purpose="brand-logo-system"]'],
-            ['colors','[data-purpose="brand-colors"]'],
-            ['typography','[data-purpose="brand-typography"]'],
-            ['signage','[data-purpose="brand-signage"]'],
-            ['uniforms','[data-purpose="brand-uniforms"]'],
-            ['downloads','[data-purpose="brand-downloads"]'],
-          ];
+          const cases=[['tablet',1024,768],['mobile',390,844]];
+          const targets=['visao-geral','logotipo','cores','tipografia','sinalizacao','uniformes','downloads'];
 
           for (const [name,width,height] of cases) {
-            const page = await browser.newPage({viewport:{width,height}});
-            const errors=[];
-            page.on('pageerror', e => errors.push(e.message));
+            const page=await browser.newPage({viewport:{width,height}});
             await page.goto('http://127.0.0.1:4173/brandbook.html',{waitUntil:'networkidle',timeout:30000});
             await page.waitForFunction(() => document.documentElement.dataset.viraInternalReady === 'true', null, {timeout:10000});
-            const state = await page.evaluate(() => {
-              const header=document.querySelector('[data-purpose="primary-navigation"]')?.getBoundingClientRect();
-              const chapters=document.querySelector('[data-purpose="brandbook-chapter-nav"]')?.getBoundingClientRect();
+
+            const baseline=await page.evaluate(()=>{
+              const nav=document.querySelector('[data-purpose="brandbook-chapter-nav"]');
+              const typo=document.querySelector('[data-purpose="brand-typography"] .overflow-x-auto');
               return {
-                noHorizontalOverflow: document.documentElement.scrollWidth <= innerWidth,
-                scrollWidth: document.documentElement.scrollWidth,
-                innerWidth,
-                header: header ? {top:header.top,height:header.height,width:header.width} : null,
-                chapters: chapters ? {top:chapters.top,height:chapters.height,width:chapters.width} : null,
-                canvas: Boolean(document.querySelector('#hero-particles-canvas')),
-                activeBrandbook: Boolean(document.querySelector('a[href="brandbook.html"][aria-current="page"]')),
+                chapterClientWidth:nav?.clientWidth ?? 0,
+                chapterScrollWidth:nav?.scrollWidth ?? 0,
+                typographyClientWidth:typo?.clientWidth ?? 0,
+                typographyScrollWidth:typo?.scrollWidth ?? 0,
+                typographyBefore:typo ? getComputedStyle(typo,'::before').content : null,
+                typographyAfter:typo ? getComputedStyle(typo,'::after').backgroundImage : null,
               };
             });
-            assert(state.header, `${name}: header ausente`);
-            assert(state.chapters, `${name}: navegação capitular ausente`);
-            assert(state.canvas, `${name}: canvas do hero ausente`);
-            assert(state.activeBrandbook, `${name}: estado ativo Brandbook ausente`);
-            assert(state.noHorizontalOverflow, `${name}: overflow horizontal global`);
-            assert.equal(errors.length,0,`${name}: page errors: ${errors.join(' | ')}`);
-            await page.screenshot({path:`visual-review/brandbook-${name}-full.png`,fullPage:true});
-            for (const [label,selector] of sections) {
-              const el=page.locator(selector).first();
-              if (await el.count()) {
-                await el.screenshot({path:`visual-review/brandbook-${name}-${label}.png`});
-              }
+            console.log(`${name} baseline`,JSON.stringify(baseline));
+
+            for (const id of targets) {
+              await page.locator(`[data-purpose="brandbook-chapter-nav"] a[href="#${id}"]`).click();
+              await page.waitForTimeout(250);
+              const state=await page.evaluate((targetId)=>{
+                const target=document.getElementById(targetId);
+                const chapter=document.querySelector('[data-purpose="brandbook-chapter-nav"]');
+                const header=document.querySelector('[data-purpose="primary-navigation"]');
+                const t=target?.getBoundingClientRect();
+                const c=chapter?.getBoundingClientRect();
+                const h=header?.getBoundingClientRect();
+                const firstHeading=target?.querySelector('h1,h2,h3')?.getBoundingClientRect();
+                return {
+                  hash:location.hash,
+                  targetTop:t?.top ?? null,
+                  headingTop:firstHeading?.top ?? null,
+                  chapterBottom:c?.bottom ?? null,
+                  headerBottom:h?.bottom ?? null,
+                  scrollY,
+                };
+              },id);
+              console.log(`${name} #${id}`,JSON.stringify(state));
+              assert.equal(state.hash,`#${id}`,`${name}/${id}: hash incorreto`);
+              assert(state.headingTop !== null,`${name}/${id}: heading ausente`);
+              assert(state.chapterBottom !== null,`${name}/${id}: chapter nav ausente`);
             }
-            console.log(`brandbook ${name}: ok`, JSON.stringify(state));
             await page.close();
           }
           await browser.close();
           EOF
-          node capture-brandbook.mjs
-          rm -f capture-brandbook.mjs
-      - uses: actions/upload-artifact@v4
-        with:
-          name: brandbook-visual-review
-          path: visual-review/*.png
-          retention-days: 1
+          node diagnose-brandbook.mjs
+          rm -f diagnose-brandbook.mjs
