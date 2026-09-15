@@ -94,3 +94,35 @@ test("brandbook.html e uniformes.html implementam a matriz de EPIs e conformidad
   assert.match(uniformesHtml, /Luvas Táticas Antiderrapantes/i, "uniformes deve detalhar as Luvas VIRA");
   assert.match(uniformesHtml, /Óculos Balísticos/i, "uniformes deve detalhar os Óculos Balísticos");
 });
+
+test("brandbook.html aplica o contrato visual Paver sem perder a navegação capitular", () => {
+  const html = read("brandbook.html");
+  const css = read("internal-pages.css");
+
+  for (const purpose of [
+    "brandbook-chapter-nav",
+    "brandbook-hero",
+    "brand-overview",
+    "brand-logo-system",
+    "brand-colors",
+    "brand-typography",
+    "brand-signage",
+    "brand-uniforms",
+    "brand-downloads",
+  ]) {
+    assert.match(html, new RegExp(`data-purpose="${purpose}"`), `deve marcar semanticamente ${purpose}`);
+  }
+
+  assert.match(html, /data-purpose="brandbook-hero-metrics"/, "hero deve expor faixa técnica de indicadores");
+  assert.match(css, /\/\* Brandbook refinement — Paver golden master \*\//, "CSS deve documentar o refinamento do Brandbook");
+  assert.match(css, /\[data-vira-internal="brandbook"\] \[data-purpose="brandbook-chapter-nav"\]/, "subnavegação capitular deve ser escopada");
+  assert.match(css, /\[data-vira-internal="brandbook"\] \[data-purpose="brandbook-hero"\]/, "hero do Brandbook deve usar gramática escopada");
+  assert.match(css, /\[data-vira-internal="brandbook"\] \[data-purpose="brandbook-hero"\] canvas/, "canvas do hero deve ter tratamento canônico");
+  assert.match(css, /\[data-vira-internal="brandbook"\] \[data-purpose="brand-overview"\]/, "Visão Geral deve receber acabamento canônico");
+  assert.match(css, /\[data-vira-internal="brandbook"\] \[data-purpose="brand-logo-system"\]/, "Logotipo deve receber acabamento canônico");
+  assert.match(css, /\[data-vira-internal="brandbook"\] \[data-purpose="brand-colors"\]/, "Cores devem receber acabamento canônico");
+  assert.match(css, /\[data-vira-internal="brandbook"\] \[data-purpose="brand-typography"\]/, "Tipografia deve receber acabamento canônico");
+  assert.match(css, /\[data-vira-internal="brandbook"\] \[data-purpose="brand-signage"\]/, "Sinalização deve receber acabamento canônico");
+  assert.match(css, /\[data-vira-internal="brandbook"\] \[data-purpose="brand-uniforms"\]/, "Uniformes devem receber acabamento canônico");
+  assert.match(css, /\[data-vira-internal="brandbook"\] \[data-purpose="brand-downloads"\]/, "Downloads devem receber acabamento canônico");
+});
