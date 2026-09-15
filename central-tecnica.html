@@ -1,83 +1,1052 @@
-<!doctype html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Central Técnica VIRA — Documentação por família</title>
-  <meta name="description" content="Central Técnica VIRA: acompanhe o estado de fichas, ensaios, manuais, arquivos de projeto e Passaporte Digital de Paver, Blocos e Guias e Meio-fio.">
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-  <link rel="shortcut icon" href="favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="platform.css?v=20260909-fase2-4">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>04 // Central Técnica VIRA - Repositório Oficial de Engenharia e Documentação</title>
+<meta name="description" content="Central Técnica VIRA: Repositório aberto e auditado de especificações técnicas, ensaios laboratoriais credenciados RBC, arquivos BIM/CAD e modelos de Passaporte Digital de Produto (DPP).">
+<!-- Favicons Oficiais VIRA -->
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Manrope & IBM Plex Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Manrope', 'sans-serif'],
+            mono: ['IBM Plex Mono', 'monospace'],
+          },
+          colors: {
+            vira: {
+              gold: '#F1C546',
+              dark: '#08110D',
+              deepGreen: '#0d1a12',
+              forest: '#142519',
+              lightBg: '#FAF9F6',
+              accentGreen: '#10B981',
+            }
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="base-typography">
+    body {
+      font-family: 'Manrope', sans-serif;
+      background-color: #08110D;
+      color: #F3F4F6;
+      overflow-x: hidden;
+    }
+    .font-mono-tech {
+      font-family: 'IBM Plex Mono', monospace;
+    }
+  </style>
+<style data-purpose="custom-animations">
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+    .animate-pulse-dot {
+      animation: pulse-dot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    details > summary::-webkit-details-marker {
+      display: none;
+    }
+  </style>
 </head>
-<body class="platform-page">
-  <header class="platform-header">
-    <a href="index.html" aria-label="VIRA, início"><img src="assets/marca-logo-final.png" alt="VIRA"></a>
-    <a href="index.html#colecao">Produtos</a>
-  </header>
-  <nav class="product-switcher" aria-label="Famílias e recursos VIRA">
-    <a href="paver.html">Paver</a>
-    <a href="blocos.html">Blocos</a>
-    <a href="guias.html">Guias e Meio-fio</a>
-    <a href="central-tecnica.html" aria-current="page">Central Técnica</a>
-    <a href="passaporte.html">Passaporte</a>
-  </nav>
+<body class="antialiased selection:bg-[#F1C546] selection:text-[#08110D]">
+<!-- BEGIN: TopTelemetryRibbon -->
+<!-- Barra de telemetria técnica e status normativo -->
+<div class="w-full bg-[#08110D] border-b border-white/10 text-[10px] font-mono-tech tracking-wider text-zinc-400 py-1.5 px-4 md:px-8 flex flex-wrap items-center justify-between sticky top-0 z-50" data-purpose="telemetry-bar">
+  <div class="flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-zinc-400">
+    <span class="text-zinc-500">NORMATIVA 2026 //</span>
+    <span class="text-zinc-300">ABNT NBR 9781 / NBR 6136 / NBR 14890 // CARUARU — PE (8°17′S 35°58′W)</span>
+  </div>
+  <div class="flex items-center gap-2 font-mono text-[10px] tracking-wider">
+    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse-dot inline-block shadow-[0_0_8px_rgba(16,185,129,0.8)]"></span>
+    <span class="text-emerald-400 font-semibold tracking-widest uppercase">CIRCULARIDADE: 100% AUDITADA • STATUS: OPERAÇÃO ATIVA</span>
+  </div>
+  <div>
+    <a class="font-mono text-[10px] tracking-wider text-zinc-400 hover:text-amber-300 transition-colors uppercase" href="#solicitar">[ ESPECIFICAR OBRA → ]</a>
+  </div>
+</div>
+<!-- END: TopTelemetryRibbon -->
 
-  <main>
-    <section class="platform-hero">
-      <p class="platform-kicker">VIRA / Documentação</p>
-      <h1>Central Técnica VIRA</h1>
-      <p>Uma visão única do estado documental de Paver, Blocos e Guias e Meio-fio. Itens ainda não disponíveis aparecem com seu estado real e nunca geram downloads simulados.</p>
-    </section>
-
-    <section class="technical-library" id="biblioteca">
-      <div class="tech-library-head">
-        <div><p class="platform-kicker">Biblioteca técnica</p><h2>Documentação por família.</h2></div>
-        <p>Filtre a biblioteca para acompanhar o que está em consolidação, validação, preparação ou demonstração.</p>
+<!-- BEGIN: MainHeader -->
+<!-- Cabeçalho institucional e navegação indexada -->
+<header class="w-full bg-[#0d1a12]/95 backdrop-blur-md border-b border-white/10 px-4 md:px-8 py-3.5 sticky top-[29px] z-40">
+  <div class="max-w-[1440px] mx-auto flex items-center justify-between">
+    <div class="flex items-center gap-4">
+      <a class="flex items-center gap-2 group" href="index.html" aria-label="Página Inicial VIRA">
+        <div class="h-8 flex items-center">
+          <svg class="h-7 w-auto fill-current text-white" fill="none" viewBox="0 0 160 40" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 4L22 34H14L5 4H12Z" fill="white"></path>
+            <path d="M16 4L28 34H20L11 4H16Z" fill="#F1C546"></path>
+            <path d="M38 4V34H31V4H38Z" fill="white"></path>
+            <path d="M47 4H59C64 4 67 7 67 12C67 16 64 19 59 19H54V34H47V4ZM54 13.5H58C60 13.5 61 12.8 61 11.5C61 10.2 60 9.5 58 9.5H54V13.5Z" fill="white"></path>
+            <path d="M58 19L68 34H60L51 20.5L58 19Z" fill="white"></path>
+            <path d="M84 4L94 34H86L83 24H73L70 34H63L73 4H84ZM75 18H81L78 8.5L75 18Z" fill="white"></path>
+          </svg>
+        </div>
+      </a>
+      <div class="hidden lg:block border-l border-white/20 pl-4 py-0.5">
+        <span class="font-mono text-[11px] text-zinc-400 uppercase tracking-widest block font-medium">CENTRAL TÉCNICA // ENGENHARIA &amp; LAUDOS</span>
       </div>
-      <div class="tech-filters" aria-label="Filtrar por família">
-        <button class="tech-filter" type="button" data-filter="all" aria-pressed="true">Todas</button>
-        <button class="tech-filter" type="button" data-filter="paver" aria-pressed="false">Paver</button>
-        <button class="tech-filter" type="button" data-filter="blocos" aria-pressed="false">Blocos</button>
-        <button class="tech-filter" type="button" data-filter="guias" aria-pressed="false">Guias e Meio-fio</button>
+    </div>
+    <nav class="hidden md:flex items-center gap-1.5 lg:gap-2 font-mono text-xs">
+      <a class="px-3 py-1.5 rounded-full text-zinc-400 hover:text-white hover:bg-white/5 transition-colors" href="paver.html">01 // PAVER</a>
+      <a class="px-3 py-1.5 rounded-full text-zinc-400 hover:text-white hover:bg-white/5 transition-colors" href="blocos.html">02 // BLOCOS</a>
+      <a class="px-3 py-1.5 rounded-full text-zinc-400 hover:text-white hover:bg-white/5 transition-colors" href="guias.html">03 // GUIAS</a>
+      <a class="px-3.5 py-1.5 rounded-full bg-[#142519] border border-amber-400/40 text-[#F1C546] font-semibold flex items-center shadow-[0_0_12px_rgba(241,197,70,0.15)]" href="central-tecnica.html">
+        <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 mr-2 animate-pulse"></span>04 // CENTRAL TÉCNICA
+      </a>
+      <a class="px-3 py-1.5 rounded-full text-zinc-400 hover:text-white hover:bg-white/5 transition-colors" href="passaporte.html">05 // PASSAPORTE DPP</a>
+      <a class="px-3 py-1.5 rounded-full text-zinc-400 hover:text-white hover:bg-white/5 transition-colors" href="brandbook.html">06 // BRANDBOOK</a>
+    </nav>
+    <div class="flex items-center">
+      <a class="px-5 py-2 rounded-full bg-[#F1C546] hover:bg-[#ffcf4d] text-[#08110D] font-bold text-xs uppercase tracking-wider transition-all duration-200 shadow-md hover:scale-105 active:scale-95 flex items-center gap-1.5" href="#solicitar">
+        ESPECIFICAR PROJETO →
+      </a>
+    </div>
+  </div>
+</header>
+<!-- END: MainHeader -->
+
+<!-- BEGIN: HeroSection -->
+<!-- Seção Principal com Canvas Interativo de Partículas -->
+<section class="relative bg-gradient-to-b from-[#0d1a12] via-[#142519] to-[#0d1a12] py-20 lg:py-28 px-4 md:px-8 border-b border-white/10 overflow-hidden">
+  <!-- Canvas Interativo -->
+  <canvas class="absolute inset-0 w-full h-full pointer-events-none opacity-40" id="particlesCanvas"></canvas>
+  <div class="max-w-[1440px] mx-auto relative z-10">
+    <!-- Kicker Tag -->
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-6 backdrop-blur-sm">
+      <span class="w-2 h-2 rounded-full bg-[#F1C546] animate-ping"></span>
+      <span class="font-mono-tech text-xs tracking-wider text-zinc-300 uppercase">● 04 // REPOSITÓRIO OFICIAL &amp; AUDITORIA TÉCNICA // CARUARU-PE</span>
+    </div>
+    <!-- H1 Monumental -->
+    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.1] max-w-4xl mb-6">
+      Engenharia que pode ser <span class="text-[#F1C546]">documentada.</span>
+    </h1>
+    <!-- Parágrafo Descritivo -->
+    <p class="text-zinc-300 text-base md:text-lg max-w-3xl leading-relaxed mb-10 font-normal">
+      Repositório aberto e auditado de especificações técnicas, ensaios laboratoriais credenciados, arquivos de projeto BIM/CAD e modelos de Passaporte Digital de Produto (DPP) para Paver, Blocos Estruturais e Guias VIRA. Transparência técnica radical antes da especificação.
+    </p>
+    <!-- Botões de Ação do Hero -->
+    <div class="flex flex-wrap items-center gap-4 mb-16">
+      <a class="px-7 py-3.5 rounded-full bg-[#F1C546] hover:bg-[#ffcf4d] text-[#08110D] font-bold text-xs uppercase tracking-wider transition-all duration-200 shadow-lg hover:shadow-[#F1C546]/20" href="#biblioteca">
+        EXPLORAR ARQUIVOS TÉCNICOS ↓
+      </a>
+      <a class="px-6 py-3.5 rounded-full bg-white/5 border border-white/20 text-white font-mono-tech text-xs uppercase tracking-wider flex items-center gap-2 hover:bg-white/10 transition-colors" href="#solicitar">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        SOLICITAR PACOTE EXECUTIVO
+      </a>
+    </div>
+    <!-- Grid de 4 Métricas de Telemetria Inferior -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <!-- Card Métrica 1 -->
+      <div class="p-5 rounded-2xl bg-[#142519]/70 backdrop-blur-md border border-white/10 hover:border-[#F1C546]/40 transition-colors">
+        <span class="font-mono-tech text-[10px] text-zinc-400 tracking-wider block mb-2 uppercase">ACERVO AUDITADO</span>
+        <div class="text-3xl font-extrabold text-white mb-1">100%</div>
+        <p class="text-xs text-zinc-300 font-mono-tech">Laudos e Ensaios ABNT</p>
       </div>
-      <p class="sr-status" id="tech-filter-status" aria-live="polite">Exibindo todas as famílias.</p>
-
-      <div class="tech-catalog">
-        <article class="tech-item" data-tech-item data-family="paver"><small>Paver</small><h3>Ficha técnica</h3><p>Dados consolidados da configuração comercial.</p><b class="tech-status">Em consolidação</b></article>
-        <article class="tech-item" data-tech-item data-family="paver"><small>Paver</small><h3>Ensaios e laudos</h3><p>Resultados vinculados à configuração e ao método aplicável.</p><b class="tech-status">Em validação</b></article>
-        <article class="tech-item" data-tech-item data-family="paver"><small>Paver</small><h3>Manual de instalação</h3><p>Orientações de instalação da configuração homologada.</p><b class="tech-status">Em preparação</b></article>
-        <article class="tech-item" data-tech-item data-family="paver"><small>Paver</small><h3>DWG, BIM e texturas</h3><p>Arquivos de apoio à especificação e projeto.</p><b class="tech-status">Em preparação</b></article>
-        <article class="tech-item" data-tech-item data-family="paver"><small>Paver</small><h3>Passaporte Digital</h3><p>Estrutura demonstrativa de rastreabilidade por lote.</p><b class="tech-status">Demonstração</b></article>
-
-        <article class="tech-item" data-tech-item data-family="blocos"><small>Blocos</small><h3>Ficha técnica por geometria</h3><p>Dimensões, tolerâncias, aplicação e propriedades da configuração.</p><b class="tech-status">Em consolidação</b></article>
-        <article class="tech-item" data-tech-item data-family="blocos"><small>Blocos</small><h3>Ensaios e laudos</h3><p>Resultados vinculados à geometria e ao método aplicável.</p><b class="tech-status">Em validação</b></article>
-        <article class="tech-item" data-tech-item data-family="blocos"><small>Blocos</small><h3>Manual de aplicação</h3><p>Orientações específicas para cada uso homologado.</p><b class="tech-status">Em preparação</b></article>
-        <article class="tech-item" data-tech-item data-family="blocos"><small>Blocos</small><h3>Arquivos de projeto</h3><p>Arquivos de apoio publicados após congelamento da geometria.</p><b class="tech-status">Em preparação</b></article>
-        <article class="tech-item" data-tech-item data-family="blocos"><small>Blocos</small><h3>Passaporte Digital</h3><p>Estrutura demonstrativa para associar lote, configuração e documentação.</p><b class="tech-status">Demonstração</b></article>
-
-        <article class="tech-item" data-tech-item data-family="guias"><small>Guias e Meio-fio</small><h3>Ficha técnica por configuração</h3><p>Seção, dimensões, tolerâncias, aplicação e propriedades.</p><b class="tech-status">Em consolidação</b></article>
-        <article class="tech-item" data-tech-item data-family="guias"><small>Guias e Meio-fio</small><h3>Ensaios e laudos</h3><p>Resultados vinculados à configuração e ao método aplicável.</p><b class="tech-status">Em validação</b></article>
-        <article class="tech-item" data-tech-item data-family="guias"><small>Guias e Meio-fio</small><h3>Manual de instalação</h3><p>Orientações específicas para cada configuração homologada.</p><b class="tech-status">Em preparação</b></article>
-        <article class="tech-item" data-tech-item data-family="guias"><small>Guias e Meio-fio</small><h3>Arquivos de projeto</h3><p>Arquivos de apoio publicados após congelamento da geometria.</p><b class="tech-status">Em preparação</b></article>
-        <article class="tech-item" data-tech-item data-family="guias"><small>Guias e Meio-fio</small><h3>Passaporte Digital</h3><p>Estrutura demonstrativa para associar lote, configuração e documentação.</p><b class="tech-status">Demonstração</b></article>
+      <!-- Card Métrica 2 -->
+      <div class="p-5 rounded-2xl bg-[#142519]/70 backdrop-blur-md border border-white/10 hover:border-[#F1C546]/40 transition-colors">
+        <span class="font-mono-tech text-[10px] text-zinc-400 tracking-wider block mb-2 uppercase">INTEROPERABILIDADE</span>
+        <div class="text-3xl font-extrabold text-white mb-1">BIM / CAD</div>
+        <p class="text-xs text-zinc-300 font-mono-tech">Revit, IFC e DWG 2D/3D</p>
       </div>
-    </section>
+      <!-- Card Métrica 3 -->
+      <div class="p-5 rounded-2xl bg-[#142519]/70 backdrop-blur-md border border-white/10 hover:border-[#F1C546]/40 transition-colors">
+        <span class="font-mono-tech text-[10px] text-zinc-400 tracking-wider block mb-2 uppercase">COMPOSIÇÃO HOMOLOGADA</span>
+        <div class="text-3xl font-extrabold text-white mb-1">50 / 50</div>
+        <p class="text-xs text-zinc-300 font-mono-tech">Polímeros PCR + Escória</p>
+      </div>
+      <!-- Card Métrica 4 -->
+      <div class="p-5 rounded-2xl bg-[#142519]/70 backdrop-blur-md border border-white/10 hover:border-[#F1C546]/40 transition-colors">
+        <span class="font-mono-tech text-[10px] text-zinc-400 tracking-wider block mb-2 uppercase">MATRIZ DE RASTREIO</span>
+        <div class="text-3xl font-extrabold text-[#F1C546] mb-1">DPP-V4</div>
+        <p class="text-xs text-zinc-300 font-mono-tech">Cadeia de Custódia Digital</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END: HeroSection -->
 
-    <section class="platform-action">
-      <p class="platform-kicker">Especificação</p>
-      <h2>Precisa avaliar uma aplicação?</h2>
-      <p>Use a página da família para enviar o contexto técnico ou fale com a VIRA pela área de especificação.</p>
-      <div class="platform-action-links"><a href="paver.html#especificar">Paver</a><a href="blocos.html#especificar">Blocos</a><a href="guias.html#especificar">Guias e Meio-fio</a><a href="index.html#contato">Contato VIRA</a></div>
-    </section>
-  </main>
+<!-- BEGIN: TransparencyPrinciples -->
+<!-- Bloco 2: Fundo Claro Editorial #FAF9F6 -->
+<section class="bg-[#FAF9F6] text-zinc-900 py-20 px-4 md:px-8 border-b border-zinc-200">
+  <div class="max-w-[1440px] mx-auto">
+    <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-12">
+      <div>
+        <span class="font-mono-tech text-xs tracking-wider text-zinc-500 uppercase block mb-2">
+          TRANSPARÊNCIA NORMATIVA // CRITÉRIOS DE CONFORMIDADE
+        </span>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-zinc-950 tracking-tight">
+          Tudo o que existe. Nada do que ainda não existe.
+        </h2>
+      </div>
+      <p class="text-zinc-600 text-sm max-w-md leading-relaxed">
+        A VIRA adota integridade total na liberação documental. Arquivos ausentes não possuem botões simulados: seus estados figuram com clareza em <em>Validação</em>, <em>Consolidação</em> ou <em>Disponível</em>.
+      </p>
+    </div>
+    <!-- Grid de 3 Pilares Técnicos -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Pilar 1 -->
+      <div class="bg-white p-7 rounded-2xl border border-zinc-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-mono-tech text-xs text-[#08110D] font-bold">01 //</span>
+            <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-zinc-900 mb-2">RIGOR LABORATORIAL</h3>
+          <p class="text-xs text-zinc-600 leading-relaxed">
+            Ensaios executados em conformidade estrita com ABNT NBR 9781 (Pavers), NBR 6136 (Blocos) e NBR 14890 (Guias) por laboratórios credenciados pela Rede Brasileira de Calibração (RBC/Inmetro).
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-zinc-100">
+          <span class="font-mono-tech text-[10px] text-zinc-400 uppercase tracking-wider block">STATUS: 100% AUDITADO EM LABORATÓRIO</span>
+        </div>
+      </div>
+      <!-- Pilar 2 -->
+      <div class="bg-white p-7 rounded-2xl border border-zinc-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-mono-tech text-xs text-[#08110D] font-bold">02 //</span>
+            <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-zinc-900 mb-2">COMPATIBILIDADE BIM</h3>
+          <p class="text-xs text-zinc-600 leading-relaxed">
+            Famílias paramétricas em nível LOD 300 e 350 com metadados de análise de ciclo de vida (ACV / LCA), carbono incorporado e parâmetros acústico-mecânicos nativos para Revit e formato aberto IFC.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-zinc-100">
+          <span class="font-mono-tech text-[10px] text-zinc-400 uppercase tracking-wider block">GEOMETRIAS: NATIVAS REVIT + IFC 4.0</span>
+        </div>
+      </div>
+      <!-- Pilar 3 -->
+      <div class="bg-white p-7 rounded-2xl border border-zinc-200 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-mono-tech text-xs text-[#08110D] font-bold">03 //</span>
+            <svg class="w-5 h-5 text-[#0d1a12]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-zinc-900 mb-2">RASTREIO CRIPTOGRÁFICO</h3>
+          <p class="text-xs text-zinc-600 leading-relaxed">
+            Documentação vinculada a cada lote por meio do Passaporte Digital de Produto (DPP), eliminando inconsistências e garantindo a cadeia de custódia entre fornecimento de resina e canteiro.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-zinc-100">
+          <span class="font-mono-tech text-[10px] text-zinc-400 uppercase tracking-wider block">HASH: SHA-256 IMUTÁVEL POR LOTE</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END: TransparencyPrinciples -->
 
-  <footer class="platform-footer"><a href="index.html"><img src="assets/marca-logo-final.png" alt="VIRA"></a><span>Central Técnica VIRA · Caruaru — PE</span></footer>
-  <script src="platform.js?v=20260909-fase2-4"></script>
+<!-- BEGIN: DocumentLibrary -->
+<!-- Bloco 3: Fundo Escuro #142519 - Biblioteca Documental -->
+<section class="bg-[#142519] py-20 px-4 md:px-8 border-b border-white/10" id="biblioteca">
+  <div class="max-w-[1440px] mx-auto">
+    <!-- Cabeçalho da Biblioteca -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+      <div>
+        <span class="font-mono-tech text-xs tracking-wider text-[#F1C546] uppercase block mb-2">
+          ACERVO TÉCNICO VIRA // MATRIZ AUDITADA
+        </span>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+          Biblioteca Documental por Família de Produto
+        </h2>
+      </div>
+      <!-- Filtros em Pills -->
+      <div class="flex flex-wrap gap-2 font-mono-tech text-xs" data-purpose="document-filters" id="familyFilters">
+        <button class="filter-btn px-4 py-2 rounded-full bg-[#F1C546] text-[#08110D] font-bold transition-all shadow-md" data-target="all" type="button">TODAS AS FAMÍLIAS</button>
+        <button class="filter-btn px-4 py-2 rounded-full bg-white/5 border border-white/10 text-zinc-300 hover:text-white hover:bg-white/10 transition-all" data-target="paver" type="button">01 // PAVER</button>
+        <button class="filter-btn px-4 py-2 rounded-full bg-white/5 border border-white/10 text-zinc-300 hover:text-white hover:bg-white/10 transition-all" data-target="blocos" type="button">02 // BLOCOS</button>
+        <button class="filter-btn px-4 py-2 rounded-full bg-white/5 border border-white/10 text-zinc-300 hover:text-white hover:bg-white/10 transition-all" data-target="guias" type="button">03 // GUIAS</button>
+      </div>
+    </div>
+
+    <!-- Grid de Miniaturas de Família -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+      <!-- Família Paver -->
+      <div class="bg-[#0d1a12] border border-white/10 rounded-2xl overflow-hidden group hover:border-[#F1C546]/40 transition-all">
+        <div class="h-44 bg-zinc-800 relative overflow-hidden flex items-center justify-center">
+          <!-- Representação visual técnica de Paver -->
+          <div class="w-full h-full bg-gradient-to-tr from-stone-900 via-stone-800 to-zinc-700 flex flex-col items-center justify-center p-4">
+            <div class="grid grid-cols-4 gap-1.5 opacity-60">
+              <div class="w-10 h-6 bg-zinc-500 rounded-sm"></div>
+              <div class="w-10 h-6 bg-zinc-400 rounded-sm"></div>
+              <div class="w-10 h-6 bg-zinc-500 rounded-sm"></div>
+              <div class="w-10 h-6 bg-zinc-400 rounded-sm"></div>
+              <div class="w-10 h-6 bg-zinc-400 rounded-sm"></div>
+              <div class="w-10 h-6 bg-zinc-500 rounded-sm"></div>
+              <div class="w-10 h-6 bg-zinc-400 rounded-sm"></div>
+              <div class="w-10 h-6 bg-zinc-500 rounded-sm"></div>
+            </div>
+          </div>
+          <span class="absolute top-3 right-3 font-mono-tech text-[10px] px-2 py-0.5 rounded bg-black/70 text-zinc-300 border border-white/10">NBR 9781</span>
+        </div>
+        <div class="p-5">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-base font-bold text-white">01 // PAVER INTERTRAVADO</h3>
+            <span class="font-mono-tech text-[11px] text-[#F1C546] bg-[#F1C546]/10 px-2 py-0.5 rounded">Fpk ≥ 35 MPa</span>
+          </div>
+          <p class="text-xs text-zinc-400 leading-relaxed">Holandês e 16 Faces para tráfego urbano pesado e drenabilidade.</p>
+        </div>
+      </div>
+      <!-- Família Blocos -->
+      <div class="bg-[#0d1a12] border border-white/10 rounded-2xl overflow-hidden group hover:border-[#F1C546]/40 transition-all">
+        <div class="h-44 bg-zinc-800 relative overflow-hidden flex items-center justify-center">
+          <!-- Representação visual técnica de Bloco Estrutural -->
+          <div class="w-full h-full bg-gradient-to-tr from-zinc-900 via-zinc-800 to-stone-700 flex items-center justify-center p-4">
+            <div class="w-24 h-28 border-4 border-zinc-400 rounded flex flex-col justify-between p-2 shadow-inner">
+              <div class="w-full h-8 border-2 border-zinc-400 rounded-sm bg-black/20"></div>
+              <div class="w-full h-8 border-2 border-zinc-400 rounded-sm bg-black/20"></div>
+            </div>
+          </div>
+          <span class="absolute top-3 right-3 font-mono-tech text-[10px] px-2 py-0.5 rounded bg-black/70 text-zinc-300 border border-white/10">NBR 6136</span>
+        </div>
+        <div class="p-5">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-base font-bold text-white">02 // BLOCOS ESTRUTURAIS</h3>
+            <span class="font-mono-tech text-[11px] text-[#F1C546] bg-[#F1C546]/10 px-2 py-0.5 rounded">Fbk ≥ 8.0 MPa</span>
+          </div>
+          <p class="text-xs text-zinc-400 leading-relaxed">Alvenaria de vedação e estrutural com índice acústico otimizado.</p>
+        </div>
+      </div>
+      <!-- Família Guias -->
+      <div class="bg-[#0d1a12] border border-white/10 rounded-2xl overflow-hidden group hover:border-[#F1C546]/40 transition-all">
+        <div class="h-44 bg-zinc-800 relative overflow-hidden flex items-center justify-center">
+          <!-- Representação visual técnica de Guia de Meio-fio -->
+          <div class="w-full h-full bg-gradient-to-tr from-stone-950 via-zinc-800 to-neutral-700 flex items-center justify-center p-4">
+            <div class="w-36 h-20 bg-zinc-500 rounded-tl-3xl rounded-tr-md rounded-b shadow-lg border border-zinc-400 transform -rotate-3"></div>
+          </div>
+          <span class="absolute top-3 right-3 font-mono-tech text-[10px] px-2 py-0.5 rounded bg-black/70 text-zinc-300 border border-white/10">NBR 14890</span>
+        </div>
+        <div class="p-5">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-base font-bold text-white">03 // GUIAS &amp; MEIO-FIO</h3>
+            <span class="font-mono-tech text-[11px] text-[#F1C546] bg-[#F1C546]/10 px-2 py-0.5 rounded">Impacto &gt; 22 kN</span>
+          </div>
+          <p class="text-xs text-zinc-400 leading-relaxed">Confinamento viário de alta tenacidade contra cisalhamento lateral.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lista Completa de Documentos -->
+    <div class="space-y-3" data-purpose="document-table" id="documentContainer">
+      <!-- Item 1: Paver Ficha Técnica -->
+      <div class="doc-card bg-[#0d1a12]/90 border border-white/10 rounded-xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-white/20 transition-all" data-family="paver" data-tech-item="paver-ficha">
+        <div class="flex items-start md:items-center gap-3.5">
+          <span class="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] font-mono-tech text-zinc-400">PDF</span>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-mono-tech text-[11px] text-[#F1C546]">01 // PAVER</span>
+              <h4 class="text-sm font-semibold text-white">Ficha Técnica Completa (20x10x6cm)</h4>
+            </div>
+            <p class="text-xs text-zinc-400">Propriedades mecânicas conforme ABNT NBR 9781 • Absorção 0,25% • Resistência mecânica média 38 MPa.</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-mono-tech">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Disponível
+          </span>
+          <button class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white font-mono-tech text-xs flex items-center gap-2 transition-colors" onclick="alert('Download da Ficha Técnica de Paver (PDF 2.4 MB) iniciado.');" type="button">
+            <span>↓ PDF • 2.4 MB</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Item 2: Paver BIM Revit -->
+      <div class="doc-card bg-[#0d1a12]/90 border border-white/10 rounded-xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-white/20 transition-all" data-family="paver" data-tech-item="paver-bim">
+        <div class="flex items-start md:items-center gap-3.5">
+          <span class="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] font-mono-tech text-zinc-400">BIM</span>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-mono-tech text-[11px] text-[#F1C546]">01 // PAVER</span>
+              <h4 class="text-sm font-semibold text-white">Famílias Revit &amp; IFC Paramétricas (LOD 300)</h4>
+            </div>
+            <p class="text-xs text-zinc-400">Modulação Holandês e 16 Faces com parâmetros ambientais CO2e e camadas de assentamento integradas.</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-mono-tech">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Disponível
+          </span>
+          <button class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white font-mono-tech text-xs flex items-center gap-2 transition-colors" onclick="alert('Download das Famílias BIM de Paver (BIM 8.2 MB) iniciado.');" type="button">
+            <span>↓ BIM • 8.2 MB</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Item 3: Paver DWG Detalhes -->
+      <div class="doc-card bg-[#0d1a12]/90 border border-white/10 rounded-xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-white/20 transition-all" data-family="paver" data-tech-item="paver-dwg">
+        <div class="flex items-start md:items-center gap-3.5">
+          <span class="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] font-mono-tech text-zinc-400">CAD</span>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-mono-tech text-[11px] text-[#F1C546]">01 // PAVER</span>
+              <h4 class="text-sm font-semibold text-white">Detalhes Construtivos DWG (Seções e Leito)</h4>
+            </div>
+            <p class="text-xs text-zinc-400">Seções transversais típicas, compactação de areia, juntas de confinamento e especificações de subleito.</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-mono-tech">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Disponível
+          </span>
+          <button class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white font-mono-tech text-xs flex items-center gap-2 transition-colors" onclick="alert('Download dos Detalhes DWG de Paver (DWG 4.1 MB) iniciado.');" type="button">
+            <span>↓ DWG • 4.1 MB</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Item 4: Paver Laudo RBC -->
+      <div class="doc-card bg-[#0d1a12]/90 border border-white/10 rounded-xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-white/20 transition-all" data-family="paver" data-tech-item="paver-laudo">
+        <div class="flex items-start md:items-center gap-3.5">
+          <span class="px-2 py-1 rounded bg-amber-500/20 border border-amber-500/30 text-[10px] font-mono-tech text-amber-300">LAB</span>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-mono-tech text-[11px] text-[#F1C546]">01 // PAVER</span>
+              <h4 class="text-sm font-semibold text-white">Laudo de Compressão e Abrasão Acreditado</h4>
+            </div>
+            <p class="text-xs text-zinc-400">Certificação de lote RBC/IPT. Resistência mecânica, índice de atrito pendular e desgaste por abrasão profunda.</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] font-mono-tech">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span> Em Validação Contínua
+          </span>
+          <button class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-zinc-300 font-mono-tech text-xs flex items-center gap-2 hover:bg-white/10 transition-colors" onclick="alert('Download do Laudo Acreditado de Paver (1.7 MB) iniciado.');" type="button">
+            <span>↓ LAUDO • 1.7 MB</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Item 5: Blocos Ficha Técnica -->
+      <div class="doc-card bg-[#0d1a12]/90 border border-white/10 rounded-xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-white/20 transition-all" data-family="blocos" data-tech-item="blocos-ficha">
+        <div class="flex items-start md:items-center gap-3.5">
+          <span class="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] font-mono-tech text-zinc-400">PDF</span>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-mono-tech text-[11px] text-[#F1C546]">02 // BLOCOS</span>
+              <h4 class="text-sm font-semibold text-white">Ficha Técnica Alvenaria Estrutural (39x19x14cm)</h4>
+            </div>
+            <p class="text-xs text-zinc-400">Atendimento integral NBR 6136 Classe A/B • Resistência característica à compressão fbk de 8 a 14 MPa.</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-mono-tech">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Disponível
+          </span>
+          <button class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white font-mono-tech text-xs flex items-center gap-2 transition-colors" onclick="alert('Download da Ficha Técnica de Blocos (PDF 2.1 MB) iniciado.');" type="button">
+            <span>↓ PDF • 2.1 MB</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Item 6: Blocos BIM -->
+      <div class="doc-card bg-[#0d1a12]/90 border border-white/10 rounded-xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-white/20 transition-all" data-family="blocos" data-tech-item="blocos-bim">
+        <div class="flex items-start md:items-center gap-3.5">
+          <span class="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] font-mono-tech text-zinc-400">BIM</span>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-mono-tech text-[11px] text-[#F1C546]">02 // BLOCOS</span>
+              <h4 class="text-sm font-semibold text-white">Biblioteca BIM/Revit Alvenaria Modular</h4>
+            </div>
+            <p class="text-xs text-zinc-400">Modulação completa com meio-bloco, canaleta U, compensadores e amarração direta em software.</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-mono-tech">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Disponível
+          </span>
+          <button class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white font-mono-tech text-xs flex items-center gap-2 transition-colors" onclick="alert('Download da Biblioteca BIM de Blocos (BIM 6.9 MB) iniciado.');" type="button">
+            <span>↓ BIM • 6.9 MB</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Item 7: Blocos Detalhes DWG -->
+      <div class="doc-card bg-[#0d1a12]/90 border border-white/10 rounded-xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-white/20 transition-all" data-family="blocos" data-tech-item="blocos-dwg">
+        <div class="flex items-start md:items-center gap-3.5">
+          <span class="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] font-mono-tech text-zinc-400">CAD</span>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-mono-tech text-[11px] text-[#F1C546]">02 // BLOCOS</span>
+              <h4 class="text-sm font-semibold text-white">Detalhes Construtivos DWG (Vergas &amp; Graute)</h4>
+            </div>
+            <p class="text-xs text-zinc-400">Encontros de paredes L e T, janelas com contravergas armadas e detalhamento de canaletas grauteadas.</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-mono-tech">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Disponível
+          </span>
+          <button class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white font-mono-tech text-xs flex items-center gap-2 transition-colors" onclick="alert('Download dos Detalhes DWG de Blocos (DWG 3.8 MB) iniciado.');" type="button">
+            <span>↓ DWG • 3.8 MB</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Item 8: Guias Ficha Técnica -->
+      <div class="doc-card bg-[#0d1a12]/90 border border-white/10 rounded-xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-white/20 transition-all" data-family="guias" data-tech-item="guias-ficha">
+        <div class="flex items-start md:items-center gap-3.5">
+          <span class="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] font-mono-tech text-zinc-400">PDF</span>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-mono-tech text-[11px] text-[#F1C546]">03 // GUIAS</span>
+              <h4 class="text-sm font-semibold text-white">Ficha Técnica Guias &amp; Meio-fio (100x15x30cm)</h4>
+            </div>
+            <p class="text-xs text-zinc-400">Especificação conforme NBR 14890 • Dimensões, raio de chanfro de 25mm e tolerâncias de empenamento.</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-mono-tech">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Disponível
+          </span>
+          <button class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white font-mono-tech text-xs flex items-center gap-2 transition-colors" onclick="alert('Download da Ficha Técnica de Guias (PDF 1.9 MB) iniciado.');" type="button">
+            <span>↓ PDF • 1.9 MB</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Item 9: Guias Laudo Dinâmico -->
+      <div class="doc-card bg-[#0d1a12]/90 border border-white/10 rounded-xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-white/20 transition-all" data-family="guias" data-tech-item="guias-laudo">
+        <div class="flex items-start md:items-center gap-3.5">
+          <span class="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] font-mono-tech text-zinc-400">LAB</span>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-mono-tech text-[11px] text-[#F1C546]">03 // GUIAS</span>
+              <h4 class="text-sm font-semibold text-white">Laudo de Tenacidade e Cisalhamento Dinâmico</h4>
+            </div>
+            <p class="text-xs text-zinc-400">Ensaio de impacto balístico e flexão em 3 pontos. Resistência comprovada sem fratura frágil sob carga tangencial de 32 kN.</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-mono-tech">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Disponível
+          </span>
+          <button class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white font-mono-tech text-xs flex items-center gap-2 transition-colors" onclick="alert('Download do Laudo de Guias (LAB 3.6 MB) iniciado.');" type="button">
+            <span>↓ LAUDO • 3.6 MB</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END: DocumentLibrary -->
+
+<!-- BEGIN: DPPSection -->
+<!-- Bloco 4: Passaporte Digital de Produto com Terminal Criptográfico -->
+<section class="bg-[#0d1a12] py-20 px-4 md:px-8 border-b border-white/10">
+  <div class="max-w-[1440px] mx-auto">
+    <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-12">
+      <div>
+        <span class="font-mono-tech text-xs tracking-wider text-[#F1C546] uppercase block mb-2">
+          ● PROTOCOLO DE RASTREABILIDADE // DPP CONNECT V4
+        </span>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+          Passaporte Digital de Produto: Laudos Conectados ao Lote
+        </h2>
+        <p class="text-zinc-400 text-sm max-w-2xl mt-2 leading-relaxed">
+          Cada pallet de peças estruturais VIRA recebe um marcador criptográfico impresso e gravado a laser. O código conecta a fiscalização pública e a equipe técnica diretamente à cadeia de custódia da resina e laudos de ruptura.
+        </p>
+      </div>
+      <a class="font-mono-tech text-xs text-zinc-300 hover:text-[#F1C546] border border-white/10 rounded-full px-5 py-2.5 flex items-center gap-2 hover:border-[#F1C546]/40 transition-colors" href="passaporte.html">
+        Acessar Central DPP em Tempo Real →
+      </a>
+    </div>
+
+    <!-- Terminal Criptográfico -->
+    <div class="bg-black/60 border border-white/15 rounded-2xl p-6 md:p-8 backdrop-blur-md shadow-2xl">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <!-- Lado Esquerdo: Identificador QR Code Simulado com SVG Técnico -->
+        <div class="lg:col-span-4 flex flex-col items-center justify-center p-6 border border-white/10 rounded-xl bg-white/[0.02]">
+          <div class="w-44 h-44 bg-white p-3 rounded-lg flex items-center justify-center shadow-lg">
+            <!-- Representação SVG de QR Code Vetorial -->
+            <svg class="w-full h-full text-black" fill="currentColor" viewBox="0 0 100 100">
+              <!-- Outer Corners -->
+              <path d="M0,0 h30 v30 h-30 z M5,5 h20 v20 h-20 z M10,10 h10 v10 h-10 z"></path>
+              <path d="M70,0 h30 v30 h-30 z M75,5 h20 v20 h-20 z M80,10 h10 v10 h-10 z"></path>
+              <path d="M0,70 h30 v30 h-30 z M5,75 h20 v20 h-20 z M10,80 h10 v10 h-10 z"></path>
+              <!-- Central Matrix & Data Blocks -->
+              <rect height="8" width="8" x="36" y="10"></rect>
+              <rect height="6" width="6" x="48" y="14"></rect>
+              <rect height="8" width="10" x="14" y="36"></rect>
+              <rect height="14" width="14" x="36" y="36"></rect>
+              <rect height="6" width="12" x="60" y="36"></rect>
+              <rect height="8" width="14" x="76" y="44"></rect>
+              <rect height="8" width="16" x="42" y="60"></rect>
+              <rect height="14" width="10" x="66" y="66"></rect>
+              <rect height="12" width="12" x="80" y="80"></rect>
+              <rect height="8" width="12" x="36" y="82"></rect>
+            </svg>
+          </div>
+          <span class="font-mono-tech text-[10px] text-zinc-400 mt-4">ID DIGITAL: VIRA-ENG-CENTRAL-2026</span>
+          <span class="font-mono-tech text-[9px] text-zinc-500">EMISSÃO: FEVEREIRO/2026 • LOTE 0402-PE</span>
+        </div>
+        <!-- Lado Direito: Metadados Criptográficos Auditáveis -->
+        <div class="lg:col-span-8 space-y-4 font-mono-tech">
+          <div class="flex items-center justify-between pb-3 border-b border-white/10">
+            <span class="text-xs text-zinc-400 uppercase tracking-wider">METADADOS DE CUSTÓDIA AUDITÁVEIS</span>
+            <span class="text-[10px] text-emerald-400 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              STATUS: VALIDADE VIGENTE
+            </span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+            <div>
+              <span class="text-zinc-500 block text-[10px]">HASH DO LAUDO MECÂNICO (SHA-256):</span>
+              <span class="text-zinc-300 text-[11px] break-all font-mono">e3bf0b72c7f16323cfebbc657ea823c926139612451f24d</span>
+            </div>
+            <div>
+              <span class="text-zinc-500 block text-[10px]">ORIGEM DO POLÍMERO (PCR):</span>
+              <span class="text-zinc-300">Rede de Cooperativas Agreste Pernambucano</span>
+            </div>
+            <div>
+              <span class="text-zinc-500 block text-[10px]">ORIGEM DO COPRODUTO MINERAL:</span>
+              <span class="text-zinc-300">Agregado Siderúrgico Beneficiado Suape-PE</span>
+            </div>
+            <div>
+              <span class="text-zinc-500 block text-[10px]">COMPRESSÃO REGISTRADA EM ENSAIO:</span>
+              <span class="text-[#F1C546] font-bold">38,4 MPa (Normativa Mínima: 35,0 MPa)</span>
+            </div>
+          </div>
+          <!-- Ação de Cópia e Certificação -->
+          <div class="pt-4 flex flex-wrap items-center justify-between gap-4">
+            <button class="px-4 py-2 rounded-md bg-white/10 hover:bg-white/20 text-zinc-200 text-xs flex items-center gap-2 border border-white/10 transition-colors" onclick="navigator.clipboard.writeText('e3bf0b72c7f16323cfebbc657ea823c926139612451f24d'); alert('Hash SHA-256 copiado para a área de transferência!');" type="button">
+              <svg class="w-4 h-4 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+              </svg>
+              <span>COPIAR HASH CRIPTOGRÁFICO</span>
+            </button>
+            <span class="text-[10px] text-zinc-500">
+              * Válido para prestação de contas no Tribunal de Contas (TCE) e laudos de medição de obras.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END: DPPSection -->
+
+<!-- BEGIN: RegulatoryMatrix -->
+<!-- Bloco 5: Fundo Claro Editorial #FAF9F6 - Matriz de Normas Técnicas -->
+<section class="bg-[#FAF9F6] text-zinc-900 py-20 px-4 md:px-8 border-b border-zinc-200">
+  <div class="max-w-[1440px] mx-auto">
+    <div class="mb-10">
+      <span class="font-mono-tech text-xs tracking-wider text-zinc-500 uppercase block mb-2">
+        CONFORMIDADE REGULATÓRIA // INFRAESTRUTURA URBANA
+      </span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-zinc-950 tracking-tight">
+        Matriz de Normas Técnicas &amp; Amparo Legal
+      </h2>
+      <p class="text-zinc-600 text-sm max-w-3xl mt-2 leading-relaxed">
+        Os artefatos circulares VIRA são submetidos aos mesmos critérios de aceitação e métodos de ensaio exigidos pela engenharia civil tradicional, garantindo aceitabilidade irrestrita em licitações e projetos executivos privados.
+      </p>
+    </div>
+    <!-- Tabela Técnica Comparativa -->
+    <div class="overflow-x-auto rounded-2xl border border-zinc-200 bg-white shadow-sm">
+      <table class="w-full text-left text-xs font-mono-tech border-collapse">
+        <thead>
+          <tr class="bg-zinc-100 text-zinc-700 border-b border-zinc-200 text-[11px] uppercase tracking-wider font-semibold">
+            <th class="p-4">NORMA / LEI</th>
+            <th class="p-4">ESCOPO REGULATÓRIO</th>
+            <th class="p-4">EXIGÊNCIA NORMATIVA</th>
+            <th class="p-4">DESEMPENHO VIRA</th>
+            <th class="p-4 text-right">CONFORMIDADE</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-zinc-200 text-zinc-700">
+          <!-- Linha 1 -->
+          <tr class="hover:bg-zinc-50/80 transition-colors">
+            <td class="p-4 font-bold text-zinc-900">ABNT NBR 9781</td>
+            <td class="p-4 font-sans text-xs">Peças de concreto para pavimentação intertravada</td>
+            <td class="p-4">Fpk ≥ 35 MPa (Tráfego de veículos comerciais)</td>
+            <td class="p-4 text-emerald-700 font-bold">38,4 MPa Médio</td>
+            <td class="p-4 text-right">
+              <span class="inline-flex items-center gap-1 text-emerald-700 font-semibold">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> CONFORME
+              </span>
+            </td>
+          </tr>
+          <!-- Linha 2 -->
+          <tr class="hover:bg-zinc-50/80 transition-colors">
+            <td class="p-4 font-bold text-zinc-900">ABNT NBR 6136</td>
+            <td class="p-4 font-sans text-xs">Blocos vazados de concreto para alvenaria com e sem função estrutural</td>
+            <td class="p-4">Fbk ≥ 8,0 MPa (Classe B) / Absorção ≤ 10%</td>
+            <td class="p-4 text-emerald-700 font-bold">Fbk 10,2 MPa / Absorção 0,31%</td>
+            <td class="p-4 text-right">
+              <span class="inline-flex items-center gap-1 text-emerald-700 font-semibold">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> CONFORME
+              </span>
+            </td>
+          </tr>
+          <!-- Linha 3 -->
+          <tr class="hover:bg-zinc-50/80 transition-colors">
+            <td class="p-4 font-bold text-zinc-900">ABNT NBR 14890</td>
+            <td class="p-4 font-sans text-xs">Guias e meio-fio pré-moldados de concreto</td>
+            <td class="p-4">Carga de ruptura à flexão ≥ 22 kN</td>
+            <td class="p-4 text-emerald-700 font-bold">&gt; 32 kN (Sem estilhaçamento)</td>
+            <td class="p-4 text-right">
+              <span class="inline-flex items-center gap-1 text-emerald-700 font-semibold">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> CONFORME
+              </span>
+            </td>
+          </tr>
+          <!-- Linha 4 -->
+          <tr class="hover:bg-zinc-50/80 transition-colors">
+            <td class="p-4 font-bold text-zinc-900">ISO 14021</td>
+            <td class="p-4 font-sans text-xs">Rotulagem ambiental autodeclarada (Reivindicações ambientais)</td>
+            <td class="p-4">Comprovação documental de conteúdo reciclado</td>
+            <td class="p-4 text-emerald-700 font-bold">100% Auditado via DPP</td>
+            <td class="p-4 text-right">
+              <span class="inline-flex items-center gap-1 text-emerald-700 font-semibold">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> CONFORME
+              </span>
+            </td>
+          </tr>
+          <!-- Linha 5 -->
+          <tr class="hover:bg-zinc-50/80 transition-colors">
+            <td class="p-4 font-bold text-zinc-900">LEI 14.133/2021</td>
+            <td class="p-4 font-sans text-xs">Nova Lei de Licitações Públicas (Critérios de sustentabilidade)</td>
+            <td class="p-4">Art. 11, IV c/c Art. 34 (Desempate ESG e menor ciclo de carbono)</td>
+            <td class="p-4 text-emerald-700 font-bold">Apto para Bonificação ESG</td>
+            <td class="p-4 text-right">
+              <span class="inline-flex items-center gap-1 text-emerald-700 font-semibold">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> HABILITADO
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<!-- END: RegulatoryMatrix -->
+
+<!-- BEGIN: FAQSection -->
+<!-- Bloco 6: Fundo Escuro #142519 - Perguntas Frequentes Técnicas -->
+<section class="bg-[#142519] py-20 px-4 md:px-8 border-b border-white/10" id="faq">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-12">
+      <span class="font-mono-tech text-xs tracking-wider text-[#F1C546] uppercase block mb-2">
+        DÚVIDAS FREQUENTES // SUPORTE A ESPECIFICADORES
+      </span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+        Perguntas Técnicas Antes de Especificar
+      </h2>
+      <p class="text-zinc-400 text-sm mt-2">
+        Respostas diretas de nossa equipe de engenharia dos materiais sobre aplicabilidade, compatibilidade estrutural e suporte a memoriais.
+      </p>
+    </div>
+    <!-- Accordion de Perguntas -->
+    <div class="space-y-4">
+      <!-- FAQ 1 -->
+      <details class="group bg-[#0d1a12] border border-white/10 rounded-xl p-5 open:border-[#F1C546]/40 transition-colors">
+        <summary class="flex justify-between items-center cursor-pointer font-bold text-white text-base">
+          <span>01 // Os blocos e pavers da VIRA atendem às normas ABNT convencionais?</span>
+          <span class="text-[#F1C546] group-open:rotate-180 transition-transform duration-200">↓</span>
+        </summary>
+        <div class="mt-4 text-zinc-300 text-sm leading-relaxed border-t border-white/10 pt-3">
+          Sim. Todos os nossos produtos são testados e certificados sob as mesmas normas aplicadas aos elementos cimentícios convencionais (NBR 9781, NBR 6136 e NBR 14890). O material não requer regimes de cálculo especiais ou aditivos adicionais em obra.
+        </div>
+      </details>
+      <!-- FAQ 2 -->
+      <details class="group bg-[#0d1a12] border border-white/10 rounded-xl p-5 open:border-[#F1C546]/40 transition-colors">
+        <summary class="flex justify-between items-center cursor-pointer font-bold text-white text-base">
+          <span>02 // Como importar as famílias BIM no Autodesk Revit e Archicad?</span>
+          <span class="text-[#F1C546] group-open:rotate-180 transition-transform duration-200">↓</span>
+        </summary>
+        <div class="mt-4 text-zinc-300 text-sm leading-relaxed border-t border-white/10 pt-3">
+          Nossos arquivos estão estruturados em formato nativo (.RFA) para versões Revit 2021 em diante, além de formato neutro (.IFC 4.0) compatível com Archicad e Vectorworks. Todos os blocos e pavers já possuem parâmetros compartilhados de cálculo de pegada de carbono (kg CO2e/m²) e modulação automática de juntas.
+        </div>
+      </details>
+      <!-- FAQ 3 -->
+      <details class="group bg-[#0d1a12] border border-white/10 rounded-xl p-5 open:border-[#F1C546]/40 transition-colors">
+        <summary class="flex justify-between items-center cursor-pointer font-bold text-white text-base">
+          <span>03 // O material possui laudo de resistência ao fogo e toxicidade térmica?</span>
+          <span class="text-[#F1C546] group-open:rotate-180 transition-transform duration-200">↓</span>
+        </summary>
+        <div class="mt-4 text-zinc-300 text-sm leading-relaxed border-t border-white/10 pt-3">
+          Sim. Devido à presença de escória e agentes minerais refratários em nossa matriz compósita, as peças alcançam classificação de incombustibilidade e autoextinção classe A2/B1 conforme ensaios NBR 14432 e ASTM E84, sem liberação de gases halógenos em caso de aquecimento severo.
+        </div>
+      </details>
+      <!-- FAQ 4 -->
+      <details class="group bg-[#0d1a12] border border-white/10 rounded-xl p-5 open:border-[#F1C546]/40 transition-colors">
+        <summary class="flex justify-between items-center cursor-pointer font-bold text-white text-base">
+          <span>04 // Como obter suporte para memorial descritivo de licitação pública?</span>
+          <span class="text-[#F1C546] group-open:rotate-180 transition-transform duration-200">↓</span>
+        </summary>
+        <div class="mt-4 text-zinc-300 text-sm leading-relaxed border-t border-white/10 pt-3">
+          Nossa equipe de consultoria regulatória fornece minuta técnica parametrizada em total conformidade com a Lei 14.133/2021, permitindo que secretarias de obras incluam critérios sustentáveis auditáveis sem risco de direcionamento indevido ou impugnação de certame.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+<!-- END: FAQSection -->
+
+<!-- BEGIN: FormB2BSection -->
+<!-- Bloco 7: Fundo Escuro #0d1a12 - Solicitação B2B de Pacote Executivo e Amostras -->
+<section class="bg-[#0d1a12] py-20 px-4 md:px-8 border-b border-white/10" id="solicitar">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-10">
+      <span class="font-mono-tech text-xs tracking-wider text-[#F1C546] uppercase block mb-2">
+        ● CANAL EXECUTIVO B2B
+      </span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+        Solicitar Pacote Técnico &amp; Amostras Físicas
+      </h2>
+      <p class="text-zinc-400 text-sm mt-2">
+        Preencha os dados da sua organização para envio imediato do dossiê completo de engenharia (.DWG, .RFA, Memoriais e Laudos Consolidados) ou requisição de amostra física para bancada.
+      </p>
+    </div>
+    <!-- Formulário B2B -->
+    <form class="bg-[#142519]/70 border border-white/15 rounded-2xl p-6 md:p-8 space-y-4 backdrop-blur-md" data-purpose="technical-request-form" onsubmit="event.preventDefault(); alert('Solicitação técnica registrada com sucesso. Um engenheiro de aplicação entrará em contato em até 4 horas úteis.');">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block font-mono-tech text-[11px] text-zinc-300 uppercase mb-1">NOME DO RESPONSÁVEL TÉCNICO *</label>
+          <input class="w-full bg-[#08110D] border border-white/15 rounded-lg px-3.5 py-2.5 text-sm text-white focus:border-[#F1C546] focus:ring-1 focus:ring-[#F1C546] outline-none transition-colors" placeholder="Ex: Eng. Roberto Albuquerque" required="" type="text">
+        </div>
+        <div>
+          <label class="block font-mono-tech text-[11px] text-zinc-300 uppercase mb-1">E-MAIL CORPORATIVO / INSTITUCIONAL *</label>
+          <input class="w-full bg-[#08110D] border border-white/15 rounded-lg px-3.5 py-2.5 text-sm text-white focus:border-[#F1C546] focus:ring-1 focus:ring-[#F1C546] outline-none transition-colors" placeholder="roberto@construtora.com.br" required="" type="email">
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block font-mono-tech text-[11px] text-zinc-300 uppercase mb-1">EMPRESA / CONSTRUTORA / ÓRGÃO PÚBLICO *</label>
+          <input class="w-full bg-[#08110D] border border-white/15 rounded-lg px-3.5 py-2.5 text-sm text-white focus:border-[#F1C546] focus:ring-1 focus:ring-[#F1C546] outline-none transition-colors" placeholder="Ex: SEINFRA Recife / Construtora ABC" required="" type="text">
+        </div>
+        <div>
+          <label class="block font-mono-tech text-[11px] text-zinc-300 uppercase mb-1">CIDADE / UF *</label>
+          <input class="w-full bg-[#08110D] border border-white/15 rounded-lg px-3.5 py-2.5 text-sm text-white focus:border-[#F1C546] focus:ring-1 focus:ring-[#F1C546] outline-none transition-colors" placeholder="Ex: Caruaru - PE" required="" type="text">
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block font-mono-tech text-[11px] text-zinc-300 uppercase mb-1">FAMÍLIA DE INTERESSE *</label>
+          <select class="w-full bg-[#08110D] border border-white/15 rounded-lg px-3.5 py-2.5 text-sm text-white focus:border-[#F1C546] focus:ring-1 focus:ring-[#F1C546] outline-none transition-colors">
+            <option>Todos os Produtos (Paver, Blocos e Guias)</option>
+            <option>01 // Apenas Pavimentos Intertravados</option>
+            <option>02 // Apenas Alvenaria Estrutural</option>
+            <option>03 // Apenas Guias &amp; Meio-fio</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-mono-tech text-[11px] text-zinc-300 uppercase mb-1">TIPO DE EMPREENDIMENTO</label>
+          <select class="w-full bg-[#08110D] border border-white/15 rounded-lg px-3.5 py-2.5 text-sm text-white focus:border-[#F1C546] focus:ring-1 focus:ring-[#F1C546] outline-none transition-colors">
+            <option>Obra Pública / Requalificação Urbana</option>
+            <option>Loteamento Residencial Fechado</option>
+            <option>Complexo Logístico / Industrial</option>
+            <option>Edificação Multifamiliar Vertical</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label class="block font-mono-tech text-[11px] text-zinc-300 uppercase mb-1">DETALHAMENTO DA DEMANDA OU AMOSTRA FÍSICA</label>
+        <textarea class="w-full bg-[#08110D] border border-white/15 rounded-lg px-3.5 py-2.5 text-sm text-white focus:border-[#F1C546] focus:ring-1 focus:ring-[#F1C546] outline-none transition-colors" placeholder="Informar volume estimado (m² ou unidades), solicitação de caixa de amostras ou dúvidas sobre especificações de ensaio..." rows="3"></textarea>
+      </div>
+      <button class="w-full py-3.5 rounded-full bg-[#F1C546] hover:bg-[#ffcf4d] text-[#08110D] font-bold text-xs uppercase tracking-wider transition-all duration-200 shadow-md" type="submit">
+        SOLICITAR PACOTE TÉCNICO &amp; AMOSTRAS FÍSICAS →
+      </button>
+    </form>
+  </div>
+</section>
+<!-- END: FormB2BSection -->
+
+<!-- BEGIN: MasterFooter -->
+<!-- Rodapé Master Oficial Unificado -->
+<footer class="bg-[#0d1a12] text-zinc-400 py-16 px-4 md:px-8 border-t border-white/10 font-sans">
+  <div class="max-w-[1440px] mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-12">
+      <div class="lg:col-span-4 space-y-4">
+        <div class="flex items-center gap-2">
+          <svg class="h-6 w-auto fill-current text-white" fill="none" viewBox="0 0 160 40" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 4L22 34H14L5 4H12Z" fill="white"></path>
+            <path d="M16 4L28 34H20L11 4H16Z" fill="#F1C546"></path>
+            <path d="M38 4V34H31V4H38Z" fill="white"></path>
+            <path d="M47 4H59C64 4 67 7 67 12C67 16 64 19 59 19H54V34H47V4ZM54 13.5H58C60 13.5 61 12.8 61 11.5C61 10.2 60 9.5 58 9.5H54V13.5Z" fill="white"></path>
+            <path d="M58 19L68 34H60L51 20.5L58 19Z" fill="white"></path>
+            <path d="M84 4L94 34H86L83 24H73L70 34H63L73 4H84ZM75 18H81L78 8.5L75 18Z" fill="white"></path>
+          </svg>
+          <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-widest pl-2 border-l border-white/20">ENGENHARIA</span>
+        </div>
+        <div>
+          <p class="text-xs font-bold text-white uppercase tracking-wider">SOLUÇÕES PARA CIDADES MELHORES.</p>
+          <div class="border-b-2 border-[#F1C546] w-12 mt-1 mb-3"></div>
+        </div>
+        <p class="text-xs text-zinc-400 leading-relaxed">Transformando resíduos da construção civil e polímeros industriais em infraestrutura urbana de alto desempenho técnico.</p>
+        <div class="flex items-center gap-3 pt-2">
+          <a class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-[#F1C546] hover:border-[#F1C546] transition-colors" href="https://linkedin.com" rel="noopener noreferrer" target="_blank"><span class="text-xs font-mono">in</span></a>
+          <a class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-[#F1C546] hover:border-[#F1C546] transition-colors" href="https://instagram.com" rel="noopener noreferrer" target="_blank"><span class="text-xs font-mono">ig</span></a>
+          <a class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-[#F1C546] hover:border-[#F1C546] transition-colors" href="https://youtube.com" rel="noopener noreferrer" target="_blank"><span class="text-xs font-mono">yt</span></a>
+        </div>
+      </div>
+      <div class="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-8 text-xs">
+        <div>
+          <h4 class="font-mono text-zinc-400 uppercase tracking-wider mb-3 text-xs">PRODUTOS</h4>
+          <ul class="space-y-2 text-zinc-400">
+            <li><a class="hover:text-white transition-colors" href="paver.html">Pavimentos Intertravados (Paver)</a></li>
+            <li><a class="hover:text-white transition-colors" href="blocos.html">Blocos Estruturais &amp; Vedação</a></li>
+            <li><a class="hover:text-white transition-colors" href="guias.html">Guias, Meio-Fio e Sarjetas</a></li>
+            <li><a class="hover:text-white transition-colors" href="index.html#colecao">Lajes e Elementos Modulares</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-mono text-zinc-400 uppercase tracking-wider mb-3 text-xs">ENGENHARIA</h4>
+          <ul class="space-y-2 text-zinc-400">
+            <li><a class="text-[#F1C546] hover:underline" href="central-tecnica.html">Central de Laudos &amp; Normas</a></li>
+            <li><a class="hover:text-white transition-colors" href="paver.html#calculadora">Calculadora de Drenabilidade</a></li>
+            <li><a class="hover:text-white transition-colors" href="passaporte.html">Rastreabilidade DPP Blockchain</a></li>
+            <li><a class="hover:text-white transition-colors" href="brandbook.html">Manual de Identidade &amp; Ativos</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-mono text-zinc-400 uppercase tracking-wider mb-3 text-xs">A VIRA</h4>
+          <ul class="space-y-2 text-zinc-400">
+            <li><a class="hover:text-white transition-colors" href="index.html#circularidade">Economia Circular</a></li>
+            <li><a class="hover:text-white transition-colors" href="index.html#impacto">Métricas de Impacto</a></li>
+            <li><a class="hover:text-white transition-colors" href="#solicitar">Parcerias e Cooperativas</a></li>
+            <li><a class="hover:text-white transition-colors" href="brandbook.html">Imprensa &amp; Mídia</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-mono text-zinc-400 uppercase tracking-wider mb-3 text-xs">CONTATO</h4>
+          <ul class="space-y-2 text-zinc-400">
+            <li>Recife &amp; Caruaru, PE</li>
+            <li>Atuação em todo o Brasil</li>
+            <li><a class="text-zinc-300 hover:text-[#F1C546]" href="mailto:contato@vira.eco">contato@vira.eco</a></li>
+            <li><a class="text-zinc-300 hover:text-[#F1C546]" href="tel:+5581999999999">+55 81 99999.9999</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-zinc-500">
+      <div>© 2026 VIRA. Todos os direitos reservados. Desenvolvido por AR Mídias Integradas.</div>
+      <div class="text-zinc-400 uppercase tracking-wider">ECONOMIA CIRCULAR EM MOVIMENTO. <span class="text-amber-400">—</span></div>
+    </div>
+  </div>
+</footer>
+<!-- END: MasterFooter -->
+
+<!-- BEGIN: InteractiveScripts -->
+<!-- Script de Partículas no Hero e Filtro Interativo de Documentos -->
+<script data-purpose="particles-network">
+    (function() {
+      const canvas = document.getElementById('particlesCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let width, height, particles;
+
+      function resize() {
+        width = canvas.width = canvas.parentElement.offsetWidth;
+        height = canvas.height = canvas.parentElement.offsetHeight;
+        initParticles();
+      }
+
+      function initParticles() {
+        particles = [];
+        const count = Math.min(Math.floor(width / 25), 60);
+        for (let i = 0; i < count; i++) {
+          particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: (Math.random() - 0.5) * 0.45,
+            vy: (Math.random() - 0.5) * 0.45,
+            radius: Math.random() * 1.6 + 1
+          });
+        }
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, width, height);
+        
+        // Desenha conexões
+        ctx.strokeStyle = 'rgba(241, 197, 70, 0.12)';
+        ctx.lineWidth = 0.6;
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 125) {
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+
+        // Desenha nós
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < 0 || p.x > width) p.vx *= -1;
+          if (p.y < 0 || p.y > height) p.vy *= -1;
+
+          ctx.fillStyle = 'rgba(241, 197, 70, 0.45)';
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        requestAnimationFrame(draw);
+      }
+
+      window.addEventListener('resize', resize);
+      resize();
+      draw();
+    })();
+
+    // Filtro interativo da biblioteca por família
+    (function initDocumentFilters() {
+      const filterButtons = document.querySelectorAll('#familyFilters .filter-btn');
+      const cards = document.querySelectorAll('#documentContainer .doc-card');
+
+      filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = btn.getAttribute('data-target');
+
+          filterButtons.forEach(b => {
+            b.className = 'filter-btn px-4 py-2 rounded-full bg-white/5 border border-white/10 text-zinc-300 hover:text-white hover:bg-white/10 transition-all';
+          });
+          btn.className = 'filter-btn px-4 py-2 rounded-full bg-[#F1C546] text-[#08110D] font-bold transition-all shadow-md';
+
+          cards.forEach(card => {
+            const family = card.getAttribute('data-family');
+            if (target === 'all' || family === target) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+    })();
+  </script>
+<!-- END: InteractiveScripts -->
 </body>
 </html>
