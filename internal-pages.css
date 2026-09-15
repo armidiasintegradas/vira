@@ -1,0 +1,389 @@
+:root {
+  --vira-obsidian:#040A07;
+  --vira-dark:#08110D;
+  --vira-forest:#0D1A12;
+  --vira-border:#142519;
+  --vira-gold:#F1C546;
+  --vira-gold-hover:#D9AD34;
+  --vira-surface:#FAF9F6;
+  --vira-muted:#7E8B83;
+  --vira-card:#101C15;
+  --vira-border-subtle:#1C2E22;
+  --vira-status:#10B981;
+  --vira-shell-max:1280px;
+  --vira-shell-x:clamp(1rem,3vw,2rem);
+  --vira-telemetry-h:33px;
+  --vira-header-h:80px;
+}
+
+[data-vira-internal] {
+  --vira-page-top:calc(var(--vira-telemetry-h) + var(--vira-header-h));
+  font-family:"Manrope",sans-serif;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+[data-vira-internal] :where(.font-mono,.font-mono-tech,.font-mono-code) {
+  font-family:"IBM Plex Mono",monospace!important;
+}
+
+[data-vira-internal] :where(a,button,input,select,textarea,summary):focus-visible {
+  outline:2px solid var(--vira-gold);
+  outline-offset:3px;
+}
+
+/* Canonical telemetry ribbon — geometry from paver.html */
+[data-vira-internal] [data-purpose="telemetry-bar"] {
+  position:sticky!important;
+  top:0!important;
+  z-index:70!important;
+  box-sizing:border-box;
+  width:100%;
+  min-height:var(--vira-telemetry-h)!important;
+  padding:8px 16px!important;
+  border:0!important;
+  border-bottom:1px solid var(--vira-border)!important;
+  background:var(--vira-obsidian)!important;
+  color:#d4d4d8!important;
+  font-family:"IBM Plex Mono",monospace!important;
+  font-size:11px!important;
+  line-height:1.45!important;
+  letter-spacing:.06em!important;
+  text-transform:uppercase;
+}
+
+.vira-telemetry__inner {
+  width:min(100%,var(--vira-shell-max));
+  min-height:17px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+
+.vira-telemetry__group,
+.vira-telemetry__status {
+  min-width:0;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.vira-telemetry__status { justify-content:flex-end; }
+.vira-telemetry__copy { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.vira-telemetry__ok { color:#34d399; font-weight:600; white-space:nowrap; }
+.vira-telemetry__cta { color:var(--vira-gold); font-weight:700; white-space:nowrap; text-decoration:none; }
+.vira-telemetry__cta:hover { color:#fff; }
+.vira-status-dot { width:8px; height:8px; flex:0 0 auto; border-radius:999px; background:var(--vira-status); box-shadow:0 0 0 4px rgba(16,185,129,.08); }
+
+/* Canonical primary header and indexed product switcher */
+[data-vira-internal] [data-purpose="primary-navigation"] {
+  position:sticky!important;
+  top:var(--vira-telemetry-h)!important;
+  z-index:60!important;
+  box-sizing:border-box;
+  height:var(--vira-header-h)!important;
+  border:0!important;
+  border-bottom:1px solid var(--vira-border)!important;
+  background:rgba(8,17,13,.96)!important;
+  color:#fff;
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+}
+
+.vira-primary-header__inner {
+  width:min(100%,var(--vira-shell-max));
+  height:100%;
+  margin:0 auto;
+  padding:0 var(--vira-shell-x);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:22px;
+}
+
+.vira-brand {
+  flex:0 0 auto;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:#fff;
+  text-decoration:none;
+}
+
+.vira-brand__logo {
+  display:block;
+  width:auto;
+  height:32px;
+  max-width:150px;
+  object-fit:contain;
+}
+
+.vira-brand__meta {
+  min-width:0;
+  padding-left:12px;
+  border-left:1px solid rgba(255,255,255,.2);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:2px;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:9px;
+  line-height:1.2;
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#34d399;
+}
+
+.vira-product-switcher {
+  min-width:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+}
+
+.vira-nav-link {
+  min-height:46px;
+  padding:7px 10px;
+  border:1px solid transparent;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#a1a1aa;
+  text-decoration:none;
+  transition:color .18s ease,border-color .18s ease,background-color .18s ease,transform .18s ease;
+}
+
+.vira-nav-link:hover { color:#fff; }
+.vira-nav-link__dot { display:none; width:6px; height:6px; flex:0 0 auto; border-radius:999px; background:var(--vira-gold); }
+.vira-nav-link__label {
+  display:flex;
+  flex-direction:column;
+  gap:1px;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10px;
+  line-height:1.18;
+  font-weight:500;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+.vira-nav-link[aria-current="page"] {
+  padding-inline:14px;
+  border-color:var(--vira-gold);
+  background:rgba(241,197,70,.08);
+  color:var(--vira-gold);
+  box-shadow:inset 0 0 0 1px rgba(241,197,70,.03);
+}
+.vira-nav-link[aria-current="page"] .vira-nav-link__dot { display:block; }
+.vira-nav-link[aria-current="page"] .vira-nav-link__label { font-weight:700; }
+
+.vira-header-actions { flex:0 0 auto; display:flex; align-items:center; gap:10px; }
+.vira-specify-cta {
+  min-height:40px;
+  padding:7px 18px;
+  border:1px solid var(--vira-gold);
+  border-radius:999px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  background:var(--vira-gold);
+  color:var(--vira-dark);
+  font-family:"Manrope",sans-serif;
+  font-size:11px;
+  line-height:1.08;
+  font-weight:800;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  text-decoration:none;
+  transition:background-color .18s ease,transform .18s ease;
+}
+.vira-specify-cta:hover { background:#ffcf4d; transform:translateY(-1px); }
+
+.vira-menu-toggle {
+  width:42px;
+  height:42px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:999px;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:transparent;
+  color:#e4e4e7;
+  cursor:pointer;
+}
+.vira-menu-toggle:hover { color:var(--vira-gold); border-color:rgba(241,197,70,.45); }
+.vira-menu-toggle svg { width:22px; height:22px; }
+
+.vira-mobile-drawer {
+  display:none;
+  position:absolute;
+  top:100%;
+  left:0;
+  right:0;
+  max-height:calc(100vh - var(--vira-page-top));
+  overflow:auto;
+  padding:14px var(--vira-shell-x) 20px;
+  border-bottom:1px solid var(--vira-border);
+  background:var(--vira-dark);
+  box-shadow:0 24px 50px rgba(0,0,0,.32);
+}
+.vira-mobile-drawer.is-open { display:block; }
+.vira-mobile-drawer__inner { width:min(100%,var(--vira-shell-max)); margin:0 auto; }
+.vira-mobile-drawer .vira-nav-link { width:100%; min-height:44px; border-radius:0; border-bottom:1px solid rgba(20,37,25,.9); }
+.vira-mobile-drawer .vira-nav-link[aria-current="page"] { border:1px solid var(--vira-gold); border-radius:999px; margin:5px 0; }
+.vira-mobile-drawer .vira-specify-cta { margin-top:14px; width:100%; }
+
+/* Paver-derived hero grammar. Page-specific canvases remain intact underneath. */
+[data-vira-internal] [data-internal-hero="true"] {
+  position:relative!important;
+  box-sizing:border-box;
+  min-height:0!important;
+  padding:64px 0 96px!important;
+  display:block!important;
+  overflow:hidden!important;
+  border:0!important;
+  border-bottom:1px solid var(--vira-border)!important;
+  background-color:var(--vira-dark)!important;
+  color:#fff!important;
+}
+
+[data-vira-internal] [data-internal-hero="true"] > :where(div,section):not(.absolute) {
+  box-sizing:border-box;
+}
+
+[data-vira-internal] [data-internal-hero="true"] > div[class*="max-w"],
+[data-vira-internal] [data-internal-hero="true"] > div.relative:not(.absolute) {
+  width:min(100%,var(--vira-shell-max))!important;
+  max-width:var(--vira-shell-max)!important;
+  margin-inline:auto!important;
+  padding:0 var(--vira-shell-x)!important;
+}
+
+[data-vira-internal] [data-internal-hero="true"] .vira-hero-heading {
+  max-width:900px!important;
+  margin:0 0 24px!important;
+  font-family:"Manrope",sans-serif!important;
+  font-size:clamp(2.55rem,5vw,3.75rem)!important;
+  line-height:1.04!important;
+  font-weight:800!important;
+  letter-spacing:-.035em!important;
+  text-align:left!important;
+  color:#fff!important;
+}
+
+[data-vira-internal] [data-internal-hero="true"] .vira-hero-copy {
+  max-width:690px!important;
+  margin:0 0 32px!important;
+  font-family:"Manrope",sans-serif!important;
+  font-size:clamp(1rem,1.35vw,1.125rem)!important;
+  line-height:1.68!important;
+  color:#d4d4d8!important;
+}
+
+[data-vira-internal] [data-internal-hero="true"] .vira-hero-kicker {
+  width:max-content;
+  max-width:100%;
+  margin:0 0 24px!important;
+  padding:5px 12px!important;
+  border:1px solid rgba(16,185,129,.32)!important;
+  border-radius:999px!important;
+  background:rgba(13,26,18,.82)!important;
+  color:#34d399!important;
+  font-family:"IBM Plex Mono",monospace!important;
+  font-size:11px!important;
+  line-height:1.35!important;
+  letter-spacing:.08em!important;
+  text-transform:uppercase!important;
+  backdrop-filter:blur(8px);
+}
+
+[data-vira-internal] [data-internal-hero="true"] canvas {
+  max-width:100%;
+}
+
+/* Shared editorial rhythm and component grammar */
+[data-vira-internal] main :where(h1,h2,h3,h4,h5,h6) { font-family:"Manrope",sans-serif; text-wrap:balance; }
+[data-vira-internal] main :where(p,li) { font-family:"Manrope",sans-serif; }
+[data-vira-internal] main section:not([data-internal-hero="true"]) { scroll-margin-top:calc(var(--vira-page-top) + 20px); }
+[data-vira-internal] main h2 { letter-spacing:-.03em; }
+[data-vira-internal] main :where(.rounded-4xl,.rounded-3xl,.rounded-2xl) { border-radius:24px; }
+[data-vira-internal] main :where(.font-mono,.font-mono-tech,.font-mono-code) { font-family:"IBM Plex Mono",monospace!important; letter-spacing:.02em; }
+[data-vira-internal] main table { border-color:var(--vira-border-subtle); }
+[data-vira-internal] main details { border-color:var(--vira-border-subtle); }
+
+/* One canonical footer for the six-page technical ecosystem */
+.vira-internal-footer {
+  border-top:1px solid var(--vira-border);
+  background:var(--vira-forest);
+  color:#fff;
+}
+.vira-internal-footer__inner { width:min(100%,var(--vira-shell-max)); margin:0 auto; padding:64px var(--vira-shell-x) 42px; }
+.vira-internal-footer__grid { display:grid; grid-template-columns:minmax(260px,1.6fr) repeat(2,minmax(170px,1fr)); gap:48px; padding-bottom:46px; border-bottom:1px solid var(--vira-border-subtle); }
+.vira-internal-footer__logo { display:block; height:36px; width:auto; max-width:165px; object-fit:contain; margin-bottom:22px; }
+.vira-internal-footer__slogan { margin:0; font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+.vira-internal-footer__bar { width:40px; height:2px; margin:8px 0 18px; background:var(--vira-gold); }
+.vira-internal-footer__bio { max-width:420px; margin:0; color:#a1a1aa; font-size:13px; line-height:1.7; }
+.vira-internal-footer__title { margin:0 0 16px; font-family:"IBM Plex Mono",monospace; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#fff; }
+.vira-internal-footer__links { list-style:none; margin:0; padding:0; display:grid; gap:10px; }
+.vira-internal-footer__links a { color:#a1a1aa; font-size:12px; text-decoration:none; transition:color .18s ease; }
+.vira-internal-footer__links a:hover,
+.vira-internal-footer__links a[aria-current="page"] { color:var(--vira-gold); }
+.vira-internal-footer__meta { color:#a1a1aa; font-size:12px; line-height:1.8; }
+.vira-internal-footer__meta a { color:#d4d4d8; text-decoration:none; }
+.vira-internal-footer__meta a:hover { color:var(--vira-gold); }
+.vira-internal-footer__bottom { padding-top:26px; display:flex; align-items:center; justify-content:space-between; gap:20px; color:#71717a; font-family:"IBM Plex Mono",monospace; font-size:10px; line-height:1.5; }
+.vira-internal-footer__tagline { display:flex; align-items:center; gap:9px; color:#a1a1aa; text-transform:uppercase; letter-spacing:.05em; }
+.vira-internal-footer__tagline::after { content:""; width:18px; height:2px; background:var(--vira-gold); }
+
+@media (max-width:1279px) {
+  .vira-product-switcher { display:none; }
+  .vira-menu-toggle { display:flex; }
+  .vira-brand__meta { display:none; }
+}
+
+@media (max-width:767px) {
+  :root { --vira-telemetry-h:40px; --vira-header-h:70px; }
+  [data-vira-internal] [data-purpose="telemetry-bar"] { padding:7px 12px!important; }
+  .vira-telemetry__inner { justify-content:center; }
+  .vira-telemetry__copy { display:none; }
+  .vira-telemetry__status { width:100%; justify-content:space-between; gap:8px; }
+  .vira-telemetry__ok { font-size:9px; overflow:hidden; text-overflow:ellipsis; }
+  .vira-telemetry__cta { font-size:9px; }
+  .vira-primary-header__inner { padding-inline:14px; }
+  .vira-brand__logo { height:28px; max-width:126px; }
+  .vira-specify-cta { display:none; }
+  [data-vira-internal] [data-internal-hero="true"] { padding:52px 0 68px!important; }
+  [data-vira-internal] [data-internal-hero="true"] .vira-hero-heading { font-size:clamp(2.35rem,12vw,3.25rem)!important; line-height:1.02!important; }
+  [data-vira-internal] [data-internal-hero="true"] .vira-hero-copy { font-size:1rem!important; }
+  .vira-internal-footer__inner { padding-top:50px; }
+  .vira-internal-footer__grid { grid-template-columns:1fr; gap:34px; }
+  .vira-internal-footer__bottom { align-items:flex-start; flex-direction:column; }
+}
+
+@media (max-width:420px) {
+  .vira-menu-toggle { width:38px; height:38px; }
+  .vira-mobile-drawer { padding-inline:14px; }
+  [data-vira-internal] [data-internal-hero="true"] { padding-top:46px!important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-vira-internal] *,
+  [data-vira-internal] *::before,
+  [data-vira-internal] *::after {
+    scroll-behavior:auto!important;
+  }
+  .vira-nav-link,
+  .vira-specify-cta,
+  .vira-internal-footer__links a {
+    transition:none!important;
+  }
+  .vira-status-dot { animation:none!important; }
+}
