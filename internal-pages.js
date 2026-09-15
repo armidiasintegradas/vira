@@ -3,6 +3,7 @@
 
   const LOGO = 'assets/marca-site-menu.webp';
   const STATUS = 'CIRCULARIDADE: 100% AUDITADA • STATUS: OPERAÇÃO ATIVA';
+  const STATUS_SHORT = '100% AUDITADA • OPERAÇÃO ATIVA';
 
   const PAGE_CONFIG = Object.freeze({
     'paver': {
@@ -98,7 +99,8 @@
             <span class="vira-telemetry__copy">${escapeHtml(config.normative)}</span>
           </div>
           <div class="vira-telemetry__status">
-            <span class="vira-telemetry__ok">${STATUS}</span>
+            <span class="vira-telemetry__ok vira-telemetry__ok--long">${STATUS}</span>
+            <span class="vira-telemetry__ok vira-telemetry__ok--short">${STATUS_SHORT}</span>
             <a class="vira-telemetry__cta" href="${config.cta}">[ ESPECIFICAR OBRA → ]</a>
           </div>
         </div>
@@ -218,62 +220,63 @@
     if (kicker && kicker.tagName !== 'CANVAS') kicker.classList.add('vira-hero-kicker');
 
     let copy = heading.nextElementSibling;
-    while (copy && !['P', 'DIV'].includes(copy.tagName)) copy = copy.nextElementSibling;
     if (copy && copy.tagName === 'P') copy.classList.add('vira-hero-copy');
   }
 
-  function wireMobileMenu(header) {
-    if (!header) return;
-    const button = header.querySelector('.vira-menu-toggle');
-    const drawer = header.querySelector('#viraMobileDrawer');
+  function installMenu(header) {
+    const button = header?.querySelector('.vira-menu-toggle');
+    const drawer = header?.querySelector('.vira-mobile-drawer');
     if (!button || !drawer) return;
 
-    const setOpen = (open) => {
-      drawer.classList.toggle('is-open', open);
-      drawer.setAttribute('aria-hidden', String(!open));
-      button.setAttribute('aria-expanded', String(open));
-      button.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    const close = () => {
+      drawer.classList.remove('is-open');
+      drawer.setAttribute('aria-hidden', 'true');
+      button.setAttribute('aria-expanded', 'false');
     };
 
-    button.addEventListener('click', () => setOpen(!drawer.classList.contains('is-open')));
-    drawer.addEventListener('click', (event) => {
-      if (event.target.closest('a')) setOpen(false);
-    });
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') setOpen(false);
+    const toggle = () => {
+      const opening = !drawer.classList.contains('is-open');
+      if (opening) {
+        drawer.classList.add('is-open');
+        drawer.setAttribute('aria-hidden', 'false');
+        button.setAttribute('aria-expanded', 'true');
+      } else {
+        close();
+      }
+    };
+
+    button.addEventListener('click', toggle);
+    drawer.querySelectorAll('a').forEach((link) => link.addEventListener('click', close));
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') close();
     });
     window.addEventListener('resize', () => {
-      if (window.innerWidth >= 1280) setOpen(false);
-    }, { passive: true });
+      if (window.innerWidth >= 1280) close();
+    });
   }
 
-  function init() {
+  function boot() {
     const body = document.body;
-    if (!body) return;
-    const activeKey = body.dataset.viraInternal;
+    const activeKey = body?.dataset?.viraInternal;
     const config = PAGE_CONFIG[activeKey];
-    if (!config) return;
+    if (!body || !config) return;
 
-    ensureTelemetry(config);
-    const header = replaceElement(document.querySelector('[data-purpose="primary-navigation"]'), headerMarkup(activeKey, config));
+    const telemetry = ensureTelemetry(config);
+    const existingHeader = document.querySelector('[data-purpose="primary-navigation"]');
+    const header = replaceElement(existingHeader, headerMarkup(activeKey, config));
     normalizeHero();
 
     const existingFooter = document.querySelector('footer');
-    if (existingFooter) {
-      replaceElement(existingFooter, footerMarkup(activeKey));
-    } else {
-      document.body.insertAdjacentHTML('beforeend', footerMarkup(activeKey));
-    }
+    if (existingFooter) replaceElement(existingFooter, footerMarkup(activeKey));
+    else document.body.insertAdjacentHTML('beforeend', footerMarkup(activeKey));
 
-    wireMobileMenu(header);
-    document.documentElement.dataset.viraShellReady = 'true';
+    installMenu(header);
+    document.documentElement.dataset.viraInternalReady = 'true';
+    if (telemetry) telemetry.dataset.viraCanonical = 'true';
   }
 
-  window.VIRAInternalPages = Object.freeze({ PAGE_CONFIG, NAV, init });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot, { once:true });
+  else boot();
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init, { once: true });
-  } else {
-    init();
-  }
+  window.VIRAInternalPages = Object.freeze({ PAGE_CONFIG, NAV });
 })();
