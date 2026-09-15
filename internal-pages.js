@@ -183,6 +183,29 @@
     return replacement;
   }
 
+  function ensureTelemetry(config) {
+    const existing = document.querySelector('[data-purpose="telemetry-bar"]');
+    if (existing) return replaceElement(existing, telemetryMarkup(config));
+
+    const primaryHeader = document.querySelector('[data-purpose="primary-navigation"]');
+    if (!primaryHeader) return null;
+
+    const legacyBar = primaryHeader.previousElementSibling;
+    if (
+      legacyBar &&
+      legacyBar.tagName === 'DIV' &&
+      legacyBar.textContent.includes('NORMATIVA 2026')
+    ) {
+      legacyBar.remove();
+    }
+
+    const template = document.createElement('template');
+    template.innerHTML = telemetryMarkup(config).trim();
+    const telemetry = template.content.firstElementChild;
+    primaryHeader.before(telemetry);
+    return telemetry;
+  }
+
   function normalizeHero() {
     const hero = document.querySelector('[data-internal-hero="true"]');
     if (!hero) return;
@@ -231,7 +254,7 @@
     const config = PAGE_CONFIG[activeKey];
     if (!config) return;
 
-    replaceElement(document.querySelector('[data-purpose="telemetry-bar"]'), telemetryMarkup(config));
+    ensureTelemetry(config);
     const header = replaceElement(document.querySelector('[data-purpose="primary-navigation"]'), headerMarkup(activeKey, config));
     normalizeHero();
 
