@@ -70,4 +70,11 @@ assert(sharedCss.includes('[data-vira-internal="passaporte"] [data-purpose="lega
 assert(sharedCss.includes('[data-vira-internal="passaporte"] [data-purpose="dpp-faq"]'), 'Passaporte: FAQ sem acabamento canônico');
 assert(sharedCss.includes('[data-vira-internal="passaporte"] [data-purpose="specification-form-section"]'), 'Passaporte: formulário B2B sem acabamento canônico');
 
+// Refinamento mobile aprovado na revisão visual
+assert(sharedCss.includes('/* Passaporte DPP mobile refinement — visual review */'), 'Passaporte: refinamento mobile da revisão visual não está documentado');
+assert(sharedCss.includes('[data-vira-internal="passaporte"] [data-purpose="hero-section"] [data-purpose="compliance-badges"]'), 'Passaporte: badges do hero sem contrato mobile 2x2');
+assert(sharedCss.includes('[data-vira-internal="passaporte"] [data-purpose="dpp-architecture"] .overflow-x-auto::before'), 'Passaporte: tabela técnica sem affordance de rolagem');
+assert(sharedCss.includes('[data-vira-internal="passaporte"] [data-purpose="legal-matrix"] .overflow-x-auto::before'), 'Passaporte: matriz legal sem affordance de rolagem');
+assert(sharedCss.includes('[data-vira-internal="passaporte"] [data-purpose="audit-terminal"] .flex.flex-wrap.items-center.gap-3.pt-4'), 'Passaporte: ações do terminal sem contrato mobile touch-friendly');
+
 console.log('passaporte: ok');
