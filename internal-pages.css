@@ -74,6 +74,7 @@
 .vira-telemetry__status { justify-content:flex-end; }
 .vira-telemetry__copy { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .vira-telemetry__ok { color:#34d399; font-weight:600; white-space:nowrap; }
+.vira-telemetry__ok--short { display:none; }
 .vira-telemetry__cta { color:var(--vira-gold); font-weight:700; white-space:nowrap; text-decoration:none; }
 .vira-telemetry__cta:hover { color:#fff; }
 .vira-status-dot { width:8px; height:8px; flex:0 0 auto; border-radius:999px; background:var(--vira-status); box-shadow:0 0 0 4px rgba(16,185,129,.08); }
@@ -346,6 +347,8 @@
 .vira-internal-footer__tagline::after { content:""; width:18px; height:2px; background:var(--vira-gold); }
 
 @media (max-width:1279px) {
+  .vira-telemetry__group { display:none; }
+  .vira-telemetry__status { width:100%; justify-content:space-between; }
   .vira-product-switcher { display:none; }
   .vira-menu-toggle { display:flex; }
   .vira-brand__meta { display:none; }
@@ -358,6 +361,8 @@
   .vira-telemetry__copy { display:none; }
   .vira-telemetry__status { width:100%; justify-content:space-between; gap:8px; }
   .vira-telemetry__ok { font-size:9px; overflow:hidden; text-overflow:ellipsis; }
+  .vira-telemetry__ok--long { display:none; }
+  .vira-telemetry__ok--short { display:inline; }
   .vira-telemetry__cta { font-size:9px; }
   .vira-primary-header__inner { padding-inline:14px; }
   .vira-brand__logo { height:28px; max-width:126px; }
