@@ -54,4 +54,11 @@ assert(sharedCss.includes('[data-vira-internal="central-tecnica"] [data-purpose=
 assert(sharedCss.includes('[data-vira-internal="central-tecnica"] [data-purpose="specification-request"]'), 'Central Técnica: solicitação técnica não possui acabamento canônico');
 assert(sharedCss.includes('@media (max-width:1023px)') && sharedCss.includes('@media (max-width:639px)'), 'Central Técnica: refinamento responsivo tablet/mobile ausente');
 
+// Refinamento mobile aprovado na revisão visual
+assert(sharedCss.includes('/* Central Tecnica mobile refinement — visual review */'), 'Central Técnica: refinamento mobile da revisão visual não está documentado');
+assert(sharedCss.includes('@media (min-width:360px) and (max-width:639px) {\n  [data-vira-internal="central-tecnica"] [data-purpose="central-hero"] > div.relative > div.grid:last-child'), 'Central Técnica: breakpoint 360–639 px para hero 2×2 ausente');
+assert(sharedCss.includes('[data-vira-internal="central-tecnica"] [data-purpose="regulatory-matrix"] .overflow-x-auto::before'), 'Central Técnica: indicador DESLIZE da matriz regulatória ausente');
+assert(sharedCss.includes('[data-vira-internal="central-tecnica"] [data-purpose="regulatory-matrix"] .overflow-x-auto::after'), 'Central Técnica: fade lateral da matriz regulatória ausente');
+assert(sharedCss.includes('[data-vira-internal="central-tecnica"] [data-purpose="document-library"] .doc-card > div:last-child'), 'Central Técnica: ações documentais não possuem layout mobile dedicado');
+
 console.log('central-tecnica: ok');
