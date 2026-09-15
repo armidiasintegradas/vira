@@ -58,7 +58,8 @@ jobs:
           const browser = await chromium.launch({headless:true});
           const cases = [
             ['desktop',1440,900,4],
-            ['tablet',1024,768,2],
+            ['tablet',1024,768,4],
+            ['tablet-edge',768,768,2],
             ['mobile',390,844,2],
             ['narrow',350,780,1],
           ];
