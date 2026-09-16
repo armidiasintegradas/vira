@@ -1,0 +1,77 @@
+name: Guias mobile width diagnostic v2
+
+on:
+  push:
+    branches:
+      - feat/internal-pages-visual-unity
+    paths:
+      - '.github/workflows/guias-mobile-width-diagnostic-v2.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/internal-pages-visual-unity
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Clean temporary harnesses from branch
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/guias-mobile-width-green.yml
+          rm -f .github/workflows/guias-mobile-width-diagnostic-v2.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "chore: clean Guias mobile width harnesses"
+          git push origin HEAD:feat/internal-pages-visual-unity
+          test -z "$(git status --porcelain)"
+      - name: Apply first containment hypothesis temporarily
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('internal-pages.css')
+          css=p.read_text()
+          css += '''\n\n/* Guias mobile hero width containment */\n@media (max-width:639px) {\n  [data-vira-internal="guias"] [data-internal-hero="true"] > div.relative:not(.absolute) > .pointer-events-auto {\n    width:100%!important;\n    max-width:100%!important;\n    min-width:0!important;\n  }\n}\n'''
+          p.write_text(css)
+          PY
+      - name: Install Chromium QA runtime
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Measure residual overflow after first containment
+        run: |
+          set -euo pipefail
+          python3 -m http.server 4173 >/tmp/guias-width-diagnostic-v2.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          sleep 2
+          cat > guias-width-diagnostic-v2.mjs <<'EOF'
+          import { chromium } from 'playwright';
+          const browser=await chromium.launch({headless:true});
+          const page=await browser.newPage({viewport:{width:390,height:844}});
+          await page.goto('http://127.0.0.1:4173/guias.html',{waitUntil:'networkidle'});
+          await page.waitForFunction(()=>document.documentElement.dataset.viraInternalReady==='true');
+          const data=await page.evaluate(()=>{
+            const hero=document.querySelector('[data-internal-hero="true"]');
+            const all=[hero,...hero.querySelectorAll('*')];
+            const offenders=all.map((el,i)=>{
+              const r=el.getBoundingClientRect();
+              const cs=getComputedStyle(el);
+              return {i,tag:el.tagName.toLowerCase(),cls:typeof el.className==='string'?el.className:'',text:(el.textContent||'').trim().replace(/\s+/g,' ').slice(0,110),left:+r.left.toFixed(2),right:+r.right.toFixed(2),width:+r.width.toFixed(2),clientWidth:el.clientWidth,scrollWidth:el.scrollWidth,display:cs.display,minWidth:cs.minWidth,maxWidth:cs.maxWidth,widthCSS:cs.width,whiteSpace:cs.whiteSpace,overflowX:cs.overflowX,flexShrink:cs.flexShrink};
+            }).filter(x=>x.right>390.5||x.left<-.5||x.width>390.5||x.scrollWidth>x.clientWidth+1);
+            return {hero:{clientWidth:hero.clientWidth,scrollWidth:hero.scrollWidth},offenders};
+          });
+          console.log(JSON.stringify(data,null,2));
+          await browser.close();
+          EOF
+          node guias-width-diagnostic-v2.mjs
+          rm -rf guias-width-diagnostic-v2.mjs node_modules package-lock.json package.json
+          git checkout -- internal-pages.css
+          test -z "$(git status --porcelain)"
