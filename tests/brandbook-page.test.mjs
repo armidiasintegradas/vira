@@ -125,4 +125,8 @@ test("brandbook.html aplica o contrato visual Paver sem perder a navegação cap
   assert.match(css, /\[data-vira-internal="brandbook"\] \[data-purpose="brand-signage"\]/, "Sinalização deve receber acabamento canônico");
   assert.match(css, /\[data-vira-internal="brandbook"\] \[data-purpose="brand-uniforms"\]/, "Uniformes devem receber acabamento canônico");
   assert.match(css, /\[data-vira-internal="brandbook"\] \[data-purpose="brand-downloads"\]/, "Downloads devem receber acabamento canônico");
+  assert.match(css, /\/\* Brandbook mobile refinement — visual review \*\//, "CSS deve documentar o refinamento mobile final do Brandbook");
+  assert.match(css, /\[data-vira-internal="brandbook"\] \[data-purpose="brandbook-chapter-nav"\]::after[\s\S]*?content:"→"/, "navegação capitular mobile deve indicar conteúdo horizontal à direita");
+  assert.match(css, /\[data-vira-internal="brandbook"\] \[data-purpose="brand-typography"\] \.overflow-x-auto::before[\s\S]*?content:"DESLIZE →"/, "tabela tipográfica mobile deve indicar rolagem horizontal");
+  assert.match(css, /\[data-vira-internal="brandbook"\] \[data-purpose="brand-typography"\] \.overflow-x-auto::after[\s\S]*?linear-gradient/, "tabela tipográfica mobile deve ter fade lateral");
 });
