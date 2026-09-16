@@ -1,0 +1,110 @@
+name: Brandbook mobile apply
+
+on:
+  push:
+    branches:
+      - feat/internal-pages-visual-unity
+    paths:
+      - .github/workflows/brandbook-mobile-apply.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/internal-pages-visual-unity
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Apply approved Brandbook mobile refinement
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('internal-pages.css')
+          css=p.read_text()
+          marker='/* Brandbook mobile refinement — visual review */'
+          if marker in css:
+              raise SystemExit('marker already exists')
+          block=r'''
+
+/* Brandbook mobile refinement — visual review */
+@media (max-width:639px) {
+  [data-vira-internal="brandbook"] [data-purpose="brandbook-chapter-nav"] {
+    isolation:isolate;
+  }
+
+  [data-vira-internal="brandbook"] [data-purpose="brandbook-chapter-nav"]::after {
+    content:"→";
+    position:sticky;
+    z-index:6;
+    right:0;
+    float:right;
+    width:36px;
+    min-width:36px;
+    height:40px;
+    margin-left:-36px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    padding-right:4px;
+    background:linear-gradient(to left,rgba(4,10,7,.99) 42%,rgba(4,10,7,0));
+    color:var(--vira-gold);
+    font-family:"IBM Plex Mono",monospace;
+    font-size:13px;
+    line-height:1;
+    font-weight:700;
+    pointer-events:none;
+  }
+
+  [data-vira-internal="brandbook"] [data-purpose="brand-typography"] .overflow-x-auto {
+    position:relative;
+    padding-top:26px;
+    isolation:isolate;
+  }
+
+  [data-vira-internal="brandbook"] [data-purpose="brand-typography"] .overflow-x-auto::before {
+    content:"DESLIZE →";
+    position:absolute;
+    z-index:4;
+    top:0;
+    right:2px;
+    padding:3px 7px;
+    border:1px solid rgba(8,17,13,.16);
+    border-radius:999px;
+    background:rgba(255,255,255,.96);
+    color:var(--vira-dark);
+    font-family:"IBM Plex Mono",monospace;
+    font-size:9px;
+    line-height:1.2;
+    font-weight:700;
+    letter-spacing:.08em;
+    pointer-events:none;
+  }
+
+  [data-vira-internal="brandbook"] [data-purpose="brand-typography"] .overflow-x-auto::after {
+    content:"";
+    position:absolute;
+    z-index:3;
+    top:26px;
+    right:0;
+    bottom:0;
+    width:38px;
+    background:linear-gradient(to left,rgba(255,255,255,.98),rgba(255,255,255,0));
+    pointer-events:none;
+  }
+}
+'''
+          p.write_text(css.rstrip()+block+'\n')
+          PY
+          node --test tests/brandbook-page.test.mjs
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add internal-pages.css
+          git commit -m "fix: improve Brandbook mobile scroll discovery"
+          git push origin HEAD:feat/internal-pages-visual-unity
