@@ -44,6 +44,10 @@ assert(sharedCss.includes('@media (min-width:360px) and (max-width:639px)') && s
 assert(sharedCss.includes('[data-vira-internal="guias"] [data-purpose="technical-anatomy"] .lg\\:col-span-7.overflow-x-auto::before') && sharedCss.includes('content:"DESLIZE →"'), 'Guias: affordance DESLIZE da tabela técnica ausente');
 assert(sharedCss.includes('[data-vira-internal="guias"] [data-purpose="technical-anatomy"] .lg\\:col-span-7.overflow-x-auto::after') && sharedCss.includes('linear-gradient(to left,rgba(8,17,13,.96),rgba(8,17,13,0))'), 'Guias: fade lateral da tabela técnica ausente');
 
+// Regressão: o conteúdo textual do hero não pode expandir além do container em telas estreitas
+assert(sharedCss.includes('/* Guias mobile hero width containment */'), 'Guias: contenção de largura do conteúdo do hero mobile não está documentada');
+assert(sharedCss.includes('[data-vira-internal="guias"] [data-internal-hero="true"] > div.relative:not(.absolute) > .pointer-events-auto') && sharedCss.includes('min-width:0!important;') && sharedCss.includes('max-width:100%!important;') && sharedCss.includes('width:100%!important;'), 'Guias: conteúdo interno do hero mobile ainda pode exceder o viewport');
+
 // Integração com Card da Home
 assert(app.includes('button.dataset.product==="guia-meio-fio"') && app.includes('location.href="guias.html"'), 'home não direciona Guias para guias.html');
 
