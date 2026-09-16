@@ -6,7 +6,7 @@ permissions:
   contents: write
 jobs:
   review:
-    if: "${{ startsWith(github.event.head_commit.message, 'test: run Brandbook final visual review') }}"
+    if: "${{ startsWith(github.event.head_commit.message, 'test: rerun Brandbook visual review') }}"
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -31,11 +31,12 @@ jobs:
           cat > brandbook-review.mjs <<'EOF'
           import { chromium } from 'playwright';
           const browser=await chromium.launch({headless:true});
+          const base='http://127.0.0.1:4173/brandbook.html';
           const cases=[['desktop',1440,900],['tablet',1024,768],['mobile',390,844],['narrow',350,780]];
           for(const [name,width,height] of cases){
             const page=await browser.newPage({viewport:{width,height}});
             const errors=[]; page.on('pageerror',e=>errors.push(e.message));
-            await page.goto('http://127.0.0.1:4173/brandbook.html',{waitUntil:'networkidle',timeout:30000});
+            await page.goto(base,{waitUntil:'networkidle',timeout:30000});
             await page.waitForFunction(()=>document.documentElement.dataset.viraInternalReady==='true',null,{timeout:10000});
             const m=await page.evaluate(()=>{
               const q=s=>document.querySelector(s); const rect=el=>{const r=el?.getBoundingClientRect();return r?{x:r.x,y:r.y,width:r.width,height:r.height,right:r.right,bottom:r.bottom}:null};
@@ -59,11 +60,13 @@ jobs:
                 const loc=page.locator(sel); if(await loc.count()){await loc.scrollIntoViewIfNeeded(); await page.waitForTimeout(250); await loc.screenshot({path:`brandbook-review/brandbook-mobile-${key}.png`});}
               }
               for(const link of m.chapterLinks){
-                await page.goto(`http://127.0.0.1:4173/brandbook.html${link.href}`,{waitUntil:'networkidle'});
-                await page.waitForTimeout(450);
+                await page.goto(base,{waitUntil:'networkidle'});
+                await page.waitForFunction(()=>document.documentElement.dataset.viraInternalReady==='true',null,{timeout:10000});
+                await page.locator(`[data-purpose="brandbook-chapter-nav"] a[href="${link.href}"]`).click();
+                await page.waitForTimeout(550);
                 const anchor=await page.evaluate(href=>{const el=document.querySelector(href); const r=el?.getBoundingClientRect(); return r?{top:r.top,height:r.height}:null;},link.href);
                 console.log('anchor',link.href,JSON.stringify(anchor));
-                if(!anchor || anchor.top<90) throw new Error(`anchor hidden ${link.href}: ${JSON.stringify(anchor)}`);
+                if(!anchor || anchor.top<120) throw new Error(`anchor hidden ${link.href}: ${JSON.stringify(anchor)}`);
               }
             }
             await page.close();
