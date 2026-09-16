@@ -20,7 +20,6 @@ jobs:
         run: |
           set -euo pipefail
           git fetch origin main
-          test -z "$(git diff --name-only origin/main...HEAD | grep '^\.github/workflows/' || true)" || true
           git diff --quiet origin/main...HEAD -- index.html
           changed_count=$(git diff --name-only origin/main...HEAD | grep -v '^\.github/workflows/final-publication-gate.yml$' | wc -l)
           test "$changed_count" -eq 16
@@ -52,7 +51,7 @@ jobs:
               await page.goto(`http://127.0.0.1:4173/${file}`,{waitUntil:'networkidle',timeout:30000});
               await page.waitForFunction(()=>document.documentElement.dataset.viraInternalReady==='true',null,{timeout:10000});
               const m=await page.evaluate(()=>{
-                const header=document.querySelector('.vira-site-header');
+                const header=document.querySelector('.vira-primary-header');
                 const footer=document.querySelector('[data-purpose="internal-footer"]');
                 const desktopNav=document.querySelector('.vira-product-switcher');
                 const mobileNav=document.querySelector('.vira-mobile-drawer');
@@ -64,7 +63,7 @@ jobs:
                   footer:!!footer,
                   desktopActive:desktopNav?.querySelectorAll('[aria-current="page"]').length ?? 0,
                   mobileActive:mobileNav?.querySelectorAll('[aria-current="page"]').length ?? 0,
-                  logo:document.querySelector('.vira-site-header img')?.getAttribute('src') || ''
+                  logo:document.querySelector('.vira-primary-header img')?.getAttribute('src') || ''
                 };
               });
               if(errors.length) throw new Error(`${file}/${name}: ${errors.join(' | ')}`);
