@@ -6,6 +6,7 @@ assert(fs.existsSync(pagePath), 'blocos.html ainda não existe');
 
 const html = fs.readFileSync(pagePath, 'utf8');
 const app = fs.readFileSync(new URL('../app.js', import.meta.url), 'utf8');
+const sharedCss = fs.readFileSync(new URL('../internal-pages.css', import.meta.url), 'utf8');
 
 // Validação da Identidade e Título 2026
 assert(html.includes('02 // Blocos de Concreto Estrutural e Vedação VIRA'), 'title não identifica Blocos VIRA');
@@ -24,6 +25,20 @@ assert(html.includes('VIRA-BLO-0924'), 'passaporte DPP com ID VIRA-BLO-0924 ause
 assert(html.includes('hero-structural-canvas'), 'canvas estrutural interativo ausente');
 assert(html.includes('updateCalculator'), 'lógica de calculadora de alvenaria ausente');
 assert(html.includes('Desenvolvido por AR Mídias Integradas'), 'créditos do rodapé oficial ausentes');
+
+// Refinamento visual do Blocos baseado no golden master Paver
+assert(sharedCss.includes('[data-vira-internal="blocos"] [data-internal-hero="true"] canvas'), 'Blocos: canvas do hero não possui tratamento visual específico');
+assert(sharedCss.includes('grid-template-columns:repeat(4,minmax(0,1fr));'), 'Blocos: grade técnica do hero não replica a hierarquia desktop do Paver');
+assert(sharedCss.includes('[data-vira-internal="blocos"] [data-purpose="case-study"] > div > div:first-child'), 'Blocos: introdução do caso real não segue a composição editorial do Paver');
+assert(sharedCss.includes('[data-vira-internal="blocos"] [data-purpose="modulation-diagrams"] .grid > .rounded-3xl'), 'Blocos: cards de modulação ainda não usam a superfície canônica');
+assert(sharedCss.includes('[data-vira-internal="blocos"] [data-purpose="calculator"] > div > .bg-gradient-to-br'), 'Blocos: calculadora não possui acabamento alinhado ao sistema Paver');
+
+// Revisão visual mobile: hero 2x2 a partir de 360px e affordance da tabela técnica
+assert(sharedCss.includes('/* Blocos mobile visual review refinement */'), 'Blocos: refinamento mobile aprovado ainda não foi aplicado');
+assert(sharedCss.includes('@media (min-width:360px) and (max-width:639px) {\n  [data-vira-internal="blocos"] [data-internal-hero="true"] > div.relative:not(.absolute) > div.mt-12 {\n    grid-template-columns:repeat(2,minmax(0,1fr));'), 'Blocos: indicadores do hero não formam grade 2x2 a partir de 360px');
+assert(sharedCss.includes('[data-vira-internal="blocos"] .lg\\:col-span-7.overflow-x-auto::before'), 'Blocos: tabela técnica mobile não possui indicador de rolagem');
+assert(sharedCss.includes('content:"DESLIZE →";'), 'Blocos: rótulo DESLIZE da tabela técnica ausente');
+assert(sharedCss.includes('linear-gradient(to left,rgba(8,17,13,.96),rgba(8,17,13,0))'), 'Blocos: fade lateral da tabela técnica ausente');
 
 // Integração com Card da Home
 assert(app.includes('button.dataset.product==="bloco-concreto"') && app.includes('location.href="blocos.html"'), 'card Blocos VIRA não direciona para a nova página');

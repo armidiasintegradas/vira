@@ -84,8 +84,9 @@
       display: none;
     }
   </style>
+<link rel="stylesheet" href="internal-pages.css">
 </head>
-<body class="antialiased selection:bg-vira-gold selection:text-vira-dark">
+<body class="antialiased selection:bg-vira-gold selection:text-vira-dark" data-vira-internal="passaporte">
 <!-- ========================================================================= -->
 <!-- TOP TELEMETRY BAR (Consistent with paver.html)                           -->
 <!-- ========================================================================= -->
@@ -117,7 +118,7 @@
     <div class="flex items-center space-x-4">
       <a aria-label="Página Inicial VIRA" class="flex items-center space-x-2 group focus:outline-none" href="index.html">
         <div class="flex items-center gap-3">
-          <img alt="VIRA" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhzmy9X4hLoTq7ywTJRCrTPJM98BZgX7i_icoaBj5_4urTmKJBG53G5G626vvFOdU2dKdMCSQbTgR9rE0ezzG6R4xORiPnBrC6GRXKCFi2xNVRhMYcAovSmJsDOrTkvqzxX8jxuxMlwdGSlR4SVXQ3MMU6zebyiQbeiSTyPvxBucIi3b6vRgBbkig5LBw8Ynat01K6VKlafO3YOoBvyKzg1RiWttC6dglACoDT0Gc0bLcbPeKrYT9SlygadzNRCnvHTwE"/>
+          <img alt="VIRA" class="h-8 w-auto object-contain" src="assets/marca-site-menu.webp"/>
           <div class="border-l border-neutral-700/80 pl-3 leading-tight hidden sm:flex flex-col justify-center">
             <span class="text-[9px] font-mono text-emerald-400 tracking-widest uppercase font-semibold">PASSAPORTE DPP</span>
             <span class="text-[9px] font-mono text-emerald-400 tracking-widest uppercase font-semibold">ISO 59020</span>
@@ -197,7 +198,7 @@
 <!-- ========================================================================= -->
 <!-- HERO SECTION WITH CRYPTOGRAPHIC MESH PARTICLES CANVAS (Ref paver.html)    -->
 <!-- ========================================================================= -->
-<section class="relative bg-vira-dark text-white pt-16 pb-24 overflow-hidden border-b border-vira-border" data-purpose="hero-section">
+<section data-internal-hero="true" class="relative bg-vira-dark text-white pt-16 pb-24 overflow-hidden border-b border-vira-border" data-purpose="hero-section">
 <!-- Interactive Background Particle Canvas -->
 <canvas class="absolute inset-0 w-full h-full pointer-events-auto z-0 opacity-45" height="766" id="hero-dpp-canvas" width="1280"></canvas>
 <!-- Radial Mask to enhance readability -->
@@ -259,7 +260,7 @@
 <!-- ========================================================================= -->
 <!-- NOVA SEÇÃO VISUAL DIDÁTICA DO PROCESSO: O CICLO DA RASTREABILIDADE       -->
 <!-- ========================================================================= -->
-<section class="py-20 bg-vira-surface bg-tech-grid border-b border-neutral-200" id="ciclo-rastreabilidade">
+<section class="py-20 bg-vira-surface bg-tech-grid border-b border-neutral-200" id="ciclo-rastreabilidade" data-purpose="traceability-cycle">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <!-- Section Header -->
 <div class="text-center max-w-3xl mx-auto mb-16">
@@ -441,7 +442,7 @@
 <!-- ========================================================================= -->
 <!-- BLOCO 2: ARQUITETURA DO PASSAPORTE DIGITAL (3 Cards Estruturais)         -->
 <!-- ========================================================================= -->
-<section class="w-full bg-vira-surface text-vira-dark py-20 px-4 sm:px-6 lg:px-8 border-b border-neutral-200">
+<section class="w-full bg-vira-surface text-vira-dark py-20 px-4 sm:px-6 lg:px-8 border-b border-neutral-200" data-purpose="dpp-architecture">
 <div class="max-w-7xl mx-auto space-y-12">
 <!-- Section Header -->
 <div class="space-y-2 max-w-3xl">
@@ -515,7 +516,7 @@
 <!-- ========================================================================= -->
 <!-- BLOCO 3: TERMINAL INTERATIVO DE VALIDAÇÃO DE LOTE (Dark Base #08110D)    -->
 <!-- ========================================================================= -->
-<section class="py-20 bg-vira-dark text-white border-b border-vira-border relative" id="terminal-auditoria">
+<section class="py-20 bg-vira-dark text-white border-b border-vira-border relative" id="terminal-auditoria" data-purpose="audit-terminal">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
 <!-- Section Header -->
 <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
@@ -632,7 +633,7 @@
 <!-- ========================================================================= -->
 <!-- BLOCO 4: MARCADOR INDELÉVEL NA PEÇA FÍSICA (Light Background)             -->
 <!-- ========================================================================= -->
-<section class="py-20 bg-vira-surface border-b border-neutral-200">
+<section class="py-20 bg-vira-surface border-b border-neutral-200" data-purpose="physical-marker">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 <div class="space-y-2 max-w-3xl">
 <span class="text-xs font-mono-tech uppercase tracking-widest text-vira-forest font-semibold bg-emerald-100/70 px-3 py-1 rounded-full border border-neutral-200 inline-block">
@@ -739,7 +740,7 @@
 <!-- ========================================================================= -->
 <!-- BLOCO 5: CALCULADORA DINÂMICA DE IMPACTO ESG (Dark Base)                  -->
 <!-- ========================================================================= -->
-<section class="py-20 bg-vira-dark text-white border-b border-vira-border relative">
+<section class="py-20 bg-vira-dark text-white border-b border-vira-border relative" data-purpose="impact-calculator">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 <div class="space-y-2 max-w-3xl">
 <span class="text-xs font-mono-tech uppercase tracking-widest text-vira-gold font-semibold bg-vira-forest px-3 py-1 rounded-full border border-vira-border inline-block">
@@ -810,7 +811,7 @@
 <!-- ========================================================================= -->
 <!-- BLOCO 6: MATRIZ DE CONFORMIDADE LEGAL & ESG (Light Background)           -->
 <!-- ========================================================================= -->
-<section class="py-20 bg-vira-surface border-b border-neutral-200">
+<section class="py-20 bg-vira-surface border-b border-neutral-200" data-purpose="legal-matrix">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 <div class="space-y-2 max-w-3xl">
 <span class="text-xs font-mono-tech uppercase tracking-widest text-vira-forest font-semibold bg-emerald-100/70 px-3 py-1 rounded-full border border-neutral-200 inline-block">
@@ -913,7 +914,7 @@
 <!-- ========================================================================= -->
 <!-- BLOCO 7: FAQ TÉCNICO DE RASTREABILIDADE (Dark Base #08110D)               -->
 <!-- ========================================================================= -->
-<section class="py-20 bg-vira-dark text-white border-b border-vira-border">
+<section class="py-20 bg-vira-dark text-white border-b border-vira-border" data-purpose="dpp-faq">
 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 <div class="space-y-2">
 <span class="text-xs font-mono-tech uppercase tracking-widest text-vira-gold font-semibold bg-vira-forest px-3 py-1 rounded-full border border-vira-border inline-block">
@@ -1333,5 +1334,6 @@
     };
   })();
 </script>
+<script defer src="internal-pages.js"></script>
 </body>
 </html>

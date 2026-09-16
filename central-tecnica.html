@@ -62,8 +62,9 @@
       display: none;
     }
   </style>
+<link rel="stylesheet" href="internal-pages.css">
 </head>
-<body class="antialiased selection:bg-[#F1C546] selection:text-[#08110D]">
+<body class="antialiased selection:bg-[#F1C546] selection:text-[#08110D]" data-vira-internal="central-tecnica">
 <!-- BEGIN: TopTelemetryRibbon -->
 <!-- Barra de telemetria técnica e status normativo -->
 <div class="w-full bg-[#08110D] border-b border-white/10 text-[10px] font-mono-tech tracking-wider text-zinc-400 py-1.5 px-4 md:px-8 flex flex-wrap items-center justify-between sticky top-0 z-50" data-purpose="telemetry-bar">
@@ -89,7 +90,7 @@
     <div class="flex items-center space-x-4">
       <a aria-label="Página Inicial VIRA" class="flex items-center space-x-2 group focus:outline-none" href="index.html">
         <div class="flex items-center gap-3">
-          <img alt="VIRA" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhzmy9X4hLoTq7ywTJRCrTPJM98BZgX7i_icoaBj5_4urTmKJBG53G5G626vvFOdU2dKdMCSQbTgR9rE0ezzG6R4xORiPnBrC6GRXKCFi2xNVRhMYcAovSmJsDOrTkvqzxX8jxuxMlwdGSlR4SVXQ3MMU6zebyiQbeiSTyPvxBucIi3b6vRgBbkig5LBw8Ynat01K6VKlafO3YOoBvyKzg1RiWttC6dglACoDT0Gc0bLcbPeKrYT9SlygadzNRCnvHTwE"/>
+          <img alt="VIRA" class="h-8 w-auto object-contain" src="assets/marca-site-menu.webp"/>
           <div class="border-l border-neutral-700/80 pl-3 leading-tight hidden sm:flex flex-col justify-center">
             <span class="text-[9px] font-mono text-emerald-400 tracking-widest uppercase font-semibold">CENTRAL TÉCNICA //</span>
             <span class="text-[9px] font-mono text-emerald-400 tracking-widest uppercase font-semibold">ENGENHARIA &amp; LAUDOS</span>
@@ -168,7 +169,7 @@
 
 <!-- BEGIN: HeroSection -->
 <!-- Seção Principal com Canvas Interativo de Partículas -->
-<section class="relative bg-gradient-to-b from-[#0d1a12] via-[#142519] to-[#0d1a12] py-20 lg:py-28 px-4 md:px-8 border-b border-white/10 overflow-hidden">
+<section data-purpose="central-hero" data-internal-hero="true" class="relative bg-gradient-to-b from-[#0d1a12] via-[#142519] to-[#0d1a12] py-20 lg:py-28 px-4 md:px-8 border-b border-white/10 overflow-hidden">
   <!-- Canvas Interativo -->
   <canvas class="absolute inset-0 w-full h-full pointer-events-none opacity-40" id="particlesCanvas"></canvas>
   <div class="max-w-[1440px] mx-auto relative z-10">
@@ -228,7 +229,7 @@
 
 <!-- BEGIN: TransparencyPrinciples -->
 <!-- Bloco 2: Fundo Claro Editorial #FAF9F6 -->
-<section class="bg-[#FAF9F6] text-zinc-900 py-20 px-4 md:px-8 border-b border-zinc-200">
+<section data-purpose="transparency-principles" class="bg-[#FAF9F6] text-zinc-900 py-20 px-4 md:px-8 border-b border-zinc-200">
   <div class="max-w-[1440px] mx-auto">
     <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-12">
       <div>
@@ -306,7 +307,7 @@
 
 <!-- BEGIN: DocumentLibrary -->
 <!-- Bloco 3: Fundo Escuro #142519 - Biblioteca Documental -->
-<section class="bg-[#142519] py-20 px-4 md:px-8 border-b border-white/10" id="biblioteca">
+<section data-purpose="document-library" class="bg-[#142519] py-20 px-4 md:px-8 border-b border-white/10" id="biblioteca">
   <div class="max-w-[1440px] mx-auto">
     <!-- Cabeçalho da Biblioteca -->
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
@@ -600,7 +601,7 @@
 
 <!-- BEGIN: DPPSection -->
 <!-- Bloco 4: Passaporte Digital de Produto com Terminal Criptográfico -->
-<section class="bg-[#0d1a12] py-20 px-4 md:px-8 border-b border-white/10">
+<section data-purpose="dpp-section" class="bg-[#0d1a12] py-20 px-4 md:px-8 border-b border-white/10">
   <div class="max-w-[1440px] mx-auto">
     <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-12">
       <div>
@@ -695,7 +696,7 @@
 
 <!-- BEGIN: RegulatoryMatrix -->
 <!-- Bloco 5: Fundo Claro Editorial #FAF9F6 - Matriz de Normas Técnicas -->
-<section class="bg-[#FAF9F6] text-zinc-900 py-20 px-4 md:px-8 border-b border-zinc-200">
+<section data-purpose="regulatory-matrix" class="bg-[#FAF9F6] text-zinc-900 py-20 px-4 md:px-8 border-b border-zinc-200">
   <div class="max-w-[1440px] mx-auto">
     <div class="mb-10">
       <span class="font-mono-tech text-xs tracking-wider text-zinc-500 uppercase block mb-2">
@@ -790,7 +791,7 @@
 
 <!-- BEGIN: FAQSection -->
 <!-- Bloco 6: Fundo Escuro #142519 - Perguntas Frequentes Técnicas -->
-<section class="bg-[#142519] py-20 px-4 md:px-8 border-b border-white/10" id="faq">
+<section data-purpose="faq-section" class="bg-[#142519] py-20 px-4 md:px-8 border-b border-white/10" id="faq">
   <div class="max-w-4xl mx-auto">
     <div class="text-center mb-12">
       <span class="font-mono-tech text-xs tracking-wider text-[#F1C546] uppercase block mb-2">
@@ -852,7 +853,7 @@
 
 <!-- BEGIN: FormB2BSection -->
 <!-- Bloco 7: Fundo Escuro #0d1a12 - Solicitação B2B de Pacote Executivo e Amostras -->
-<section class="bg-[#0d1a12] py-20 px-4 md:px-8 border-b border-white/10" id="solicitar">
+<section data-purpose="specification-request" class="bg-[#0d1a12] py-20 px-4 md:px-8 border-b border-white/10" id="solicitar">
   <div class="max-w-3xl mx-auto">
     <div class="text-center mb-10">
       <span class="font-mono-tech text-xs tracking-wider text-[#F1C546] uppercase block mb-2">
@@ -1093,5 +1094,6 @@
     })();
   </script>
 <!-- END: InteractiveScripts -->
+<script defer src="internal-pages.js"></script>
 </body>
 </html>
