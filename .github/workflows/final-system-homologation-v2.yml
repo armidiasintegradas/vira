@@ -1,0 +1,255 @@
+name: Final system homologation v2
+
+on:
+  push:
+    branches:
+      - feat/internal-pages-visual-unity
+    paths:
+      - .github/workflows/final-system-homologation-v2.yml
+
+permissions:
+  contents: write
+
+jobs:
+  homologate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/internal-pages-visual-unity
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Remove temporary homologation workflow and publish clean head
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/final-system-homologation-v2.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "chore: clean final system homologation v2 harness"
+          git push origin HEAD:feat/internal-pages-visual-unity
+          test -z "$(git status --porcelain)"
+
+      - name: Run complete static suite
+        run: node --test tests/*.test.mjs
+
+      - name: Install Chromium QA runtime
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Verify six-page system contract, navigation and responsive shell
+        run: |
+          set -euo pipefail
+          mkdir -p system-review
+          python3 -m http.server 4173 >/tmp/vira-final-system-v2.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          sleep 2
+          cat > final-system-review-v2.mjs <<'EOF'
+          import { chromium } from 'playwright';
+          import assert from 'node:assert/strict';
+
+          const browser = await chromium.launch({ headless: true });
+          const routes = [
+            ['paver','paver.html'],
+            ['blocos','blocos.html'],
+            ['guias','guias.html'],
+            ['central-tecnica','central-tecnica.html'],
+            ['passaporte','passaporte.html'],
+            ['brandbook','brandbook.html'],
+          ];
+          const expectedRoutes = routes.map(([,route]) => route);
+          const viewports = [
+            ['desktop',1440,900],
+            ['tablet',1024,768],
+            ['mobile',390,844],
+          ];
+
+          let smokeCount = 0;
+          for (const [viewportName,width,height] of viewports) {
+            let canonicalHeader = null;
+            let canonicalTelemetry = null;
+            let canonicalFooter = null;
+
+            for (const [key,route] of routes) {
+              const page = await browser.newPage({ viewport: { width, height } });
+              const pageErrors = [];
+              page.on('pageerror', error => pageErrors.push(error.message));
+              await page.goto(`http://127.0.0.1:4173/${route}`, { waitUntil: 'networkidle', timeout: 30000 });
+              await page.waitForFunction(() => document.documentElement.dataset.viraInternalReady === 'true', null, { timeout: 10000 });
+
+              const state = await page.evaluate(({key}) => {
+                const header = document.querySelector('[data-purpose="primary-navigation"]');
+                const telemetry = document.querySelector('[data-purpose="telemetry-bar"]');
+                const footer = document.querySelector('[data-purpose="internal-footer"]');
+                const desktopNav = header?.querySelector('.vira-product-switcher');
+                const mobileDrawer = header?.querySelector('.vira-mobile-drawer');
+                const menuToggle = header?.querySelector('.vira-menu-toggle');
+                const headerRect = header?.getBoundingClientRect();
+                const telemetryRect = telemetry?.getBoundingClientRect();
+                const footerRect = footer?.getBoundingClientRect();
+                const desktopActive = [...(desktopNav?.querySelectorAll('a[aria-current="page"]') ?? [])];
+                const mobileActive = [...(mobileDrawer?.querySelectorAll('a[aria-current="page"]') ?? [])];
+                const footerActive = [...(footer?.querySelectorAll('a[aria-current="page"]') ?? [])];
+                const desktopRoutes = [...(desktopNav?.querySelectorAll('.vira-nav-link') ?? [])].map(a => a.getAttribute('href'));
+                const mobileRoutes = [...(mobileDrawer?.querySelectorAll('.vira-nav-link') ?? [])].map(a => a.getAttribute('href'));
+                const footerRoutes = [...(footer?.querySelectorAll('.vira-internal-footer__links a') ?? [])].map(a => a.getAttribute('href'));
+                const config = window.VIRAInternalPages?.PAGE_CONFIG?.[key];
+                const navRoutes = window.VIRAInternalPages?.NAV?.map(item => item.route) ?? [];
+                const desktopSwitcherVisible = desktopNav ? getComputedStyle(desktopNav).display !== 'none' : false;
+                const menuVisible = menuToggle ? getComputedStyle(menuToggle).display !== 'none' : false;
+                return {
+                  bodyKey: document.body.dataset.viraInternal,
+                  ready: document.documentElement.dataset.viraInternalReady,
+                  noOverflow: document.documentElement.scrollWidth <= innerWidth,
+                  canonicalTelemetry: telemetry?.dataset.viraCanonical ?? null,
+                  desktopActiveCount: desktopActive.length,
+                  desktopActiveHref: desktopActive[0]?.getAttribute('href') ?? null,
+                  mobileActiveCount: mobileActive.length,
+                  mobileActiveHref: mobileActive[0]?.getAttribute('href') ?? null,
+                  footerActiveCount: footerActive.length,
+                  footerActiveHref: footerActive[0]?.getAttribute('href') ?? null,
+                  desktopRoutes,
+                  mobileRoutes,
+                  footerRoutes,
+                  navRoutes,
+                  headerLogo: header?.querySelector('.vira-brand__logo')?.getAttribute('src') ?? '',
+                  footerLogo: footer?.querySelector('.vira-internal-footer__logo')?.getAttribute('src') ?? '',
+                  headerCta: header?.querySelector('.vira-header-actions .vira-specify-cta')?.getAttribute('href') ?? '',
+                  drawerCta: mobileDrawer?.querySelector('.vira-specify-cta')?.getAttribute('href') ?? '',
+                  telemetryCta: telemetry?.querySelector('.vira-telemetry__cta')?.getAttribute('href') ?? '',
+                  configCta: config?.cta ?? null,
+                  localAnchorExists: config?.cta?.startsWith('#') ? Boolean(document.querySelector(config.cta)) : true,
+                  footerCredit: footer?.textContent.includes('Desenvolvido por AR Mídias Integradas.') ?? false,
+                  headerRect: headerRect ? { top: Math.round(headerRect.top), width: Math.round(headerRect.width), height: Math.round(headerRect.height) } : null,
+                  telemetryRect: telemetryRect ? { top: Math.round(telemetryRect.top), width: Math.round(telemetryRect.width), height: Math.round(telemetryRect.height) } : null,
+                  footerRect: footerRect ? { width: Math.round(footerRect.width), height: Math.round(footerRect.height) } : null,
+                  desktopSwitcherVisible,
+                  menuVisible,
+                  drawerHidden: mobileDrawer?.getAttribute('aria-hidden') ?? null,
+                };
+              }, {key});
+
+              assert.equal(pageErrors.length, 0, `${viewportName}/${route}: page errors ${pageErrors.join(' | ')}`);
+              assert.equal(state.bodyKey, key, `${viewportName}/${route}: body key incorreto`);
+              assert.equal(state.ready, 'true', `${viewportName}/${route}: shell não pronto`);
+              assert(state.noOverflow, `${viewportName}/${route}: overflow horizontal global`);
+              assert.equal(state.canonicalTelemetry, 'true', `${viewportName}/${route}: telemetria não canônica`);
+              assert.equal(state.desktopActiveCount, 1, `${viewportName}/${route}: desktop nav deve ter um único ativo`);
+              assert.equal(state.desktopActiveHref, route, `${viewportName}/${route}: ativo desktop incorreto`);
+              assert.equal(state.mobileActiveCount, 1, `${viewportName}/${route}: drawer deve ter um único ativo`);
+              assert.equal(state.mobileActiveHref, route, `${viewportName}/${route}: ativo mobile incorreto`);
+              assert.equal(state.footerActiveCount, 1, `${viewportName}/${route}: footer deve ter um único ativo`);
+              assert.equal(state.footerActiveHref, route, `${viewportName}/${route}: ativo do footer incorreto`);
+              assert.deepEqual(state.desktopRoutes, expectedRoutes, `${viewportName}/${route}: rotas desktop divergiram`);
+              assert.deepEqual(state.mobileRoutes, expectedRoutes, `${viewportName}/${route}: rotas mobile divergiram`);
+              assert.deepEqual(state.footerRoutes, expectedRoutes, `${viewportName}/${route}: rotas do footer divergiram`);
+              assert.deepEqual(state.navRoutes, expectedRoutes, `${viewportName}/${route}: contrato NAV divergiu`);
+              assert(state.headerLogo.endsWith('assets/marca-site-menu.webp'), `${viewportName}/${route}: logo do header divergente`);
+              assert(state.footerLogo.endsWith('assets/marca-site-menu.webp'), `${viewportName}/${route}: logo do footer divergente`);
+              assert.equal(state.headerCta, state.configCta, `${viewportName}/${route}: CTA do header divergente`);
+              assert.equal(state.drawerCta, state.configCta, `${viewportName}/${route}: CTA do drawer divergente`);
+              assert.equal(state.telemetryCta, state.configCta, `${viewportName}/${route}: CTA da telemetria divergente`);
+              assert(state.localAnchorExists, `${viewportName}/${route}: CTA local aponta para âncora inexistente`);
+              assert(state.footerCredit, `${viewportName}/${route}: crédito AR Mídias ausente`);
+              assert(state.headerRect && state.telemetryRect && state.footerRect, `${viewportName}/${route}: geometria canônica ausente`);
+
+              if (!canonicalHeader) canonicalHeader = state.headerRect;
+              else assert.deepEqual(state.headerRect, canonicalHeader, `${viewportName}/${route}: geometria do header divergiu`);
+              if (!canonicalTelemetry) canonicalTelemetry = state.telemetryRect;
+              else assert.deepEqual(state.telemetryRect, canonicalTelemetry, `${viewportName}/${route}: geometria da telemetria divergiu`);
+              if (!canonicalFooter) canonicalFooter = state.footerRect;
+              else assert.deepEqual(state.footerRect, canonicalFooter, `${viewportName}/${route}: geometria do footer divergiu`);
+
+              if (width >= 1280) {
+                assert(state.desktopSwitcherVisible, `${viewportName}/${route}: navegação indexada desktop oculta`);
+                assert(!state.menuVisible, `${viewportName}/${route}: menu mobile visível no desktop`);
+              } else {
+                assert(!state.desktopSwitcherVisible, `${viewportName}/${route}: navegação desktop visível abaixo de 1280px`);
+                assert(state.menuVisible, `${viewportName}/${route}: menu mobile ausente`);
+                assert.equal(state.drawerHidden, 'true', `${viewportName}/${route}: drawer deveria iniciar fechado`);
+              }
+
+              if (viewportName === 'desktop') {
+                await page.screenshot({ path: `system-review/${key}-desktop-top.png`, clip: { x: 0, y: 0, width, height: 900 } });
+                await page.locator('[data-purpose="internal-footer"]').screenshot({ path: `system-review/${key}-desktop-footer.png` });
+              }
+              if (viewportName === 'mobile') {
+                await page.screenshot({ path: `system-review/${key}-mobile-top.png`, clip: { x: 0, y: 0, width, height: 844 } });
+                await page.locator('[data-purpose="internal-footer"]').screenshot({ path: `system-review/${key}-mobile-footer.png` });
+                const button = page.locator('.vira-menu-toggle');
+                const drawer = page.locator('.vira-mobile-drawer');
+                await button.click();
+                assert.equal(await button.getAttribute('aria-expanded'), 'true', `${route}: menu não abriu`);
+                assert.equal(await drawer.getAttribute('aria-hidden'), 'false', `${route}: drawer não abriu`);
+                await page.keyboard.press('Escape');
+                assert.equal(await button.getAttribute('aria-expanded'), 'false', `${route}: Escape não fechou menu`);
+                assert.equal(await drawer.getAttribute('aria-hidden'), 'true', `${route}: drawer permaneceu aberto após Escape`);
+              }
+
+              smokeCount++;
+              console.log(`system ${viewportName}/${route}: ok`, JSON.stringify({header:state.headerRect,telemetry:state.telemetryRect,footer:state.footerRect}));
+              await page.close();
+            }
+          }
+          assert.equal(smokeCount, 18, 'homologação deve cobrir 18 combinações');
+
+          {
+            const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+            await page.goto('http://127.0.0.1:4173/paver.html', { waitUntil: 'networkidle' });
+            await page.waitForFunction(() => document.documentElement.dataset.viraInternalReady === 'true');
+            for (const [key,route] of routes.slice(1).concat([routes[0]])) {
+              await Promise.all([
+                page.waitForURL(url => url.pathname.endsWith(`/${route}`), { timeout: 10000 }),
+                page.locator(`.vira-product-switcher a[href="${route}"]`).click(),
+              ]);
+              await page.waitForFunction(() => document.documentElement.dataset.viraInternalReady === 'true');
+              assert.equal(await page.locator('body').getAttribute('data-vira-internal'), key, `desktop flow: ${route} body key`);
+              assert.equal(await page.locator('.vira-product-switcher a[aria-current="page"]').getAttribute('href'), route, `desktop flow: ${route} ativo incorreto`);
+            }
+            console.log('desktop cross-page navigation: 6/6 ok');
+            await page.close();
+          }
+
+          {
+            const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+            await page.goto('http://127.0.0.1:4173/paver.html', { waitUntil: 'networkidle' });
+            await page.waitForFunction(() => document.documentElement.dataset.viraInternalReady === 'true');
+            for (const [key,route] of routes.slice(1).concat([routes[0]])) {
+              await page.locator('.vira-menu-toggle').click();
+              await page.waitForFunction(() => document.querySelector('.vira-mobile-drawer')?.getAttribute('aria-hidden') === 'false');
+              await Promise.all([
+                page.waitForURL(url => url.pathname.endsWith(`/${route}`), { timeout: 10000 }),
+                page.locator(`.vira-mobile-drawer a[href="${route}"]`).click(),
+              ]);
+              await page.waitForFunction(() => document.documentElement.dataset.viraInternalReady === 'true');
+              assert.equal(await page.locator('body').getAttribute('data-vira-internal'), key, `mobile flow: ${route} body key`);
+              assert.equal(await page.locator('.vira-mobile-drawer a[aria-current="page"]').getAttribute('href'), route, `mobile flow: ${route} ativo incorreto`);
+              assert.equal(await page.locator('.vira-mobile-drawer').getAttribute('aria-hidden'), 'true', `mobile flow: ${route} drawer deveria estar fechado`);
+            }
+            console.log('mobile cross-page navigation: 6/6 ok');
+            await page.close();
+          }
+
+          console.log(`system smoke total: ${smokeCount}/18`);
+          await browser.close();
+          EOF
+          node final-system-review-v2.mjs
+          rm -f final-system-review-v2.mjs
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: final-system-homologation-v2
+          path: system-review/*.png
+          retention-days: 1
+
+      - name: Clean QA runtime and prove workspace is clean
+        run: |
+          set -euo pipefail
+          rm -rf system-review node_modules package-lock.json package.json final-system-review-v2.mjs
+          test -z "$(git status --porcelain)"
