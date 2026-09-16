@@ -1620,3 +1620,70 @@
     text-align:center;
   }
 }
+
+/* Brandbook mobile refinement — visual review */
+@media (max-width:639px) {
+  [data-vira-internal="brandbook"] [data-purpose="brandbook-chapter-nav"] {
+    isolation:isolate;
+  }
+
+  [data-vira-internal="brandbook"] [data-purpose="brandbook-chapter-nav"]::after {
+    content:"→";
+    position:sticky;
+    z-index:6;
+    right:0;
+    float:right;
+    width:36px;
+    min-width:36px;
+    height:40px;
+    margin-left:-36px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    padding-right:4px;
+    background:linear-gradient(to left,rgba(4,10,7,.99) 42%,rgba(4,10,7,0));
+    color:var(--vira-gold);
+    font-family:"IBM Plex Mono",monospace;
+    font-size:13px;
+    line-height:1;
+    font-weight:700;
+    pointer-events:none;
+  }
+
+  [data-vira-internal="brandbook"] [data-purpose="brand-typography"] .overflow-x-auto {
+    position:relative;
+    padding-top:26px;
+    isolation:isolate;
+  }
+
+  [data-vira-internal="brandbook"] [data-purpose="brand-typography"] .overflow-x-auto::before {
+    content:"DESLIZE →";
+    position:absolute;
+    z-index:4;
+    top:0;
+    right:2px;
+    padding:3px 7px;
+    border:1px solid rgba(8,17,13,.16);
+    border-radius:999px;
+    background:rgba(255,255,255,.96);
+    color:var(--vira-dark);
+    font-family:"IBM Plex Mono",monospace;
+    font-size:9px;
+    line-height:1.2;
+    font-weight:700;
+    letter-spacing:.08em;
+    pointer-events:none;
+  }
+
+  [data-vira-internal="brandbook"] [data-purpose="brand-typography"] .overflow-x-auto::after {
+    content:"";
+    position:absolute;
+    z-index:3;
+    top:26px;
+    right:0;
+    bottom:0;
+    width:38px;
+    background:linear-gradient(to left,rgba(255,255,255,.98),rgba(255,255,255,0));
+    pointer-events:none;
+  }
+}
